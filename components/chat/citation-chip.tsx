@@ -3,14 +3,16 @@
 import * as React from "react";
 import { Tooltip } from "@/components/ui/tooltip";
 import type { CitationRef } from "@/components/chat/reduce";
+import { stashCitationHighlight } from "@/components/chat/highlight-bus";
 import { cn } from "@/lib/utils";
 
 /**
  * Inline numbered citation chip (mint) — the marker `[[n]]` rendered as a
- * clickable chip that opens the cited page in the PdfPanel. Hover reveals the
- * ≤200-char source quote. When the matching citation event hasn't arrived yet
- * (a marker can stream one tick ahead of its citation), it renders as a plain
- * number until it resolves.
+ * clickable chip that opens the cited page in the PdfPanel, with the quote
+ * stashed on the highlight bus so the panel marks the cited passage. Hover
+ * reveals the ≤200-char source quote. When the matching citation event hasn't
+ * arrived yet (a marker can stream one tick ahead of its citation), it
+ * renders as a plain number until it resolves.
  */
 export function CitationChip({
   n,
@@ -37,7 +39,14 @@ export function CitationChip({
     <Tooltip content={citation.quote} side="top">
       <button
         type="button"
-        onClick={() => onOpen(citation.docId, citation.page)}
+        onClick={() => {
+          stashCitationHighlight({
+            docId: citation.docId,
+            page: citation.page,
+            quote: citation.quote,
+          });
+          onOpen(citation.docId, citation.page);
+        }}
         aria-label={`Open source ${n}`}
         className={cn(
           base,

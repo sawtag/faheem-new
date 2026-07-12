@@ -5,12 +5,14 @@ import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { CitationRef } from "@/components/chat/reduce";
+import { stashCitationHighlight } from "@/components/chat/highlight-bus";
 import { cn } from "@/lib/utils";
 
 /**
  * Collapsible fact→source map under each answer (CATALOG §2B) — every citation
  * as quote + doc title + page + numbered chip. A row click behaves like the
- * inline chip: it opens the cited page in the PdfPanel (audit-ready).
+ * inline chip: it opens the cited page in the PdfPanel with the quoted
+ * passage highlighted (audit-ready).
  */
 export function SourcesAccordion({
   citations,
@@ -60,7 +62,14 @@ export function SourcesAccordion({
             <li key={c.n}>
               <button
                 type="button"
-                onClick={() => onOpenDoc(c.docId, c.page)}
+                onClick={() => {
+                  stashCitationHighlight({
+                    docId: c.docId,
+                    page: c.page,
+                    quote: c.quote,
+                  });
+                  onOpenDoc(c.docId, c.page);
+                }}
                 className="hover:bg-navy-50 focus-visible:ring-accent focus-visible:ring-offset-card group rounded-btn flex w-full items-start gap-2.5 px-2 py-2 text-start transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
               >
                 <span className="bg-accent-50 text-accent-700 financial rounded-pill mt-0.5 grid h-[1.15rem] min-w-[1.2rem] shrink-0 place-items-center px-1 text-[0.6875rem] font-bold">

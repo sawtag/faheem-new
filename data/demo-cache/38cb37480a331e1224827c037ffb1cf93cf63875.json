@@ -12,75 +12,49 @@
       "type": "stage",
       "agent": "comparables",
       "status": "start",
-      "docIds": [
-        "market-data-comps",
-        "fy25-er"
-      ]
+      "docIds": ["market-data-comps", "fy25-er"]
     },
     {
       "type": "stage",
       "agent": "comparables",
       "status": "done",
-      "docIds": [
-        "market-data-comps",
-        "fy25-er"
-      ]
+      "docIds": ["market-data-comps", "fy25-er"]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "start",
-      "docIds": [
-        "industry-news-pack",
-        "market-data-comps",
-        "lunar-ic-charter"
-      ]
+      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "done",
-      "docIds": [
-        "industry-news-pack",
-        "market-data-comps",
-        "lunar-ic-charter"
-      ]
+      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
     },
     {
       "type": "stage",
       "agent": "ic",
       "status": "start",
-      "docIds": [
-        "thara-analysis",
-        "lunar-ic-charter"
-      ]
+      "docIds": ["thara-analysis", "lunar-ic-charter"]
     },
     {
       "type": "stage",
       "agent": "ic",
       "status": "done",
-      "docIds": [
-        "thara-analysis",
-        "lunar-ic-charter"
-      ]
+      "docIds": ["thara-analysis", "lunar-ic-charter"]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": [
-        "q1-26-fs",
-        "fy25-er"
-      ]
+      "docIds": ["q1-26-fs", "fy25-er"]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": [
-        "q1-26-fs",
-        "fy25-er"
-      ]
+      "docIds": ["q1-26-fs", "fy25-er"]
     },
     {
       "type": "delta",
