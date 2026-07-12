@@ -80,5 +80,91 @@
     "filterFirm": "Firm",
     "contextFirm": "Lunar",
     "userAli": "Ali"
+  },
+  "connections": {
+    "title": "Connections",
+    "subtitle": "Faheem's data sources — market data, disclosures, and your internal systems.",
+    "addMcp": "Add custom MCP",
+    "connected": "Connected",
+    "available": "Available",
+    "configure": "Configure",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "moreActions": "More actions",
+    "cancel": "Cancel",
+    "searchPlaceholder": "Search connectors…",
+    "searchEmpty": {
+      "title": "No connectors match ''{q}''",
+      "caption": "Try a different name, or add it as a custom MCP."
+    },
+    "mcp": {
+      "title": "Add custom MCP connector",
+      "caption": "Model Context Protocol — any internal system can speak to Faheem.",
+      "name": "Name",
+      "namePlaceholder": "Lunar Portfolio DB",
+      "url": "Remote server URL",
+      "urlPlaceholder": "https://mcp.internal.lunar.sa",
+      "urlError": "Enter a valid HTTPS URL",
+      "advanced": "Advanced settings",
+      "authHeader": "Auth header",
+      "authHeaderPlaceholder": "Authorization: Bearer …",
+      "timeout": "Timeout (seconds)",
+      "timeoutPlaceholder": "30",
+      "submit": "Add connector",
+      "customDescription": "Custom MCP connector"
+    },
+    "oauth": {
+      "title": "Connect {name}",
+      "scope": "Faheem will get read-only access to official disclosures and filings.",
+      "note": "Read-only · revocable anytime · logged in the audit trail",
+      "authorize": "Authorize",
+      "connecting": "Establishing secure connection…",
+      "success": "Connected"
+    }
+  },
+  "onboarding": {
+    "title": "Connect & Configure",
+    "subtitle": "Three steps to make Faheem yours.",
+    "step1": "Connect",
+    "step2": "Agents & skills",
+    "step3": "Mandate & risk",
+    "stepCount": "Step {n} of 3",
+    "back": "Back",
+    "continue": "Continue",
+    "finish": "Create IC Charter",
+    "stage1": "Stage 1 — Screening",
+    "stage2": "Stage 2 — Deep Analysis",
+    "stage3": "Stage 3 — Investment Committee",
+    "mandate": {
+      "irr": "Target IRR hurdle",
+      "concentration": "Max single-name concentration",
+      "holding": "Holding period",
+      "holdingShort": "1–3y",
+      "holdingMid": "3–5y",
+      "holdingLong": "5y+",
+      "liquidity": "Liquidity requirement",
+      "liquidityQuarterly": "Quarterly",
+      "liquiditySemiAnnual": "Semi-annual",
+      "liquidityAnnual": "Annual",
+      "shariah": "Shariah screen required",
+      "shariahNote": "Per AAOIFI methodology",
+      "sectors": "Sector appetite",
+      "sector": {
+        "technology": "Technology",
+        "consumer": "Consumer",
+        "healthcare": "Healthcare",
+        "financials": "Financials",
+        "realEstate": "Real Estate",
+        "industrials": "Industrials"
+      },
+      "drawdown": "Max drawdown tolerance",
+      "percentError": "Enter a percentage"
+    },
+    "done": {
+      "title": "Your IC Charter is ready",
+      "caption": "Faheem will cite it back to you in every screening decision.",
+      "open": "Open IC Charter (PDF)",
+      "home": "Go to Home"
+    }
   }
 }

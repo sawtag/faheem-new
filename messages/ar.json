@@ -80,5 +80,91 @@
     "filterFirm": "الشركة",
     "contextFirm": "لونار",
     "userAli": "علي"
+  },
+  "connections": {
+    "title": "الاتصالات",
+    "subtitle": "مصادر بيانات فهيم — بيانات السوق والإفصاحات وأنظمتكم الداخلية.",
+    "addMcp": "إضافة موصل MCP مخصص",
+    "connected": "متصلة",
+    "available": "متاحة",
+    "configure": "تهيئة",
+    "connect": "ربط",
+    "disconnect": "إلغاء الربط",
+    "moreActions": "المزيد من الإجراءات",
+    "cancel": "إلغاء",
+    "searchPlaceholder": "ابحث في الموصلات…",
+    "searchEmpty": {
+      "title": "لا توجد موصلات تطابق ''{q}''",
+      "caption": "جرّب اسماً مختلفاً، أو أضفه كموصل MCP مخصص."
+    },
+    "mcp": {
+      "title": "إضافة موصل MCP مخصص",
+      "caption": "بروتوكول سياق النماذج — أي نظام داخلي يمكنه التواصل مع فهيم.",
+      "name": "الاسم",
+      "namePlaceholder": "قاعدة بيانات محفظة لونار",
+      "url": "رابط الخادم البعيد",
+      "urlPlaceholder": "https://mcp.internal.lunar.sa",
+      "urlError": "يرجى إدخال رابط HTTPS صحيح",
+      "advanced": "إعدادات متقدمة",
+      "authHeader": "ترويسة المصادقة",
+      "authHeaderPlaceholder": "Authorization: Bearer …",
+      "timeout": "المهلة (بالثواني)",
+      "timeoutPlaceholder": "30",
+      "submit": "إضافة الموصل",
+      "customDescription": "موصل MCP مخصص"
+    },
+    "oauth": {
+      "title": "ربط {name}",
+      "scope": "سيحصل فهيم على صلاحية قراءة فقط للإفصاحات والملفات الرسمية.",
+      "note": "قراءة فقط · قابل للإلغاء في أي وقت · مسجَّل في سجل التدقيق",
+      "authorize": "تفويض",
+      "connecting": "جارٍ إنشاء اتصال آمن…",
+      "success": "تم الاتصال"
+    }
+  },
+  "onboarding": {
+    "title": "الربط والتهيئة",
+    "subtitle": "ثلاث خطوات ليصبح فهيم جاهزاً لعملكم.",
+    "step1": "الربط",
+    "step2": "الوكلاء والمهارات",
+    "step3": "التفويض والمخاطر",
+    "stepCount": "الخطوة {n} من 3",
+    "back": "رجوع",
+    "continue": "متابعة",
+    "finish": "إنشاء ميثاق لجنة الاستثمار",
+    "stage1": "المرحلة 1 — الفرز",
+    "stage2": "المرحلة 2 — التحليل المعمّق",
+    "stage3": "المرحلة 3 — لجنة الاستثمار",
+    "mandate": {
+      "irr": "معدل العائد الداخلي المستهدف (IRR)",
+      "concentration": "الحد الأقصى للتركّز في اسم واحد",
+      "holding": "فترة الاحتفاظ",
+      "holdingShort": "1–3 سنوات",
+      "holdingMid": "3–5 سنوات",
+      "holdingLong": "+5 سنوات",
+      "liquidity": "متطلبات السيولة",
+      "liquidityQuarterly": "ربع سنوي",
+      "liquiditySemiAnnual": "نصف سنوي",
+      "liquidityAnnual": "سنوي",
+      "shariah": "الفحص الشرعي إلزامي",
+      "shariahNote": "وفق منهجية أيوفي (AAOIFI)",
+      "sectors": "القطاعات المستهدفة",
+      "sector": {
+        "technology": "التقنية",
+        "consumer": "القطاع الاستهلاكي",
+        "healthcare": "الرعاية الصحية",
+        "financials": "القطاع المالي",
+        "realEstate": "العقارات",
+        "industrials": "الصناعات"
+      },
+      "drawdown": "الحد الأقصى المقبول للتراجع",
+      "percentError": "يرجى إدخال نسبة مئوية"
+    },
+    "done": {
+      "title": "ميثاق لجنة الاستثمار جاهز",
+      "caption": "سيستشهد به فهيم في كل قرار فرز.",
+      "open": "فتح الميثاق (PDF)",
+      "home": "الانتقال إلى الرئيسية"
+    }
   }
 }
