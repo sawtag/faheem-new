@@ -166,5 +166,121 @@
       "open": "Open IC Charter (PDF)",
       "home": "Go to Home"
     }
+  },
+  "shell": {
+    "newChat": "New Chat",
+    "pinned": "Pinned",
+    "settings": "Settings",
+    "mvpRoadmap": "On the MVP roadmap",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "firm": "Lunar Investments",
+    "analyst": "Ali",
+    "switchLanguage": "Switch language",
+    "nav": {
+      "home": "Home",
+      "deals": "Deals",
+      "library": "Library",
+      "agents": "Agents",
+      "scheduled": "Scheduled Tasks",
+      "connections": "Connections",
+      "audit": "Audit Trail"
+    }
+  },
+  "chat": {
+    "empty": {
+      "title": "Start a new analysis",
+      "subtitle": "Ask about a company, a filing, or your mandate — every answer is grounded and cited."
+    },
+    "thinking": "Faheem is analyzing…",
+    "composer": {
+      "placeholder": "Ask Faheem anything…",
+      "placeholderWorkspace": "Ask Faheem about {company}",
+      "send": "Send",
+      "stop": "Stop",
+      "attach": "Attach",
+      "mic": "Voice input",
+      "improve": "Improve",
+      "improving": "Improving…",
+      "improved": "Improved by Faheem",
+      "undo": "Undo",
+      "removeChip": "Remove",
+      "agentsHeader": "Agents",
+      "docsHeader": "Documents",
+      "noMatches": "No matches",
+      "sources": "Sources",
+      "sourcesExternal": "External",
+      "sourcesInternal": "Internal",
+      "modelLabel": "Model"
+    },
+    "model": {
+      "auto": {
+        "name": "Faheem · Auto",
+        "desc": "Picks the best tier for each question"
+      },
+      "max": {
+        "name": "Faheem · Max",
+        "desc": "Most capable — full deliverables & deep analysis"
+      },
+      "light": {
+        "name": "Faheem · Light",
+        "desc": "Faster drafting and quick lookups"
+      }
+    },
+    "source": {
+      "tadawul": {
+        "name": "Tadawul disclosures",
+        "desc": "Official Saudi Exchange filings, disclosures and announcements."
+      },
+      "argaam": {
+        "name": "Argaam",
+        "desc": "Saudi financial news and market data."
+      },
+      "news": {
+        "name": "News",
+        "desc": "Global market news and industry coverage."
+      },
+      "web": {
+        "name": "Web",
+        "desc": "Open web search for context beyond your sources."
+      },
+      "dataroom": {
+        "name": "Lunar Data Room",
+        "desc": "Deal documents and internal files."
+      },
+      "templates": {
+        "name": "Templates",
+        "desc": "Lunar-branded memo, model and deck templates."
+      },
+      "mandate": {
+        "name": "Mandate",
+        "desc": "Your IC Charter — cited back in every decision."
+      }
+    },
+    "activity": {
+      "working": "Analyzing",
+      "reading": "reading",
+      "doneSeconds": "{count} agents · {seconds}s",
+      "doneSources": "{count} agents · {sources} sources",
+      "show": "Show agent activity",
+      "hide": "Collapse agent activity"
+    },
+    "verified": "Verified — {count} sources cited",
+    "sources": {
+      "title": "Sources",
+      "page": "p.{page}"
+    },
+    "pdf": {
+      "page": "Page {page}",
+      "pageOf": "Page {page} of {total}",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "fit": "Fit width",
+      "prev": "Previous page",
+      "next": "Next page",
+      "close": "Close document",
+      "loading": "Loading document…",
+      "error": "Couldn't load this document."
+    }
   }
 }
