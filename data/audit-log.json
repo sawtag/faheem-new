@@ -246,125 +246,12 @@
     "citationCount": 0
   },
   {
-    "ts": "2026-07-12T19:26:33.210Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
-    "citationCount": 17
-  },
-  {
-    "ts": "2026-07-12T19:26:40.005Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
-    "citationCount": 0
-  },
-  {
-    "ts": "2026-07-12T19:26:46.972Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
-    "citationCount": 0
-  },
-  {
-    "ts": "2026-07-12T19:28:28.193Z",
-    "user": "Ali",
-    "context": "ic",
-    "action": "question",
-    "question": "Rank these deals — strongest risk-adjusted case?",
-    "citationCount": 17
-  },
-  {
-    "ts": "2026-07-12T19:30:04.702Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "What would have to be true for Jahez to re-rate to your bull case?",
-    "citationCount": 24
-  },
-  {
-    "ts": "2026-07-12T19:30:49.310Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "How exposed is Jahez to Keeta's expansion through 2026?",
-    "citationCount": 17
-  },
-  {
-    "ts": "2026-07-12T19:34:13.501Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
-    "citationCount": 27
-  },
-  {
-    "ts": "2026-07-12T19:36:00.097Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
-    "citationCount": 13
-  },
-  {
-    "ts": "2026-07-12T19:39:32.562Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
-    "citationCount": 17
-  },
-  {
-    "ts": "2026-07-12T21:18:56.940Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
     "ts": "2026-07-12T21:18:58.464Z",
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
     "question": "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?",
     "citationCount": 5
-  },
-  {
-    "ts": "2026-07-12T21:19:01.879Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:19:01.880Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:19:03.327Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
-    "ts": "2026-07-12T21:19:04.583Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-ic-memo.docx"
-  },
-  {
-    "ts": "2026-07-12T21:19:05.122Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Rank these deals — strongest risk-adjusted case?",
-    "citationCount": 0
   },
   {
     "ts": "2026-07-12T21:19:07.164Z",
@@ -374,173 +261,19 @@
     "artifact": "jahez-board-deck.pptx"
   },
   {
-    "ts": "2026-07-12T21:19:07.798Z",
+    "ts": "2026-07-12T23:15:20.581Z",
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?",
-    "citationCount": 5
+    "question": "How much cash does Jahez hold as of Q1 2026, and how does it compare to year-end 2025?",
+    "citationCount": 4
   },
   {
-    "ts": "2026-07-12T21:19:10.002Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
-    "ts": "2026-07-12T21:19:12.437Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:19:13.231Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:19:16.363Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-ic-memo.docx"
-  },
-  {
-    "ts": "2026-07-12T21:19:17.427Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
-    "ts": "2026-07-12T21:19:18.343Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-board-deck.pptx"
-  },
-  {
-    "ts": "2026-07-12T21:19:19.932Z",
+    "ts": "2026-07-12T23:15:56.266Z",
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "Rank these deals — strongest risk-adjusted case?",
-    "citationCount": 0
-  },
-  {
-    "ts": "2026-07-12T21:22:04.587Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?",
-    "citationCount": 5
-  },
-  {
-    "ts": "2026-07-12T21:22:07.893Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:22:07.895Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:22:10.480Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
-    "ts": "2026-07-12T21:22:10.616Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-ic-memo.docx"
-  },
-  {
-    "ts": "2026-07-12T21:22:12.306Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Rank these deals — strongest risk-adjusted case?",
-    "citationCount": 0
-  },
-  {
-    "ts": "2026-07-12T21:22:13.134Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-board-deck.pptx"
-  },
-  {
-    "ts": "2026-07-12T21:22:13.407Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?",
-    "citationCount": 5
-  },
-  {
-    "ts": "2026-07-12T21:22:15.169Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
-    "ts": "2026-07-12T21:22:17.603Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:22:18.068Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-valuation-model.xlsx"
-  },
-  {
-    "ts": "2026-07-12T21:22:19.564Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-ic-memo.docx"
-  },
-  {
-    "ts": "2026-07-12T21:22:22.433Z",
-    "user": "Ali",
-    "context": "workspace:darb",
-    "action": "stage-advance"
-  },
-  {
-    "ts": "2026-07-12T21:22:22.687Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "artifact",
-    "artifact": "jahez-board-deck.pptx"
-  },
-  {
-    "ts": "2026-07-12T21:22:24.762Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "Rank these deals — strongest risk-adjusted case?",
-    "citationCount": 0
-  },
-  {
-    "ts": "2026-07-12T21:23:34.423Z",
-    "user": "Ali",
-    "context": "workspace:jahez",
-    "action": "question",
-    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
-    "citationCount": 13
+    "question": "From the uploaded Talabat Q1 2026 results deck, what GMV growth did Talabat report, and how does it compare to Jahez's FY2025 GMV growth?",
+    "citationCount": 4
   }
 ]
