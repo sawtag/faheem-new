@@ -51,4 +51,5 @@ Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/glob
 
 - Never mention "Rogo" in any user-visible string, code comment, or commit message (internal docs only).
 - The demo client is **Lunar Investments** (no "CMA-licensed"/"Shariah-compliant" labels); analyst persona **Arwa**; companies: Jahez (real), Masar / Thara Pay / Aqar Development (fictional).
-- `ANTHROPIC_API_KEY` lives in `.env` (gitignored). Never log it, never commit it.
+- `ANTHROPIC_API_KEY` lives in `.env` (gitignored). Never log it, never commit it, and it must never reach the client bundle — the SDK is imported ONLY in server code (`lib/ai/client.ts`, API routes). No `NEXT_PUBLIC_` secrets, ever.
+- Demo privacy posture (product claims shown in UI copy are fine; don't over-claim): "client data is never used for model training", per-workspace isolation, full audit trail. Do NOT claim SOC2/ISO/encryption certifications anywhere — say "enterprise controls on the MVP roadmap" instead.

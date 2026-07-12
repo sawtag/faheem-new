@@ -161,7 +161,7 @@ Each entry: `{ id: AgentId, name: {en, ar}, stage: 1|2|3, methodsKey: string /* 
 
 #### T0.1 Contracts + scaffold — **owner: fable (contracts) → sonnet/low (scaffold)**
 - [ ] Fable writes `lib/types.ts` (§3 above), approves final dep list.
-- [ ] Sonnet scaffolds: `create-next-app` (TS, App Router, Tailwind v4) at repo root; install locked deps; configure next-intl (en/ar routing-less, cookie-based locale + `dir` on `<html>`); next/font (Inter, Lora, IBM Plex Sans Arabic, Amiri); vitest (+jsdom, testing-library), Playwright (chromium only, `webServer` with `FAHEEM_MODE=cached`); eslint (+ rule forbidding physical direction classes: custom regex via `no-restricted-syntax` on `ml-|mr-|pl-|pr-` in className literals), prettier (+tailwind plugin); `package.json` scripts exactly as AGENTS.md; `.env.example`.
+- [ ] Sonnet scaffolds: `create-next-app` (TS, App Router, Tailwind v4) at repo root; install locked deps; configure next-intl (en/ar routing-less, cookie-based locale + `dir` on `<html>`); next/font (Inter, Lora, IBM Plex Sans Arabic, Amiri); vitest (+jsdom, testing-library), Playwright (chromium only, `webServer` with `FAHEEM_MODE=cached`); eslint (+ rule forbidding physical direction classes: custom regex via `no-restricted-syntax` on `ml-|mr-|pl-|pr-` in className literals), prettier (+tailwind plugin); `package.json` scripts exactly as AGENTS.md; `.env.example`; favicon (Faheem glyph) + metadata (`Faheem — Lunar Investments`, both locales).
 - **Acceptance:** `bun run verify` green on fresh clone; `bun run dev` serves a placeholder page in en with `dir="ltr"` and toggles to ar/`dir="rtl"` via cookie; sample unit test + sample e2e (`e2e/smoke.spec.ts`: page loads, no console errors) pass.
 - [ ] Commit `chore: scaffold`.
 
@@ -214,7 +214,8 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 - [ ] `client.ts`: SDK factory, **injectable** (`setClientForTests`); model/effort from env (`FAHEEM_MODEL=claude-opus-4-8`, adaptive thinking).
 - [ ] `corpus.ts`: manifest loader; doc-block builder — Files-API `fileId` refs when present, else base64; `citations: {enabled: true}`; `cache_control {ttl:"1h"}` on last block; context filtering (workspace docs + lunar + packs; ic subset; #-refs narrowing).
 - [ ] `prompts.ts`: grounded analyst system prompt (en/ar) per spec §5 anti-hallucination; flavors: workspace analyst / screening explainer / **IC advisor (never decides — required phrasing)**; orchestrator stage choreography table (which agents+docs per context/agent).
-- [ ] `sse.ts` + `route.ts`: emit choreographed `stage` events overlapping the real stream; transform citation blocks → `[[n]]` markers + `citation` events (§3.1); modes per §3.4; `FAHEEM_RECORD` persistence; improve route (haiku rewrite w/ analyst-prompt template); documents route streams PDFs.
+- [ ] `sse.ts` + `route.ts`: emit choreographed `stage` events overlapping the real stream; transform citation blocks → `[[n]]` markers + `citation` events (§3.1); modes per §3.4 **plus a runtime mode override (cookie `faheem_mode`, set via hidden keyboard shortcut `⌘.` → tiny stage-only overlay showing mode + cache-hit status; precedence cookie > env) — the on-stage panic switch**; `FAHEEM_EFFORT` env passed to `output_config`; `FAHEEM_RECORD` persistence; **every chat/generate call appends `{ts, user, context, question, citationCount, artifact?}` to `data/audit-log.json`** (feeds the Audit Trail panel, T3.6); improve route (haiku rewrite w/ analyst-prompt template); documents route streams PDFs.
+- [ ] Graceful `error` SSE handling end-to-end: engine emits `error` → UI renders a calm in-chat notice ("connection issue — answering from verified cache") and auto-retries cached when available; never a blank screen or console-only failure.
 - **Acceptance (all vitest, SDK mocked / cached fixtures — zero live calls):**
   - `mode.test.ts`: cached replays fixture events in order w/ pacing; auto falls back on simulated timeout when cache hit exists; live path passes correct blocks (assert doc order, cache_control placement, citations flag) to mocked SDK.
   - `sse.test.ts`: mocked SDK stream with citation blocks → exact expected `SSEEvent` sequence (stage → deltas w/ markers → citations → done).
@@ -227,7 +228,8 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 #### T2.2 Shell + flagship chat UI — **opus/high** · gate C(b)
 - Files: `app/(app)/layout.tsx`, `app/(app)/chat/[id]/page.tsx`, `components/chat/*`, `lib/nav.ts`, `tests/chat/*`, `e2e/chat.spec.ts`.
 - [ ] Shell: Rogo-layout sidebar (CATALOG §2A) — logo, New Chat, nav (Home, Deals, Library, Agents, Scheduled Tasks visual, Connections), pinned workspaces from deals.json, Arwa footer; language toggle (cookie + `dir` swap, animated); collapse.
-- [ ] Chat: `MessageStream` (marker→chip replacement, streaming append, prose styles), `CitationChip` (mint, numbered, hover quote preview), `SourcesAccordion` (grouped fact→chip per CATALOG §2B), `AgentActivity` (timeline of `stage` events: icon, agent name, docs being read, shimmer→check, collapse when done), `PdfPanel` (react-pdf, deep-link to page, zoom, close), `Composer` (auto-grow, **@ typeahead** from registry, **# typeahead** from manifest, chips in input, source-picker flyout w/ grouped toggles + tooltips (CATALOG §4.4), model-tier selector "Faheem · Max/Auto/Light" w/ one-line descriptions, mic (visual), Improve wand on short input + Undo, send states).
+- [ ] Chat: `MessageStream` (marker→chip replacement, streaming append, prose styles), `CitationChip` (mint, numbered, hover quote preview), `SourcesAccordion` (grouped fact→chip per CATALOG §2B), **"Verified — N sources cited" compliance badge on completed answers (rendered from real citation count — the Verification agent made visible)**, `AgentActivity` (timeline of `stage` events: icon, agent name, docs being read, shimmer→check, collapse when done), `PdfPanel` (react-pdf, deep-link to page, zoom, close — **pdfjs worker vendored locally, NEVER the CDN default; e2e must pass with network offline**), `Composer` (auto-grow, **@ typeahead** from registry, **# typeahead** from manifest, chips in input, source-picker flyout w/ grouped toggles + tooltips (CATALOG §4.4), model-tier selector "Faheem · Max/Auto/Light" w/ one-line descriptions, mic (visual), Improve wand on short input + Undo, send states).
+- [ ] Chat persistence: no DB — chats live in localStorage keyed by id, pre-seeded from `data/seed-chats.json` (Jahez workspace history for the demo); `chat/[id]` resolves seeded + new ids.
 - **Acceptance:** component tests — marker replacement (delta text `"…[[2]]"` + citation event → chip 2 rendered, click calls `openDoc("fy25-er", 3)`); @/# typeahead filter + chip insert + payload fields set; Improve swaps textarea and Undo restores. `e2e/chat.spec.ts` (cached fixture): ask scripted question → stages appear then complete → answer streams → chip visible → click → PdfPanel opens with correct page prop → Sources accordion lists the citation. **Gate C(b): fable design-QA (en+ar, RTL flip, motion) — the bar is "screenshot-worthy".**
 - [ ] Commit `feat: shell + flagship chat`.
 
@@ -260,10 +262,11 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 - [ ] Onboarding `/onboarding`: 3-step Stepper — ① Connect (embeds connector grid) ② Agents & skills (registry toggle grid, @hints) ③ Mandate questionnaire (IRR 15%, concentration 10%, hold 3–5y, liquidity, Shariah toggle, sector chips, drawdown) → closing card "This becomes your IC Charter" with link that opens the actual PDF.
 - **Acceptance:** e2e — stepper completes end-to-end, MCP modal opens/validates URL shape, OAuth modal flow closes as "Connected".
 
-#### T3.6 Agents page + Library — **sonnet/medium** (build from T0.3 brief)
+#### T3.6 Agents page + Library + Audit Trail — **sonnet/medium** (build from T0.3 brief)
 - [ ] Agents: stage-grouped (1 Screening / 2 Analysis: orchestrator banner + 7 cards / 3 IC), "7 specialist teams · 20+ agents", methods in analyst vocabulary (spec §4 item 8), cosmetic toggles, @-hint, human-gate markers between stages.
 - [ ] Library: artifact cards (type icon, name, workspace, date, download), empty state.
-- **Acceptance:** e2e smoke — all cards render bilingual; toggles flip.
+- [ ] **Audit Trail panel** (under Settings next to Connections): table rendered from `data/audit-log.json` — timestamp, user (Arwa), context/workspace, action (question asked / artifact generated / screening advanced), citations count. Seeded with a plausible week of history + grows live during the demo. **This is the deck's "full audit trail" claim made real — the governance beat for bank judges.** One line of copy: "Every answer, source, and artifact is logged. Nothing your client data touches trains any model."
+- **Acceptance:** e2e smoke — all cards render bilingual; toggles flip; audit table shows seeded rows AND a new row after the chat e2e runs.
 
 ### P4 — Deliverables engine (after gate B; parallel to P3)
 
@@ -296,7 +299,8 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 
 - [ ] `/code-review` (built-in reviewer) on the full diff — findings triaged by fable; fixes → sonnet/medium. **(No CodeRabbit — user decision.)**
 - [ ] Design polish pass — **opus/high** driven by fable's gate-D/F notes (spacing, motion timing, empty states, hover details) across ALL screens, including tightening the sonnet-built ones to the briefs.
-- [ ] Dress rehearsal: fable executes the §3 run of show click-by-click (cached, then live), stopwatch per beat, records deviations → `docs/rehearsal-notes.md`.
+- [ ] Dress rehearsal: fable executes the §3 run of show click-by-click (cached, then live), stopwatch per beat, records deviations → `docs/rehearsal-notes.md`. **Runs against the PRODUCTION build (`next build && next start`), with wifi disabled once, and confirms: pdfjs worker loads offline, LibreOffice/Excel opens the generated workbook on the demo machine, `⌘.` mode overlay works, audit trail grew during the run.**
+- [ ] Optional (fable, if time): draft bilingual slide copy for the §3 slide beats (problem / category+workflow / close) → `docs/slide-copy.md` for sosi to assemble in the deck template.
 - [ ] Final commit + tag `demo-rc1`.
 
 ---
