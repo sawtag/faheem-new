@@ -18,9 +18,21 @@ npm run validate:data    # zod-validate corpus manifest, deals.json, model-input
 npm run verify           # check + test + validate:data (the pre-commit gate)
 ```
 
-## Stack (locked — no new dependencies without fable's approval)
+## Demo tech stack (locked — no new dependencies without fable's approval)
 
-Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/globals.css` `@theme`) · radix-ui primitives (headless) · motion (animations) · lucide-react (icons) · next-intl (en default, ar) · @anthropic-ai/sdk · react-pdf · exceljs / pptxgenjs / docx · zod. Tests: vitest + @testing-library/react + Playwright.
+| Layer | Choice | Notes |
+|---|---|---|
+| Framework / runtime | **Next.js 15** (App Router, TS strict) on **Node 26 + npm** | Single process on localhost. No bun anywhere. |
+| Styling | **Tailwind v4** — ONE theme via `@theme` in `app/globals.css` | `cva` + `clsx`/`tailwind-merge` for component variants; `tabular-nums` utility for financial figures. Never a hex/shadow inline. |
+| UI components | **radix-ui** (headless primitives) wrapped in our own `components/ui/*` | Deliberately NO component kit (HeroUI/AntD/MUI rejected: recognizable house looks + their theming engines fight the single-`@theme` rule). Every pixel is ours. |
+| Animation | **motion** | One library, one easing personality — see Motion language below. No GSAP/Three.js. |
+| Icons | **lucide-react** | Consistent stroke grid; `simple-icons` glyphs allowed for international connector logos. |
+| i18n | **next-intl** (en default, ar, cookie locale, `dir` switch) | |
+| AI | **@anthropic-ai/sdk** — server-only, via `lib/ai/client.ts` exclusively | Citations + prompt caching + Files API per plan §3 contracts. |
+| Documents / artifacts | **react-pdf** (pdfjs worker vendored locally) · **exceljs** · **pptxgenjs** · **docx** | |
+| Validation | **zod** (data schemas: manifest, deals, model-inputs, cache entries) | |
+| **Data layer** | **NO database — deliberate.** Git-versioned JSON (`data/deals.json`, `model-inputs.json`, `manifest.json`, `seed-chats.json`, append-only `audit-log.json`) + localStorage for runtime-created chats | Read-mostly verified demo data; JSON diffs are human-reviewable (enforces "no invented numbers"), a fresh clone is demo-ready, zero migrations/services. If a real relational need ever emerges: `better-sqlite3` (embedded, sync) — NEVER a second server process (no Mongo/Postgres for the demo). |
+| Testing | **vitest** + @testing-library/react (unit/integration/component) · **Playwright** (sole browser harness) | node:test rejected (no TSX/jsdom/`vi.mock` comfort); second browser harness rejected. |
 
 **Fonts (locked, via next/font — no runtime CDN):** UI/body = **Inter** (EN) + **IBM Plex Sans Arabic** (AR; chosen over Tajawal — enterprise register, harmonizes with Inter). Hero serif (omnibox greeting ONLY) = **Lora** (EN) + **Amiri** (AR). Financial tables/figures always render digits in Inter with `font-variant-numeric: tabular-nums` (token/utility in globals.css).
 
@@ -40,6 +52,8 @@ Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/glob
 10. **Mock boundaries**: auth is fake (any username/password logs in — cookie `faheem_session`, no real security), connectors are fake (UI-only OAuth modals), Anthropic API is REAL (via `lib/ai/client.ts` only — injectable for tests; never instantiate the SDK elsewhere; never call it in unit tests).
 
 ## Design bar (the FE must impress)
+
+- **Use and EXTEND the Figma branding — explicitly licensed.** The Faheem UI Kit (`context/branding/figma-exports/`) is the floor, not the ceiling: enhance and edit as you see fit — tint ramps, elevation scale, refined logo geometry, motion, new component styles the kit never defined. Two constraints only: every extension lands as a token in `app/globals.css` (rule 4), and the result must still read as the same brand (navy + emerald, quiet finance-terminal confidence).
 
 - **Layouts: Rogo is a reference, not a constraint** (user call 2026-07-12). Keep the demo-load-bearing patterns — sidebar + centered omnibox hero, split chat + artifact panel, inline citation chips + Sources accordion (CATALOG.md §2–§4) — and design everything else on your own judgment when your idea beats the reference. Skin = Faheem UI Kit (navy `--color-navy` #061F52, emerald `--color-accent` #07966F, bg #FBFCFE, border #E3E9F1; radius 8/12/20; shadow `0 10px 24px rgba(8,33,82,0.03)`).
 - Serif display (Lora / Amiri) is reserved for hero greetings only. Everything else Inter / IBM Plex Sans Arabic, weights 400–800.
