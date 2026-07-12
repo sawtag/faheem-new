@@ -282,5 +282,44 @@
       "loading": "Loading document…",
       "error": "Couldn't load this document."
     }
+  },
+  "ic": {
+    "title": "Investment Committee",
+    "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR hurdle",
+    "disclaimer": "Advisory only — the investment decision rests with the committee.",
+    "table": {
+      "caption": "Deal comparison — analysis-complete pipeline",
+      "metric": "Metric",
+      "irr": "Implied IRR at entry",
+      "irrVsHurdle": "vs {hurdle} hurdle",
+      "expectedReturn": "Scenario-weighted expected return",
+      "riskScore": "Risk score",
+      "riskOutOf": "{score} / 10",
+      "mandateFit": "Mandate fit",
+      "shariah": "Shariah screen",
+      "recommendation": "Analyst recommendation",
+      "deltaEqual": "At hurdle",
+      "bps": "{bps} bps",
+      "pass": "Pass",
+      "warn": "Review",
+      "fail": "Fail",
+      "pending": "Analysis finalizing — metrics pending model sign-off",
+      "pendingBadge": "In analysis",
+      "reviewBadge": "In IC review",
+      "source": "Source",
+      "page": "p.{page}"
+    },
+    "chat": {
+      "title": "Ask Faheem IC",
+      "scope": "Advisor to the committee",
+      "intro": "Ask for a ranking, a hurdle check, or what would change the call — every answer cites the underlying analysis and the mandate.",
+      "thinking": "Faheem IC is weighing the cases…",
+      "placeholder": "Ask Faheem IC…",
+      "send": "Send",
+      "stop": "Stop",
+      "suggest1": "Rank these deals — strongest risk-adjusted case?",
+      "suggest2": "Does each deal clear our IRR hurdle?",
+      "suggest3": "What would change the ranking?"
+    }
   }
 }
