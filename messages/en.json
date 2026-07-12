@@ -4,5 +4,18 @@
     "tagline": "AI-Powered Investment Analysis — Analyzing the future, empowering decisions.",
     "description": "Faheem is an agentic AI platform for Saudi investment firms — grounded analysis, citations, and audit trails for Lunar Investments.",
     "toggleLocale": "العربية"
+  },
+  "login": {
+    "title": "Sign in to Faheem",
+    "subtitle": "Your Lunar Investments workspace",
+    "tagline": "AI-Powered Investment Analysis",
+    "caption": "Analyzing the future, empowering decisions.",
+    "username": "Username",
+    "password": "Password",
+    "usernamePlaceholder": "ali",
+    "cta": "Sign in",
+    "loading": "Signing in…",
+    "error": "Enter your username and password",
+    "footer": "SSO & enterprise controls on the MVP roadmap"
   }
 }
