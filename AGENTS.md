@@ -22,7 +22,7 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 
 | Layer | Choice | Notes |
 |---|---|---|
-| Framework / runtime | **Next.js 15** (App Router, TS strict) on **Node 26 + npm** | Single process on localhost. No bun anywhere. |
+| Framework / runtime | **Next.js 16** (latest stable — 16.2.x verified on npm 2026-07-12; App Router, TS strict) on **Node 26 + npm** | Single process on localhost. No bun anywhere. next-intl peer-supports ^16. |
 | Styling | **Tailwind v4** — ONE theme via `@theme` in `app/globals.css` | `cva` + `clsx`/`tailwind-merge` for component variants; `tabular-nums` utility for financial figures. Never a hex/shadow inline. |
 | UI components | **radix-ui** (headless primitives) wrapped in our own `components/ui/*` | Deliberately NO component kit (HeroUI/AntD/MUI rejected: recognizable house looks + their theming engines fight the single-`@theme` rule). Every pixel is ours. |
 | Animation | **motion** | One library, one easing personality — see Motion language below. No GSAP/Three.js. |
@@ -43,7 +43,7 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 1. **No dark mode.** Light only. Never write `dark:` variants.
 2. **Every string is bilingual.** All copy goes through next-intl (`messages/en.json` + `messages/ar.json`). Never hardcode UI text. Financial figures use Western digits in both languages.
 3. **RTL is not optional.** Use logical properties only (`ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`, never `ml-`/`mr-`/`pl-`/`pr-`/`left-`/`right-` unless direction-independent). Icons that imply direction flip with `rtl:` variants.
-4. **Theme tokens only.** Colors, radii, shadows, spacing, motion come from `@theme` variables in `app/globals.css`. Never hardcode a hex value or ad-hoc shadow in a component. Extending the theme = edit globals.css, nothing else.
+4. **Theme tokens only — lint-enforced.** Colors, radii, shadows, spacing, motion come from `@theme` variables in `app/globals.css`. Never hardcode a hex value or ad-hoc shadow anywhere in `app/` or `components/` (ESLint bans hex literals there; inline SVGs use `currentColor` / `var(--color-*)`). **Single carve-out:** `lib/generate/**` — Office file formats (xlsx/pptx/docx) have no CSS variables, so Lunar brand hexes live in ONE exported constants object (`lib/generate/shared.ts` → `lunarBrand`), nowhere else. Extending the theme = edit globals.css, nothing else.
 5. **Never invent a financial number.** Displayed figures come from `data/model-inputs.json` or `data/deals.json` (each carries `{value, sourceDoc, page}`). AI answers are grounded by API-enforced citations. If a number has no source, it does not ship.
 6. **Less LoC of good code.** No abstractions for single call sites, no config for things that don't vary, no error handling for impossible states, no `utils.ts` graveyards. Prefer deleting to wrapping. Server components by default; `"use client"` only where interaction demands it.
 7. **Stay in your lane.** Each task card lists the files you own. Do not edit shared files (`lib/types.ts`, `app/globals.css`, primitives in `components/ui/`) — request changes through fable instead.

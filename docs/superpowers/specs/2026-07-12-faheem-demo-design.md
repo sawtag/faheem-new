@@ -80,7 +80,7 @@ Explicitly OUT of scope: real auth, real connectors, Excel add-in, email agent, 
 ## 5. Technical architecture
 
 ```
-faheem/  (Next.js 15, TypeScript, App Router — single process)
+faheem/  (Next.js 16, TypeScript, App Router — single process)
 ├─ app/
 │  ├─ (marketing)/onboarding/…        # wizard steps
 │  ├─ (app)/page.tsx                  # home/omnibox

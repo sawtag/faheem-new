@@ -4,7 +4,7 @@
 
 **Goal:** build the complete Faheem demo (spec `docs/superpowers/specs/2026-07-12-faheem-demo-design.md`) in one day: login → onboarding → pipeline → screening → Jahez deep-dive with citations → Arabic → deliverables → Faheem IC — beautiful, bilingual, tested, and demo-proof.
 
-**Architecture:** single Next.js 15 App Router app at repo root. One chat engine (SSE, Anthropic citations, live/cached/auto) serving three contexts (firm / workspace / IC). Static verified data. Artifacts generated in Node. No DB, no auth backend, no RAG infra.
+**Architecture:** single Next.js 16 App Router app at repo root. One chat engine (SSE, Anthropic citations, live/cached/auto) serving three contexts (firm / workspace / IC). Static verified data. Artifacts generated in Node. No DB, no auth backend, no RAG infra.
 
 **Tech stack:** see AGENTS.md (locked list). Light mode only, `en` default + full `ar`/RTL.
 
@@ -161,7 +161,7 @@ Each entry: `{ id: AgentId, name: {en, ar}, stage: 1|2|3, methodsKey: string /* 
 
 #### T0.1 Contracts + scaffold — **owner: fable (contracts) → sonnet/low (scaffold)**
 - [ ] Fable writes `lib/types.ts` (§3 above), approves final dep list.
-- [ ] Sonnet scaffolds: `create-next-app` (TS, App Router, Tailwind v4) at repo root; install locked deps; configure next-intl (en/ar routing-less, cookie-based locale + `dir` on `<html>`); next/font (Inter, Lora, IBM Plex Sans Arabic, Amiri); vitest (+jsdom, testing-library), Playwright (chromium only, `webServer` with `FAHEEM_MODE=cached`); eslint (+ rule forbidding physical direction classes: custom regex via `no-restricted-syntax` on `ml-|mr-|pl-|pr-` in className literals), prettier (+tailwind plugin); `package.json` scripts exactly as AGENTS.md; `.env.example`; favicon (Faheem glyph) + metadata (`Faheem — Lunar Investments`, both locales).
+- [ ] Sonnet scaffolds: `create-next-app@latest` (Next 16, TS, App Router, Tailwind v4) at repo root; install locked deps; configure next-intl (en/ar routing-less, cookie-based locale + `dir` on `<html>`); next/font (Inter, Lora, IBM Plex Sans Arabic, Amiri); vitest (+jsdom, testing-library), Playwright (chromium only, `webServer` with `FAHEEM_MODE=cached`); eslint (+ two custom `no-restricted-syntax` guards: ① physical direction classes `ml-|mr-|pl-|pr-` in className literals, ② hex color literals `#[0-9a-fA-F]{3,8}` in string literals under `app/**` and `components/**` — carve-out: `lib/generate/**` per AGENTS.md rule 4), prettier (+tailwind plugin); `package.json` scripts exactly as AGENTS.md; `.env.example`; favicon (Faheem glyph) + metadata (`Faheem — Lunar Investments`, both locales).
 - **Acceptance:** `npm run verify` green on fresh clone; `npm run dev` serves a placeholder page in en with `dir="ltr"` and toggles to ar/`dir="rtl"` via cookie; sample unit test + sample e2e (`e2e/smoke.spec.ts`: page loads, no console errors) pass.
 - [ ] Commit `chore: scaffold`.
 
