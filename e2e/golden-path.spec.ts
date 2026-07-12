@@ -152,8 +152,10 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
   });
 
   await test.step("stages appear, answer streams", async () => {
+    // 30s: under a cold dev-server the first compile of this route plus the
+    // paced replay can exceed 15s when the full suite runs at 16 workers.
     await expect(page.getByText(/\d+ agents · \d+s/)).toBeVisible({
-      timeout: 15000,
+      timeout: 30000,
     });
     await expect(page.getByText(/64\.9/)).toBeVisible();
     await expect(

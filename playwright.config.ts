@@ -32,10 +32,14 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run dev",
+    // FAHEEM_E2E_PROD=1 runs the suite against the production build — the
+    // demo-faithful mode used for the final gates and the dress rehearsal.
+    command: process.env.FAHEEM_E2E_PROD
+      ? "npm run build && npm run start"
+      : "npm run dev",
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: process.env.FAHEEM_E2E_PROD ? 300_000 : 120_000,
     env: { FAHEEM_MODE: "cached", PORT: String(PORT) },
   },
 });

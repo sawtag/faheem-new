@@ -49,11 +49,29 @@ export function loadDemoCacheFixture(): {
   lang: "en" | "ar";
   context: { kind: string; companyId?: string };
 } {
+  // Pick the T2.2 chat fixture EXPLICITLY — demo-cache now holds all six
+  // recorded goldens, so "first file" grabs the wrong request (regression:
+  // it selected the ic-rank golden and filled it into the Jahez workspace →
+  // guaranteed cache miss). This fixture is the only jahez-workspace entry
+  // with no docIds/agent and the plain "— GMV, take rate, AOV" phrasing.
   const dir = path.join(process.cwd(), "data/demo-cache");
-  const [file] = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
-  if (!file) throw new Error(`no demo-cache fixture found in ${dir}`);
-  const raw = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8"));
-  return raw.request;
+  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    const req = JSON.parse(
+      fs.readFileSync(path.join(dir, file), "utf-8"),
+    ).request;
+    if (
+      req.lang === "en" &&
+      req.context?.companyId === "jahez" &&
+      !req.docIds &&
+      !req.agent &&
+      req.question.startsWith("Break down Jahez's FY2025 unit economics — GMV")
+    ) {
+      return req;
+    }
+  }
+  throw new Error(
+    `chat fixture (T2.2 unit-economics entry) not found in ${dir}`,
+  );
 }
 
 /** `/deals/darb` -> `deals-darb`, `/` -> `home`. Used for screenshot filenames. */
