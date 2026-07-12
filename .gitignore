@@ -35,3 +35,6 @@ data/uploads/
 # data/demo-cache/ (golden recordings = the offline demo), data/*.json,
 # public/artifacts/ (pre-generated fallback deliverables), package-lock.json.
 # A fresh clone must be demo-ready on the backup laptop.
+
+# user-owned pitch deck workspace — never commit
+presentation/
