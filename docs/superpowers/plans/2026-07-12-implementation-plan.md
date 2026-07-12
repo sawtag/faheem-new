@@ -177,7 +177,7 @@ Each entry: `{ id: AgentId, name: {en, ar}, stage: 1|2|3, methodsKey: string /* 
 
 #### T0.3 UI art direction (briefs for sonnet-built screens) — **owner: opus/high** (parallel with T0.2)
 - Files: `docs/design-briefs.md`.
-- [ ] For each screen NOT opus-implemented (login, connections, onboarding stepper, agents page, library): a build-ready brief — layout structure (regions, grid, max-widths), exact token usage (which navy tint, which radius, which shadow, type scale per element), component composition (which primitives, which variants), motion (what animates, duration/ease tokens), hover/focus/empty/loading states, RTL-specific notes (what flips, what doesn't), and 2–3 "wow details" per screen drawn from `context/rogo-screens/CATALOG.md` §4. Written so a sonnet agent makes zero visual decisions.
+- [ ] For each screen NOT opus-implemented (login, connections, onboarding stepper, agents page, library): a build-ready brief — layout structure (regions, grid, max-widths), exact token usage (which navy tint, which radius, which shadow, type scale per element), component composition (which primitives, which variants), motion (what animates, duration/ease tokens), hover/focus/empty/loading states, RTL-specific notes (what flips, what doesn't), and 2–3 "wow details" per screen drawn from `context/rogo-screens/CATALOG.md` §4. Written so a sonnet agent makes zero visual decisions. **Rogo is reference, not constraint — depart wherever your layout idea is stronger; only the demo-load-bearing patterns (AGENTS.md design bar) are fixed.**
 - **Acceptance:** fable reviews briefs for consistency with the Figma kit + CATALOG before P3 launches; every P3 sonnet card's brief section is non-empty.
 - [ ] Commit `docs: ui design briefs`.
 
