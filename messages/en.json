@@ -184,7 +184,8 @@
       "agents": "Agents",
       "scheduled": "Scheduled Tasks",
       "connections": "Connections",
-      "audit": "Audit Trail"
+      "audit": "Audit Trail",
+      "ic": "IC Room"
     }
   },
   "chat": {

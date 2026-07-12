@@ -42,10 +42,13 @@ export default async function RootLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir}>
-      <body
-        className={`${inter.variable} ${lora.variable} ${plexArabic.variable} ${amiri.variable}`}
-      >
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${inter.variable} ${lora.variable} ${plexArabic.variable} ${amiri.variable}`}
+    >
+      {/* font vars must live on <html>: Tailwind @theme var() chains resolve at :root */}
+      <body>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
