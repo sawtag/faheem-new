@@ -283,6 +283,178 @@
       "error": "Couldn't load this document."
     }
   },
+  "home": {
+    "greeting": "What can Faheem do for you today, <name>Ali</name>?",
+    "placeholders": {
+      "p1": "Break down Jahez's FY2025 unit economics — GMV, take rate and AOV…",
+      "p2": "Compare Jahez to Talabat, Delivery Hero and DoorDash on EV/GMV…",
+      "p3": "Draft an IC memo for Jahez against our 15% IRR hurdle…",
+      "p4": "Stress-test Jahez's valuation — WACC against terminal growth…"
+    },
+    "pills": {
+      "label": "Quick actions",
+      "dcf": {
+        "label": "Run DCF",
+        "prompt": "Build a DCF valuation for Jahez — FCFF with a WACC build-up and a Gordon terminal value — and show the implied equity value per share."
+      },
+      "comps": {
+        "label": "Comps Analysis",
+        "prompt": "Value Jahez against its quick-commerce peers — Talabat, Delivery Hero, DoorDash and Deliveroo — on EV/Revenue, EV/EBITDA and EV/GMV, and give me the implied valuation range."
+      },
+      "icMemo": {
+        "label": "IC Memo",
+        "prompt": "Draft an Investment Committee memo for Jahez — thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR hurdle."
+      },
+      "riskScorecard": {
+        "label": "Risk Scorecard",
+        "prompt": "Build a quantified risk scorecard for Jahez — probability × impact across market, margin, concentration and regulatory risks — and flag any mandate breaches."
+      },
+      "sensitivity": {
+        "label": "Sensitivity Analysis",
+        "prompt": "Run a two-way sensitivity on Jahez's valuation — WACC against terminal growth, then take rate against GMV growth — and show where the fair value holds."
+      },
+      "shariah": {
+        "label": "Shariah Screen",
+        "prompt": "Run an AAOIFI Shariah screen on Jahez — debt-to-market-cap, non-permissible income and liquidity ratios — with a clear pass or fail on each threshold."
+      }
+    },
+    "recent": {
+      "title": "Recent workspaces"
+    },
+    "stages": {
+      "screening": "Screening",
+      "analysis": "Deep Analysis",
+      "ic-review": "IC Review"
+    }
+  },
+  "deals": {
+    "board": {
+      "title": "Deal pipeline",
+      "subtitle": "From first contact to committee — screening, analysis, and IC review in one governed flow.",
+      "filterLabel": "Filter by origin",
+      "filterAll": "All",
+      "filterInbound": "Inbound (Private)",
+      "filterMarket": "Market Screen (Public)",
+      "originInbound": "Inbound · Private",
+      "originMarket": "Market screen · Public",
+      "empty": "No deals match this filter."
+    },
+    "stage": {
+      "screening": "Screening",
+      "analysis": "Analysis",
+      "icReview": "IC Review",
+      "declined": "Declined"
+    },
+    "gate": {
+      "message": {
+        "screening": "Screening complete — the next step is a human decision.",
+        "analysis": "Deep-dive analysis underway — send to committee when the pack is ready.",
+        "icReview": "With the Investment Committee — the advisory view lives in the IC room.",
+        "declined": "Declined at screening."
+      },
+      "humanGate": "Human decision gate",
+      "advance": "Advance to pitch meeting",
+      "sendToIc": "Send to IC",
+      "queued": "Queued for IC review"
+    },
+    "workspace": {
+      "back": "Deal pipeline",
+      "ask": "Ask Faheem about {company}",
+      "tabs": {
+        "overview": "Overview",
+        "documents": "Documents",
+        "chats": "Chats",
+        "artifacts": "Artifacts",
+        "leadership": "Leadership"
+      }
+    },
+    "scorecard": {
+      "title": "Screening scorecard",
+      "subtitle": "Mandate-fit check against the Lunar IC Charter — every verdict cites its clause.",
+      "pass": "Pass",
+      "warn": "Flag",
+      "fail": "Fail",
+      "cite": "IC Charter · p.{page}",
+      "citeLabel": "Open the IC Charter at page {page}",
+      "anonymized": "Details anonymized — client confidentiality."
+    },
+    "overview": {
+      "originTitle": "Origin",
+      "surfaced": "Surfaced by {detail}",
+      "statsTitle": "FY2025 key figures",
+      "stats": {
+        "gmv": "GMV",
+        "netRevenue": "Net revenue",
+        "netIncome": "Net income",
+        "yoy": "YoY"
+      },
+      "source": "{doc} · p.{page}",
+      "statusTitle": "Status"
+    },
+    "documents": {
+      "meta": "{pages} pages · {size} MB",
+      "type": {
+        "public": "Public",
+        "lunar": "Lunar",
+        "deal": "Data room"
+      },
+      "open": "Open"
+    },
+    "chats": {
+      "empty": "No chats in this workspace yet — ask Faheem above to start one.",
+      "messages": "{count} messages"
+    },
+    "artifacts": {
+      "emptyTitle": "No artifacts yet",
+      "emptyCaption": "Generated memos, models, and board decks will land here.",
+      "download": "Download",
+      "verified": "Verified · {n} sources"
+    },
+    "leadership": {
+      "board": "Board of Directors",
+      "executive": "Executive Management",
+      "sourceLabel": "Open the source for {name}"
+    }
+  },
+  "ic": {
+    "title": "Investment Committee",
+    "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR hurdle",
+    "disclaimer": "Advisory only — the investment decision rests with the committee.",
+    "table": {
+      "caption": "Deal comparison — analysis-complete pipeline",
+      "metric": "Metric",
+      "irr": "Implied IRR at entry",
+      "irrVsHurdle": "vs {hurdle} hurdle",
+      "expectedReturn": "Scenario-weighted expected return",
+      "riskScore": "Risk score",
+      "riskOutOf": "{score} / 10",
+      "mandateFit": "Mandate fit",
+      "shariah": "Shariah screen",
+      "recommendation": "Analyst recommendation",
+      "deltaEqual": "At hurdle",
+      "bps": "{bps} bps",
+      "pass": "Pass",
+      "warn": "Review",
+      "fail": "Fail",
+      "pending": "Analysis finalizing — metrics pending model sign-off",
+      "pendingBadge": "In analysis",
+      "reviewBadge": "In IC review",
+      "source": "Source",
+      "page": "p.{page}"
+    },
+    "chat": {
+      "title": "Ask Faheem IC",
+      "scope": "Advisor to the committee",
+      "intro": "Ask for a ranking, a hurdle check, or what would change the call — every answer cites the underlying analysis and the mandate.",
+      "thinking": "Faheem IC is weighing the cases…",
+      "placeholder": "Ask Faheem IC…",
+      "send": "Send",
+      "stop": "Stop",
+      "suggest1": "Rank these deals — strongest risk-adjusted case?",
+      "suggest2": "Does each deal clear our IRR hurdle?",
+      "suggest3": "What would change the ranking?"
+    }
+  },
   "generate": {
     "phase": {
       "assembling": "Assembling model inputs",

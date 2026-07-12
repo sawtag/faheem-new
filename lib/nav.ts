@@ -21,6 +21,7 @@ export interface NavItem {
 export const PRIMARY_NAV: NavItem[] = [
   { key: "home", href: "/", icon: "house" },
   { key: "deals", href: "/deals", icon: "briefcase-business" },
+  { key: "ic", href: "/ic", icon: "scale" },
   { key: "library", href: "/library", icon: "library-big" },
   { key: "agents", href: "/agents", icon: "bot" },
   {
