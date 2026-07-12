@@ -74,6 +74,15 @@ test("cached stream → citation → PDF → sources, offline & audited", async 
   // the vendored worker actually renders the page (no CDN, works offline)
   await expect(panel.locator("canvas")).toBeVisible({ timeout: 20000 });
 
+  // …and the cited passage is highlighted in the text layer (rule 5: every
+  // number's source is clickable AND visibly marked). Citation 1's quote
+  // resolves to the "Group Financial Summary" run on p4.
+  const marks = panel.getByTestId("citation-highlight");
+  await expect(marks.first()).toBeVisible({ timeout: 20000 });
+  expect(
+    (await marks.allTextContents()).join(" ").replace(/\s+/g, " "),
+  ).toMatch(/group financial summary/i);
+
   // Sources accordion lists the citations (its header carries the source
   // count, e.g. "5 Sources" — distinct from the composer's "Sources" picker)
   await page

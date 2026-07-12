@@ -1,6 +1,6 @@
 import * as React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
 import en from "@/messages/en.json";
 import { GenerationPanel } from "@/components/generate/generation-panel";
@@ -147,7 +147,11 @@ describe("GenerationPanel", () => {
     fake.close();
 
     expect(await screen.findByText("Jahez — IC Memo")).toBeInTheDocument();
-    expect(await screen.findByText("Jahez — Board Deck")).toBeInTheDocument();
+    // findAll — once the run completes the deck preview auto-opens (below) and
+    // its header repeats the deck name, so a single-match query would throw.
+    expect(
+      (await screen.findAllByText("Jahez — Board Deck")).length,
+    ).toBeGreaterThanOrEqual(1);
 
     // all three cards carry the real "Verified · N sources" caption
     expect(screen.getAllByText("Verified · 5 sources")).toHaveLength(3);
@@ -168,6 +172,19 @@ describe("GenerationPanel", () => {
       "href",
       "/deals/jahez?tab=artifacts",
     );
+
+    // every landed card carries the primary Preview affordance
+    expect(screen.getAllByRole("button", { name: "Preview" })).toHaveLength(3);
+
+    // the money moment: the completed "all" run AUTO-OPENS the deck preview
+    // (400ms beat after the last card lands) with the full 8-thumbnail rail.
+    const preview = await screen.findByTestId("artifact-preview", undefined, {
+      timeout: 2500,
+    });
+    expect(
+      within(preview).getAllByRole("button", { name: /^Slide \d$/ }),
+    ).toHaveLength(8);
+    expect(within(preview).getByText("Slide 1 of 8")).toBeInTheDocument();
   });
 
   it("shows an inline error on a row without blocking the others", async () => {

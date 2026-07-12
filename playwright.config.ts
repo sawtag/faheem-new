@@ -1,5 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// PORT override lets parallel worktrees run e2e without racing the main
+// tree's dev server on :3000 (reuseExistingServer would silently test the
+// WRONG build). Default unchanged.
+const PORT = Number(process.env.PORT ?? 3000);
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -7,7 +12,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "html",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: `http://localhost:${PORT}`,
     trace: "on-first-retry",
   },
   projects: [
@@ -28,9 +33,9 @@ export default defineConfig({
   ],
   webServer: {
     command: "npm run dev",
-    url: "http://localhost:3000",
+    url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
-    env: { FAHEEM_MODE: "cached" },
+    env: { FAHEEM_MODE: "cached", PORT: String(PORT) },
   },
 });
