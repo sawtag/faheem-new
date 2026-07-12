@@ -476,7 +476,21 @@
     },
     "download": "تنزيل",
     "openInWorkspace": "فتح في مساحة العمل",
-    "errorArtifact": "تعذّر إنشاء هذا الملف. حاول مرة أخرى."
+    "errorArtifact": "تعذّر إنشاء هذا الملف. حاول مرة أخرى.",
+    "preview": {
+      "open": "معاينة",
+      "close": "إغلاق المعاينة",
+      "downloadFile": "تنزيل الملف",
+      "caption": "أُنشئ · {date} · لونار للاستثمار",
+      "slides": "الشرائح",
+      "slideThumb": "الشريحة {n}",
+      "slideOf": "الشريحة {n} من {total}",
+      "pageOf": "الصفحة {n} من {total}",
+      "modelCaption": "النموذج الكامل: افتحه في Excel — كل خلية إدخال تحمل مصدرها.",
+      "openInExcel": "فتح في Excel",
+      "fallbackTitle": "المعاينة غير متاحة",
+      "fallbackCaption": "الملف جاهز — يمكنك تنزيله أدناه."
+    }
   },
   "demo": {
     "palette": {
