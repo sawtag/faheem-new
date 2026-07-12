@@ -288,6 +288,18 @@
       "close": "إغلاق المستند",
       "loading": "جارٍ تحميل المستند…",
       "error": "تعذّر تحميل هذا المستند."
+    },
+    "table": {
+      "showTable": "عرض كجدول",
+      "showChart": "عرض كرسم بياني",
+      "omitted": "عرض {shown} من {total} صفوف",
+      "sourcesInTable": "المصادر معروضة في وضع الجدول",
+      "hurdle": "الحد الأدنى {value}%",
+      "chartAria": "رسم بياني بالأعمدة: {series} عبر {categories}",
+      "axis": {
+        "percent": "%",
+        "sarM": "مليون ر.س"
+      }
     }
   },
   "home": {
@@ -440,6 +452,19 @@
       "cancel": "إلغاء",
       "submit": "مشاركة",
       "success": "تمت المشاركة"
+    },
+    "analytics": {
+      "title": "الأداء المالي",
+      "growthTitle": "نمو الإيرادات",
+      "marginTitle": "اتجاه الهوامش",
+      "growthSource": "{doc} ص.{page} · بيانات 2023 من {fy23doc} · مقارنات مدققة",
+      "marginSource": "% من صافي الإيرادات · {doc} ص.{page}",
+      "series": {
+        "gmv": "إجمالي قيمة الطلبات (GMV)",
+        "netRevenue": "صافي الإيرادات",
+        "grossMargin": "هامش الربح الإجمالي",
+        "adjEbitdaMargin": "هامش EBITDA المعدّل"
+      }
     }
   },
   "ic": {

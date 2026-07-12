@@ -288,6 +288,18 @@
       "close": "Close document",
       "loading": "Loading document…",
       "error": "Couldn't load this document."
+    },
+    "table": {
+      "showTable": "Show as table",
+      "showChart": "Show as chart",
+      "omitted": "Charting {shown} of {total} rows",
+      "sourcesInTable": "Sources shown in table view",
+      "hurdle": "Hurdle {value}%",
+      "chartAria": "Bar chart: {series} across {categories}",
+      "axis": {
+        "percent": "%",
+        "sarM": "SAR m"
+      }
     }
   },
   "home": {
@@ -440,6 +452,19 @@
       "cancel": "Cancel",
       "submit": "Share",
       "success": "Shared"
+    },
+    "analytics": {
+      "title": "Financial performance",
+      "growthTitle": "Top-line growth",
+      "marginTitle": "Margin trend",
+      "growthSource": "{doc} p.{page} · FY2023 from {fy23doc} · audited comparatives",
+      "marginSource": "% of net revenue · {doc} p.{page}",
+      "series": {
+        "gmv": "GMV",
+        "netRevenue": "Net revenue",
+        "grossMargin": "Gross margin",
+        "adjEbitdaMargin": "Adj. EBITDA margin"
+      }
     }
   },
   "ic": {

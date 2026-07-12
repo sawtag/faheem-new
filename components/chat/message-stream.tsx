@@ -34,7 +34,11 @@ export function MessageStream({
 
   return (
     <div className="financial text-text text-base leading-[1.7] [&_p:first-child]:mt-0 [&_p:last-child]:mb-0">
-      <Markdown text={display} renderCitation={renderCitation} />
+      <Markdown
+        text={display}
+        renderCitation={renderCitation}
+        streaming={streaming}
+      />
     </div>
   );
 }

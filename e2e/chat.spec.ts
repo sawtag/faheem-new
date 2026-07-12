@@ -106,3 +106,49 @@ test("cached stream → citation → PDF → sources, offline & audited", async 
   // ZERO requests to any non-localhost host (fail on unpkg/cdnjs/jsdelivr)
   expect(offHost, `off-host requests:\n${offHost.join("\n")}`).toEqual([]);
 });
+
+/**
+ * Inline financial table + chart. The a5d75d22 fixture above carries no markdown
+ * table, so this drives the recorded "risk assessment" golden (qa2), whose
+ * answer contains the FY2025/FY2024 metrics table. It's reached via the ⌘K demo
+ * palette — the only path that supplies the recorded `agent:"risk"` so the
+ * exact-key cache is hit (question text alone would miss). The streamed table
+ * renders as a real <table> with right-aligned numerics, then toggles to a
+ * hand-rolled SVG bar chart.
+ */
+test("cached risk golden renders its FY table as a chart-toggleable <table>", async ({
+  page,
+}) => {
+  test.setTimeout(60_000);
+  await page.goto("/chat/seed-jahez-revenue");
+  await expect(
+    page.getByRole("heading", { name: /FY2025 revenue quality review/i }),
+  ).toBeVisible();
+
+  await page.keyboard.press("Control+k");
+  await page.getByTestId("palette-item-qa2").click();
+
+  // the palette prefilled the composer with the recorded risk question
+  await expect(page.getByRole("textbox")).toHaveValue(
+    /quantified risk assessment/i,
+  );
+  await page.getByRole("button", { name: "Send" }).click();
+
+  // the recorded answer's markdown table renders as a real <table>
+  const table = page.getByTestId("answer-table").last();
+  await expect(table).toBeVisible({ timeout: 30000 });
+  await expect(table.getByText(/SAR 193\.0m/)).toBeVisible();
+  await expect(table.getByText(/SAR 250\.0m/)).toBeVisible();
+
+  // numeric column headers are right-aligned (logical inline-end)
+  const align = await table
+    .getByRole("columnheader", { name: "FY2025" })
+    .evaluate((el) => getComputedStyle(el).textAlign);
+  expect(["end", "right"]).toContain(align);
+
+  // toggle to the chart → hand-rolled SVG bars (2 categories × 2 series)
+  await page.getByRole("button", { name: "Show as chart" }).last().click();
+  const chart = page.getByRole("img", { name: /Bar chart/i }).last();
+  await expect(chart).toBeVisible();
+  expect(await chart.locator("rect").count()).toBeGreaterThan(3);
+});
