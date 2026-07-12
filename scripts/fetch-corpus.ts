@@ -18,11 +18,19 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CORPUS_DIR = path.join(__dirname, "..", "data", "corpus");
 const MANIFEST_PATH = path.join(CORPUS_DIR, "manifest.json");
 
-async function downloadFile(url: string, dest: string, retries = 1): Promise<boolean> {
+async function downloadFile(
+  url: string,
+  dest: string,
+  retries = 1,
+): Promise<boolean> {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      console.log(`Fetching ${path.basename(dest)} (attempt ${attempt + 1})...`);
-      const response = await fetch(url, { timeout: 120000 });
+      console.log(
+        `Fetching ${path.basename(dest)} (attempt ${attempt + 1})...`,
+      );
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(120000),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
@@ -96,7 +104,7 @@ async function main() {
   console.log("=".repeat(70));
   console.log(
     `gs -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -dCompatibilityLevel=1.4 \\
-  -o ${path.join(CORPUS_DIR, "fy24-ar-compressed.pdf")} ${path.join(CORPUS_DIR, "fy24-ar.pdf")}`
+  -o ${path.join(CORPUS_DIR, "fy24-ar-compressed.pdf")} ${path.join(CORPUS_DIR, "fy24-ar.pdf")}`,
   );
   console.log("Then verify with: pdftotext <compressed>.pdf - | head -c 200");
   console.log("And replace: mv <compressed>.pdf fy24-ar.pdf");

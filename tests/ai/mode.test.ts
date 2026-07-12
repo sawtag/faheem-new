@@ -1,0 +1,169 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
+import { cacheKey } from "@/lib/ai/cache";
+import type {
+  FaheemClient,
+  MessageStreamParams,
+  StreamEvent,
+} from "@/lib/ai/client";
+import { replay } from "@/lib/ai/mode";
+import { chatEventStream } from "@/lib/ai/sse";
+import type { CacheEntry, ChatRequest, SSEEvent } from "@/lib/types";
+
+async function collect(gen: AsyncGenerator<SSEEvent>): Promise<SSEEvent[]> {
+  const out: SSEEvent[] = [];
+  for await (const e of gen) out.push(e);
+  return out;
+}
+
+afterEach(() => {
+  delete process.env.FAHEEM_CACHE_DIR;
+});
+
+describe("cached replay", () => {
+  it("preserves exact event order with pacing honored (0ms)", async () => {
+    const entry: CacheEntry = {
+      key: "k",
+      request: { question: "q", lang: "en", context: { kind: "firm" } },
+      events: [
+        { type: "stage", agent: "research", status: "start" },
+        { type: "delta", text: "Net income " },
+        { type: "delta", text: "compressed 61%" },
+        { type: "delta", text: "[[1]]" },
+        { type: "citation", n: 1, docId: "fy25-er", page: 3, quote: "..." },
+        { type: "done", cached: true },
+      ],
+      recordedAt: new Date().toISOString(),
+    };
+    expect(await collect(replay(entry, 0))).toEqual(entry.events);
+  });
+});
+
+describe("auto mode", () => {
+  it("falls back to cache on a first-token timeout", async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "faheem-cache-"));
+    process.env.FAHEEM_CACHE_DIR = dir;
+    try {
+      const req: ChatRequest = {
+        question: "slow one",
+        lang: "en",
+        context: { kind: "firm" },
+      };
+      const entry: CacheEntry = {
+        key: cacheKey(req),
+        request: req,
+        events: [
+          { type: "delta", text: "cached answer" },
+          { type: "done", cached: true },
+        ],
+        recordedAt: new Date().toISOString(),
+      };
+      fs.writeFileSync(
+        path.join(dir, `${entry.key}.json`),
+        JSON.stringify(entry),
+      );
+
+      const neverStream: FaheemClient = {
+        beta: {
+          messages: {
+            stream: () => ({
+              [Symbol.asyncIterator](): AsyncIterator<StreamEvent> {
+                return {
+                  next: () =>
+                    new Promise<IteratorResult<StreamEvent>>(() => {}),
+                };
+              },
+            }),
+          },
+        },
+        messages: { create: async () => ({ content: [] }) },
+      };
+
+      const out = await collect(
+        chatEventStream(req, {
+          client: neverStream,
+          configOverride: {
+            mode: "auto",
+            timeoutMs: 20,
+            replayDelayMs: 0,
+            stageStepMs: 0,
+          },
+          readFileBytes: () => Buffer.from("x"),
+        }),
+      );
+      expect(out).toEqual(entry.events);
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("live path", () => {
+  it("passes correct doc blocks to the SDK (order, cache_control, citations, betas)", async () => {
+    let captured: MessageStreamParams | undefined;
+    const textStream = (): AsyncIterable<StreamEvent> => ({
+      async *[Symbol.asyncIterator]() {
+        yield { type: "content_block_start", index: 0 };
+        yield {
+          type: "content_block_delta",
+          index: 0,
+          delta: { type: "text_delta", text: "The hurdle is 15%." },
+        };
+        yield { type: "content_block_stop", index: 0 };
+        yield { type: "message_stop" };
+      },
+    });
+    const capturing: FaheemClient = {
+      beta: {
+        messages: {
+          stream: (p) => {
+            captured = p;
+            return textStream();
+          },
+        },
+      },
+      messages: { create: async () => ({ content: [] }) },
+    };
+
+    const req: ChatRequest = {
+      question: "What is Lunar's IRR hurdle?",
+      lang: "en",
+      context: { kind: "firm" },
+    };
+    await collect(
+      chatEventStream(req, {
+        client: capturing,
+        configOverride: { mode: "live", stageStepMs: 0 },
+        readFileBytes: () => Buffer.from("%PDF fake"),
+      }),
+    );
+
+    expect(captured).toBeDefined();
+    const p = captured!;
+    expect(p.model).toBe("claude-opus-4-8");
+    expect(p.betas).toContain("files-api-2025-04-14");
+    expect(p.thinking).toEqual({ type: "adaptive" });
+
+    const content = (p.messages[0] as { content: unknown[] }).content;
+    expect(content[content.length - 1]).toEqual({
+      type: "text",
+      text: req.question,
+    });
+
+    const docBlocks = content.slice(0, -1) as Record<string, unknown>[];
+    // firm context = 5 docs (lunar + packs)
+    expect(docBlocks).toHaveLength(5);
+    docBlocks.forEach((block, i) => {
+      expect(block.type).toBe("document");
+      expect(block.citations).toEqual({ enabled: true });
+      expect((block.source as { type: string }).type).toBe("base64");
+      if (i < docBlocks.length - 1) {
+        expect(block.cache_control).toBeUndefined();
+      } else {
+        expect(block.cache_control).toEqual({ type: "ephemeral", ttl: "1h" });
+      }
+    });
+  });
+});

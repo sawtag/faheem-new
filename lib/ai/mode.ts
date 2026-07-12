@@ -1,0 +1,62 @@
+/**
+ * Runtime mode resolution + cached-replay pacing.
+ *
+ * Precedence: cookie `faheem_mode` > FAHEEM_MODE env > "auto" (the on-stage
+ * panic switch — cookie always wins). Replay pacing spreads text deltas by
+ * FAHEEM_REPLAY_DELAY_MS (tests set 0); the full orchestration (live / auto /
+ * fallback) lives in sse.ts.
+ */
+import type { CacheEntry, FaheemMode, SSEEvent } from "@/lib/types";
+
+export interface ModeConfig {
+  mode: FaheemMode;
+  timeoutMs: number;
+  replayDelayMs: number;
+  stageStepMs: number;
+  record: boolean;
+}
+
+export const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+function normalizeMode(value?: string): FaheemMode | null {
+  return value === "live" || value === "cached" || value === "auto"
+    ? value
+    : null;
+}
+
+export function resolveMode(cookieMode?: string): FaheemMode {
+  return (
+    normalizeMode(cookieMode) ??
+    normalizeMode(process.env.FAHEEM_MODE) ??
+    "auto"
+  );
+}
+
+function intEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+  const value = Number.parseInt(raw, 10);
+  return Number.isFinite(value) ? value : fallback;
+}
+
+export function readModeConfig(cookieMode?: string): ModeConfig {
+  return {
+    mode: resolveMode(cookieMode),
+    timeoutMs: intEnv("FAHEEM_TIMEOUT_MS", 10000),
+    replayDelayMs: intEnv("FAHEEM_REPLAY_DELAY_MS", 30),
+    stageStepMs: intEnv("FAHEEM_STAGE_STEP_MS", 500),
+    record: process.env.FAHEEM_RECORD === "1",
+  };
+}
+
+/** Replays a recorded entry in-order, pacing text deltas by delayMs. */
+export async function* replay(
+  entry: CacheEntry,
+  delayMs: number,
+): AsyncGenerator<SSEEvent> {
+  for (const event of entry.events) {
+    if (event.type === "delta" && delayMs > 0) await sleep(delayMs);
+    yield event;
+  }
+}

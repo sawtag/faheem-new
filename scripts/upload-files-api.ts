@@ -64,7 +64,7 @@ if (!process.env.ANTHROPIC_API_KEY) {
       "To use this script for uploading, you must:\n" +
       "  1. Upgrade your Anthropic billing plan to support Files API\n" +
       "  2. Set ANTHROPIC_API_KEY in .env or shell: export ANTHROPIC_API_KEY='sk-...'\n" +
-      "\nFor now, use --check flag to validate the manifest without uploading.\n"
+      "\nFor now, use --check flag to validate the manifest without uploading.\n",
   );
   process.exit(1);
 }
@@ -90,7 +90,7 @@ function performCheck(): void {
   } catch (e) {
     console.error(
       `❌ Failed to parse manifest at ${manifestPath}:`,
-      (e as Error).message
+      (e as Error).message,
     );
     process.exit(1);
   }
@@ -113,7 +113,7 @@ function performCheck(): void {
     if (!doc.id || !doc.title.en || !doc.title.ar || !doc.path) {
       console.error(
         `❌ Document missing required fields:`,
-        JSON.stringify(doc, null, 2)
+        JSON.stringify(doc, null, 2),
       );
       allValid = false;
       continue;
@@ -122,7 +122,7 @@ function performCheck(): void {
     // Check file exists
     if (!fs.existsSync(fullPath)) {
       console.error(
-        `❌ File not found: ${fullPath} (referenced by doc "${doc.id}")`
+        `❌ File not found: ${fullPath} (referenced by doc "${doc.id}")`,
       );
       allValid = false;
       continue;
@@ -133,7 +133,7 @@ function performCheck(): void {
       fs.accessSync(fullPath, fs.constants.R_OK);
     } catch {
       console.error(
-        `❌ File not readable: ${fullPath} (referenced by doc "${doc.id}")`
+        `❌ File not readable: ${fullPath} (referenced by doc "${doc.id}")`,
       );
       allValid = false;
       continue;
@@ -144,7 +144,7 @@ function performCheck(): void {
     console.log(`  Title (EN): ${doc.title.en}`);
     console.log(`  Size: ${doc.sizeMB} MB`);
     console.log(
-      `  Already uploaded: ${doc.fileId ? "Yes (" + doc.fileId + ")" : "No"}\n`
+      `  Already uploaded: ${doc.fileId ? "Yes (" + doc.fileId + ")" : "No"}\n`,
     );
 
     uploadPlan.push({
@@ -180,7 +180,7 @@ function performCheck(): void {
   }
 
   console.log(
-    "\n✓ Manifest is valid. Run without --check to upload (requires ANTHROPIC_API_KEY)."
+    "\n✓ Manifest is valid. Run without --check to upload (requires ANTHROPIC_API_KEY).",
   );
 }
 
@@ -192,13 +192,13 @@ async function uploadFilesAsync(): Promise<void> {
   console.log("🚀 Starting Files API uploads...\n");
 
   // Import SDK only when needed (upload mode)
-  let Anthropic: any;
+  let Anthropic: typeof import("@anthropic-ai/sdk").default;
   try {
     Anthropic = (await import("@anthropic-ai/sdk")).default;
   } catch {
     console.error(
       "ERROR: @anthropic-ai/sdk not found.\n" +
-        "Install it first: npm install @anthropic-ai/sdk\n"
+        "Install it first: npm install @anthropic-ai/sdk\n",
     );
     process.exit(1);
   }
@@ -210,7 +210,7 @@ async function uploadFilesAsync(): Promise<void> {
     manifest = JSON.parse(content);
   } catch (e) {
     throw new Error(
-      `Failed to parse manifest at ${manifestPath}: ${(e as Error).message}`
+      `Failed to parse manifest at ${manifestPath}: ${(e as Error).message}`,
     );
   }
 
@@ -232,7 +232,7 @@ async function uploadFilesAsync(): Promise<void> {
     // Validate file exists
     if (!fs.existsSync(fullPath)) {
       throw new Error(
-        `File not found: ${fullPath} (referenced by doc "${doc.id}")`
+        `File not found: ${fullPath} (referenced by doc "${doc.id}")`,
       );
     }
 
@@ -248,13 +248,13 @@ async function uploadFilesAsync(): Promise<void> {
           headers: {
             "anthropic-beta": "files-api-2025-04-14",
           },
-        }
+        },
       );
 
       // The response should include an id field
       if (!uploadResponse.id) {
         throw new Error(
-          `Upload response missing file id: ${JSON.stringify(uploadResponse)}`
+          `Upload response missing file id: ${JSON.stringify(uploadResponse)}`,
         );
       }
 
@@ -263,10 +263,7 @@ async function uploadFilesAsync(): Promise<void> {
 
       console.log(`   ✓ Uploaded. File ID: ${doc.fileId}\n`);
     } catch (e) {
-      console.error(
-        `   ❌ Upload failed for ${doc.id}:`,
-        (e as Error).message
-      );
+      console.error(`   ❌ Upload failed for ${doc.id}:`, (e as Error).message);
       throw e;
     }
   }
