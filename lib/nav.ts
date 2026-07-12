@@ -24,13 +24,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { key: "ic", href: "/ic", icon: "scale" },
   { key: "library", href: "/library", icon: "library-big" },
   { key: "agents", href: "/agents", icon: "bot" },
-  {
-    key: "scheduled",
-    href: "/scheduled",
-    icon: "calendar-clock",
-    disabled: true,
-    tooltipKey: "mvpRoadmap",
-  },
+  { key: "scheduled", href: "/scheduled", icon: "calendar-clock" },
 ];
 
 /** Settings group — governance + integrations. */
