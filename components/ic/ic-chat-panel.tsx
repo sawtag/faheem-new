@@ -10,6 +10,11 @@ import { VerifiedBadge } from "@/components/chat/verified-badge";
 import { reduceEvents } from "@/components/chat/reduce";
 import { streamChat } from "@/components/chat/stream";
 import { IcComposer } from "@/components/ic/ic-composer";
+import {
+  subscribeGoldenSelection,
+  takeGoldenSelection,
+  type GoldenSelection,
+} from "@/lib/demo/golden-bus";
 import manifest from "@/data/corpus/manifest.json";
 import type { ChatRequest, CorpusDoc, Lang, SSEEvent } from "@/lib/types";
 
@@ -54,6 +59,17 @@ export function IcChatPanel({
   );
 
   const streaming = turns.some((turn) => turn.streaming);
+
+  // ⌘K demo palette hand-off — only an "ic"-context golden selection is ever
+  // applied here (the workspace ones target ChatView's Composer instead).
+  React.useEffect(() => {
+    function apply(sel: GoldenSelection) {
+      if (sel.context.kind === "ic") setValue(sel.text);
+    }
+    const pending = takeGoldenSelection();
+    if (pending) apply(pending);
+    return subscribeGoldenSelection(apply);
+  }, []);
 
   const run = React.useCallback(
     async (question: string) => {

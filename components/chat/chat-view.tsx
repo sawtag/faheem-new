@@ -14,6 +14,13 @@ import { SourcesAccordion } from "@/components/chat/sources-accordion";
 import { VerifiedBadge } from "@/components/chat/verified-badge";
 import { reduceEvents, type AnswerView } from "@/components/chat/reduce";
 import { streamChat } from "@/components/chat/stream";
+import { GenerationPanel } from "@/components/generate/generation-panel";
+import { isDeliverablesQuestion } from "@/lib/demo/deliverables";
+import {
+  subscribeGoldenSelection,
+  takeGoldenSelection,
+  type GoldenSelection,
+} from "@/lib/demo/golden-bus";
 import {
   SEED_CHATS,
   appendAssistantTurn,
@@ -21,6 +28,7 @@ import {
   createRuntimeChat,
   parseContext,
   resolveChat,
+  serializeContext,
 } from "@/lib/chats";
 import manifest from "@/data/corpus/manifest.json";
 import dealsData from "@/data/deals.json";
@@ -51,6 +59,10 @@ interface LiveTurn {
   events: SSEEvent[];
   streaming: boolean;
   elapsedMs?: number;
+  /** P5a deliverables beat: an exact match on the "deliverables" golden
+   *  question renders GenerationPanel inline instead of streaming an answer
+   *  — no /api/chat call for this turn. */
+  kind?: "generation";
 }
 interface OpenDoc {
   docId: string;
@@ -68,10 +80,18 @@ export function ChatView({ id }: { id: string }) {
   );
   const [liveTurns, setLiveTurns] = React.useState<LiveTurn[]>([]);
   const [openDoc, setOpenDoc] = React.useState<OpenDoc | null>(null);
+  const [goldenPrefill, setGoldenPrefill] = React.useState<
+    GoldenSelection | undefined
+  >();
   const abortRef = React.useRef<AbortController | null>(null);
   const startedFor = React.useRef<string | null>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const stick = React.useRef(true);
+  // Carries the full submit payload (incl. agent/docIds — not part of the
+  // persisted SeedChat message schema) across the `/chat/new` → `/chat/[id]`
+  // hand-off, so a golden-question palette selection with a chip reproduces
+  // the exact recorded ChatRequest on the very first turn of a fresh chat.
+  const pendingNewPayload = React.useRef<ComposerSubmit | null>(null);
 
   const docTitle = React.useCallback(
     (docId: string) => DOC_TITLES.get(docId)?.[locale] ?? docId,
@@ -143,6 +163,51 @@ export function ChatView({ id }: { id: string }) {
     [locale, isRuntime],
   );
 
+  // P5a deliverables beat: renders GenerationPanel inline instead of a
+  // streamed answer — no /api/chat call, no SSEEvents to reduce. The panel
+  // owns its own progress UI and audits its own artifacts (one entry per
+  // artifact via /api/generate/[artifact]), so there is nothing further to
+  // persist here beyond the user's turn.
+  const runGeneration = React.useCallback(
+    (payload: ComposerSubmit, target: SeedChat, persistUser: boolean) => {
+      if (persistUser && isRuntime(target)) {
+        appendUserTurn(target.id, payload.question);
+      }
+      const turnId = crypto.randomUUID();
+      setLiveTurns((prev) => [
+        ...prev,
+        {
+          id: turnId,
+          question: payload.question,
+          events: [],
+          streaming: false,
+          kind: "generation",
+        },
+      ]);
+    },
+    [isRuntime],
+  );
+
+  // ⌘K demo palette hand-off: apply a golden-question selection only when it
+  // targets THIS chat's context (guards against a stray live event reaching
+  // an unrelated, still-mounted chat mid-navigation) — `take()` catches a
+  // selection published just before `/chat/new` navigation completes,
+  // `subscribe` catches one fired while already on the right chat.
+  React.useEffect(() => {
+    function apply(sel: GoldenSelection) {
+      if (
+        !chat ||
+        serializeContext(sel.context) !== serializeContext(chat.context)
+      ) {
+        return;
+      }
+      setGoldenPrefill(sel);
+    }
+    const pending = takeGoldenSelection();
+    if (pending) apply(pending);
+    return subscribeGoldenSelection(apply);
+  }, [chat]);
+
   // Resolve the chat client-side (localStorage overlay + URL). `/chat/new?q=…`
   // mints a runtime chat and redirects; `/chat/new` with no query is the empty
   // state. Resolution reads localStorage / searchParams, so it can only run
@@ -179,11 +244,21 @@ export function ChatView({ id }: { id: string }) {
   const historical = pendingUser ? messages.slice(0, -1) : messages;
 
   // Auto-stream a trailing user turn (the /chat/new → /chat/[id] hand-off).
+  // Prefers the full payload stashed by onSubmit (carries agent/docIds, which
+  // the persisted SeedChat message schema has no field for) over the bare
+  // question text — otherwise a golden-question chip fired from an empty
+  // `/chat/new` composer would silently lose its agent/doc scoping.
   React.useEffect(() => {
     if (!chat || !pendingUser) return;
     if (startedFor.current === chat.id) return;
     startedFor.current = chat.id;
-    void runStream({ question: pendingUser.text }, chat, false);
+    const payload = pendingNewPayload.current ?? { question: pendingUser.text };
+    pendingNewPayload.current = null;
+    if (isDeliverablesQuestion(payload.question)) {
+      runGeneration(payload, chat, false);
+    } else {
+      void runStream(payload, chat, false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chat]);
 
@@ -206,7 +281,12 @@ export function ChatView({ id }: { id: string }) {
     stick.current = true;
     if (chat.id === "new") {
       const created = createRuntimeChat(chat.context, payload.question);
+      pendingNewPayload.current = payload;
       router.push(`/chat/${created.id}`);
+      return;
+    }
+    if (isDeliverablesQuestion(payload.question)) {
+      runGeneration(payload, chat, true);
       return;
     }
     void runStream(payload, chat, true);
@@ -267,19 +347,26 @@ export function ChatView({ id }: { id: string }) {
               ),
             )}
 
-            {liveTurns.map((turn) => (
-              <React.Fragment key={turn.id}>
-                <UserBubble text={turn.question} />
-                <AssistantBlock
-                  view={reduceEvents(turn.events)}
-                  streaming={turn.streaming}
-                  elapsedMs={turn.elapsedMs}
-                  docTitle={docTitle}
-                  onOpenDoc={(docId, page) => setOpenDoc({ docId, page })}
-                  locale={locale}
-                />
-              </React.Fragment>
-            ))}
+            {liveTurns.map((turn) =>
+              turn.kind === "generation" ? (
+                <React.Fragment key={turn.id}>
+                  <UserBubble text={turn.question} />
+                  <GenerationPanel workspace="jahez" />
+                </React.Fragment>
+              ) : (
+                <React.Fragment key={turn.id}>
+                  <UserBubble text={turn.question} />
+                  <AssistantBlock
+                    view={reduceEvents(turn.events)}
+                    streaming={turn.streaming}
+                    elapsedMs={turn.elapsedMs}
+                    docTitle={docTitle}
+                    onOpenDoc={(docId, page) => setOpenDoc({ docId, page })}
+                    locale={locale}
+                  />
+                </React.Fragment>
+              ),
+            )}
           </div>
         </div>
 
@@ -293,6 +380,16 @@ export function ChatView({ id }: { id: string }) {
                 onStop={() => abortRef.current?.abort()}
                 streaming={streaming}
                 lang={locale}
+                prefill={
+                  goldenPrefill
+                    ? {
+                        text: goldenPrefill.text,
+                        nonce: goldenPrefill.nonce,
+                        agent: goldenPrefill.agent,
+                        docIds: goldenPrefill.docIds,
+                      }
+                    : undefined
+                }
               />
             )}
           </div>

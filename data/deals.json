@@ -99,6 +99,19 @@
     "statusLine": {
       "en": "Deep-dive analysis in progress — valuation, unit economics, and scenario modelling underway.",
       "ar": "التحليل المعمّق قيد التنفيذ - التقييم والاقتصاد التشغيلي ونمذجة السيناريوهات جارية."
+    },
+    "icMetrics": {
+      "irr": 17.1,
+      "hurdle": 15,
+      "expectedReturn": 16.8,
+      "riskScore": 5.5,
+      "mandateFit": "pass",
+      "shariah": "pass",
+      "recommendation": {
+        "en": "Strongest risk-adjusted case — clears the hurdle in base and bull; bear case falls short. The committee decides.",
+        "ar": "أقوى حالة معدّلة بالمخاطر — يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
+      },
+      "cite": { "docId": "jahez-analysis-summary", "page": 2 }
     }
   },
   {

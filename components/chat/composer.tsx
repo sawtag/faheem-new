@@ -108,8 +108,10 @@ export function Composer({
    *  (the home hero rotates it). Absent → the native placeholder is used. */
   placeholder?: string;
   /** Push text into the composer + focus it (quick-action pills). Bump `nonce`
-   *  to re-apply the same text. */
-  prefill?: { text: string; nonce: number };
+   *  to re-apply the same text. `agent`/`docIds` (P5a demo palette) also seed
+   *  the chips, so a golden-question selection reproduces the exact recorded
+   *  ChatRequest — backward-compatible, both optional. */
+  prefill?: { text: string; nonce: number; agent?: AgentId; docIds?: string[] };
   onFocusChange?: (focused: boolean) => void;
 }) {
   const t = useTranslations("chat.composer");
@@ -160,6 +162,8 @@ export function Composer({
     if (!prefill || prefill.nonce === lastPrefill.current) return;
     lastPrefill.current = prefill.nonce;
     setText(prefill.text);
+    setAgentChip(prefill.agent ?? null);
+    setDocChips(prefill.docIds ?? []);
     setImproved(false);
     setTrigger(null);
     pendingCaret.current = prefill.text.length;

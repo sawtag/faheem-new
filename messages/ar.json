@@ -475,5 +475,27 @@
     "download": "تنزيل",
     "openInWorkspace": "فتح في مساحة العمل",
     "errorArtifact": "تعذّر إنشاء هذا الملف. حاول مرة أخرى."
+  },
+  "demo": {
+    "palette": {
+      "title": "أسئلة العرض",
+      "kbdHint": "⌘K",
+      "empty": "لا توجد أسئلة معدّة مسبقاً لهذه الشاشة.",
+      "groupFirm": "الشركة",
+      "groupIc": "لجنة الاستثمار",
+      "groupWorkspace": "مساحة العمل"
+    },
+    "mode": {
+      "title": "وضع فهيم",
+      "values": {
+        "live": "مباشر",
+        "auto": "تلقائي",
+        "cached": "مخزّن"
+      },
+      "lastResponse": "آخر إجابة:",
+      "lastResponseNone": "لا يوجد بعد",
+      "lastResponseCached": "مخزّنة",
+      "lastResponseLive": "مباشرة"
+    }
   }
 }

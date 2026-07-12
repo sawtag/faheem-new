@@ -155,5 +155,17 @@
     "type": "public",
     "workspace": "jahez",
     "sourceUrl": "data/corpus/fy24-ar.pdf (Pages 110-122)"
+  },
+  {
+    "id": "jahez-analysis-summary",
+    "title": {
+      "en": "Jahez Completed Analysis Summary",
+      "ar": "ملخص التحليل المكتمل - جاهز"
+    },
+    "path": "data/corpus/jahez-analysis-summary.pdf",
+    "pages": 2,
+    "sizeMB": 0.0529,
+    "type": "deal",
+    "workspace": "jahez"
   }
 ]

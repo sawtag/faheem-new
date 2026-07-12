@@ -2,8 +2,14 @@
  * Client SSE reader for POST /api/chat. Parses `data: <json>` frames (blank-line
  * separated per the SSE contract) into SSEEvents and hands each to `onEvent`.
  * Cancellation is the caller's AbortController (the composer's stop button).
+ *
+ * P5a: also publishes a `done` event's `cached` flag onto the mode-bus — the
+ * one place every chat surface (ChatView, IcChatPanel) funnels through, so
+ * the stage-only ⌘. mode overlay can show "last response: cached/live"
+ * without either surface wiring it by hand.
  */
 import { SSEEventSchema, type ChatRequest, type SSEEvent } from "@/lib/types";
+import { publishLastResponseCached } from "@/lib/demo/mode-bus";
 
 export async function streamChat(
   req: ChatRequest,
@@ -34,7 +40,12 @@ export async function streamChat(
       const json = frame.slice(frame.indexOf(":") + 1).trim();
       try {
         const parsed = SSEEventSchema.safeParse(JSON.parse(json));
-        if (parsed.success) onEvent(parsed.data);
+        if (parsed.success) {
+          if (parsed.data.type === "done") {
+            publishLastResponseCached(parsed.data.cached);
+          }
+          onEvent(parsed.data);
+        }
       } catch {
         /* skip a malformed frame */
       }
