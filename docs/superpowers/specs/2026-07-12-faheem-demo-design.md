@@ -51,14 +51,14 @@ Priority order (build top-down; 1–5 are must-have):
 4. **Deliverables flow** — generation card with per-artifact progress (memo/deck/model), file cards with preview thumbnails + download; artifacts land in the project Library.
 5. **Onboarding wizard** (4 steps, pretty but shallow): ① Company profile & subscription tier (3 plan cards) ② Connect data sources (connector cards w/ Connect buttons, fake OAuth modals) ③ Brand & templates upload (drop Lunar logo/colors/template pptx-docx) ④ **Investment mandate & risk appetite questionnaire in IC language** — target IRR / hurdle rate (e.g. 15%), max single-name concentration (10%), target holding period (3–5y), liquidity requirements, Shariah-compliance requirement (mandatory screen), sector appetite, max drawdown tolerance. This data is REAL — it feeds the corpus as Lunar's private docs and the AI cites it back.
 6. **Connections page** (Settings) — ROGO-style catalog: Connected (Saudi Exchange Disclosures, Argaam, marketaux news, Lunar Data Room, Templates) vs Available/MVP (SAHMK API, Bloomberg, PitchBook, Intralinks, Datasite, od.data.gov.sa, REGA, GASTAT, Alinma Open Banking [SAMA], Capital IQ) + "Add custom MCP" modal.
-7. **Agents page** — 7 cards from the pitch deck, each listing its methods in analyst vocabulary (this page IS the "technical implementation" pitch for fin judges):
+7. **Agents page** — mirrors the pitch deck's slide-9 architecture (see `context/pitch-deck-notes.md`): an **Orchestrator / Planner** banner ("routes and sequences tasks") on top, 7 specialist cards below, "7 specialist teams · 20+ agents" as the page subtitle, and the human-review checkpoint shown at the end of the flow. Each card lists its methods in analyst vocabulary (this page IS the "technical implementation" pitch for fin judges):
    - **Research & Sourcing** (البحث والمصادر) — screening universe, filings ingestion, news & expert-network sweep
    - **Document Intelligence** (ذكاء المستندات) — prospectus/CIM extraction, footnote & related-party analysis, covenant summaries
-   - **Valuation Agent** (النمذجة والتقييم) — **DCF (FCFF/FCFE, WACC via CAPM, Gordon terminal value), trading comps (EV/Revenue, EV/EBITDA, P/E), precedent transactions, LBO-lite, sensitivity & scenario analysis**
+   - **Valuation & Modeling** (النمذجة والتقييم) — **DCF (FCFF/FCFE, WACC via CAPM, Gordon terminal value), trading comps (EV/Revenue, EV/EBITDA, P/E), precedent transactions, LBO-lite, sensitivity & scenario analysis**
    - **Comparables & Precedents** (المقارنات) — comp-set construction, multiple regression vs growth/margin
-   - **Risk Agent** (تقييم المخاطر) — **quantified risk scorecard (probability × impact), bear/base/bull scenario-weighted expected return, downside-to-mandate breach checks, concentration & liquidity limits**
+   - **Risk & Portfolio Monitoring** (المخاطر ومراقبة المحفظة) — **quantified risk scorecard (probability × impact), bear/base/bull scenario-weighted expected return, downside-to-mandate breach checks, concentration & liquidity limits** + covenants, alerts, periodic reports (merges the deck's "Monitoring & Portfolio" with the demo-critical Risk role — Q&A 2's Agent Activity shows this card's name)
    - **Deliverable Writing** (كتابة التقارير) — IC memos, research notes, pitch decks, periodic reports
-   - **Verification & Compliance** (التحقق والامتثال) — **Shariah screening per AAOIFI/Tadawul methodology (debt/market-cap ratio, non-permissible income %), fact-check vs source, sanctions & conflicts, confidence flags** — plus the human-review checkpoint.
+   - **Verification & Compliance** (التحقق والامتثال) — **Shariah screening per AAOIFI/Tadawul methodology (debt/market-cap ratio, non-permissible income %), fact-check vs source, sanctions & conflicts, confidence flags** — the deck's red-bordered fact-checker box.
 8. **Team research view** — "who runs Jahez?" card grid of leadership with web-source links (static pre-fetched, labeled Web).
 
 Explicitly OUT of scope: real auth, real connectors, Excel add-in, email agent, share/permissions, mobile.
@@ -95,7 +95,7 @@ faheem/  (Next.js 15, TypeScript, App Router — single process)
 
 **Chat pipeline (live mode):**
 1. Request → route handler; emit SSE "agent stage" events (choreographed: which agents, which docs they're "reading" — drawn from the real corpus manifest, ~4–6 s total, overlapping with the real API call which starts immediately).
-2. Call `client.messages.stream` — `model` from env, `thinking: {type:"adaptive"}`, corpus PDFs as `document` blocks with `citations:{enabled:true}` and `cache_control:{type:"ephemeral", ttl:"1h"}` on the last block; user question after the cached prefix. First call of the day pre-warms the cache (script).
+2. Call `client.messages.stream` — `model` from env, `thinking: {type:"adaptive"}`, corpus PDFs as `document` blocks **referencing Files-API `file_id`s** (uploaded once during data prep — avoids per-request base64 inflation and the 32 MB body limit; beta `files-api-2025-04-14` on the messages call) with `citations:{enabled:true}` and `cache_control:{type:"ephemeral", ttl:"1h"}` on the last block; user question after the cached prefix. First call of the day pre-warms the cache (`max_tokens: 0` pre-warm request in a script).
 3. Stream text deltas + citation blocks → frontend renders chips (`document_index` + `start_page_number` → corpus manifest → viewer deep-link).
 4. If `FAHEEM_RECORD`, persist the full response to demo-cache.
 
@@ -107,13 +107,13 @@ faheem/  (Next.js 15, TypeScript, App Router — single process)
 
 ## 6. Static data pack (`data/corpus/` — fill on day 1)
 
-Public Jahez documents (URLs verified live July 2026):
-1. **FY2024 Annual Report (EN)** — jahezgroup.com/jahez-ar/2024/assets/img/pdfs/Jahez-Annual Report 2024-English.pdf
-2. **FY2024 Annual Report (AR)** — same microsite `/ar/` assets (confirm exact file at download time)
-3. **FY2025 Earnings Call Presentation** — jahezgroup.com/wp-content/uploads/2026/04/FY2025-Earnings-Call-PPT.pdf
-4. **Q1 2026 Interim FS** — jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-ENG-FULL-FS-with-review-report.pdf
-5. **Q1 2026 Earnings Call** — jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-Earnings-Call-V8.pdf
-6. **FY2025 signed FS + earnings release** — from jahezgroup.com/financial-information/ (grab at download time)
+Public Jahez documents (**all re-verified HTTP 200 on 2026-07-12**, sizes from HEAD):
+1. **FY2024 Annual Report (EN)** — jahezgroup.com/jahez-ar/2024/assets/img/pdfs/Jahez-Annual%20Report%202024-English.pdf — **14.3 MB, must be ghostscript-compressed** (image-heavy ARs typically shrink 3–5×)
+2. **FY2025 Earnings Call Presentation** — jahezgroup.com/wp-content/uploads/2026/04/FY2025-Earnings-Call-PPT.pdf (2.6 MB)
+3. **FY2025 Earnings Release** — jahezgroup.com/wp-content/uploads/2026/04/Jahez-Q4-2025_ER-En.pdf
+4. **Q1 2026 Interim FS** — jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-ENG-FULL-FS-with-review-report.pdf (1.9 MB)
+5. **Q1 2026 Earnings Call** — jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-Earnings-Call-V8.pdf (4.8 MB)
+6. **FY2025 signed FS** — identify on jahezgroup.com/financial-information/ at download time (45 PDF links indexed; the Nov-2025 upload `Jahez-English-FSs.pdf` is likely 9M-2025 — if no standalone FY2025 statutory FS exists, the ER + earnings-call deck carry the FY2025 numbers; don't block on it)
 7. **Industry/news pack** (compiled into one PDF with per-article source URLs): Keeta KSA entry & expansion, quick-commerce price-war coverage (Jahez/HungerStation/Ninja dark stores), Argaam FY2025 + Q1 2026 result articles, sector TAM notes.
 8. **Jahez leadership/team pack** — public bios, board from AR, with web sources.
 8b. **Market-data & comps snapshot** (compiled PDF, sourced & dated): Jahez share price/market cap/shares outstanding (Saudi Exchange/Argaam snapshot), Saudi 10Y government sukuk yield (risk-free rate for WACC), equity risk premium note (e.g. Damodaran KSA), sector beta note, and trading multiples for the comp set — Talabat (DFM, listed Dec 2024), Deliveroo, DoorDash, Delivery Hero, Swiggy/Zomato(Eternal). Every DCF input in the demo traces to a page in this pack — judges WILL ask "where did the WACC come from."
@@ -123,19 +123,58 @@ Lunar Investments private docs (we author, realistic, Arabic+English):
 10. **Lunar Risk Appetite Statement**
 11. **Lunar current portfolio snapshot** (fictional holdings)
 
-Note: saudiexchange.sa PDF links are bot-blocked (403) — cite company-hosted PDFs; for Saudi Exchange announcements link the HTML announcement pages.
+Notes (verified 2026-07-12):
+- **No Arabic FY2024 AR PDF exists** (the AR microsite has an `/ar/` HTML variant but no PDF; the only Arabic PDF on the IR page is the Q3-2025 press release). The Arabic demo beat does NOT depend on an Arabic source doc — Claude answers in Arabic from English sources; optionally include the Arabic press release for authenticity.
+- **Size budget:** the 4 sized PDFs alone total ~24 MB raw — over the 32 MB request limit once base64-inflated. Plan of record: upload the corpus once via the **Files API** (beta `files-api-2025-04-14`) and reference `file_id`s in document blocks — citations work identically, no base64 inflation, no re-upload per request. Compress the AR regardless; measure total pages with `pdfinfo` at download (≤600-page per-request cap) and fall back to the Haiku doc-router (§5) if over.
+- saudiexchange.sa PDF links are bot-blocked (403) — cite company-hosted PDFs; for Saudi Exchange announcements link the HTML announcement pages.
 
 All demo figures are re-verified against these actual PDFs during data prep — research numbers are not baked in blind.
 
 ## 7. Branding & bilingual
 
-- Tokens from pitch deck until Figma access lands: deep navy (~#16233F), Faheem green (~#17B26A arrow/accent), cream/off-white surfaces, Arabic serif-ish display for heroes (e.g. IBM Plex Sans Arabic / Noto Naskh for body; final per Figma).
+**Tokens extracted 2026-07-12 from the Figma "Faheem UI Kit" frame** (file `ZHECLOgl3D76BXygcx5Nyf`, node 17:2, via Figma MCP — access now works). Reference exports live in `context/branding/figma-exports/` (design-system.png, logo-system.png, faheem-ai-screen.png).
+
+| Token | Value |
+|---|---|
+| Navy / Primary | `#061F52` |
+| Green / Accent (Emerald) | `#07966F` |
+| Background | `#FBFCFE` |
+| Card | `#FFFFFF` |
+| Border | `#E3E9F1` |
+| Text secondary | `#314160` |
+| Warning | `#F59E0B` |
+| Danger | `#EF233C` |
+| Spacing scale | 8 / 12 / 16 / 24 / 32 px |
+| Radius | buttons 8px · cards 10–12px · badges/pills 20px |
+| Shadow | `0 10px 24px rgba(8,33,82,0.03)` |
+| Type scale | H1 30/800 · H2 22/800 · H3 18/800 · body 14–16/400–600 · caption 12–13/500 · button 16/800 |
+
+- **Typography decision:** the Faheem kit is all-sans with heavy weights → UI/body = Inter + IBM Plex Sans Arabic. The ROGO-signature serif display is kept ONLY for the omnibox hero greeting ("What can Faheem do for you?" / "كيف يخدمك فهيم اليوم؟") — e.g. Lora/Fraunces + a matching Arabic display face — the one editorial flourish layered on the kit.
+- **Logo system** (Figma node 17:235): icon-only, horizontal EN, horizontal AR/EN (فهيم under wordmark), vertical — each in light/dark. Green ascending-bars+arrow glyph, navy wordmark. Brand colors per logo sheet: Navy `#0B1F3E`-ish "Trust, finance, stability", Emerald `#07966F` "Growth, investment, success". Export individual variants as SVG/PNG on build day (Figma MCP node screenshots, or crop `logo-system.png`).
+- **Deck ≠ app:** the pitch-deck palette (dark navy `#1E1B45`, terracotta, warm off-white — see `context/pitch-deck-notes.md`) is the SLIDES look. The app follows the UI kit. Don't mix.
+- **Lunar Investments** (fictional client) skins generated docs with a distinct palette — charcoal + gold, serif headings, "old-money PE" look (finalize in P4) — mirroring how Rogo renders DBS-branded decks with zero vendor branding inside deliverables.
+- The Figma file also contains **12 designed screens** (Dashboard, Companies, New Analysis, Analysis Result, Reports, Settings, Faheem AI…). Layouts still follow ROGO (per INIT instruction — see `context/rogo-screens/CATALOG.md`), but borrow component patterns from these screens (quick-action cards, stat cards w/ health score, 5-step stepper, status badges) and the persona **"Arwa — Investor"** as the analyst's name.
 - next-intl (**`en` default, `ar` toggle**), `dir` switch at root, Tailwind logical properties (ms-/me-), all copy in both languages, Arabic-Indic numerals OFF for financials (Western digits, standard in Saudi finance). RTL must be flawless when toggled — it's a scripted demo beat, not an afterthought.
 - Faheem = product brand (Lunar Technologies). Lunar Investments = fictional client whose brand skins the generated documents (distinct palette so judges see "their brand, not ours").
 
-## 8. Build target
+## 8. Build target & execution plan
 
 **One-day build (July 12), in §4 priority order.** Golden-path recording and answer review happen immediately after the build; remaining days before the hackathon are rehearsal, polish, and re-recording the cache on venue hardware/network only.
+
+**Execution model:** the main (Fable) session is architect + flagship builder; mechanical and parallelizable work is delegated to subagents with pinned model + effort to control token spend. Subagents never run on Opus/Fable; `effort: low` for mechanics, `high` only where a wrong number could be quoted on stage. Subagents return summaries, not file dumps, to keep the main context lean.
+
+| Phase | Work | Executor | Notes |
+|---|---|---|---|
+| **P0 Scaffold** | create-next-app (TS, App Router), Tailwind + HeroUI, next-intl, fonts, §7 tokens, deps (`@anthropic-ai/sdk`, react-pdf, exceljs, pptxgenjs, docx), env plumbing, commit checkpoint | main | ~30 min |
+| **P1 Data prep** (background, runs during P0–P2) | a) corpus-fetch: download §6 PDFs, `pdfinfo` page counts, gs-compress the AR, write `data/corpus/manifest.json` | haiku / low | pure mechanics |
+| | b) figures-extract: verified figures from FY2025 ER + Q1-26 FS + FY2024 AR → `data/model-inputs.json` `{value, source_doc, page}` | sonnet / high | main session spot-checks the load-bearing numbers (GMV, take rate, NI −61%, SAR 55M one-off, Q1-26 loss) before they feed artifacts |
+| | c) market & industry packs: comps multiples, Saudi 10Y sukuk yield, ERP, beta, price-war articles → 2 compiled PDFs with dated source URLs | sonnet / high + web search | judges WILL ask where the WACC came from |
+| | d) lunar-docs: IC Charter (15% hurdle, 10% concentration, 3–5y hold), Risk Appetite, Portfolio snapshot → 3 Lunar-branded PDFs | sonnet / medium | |
+| | e) leadership pack: bios + board from AR + web sources | haiku / low | |
+| **P2 Core app** | shell + sidebar + i18n/RTL foundation → home/omnibox (serif hero, source-picker flyout, model-tier selector, quick-action pills, Improve affordance) → chat flagship: SSE route (choreographed agent-stage events + token stream + citation blocks), citation chips, Sources accordion, react-pdf viewer deep-link, Agent Activity timeline, `FAHEEM_MODE` live/cached/auto + record/replay, `/api/improve` (Haiku) | **main** | the demo IS this screen; not delegated |
+| **P3 Screen fan-out** | onboarding wizard · connections · agents page · library/deliverables UI · team view — one subagent each, disjoint routes, shared components frozen first; each agent gets the §7 tokens + relevant `context/rogo-screens/CATALOG.md` excerpts in its brief | 5× sonnet / medium (parallel) | degrade to static mockups per §9 if time runs out |
+| **P4 Deliverables engine** | exceljs workbook per §11 tab spec — main builds the model math & cell-level source comments; docx IC memo + pptx board deck builders; `/api/generate/[artifact]`; Lunar branding | main + sonnet / high | every populated cell carries "Source: <doc>, p.<n>" |
+| **P5 Golden path & QA** | cache pre-warm script, `FAHEEM_RECORD=1` golden answers (EN + the Arabic Shariah beat), citation click-through test, RTL sweep, artifact-open test, end-to-end verify against the running app, code review | main (+ code-reviewer subagent) | **requires paid billing first — see §12.1** |
 
 ## 9. Risks & mitigations
 
@@ -148,6 +187,8 @@ All demo figures are re-verified against these actual PDFs during data prep — 
 | Hallucinated numbers in follow-ups | API-enforced citations + grounded refusal prompt + Verification agent framing ("flagged low confidence") |
 | Judge asks off-corpus question | Prompt instructs graceful "not in my connected sources — in the MVP this routes to web/Bloomberg"; turns a miss into a roadmap point |
 | Time overrun | Screens 1–5 are the demo; 6–8 degrade to static mockups if needed |
+| Corpus exceeds request limits (AR alone is 14.3 MB; 4 core PDFs ≈ 24 MB raw) | gs-compress the AR; upload corpus via Files API and reference `file_id`s (no base64 inflation); measure pages at download; Haiku doc-router as last resort |
+| Console still on free Evaluation plan | Upgrade to paid before P5 — golden-path recording writes a ~full-corpus prompt cache repeatedly; the evaluation credit won't survive it (§12.1). Rate limits on the paid Start tier are a non-issue (1,000 RPM / 2M input-tok/min for Opus; cache reads don't count) |
 
 ## 10. Pitch/sales ammo (verified, citable)
 
@@ -197,8 +238,7 @@ All demo figures are re-verified against these actual PDFs during data prep — 
 
 ## 12. Needed from user
 
-1. `ANTHROPIC_API_KEY` in `.env`.
-2. Figma: the connector is authenticated but this session lacks the design-reading tools (only motion/export/Code-Connect are exposed, and Code Connect needs a paid org seat). **Export key frames as PNGs into `context/branding/`** (fastest), or authorize the full Figma plugin via `/mcp` in an interactive `claude` session. Building meanwhile with deck-derived tokens.
-3. Faheem logo files (SVG/PNG) if available outside Figma.
-4. Optional: real example templates to mimic for the branded outputs.
-5. Demo-day logistics when known (own laptop? projector? judge interaction?).
+1. **Upgrade the Anthropic Console from the free Evaluation plan to paid — before P5 (today).** Steps: [platform.claude.com](https://platform.claude.com) → **Settings → Billing** → add a payment method / purchase credits (this moves the org onto the paid **Start tier**; tiers advance automatically with usage). Verify on **Settings → Limits** (shows current tier + rate limits). **$25–50 of credits is plenty**: the big cost is the corpus prompt-cache write (~SAR-corpus ≈ 300–500K tokens × $10/MTok at 1h-TTL write ≈ $3–5 per cold write; reads are ~$0.50/MTok, and cached tokens don't count toward rate limits). Expect ~$15–40 total across build + rehearsal. The $5 evaluation credit dies after one or two full-corpus requests — upgrade first, then record.
+2. ~~API key~~ ✅ in `.env`. ~~Figma access~~ ✅ works via the Figma MCP connector — UI-kit tokens, logo system, and screens extracted 2026-07-12 (see §7 and `context/branding/figma-exports/`). Optional nicety: export the logo variants as **SVG** from Figma (select variant → Export → SVG) into `context/branding/` for crisper rendering; otherwise we build from MCP PNG exports.
+3. Optional: real example templates to mimic for the branded outputs.
+4. Demo-day logistics when known (own laptop? projector? judge interaction?).
