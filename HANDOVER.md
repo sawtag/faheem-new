@@ -43,7 +43,7 @@ Escalate one notch only after two failed acceptance rounds. Review every diff; r
 6. Light mode only. Desktop laptop browser only (1366×768–1080p e2e viewports); mobile = zero effort.
 7. Arabic register must match the pitch deck's vocabulary (`context/pitch-deck-notes.md`) — one terminology across product and slides.
 8. The API key is server-only — SDK imports exist solely in `lib/ai/client.ts` + API routes.
-9. Fictional names are FINAL: **Darb** (logistics SaaS, private inbound), **Thara Pay** (fintech, IC), **Aqar Development** (declined). Client firm: **Lunar Investments**; analyst: **Arwa**. Jahez is real — treat its data with care.
+9. Fictional names are FINAL: **Darb** (logistics SaaS, private inbound), **Thara Pay** (fintech, IC), **Aqar Development** (declined). Client firm: **Lunar Investments**; analyst: **Ali**. Jahez is real — treat its data with care.
 10. No CodeRabbit. Use the built-in `/code-review` at P6.
 
 ## Definition of done

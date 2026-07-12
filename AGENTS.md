@@ -36,7 +36,7 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 
 **Fonts (locked, via next/font — no runtime CDN):** UI/body = **Inter** (EN) + **IBM Plex Sans Arabic** (AR; chosen over Tajawal — enterprise register, harmonizes with Inter). Hero serif (omnibox greeting ONLY) = **Lora** (EN) + **Amiri** (AR). Financial tables/figures always render digits in Inter with `font-variant-numeric: tabular-nums` (token/utility in globals.css).
 
-**Assets policy:** vendor-first (`public/` or inline SVG) — it's nearly free and, with cached mode, makes the demo survive total network loss (venue will have wifi/hotspots, so a CDN is *acceptable* when vendoring is genuinely awkward — but don't reach for one out of laziness; the only thing that should truly need the network is a live Anthropic call). Faheem logo = clean inline SVG recreated/enhanced from the Figma logo system (bars+arrow glyph is animatable — use it). Real-company logos (Jahez) may be fetched once and vendored; fictional companies and Saudi connectors without clean SVGs (Argaam, SAHMK, Tadawul, Alinma) get consistent monogram tiles (initial + tint from the theme); international connectors may use `simple-icons` glyphs. People: no photos — initials-avatar tiles (Arwa "A" navy tile; leadership grid = initials + name + role + source link).
+**Assets policy:** vendor-first (`public/` or inline SVG) — it's nearly free and, with cached mode, makes the demo survive total network loss (venue will have wifi/hotspots, so a CDN is *acceptable* when vendoring is genuinely awkward — but don't reach for one out of laziness; the only thing that should truly need the network is a live Anthropic call). Faheem logo = clean inline SVG recreated/enhanced from the Figma logo system (bars+arrow glyph is animatable — use it). Real-company logos (Jahez) may be fetched once and vendored; fictional companies and Saudi connectors without clean SVGs (Argaam, SAHMK, Tadawul, Alinma) get consistent monogram tiles (initial + tint from the theme); international connectors may use `simple-icons` glyphs. People: no photos — initials-avatar tiles (Ali "A" navy tile; leadership grid = initials + name + role + source link).
 
 ## Hard rules
 
@@ -65,6 +65,6 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 ## Sensitive facts (do not violate)
 
 - Never mention "Rogo" in any user-visible string, code comment, or commit message (internal docs only).
-- The demo client is **Lunar Investments** (no "CMA-licensed"/"Shariah-compliant" labels); analyst persona **Arwa**; companies: Jahez (real), Darb / Thara Pay / Aqar Development (fictional).
+- The demo client is **Lunar Investments** (no "CMA-licensed"/"Shariah-compliant" labels); analyst persona **Ali**; companies: Jahez (real), Darb / Thara Pay / Aqar Development (fictional).
 - `ANTHROPIC_API_KEY` lives in `.env` (gitignored). Never log it, never commit it, and it must never reach the client bundle — the SDK is imported ONLY in server code (`lib/ai/client.ts`, API routes). No `NEXT_PUBLIC_` secrets, ever.
 - Demo privacy posture (product claims shown in UI copy are fine; don't over-claim): "client data is never used for model training", per-workspace isolation, full audit trail. Do NOT claim SOC2/ISO/encryption certifications anywhere — say "enterprise controls on the MVP roadmap" instead.
