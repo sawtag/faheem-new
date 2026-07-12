@@ -139,6 +139,16 @@ function midStreamError(lang: Lang): string {
     : "Connection issue — answering from the verified cache.";
 }
 
+/**
+ * Surface the real exception in the server log before the graceful SSE path
+ * swallows it — the UI only ever sees a calm fallback message, so without this
+ * a rehearsal failure (bad API key, corpus read, model error) leaves no trace
+ * of the root cause.
+ */
+function logLiveFailure(err: unknown): void {
+  console.error("[faheem] live stream failed:", err);
+}
+
 /** Live failure → replay cache (with a smoothing stage) when present, else error. */
 async function* fallback(
   cached: CacheEntry | null,
@@ -201,7 +211,8 @@ async function* runLive(
     iter = transform(startModel(req, ctx, client), ctx.docs)[
       Symbol.asyncIterator
     ]();
-  } catch {
+  } catch (err) {
+    logLiveFailure(err);
     yield* fallback(cached, config, req.lang);
     return;
   }
@@ -215,7 +226,8 @@ async function* runLive(
       cur = await iter.next();
     }
     yield keep({ type: "done", cached: false });
-  } catch {
+  } catch (err) {
+    logLiveFailure(err);
     if (emittedAnswer) {
       yield { type: "error", message: midStreamError(req.lang) };
       return;
@@ -246,7 +258,8 @@ async function* runAuto(
     iter = transform(startModel(req, ctx, client), ctx.docs)[
       Symbol.asyncIterator
     ]();
-  } catch {
+  } catch (err) {
+    logLiveFailure(err);
     yield* fallback(cached, config, req.lang);
     return;
   }
@@ -268,7 +281,8 @@ async function* runAuto(
     } else {
       firstResult = raced;
     }
-  } catch {
+  } catch (err) {
+    logLiveFailure(err);
     yield* fallback(cached, config, req.lang);
     return;
   }
@@ -282,7 +296,8 @@ async function* runAuto(
       cur = await iter.next();
     }
     yield keep({ type: "done", cached: false });
-  } catch {
+  } catch (err) {
+    logLiveFailure(err);
     if (emittedAnswer) {
       yield { type: "error", message: midStreamError(req.lang) };
       return;

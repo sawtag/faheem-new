@@ -52,11 +52,20 @@ function saveRuntimeChats(chats: SeedChat[]): void {
   window.localStorage.setItem(RUNTIME_KEY, JSON.stringify(chats));
 }
 
-/** Resolve a chat by id — seeded first, then the runtime overlay. */
+/**
+ * Resolve a chat by id. The runtime overlay wins over the seed: once a seeded
+ * chat gains a new turn (see `mutateChat`) an augmented clone lives in the
+ * overlay under the same id, and that augmented copy — seed history + new
+ * turns — is what must resolve. Un-augmented seed chats fall through to the
+ * pristine seed. This is what lets a just-asked turn survive the locale-toggle
+ * remount (AppShell keys `motion.main` by locale → full ChatView remount →
+ * `liveTurns` useState resets): the turn was persisted, so it replays as
+ * history here.
+ */
 export function resolveChat(id: string): SeedChat | undefined {
   return (
-    SEED_CHATS.find((c) => c.id === id) ??
-    loadRuntimeChats().find((c) => c.id === id)
+    loadRuntimeChats().find((c) => c.id === id) ??
+    SEED_CHATS.find((c) => c.id === id)
   );
 }
 
@@ -89,27 +98,47 @@ export function createRuntimeChat(
   return chat;
 }
 
-/** Append a user turn to a runtime chat (seed chats are read-only → no-op). */
-export function appendUserTurn(id: string, question: string): void {
+/**
+ * Apply a mutation to the overlay copy of a chat, persisting the result. If the
+ * id belongs to a seed chat with no overlay yet, a clone of the seed is
+ * promoted into the overlay first — the sacred `data/seed-chats.json` is never
+ * mutated (only the localStorage clone grows). This is why a new turn on a
+ * SEEDED chat now survives a reload / the locale-toggle remount, not just turns
+ * on runtime-created chats.
+ */
+function mutateChat(id: string, mutate: (chat: SeedChat) => void): void {
   const chats = loadRuntimeChats();
-  const chat = chats.find((c) => c.id === id);
-  if (!chat) return;
-  chat.messages.push({ role: "user", text: question });
-  saveRuntimeChats(chats);
+  const existing = chats.find((c) => c.id === id);
+  if (existing) {
+    mutate(existing);
+    saveRuntimeChats(chats);
+    return;
+  }
+  const seed = SEED_CHATS.find((c) => c.id === id);
+  if (!seed) return;
+  const clone = structuredClone(seed);
+  mutate(clone);
+  saveRuntimeChats([clone, ...chats]);
+}
+
+/** Append a user turn (seed chats promote to the overlay on first new turn). */
+export function appendUserTurn(id: string, question: string): void {
+  mutateChat(id, (chat) => {
+    chat.messages.push({ role: "user", text: question });
+  });
 }
 
 /**
- * Persist a completed assistant turn (text + replayable events) onto a runtime
- * chat so a page reload keeps the history. Seed chats stay immutable.
+ * Persist a completed assistant turn (text + replayable events) so a reload or
+ * the locale-toggle remount keeps the history. Works for both runtime and
+ * seeded chats via the overlay (see `mutateChat`).
  */
 export function appendAssistantTurn(
   id: string,
   text: string,
   events: SSEEvent[],
 ): void {
-  const chats = loadRuntimeChats();
-  const chat = chats.find((c) => c.id === id);
-  if (!chat) return;
-  chat.messages.push({ role: "assistant", text, events });
-  saveRuntimeChats(chats);
+  mutateChat(id, (chat) => {
+    chat.messages.push({ role: "assistant", text, events });
+  });
 }

@@ -8,11 +8,15 @@ playwright-report
 blob-report
 package-lock.json
 data/corpus
+# recorded demo goldens are machine-generated (compact JSON.stringify) and SACRED
+# — their bytes hash into cache keys; never reformat them.
+data/demo-cache
 public/artifacts
 public/pdf.worker.min.mjs
 
 # hand-authored project docs — not code, not prettier's job (AGENTS.md rule 7: stay in your lane)
 AGENTS.md
 HANDOVER.md
+terms.md
 docs/
 context/

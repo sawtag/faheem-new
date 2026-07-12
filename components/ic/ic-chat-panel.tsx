@@ -153,9 +153,11 @@ export function IcChatPanel({
         onScroll={onScroll}
         className="flex-1 overflow-y-auto"
       >
-        <div className="flex flex-col gap-6 px-5 py-5">
+        <div
+          className={`flex flex-col gap-6 px-5 py-5 ${isEmpty ? "min-h-full justify-center" : ""}`}
+        >
           {isEmpty && (
-            <div className="text-text-secondary py-6 text-center">
+            <div className="text-text-secondary text-center">
               <p className="mx-auto max-w-xs text-sm leading-relaxed">
                 {t("intro")}
               </p>
@@ -181,6 +183,9 @@ export function IcChatPanel({
       </div>
 
       <div className="border-border shrink-0 border-t px-5 py-4">
+        <p className="text-text-secondary mb-2 text-[0.6875rem] font-semibold tracking-[0.06em] uppercase">
+          {t("suggestLabel")}
+        </p>
         <div className="mb-2.5 flex flex-wrap gap-1.5">
           {SUGGESTIONS.map((key) => (
             <button

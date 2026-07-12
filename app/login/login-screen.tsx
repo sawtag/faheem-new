@@ -84,13 +84,17 @@ export function LoginScreen() {
 
   return (
     <main className="bg-navy relative isolate flex min-h-svh items-center justify-center overflow-hidden p-4">
-      {/* backdrop — radial gradient, navy-800 core -> navy -> navy-950 edges */}
+      {/* backdrop — deepened navy radial (navy-800 core -> navy -> navy-950
+         edges, edges reached sooner for depth) with a soft emerald swoosh
+         rising off the bottom edge per the splash-cover reference. Tokens only:
+         the glow tint is a color-mix of the accent token, no raw hex. */}
       <motion.div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 50% 35%, var(--color-navy-800), var(--color-navy) 55%, var(--color-navy-950) 100%)",
+            "radial-gradient(80% 55% at 50% 112%, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 62%), " +
+            "radial-gradient(circle at 50% 32%, var(--color-navy-800), var(--color-navy) 46%, var(--color-navy-950) 90%)",
         }}
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -100,13 +104,13 @@ export function LoginScreen() {
         }}
       />
 
-      {/* watermark — traced Logo glyph, 4% opacity, bottom inline-start overflow */}
+      {/* watermark — traced Logo glyph, ~6% opacity, bottom inline-start overflow */}
       <Logo
         variant="icon"
         tone="mono"
         decorative
         size={480}
-        className="text-card pointer-events-none absolute -start-[120px] -bottom-[120px] z-0 opacity-[0.04]"
+        className="text-card pointer-events-none absolute -start-[120px] -bottom-[120px] z-0 opacity-[0.06]"
       />
 
       <div
