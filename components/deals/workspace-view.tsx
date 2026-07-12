@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { Logo } from "@/components/ui/logo";
 import { LogoTile } from "@/components/ui/logo-tile";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -130,7 +131,8 @@ export function WorkspaceView({
           {t("back")}
         </Link>
 
-        <header className="mt-5 flex items-center gap-4">
+        <header className="relative isolate mt-5 flex items-center gap-4">
+          <GlyphBackdrop variant="panel" />
           {deal.logo ? (
             <span className="border-border bg-card rounded-card grid size-14 shrink-0 place-items-center border p-2.5 shadow-[var(--shadow-card)]">
               <Image

@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { ComparisonTable } from "@/components/ic/comparison-table";
 import { AdvisoryDisclaimer } from "@/components/ic/advisory-disclaimer";
 import { IcChatPanel } from "@/components/ic/ic-chat-panel";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import manifest from "@/data/corpus/manifest.json";
 import type { CorpusDoc, Deal, Lang } from "@/lib/types";
 import { formatDate, formatPercent } from "@/lib/utils";
@@ -68,11 +69,12 @@ export function IcRoom({
       transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
       className="relative flex h-screen flex-col"
     >
-      <header className="shrink-0 px-8 pt-8 pb-5">
-        <h1 className="text-navy font-serif text-[2.125rem] leading-tight font-semibold">
+      <header className="relative isolate shrink-0 px-8 pt-8 pb-5">
+        <GlyphBackdrop variant="panel" />
+        <h1 className="text-navy relative z-10 font-serif text-[2.125rem] leading-tight font-semibold">
           {t("title")}
         </h1>
-        <p className="text-text-secondary mt-1.5 text-[0.9375rem]">
+        <p className="text-text-secondary relative z-10 mt-1.5 text-[0.9375rem]">
           {subtitle}
         </p>
       </header>
