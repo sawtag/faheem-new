@@ -184,8 +184,7 @@
       "agents": "Agents",
       "scheduled": "Scheduled Tasks",
       "connections": "Connections",
-      "audit": "Audit Trail",
-      "ic": "IC Room"
+      "audit": "Audit Trail"
     }
   },
   "chat": {
@@ -455,5 +454,25 @@
       "suggest2": "Does each deal clear our IRR hurdle?",
       "suggest3": "What would change the ranking?"
     }
+  },
+  "generate": {
+    "phase": {
+      "assembling": "Assembling model inputs",
+      "building": "Building the {noun}",
+      "writing": "Writing file"
+    },
+    "noun": {
+      "xlsx": "workbook",
+      "docx": "memo",
+      "pptx": "deck"
+    },
+    "row": {
+      "xlsx": "Valuation Model",
+      "docx": "IC Memo",
+      "pptx": "Board Deck"
+    },
+    "download": "Download",
+    "openInWorkspace": "Open in workspace",
+    "errorArtifact": "Couldn't generate this file. Try again."
   }
 }

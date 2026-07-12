@@ -198,6 +198,111 @@
     "citationCount": 5
   },
   {
+<<<<<<< HEAD
+    "ts": "2026-07-12T18:30:03.550Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:30:03.611Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-ic-memo.docx"
+  },
+  {
+    "ts": "2026-07-12T18:30:03.628Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-board-deck.pptx"
+  },
+  {
+    "ts": "2026-07-12T18:32:08.119Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:32:08.126Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:32:10.073Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-ic-memo.docx"
+  },
+  {
+    "ts": "2026-07-12T18:32:11.910Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-board-deck.pptx"
+  },
+  {
+    "ts": "2026-07-12T18:32:29.958Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:32:29.968Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:32:32.035Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-ic-memo.docx"
+  },
+  {
+    "ts": "2026-07-12T18:32:36.408Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-board-deck.pptx"
+  },
+  {
+    "ts": "2026-07-12T18:38:00.525Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:38:00.554Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx"
+  },
+  {
+    "ts": "2026-07-12T18:38:02.551Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-ic-memo.docx"
+  },
+  {
+    "ts": "2026-07-12T18:38:04.416Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-board-deck.pptx"
+=======
     "ts": "2026-07-12T18:26:37.265Z",
     "user": "Ali",
     "context": "workspace:darb",
@@ -220,5 +325,6 @@
     "user": "Ali",
     "context": "workspace:darb",
     "action": "stage-advance"
+>>>>>>> origin/dev
   }
 ]
