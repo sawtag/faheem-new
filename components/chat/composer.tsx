@@ -3,12 +3,15 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
+  AlertCircle,
   ArrowUp,
   Check,
   ChevronDown,
   FileText,
+  Loader2,
   Mic,
   Paperclip,
+  RotateCw,
   Sparkles,
   Square,
   X,
@@ -24,6 +27,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
+import { postUpload, precheckPdf } from "@/lib/upload-client";
 import manifest from "@/data/corpus/manifest.json";
 import type { AgentId, ChatContext, CorpusDoc, Lang } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -48,6 +52,15 @@ export interface ComposerSubmit {
   question: string;
   agent?: AgentId;
   docIds?: string[];
+}
+
+/** A paperclip upload in flight (spinner chip) or failed (danger chip). */
+interface PendingUpload {
+  tempId: string;
+  filename: string;
+  file: File;
+  status: "uploading" | "error";
+  message?: string;
 }
 
 interface TriggerState {
@@ -115,6 +128,7 @@ export function Composer({
   onFocusChange?: (focused: boolean) => void;
 }) {
   const t = useTranslations("chat.composer");
+  const tu = useTranslations("upload");
   const locale = useLocale() as Lang;
 
   const [text, setText] = React.useState("");
@@ -122,6 +136,12 @@ export function Composer({
   const [docChips, setDocChips] = React.useState<string[]>([]);
   const [model, setModel] = React.useState<ModelTier>("max");
   const [trigger, setTrigger] = React.useState<TriggerState | null>(null);
+
+  // Paperclip attach: uploaded docs become # chips + join the # typeahead for
+  // this session; in-flight / failed uploads render as transient chips.
+  const [uploadedDocs, setUploadedDocs] = React.useState<CorpusDoc[]>([]);
+  const [pending, setPending] = React.useState<PendingUpload[]>([]);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const [improving, setImproving] = React.useState(false);
   const [improved, setImproved] = React.useState(false);
@@ -181,13 +201,15 @@ export function Composer({
           a.name.ar.includes(trigger.query),
       ).slice(0, 6);
     }
-    return DOCS.filter(
-      (d) =>
-        d.id.includes(q) ||
-        d.title.en.toLowerCase().includes(q) ||
-        d.title.ar.includes(trigger.query),
-    ).slice(0, 6);
-  }, [trigger]);
+    return [...uploadedDocs, ...DOCS]
+      .filter(
+        (d) =>
+          d.id.includes(q) ||
+          d.title.en.toLowerCase().includes(q) ||
+          d.title.ar.includes(trigger.query),
+      )
+      .slice(0, 6);
+  }, [trigger, uploadedDocs]);
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const showWand =
@@ -215,6 +237,77 @@ export function Composer({
   function pickDoc(id: string) {
     if (trigger) removeTriggerToken(trigger.start, trigger.caret);
     setDocChips((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  }
+
+  // ─── paperclip upload ───
+  async function runUpload(file: File, tempId: string) {
+    const workspace =
+      context.kind === "workspace" ? context.companyId : undefined;
+    const result = await postUpload(file, { lang, workspace });
+    if (result.ok) {
+      const { doc } = result;
+      setUploadedDocs((prev) =>
+        prev.some((d) => d.id === doc.id) ? prev : [...prev, doc],
+      );
+      setDocChips((prev) => (prev.includes(doc.id) ? prev : [...prev, doc.id]));
+      setPending((prev) => prev.filter((p) => p.tempId !== tempId));
+    } else {
+      setPending((prev) =>
+        prev.map((p) =>
+          p.tempId === tempId
+            ? { ...p, status: "error", message: result.error ?? tu("failed") }
+            : p,
+        ),
+      );
+    }
+  }
+
+  function addFiles(list: FileList | null) {
+    if (!list) return;
+    for (const file of Array.from(list)) {
+      const tempId = crypto.randomUUID();
+      const code = precheckPdf(file);
+      if (code) {
+        setPending((prev) => [
+          ...prev,
+          {
+            tempId,
+            filename: file.name,
+            file,
+            status: "error",
+            message: tu(code),
+          },
+        ]);
+        continue;
+      }
+      setPending((prev) => [
+        ...prev,
+        { tempId, filename: file.name, file, status: "uploading" },
+      ]);
+      void runUpload(file, tempId);
+    }
+  }
+
+  function retryUpload(tempId: string) {
+    const p = pending.find((x) => x.tempId === tempId);
+    if (!p) return;
+    const code = precheckPdf(p.file);
+    if (code) {
+      setPending((prev) =>
+        prev.map((x) =>
+          x.tempId === tempId ? { ...x, message: tu(code) } : x,
+        ),
+      );
+      return;
+    }
+    setPending((prev) =>
+      prev.map((x) =>
+        x.tempId === tempId
+          ? { ...x, status: "uploading", message: undefined }
+          : x,
+      ),
+    );
+    void runUpload(p.file, tempId);
   }
 
   function submit() {
@@ -336,7 +429,7 @@ export function Composer({
         )}
       >
         {/* chips */}
-        {(agentChip || docChips.length > 0) && (
+        {(agentChip || docChips.length > 0 || pending.length > 0) && (
           <div className="flex flex-wrap gap-1.5 px-1 pb-2">
             {agentChip && (
               <Chip
@@ -353,7 +446,9 @@ export function Composer({
               />
             )}
             {docChips.map((id) => {
-              const doc = DOCS.find((d) => d.id === id);
+              const doc =
+                DOCS.find((d) => d.id === id) ??
+                uploadedDocs.find((d) => d.id === id);
               return (
                 <Chip
                   key={id}
@@ -366,6 +461,21 @@ export function Composer({
                 />
               );
             })}
+            {pending.map((p) => (
+              <UploadChip
+                key={p.tempId}
+                pending={p}
+                uploadingLabel={tu("uploading")}
+                retryLabel={tu("retry")}
+                dismissLabel={tu("dismiss")}
+                onRetry={() => retryUpload(p.tempId)}
+                onDismiss={() =>
+                  setPending((prev) =>
+                    prev.filter((x) => x.tempId !== p.tempId),
+                  )
+                }
+              />
+            ))}
           </div>
         )}
 
@@ -417,7 +527,22 @@ export function Composer({
 
         {/* toolbar */}
         <div className="flex items-center gap-1 pt-1 pb-2">
-          <ToolbarButton label={t("attach")}>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/pdf,.pdf"
+            multiple
+            data-testid="composer-file-input"
+            className="hidden"
+            onChange={(e) => {
+              addFiles(e.target.files);
+              e.target.value = "";
+            }}
+          />
+          <ToolbarButton
+            label={t("attach")}
+            onClick={() => fileInputRef.current?.click()}
+          >
             <Paperclip className="size-[18px]" />
           </ToolbarButton>
           <SourcePicker
@@ -520,6 +645,65 @@ function Chip({
       >
         <X className="size-3" aria-hidden="true" />
       </button>
+    </span>
+  );
+}
+
+/** Transient chip for a paperclip upload: spinner while in flight, danger + retry on failure. */
+function UploadChip({
+  pending,
+  uploadingLabel,
+  retryLabel,
+  dismissLabel,
+  onRetry,
+  onDismiss,
+}: {
+  pending: PendingUpload;
+  uploadingLabel: string;
+  retryLabel: string;
+  dismissLabel: string;
+  onRetry: () => void;
+  onDismiss: () => void;
+}) {
+  const error = pending.status === "error";
+  return (
+    <span
+      title={error ? pending.message : uploadingLabel}
+      className={cn(
+        "rounded-pill inline-flex max-w-[16rem] items-center gap-1 py-0.5 ps-2 pe-1 text-xs font-semibold",
+        error ? "bg-danger-50 text-danger-700" : "bg-navy-50 text-navy-700",
+      )}
+    >
+      {error ? (
+        <AlertCircle className="size-3 shrink-0" aria-hidden="true" />
+      ) : (
+        <Loader2 className="faheem-spin size-3 shrink-0" aria-hidden="true" />
+      )}
+      <bdi className="truncate" dir="ltr">
+        {pending.filename}
+      </bdi>
+      {error ? (
+        <>
+          <button
+            type="button"
+            onClick={onRetry}
+            aria-label={retryLabel}
+            className="hover:bg-danger-100 rounded-pill grid size-4 shrink-0 place-items-center"
+          >
+            <RotateCw className="size-3" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={onDismiss}
+            aria-label={dismissLabel}
+            className="hover:bg-danger-100 rounded-pill grid size-4 shrink-0 place-items-center"
+          >
+            <X className="size-3" aria-hidden="true" />
+          </button>
+        </>
+      ) : (
+        <span className="sr-only">{uploadingLabel}</span>
+      )}
     </span>
   );
 }

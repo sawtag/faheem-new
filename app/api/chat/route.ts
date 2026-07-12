@@ -6,8 +6,23 @@
  */
 import { chatEventStream, serializeEvent } from "@/lib/ai/sse";
 import { contextKey } from "@/lib/ai/cache";
+import { resolveMode } from "@/lib/ai/mode";
+import { isUploadId } from "@/lib/uploads";
 import { appendAudit } from "@/lib/audit";
-import { ChatRequestSchema } from "@/lib/types";
+import { ChatRequestSchema, type Lang } from "@/lib/types";
+
+const EVENT_STREAM_HEADERS = {
+  "Content-Type": "text/event-stream; charset=utf-8",
+  "Cache-Control": "no-cache, no-transform",
+  Connection: "keep-alive",
+} as const;
+
+/** Uploaded docs are live-mode only — cached mode can never have a recording. */
+function uploadInCachedMessage(lang: Lang): string {
+  return lang === "ar"
+    ? "المستندات المرفوعة متاحة في الوضع المباشر فقط. بدّل إلى الوضع المباشر (⌘.) للسؤال عن مستند مرفوع."
+    : "Uploaded documents work in live mode only. Switch to live mode (⌘.) to ask about an uploaded document.";
+}
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -43,6 +58,23 @@ export async function POST(request: Request): Promise<Response> {
   const req = parsed.data;
   const cookieMode = readCookie(request, "faheem_mode");
 
+  // Cached mode must never attempt an uploaded doc: its id makes the request
+  // uncacheable, so no recording can exist. Surface a calm, bilingual
+  // "switch to live (⌘.)" instead of the generic ⌘K-palette hint, and never
+  // reach the engine (no API call, no audit).
+  if (
+    resolveMode(cookieMode) === "cached" &&
+    (req.docIds ?? []).some(isUploadId)
+  ) {
+    return new Response(
+      serializeEvent({
+        type: "error",
+        message: uploadInCachedMessage(req.lang),
+      }),
+      { headers: EVENT_STREAM_HEADERS },
+    );
+  }
+
   const encoder = new TextEncoder();
   let citationCount = 0;
 
@@ -76,11 +108,5 @@ export async function POST(request: Request): Promise<Response> {
     },
   });
 
-  return new Response(stream, {
-    headers: {
-      "Content-Type": "text/event-stream; charset=utf-8",
-      "Cache-Control": "no-cache, no-transform",
-      Connection: "keep-alive",
-    },
-  });
+  return new Response(stream, { headers: EVENT_STREAM_HEADERS });
 }
