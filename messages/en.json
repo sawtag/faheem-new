@@ -475,5 +475,27 @@
     "download": "Download",
     "openInWorkspace": "Open in workspace",
     "errorArtifact": "Couldn't generate this file. Try again."
+  },
+  "demo": {
+    "palette": {
+      "title": "Demo questions",
+      "kbdHint": "⌘K",
+      "empty": "No scripted questions for this screen.",
+      "groupFirm": "Firm",
+      "groupIc": "IC Room",
+      "groupWorkspace": "Workspace"
+    },
+    "mode": {
+      "title": "Faheem mode",
+      "values": {
+        "live": "Live",
+        "auto": "Auto",
+        "cached": "Cached"
+      },
+      "lastResponse": "Last response:",
+      "lastResponseNone": "none yet",
+      "lastResponseCached": "cached",
+      "lastResponseLive": "live"
+    }
   }
 }

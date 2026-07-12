@@ -12,7 +12,7 @@ test.beforeEach(async ({ context, baseURL }) => {
 });
 
 test.describe("Faheem IC room", () => {
-  test("renders both deal columns — Thara Pay populated, Jahez pending", async ({
+  test("renders both deal columns, both populated (P5a: Jahez model signed off)", async ({
     page,
   }) => {
     await page.goto("/ic");
@@ -26,20 +26,26 @@ test.describe("Faheem IC room", () => {
     await expect(page.getByTestId("ic-col-jahez")).toBeVisible();
     await expect(page.getByTestId("ic-col-thara-pay")).toBeVisible();
 
-    // Thara Pay is populated: 18.5% implied IRR vs the 15% hurdle, positive
-    // delta, and pass badges — all from deals.json.
+    // Thara Pay: 18.5% implied IRR vs the 15% hurdle, positive delta, pass
+    // badges — all from deals.json.
     await expect(page.getByText("18.5%")).toBeVisible();
     await expect(page.getByText("vs 15% hurdle")).toBeVisible();
-    const delta = page.getByTestId("ic-irr-delta-thara-pay");
-    await expect(delta).toHaveAttribute("data-tone", "above");
-    await expect(delta).toContainText("350");
-    await expect(page.getByText("Pass")).toHaveCount(2);
+    const tharaDelta = page.getByTestId("ic-irr-delta-thara-pay");
+    await expect(tharaDelta).toHaveAttribute("data-tone", "above");
+    await expect(tharaDelta).toContainText("350");
 
-    // Jahez has no icMetrics yet → pending state, never fake numbers.
-    await expect(page.getByTestId("ic-pending-jahez")).toBeVisible();
-    await expect(page.getByTestId("ic-pending-jahez")).toContainText(
-      /metrics pending model sign-off/i,
-    );
+    // Jahez: 17.1% implied IRR vs the 15% hurdle, +210bps, pass badges — the
+    // model signed off at P5a (jahez-analysis-summary.pdf).
+    await expect(page.getByText("17.1%")).toBeVisible();
+    const jahezDelta = page.getByTestId("ic-irr-delta-jahez");
+    await expect(jahezDelta).toHaveAttribute("data-tone", "above");
+    await expect(jahezDelta).toContainText("210");
+
+    // Both columns clear mandate fit + Shariah → 4 "Pass" badges total.
+    await expect(page.getByText("Pass")).toHaveCount(4);
+
+    // No pending column left — never fake numbers, but nothing pending either.
+    await expect(page.getByTestId("ic-pending-jahez")).not.toBeVisible();
   });
 
   test("advisory-only disclaimer is visible on load", async ({ page }) => {
