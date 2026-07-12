@@ -223,15 +223,15 @@ export const CONNECTORS: Connector[] = [
     id: "gastat",
     name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
     description: {
-      en: "Official statistics authority",
-      ar: "الهيئة العامة للإحصاء",
+      en: "Official statistics publications — synced to the data room",
+      ar: "إصدارات إحصائية رسمية — مرتبطة بغرفة البيانات",
     },
     tooltip: {
       en: "Official Saudi statistics — the authoritative source for macro and sector indicators.",
       ar: "الإحصاءات الرسمية السعودية — المصدر المعتمد للمؤشرات الكلية والقطاعية.",
     },
     group: "external",
-    status: "available",
+    status: "connected",
     tile: { kind: "monogram", initial: "إ", tint: "navy" },
   },
   {

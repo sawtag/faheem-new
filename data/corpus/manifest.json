@@ -181,5 +181,29 @@
     "type": "deal",
     "workspace": "jahez",
     "fileId": "file_011CcxsLSnZrQ1ewenoaxUFx"
+  },
+  {
+    "id": "gastat-macro-pack",
+    "title": {
+      "en": "Saudi Macro & Sector Snapshot — GASTAT/SAMA",
+      "ar": "لمحة الاقتصاد الكلي السعودي — الهيئة العامة للإحصاء وساما"
+    },
+    "path": "data/corpus/gastat-macro-pack.pdf",
+    "pages": 6,
+    "sizeMB": 0.0745,
+    "type": "public"
+  },
+  {
+    "id": "jahez-ar-press",
+    "title": {
+      "en": "Q3 & 9M 2025 Results Announcement (Arabic Original)",
+      "ar": "بيان النتائج المالية للربع الثالث والتسعة أشهر الأولى 2025"
+    },
+    "path": "data/corpus/jahez-ar-press.pdf",
+    "pages": 18,
+    "sizeMB": 0.6224,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2025/11/Q3-2025-Press-Release-JGroup-Arabic.pdf"
   }
 ]
