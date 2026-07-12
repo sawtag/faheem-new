@@ -19,9 +19,10 @@
 | Role | Who | Does |
 |---|---|---|
 | **Master / architect / reviewer** | **Fable (main loop)** | Decomposition, contracts (`lib/types.ts`, SSE protocol, schemas), task briefs, dependency sequencing, diff review of every merged task, **design QA gate on every screen**, spot-verification of all stage-critical financial figures, integration, golden-path recording, final synthesis. Writes code ONLY for: contracts, `app/globals.css` theme, and surgical integration fixes. |
-| Hard implementation | **opus** agents, effort high | Chat engine (SSE/citations/cache/modes), flagship chat UI, xlsx financial model, figure extraction from PDFs. |
-| Standard implementation | **sonnet** agents, effort medium (high where flagged) | Screens, docx/pptx builders, data-pack authoring, market research packs, e2e suite. |
-| Mechanical work | **haiku** agents, effort low | Corpus download/compress/manifest, leadership pack, fixtures, checklist verification sweeps. |
+| Hard implementation **+ design-critical UI** | **opus** agents, effort high | Chat engine (SSE/citations/cache/modes), xlsx financial model, figure extraction from PDFs — **and the UI the judges stare at: theme+primitives, flagship chat, home/omnibox, pipeline+workspaces, IC room, final design-polish pass**. |
+| UI art direction | **opus**, effort high (one task, T0.3) | Per-screen design briefs (layout grid, token usage, motion, empty states, AR notes) for every screen NOT opus-implemented — sonnet builds against these, never freestyles visuals. |
+| Standard implementation | **sonnet** agents, effort medium (high where flagged) | Supporting screens (from opus briefs), docx/pptx builders, data-pack authoring, market research packs, e2e suite. |
+| Mechanical work | **haiku** agents, effort low | Corpus download/compress/manifest, leadership pack, fixtures, checklist verification sweeps. **Haiku never writes UI.** |
 
 ### 1.2 Delegation mechanics
 
@@ -164,13 +165,20 @@ Each entry: `{ id: AgentId, name: {en, ar}, stage: 1|2|3, methodsKey: string /* 
 - **Acceptance:** `bun run verify` green on fresh clone; `bun run dev` serves a placeholder page in en with `dir="ltr"` and toggles to ar/`dir="rtl"` via cookie; sample unit test + sample e2e (`e2e/smoke.spec.ts`: page loads, no console errors) pass.
 - [ ] Commit `chore: scaffold`.
 
-#### T0.2 Theme + primitives (design foundation) — **owner: sonnet/high** · gate A
+#### T0.2 Theme + primitives (design foundation) — **owner: opus/high** · gate A
+> Promoted to opus (user call: opus/fable are the strongest UI hands; the primitives set the ceiling for every screen).
 - Files: `app/globals.css`, `components/ui/*`, `app/(app)/dev/kitchen-sink/page.tsx`, `tests/ui/*.test.tsx`.
 - [ ] `globals.css` `@theme`: full token set from spec §7 — navy scale (50→950 tints of #061F52), accent scale (#07966F), bg #FBFCFE, card #FFFFFF, border #E3E9F1, text-secondary #314160, warning #F59E0B, danger #EF233C, mint tint for citation chips; radii (btn 8px, card 12px, pill 20px); shadows (card `0 10px 24px rgba(8,33,82,0.03)`, hover elevation, modal); spacing scale; motion (`--duration-fast: 150ms`, `--duration: 250ms`, `--ease: cubic-bezier(.4,0,.2,1)`); font vars wired to next/font. **Extension of the Figma kit is allowed and encouraged (hover states, tint ramps) — but every extension lands as a token here, never inline.**
 - [ ] Primitives (Radix-wrapped where interactive, cva variants, RTL-safe): Button (primary/secondary/outline/ghost + loading), Card, Badge/Pill (status variants incl. pass/warn/fail), Input (+ leading icon), Tabs, Dialog, DropdownMenu, Toggle, Tooltip, Skeleton (shimmer), Stepper (Figma kit 08), Avatar.
 - [ ] Kitchen-sink page renders all primitives in both locales.
 - **Acceptance:** component tests — Button variants render + disabled blocks click; Dialog traps focus + closes on esc; Tabs keyboard-navigable; Toggle reflects state (4–6 focused tests, no snapshots). `bun run verify` green. **Gate A: fable visually reviews kitchen-sink (en + ar) against Figma kit before P3 may start.**
 - [ ] Commit `feat: theme + ui primitives`.
+
+#### T0.3 UI art direction (briefs for sonnet-built screens) — **owner: opus/high** (parallel with T0.2)
+- Files: `docs/design-briefs.md`.
+- [ ] For each screen NOT opus-implemented (login, connections, onboarding stepper, agents page, library): a build-ready brief — layout structure (regions, grid, max-widths), exact token usage (which navy tint, which radius, which shadow, type scale per element), component composition (which primitives, which variants), motion (what animates, duration/ease tokens), hover/focus/empty/loading states, RTL-specific notes (what flips, what doesn't), and 2–3 "wow details" per screen drawn from `context/rogo-screens/CATALOG.md` §4. Written so a sonnet agent makes zero visual decisions.
+- **Acceptance:** fable reviews briefs for consistency with the Figma kit + CATALOG before P3 launches; every P3 sonnet card's brief section is non-empty.
+- [ ] Commit `docs: ui design briefs`.
 
 ### P1 — Data prep (Workflow fan-out, background from T0.1; blocks P4/P5, not P2/P3)
 
@@ -222,36 +230,36 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 - **Acceptance:** component tests — marker replacement (delta text `"…[[2]]"` + citation event → chip 2 rendered, click calls `openDoc("fy25-er", 3)`); @/# typeahead filter + chip insert + payload fields set; Improve swaps textarea and Undo restores. `e2e/chat.spec.ts` (cached fixture): ask scripted question → stages appear then complete → answer streams → chip visible → click → PdfPanel opens with correct page prop → Sources accordion lists the citation. **Gate C(b): fable design-QA (en+ar, RTL flip, motion) — the bar is "screenshot-worthy".**
 - [ ] Commit `feat: shell + flagship chat`.
 
-### P3 — Screens fan-out (Workflow, 6 concurrent sonnet agents; after gate A + C(b) for chat-dependent screens)
+### P3 — Screens fan-out (Workflow, 6 concurrent agents; after gates A + C(b) for chat-dependent screens; T0.3 briefs required for sonnet cards)
 
-Common acceptance for every P3 card: bilingual messages (own namespace), RTL-clean (Playwright asserts `dir` + no horizontal overflow), primitives only, no new deps, component tests for logic, one e2e smoke nav spec, `bun run verify` green, fable design-QA (gate D applies to 3.2/3.3/3.4 strictly; 3.5/3.6 lighter).
+Common acceptance for every P3 card: bilingual messages (own namespace), RTL-clean (Playwright asserts `dir` + no horizontal overflow), primitives only, no new deps, component tests for logic, one e2e smoke nav spec, `bun run verify` green, fable design-QA (gate D applies to 3.2/3.3/3.4 strictly; 3.5/3.6 lighter). **Demo-critical screens (3.2, 3.3, 3.4) are opus-implemented; sonnet screens follow their `docs/design-briefs.md` section verbatim — no visual freestyling.**
 
-#### T3.1 Mock login — **sonnet/low**
+#### T3.1 Mock login — **sonnet/medium** (build from T0.3 brief)
 - Files: `app/login/page.tsx`, `app/api/auth/route.ts`, `middleware.ts`, `e2e/login.spec.ts`.
 - [ ] Centered card on navy gradient backdrop, Faheem logo, username+password inputs, "Sign in" → POST `/api/auth` → **any non-empty credentials set `faheem_session` cookie** → redirect `/`. Middleware redirects unauthenticated `(app)` routes to `/login`. Subtle motion (logo fade, card rise). Figma Login frame is the layout reference, our tokens.
 - **Acceptance:** e2e — unauthenticated `/` → `/login`; submit "arwa"/"demo" → home; empty submit → inline error, no redirect.
 
-#### T3.2 Home / omnibox — **sonnet/high**
+#### T3.2 Home / omnibox — **opus/high** (on-camera in every beat transition)
 - Files: `app/(app)/page.tsx`, `e2e/home.spec.ts`, reuses `Composer`.
 - [ ] Serif hero ("What can Faheem do for you today?" / "كيف يخدمك فهيم اليوم؟"), centered Composer (full affordances), rotating contextual placeholder, quick-action pills (Run DCF · Comps · IC Memo · Risk Scorecard · Sensitivity · Shariah Screen) that prefill the composer, recent-workspace cards row.
 - **Acceptance:** e2e — pill click prefills composer; submit navigates to chat with question.
 
-#### T3.3 Pipeline board + workspaces — **sonnet/high**
+#### T3.3 Pipeline board + workspaces — **opus/high** (carries the private→public story on screen)
 - Files: `app/(app)/deals/**`, `components/deals/*`, `e2e/deals.spec.ts`.
 - [ ] Board from `deals.json`: origin filter pills (All / Inbound (Private) / Market Screen (Public)), stage-grouped cards (logo initial, sector, ask, origin badge — Jahez's reads "SAHMK/Argaam screen · 2026-07-08", status line, hover lift). Workspace page: header + stage banner with human-gate button ("Advance to pitch meeting" → confetti-free tasteful transition of stage badge), tabs Overview / Documents (manifest docs w/ open-in-viewer) / Chats / Artifacts / Leadership (bio card grid). Masar Overview = `ScreeningScorecard` (criterion rows, pass/warn/fail badges, citation chips → IC Charter page in PdfPanel, verdict line, "anonymized" note). Scoped composer "Ask Faheem about {company}".
 - **Acceptance:** component test — scorecard renders rows/verdicts from fixture, cite click handler receives `{docId, page}`; e2e — filter toggles cards; Masar workspace shows scorecard; gate button flips stage badge; Jahez workspace Documents lists corpus docs.
 
-#### T3.4 Faheem IC room — **sonnet/high**
+#### T3.4 Faheem IC room — **opus/high** (the closing beat)
 - Files: `app/(app)/ic/page.tsx`, `components/ic/*`, `e2e/ic.spec.ts`.
 - [ ] Comparison table (Jahez vs Thara Pay: implied IRR vs 15% hurdle w/ delta coloring, scenario-weighted return, risk score, mandate fit, Shariah, recommendation) from `deals.json` `icMetrics`; persistent `AdvisoryDisclaimer` banner; IC-context chat panel (same engine, `context: {kind:"ic"}`).
 - **Acceptance:** component test — hurdle delta renders correct sign/color from fixture; e2e — table renders both deals; disclaimer visible; scripted IC question (cached) streams with citations.
 
-#### T3.5 Connections + onboarding stepper — **sonnet/medium**
+#### T3.5 Connections + onboarding stepper — **sonnet/medium** (build from T0.3 brief)
 - [ ] Connections per CATALOG §2D: Connected list (Saudi Exchange, Argaam, marketaux, Lunar Data Room, Templates) w/ Configure pills; Available (SAHMK, Bloomberg, PitchBook, Intralinks, Datasite, od.data.gov.sa, REGA, GASTAT, Alinma Open Banking [SAMA], Capital IQ) w/ Connect; "Add custom MCP" modal (name, URL, advanced accordion); one fake OAuth modal flow.
 - [ ] Onboarding `/onboarding`: 3-step Stepper — ① Connect (embeds connector grid) ② Agents & skills (registry toggle grid, @hints) ③ Mandate questionnaire (IRR 15%, concentration 10%, hold 3–5y, liquidity, Shariah toggle, sector chips, drawdown) → closing card "This becomes your IC Charter" with link that opens the actual PDF.
 - **Acceptance:** e2e — stepper completes end-to-end, MCP modal opens/validates URL shape, OAuth modal flow closes as "Connected".
 
-#### T3.6 Agents page + Library — **sonnet/medium**
+#### T3.6 Agents page + Library — **sonnet/medium** (build from T0.3 brief)
 - [ ] Agents: stage-grouped (1 Screening / 2 Analysis: orchestrator banner + 7 cards / 3 IC), "7 specialist teams · 20+ agents", methods in analyst vocabulary (spec §4 item 8), cosmetic toggles, @-hint, human-gate markers between stages.
 - [ ] Library: artifact cards (type icon, name, workspace, date, download), empty state.
 - **Acceptance:** e2e smoke — all cards render bilingual; toggles flip.
@@ -286,7 +294,7 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 ### P6 — Review & polish
 
 - [ ] `/code-review` (built-in reviewer) on the full diff — findings triaged by fable; fixes → sonnet/medium. **(No CodeRabbit — user decision.)**
-- [ ] Design polish pass — **sonnet/high** driven by fable's gate-D/F notes (spacing, motion timing, empty states, hover details).
+- [ ] Design polish pass — **opus/high** driven by fable's gate-D/F notes (spacing, motion timing, empty states, hover details) across ALL screens, including tightening the sonnet-built ones to the briefs.
 - [ ] Dress rehearsal: fable executes the §3 run of show click-by-click (cached, then live), stopwatch per beat, records deviations → `docs/rehearsal-notes.md`.
 - [ ] Final commit + tag `demo-rc1`.
 
@@ -324,8 +332,8 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 
 1. Write `lib/types.ts` + finalize dep versions; launch T0.1 scaffold (sonnet).
 2. Launch P1 Workflow (5 data agents) in background.
-3. On T0.1 done: launch T0.2 (theme, sonnet/high).
+3. On T0.1 done: launch T0.2 (theme+primitives, **opus/high**) and T0.3 (UI briefs, **opus/high**) in parallel.
 4. Gate A → launch T2.1 (opus). Review gate B data as it lands.
-5. Gate C(a) → T2.2 (opus). Gate C(b) → P3 Workflow (6 sonnet agents) + P4 (opus + sonnet).
+5. Gate C(a) → T2.2 (opus). Gate C(b) → P3 Workflow (3 opus screens + 3 sonnet-from-brief screens) + P4 (opus + sonnet).
 6. Gates D/E → P5 integration + recording (billing must be live here).
-7. Gate F → P6 review, polish, dress rehearsal, `demo-rc1`.
+7. Gate F → P6 review, **opus polish pass**, dress rehearsal, `demo-rc1`.
