@@ -43,7 +43,7 @@ Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/glob
 
 - Layout language = Rogo (see CATALOG.md §2–§4: sidebar, omnibox hero, split chat+artifact, citation chips, Sources accordion). Skin = Faheem UI Kit (navy `--color-navy` #061F52, emerald `--color-accent` #07966F, bg #FBFCFE, border #E3E9F1; radius 8/12/20; shadow `0 10px 24px rgba(8,33,82,0.03)`).
 - Serif display (Lora / Amiri) is reserved for hero greetings only. Everything else Inter / IBM Plex Sans Arabic, weights 400–800.
-- Motion: 200–300ms ease-in-out; streaming text, stage-timeline reveals, hover lifts on cards, skeleton shimmers. Subtle > flashy. Every interactive element has hover/focus/active states.
+- **Motion language (one system, all agents follow it):** durations/easings from theme tokens only. Page enter = fade + 4px rise (250ms). Lists/grids = staggered reveal (30–40ms/item, cap ~8). Cards = hover lift (shadow token + 1px translate). Numbers on stat/IC/scorecard surfaces = count-up on first reveal (400ms, tabular-nums so nothing shifts). Agent Activity = choreographed stage reveals (shimmer → check morph). Streaming text appends smoothly (no jump-scroll). Logo bars = staggered rise (login + thinking states). Dialogs/popovers = scale 0.98→1 + fade (150ms). Nothing bounces, nothing spins, nothing exceeds 400ms. Subtle > flashy; `prefers-reduced-motion` respected free via motion.
 - Empty states, loading states, and micro-copy are part of the task, not extras.
 - Arabic must look as designed as English — check both before calling a screen done.
 
