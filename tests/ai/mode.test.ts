@@ -23,7 +23,9 @@ afterEach(() => {
 });
 
 describe("cached replay", () => {
-  it("preserves exact event order with pacing honored (0ms)", async () => {
+  it("preserves event order but rewrites the terminal done to cached:true", async () => {
+    // Real recordings store `done.cached:false` (captured live); a replay is
+    // served from cache, so the terminal done must surface cached:true.
     const entry: CacheEntry = {
       key: "k",
       request: { question: "q", lang: "en", context: { kind: "firm" } },
@@ -33,11 +35,14 @@ describe("cached replay", () => {
         { type: "delta", text: "compressed 61%" },
         { type: "delta", text: "[[1]]" },
         { type: "citation", n: 1, docId: "fy25-er", page: 3, quote: "..." },
-        { type: "done", cached: true },
+        { type: "done", cached: false },
       ],
       recordedAt: new Date().toISOString(),
     };
-    expect(await collect(replay(entry, 0))).toEqual(entry.events);
+    const out = await collect(replay(entry, 0));
+    // every event but the last passes through byte-for-byte, in order
+    expect(out.slice(0, -1)).toEqual(entry.events.slice(0, -1));
+    expect(out.at(-1)).toEqual({ type: "done", cached: true });
   });
 });
 
@@ -158,7 +163,11 @@ describe("live path", () => {
     docBlocks.forEach((block, i) => {
       expect(block.type).toBe("document");
       expect(block.citations).toEqual({ enabled: true });
-      expect((block.source as { type: string }).type).toBe("base64");
+      // The corpus is uploaded (manifest carries fileIds), so blocks reference
+      // the Files API; base64 is only the no-fileId fallback.
+      const source = block.source as { type: string; file_id?: string };
+      expect(source.type).toBe("file");
+      expect(source.file_id).toBeTruthy();
       if (i < docBlocks.length - 1) {
         expect(block.cache_control).toBeUndefined();
       } else {

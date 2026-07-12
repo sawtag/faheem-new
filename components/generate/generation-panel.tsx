@@ -17,6 +17,8 @@ import {
   type ArtifactRow,
 } from "@/components/generate/reduce";
 import { FileCard, KIND_TILE } from "@/components/generate/file-card";
+import { ArtifactPreview } from "@/components/generate/artifact-preview";
+import type { ArtifactMeta } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
 
@@ -24,7 +26,9 @@ const EASE = [0.4, 0, 0.2, 1] as const;
  * The deliverables flow: three artifact rows tick through
  * assembling → building → writing, each morphing into a Lunar-branded
  * FileCard as it lands. Mount-anywhere (chat inline, workspace Artifacts
- * tab) — starts generating on mount by default.
+ * tab) — starts generating on mount by default. When the full run lands,
+ * the board deck AUTO-OPENS in the ArtifactPreview slide-over (a fixed
+ * overlay, so the host layout — chat thread or tab — is untouched).
  */
 export function GenerationPanel({
   workspace,
@@ -36,26 +40,59 @@ export function GenerationPanel({
   autoStart?: boolean;
 }) {
   const [events, setEvents] = React.useState<GenerateEvent[]>([]);
+  const [preview, setPreview] = React.useState<ArtifactMeta | null>(null);
   const started = React.useRef(false);
+  const autoOpened = React.useRef(false);
 
   React.useEffect(() => {
     if (!autoStart || started.current) return;
     started.current = true;
     const controller = new AbortController();
-    void streamGenerate(artifacts, controller.signal, (event) => {
+    streamGenerate(artifacts, controller.signal, (event) => {
       setEvents((prev) => [...prev, event]);
+    }).catch(() => {
+      /* aborted (unmount / StrictMode remount) or network drop — the
+         surviving mount re-streams; rows simply stay at their last state */
     });
-    return () => controller.abort();
+    return () => {
+      // Reset the single-flight guard so StrictMode's dev-only
+      // mount→cleanup→remount cycle restarts the aborted stream (otherwise
+      // the ref stays latched and the panel sits pending forever in dev).
+      started.current = false;
+      controller.abort();
+    };
   }, [autoStart, artifacts]);
 
-  const { rows } = reduceGenerateEvents(ARTIFACT_KINDS, events);
+  const { rows, done } = reduceGenerateEvents(ARTIFACT_KINDS, events);
+
+  // The money moment: the run completes → progress ticks settle → the board
+  // deck slides open on its own, one beat after the last card's morph.
+  const deckMeta = rows.find((row) => row.kind === "pptx")?.meta ?? null;
+  React.useEffect(() => {
+    if (!done || !deckMeta || autoOpened.current) return;
+    autoOpened.current = true;
+    const id = window.setTimeout(() => setPreview(deckMeta), 400);
+    return () => window.clearTimeout(id);
+  }, [done, deckMeta]);
 
   return (
-    <div className="flex flex-col gap-3">
-      {rows.map((row, i) => (
-        <RowSlot key={row.kind} row={row} index={i} workspace={workspace} />
-      ))}
-    </div>
+    <>
+      <div className="flex flex-col gap-3">
+        {rows.map((row, i) => {
+          const meta = row.meta;
+          return (
+            <RowSlot
+              key={row.kind}
+              row={row}
+              index={i}
+              workspace={workspace}
+              onPreview={meta ? () => setPreview(meta) : undefined}
+            />
+          );
+        })}
+      </div>
+      <ArtifactPreview meta={preview} onClose={() => setPreview(null)} />
+    </>
   );
 }
 
@@ -63,10 +100,12 @@ function RowSlot({
   row,
   index,
   workspace,
+  onPreview,
 }: {
   row: ArtifactRow;
   index: number;
   workspace: string;
+  onPreview?: () => void;
 }) {
   const reduce = useReducedMotion();
 
@@ -92,6 +131,7 @@ function RowSlot({
               meta={row.meta}
               sizeBytes={row.sizeBytes ?? 0}
               workspace={workspace}
+              onPreview={onPreview}
             />
           </motion.div>
         ) : (

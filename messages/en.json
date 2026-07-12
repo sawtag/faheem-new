@@ -421,6 +421,7 @@
     "title": "Investment Committee",
     "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR hurdle",
     "disclaimer": "Advisory only — the investment decision rests with the committee.",
+    "tableNote": "Every figure is drawn from each deal's completed analysis and cites its source page — open any citation to verify.",
     "table": {
       "caption": "Deal comparison — analysis-complete pipeline",
       "metric": "Metric",
@@ -451,6 +452,7 @@
       "placeholder": "Ask Faheem IC…",
       "send": "Send",
       "stop": "Stop",
+      "suggestLabel": "Suggested questions",
       "suggest1": "Rank these deals — strongest risk-adjusted case?",
       "suggest2": "Does each deal clear our IRR hurdle?",
       "suggest3": "What would change the ranking?"
@@ -474,7 +476,21 @@
     },
     "download": "Download",
     "openInWorkspace": "Open in workspace",
-    "errorArtifact": "Couldn't generate this file. Try again."
+    "errorArtifact": "Couldn't generate this file. Try again.",
+    "preview": {
+      "open": "Preview",
+      "close": "Close preview",
+      "downloadFile": "Download file",
+      "caption": "Generated · {date} · Lunar Investments",
+      "slides": "Slides",
+      "slideThumb": "Slide {n}",
+      "slideOf": "Slide {n} of {total}",
+      "pageOf": "Page {n} of {total}",
+      "modelCaption": "Full model: open in Excel — every input cell carries its source.",
+      "openInExcel": "Open in Excel",
+      "fallbackTitle": "Preview unavailable",
+      "fallbackCaption": "The file itself is ready — download it below."
+    }
   },
   "demo": {
     "palette": {

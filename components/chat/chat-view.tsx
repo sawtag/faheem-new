@@ -22,7 +22,6 @@ import {
   type GoldenSelection,
 } from "@/lib/demo/golden-bus";
 import {
-  SEED_CHATS,
   appendAssistantTurn,
   appendUserTurn,
   createRuntimeChat,
@@ -99,14 +98,9 @@ export function ChatView({ id }: { id: string }) {
   );
   const openDocTitle = openDoc ? docTitle(openDoc.docId) : "";
 
-  const isRuntime = React.useCallback(
-    (c: SeedChat) => c.id !== "new" && !SEED_CHATS.some((s) => s.id === c.id),
-    [],
-  );
-
   const runStream = React.useCallback(
     async (payload: ComposerSubmit, target: SeedChat, persistUser: boolean) => {
-      if (persistUser && isRuntime(target)) {
+      if (persistUser) {
         appendUserTurn(target.id, payload.question);
       }
       const turnId = crypto.randomUUID();
@@ -151,7 +145,7 @@ export function ChatView({ id }: { id: string }) {
         );
         abortRef.current = null;
         const completed = collected.some((e) => e.type === "done");
-        if (completed && isRuntime(target)) {
+        if (completed) {
           appendAssistantTurn(
             target.id,
             reduceEvents(collected).text,
@@ -160,7 +154,7 @@ export function ChatView({ id }: { id: string }) {
         }
       }
     },
-    [locale, isRuntime],
+    [locale],
   );
 
   // P5a deliverables beat: renders GenerationPanel inline instead of a
@@ -170,7 +164,7 @@ export function ChatView({ id }: { id: string }) {
   // persist here beyond the user's turn.
   const runGeneration = React.useCallback(
     (payload: ComposerSubmit, target: SeedChat, persistUser: boolean) => {
-      if (persistUser && isRuntime(target)) {
+      if (persistUser) {
         appendUserTurn(target.id, payload.question);
       }
       const turnId = crypto.randomUUID();
@@ -185,7 +179,7 @@ export function ChatView({ id }: { id: string }) {
         },
       ]);
     },
-    [isRuntime],
+    [],
   );
 
   // ⌘K demo palette hand-off: apply a golden-question selection only when it
