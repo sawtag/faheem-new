@@ -500,7 +500,21 @@
     },
     "download": "Download",
     "openInWorkspace": "Open in workspace",
-    "errorArtifact": "Couldn't generate this file. Try again."
+    "errorArtifact": "Couldn't generate this file. Try again.",
+    "preview": {
+      "open": "Preview",
+      "close": "Close preview",
+      "downloadFile": "Download file",
+      "caption": "Generated · {date} · Lunar Investments",
+      "slides": "Slides",
+      "slideThumb": "Slide {n}",
+      "slideOf": "Slide {n} of {total}",
+      "pageOf": "Page {n} of {total}",
+      "modelCaption": "Full model: open in Excel — every input cell carries its source.",
+      "openInExcel": "Open in Excel",
+      "fallbackTitle": "Preview unavailable",
+      "fallbackCaption": "The file itself is ready — download it below."
+    }
   },
   "demo": {
     "palette": {
