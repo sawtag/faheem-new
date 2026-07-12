@@ -185,6 +185,8 @@ All demo figures are re-verified against these actual PDFs during data prep — 
 
 ## 8. Build target & execution plan
 
+> **Superseded on execution detail by `docs/superpowers/plans/2026-07-12-implementation-plan.md`** — the full task-card plan (fable as orchestrator/reviewer, per-task model+effort, contracts, testing strategy, gates). The table below remains the phase-level summary. Root-level `AGENTS.md` carries the build conventions every agent must follow.
+
 **One-day build (July 12), in §4 priority order.** Golden-path recording and answer review happen immediately after the build; remaining days before the hackathon are rehearsal, polish, and re-recording the cache on venue hardware/network only.
 
 **Execution model:** the main (Fable) session is architect + flagship builder; mechanical and parallelizable work is delegated to subagents with pinned model + effort to control token spend. Subagents never run on Opus/Fable; `effort: low` for mechanics, `high` only where a wrong number could be quoted on stage. Subagents return summaries, not file dumps, to keep the main context lean.
