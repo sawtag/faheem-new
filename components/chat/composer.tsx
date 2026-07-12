@@ -27,6 +27,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
+import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
 import { postUpload, precheckPdf } from "@/lib/upload-client";
 import manifest from "@/data/corpus/manifest.json";
 import type { AgentId, ChatContext, CorpusDoc, Lang } from "@/lib/types";
@@ -212,8 +213,18 @@ export function Composer({
   }, [trigger, uploadedDocs]);
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+  // Never offer Improve on a recorded golden question (⌘K/skills prefill) —
+  // a rewrite desyncs the cache key and kills the beat on stage.
+  const isGoldenText = GOLDEN_QUESTIONS.some(
+    (g) => g.request.question === text.trim(),
+  );
   const showWand =
-    !streaming && !improved && !improving && wordCount >= 2 && wordCount <= 8;
+    !streaming &&
+    !improved &&
+    !improving &&
+    !isGoldenText &&
+    wordCount >= 2 &&
+    wordCount <= 8;
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;

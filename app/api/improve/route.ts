@@ -5,6 +5,7 @@
  */
 import { z } from "zod";
 import { getClient, getImproveModel } from "@/lib/ai/client";
+import { resolveMode } from "@/lib/ai/mode";
 import { improveSystemPrompt } from "@/lib/ai/prompts";
 import { LangSchema } from "@/lib/types";
 
@@ -29,6 +30,15 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ error: "Invalid improve request" }, { status: 400 });
   }
   const { question, lang } = parsed.data;
+
+  // Cached mode is the bulletproof stage mode: never fire a live improver
+  // call there — echo the question back unchanged (the wand is also hidden
+  // client-side for golden text; this is defense in depth).
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const modeCookie = /(?:^|;\s*)faheem_mode=([^;]+)/.exec(cookieHeader)?.[1];
+  if (resolveMode(modeCookie) === "cached") {
+    return Response.json({ improved: question });
+  }
 
   const response = await getClient().messages.create({
     model: getImproveModel(),
