@@ -10,7 +10,8 @@
     "sizeMB": 3.34,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "https://jahezgroup.com/jahez-ar/2024/assets/img/pdfs/Jahez-Annual%20Report%202024-English.pdf"
+    "sourceUrl": "https://jahezgroup.com/jahez-ar/2024/assets/img/pdfs/Jahez-Annual%20Report%202024-English.pdf",
+    "fileId": "file_011CcxfJGx1dUWYQFuvKcLWF"
   },
   {
     "id": "fy25-earnings-call",
@@ -23,7 +24,8 @@
     "sizeMB": 2.61,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/04/FY2025-Earnings-Call-PPT.pdf"
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/04/FY2025-Earnings-Call-PPT.pdf",
+    "fileId": "file_011CcxfJXdZDP13sVk1tdC8K"
   },
   {
     "id": "fy25-er",
@@ -36,7 +38,8 @@
     "sizeMB": 2.98,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/04/Jahez-Q4-2025_ER-En.pdf"
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/04/Jahez-Q4-2025_ER-En.pdf",
+    "fileId": "file_011CcxfJjo3hoJad84G3w96e"
   },
   {
     "id": "q1-26-fs",
@@ -49,7 +52,8 @@
     "sizeMB": 1.85,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-ENG-FULL-FS-with-review-report.pdf"
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-ENG-FULL-FS-with-review-report.pdf",
+    "fileId": "file_011CcxfJt5PJhEQDcbHjAqSa"
   },
   {
     "id": "q1-26-earnings-call",
@@ -62,7 +66,8 @@
     "sizeMB": 4.83,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-Earnings-Call-V8.pdf"
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-Earnings-Call-V8.pdf",
+    "fileId": "file_011CcxfK7P5hzQroYTokoRGZ"
   },
   {
     "id": "industry-news-pack",
@@ -73,7 +78,8 @@
     "path": "data/corpus/industry-news-pack.pdf",
     "pages": 5,
     "sizeMB": 0.082,
-    "type": "public"
+    "type": "public",
+    "fileId": "file_011CcxfKB1rXRCseJMfMX6ZC"
   },
   {
     "id": "market-data-comps",
@@ -84,7 +90,8 @@
     "path": "data/corpus/market-data-comps.pdf",
     "pages": 4,
     "sizeMB": 0.079,
-    "type": "public"
+    "type": "public",
+    "fileId": "file_011CcxfKE6ejQ4tHEcWnzJVz"
   },
   {
     "id": "lunar-ic-charter",
@@ -95,7 +102,8 @@
     "path": "data/corpus/lunar-ic-charter.pdf",
     "pages": 6,
     "sizeMB": 0.09,
-    "type": "lunar"
+    "type": "lunar",
+    "fileId": "file_011CcxfKHGe3W1MoTX3jqjzB"
   },
   {
     "id": "lunar-risk-appetite",
@@ -106,7 +114,8 @@
     "path": "data/corpus/lunar-risk-appetite.pdf",
     "pages": 3,
     "sizeMB": 0.03,
-    "type": "lunar"
+    "type": "lunar",
+    "fileId": "file_011CcxfKKRNJwbQpcDDrwyXA"
   },
   {
     "id": "lunar-portfolio",
@@ -117,7 +126,8 @@
     "path": "data/corpus/lunar-portfolio.pdf",
     "pages": 2,
     "sizeMB": 0.03,
-    "type": "lunar"
+    "type": "lunar",
+    "fileId": "file_011CcxfKMk2BmcH78MawkPBy"
   },
   {
     "id": "darb-dataroom",
@@ -129,7 +139,8 @@
     "pages": 6,
     "sizeMB": 0.05,
     "type": "deal",
-    "workspace": "darb"
+    "workspace": "darb",
+    "fileId": "file_011CcxfKQ3SK7rcTyv2vTYZh"
   },
   {
     "id": "thara-analysis",
@@ -141,7 +152,8 @@
     "pages": 4,
     "sizeMB": 0.04,
     "type": "deal",
-    "workspace": "thara-pay"
+    "workspace": "thara-pay",
+    "fileId": "file_011CcxfKSX1RQsMkHS5Xjm9s"
   },
   {
     "id": "leadership-pack",
@@ -154,6 +166,7 @@
     "sizeMB": 0.114,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "data/corpus/fy24-ar.pdf (Pages 110-122)"
+    "sourceUrl": "data/corpus/fy24-ar.pdf (Pages 110-122)",
+    "fileId": "file_011CcxfKVQeDfNFZ2TJ3z49B"
   }
 ]

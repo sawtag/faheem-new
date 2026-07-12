@@ -48,7 +48,7 @@ interface CorpusDoc {
 const args = process.argv.slice(2);
 const isCheckMode = args.includes("--check");
 
-const projectRoot = path.resolve(__dirname, "..");
+const projectRoot = path.resolve(import.meta.dirname, "..");
 const manifestPath = path.join(projectRoot, "data", "corpus", "manifest.json");
 
 // Validate check mode first (no API key needed)
