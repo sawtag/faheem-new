@@ -92,6 +92,9 @@ export function Composer({
   lang,
   autoFocus = false,
   variant = "docked",
+  placeholder,
+  prefill,
+  onFocusChange,
 }: {
   context: ChatContext;
   companyName?: string;
@@ -101,6 +104,13 @@ export function Composer({
   lang: Lang;
   autoFocus?: boolean;
   variant?: "docked" | "hero";
+  /** Overrides the context-derived placeholder; successive values crossfade
+   *  (the home hero rotates it). Absent → the native placeholder is used. */
+  placeholder?: string;
+  /** Push text into the composer + focus it (quick-action pills). Bump `nonce`
+   *  to re-apply the same text. */
+  prefill?: { text: string; nonce: number };
+  onFocusChange?: (focused: boolean) => void;
 }) {
   const t = useTranslations("chat.composer");
   const locale = useLocale() as Lang;
@@ -142,6 +152,18 @@ export function Composer({
   React.useEffect(() => {
     if (autoFocus) ref.current?.focus();
   }, [autoFocus]);
+
+  // Quick-action prefill: replace the text, drop any typeahead/improve state,
+  // then focus with the caret at the end (pendingCaret layout effect below).
+  const lastPrefill = React.useRef<number | undefined>(undefined);
+  React.useEffect(() => {
+    if (!prefill || prefill.nonce === lastPrefill.current) return;
+    lastPrefill.current = prefill.nonce;
+    setText(prefill.text);
+    setImproved(false);
+    setTrigger(null);
+    pendingCaret.current = prefill.text.length;
+  }, [prefill]);
 
   // filtered typeahead items for the current trigger
   const items = React.useMemo(() => {
@@ -273,10 +295,11 @@ export function Composer({
     ref.current?.focus();
   }
 
-  const placeholder =
+  const contextPlaceholder =
     context.kind === "workspace" && companyName
       ? t("placeholderWorkspace", { company: companyName })
       : t("placeholder");
+  const placeholderText = placeholder ?? contextPlaceholder;
 
   return (
     <form
@@ -342,19 +365,51 @@ export function Composer({
           </div>
         )}
 
-        <textarea
-          ref={ref}
-          value={text}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          rows={1}
-          placeholder={placeholder}
-          aria-label={placeholder}
-          className={cn(
-            "text-navy placeholder:text-text-secondary/60 block w-full resize-none bg-transparent px-1 leading-relaxed outline-none",
-            variant === "hero" ? "text-base" : "text-[0.9375rem]",
+        <div className="relative">
+          <textarea
+            ref={ref}
+            value={text}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            onFocus={() => onFocusChange?.(true)}
+            onBlur={() => onFocusChange?.(false)}
+            rows={1}
+            // custom placeholder → crossfading overlay (below); else native
+            placeholder={
+              placeholder === undefined ? placeholderText : undefined
+            }
+            aria-label={contextPlaceholder}
+            className={cn(
+              "text-navy placeholder:text-text-secondary/60 block w-full resize-none bg-transparent px-1 leading-relaxed outline-none",
+              variant === "hero" ? "text-base" : "text-[0.9375rem]",
+            )}
+          />
+          {/* Rotating placeholder: a crossfade-capable overlay that mirrors the
+              textarea's box, shown only while empty. Keyed on the text so
+              successive values fade through each other (--duration). */}
+          {placeholder !== undefined && text === "" && (
+            <div
+              aria-hidden="true"
+              className={cn(
+                "text-text-secondary/60 pointer-events-none absolute inset-0 leading-relaxed",
+                variant === "hero" ? "text-base" : "text-[0.9375rem]",
+              )}
+            >
+              <AnimatePresence initial={false}>
+                <motion.span
+                  key={placeholderText}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                  className="absolute inset-0 block truncate px-1"
+                >
+                  {placeholderText}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           )}
-        />
+        </div>
 
         {/* toolbar */}
         <div className="flex items-center gap-1 pt-1 pb-2">
