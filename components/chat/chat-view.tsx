@@ -197,8 +197,14 @@ export function ChatView({ id }: { id: string }) {
       }
       setGoldenPrefill(sel);
     }
-    const pending = takeGoldenSelection();
-    if (pending) apply(pending);
+    // Only consume the pending selection once the chat has resolved — take()
+    // clears the stash, so pulling it while `chat` is still null (fresh
+    // /chat/new mount, resolution runs in a later effect) destroys the
+    // palette/skill hand-off before it can ever apply.
+    if (chat) {
+      const pending = takeGoldenSelection();
+      if (pending) apply(pending);
+    }
     return subscribeGoldenSelection(apply);
   }, [chat]);
 

@@ -1,5 +1,6 @@
 import { FileText, ShieldCheck } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
 import type { AgentInfo } from "@/lib/types";
 import {
@@ -42,9 +43,12 @@ export default async function AgentsPage() {
 
   return (
     <main className="mx-auto max-w-[1040px] px-8 pt-10 pb-16">
-      <header className="mb-8">
-        <h1 className="text-h1 text-navy font-extrabold">{t("title")}</h1>
-        <p className="text-text-secondary mt-2 text-[0.9375rem]">
+      <header className="relative isolate -mx-8 -mt-10 mb-8 px-8 pt-10 pb-6">
+        <GlyphBackdrop variant="panel" />
+        <h1 className="text-h1 text-navy relative z-10 font-extrabold">
+          {t("title")}
+        </h1>
+        <p className="text-text-secondary relative z-10 mt-2 text-[0.9375rem]">
           {t("subtitle")}
         </p>
       </header>

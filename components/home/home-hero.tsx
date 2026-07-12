@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { Composer, type ComposerSubmit } from "@/components/chat/composer";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { QuickActions } from "@/components/home/quick-actions";
 import { RecentWorkspaces } from "@/components/home/recent-workspaces";
 import type { Deal, Lang } from "@/lib/types";
@@ -53,39 +54,42 @@ export function HomeHero({ deals }: { deals: Deal[] }) {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-[830px] flex-1 flex-col justify-center px-6 py-16">
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: EASE }}
-      >
-        <motion.h1
-          initial={reduce ? false : { opacity: 0, y: 14 }}
+    <div className="relative isolate flex flex-1 flex-col">
+      <GlyphBackdrop variant="hero" />
+      <div className="relative z-10 mx-auto flex w-full max-w-[830px] flex-1 flex-col justify-center px-6 py-16">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: EASE, delay: 0.05 }}
-          className="text-navy text-center font-serif text-[2.25rem] leading-[1.15] font-semibold tracking-[-0.01em] text-balance"
+          transition={{ duration: 0.25, ease: EASE }}
         >
-          {t.rich("greeting", {
-            name: (chunks) => <span className="text-accent">{chunks}</span>,
-          })}
-        </motion.h1>
+          <motion.h1
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: EASE, delay: 0.05 }}
+            className="text-navy text-center font-serif text-[2.25rem] leading-[1.15] font-semibold tracking-[-0.01em] text-balance"
+          >
+            {t.rich("greeting", {
+              name: (chunks) => <span className="text-accent">{chunks}</span>,
+            })}
+          </motion.h1>
 
-        <div className="mt-8">
-          <Composer
-            context={{ kind: "firm" }}
-            lang={locale}
-            variant="hero"
-            onSubmit={onSubmit}
-            placeholder={t(`placeholders.${PLACEHOLDERS[phIndex]}`)}
-            prefill={prefill}
-            onFocusChange={setFocused}
-          />
-        </div>
+          <div className="mt-8">
+            <Composer
+              context={{ kind: "firm" }}
+              lang={locale}
+              variant="hero"
+              onSubmit={onSubmit}
+              placeholder={t(`placeholders.${PLACEHOLDERS[phIndex]}`)}
+              prefill={prefill}
+              onFocusChange={setFocused}
+            />
+          </div>
 
-        <QuickActions onPick={pick} />
+          <QuickActions onPick={pick} />
 
-        <RecentWorkspaces deals={deals} />
-      </motion.div>
+          <RecentWorkspaces deals={deals} />
+        </motion.div>
+      </div>
     </div>
   );
 }

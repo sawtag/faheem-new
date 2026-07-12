@@ -12,7 +12,7 @@
  * `messages.create` (the Haiku prompt improver). A single `as unknown as`
  * cast at the construction boundary reconciles the real SDK with this surface.
  */
-import Anthropic from "@anthropic-ai/sdk";
+import Anthropic, { toFile } from "@anthropic-ai/sdk";
 
 // ─────────────────────────── SDK-facing types ───────────────────────────
 
@@ -87,21 +87,55 @@ export interface FaheemClient {
 // ─────────────────────────── factory / injection ───────────────────────────
 
 let injected: FaheemClient | null = null;
-let cached: FaheemClient | null = null;
+let cachedReal: Anthropic | null = null;
+
+/** The one real SDK instance — `new Anthropic()` resolves the key from the env. */
+function realClient(): Anthropic {
+  if (!cachedReal) cachedReal = new Anthropic();
+  return cachedReal;
+}
 
 /** Inject a mock for tests; pass null to clear. Unit tests NEVER hit the network. */
 export function setClientForTests(client: FaheemClient | null): void {
   injected = client;
-  cached = null;
+  cachedReal = null;
 }
 
 export function getClient(): FaheemClient {
   if (injected) return injected;
-  if (!cached) {
-    // `new Anthropic()` resolves ANTHROPIC_API_KEY from the environment.
-    cached = new Anthropic() as unknown as FaheemClient;
-  }
-  return cached;
+  return realClient() as unknown as FaheemClient;
+}
+
+// ─────────────────────────── Files API (uploads) ───────────────────────────
+
+/** Test seam for the Files API upload — bypasses the SDK + network entirely. */
+type Uploader = (bytes: Buffer, filename: string) => Promise<string>;
+let injectedUploader: Uploader | null = null;
+
+/** Inject a fake uploader for tests; pass null to clear. */
+export function setUploaderForTests(uploader: Uploader | null): void {
+  injectedUploader = uploader;
+}
+
+/**
+ * Uploads a PDF to the Anthropic Files API and returns its `file_id`. Returns
+ * null when no ANTHROPIC_API_KEY is configured (cached / offline demo): the file
+ * is still saved and viewable, but grounded live chat about it is unavailable.
+ * Throws only on a genuine API failure. Keeps SDK instantiation in this one
+ * module (AGENTS.md rule 10).
+ */
+export async function uploadPdf(
+  bytes: Buffer,
+  filename: string,
+): Promise<string | null> {
+  if (injectedUploader) return injectedUploader(bytes, filename);
+  if (!process.env.ANTHROPIC_API_KEY) return null;
+  const file = await toFile(bytes, filename, { type: "application/pdf" });
+  const res = await realClient().beta.files.upload(
+    { file },
+    { headers: { "anthropic-beta": "files-api-2025-04-14" } },
+  );
+  return res.id;
 }
 
 // ─────────────────────────────── env config ───────────────────────────────

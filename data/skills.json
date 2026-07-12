@@ -1,0 +1,328 @@
+[
+  {
+    "id": "dcf-fcff",
+    "name": {
+      "en": "DCF — FCFF Build",
+      "ar": "تقييم DCF — التدفق النقدي الحر للمنشأة"
+    },
+    "category": "valuation",
+    "icon": "calculator",
+    "oneLiner": {
+      "en": "Free-cash-flow valuation from first principles — every input sourced.",
+      "ar": "تقييم بالتدفقات النقدية المخصومة من الأساس — كل مدخل موثّق المصدر."
+    },
+    "methods": [
+      {
+        "en": "FCFF projection off revenue drivers — orders × AOV → GMV → take rate → net revenue → contribution margin",
+        "ar": "توقّع التدفق النقدي الحر للمنشأة (FCFF) من محرّكات الإيرادات — الطلبات × متوسط قيمة الطلب ← GMV ← نسبة العمولة ← صافي الإيرادات ← هامش المساهمة"
+      },
+      {
+        "en": "WACC = risk-free (Saudi 10Y sukuk, 4.60%) + β × ERP (Damodaran KSA dataset)",
+        "ar": "تكلفة رأس المال المرجّحة (WACC) = العائد الخالي من المخاطر (الصكوك السعودية لأجل 10 سنوات، 4.60%) + β × علاوة مخاطر السوق (بيانات Damodaran للسعودية)"
+      },
+      {
+        "en": "Gordon terminal value, growth rate cross-checked against long-run nominal GDP",
+        "ar": "قيمة نهائية بطريقة Gordon، مع مطابقة معدل النمو مقابل النمو الاسمي طويل الأجل للناتج المحلي الإجمالي"
+      },
+      {
+        "en": "EV → equity bridge including the IFRS-16 lease adjustment",
+        "ar": "جسر من قيمة المنشأة (EV) إلى قيمة حقوق الملكية، متضمّناً تسوية عقود الإيجار وفق IFRS-16"
+      }
+    ],
+    "run": {
+      "prefill": {
+        "en": "Build a DCF valuation for Jahez — FCFF projection off the revenue drivers, a WACC build from the Saudi 10-year sukuk plus a KSA beta and equity risk premium, and a Gordon terminal value cross-checked against long-run nominal GDP growth. Bridge EV to equity including the IFRS-16 lease adjustment and show the implied value per share.",
+        "ar": "ابنِ تقييم DCF لجاهز — توقّع التدفق النقدي الحر للمنشأة من محرّكات الإيرادات، مع اشتقاق تكلفة رأس المال المرجّحة من الصكوك السعودية لأجل 10 سنوات وبيتا سعودية وعلاوة مخاطر السوق، وقيمة نهائية بطريقة Gordon مطابقة لنمو الناتج المحلي الإجمالي الاسمي طويل الأجل. اربط قيمة المنشأة بقيمة حقوق الملكية متضمّناً تسوية عقود الإيجار وفق IFRS-16، وأظهر القيمة العادلة المضمّنة للسهم."
+      }
+    }
+  },
+  {
+    "id": "trading-comps",
+    "name": {
+      "en": "Trading Comps",
+      "ar": "الشركات المماثلة المتداولة"
+    },
+    "category": "valuation",
+    "icon": "git-compare",
+    "oneLiner": {
+      "en": "Peer-multiple valuation, screened and calendarized for a clean read.",
+      "ar": "تقييم بمضاعفات الشركات المماثلة، مفروزة ومعايَرة زمنياً لقراءة نظيفة."
+    },
+    "methods": [
+      {
+        "en": "Comp-set construction & screening — business-model and growth/margin fit",
+        "ar": "بناء مجموعة الشركات المماثلة وفرزها — وفق ملاءمة نموذج العمل والنمو والهامش"
+      },
+      {
+        "en": "EV/Revenue, EV/EBITDA, P/E, and EV/GMV multiples",
+        "ar": "مضاعفات قيمة المنشأة إلى الإيرادات، وإلى الأرباح التشغيلية، والسعر إلى الربحية، وقيمة المنشأة إلى GMV"
+      },
+      {
+        "en": "Calendarization to a common fiscal period + outlier trim/exclude policy",
+        "ar": "معايرة زمنية على فترة مالية موحّدة + سياسة استبعاد/تقليم القيم الشاذة"
+      },
+      {
+        "en": "Listing-venue liquidity notes — free float and trading-volume caveats",
+        "ar": "ملاحظات سيولة منصّة الإدراج — التعويم الحر وتحفّظات حجم التداول"
+      }
+    ],
+    "run": {
+      "prefill": {
+        "en": "Value Jahez against a screened comp set of quick-commerce peers — build the comp table on EV/Revenue, EV/EBITDA, P/E and EV/GMV, calendarize to a common fiscal period, flag any outliers, and note listing-venue liquidity caveats.",
+        "ar": "قيّم جاهز مقابل مجموعة مفروزة من نظرائه في التجارة السريعة — ابنِ جدول المقارنة على مضاعفات قيمة المنشأة إلى الإيرادات وإلى الأرباح التشغيلية والسعر إلى الربحية وقيمة المنشأة إلى GMV، مع معايرة زمنية على فترة مالية موحّدة، ونبّه إلى أي قيم شاذة وتحفّظات سيولة منصّة الإدراج."
+      }
+    }
+  },
+  {
+    "id": "football-field",
+    "name": {
+      "en": "Football Field",
+      "ar": "نطاق التقييم"
+    },
+    "category": "valuation",
+    "icon": "ruler",
+    "oneLiner": {
+      "en": "Triangulate one defensible valuation range across every method.",
+      "ar": "دمج كل طرق التقييم في نطاق واحد قابل للدفاع عنه."
+    },
+    "methods": [
+      {
+        "en": "DCF × trading comps × precedent-transaction triangulation",
+        "ar": "تثليث بين DCF ومضاعفات الشركات المماثلة والصفقات المسبوقة"
+      },
+      {
+        "en": "Range synthesis — low / base / high bands per method",
+        "ar": "توليف النطاقات — الحدود الدنيا والأساسية والعليا لكل طريقة"
+      },
+      {
+        "en": "Control-premium / minority-discount rationale documented per band",
+        "ar": "توثيق مبرّر علاوة السيطرة أو خصم الأقلية لكل نطاق"
+      }
+    ],
+    "run": {
+      "prefill": {
+        "en": "Build a football-field valuation for Jahez triangulating the DCF, trading comps, and precedent-transaction ranges — show low/base/high bands per method, note any control-premium or minority-discount adjustments, and synthesize one defensible range.",
+        "ar": "ابنِ مخطط نطاق تقييم (football field) لجاهز يجمع بين نطاقات DCF ومضاعفات الشركات المماثلة والصفقات المسبوقة — أظهر الحدود الدنيا والأساسية والعليا لكل طريقة، ونبّه إلى أي تسويات لعلاوة السيطرة أو خصم الأقلية، وولّف نطاقاً واحداً قابلاً للدفاع عنه."
+      }
+    }
+  },
+  {
+    "id": "sensitivity",
+    "name": {
+      "en": "Sensitivity Grid",
+      "ar": "شبكة تحليل الحساسية"
+    },
+    "category": "valuation",
+    "icon": "table",
+    "oneLiner": {
+      "en": "Show how much the fair value moves before the thesis breaks.",
+      "ar": "أظهر مقدار تحرّك القيمة العادلة قبل أن تنهار الأطروحة الاستثمارية."
+    },
+    "methods": [
+      {
+        "en": "Two-way WACC × terminal-growth valuation data table",
+        "ar": "جدول بيانات ثنائي الاتجاه لتكلفة رأس المال (WACC) مقابل النمو النهائي"
+      },
+      {
+        "en": "Operating grid — take rate × GMV growth",
+        "ar": "شبكة تشغيلية — نسبة العمولة مقابل نمو GMV"
+      },
+      {
+        "en": "Corner-consistency checks — the base case reconciles at both grids' center cell",
+        "ar": "فحوصات اتساق الزوايا — الحالة الأساسية تتطابق عند الخلية المركزية لكل شبكة"
+      }
+    ],
+    "run": {
+      "prefill": {
+        "en": "Run a two-way sensitivity on Jahez's valuation — WACC against terminal growth, then take rate against GMV growth — and confirm the base case reconciles at the center of both grids.",
+        "ar": "نفّذ تحليل حساسية ثنائي الاتجاه على تقييم جاهز — تكلفة رأس المال مقابل النمو النهائي، ثم نسبة العمولة مقابل نمو GMV — وتأكّد من تطابق الحالة الأساسية عند مركز كل شبكة."
+      }
+    }
+  },
+  {
+    "id": "scenario-irr",
+    "name": {
+      "en": "Scenario IRR",
+      "ar": "معدل العائد الداخلي حسب السيناريو"
+    },
+    "category": "risk-compliance",
+    "icon": "shuffle",
+    "oneLiner": {
+      "en": "Weight the bull, base, and bear cases into one expected return.",
+      "ar": "رجّح سيناريوهات المتفائل والأساسي والمتشائم في عائد متوقع واحد."
+    },
+    "methods": [
+      {
+        "en": "Bull / base / bear cases with explicit probability weights",
+        "ar": "سيناريوهات متفائلة وأساسية ومتشائمة بأوزان احتمالية صريحة"
+      },
+      {
+        "en": "Hold-period IRR convention — Ke-compounded exit multiple",
+        "ar": "اصطلاح معدل العائد الداخلي لفترة الاحتفاظ — مضاعف خروج مركّب بتكلفة حقوق الملكية Ke"
+      },
+      {
+        "en": "Scenario-weighted expected return vs the fund's hurdle rate",
+        "ar": "العائد المتوقع المرجّح بالسيناريوهات مقابل عتبة العائد الخاصة بالصندوق"
+      }
+    ],
+    "run": {
+      "prefill": {
+        "en": "Build a scenario-weighted IRR for Jahez — bull, base, and bear cases with explicit probability weights, hold-period IRR on a Ke-compounded exit multiple, and the scenario-weighted expected return against our 15% hurdle.",
+        "ar": "ابنِ معدل عائد داخلي مرجّحاً بالسيناريوهات لجاهز — حالات متفائلة وأساسية ومتشائمة بأوزان احتمالية صريحة، ومعدل عائد داخلي لفترة الاحتفاظ على مضاعف خروج مركّب بتكلفة حقوق الملكية Ke، والعائد المتوقع المرجّح بالسيناريوهات مقابل عتبة العائد 15%."
+      }
+    }
+  },
+  {
+    "id": "risk-scorecard",
+    "name": {
+      "en": "Risk Scorecard",
+      "ar": "بطاقة المخاطر"
+    },
+    "category": "risk-compliance",
+    "icon": "shield-alert",
+    "oneLiner": {
+      "en": "Score every risk probability × impact — never an adjective.",
+      "ar": "قيّم كل خطر بالاحتمال × الأثر — بلا صفات عامة."
+    },
+    "methods": [
+      {
+        "en": "Probability × impact quantification, 1–10 risk score",
+        "ar": "تكميم الاحتمال × الأثر بدرجة مخاطر من 1 إلى 10"
+      },
+      {
+        "en": "bps of take-rate compression modeled per downside scenario",
+        "ar": "نقاط أساس من انضغاط نسبة العمولة مصمَّمة لكل سيناريو هابط"
+      },
+      {
+        "en": "Mandate-breach & concentration checks vs the IC Charter",
+        "ar": "فحوصات تجاوز التفويض والتركّز مقابل ميثاق لجنة الاستثمار"
+      }
+    ],
+    "run": { "goldenId": "qa2" }
+  },
+  {
+    "id": "shariah-screen",
+    "name": {
+      "en": "Shariah Screen",
+      "ar": "الفحص الشرعي"
+    },
+    "category": "risk-compliance",
+    "icon": "moon-star",
+    "oneLiner": {
+      "en": "AAOIFI ratio tests, run and cited — pass or fail, no judgment calls.",
+      "ar": "اختبارات نسب أيوفي (AAOIFI)، منفَّذة وموثّقة — اجتياز أو رسوب بلا اجتهاد شخصي."
+    },
+    "methods": [
+      {
+        "en": "Interest-bearing debt < 33% of market cap",
+        "ar": "الدين الذي يحمل فائدة أقل من 33% من القيمة السوقية"
+      },
+      {
+        "en": "Non-permissible income < 5% of total revenue",
+        "ar": "الإيراد غير المباح أقل من 5% من إجمالي الإيرادات"
+      },
+      {
+        "en": "Business-activity permissibility test",
+        "ar": "اختبار إباحة النشاط التجاري"
+      },
+      {
+        "en": "Purification note for any residual non-permissible income",
+        "ar": "مذكّرة تطهير لأي إيراد غير مباح متبقٍّ"
+      }
+    ],
+    "run": { "goldenId": "shariah-ar" }
+  },
+  {
+    "id": "mandate-fit",
+    "name": {
+      "en": "Mandate Fit",
+      "ar": "ملاءمة التفويض"
+    },
+    "category": "diligence",
+    "icon": "filter",
+    "oneLiner": {
+      "en": "Check the deal against the IC Charter before any deep work starts.",
+      "ar": "افحص الصفقة مقابل ميثاق لجنة الاستثمار قبل بدء أي تحليل معمّق."
+    },
+    "methods": [
+      {
+        "en": "Sector, ticket-size, and stage checks vs the IC Charter (p.3)",
+        "ar": "فحوصات القطاع والحجم ومرحلة التمويل مقابل ميثاق لجنة الاستثمار (ص.3)"
+      },
+      {
+        "en": "Post-deal single-name & sector concentration math vs the 10% caps",
+        "ar": "حساب التركّز في اسم واحد وقطاع واحد بعد الصفقة مقابل سقف 10%"
+      },
+      {
+        "en": "Liquidity & drawdown-tolerance checks vs the mandate's limits",
+        "ar": "فحوصات السيولة وتحمّل التراجع مقابل حدود التفويض"
+      }
+    ],
+    "run": {
+      "prefill": {
+        "en": "Run a mandate-fit check on Jahez against the Lunar IC Charter — sector, ticket size, and stage vs page 3, post-deal single-name and sector concentration against the 10% caps, and liquidity and drawdown tolerance against the mandate's limits.",
+        "ar": "نفّذ فحص ملاءمة التفويض لجاهز مقابل ميثاق لجنة الاستثمار في لونار — القطاع والحجم ومرحلة التمويل مقابل الصفحة 3، وحساب التركّز في اسم واحد وقطاع واحد بعد الصفقة مقابل سقف 10%، والسيولة وتحمّل التراجع مقابل حدود التفويض."
+      }
+    }
+  },
+  {
+    "id": "ic-memo",
+    "name": {
+      "en": "IC Memo & Deliverables",
+      "ar": "مذكرة لجنة الاستثمار والمخرجات"
+    },
+    "category": "output",
+    "icon": "file-text",
+    "oneLiner": {
+      "en": "One linked deliverable set — memo, model, and deck, fully sourced.",
+      "ar": "مجموعة مخرجات مترابطة — مذكرة ونموذج وعرض تقديمي، موثّقة المصادر بالكامل."
+    },
+    "methods": [
+      {
+        "en": "Section architecture — exec summary → thesis → valuation → risk → Shariah → catalysts",
+        "ar": "بنية الأقسام — ملخص تنفيذي ← أطروحة استثمارية ← تقييم ← مخاطر ← فحص شرعي ← محفّزات"
+      },
+      {
+        "en": "Sources appendix discipline — every cited figure traces to doc + page",
+        "ar": "انضباط ملحق المصادر — كل رقم مستشهد به يعود إلى مستند وصفحة"
+      },
+      {
+        "en": "Model, memo, and deck generated as one linked deliverable set",
+        "ar": "توليد النموذج والمذكرة والعرض التقديمي كمجموعة مخرجات مترابطة واحدة"
+      },
+      {
+        "en": "Advisory-only framing throughout — never \"invest / don't invest\"",
+        "ar": "صياغة استشارية بحتة طوال المذكرة — لا تُقال أبداً \"استثمر / لا تستثمر\""
+      }
+    ],
+    "run": { "goldenId": "deliverables" }
+  },
+  {
+    "id": "covenant-sweep",
+    "name": {
+      "en": "Covenant Sweep",
+      "ar": "مسح التعهدات"
+    },
+    "category": "diligence",
+    "icon": "file-search",
+    "oneLiner": {
+      "en": "Pull every facility covenant and flag before diligence, not during it.",
+      "ar": "استخرج كل تعهدات التسهيلات ونبّه إليها قبل الفحص النافي للجهالة لا أثناءه."
+    },
+    "methods": [
+      {
+        "en": "Facility covenant extraction from credit agreements",
+        "ar": "استخراج تعهدات التسهيلات من اتفاقيات الائتمان"
+      },
+      {
+        "en": "Related-party & footnote flags across filings",
+        "ar": "تنبيهات الأطراف ذات العلاقة والحواشي عبر الإفصاحات"
+      },
+      {
+        "en": "Change-of-control trigger detection",
+        "ar": "رصد شروط تفعيل تغيّر السيطرة"
+      }
+    ],
+    "run": null
+  }
+]

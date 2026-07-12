@@ -185,7 +185,13 @@
       "scheduled": "Scheduled Tasks",
       "connections": "Connections",
       "audit": "Audit Trail",
-      "ic": "IC Room"
+      "ic": "IC Room",
+      "skills": "Skills"
+    },
+    "emailToast": {
+      "title": "Faheem works in your inbox",
+      "body": "Forward any CIM or data-room link to <email>faheem@lunar-inv.sa</email> — your analyst picks it up.",
+      "dismiss": "Dismiss"
     }
   },
   "chat": {
@@ -428,6 +434,25 @@
       "executive": "Executive Management",
       "sourceLabel": "Open the source for {name}"
     },
+    "share": {
+      "trigger": "Share",
+      "title": "Share {company}",
+      "recipientPlaceholder": "Add people by email or team, then press Enter",
+      "role": {
+        "view": "Can view",
+        "comment": "Can comment",
+        "edit": "Can edit"
+      },
+      "removeChip": "Remove {value}",
+      "peopleWithAccess": "People with access",
+      "owner": "Owner",
+      "you": "you",
+      "group": "Lunar IC Group",
+      "footerCaption": "Only people invited · Workspace data never trains any model",
+      "cancel": "Cancel",
+      "submit": "Share",
+      "success": "Shared"
+    },
     "analytics": {
       "title": "Financial performance",
       "growthTitle": "Top-line growth",
@@ -538,5 +563,38 @@
       "lastResponseCached": "cached",
       "lastResponseLive": "live"
     }
+  },
+  "scheduled": {
+    "subtitle": "Faheem keeps working between sessions — recurring digests, sweeps, and checks that land straight in your inbox or channel.",
+    "nextRun": "Next run",
+    "toggleLabel": "Enable {name}",
+    "footer": "Scheduled agents run in Faheem Cloud — MVP roadmap."
+  },
+  "upload": {
+    "uploading": "Uploading…",
+    "failed": "Upload failed",
+    "onlyPdf": "PDF files only",
+    "tooLarge": "Max 32 MB",
+    "retry": "Retry",
+    "dismiss": "Dismiss",
+    "badge": "Uploaded",
+    "dropzone": "Drop a PDF or click — it joins this workspace's sources",
+    "dropzoneHint": "PDF · up to 32 MB"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Reusable analyst playbooks — every method sourced, every output audited.",
+    "filterAll": "All",
+    "categories": {
+      "valuation": "Valuation",
+      "diligence": "Diligence",
+      "risk-compliance": "Risk & Compliance",
+      "output": "Output"
+    },
+    "byline": "By Faheem",
+    "run": "Run",
+    "runsInArabic": "Runs in Arabic",
+    "roadmap": "MVP roadmap",
+    "roadmapHint": "Full automation ships on the MVP roadmap."
   }
 }
