@@ -1,0 +1,38 @@
+[
+  {
+    "id": "jahez-xlsx",
+    "kind": "xlsx",
+    "name": {
+      "en": "Jahez — Valuation Model",
+      "ar": "جاهز — نموذج التقييم"
+    },
+    "workspace": "jahez",
+    "file": "/artifacts/jahez-valuation-model.xlsx",
+    "createdAt": "2026-07-12T18:38:00.554Z",
+    "sources": 5
+  },
+  {
+    "id": "jahez-docx",
+    "kind": "docx",
+    "name": {
+      "en": "Jahez — IC Memo",
+      "ar": "جاهز — مذكرة لجنة الاستثمار"
+    },
+    "workspace": "jahez",
+    "file": "/artifacts/jahez-ic-memo.docx",
+    "createdAt": "2026-07-12T18:38:02.551Z",
+    "sources": 5
+  },
+  {
+    "id": "jahez-pptx",
+    "kind": "pptx",
+    "name": {
+      "en": "Jahez — Board Deck",
+      "ar": "جاهز — العرض التقديمي لمجلس الإدارة"
+    },
+    "workspace": "jahez",
+    "file": "/artifacts/jahez-board-deck.pptx",
+    "createdAt": "2026-07-12T18:38:04.416Z",
+    "sources": 5
+  }
+]

@@ -282,5 +282,25 @@
       "loading": "Loading document…",
       "error": "Couldn't load this document."
     }
+  },
+  "generate": {
+    "phase": {
+      "assembling": "Assembling model inputs",
+      "building": "Building the {noun}",
+      "writing": "Writing file"
+    },
+    "noun": {
+      "xlsx": "workbook",
+      "docx": "memo",
+      "pptx": "deck"
+    },
+    "row": {
+      "xlsx": "Valuation Model",
+      "docx": "IC Memo",
+      "pptx": "Board Deck"
+    },
+    "download": "Download",
+    "openInWorkspace": "Open in workspace",
+    "errorArtifact": "Couldn't generate this file. Try again."
   }
 }
