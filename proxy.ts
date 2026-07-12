@@ -6,6 +6,10 @@ import { NextResponse, type NextRequest } from "next/server";
  * /api/documents requires the `faheem_session` cookie set by
  * app/api/auth/route.ts. Cookie name is duplicated (not imported) between the
  * two files — trivial string, not worth an indirection layer (AGENTS.md rule 6).
+ *
+ * Lives in `proxy.ts` (Next 16 convention — the old `middleware.ts` filename is
+ * deprecated and warns at build); the exported function is named `proxy` to
+ * match.
  */
 const SESSION_COOKIE = "faheem_session";
 const PUBLIC_PATHS = ["/login", "/api/auth", "/api/documents"];
@@ -16,7 +20,7 @@ function isPublicPath(pathname: string): boolean {
   );
 }
 
-export function middleware(request: NextRequest): NextResponse {
+export function proxy(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
   if (isPublicPath(pathname) || request.cookies.has(SESSION_COOKIE)) {
     return NextResponse.next();

@@ -82,8 +82,16 @@ export function IcRoom({
       </div>
 
       <div className="border-border mt-6 flex min-h-0 flex-1 border-t">
-        <section className="min-w-0 flex-1 overflow-y-auto px-8 py-6">
-          <ComparisonTable columns={columns} onOpenDoc={onOpenDoc} />
+        <section className="flex min-w-0 flex-1 flex-col overflow-y-auto px-8 py-6">
+          {/* my-auto centres the sheet + note in the tall column so a six-row
+             table doesn't leave the page half-empty at 1080, while still
+             scrolling top-aligned when the viewport is short. */}
+          <div className="my-auto">
+            <ComparisonTable columns={columns} onOpenDoc={onOpenDoc} />
+            <p className="text-text-secondary mt-4 text-xs leading-relaxed">
+              {t("tableNote")}
+            </p>
+          </div>
         </section>
         <aside className="border-border w-[23rem] shrink-0 border-s xl:w-[26rem]">
           <IcChatPanel onOpenDoc={onOpenDoc} />

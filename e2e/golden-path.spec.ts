@@ -14,18 +14,14 @@ import { clickUntil, loadDemoCacheFixture } from "./helpers";
  * re-navigation/re-login between beats, which is what "mirrors the run of
  * show" means here. `test.step` groups each beat in the HTML report.
  *
- * APP BUG FOUND (reported, not fixed — out of this file's lane): toggling the
- * language mid-conversation silently discards the just-asked live turn. Repro:
- * open any chat, ask a live question, wait for the streamed answer, click the
- * language toggle — the Q&A vanishes (only originally-seeded history remains),
- * no error, no warning. Root cause: components/shell/app-shell.tsx:34 keys the
- * content region by locale (`key={locale}` on `motion.main`, for the crossfade
- * animation) which fully remounts the page subtree; components/chat/chat-view.tsx:69
- * holds live turns in plain `React.useState` with no persistence, so the remount
- * resets it to `[]`. Worth a look before the demo — a presenter who asks a
- * question then flips to Arabic loses that turn on camera. The "language toggle
- * to AR" step below asserts against the seeded history instead of the just-sent
- * live answer, since that's what actually survives the toggle today.
+ * LOCALE-TOGGLE SURVIVAL (P6 item 1 — fixed): AppShell keys its content region
+ * by locale (`key={locale}` on `motion.main`, for the crossfade) which fully
+ * remounts ChatView, and its live turns live in plain `React.useState`. That
+ * used to silently discard the just-asked Q&A on a language toggle. The fix
+ * write-throughs each turn to the localStorage overlay (lib/chats.ts) — seeded
+ * chats included — so the remount re-reads it as history. The "language toggle
+ * to AR" step below now asserts the just-asked live answer survives the toggle,
+ * not merely the pre-seeded history.
  *
  * Clicks that land right after a `page.goto()` use `clickUntil` (helpers.ts):
  * at this suite's parallelism the click can beat React's hydration of that
@@ -190,16 +186,16 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
       )
       .toBeLessThanOrEqual(1);
 
-    // NOTE (app bug — see golden-path.spec.ts header / P5b report): the just-asked
-    // live turn does NOT survive the toggle. AppShell keys its content region by
-    // locale for the crossfade (components/shell/app-shell.tsx:34, `key={locale}`
-    // on motion.main), which fully remounts ChatView; its live-turn state
-    // (components/chat/chat-view.tsx:69, `liveTurns` — plain useState, unpersisted)
-    // resets to empty on remount. Only the pre-seeded history survives, so that's
-    // what this asserts — the chat is still the SAME chat, rendered cleanly in RTL.
+    // Same chat, rendered cleanly in RTL: the pre-seeded history is present…
     await expect(
       page.getByRole("heading", { name: "مراجعة جودة إيرادات 2025" }),
     ).toBeVisible();
+
+    // …AND the just-asked live turn survives the remount (P6 item 1 fix). The
+    // streamed answer was written through to the overlay before the toggle, so
+    // the remounted ChatView replays it as history — the "64.9%" figure from
+    // that answer is still on screen after flipping to Arabic.
+    await expect(page.getByText(/64\.9/).first()).toBeVisible();
   });
 
   await test.step("language toggle back to EN", async () => {
