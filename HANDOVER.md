@@ -31,6 +31,7 @@ Escalate one notch only after two failed acceptance rounds. Review every diff; r
 - **Git model**: remote `github.com/sawtag/faheem-new` (public — mind landmine #1 doubly: nothing Rogo-named in code/commits). `master` = demo-stable, `dev` = integration (you start here). Work each phase/task on a feature branch off `dev` (`feat/t2-engine`, `feat/t3-screens`…), PR into `dev` (use `gh`), and merge `dev → master` only at phase gates when `npm run verify` + e2e are green. `demo-rc1` tag lands on master.
 - Figma MCP connector is authenticated if you need re-exports (file `ZHECLOgl3D76BXygcx5Nyf`); tokens are already extracted into the spec — don't re-derive them.
 - **Playwright is the ONLY automated browser harness** (e2e, viewports, screenshots, offline, RTL sweep). If your session has browser/preview/devtools MCP tools, use them interactively for design-QA gates — but add no browser-automation dependency to the project.
+- **Pre-installed tooling for you (user-level, 2026-07-12):** skills `tailwind-design-system` (Tailwind v4 tokens/design systems), `nextjs-app-router-patterns` (App Router/RSC), `vercel-react-best-practices` (React/Next perf), plus the environment's `frontend-design` and `dataviz` skills — load them for the matching tasks and pass their guidance into subagent briefs. MCP `context7` (live library docs) is connected — use it whenever an API detail for Next 16.2 / Tailwind 4.3 / radix-ui 1.6 / motion 12 might postdate your training; do NOT guess current APIs from memory.
 
 ## Landmines (each one has burned a demo before)
 

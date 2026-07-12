@@ -23,7 +23,7 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 | Layer | Choice | Notes |
 |---|---|---|
 | Framework / runtime | **Next.js 16** (latest stable — 16.2.x verified on npm 2026-07-12; App Router, TS strict) on **Node 26 + npm** | Single process on localhost. No bun anywhere. next-intl peer-supports ^16. |
-| Styling | **Tailwind v4** — ONE theme via `@theme` in `app/globals.css` | `cva` + `clsx`/`tailwind-merge` for component variants; `tabular-nums` utility for financial figures. Never a hex/shadow inline. |
+| Styling | **Tailwind v4** (latest 4.3.x) — ONE theme via `@theme` in `app/globals.css` | `cva` + `clsx`/`tailwind-merge` for component variants; `tabular-nums` utility for financial figures. Never a hex/shadow inline. v5 beta considered and REJECTED for the demo (user + fable agree 2026-07-12): beta tooling risk, zero judge-visible upside. |
 | UI components | **radix-ui** (headless primitives) wrapped in our own `components/ui/*` | Deliberately NO component kit (HeroUI/AntD/MUI rejected: recognizable house looks + their theming engines fight the single-`@theme` rule). Every pixel is ours. |
 | Animation | **motion** | One library, one easing personality — see Motion language below. No GSAP/Three.js. |
 | Icons | **lucide-react** | Consistent stroke grid; `simple-icons` glyphs allowed for international connector logos. |
