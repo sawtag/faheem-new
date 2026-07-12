@@ -1,0 +1,130 @@
+[
+  {
+    "id": "darb",
+    "name": { "en": "Darb", "ar": "درب" },
+    "sector": { "en": "Logistics SaaS", "ar": "برمجيات اللوجستيات (SaaS)" },
+    "origin": "inbound",
+    "stage": "screening",
+    "ask": { "en": "SAR 40M Series B", "ar": "40 مليون ريال سعودي - السلسلة B" },
+    "statusLine": {
+      "en": "Screening scorecard complete — 5 pass, 1 concentration flag.",
+      "ar": "اكتمل بطاقة الفرز - 5 معايير مستوفاة وتنبيه تركّز واحد."
+    },
+    "screening": {
+      "rows": [
+        {
+          "criterion": { "en": "Sector mandate", "ar": "التفويض القطاعي" },
+          "verdict": "pass",
+          "note": {
+            "en": "Logistics SaaS falls within the Technology & Consumer mandate.",
+            "ar": "برمجيات اللوجستيات كخدمة تقع ضمن تفويض قطاعي التقنية والاستهلاك."
+          },
+          "cite": { "docId": "lunar-ic-charter", "page": 3 }
+        },
+        {
+          "criterion": { "en": "Ticket vs mandate", "ar": "حجم التذكرة مقابل التفويض" },
+          "verdict": "pass",
+          "note": {
+            "en": "SAR 40M ask sits within the SAR 20-60M ticket band.",
+            "ar": "طلب 40 مليون ريال سعودي يقع ضمن نطاق التذكرة من 20 إلى 60 مليون ريال سعودي."
+          },
+          "cite": { "docId": "lunar-ic-charter", "page": 3 }
+        },
+        {
+          "criterion": { "en": "Stage fit", "ar": "ملاءمة المرحلة" },
+          "verdict": "pass",
+          "note": {
+            "en": "Series B falls within the mandated Series A-C stage window.",
+            "ar": "السلسلة B تقع ضمن نطاق المراحل المفوض بها من A إلى C."
+          },
+          "cite": { "docId": "lunar-ic-charter", "page": 3 }
+        },
+        {
+          "criterion": { "en": "Shariah pre-screen", "ar": "الفحص الشرعي المبدئي" },
+          "verdict": "pass",
+          "note": {
+            "en": "Business activity permissible; no leverage red flags at pre-screen.",
+            "ar": "النشاط التجاري مباح شرعاً؛ لا توجد مؤشرات تحذيرية على الرفع المالي عند الفحص المبدئي."
+          },
+          "cite": { "docId": "lunar-ic-charter", "page": 5 }
+        },
+        {
+          "criterion": { "en": "Concentration", "ar": "التركّز" },
+          "verdict": "warn",
+          "note": {
+            "en": "Technology & Consumer sector exposure at 8.5% of AUM; a SAR 40M ticket (2.0% of AUM) would bring post-deal sector exposure to 10.5%, above the 10% cap.",
+            "ar": "تعرّض قطاعي التقنية والاستهلاك يبلغ حالياً 8.5% من الأصول المدارة؛ تذكرة بقيمة 40 مليون ريال سعودي (2.0% من الأصول) سترفع التعرّض القطاعي بعد الصفقة إلى 10.5%، متجاوزةً سقف 10%."
+          },
+          "cite": { "docId": "lunar-ic-charter", "page": 4 }
+        },
+        {
+          "criterion": { "en": "Red flags", "ar": "المؤشرات التحذيرية" },
+          "verdict": "pass",
+          "note": {
+            "en": "No sanctions, conflicts-of-interest, or related-party issues identified.",
+            "ar": "لم يتم رصد أي عقوبات أو تضارب مصالح أو أطراف ذات علاقة."
+          },
+          "cite": { "docId": "lunar-ic-charter", "page": 5 }
+        }
+      ],
+      "verdict": {
+        "en": "Recommend advancing to pitch meeting — 5 pass, 1 flag. Decision: yours.",
+        "ar": "يُوصى بالانتقال إلى اجتماع العرض التقديمي - 5 معايير مستوفاة وتنبيه واحد. القرار لكم."
+      }
+    }
+  },
+  {
+    "id": "jahez",
+    "name": { "en": "Jahez", "ar": "جاهز" },
+    "sector": { "en": "Quick-commerce / food delivery", "ar": "التجارة السريعة وتوصيل الطعام" },
+    "origin": "market-screen",
+    "stage": "analysis",
+    "originDetail": {
+      "en": "SAHMK/Argaam screen · 2026-07-08",
+      "ar": "فرز SAHMK/أرقام · 2026-07-08"
+    },
+    "statusLine": {
+      "en": "Deep-dive analysis in progress — valuation, unit economics, and scenario modelling underway.",
+      "ar": "التحليل المعمّق قيد التنفيذ - التقييم والاقتصاد التشغيلي ونمذجة السيناريوهات جارية."
+    }
+  },
+  {
+    "id": "thara-pay",
+    "name": { "en": "Thara Pay", "ar": "ثارا باي" },
+    "sector": { "en": "Fintech — payments infrastructure", "ar": "التقنية المالية - البنية التحتية للمدفوعات" },
+    "origin": "inbound",
+    "stage": "ic-review",
+    "statusLine": {
+      "en": "Analysis complete — in Investment Committee review.",
+      "ar": "اكتمل التحليل - قيد مراجعة لجنة الاستثمار."
+    },
+    "icMetrics": {
+      "irr": 18.5,
+      "hurdle": 15,
+      "expectedReturn": 16.2,
+      "riskScore": 5,
+      "mandateFit": "pass",
+      "shariah": "pass",
+      "recommendation": {
+        "en": "Strongest risk-adjusted case pending final due diligence.",
+        "ar": "أقوى حالة استثمارية معدّلة بالمخاطر، رهناً باكتمال العناية الواجبة النهائية."
+      },
+      "cite": { "docId": "thara-analysis", "page": 2 }
+    }
+  },
+  {
+    "id": "aqar",
+    "name": { "en": "Aqar Development", "ar": "عقار للتطوير" },
+    "sector": { "en": "Real estate development", "ar": "التطوير العقاري" },
+    "origin": "inbound",
+    "stage": "declined",
+    "statusLine": {
+      "en": "Declined at screening — outside sector mandate.",
+      "ar": "تم الاعتذار عند الفرز - خارج نطاق التفويض القطاعي."
+    },
+    "declineReason": {
+      "en": "Real estate development falls outside the Technology & Consumer sector mandate.",
+      "ar": "التطوير العقاري يقع خارج نطاق التفويض القطاعي المخصص للتقنية والاستهلاك."
+    }
+  }
+]
