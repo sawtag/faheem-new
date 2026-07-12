@@ -20,7 +20,11 @@ bun run verify           # check + test + validate:data (the pre-commit gate)
 
 ## Stack (locked — no new dependencies without fable's approval)
 
-Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/globals.css` `@theme`) · radix-ui primitives (headless) · motion (animations) · lucide-react (icons) · next-intl (en default, ar) · @anthropic-ai/sdk · react-pdf · exceljs / pptxgenjs / docx · zod. Tests: vitest + @testing-library/react + Playwright. Fonts via next/font (no runtime CDN): Inter + Lora (EN), IBM Plex Sans Arabic + Amiri (AR).
+Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/globals.css` `@theme`) · radix-ui primitives (headless) · motion (animations) · lucide-react (icons) · next-intl (en default, ar) · @anthropic-ai/sdk · react-pdf · exceljs / pptxgenjs / docx · zod. Tests: vitest + @testing-library/react + Playwright.
+
+**Fonts (locked, via next/font — no runtime CDN):** UI/body = **Inter** (EN) + **IBM Plex Sans Arabic** (AR; chosen over Tajawal — enterprise register, harmonizes with Inter). Hero serif (omnibox greeting ONLY) = **Lora** (EN) + **Amiri** (AR). Financial tables/figures always render digits in Inter with `font-variant-numeric: tabular-nums` (token/utility in globals.css).
+
+**Assets policy:** everything vendored locally (`public/` or inline SVG) — nothing loads from a CDN at runtime (venue wifi). Faheem logo = clean inline SVG recreated/enhanced from the Figma logo system (bars+arrow glyph is animatable — use it). Real-company logos (Jahez) may be fetched once and vendored; fictional companies and Saudi connectors without clean SVGs (Argaam, SAHMK, Tadawul, Alinma) get consistent monogram tiles (initial + tint from the theme); international connectors may use `simple-icons` glyphs. People: no photos — initials-avatar tiles (Arwa "A" navy tile; leadership grid = initials + name + role + source link).
 
 ## Hard rules
 
