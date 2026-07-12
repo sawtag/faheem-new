@@ -11,10 +11,10 @@ describe("CONNECTORS", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it("has 5 connected and 10 available, in that order", () => {
+  it("has 6 connected and 9 available, in that order", () => {
     const statuses = CONNECTORS.map((c) => c.status);
-    expect(statuses.filter((s) => s === "connected")).toHaveLength(5);
-    expect(statuses.filter((s) => s === "available")).toHaveLength(10);
+    expect(statuses.filter((s) => s === "connected")).toHaveLength(6);
+    expect(statuses.filter((s) => s === "available")).toHaveLength(9);
     // Connected entries all precede Available entries (wizard grid order).
     const firstAvailable = statuses.indexOf("available");
     expect(

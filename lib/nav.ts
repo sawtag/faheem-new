@@ -24,6 +24,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { key: "ic", href: "/ic", icon: "scale" },
   { key: "library", href: "/library", icon: "library-big" },
   { key: "agents", href: "/agents", icon: "bot" },
+  { key: "skills", href: "/skills", icon: "wand-sparkles" },
   { key: "scheduled", href: "/scheduled", icon: "calendar-clock" },
 ];
 

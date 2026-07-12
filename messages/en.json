@@ -185,7 +185,8 @@
       "scheduled": "Scheduled Tasks",
       "connections": "Connections",
       "audit": "Audit Trail",
-      "ic": "IC Room"
+      "ic": "IC Room",
+      "skills": "Skills"
     },
     "emailToast": {
       "title": "Faheem works in your inbox",
@@ -554,5 +555,21 @@
     "badge": "Uploaded",
     "dropzone": "Drop a PDF or click — it joins this workspace's sources",
     "dropzoneHint": "PDF · up to 32 MB"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Reusable analyst playbooks — every method sourced, every output audited.",
+    "filterAll": "All",
+    "categories": {
+      "valuation": "Valuation",
+      "diligence": "Diligence",
+      "risk-compliance": "Risk & Compliance",
+      "output": "Output"
+    },
+    "byline": "By Faheem",
+    "run": "Run",
+    "runsInArabic": "Runs in Arabic",
+    "roadmap": "MVP roadmap",
+    "roadmapHint": "Full automation ships on the MVP roadmap."
   }
 }
