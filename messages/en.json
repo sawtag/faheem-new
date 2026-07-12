@@ -182,6 +182,7 @@
       "deals": "Deals",
       "library": "Library",
       "agents": "Agents",
+      "skills": "Skills",
       "scheduled": "Scheduled Tasks",
       "connections": "Connections",
       "audit": "Audit Trail",
@@ -499,5 +500,21 @@
       "lastResponseCached": "cached",
       "lastResponseLive": "live"
     }
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Reusable analyst playbooks — every method sourced, every output audited.",
+    "filterAll": "All",
+    "categories": {
+      "valuation": "Valuation",
+      "diligence": "Diligence",
+      "risk-compliance": "Risk & Compliance",
+      "output": "Output"
+    },
+    "byline": "By Faheem",
+    "run": "Run",
+    "runsInArabic": "Runs in Arabic",
+    "roadmap": "MVP roadmap",
+    "roadmapHint": "Full automation ships on the MVP roadmap."
   }
 }
