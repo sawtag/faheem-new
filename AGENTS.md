@@ -36,7 +36,9 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 
 **Fonts (locked, via next/font — no runtime CDN):** UI/body = **Inter** (EN) + **IBM Plex Sans Arabic** (AR; chosen over Tajawal — enterprise register, harmonizes with Inter). Hero serif (omnibox greeting ONLY) = **Lora** (EN) + **Amiri** (AR). Financial tables/figures always render digits in Inter with `font-variant-numeric: tabular-nums` (token/utility in globals.css).
 
-**Assets policy:** vendor-first (`public/` or inline SVG) — it's nearly free and, with cached mode, makes the demo survive total network loss (venue will have wifi/hotspots, so a CDN is *acceptable* when vendoring is genuinely awkward — but don't reach for one out of laziness; the only thing that should truly need the network is a live Anthropic call). Faheem logo = clean inline SVG recreated/enhanced from the Figma logo system (bars+arrow glyph is animatable — use it). Real-company logos (Jahez) may be fetched once and vendored; fictional companies and Saudi connectors without clean SVGs (Argaam, SAHMK, Tadawul, Alinma) get consistent monogram tiles (initial + tint from the theme); international connectors may use `simple-icons` glyphs. People: no photos — initials-avatar tiles (Ali "A" navy tile; leadership grid = initials + name + role + source link).
+**Assets policy:** vendor-first (`public/` or SVG components) — it's nearly free and, with cached mode, makes the demo survive total network loss (venue will have wifi/hotspots, so a CDN is *acceptable* when vendoring is genuinely awkward — but don't reach for one out of laziness; the only thing that should truly need the network is a live Anthropic call). Faheem logo = **one React component** (`components/ui/logo.tsx`, SVG recreated/enhanced from the Figma logo system) — a component rather than a static file so the bars+arrow glyph can animate and inherit theme colors via `currentColor`/`var(--color-*)`. Real-company logos (Jahez) may be fetched once and vendored; fictional companies and Saudi connectors without clean SVGs (Argaam, SAHMK, Tadawul, Alinma) get consistent monogram tiles (initial + tint from the theme); international connectors may use `simple-icons` glyphs. People: no photos — initials-avatar tiles (Ali "A" navy tile; leadership grid = initials + name + role + source link).
+
+**Asset/icon references — no scattered literals, no empty indirection:** asset paths and entity icon choices are data, so they live WITH their data — `deals.json` carries each company's logo path, the agent registry carries each agent's lucide icon name, the connectors module carries connector tiles. Never write a `public/...` path or pick an entity's icon inline in JSX. Equally: do NOT create global `constants/images.ts` / `icons.ts` re-export layers (rule 6 — indirection that varies nothing); import lucide icons directly where used.
 
 ## Hard rules
 
@@ -52,6 +54,8 @@ npm run verify           # check + test + validate:data (the pre-commit gate)
 10. **Mock boundaries**: auth is fake (any username/password logs in — cookie `faheem_session`, no real security), connectors are fake (UI-only OAuth modals), Anthropic API is REAL (via `lib/ai/client.ts` only — injectable for tests; never instantiate the SDK elsewhere; never call it in unit tests).
 
 ## Design bar (the FE must impress)
+
+This is intended as a DEMO FOR JUDGES. The design is very important and must impress the judges.
 
 - **Use and EXTEND the Figma branding — explicitly licensed.** The Faheem UI Kit (`context/branding/figma-exports/`) is the floor, not the ceiling: enhance and edit as you see fit — tint ramps, elevation scale, refined logo geometry, motion, new component styles the kit never defined. Two constraints only: every extension lands as a token in `app/globals.css` (rule 4), and the result must still read as the same brand (navy + emerald, quiet finance-terminal confidence).
 
