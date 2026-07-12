@@ -24,11 +24,11 @@ Escalate one notch only after two failed acceptance rounds. Review every diff; r
 
 ## Environment facts (verified 2026-07-12)
 
-- Node 26 + bun installed; network fine; all 6 Jahez corpus URLs return 200 (sizes in spec §6).
+- Node 26 + npm installed; network fine; all 6 Jahez corpus URLs return 200 (sizes in spec §6).
 - `.env` has `ANTHROPIC_API_KEY` — **but the org is on the free Evaluation plan.** Zero live API calls until needed; the automated test suite makes none by design. **Before P5 (Files-API upload, pre-warm, golden recording) the user MUST upgrade billing** (Console → Settings → Billing, ~$25–50 credits). If not upgraded when you reach P5, finish everything else and tell the user exactly what's blocked.
 - **Verify before T1.1**: `gs` (ghostscript), `pdfinfo`/`pdftotext` (poppler), and `soffice` (LibreOffice, for artifact open-tests) exist on PATH — if missing, ask the user to install (Arch: `pacman -S ghostscript poppler libreoffice-fresh`).
 - Repo is docs-only right now (no app code). Build at repo root. Commit early and often (conventional commits, `Co-Authored-By: Claude` per your defaults).
-- **Git model**: remote `github.com/sawtag/faheem-new` (public — mind landmine #1 doubly: nothing Rogo-named in code/commits). `master` = demo-stable, `dev` = integration (you start here). Work each phase/task on a feature branch off `dev` (`feat/t2-engine`, `feat/t3-screens`…), PR into `dev` (use `gh`), and merge `dev → master` only at phase gates when `bun run verify` + e2e are green. `demo-rc1` tag lands on master.
+- **Git model**: remote `github.com/sawtag/faheem-new` (public — mind landmine #1 doubly: nothing Rogo-named in code/commits). `master` = demo-stable, `dev` = integration (you start here). Work each phase/task on a feature branch off `dev` (`feat/t2-engine`, `feat/t3-screens`…), PR into `dev` (use `gh`), and merge `dev → master` only at phase gates when `npm run verify` + e2e are green. `demo-rc1` tag lands on master.
 - Figma MCP connector is authenticated if you need re-exports (file `ZHECLOgl3D76BXygcx5Nyf`); tokens are already extracted into the spec — don't re-derive them.
 
 ## Landmines (each one has burned a demo before)
@@ -46,7 +46,7 @@ Escalate one notch only after two failed acceptance rounds. Review every diff; r
 
 ## Definition of done
 
-All plan checkboxes done; `bun run verify` + both e2e viewports green twice; goldens recorded for every scripted beat (EN + the Arabic Shariah beat) and fable-reviewed word-by-word; artifacts open in LibreOffice with source comments intact; audit trail grows during the golden path; full cached run survives a wifi kill; dress rehearsal (production build) timed against spec §3 with notes in `docs/rehearsal-notes.md`; tag `demo-rc1`.
+All plan checkboxes done; `npm run verify` + both e2e viewports green twice; goldens recorded for every scripted beat (EN + the Arabic Shariah beat) and fable-reviewed word-by-word; artifacts open in LibreOffice with source comments intact; audit trail grows during the golden path; full cached run survives a wifi kill; dress rehearsal (production build) timed against spec §3 with notes in `docs/rehearsal-notes.md`; tag `demo-rc1`.
 
 ## Open items owned by the user (do not block on them silently — remind when relevant)
 

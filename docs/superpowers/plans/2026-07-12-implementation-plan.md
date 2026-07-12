@@ -29,7 +29,7 @@
 - **Workflow tool** for fan-outs (P1 data prep, P3 screens, P6 review) — it is the only place per-task `effort` is pinned. `pipeline()` by default; `parallel()` only where a barrier is genuinely needed.
 - **Single `Agent` calls** for one-off scoped tasks (P0 scaffold, P4 builders).
 - **Every brief is self-contained**: task card from this plan + pointer to AGENTS.md + the exact spec/CATALOG sections + the contracts it consumes. Agents return: summary, files touched, test output (verbatim), open questions. **No file dumps into fable's context.**
-- **Two-stage acceptance** per task: (1) agent's own `bun run verify` green + task acceptance tests pass, (2) fable reviews the diff (and the rendered screen for UI tasks) before the task is marked done.
+- **Two-stage acceptance** per task: (1) agent's own `npm run verify` green + task acceptance tests pass, (2) fable reviews the diff (and the rendered screen for UI tasks) before the task is marked done.
 - **Escalation rule**: start at the listed tier/effort; if an agent fails acceptance twice, fable escalates one notch (sonnet→opus or effort+1) with a sharper brief — never more than one notch without re-scoping.
 - **File ownership is exclusive** per task (listed on each card). Shared files (`lib/types.ts`, `app/globals.css`, `components/ui/*`, `messages/*.json`) are fable-owned after P0; agents request additions via their result summary, fable applies them. Exception: `messages/*.json` — agents append **namespaced keys only** (`"login.*"`, `"pipeline.*"`) in their own task; conflicts are structurally impossible if namespaces are respected.
 
@@ -162,7 +162,7 @@ Each entry: `{ id: AgentId, name: {en, ar}, stage: 1|2|3, methodsKey: string /* 
 #### T0.1 Contracts + scaffold — **owner: fable (contracts) → sonnet/low (scaffold)**
 - [ ] Fable writes `lib/types.ts` (§3 above), approves final dep list.
 - [ ] Sonnet scaffolds: `create-next-app` (TS, App Router, Tailwind v4) at repo root; install locked deps; configure next-intl (en/ar routing-less, cookie-based locale + `dir` on `<html>`); next/font (Inter, Lora, IBM Plex Sans Arabic, Amiri); vitest (+jsdom, testing-library), Playwright (chromium only, `webServer` with `FAHEEM_MODE=cached`); eslint (+ rule forbidding physical direction classes: custom regex via `no-restricted-syntax` on `ml-|mr-|pl-|pr-` in className literals), prettier (+tailwind plugin); `package.json` scripts exactly as AGENTS.md; `.env.example`; favicon (Faheem glyph) + metadata (`Faheem — Lunar Investments`, both locales).
-- **Acceptance:** `bun run verify` green on fresh clone; `bun run dev` serves a placeholder page in en with `dir="ltr"` and toggles to ar/`dir="rtl"` via cookie; sample unit test + sample e2e (`e2e/smoke.spec.ts`: page loads, no console errors) pass.
+- **Acceptance:** `npm run verify` green on fresh clone; `npm run dev` serves a placeholder page in en with `dir="ltr"` and toggles to ar/`dir="rtl"` via cookie; sample unit test + sample e2e (`e2e/smoke.spec.ts`: page loads, no console errors) pass.
 - [ ] Commit `chore: scaffold`.
 
 #### T0.2 Theme + primitives (design foundation) — **owner: opus/high** · gate A
@@ -172,7 +172,7 @@ Each entry: `{ id: AgentId, name: {en, ar}, stage: 1|2|3, methodsKey: string /* 
 - [ ] **Faheem logo as inline SVG** — recreate/enhance from `context/branding/figma-exports/logo-system.png` (green ascending bars + arrow, navy wordmark, AR/EN lockups, light/dark variants): crisp at all sizes, and the bars get a subtle staggered-rise animation used on the login screen and as the chat "thinking" affordance. Monogram-tile component (`components/ui/logo-tile.tsx`) for fictional companies/connectors per AGENTS.md assets policy.
 - [ ] Primitives (Radix-wrapped where interactive, cva variants, RTL-safe): Button (primary/secondary/outline/ghost + loading), Card, Badge/Pill (status variants incl. pass/warn/fail), Input (+ leading icon), Tabs, Dialog, DropdownMenu, Toggle, Tooltip, Skeleton (shimmer), Stepper (Figma kit 08), Avatar.
 - [ ] Kitchen-sink page renders all primitives in both locales.
-- **Acceptance:** component tests — Button variants render + disabled blocks click; Dialog traps focus + closes on esc; Tabs keyboard-navigable; Toggle reflects state (4–6 focused tests, no snapshots). `bun run verify` green. **Gate A: fable visually reviews kitchen-sink (en + ar) against Figma kit before P3 may start.**
+- **Acceptance:** component tests — Button variants render + disabled blocks click; Dialog traps focus + closes on esc; Tabs keyboard-navigable; Toggle reflects state (4–6 focused tests, no snapshots). `npm run verify` green. **Gate A: fable visually reviews kitchen-sink (en + ar) against Figma kit before P3 may start.**
 - [ ] Commit `feat: theme + ui primitives`.
 
 #### T0.3 UI art direction (briefs for sonnet-built screens) — **owner: opus/high** (parallel with T0.2)
@@ -235,7 +235,7 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 
 ### P3 — Screens fan-out (Workflow, 6 concurrent agents; after gates A + C(b) for chat-dependent screens; T0.3 briefs required for sonnet cards)
 
-Common acceptance for every P3 card: bilingual messages (own namespace), RTL-clean (Playwright asserts `dir` + no horizontal overflow), primitives only, no new deps, component tests for logic, one e2e smoke nav spec, `bun run verify` green, fable design-QA (gate D applies to 3.2/3.3/3.4 strictly; 3.5/3.6 lighter). **Demo-critical screens (3.2, 3.3, 3.4) are opus-implemented; sonnet screens follow their `docs/design-briefs.md` section verbatim — no visual freestyling.**
+Common acceptance for every P3 card: bilingual messages (own namespace), RTL-clean (Playwright asserts `dir` + no horizontal overflow), primitives only, no new deps, component tests for logic, one e2e smoke nav spec, `npm run verify` green, fable design-QA (gate D applies to 3.2/3.3/3.4 strictly; 3.5/3.6 lighter). **Demo-critical screens (3.2, 3.3, 3.4) are opus-implemented; sonnet screens follow their `docs/design-briefs.md` section verbatim — no visual freestyling.**
 
 #### T3.1 Mock login — **sonnet/medium** (build from T0.3 brief)
 - Files: `app/login/page.tsx`, `app/api/auth/route.ts`, `middleware.ts`, `e2e/login.spec.ts`.
@@ -303,7 +303,7 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 - [ ] Design polish pass — **opus/high** driven by fable's gate-D/F notes (spacing, motion timing, empty states, hover details) across ALL screens, including tightening the sonnet-built ones to the briefs.
 - [ ] Dress rehearsal: fable executes the §3 run of show click-by-click (cached, then live), stopwatch per beat, records deviations → `docs/rehearsal-notes.md`. **Runs against the PRODUCTION build (`next build && next start`), with wifi disabled once, and confirms: pdfjs worker loads offline, LibreOffice/Excel opens the generated workbook on the demo machine, `⌘.` mode overlay works, audit trail grew during the run.**
 - [ ] Optional (fable, if time): draft **Arabic-only slide copy** for the §3 slide beats (problem / category+workflow / close) → `docs/slide-copy.md` — slides are Arabic like the Amad initial pitch deck (final pitch deck generated later, separate task); terminology must match `context/pitch-deck-notes.md` vocabulary AND `messages/ar.json` (one Arabic register across slides + product).
-- [ ] **Backup**: copy the built app + data + node_modules (or a `bun run build` tarball) to a USB / second laptop; `demo-rc1` tag pushed.
+- [ ] **Backup**: copy the built app + data + node_modules (or a `npm run build` tarball) to a USB / second laptop; `demo-rc1` tag pushed.
 - [ ] Final commit + tag `demo-rc1`.
 
 ---
@@ -312,16 +312,16 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 
 | Layer | Tool | What | When it runs |
 |---|---|---|---|
-| Static | tsc, eslint (incl. no-physical-direction rule), prettier | types, lint, format | `bun run check`, every task |
-| Unit | vitest | cache keys/replay pacing, mode fallback, corpus filtering & block building, SSE transform (citation markers), agent registry, deals/manifest/model-inputs zod schemas, xlsx/docx/pptx read-back assertions, scorecard + hurdle-delta logic | `bun run test`, every task |
-| API integration | vitest (route handlers invoked directly) | /api/chat SSE wire format in cached mode, error paths, /api/improve (mocked haiku), /api/generate outputs, /api/auth cookie, /api/documents streaming | `bun run test` |
-| Component | vitest + testing-library | citation chip flow, @/# typeahead, Improve/Undo, source-picker toggles, Dialog/Tabs a11y, stepper | `bun run test` |
-| E2E | Playwright (chromium, `FAHEEM_MODE=cached`) | per-screen smokes + `golden-path.spec.ts` + RTL sweep w/ per-route screenshots | `bun run test:e2e`, gates D/F |
-| Data QA | `scripts/validate-data.ts` (zod) + fable spot-check | schemas, source-page existence, figure verification (gate B), Darb/Thara internal consistency | `bun run validate:data` |
+| Static | tsc, eslint (incl. no-physical-direction rule), prettier | types, lint, format | `npm run check`, every task |
+| Unit | vitest | cache keys/replay pacing, mode fallback, corpus filtering & block building, SSE transform (citation markers), agent registry, deals/manifest/model-inputs zod schemas, xlsx/docx/pptx read-back assertions, scorecard + hurdle-delta logic | `npm run test`, every task |
+| API integration | vitest (route handlers invoked directly) | /api/chat SSE wire format in cached mode, error paths, /api/improve (mocked haiku), /api/generate outputs, /api/auth cookie, /api/documents streaming | `npm run test` |
+| Component | vitest + testing-library | citation chip flow, @/# typeahead, Improve/Undo, source-picker toggles, Dialog/Tabs a11y, stepper | `npm run test` |
+| E2E | Playwright (chromium, `FAHEEM_MODE=cached`) | per-screen smokes + `golden-path.spec.ts` + RTL sweep w/ per-route screenshots | `npm run test:e2e`, gates D/F |
+| Data QA | `scripts/validate-data.ts` (zod) + fable spot-check | schemas, source-page existence, figure verification (gate B), Darb/Thara internal consistency | `npm run validate:data` |
 | Live smoke | `scripts/record-goldens.ts` + manual | real API: citations arrive, pages correct, latency measured | P5 only (post-billing) |
 | Human | fable gates A–G + dress rehearsal | design bar, finance correctness, run-of-show timing | per phase |
 
-**Deliberate exclusions (less-LoC):** no snapshot tests, no visual-pixel-diff CI (screenshot grids reviewed by fable instead), no unit tests for pure-presentation components, no live-API calls anywhere in the automated suite, no GitHub Actions (local `bun run verify` is the gate — solo repo, one build day).
+**Deliberate exclusions (less-LoC):** no snapshot tests, no visual-pixel-diff CI (screenshot grids reviewed by fable instead), no unit tests for pure-presentation components, no live-API calls anywhere in the automated suite, no GitHub Actions (local `npm run verify` is the gate — solo repo, one build day).
 
 ---
 

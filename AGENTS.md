@@ -9,13 +9,13 @@ Read this before touching anything. It is the contract for every agent working i
 ## Commands
 
 ```bash
-bun install              # deps (bun for installs; node runs everything)
-bun run dev              # next dev
-bun run check            # tsc --noEmit && eslint . && prettier --check .
-bun run test             # vitest run (unit + integration)
-bun run test:e2e         # playwright (starts app with FAHEEM_MODE=cached)
-bun run validate:data    # zod-validate corpus manifest, deals.json, model-inputs.json
-bun run verify           # check + test + validate:data (the pre-commit gate)
+npm install              # deps (npm + Node — deliberately boring; no bun anywhere)
+npm run dev              # next dev
+npm run check            # tsc --noEmit && eslint . && prettier --check .
+npm run test             # vitest run (unit + integration)
+npm run test:e2e         # playwright (starts app with FAHEEM_MODE=cached)
+npm run validate:data    # zod-validate corpus manifest, deals.json, model-inputs.json
+npm run verify           # check + test + validate:data (the pre-commit gate)
 ```
 
 ## Stack (locked — no new dependencies without fable's approval)
@@ -35,7 +35,7 @@ Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/glob
 5. **Never invent a financial number.** Displayed figures come from `data/model-inputs.json` or `data/deals.json` (each carries `{value, sourceDoc, page}`). AI answers are grounded by API-enforced citations. If a number has no source, it does not ship.
 6. **Less LoC of good code.** No abstractions for single call sites, no config for things that don't vary, no error handling for impossible states, no `utils.ts` graveyards. Prefer deleting to wrapping. Server components by default; `"use client"` only where interaction demands it.
 7. **Stay in your lane.** Each task card lists the files you own. Do not edit shared files (`lib/types.ts`, `app/globals.css`, primitives in `components/ui/`) — request changes through fable instead.
-8. **Tests land with the code.** A task is done when `bun run verify` is green and your task's acceptance tests pass. Component tests for logic (not snapshots); e2e specs live in `e2e/`.
+8. **Tests land with the code.** A task is done when `npm run verify` is green and your task's acceptance tests pass. Component tests for logic (not snapshots); e2e specs live in `e2e/`.
 9. **Commits**: conventional (`feat:`, `fix:`, `test:`, `chore:`), small, after each task's acceptance passes.
 10. **Mock boundaries**: auth is fake (any username/password logs in — cookie `faheem_session`, no real security), connectors are fake (UI-only OAuth modals), Anthropic API is REAL (via `lib/ai/client.ts` only — injectable for tests; never instantiate the SDK elsewhere; never call it in unit tests).
 
@@ -51,6 +51,6 @@ Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/glob
 ## Sensitive facts (do not violate)
 
 - Never mention "Rogo" in any user-visible string, code comment, or commit message (internal docs only).
-- The demo client is **Lunar Investments** (no "CMA-licensed"/"Shariah-compliant" labels); analyst persona **Arwa**; companies: Jahez (real), Masar / Thara Pay / Aqar Development (fictional).
+- The demo client is **Lunar Investments** (no "CMA-licensed"/"Shariah-compliant" labels); analyst persona **Arwa**; companies: Jahez (real), Darb / Thara Pay / Aqar Development (fictional).
 - `ANTHROPIC_API_KEY` lives in `.env` (gitignored). Never log it, never commit it, and it must never reach the client bundle — the SDK is imported ONLY in server code (`lib/ai/client.ts`, API routes). No `NEXT_PUBLIC_` secrets, ever.
 - Demo privacy posture (product claims shown in UI copy are fine; don't over-claim): "client data is never used for model training", per-workspace isolation, full audit trail. Do NOT claim SOC2/ISO/encryption certifications anywhere — say "enterprise controls on the MVP roadmap" instead.
