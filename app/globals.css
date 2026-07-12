@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/*
+ * Faheem theme — THE single source of visual truth (AGENTS.md rule 4).
+ * Fable-owned. Agents: request additions via task summaries; T0.2 may APPEND
+ * extension tokens (never modify existing values). No hex/shadow/duration
+ * literals anywhere in app/** or components/** — lint-enforced.
+ *
+ * Values from the Faheem UI Kit (spec §7), extended with tint ramps.
+ * Light mode ONLY (AGENTS.md rule 1).
+ */
+@theme {
+  /* ── fonts (wired to next/font variables set in app/layout.tsx) ──
+   * One stack serves both languages: Inter carries Latin + Western digits,
+   * Arabic glyphs fall through to IBM Plex Sans Arabic. Serif = hero only. */
+  --font-sans:
+    var(--font-inter), var(--font-plex-arabic), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-serif: var(--font-lora), var(--font-amiri), Georgia, serif;
+
+  /* ── brand navy ramp (anchor #061F52 = navy-900 = --color-navy) ── */
+  --color-navy-50: #f4f7fc;
+  --color-navy-100: #e8eef8;
+  --color-navy-200: #cbd8ee;
+  --color-navy-300: #a3b7dd;
+  --color-navy-400: #7590c6;
+  --color-navy-500: #4a66a3;
+  --color-navy-600: #2e4880;
+  --color-navy-700: #1d3568;
+  --color-navy-800: #12285c;
+  --color-navy-900: #061f52;
+  --color-navy-950: #041437;
+  --color-navy: #061f52;
+
+  /* ── emerald accent ramp (anchor #07966F = accent-500 = --color-accent);
+   *    accent-50 is the mint for citation chips / verified badges ── */
+  --color-accent-50: #e6f7f1;
+  --color-accent-100: #ccefe3;
+  --color-accent-200: #99dfc8;
+  --color-accent-300: #5cc9a8;
+  --color-accent-400: #2baf8a;
+  --color-accent-500: #07966f;
+  --color-accent-600: #067e5e;
+  --color-accent-700: #05664d;
+  --color-accent-800: #044e3b;
+  --color-accent-900: #03402f;
+  --color-accent-950: #022a20;
+  --color-accent: #07966f;
+
+  /* ── surfaces & text ── */
+  --color-bg: #fbfcfe;
+  --color-card: #ffffff;
+  --color-border: #e3e9f1;
+  --color-text: #101d3a;
+  --color-text-secondary: #314160;
+
+  /* ── status ── */
+  --color-warning: #f59e0b;
+  --color-warning-50: #fef3e2;
+  --color-danger: #ef233c;
+  --color-danger-50: #fdecee;
+
+  /* ── radii (kit: buttons 8 / cards 12 / pills 20; rounded-full for chips) ── */
+  --radius-btn: 8px;
+  --radius-card: 12px;
+  --radius-pill: 20px;
+
+  /* ── elevation (quiet finance-terminal: hairlines first, shadows sparingly) ── */
+  --shadow-card: 0 10px 24px rgba(8, 33, 82, 0.03);
+  --shadow-hover:
+    0 12px 32px rgba(8, 33, 82, 0.08), 0 2px 6px rgba(8, 33, 82, 0.05);
+  --shadow-modal:
+    0 24px 64px rgba(8, 33, 82, 0.18), 0 4px 12px rgba(8, 33, 82, 0.08);
+
+  /* ── motion (the entire motion language quantizes to these) ── */
+  --duration-fast: 150ms;
+  --duration: 250ms;
+  --duration-slow: 400ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── type scale (spec §7; weights applied per-use: 800 display, 400–600 body) ── */
+  --text-h1: 1.875rem;
+  --text-h1--line-height: 1.2;
+  --text-h2: 1.375rem;
+  --text-h2--line-height: 1.3;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.4;
+}
+
+/* Financial figures: digits always Inter + tabular so columns never shift.
+ * (Western digits are guaranteed by the codepoints; Inter leads the stack.) */
+@utility financial {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-accent-100);
+  color: var(--color-navy);
+}

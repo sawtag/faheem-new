@@ -209,6 +209,8 @@ export const ArtifactMetaSchema = z.object({
   /** public URL path, e.g. "/artifacts/jahez-valuation-model.xlsx" */
   file: z.string(),
   createdAt: z.string(),
+  /** distinct cited source docs feeding the artifact — drives the "Verified · N sources" caption */
+  sources: z.number().int().nonnegative().optional(),
 });
 export type ArtifactMeta = z.infer<typeof ArtifactMetaSchema>;
 
@@ -241,4 +243,6 @@ export interface AgentInfo {
   /** system-prompt flavor selector used by lib/ai/prompts.ts */
   systemFlavor: string;
   defaultDocIds: string[];
+  /** lucide icon name — icon choice is registry data, never inline in JSX (AGENTS.md assets policy) */
+  icon: string;
 }

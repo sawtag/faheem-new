@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+build
+coverage
+test-results
+playwright-report
+blob-report
+package-lock.json
+data/corpus
+public/artifacts
+
+# hand-authored project docs — not code, not prettier's job (AGENTS.md rule 7: stay in your lane)
+AGENTS.md
+HANDOVER.md
+docs/
+context/
