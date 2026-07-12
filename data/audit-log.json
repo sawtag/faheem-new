@@ -1,0 +1,200 @@
+[
+  {
+    "ts": "2026-07-05T08:14:00Z",
+    "user": "Ali",
+    "context": "firm",
+    "action": "question",
+    "question": "What sectors and stages are inside Lunar's current mandate?",
+    "citationCount": 5
+  },
+  {
+    "ts": "2026-07-05T09:02:00Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Summarize Darb's mandate-fit scorecard and flag any concentration risk.",
+    "citationCount": 6
+  },
+  {
+    "ts": "2026-07-05T10:41:00Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "What is Darb's total addressable market in Saudi logistics SaaS?",
+    "citationCount": 4
+  },
+  {
+    "ts": "2026-07-05T13:27:00Z",
+    "user": "Ali",
+    "context": "firm",
+    "action": "question",
+    "question": "Explain the AAOIFI methodology Faheem uses for Shariah pre-screening.",
+    "citationCount": 5
+  },
+  {
+    "ts": "2026-07-06T09:18:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "What was Jahez's GMV growth in FY2025 versus FY2024?",
+    "citationCount": 8
+  },
+  {
+    "ts": "2026-07-06T11:05:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Break down Jahez's unit economics — contribution margin per order.",
+    "citationCount": 9
+  },
+  {
+    "ts": "2026-07-06T14:52:00Z",
+    "user": "Ali",
+    "context": "workspace:thara-pay",
+    "action": "question",
+    "question": "What is Thara Pay's implied IRR versus our 15% hurdle?",
+    "citationCount": 7
+  },
+  {
+    "ts": "2026-07-06T16:20:00Z",
+    "user": "Ali",
+    "context": "firm",
+    "action": "question",
+    "question": "List the data sources Faheem cites for public market screening.",
+    "citationCount": 4
+  },
+  {
+    "ts": "2026-07-07T08:47:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Run a WACC build for Jahez using CAPM inputs.",
+    "citationCount": 10
+  },
+  {
+    "ts": "2026-07-07T10:15:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-valuation-model.xlsx",
+    "citationCount": 12
+  },
+  {
+    "ts": "2026-07-07T13:33:00Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Why did the concentration criterion flag a warning for Darb?",
+    "citationCount": 6
+  },
+  {
+    "ts": "2026-07-07T15:09:00Z",
+    "user": "Ali",
+    "context": "workspace:thara-pay",
+    "action": "question",
+    "question": "What is Thara Pay's Shariah screening status and basis?",
+    "citationCount": 5
+  },
+  {
+    "ts": "2026-07-08T08:05:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "stage-advance"
+  },
+  {
+    "ts": "2026-07-08T09:40:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Compare Jahez's EV/EBITDA multiple against quick-commerce peers.",
+    "citationCount": 11
+  },
+  {
+    "ts": "2026-07-08T12:22:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "What does the FY2025 earnings call say about order frequency trends?",
+    "citationCount": 9
+  },
+  {
+    "ts": "2026-07-08T15:47:00Z",
+    "user": "Ali",
+    "context": "firm",
+    "action": "question",
+    "question": "What is Lunar's maximum single-name concentration limit?",
+    "citationCount": 4
+  },
+  {
+    "ts": "2026-07-09T09:11:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "artifact",
+    "artifact": "jahez-ic-memo.docx",
+    "citationCount": 13
+  },
+  {
+    "ts": "2026-07-09T11:38:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Run a two-way sensitivity on WACC and terminal growth for Jahez.",
+    "citationCount": 10
+  },
+  {
+    "ts": "2026-07-09T14:02:00Z",
+    "user": "Ali",
+    "context": "workspace:thara-pay",
+    "action": "question",
+    "question": "What scenario-weighted expected return does the risk model show for Thara Pay?",
+    "citationCount": 8
+  },
+  {
+    "ts": "2026-07-10T08:56:00Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Draft a one-line pitch-meeting recommendation for Darb.",
+    "citationCount": 6
+  },
+  {
+    "ts": "2026-07-10T10:30:00Z",
+    "user": "Ali",
+    "context": "firm",
+    "action": "question",
+    "question": "Summarize the holding-period and liquidity terms in the IC Charter.",
+    "citationCount": 5
+  },
+  {
+    "ts": "2026-07-10T13:15:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "What sanctions or conflicts checks has compliance run on Jahez?",
+    "citationCount": 7
+  },
+  {
+    "ts": "2026-07-11T09:22:00Z",
+    "user": "Ali",
+    "context": "workspace:thara-pay",
+    "action": "artifact",
+    "artifact": "thara-pay-board-deck.pptx",
+    "citationCount": 14
+  },
+  {
+    "ts": "2026-07-11T11:47:00Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "How does Q1 2026 GMV compare to the FY2025 quarterly run-rate?",
+    "citationCount": 9
+  },
+  {
+    "ts": "2026-07-12T08:30:00Z",
+    "user": "Ali",
+    "context": "firm",
+    "action": "question",
+    "question": "Which specialist agents contribute to an IC memo end to end?",
+    "citationCount": 5
+  }
+]
