@@ -149,4 +149,20 @@ test.describe("Jahez workspace", () => {
       page.getByText(/Q4 2025 Earnings Results · p\.4/).first(),
     ).toBeVisible();
   });
+
+  test("overview shows the analytics card with rendered bars", async ({
+    page,
+  }) => {
+    await page.goto("/deals/jahez");
+    const card = page.getByRole("region", { name: /Financial performance/i });
+    await expect(card).toBeVisible();
+    // panel ① draws 3 periods × 2 series = 6 <rect> bars (svg rect count > 5)
+    await expect
+      .poll(() => card.locator("svg rect").count())
+      .toBeGreaterThan(5);
+    // panel footers carry the source (rule 5: every number is sourced)
+    await expect(
+      card.getByText(/Q4 2025 Earnings Results/).first(),
+    ).toBeVisible();
+  });
 });
