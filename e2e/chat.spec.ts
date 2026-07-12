@@ -21,6 +21,16 @@ function readAudit(): Array<{ question?: string; context?: string }> {
   }
 }
 
+test.beforeEach(async ({ context, baseURL }) => {
+  await context.addCookies([
+    {
+      name: "faheem_session",
+      value: "1",
+      url: baseURL ?? "http://localhost:3000",
+    },
+  ]);
+});
+
 test("cached stream → citation → PDF → sources, offline & audited", async ({
   page,
 }) => {
