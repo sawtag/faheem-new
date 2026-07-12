@@ -282,5 +282,49 @@
       "loading": "Loading document…",
       "error": "Couldn't load this document."
     }
+  },
+  "home": {
+    "greeting": "What can Faheem do for you today, <name>Ali</name>?",
+    "placeholders": {
+      "p1": "Break down Jahez's FY2025 unit economics — GMV, take rate and AOV…",
+      "p2": "Compare Jahez to Talabat, Delivery Hero and DoorDash on EV/GMV…",
+      "p3": "Draft an IC memo for Jahez against our 15% IRR hurdle…",
+      "p4": "Stress-test Jahez's valuation — WACC against terminal growth…"
+    },
+    "pills": {
+      "label": "Quick actions",
+      "dcf": {
+        "label": "Run DCF",
+        "prompt": "Build a DCF valuation for Jahez — FCFF with a WACC build-up and a Gordon terminal value — and show the implied equity value per share."
+      },
+      "comps": {
+        "label": "Comps Analysis",
+        "prompt": "Value Jahez against its quick-commerce peers — Talabat, Delivery Hero, DoorDash and Deliveroo — on EV/Revenue, EV/EBITDA and EV/GMV, and give me the implied valuation range."
+      },
+      "icMemo": {
+        "label": "IC Memo",
+        "prompt": "Draft an Investment Committee memo for Jahez — thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR hurdle."
+      },
+      "riskScorecard": {
+        "label": "Risk Scorecard",
+        "prompt": "Build a quantified risk scorecard for Jahez — probability × impact across market, margin, concentration and regulatory risks — and flag any mandate breaches."
+      },
+      "sensitivity": {
+        "label": "Sensitivity Analysis",
+        "prompt": "Run a two-way sensitivity on Jahez's valuation — WACC against terminal growth, then take rate against GMV growth — and show where the fair value holds."
+      },
+      "shariah": {
+        "label": "Shariah Screen",
+        "prompt": "Run an AAOIFI Shariah screen on Jahez — debt-to-market-cap, non-permissible income and liquidity ratios — with a clear pass or fail on each threshold."
+      }
+    },
+    "recent": {
+      "title": "Recent workspaces"
+    },
+    "stages": {
+      "screening": "Screening",
+      "analysis": "Deep Analysis",
+      "ic-review": "IC Review"
+    }
   }
 }
