@@ -191,7 +191,8 @@
     "path": "data/corpus/gastat-macro-pack.pdf",
     "pages": 6,
     "sizeMB": 0.0745,
-    "type": "public"
+    "type": "public",
+    "fileId": "file_011CcxvTRmbMUoC1yWXRrAAZ"
   },
   {
     "id": "jahez-ar-press",
@@ -204,6 +205,7 @@
     "sizeMB": 0.6224,
     "type": "public",
     "workspace": "jahez",
-    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2025/11/Q3-2025-Press-Release-JGroup-Arabic.pdf"
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2025/11/Q3-2025-Press-Release-JGroup-Arabic.pdf",
+    "fileId": "file_011CcxvTXPB88QaEK5LEy8Zk"
   }
 ]
