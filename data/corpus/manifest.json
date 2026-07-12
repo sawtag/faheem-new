@@ -1,0 +1,159 @@
+[
+  {
+    "id": "fy24-ar",
+    "title": {
+      "en": "Annual Report 2024",
+      "ar": "التقرير السنوي 2024"
+    },
+    "path": "data/corpus/fy24-ar.pdf",
+    "pages": 114,
+    "sizeMB": 3.34,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "https://jahezgroup.com/jahez-ar/2024/assets/img/pdfs/Jahez-Annual%20Report%202024-English.pdf"
+  },
+  {
+    "id": "fy25-earnings-call",
+    "title": {
+      "en": "FY2025 Earnings Call Presentation",
+      "ar": "عرض مكالمة أرباح 2025"
+    },
+    "path": "data/corpus/fy25-earnings-call.pdf",
+    "pages": 28,
+    "sizeMB": 2.61,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/04/FY2025-Earnings-Call-PPT.pdf"
+  },
+  {
+    "id": "fy25-er",
+    "title": {
+      "en": "Q4 2025 Earnings Results",
+      "ar": "إعلان نتائج السنة المالية 2025"
+    },
+    "path": "data/corpus/fy25-er.pdf",
+    "pages": 15,
+    "sizeMB": 2.98,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/04/Jahez-Q4-2025_ER-En.pdf"
+  },
+  {
+    "id": "q1-26-fs",
+    "title": {
+      "en": "Q1 2026 Financial Statements",
+      "ar": "القوائم المالية الأولية للربع الأول 2026"
+    },
+    "path": "data/corpus/q1-26-fs.pdf",
+    "pages": 33,
+    "sizeMB": 1.85,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-ENG-FULL-FS-with-review-report.pdf"
+  },
+  {
+    "id": "q1-26-earnings-call",
+    "title": {
+      "en": "Q1 2026 Earnings Call Presentation",
+      "ar": "عرض مكالمة أرباح الربع الأول 2026"
+    },
+    "path": "data/corpus/q1-26-earnings-call.pdf",
+    "pages": 27,
+    "sizeMB": 4.83,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2026/05/Jahez-Q1-2026-Earnings-Call-V8.pdf"
+  },
+  {
+    "id": "industry-news-pack",
+    "title": {
+      "en": "Industry & News Pack — Saudi Quick-Commerce",
+      "ar": "ملف الصناعة والأخبار — التجارة السريعة السعودية"
+    },
+    "path": "data/corpus/industry-news-pack.pdf",
+    "pages": 5,
+    "sizeMB": 0.082,
+    "type": "public"
+  },
+  {
+    "id": "market-data-comps",
+    "title": {
+      "en": "Market Data & Comparables Snapshot",
+      "ar": "لقطة بيانات السوق والشركات المماثلة"
+    },
+    "path": "data/corpus/market-data-comps.pdf",
+    "pages": 4,
+    "sizeMB": 0.079,
+    "type": "public"
+  },
+  {
+    "id": "lunar-ic-charter",
+    "title": {
+      "en": "Lunar IC Charter & Investment Mandate",
+      "ar": "ميثاق لجنة الاستثمار والتفويض الاستثماري - لونار"
+    },
+    "path": "data/corpus/lunar-ic-charter.pdf",
+    "pages": 6,
+    "sizeMB": 0.09,
+    "type": "lunar"
+  },
+  {
+    "id": "lunar-risk-appetite",
+    "title": {
+      "en": "Lunar Risk Appetite Statement",
+      "ar": "بيان قابلية تحمل المخاطر - لونار"
+    },
+    "path": "data/corpus/lunar-risk-appetite.pdf",
+    "pages": 3,
+    "sizeMB": 0.03,
+    "type": "lunar"
+  },
+  {
+    "id": "lunar-portfolio",
+    "title": {
+      "en": "Lunar Current Portfolio Snapshot",
+      "ar": "لمحة عن المحفظة الحالية - لونار"
+    },
+    "path": "data/corpus/lunar-portfolio.pdf",
+    "pages": 2,
+    "sizeMB": 0.03,
+    "type": "lunar"
+  },
+  {
+    "id": "darb-dataroom",
+    "title": {
+      "en": "Darb Data Room — Screening Summary",
+      "ar": "غرفة بيانات درب - ملخص الفرز"
+    },
+    "path": "data/corpus/darb-dataroom.pdf",
+    "pages": 6,
+    "sizeMB": 0.05,
+    "type": "deal",
+    "workspace": "darb"
+  },
+  {
+    "id": "thara-analysis",
+    "title": {
+      "en": "Thara Pay Completed Analysis Summary",
+      "ar": "ملخص التحليل المكتمل - ثارا باي"
+    },
+    "path": "data/corpus/thara-analysis.pdf",
+    "pages": 4,
+    "sizeMB": 0.04,
+    "type": "deal",
+    "workspace": "thara-pay"
+  },
+  {
+    "id": "leadership-pack",
+    "title": {
+      "en": "Jahez Leadership & Board Pack",
+      "ar": "ملف قيادة جاهز ومجلس الإدارة"
+    },
+    "path": "data/corpus/leadership-pack.pdf",
+    "pages": 10,
+    "sizeMB": 0.114,
+    "type": "public",
+    "workspace": "jahez",
+    "sourceUrl": "data/corpus/fy24-ar.pdf (Pages 110-122)"
+  }
+]
