@@ -499,5 +499,16 @@
       "lastResponseCached": "cached",
       "lastResponseLive": "live"
     }
+  },
+  "upload": {
+    "uploading": "Uploading…",
+    "failed": "Upload failed",
+    "onlyPdf": "PDF files only",
+    "tooLarge": "Max 32 MB",
+    "retry": "Retry",
+    "dismiss": "Dismiss",
+    "badge": "Uploaded",
+    "dropzone": "Drop a PDF or click — it joins this workspace's sources",
+    "dropzoneHint": "PDF · up to 32 MB"
   }
 }
