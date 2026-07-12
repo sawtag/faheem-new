@@ -187,6 +187,11 @@
       "connections": "Connections",
       "audit": "Audit Trail",
       "ic": "IC Room"
+    },
+    "emailToast": {
+      "title": "Faheem works in your inbox",
+      "body": "Forward any CIM or data-room link to <email>faheem@lunar-inv.sa</email> — your analyst picks it up.",
+      "dismiss": "Dismiss"
     }
   },
   "chat": {
@@ -416,6 +421,25 @@
       "board": "Board of Directors",
       "executive": "Executive Management",
       "sourceLabel": "Open the source for {name}"
+    },
+    "share": {
+      "trigger": "Share",
+      "title": "Share {company}",
+      "recipientPlaceholder": "Add people by email or team, then press Enter",
+      "role": {
+        "view": "Can view",
+        "comment": "Can comment",
+        "edit": "Can edit"
+      },
+      "removeChip": "Remove {value}",
+      "peopleWithAccess": "People with access",
+      "owner": "Owner",
+      "you": "you",
+      "group": "Lunar IC Group",
+      "footerCaption": "Only people invited · Workspace data never trains any model",
+      "cancel": "Cancel",
+      "submit": "Share",
+      "success": "Shared"
     }
   },
   "ic": {
@@ -477,7 +501,21 @@
     },
     "download": "Download",
     "openInWorkspace": "Open in workspace",
-    "errorArtifact": "Couldn't generate this file. Try again."
+    "errorArtifact": "Couldn't generate this file. Try again.",
+    "preview": {
+      "open": "Preview",
+      "close": "Close preview",
+      "downloadFile": "Download file",
+      "caption": "Generated · {date} · Lunar Investments",
+      "slides": "Slides",
+      "slideThumb": "Slide {n}",
+      "slideOf": "Slide {n} of {total}",
+      "pageOf": "Page {n} of {total}",
+      "modelCaption": "Full model: open in Excel — every input cell carries its source.",
+      "openInExcel": "Open in Excel",
+      "fallbackTitle": "Preview unavailable",
+      "fallbackCaption": "The file itself is ready — download it below."
+    }
   },
   "demo": {
     "palette": {
@@ -501,6 +539,7 @@
       "lastResponseLive": "live"
     }
   },
+<<<<<<< HEAD
   "skills": {
     "title": "Skills",
     "subtitle": "Reusable analyst playbooks — every method sourced, every output audited.",
@@ -516,5 +555,23 @@
     "runsInArabic": "Runs in Arabic",
     "roadmap": "MVP roadmap",
     "roadmapHint": "Full automation ships on the MVP roadmap."
+=======
+  "scheduled": {
+    "subtitle": "Faheem keeps working between sessions — recurring digests, sweeps, and checks that land straight in your inbox or channel.",
+    "nextRun": "Next run",
+    "toggleLabel": "Enable {name}",
+    "footer": "Scheduled agents run in Faheem Cloud — MVP roadmap."
+  },
+  "upload": {
+    "uploading": "Uploading…",
+    "failed": "Upload failed",
+    "onlyPdf": "PDF files only",
+    "tooLarge": "Max 32 MB",
+    "retry": "Retry",
+    "dismiss": "Dismiss",
+    "badge": "Uploaded",
+    "dropzone": "Drop a PDF or click — it joins this workspace's sources",
+    "dropzoneHint": "PDF · up to 32 MB"
+>>>>>>> origin/dev
   }
 }

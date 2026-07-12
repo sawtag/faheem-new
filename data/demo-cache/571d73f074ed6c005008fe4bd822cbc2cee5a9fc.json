@@ -7,9 +7,7 @@
       "kind": "workspace",
       "companyId": "jahez"
     },
-    "docIds": [
-      "fy25-er"
-    ]
+    "docIds": ["fy25-er"]
   },
   "events": [
     {
@@ -28,33 +26,25 @@
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": [
-        "fy25-er"
-      ]
+      "docIds": ["fy25-er"]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": [
-        "fy25-er"
-      ]
+      "docIds": ["fy25-er"]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "start",
-      "docIds": [
-        "fy25-er"
-      ]
+      "docIds": ["fy25-er"]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "done",
-      "docIds": [
-        "fy25-er"
-      ]
+      "docIds": ["fy25-er"]
     },
     {
       "type": "stage",
@@ -72,17 +62,13 @@
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": [
-        "fy25-er"
-      ]
+      "docIds": ["fy25-er"]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": [
-        "fy25-er"
-      ]
+      "docIds": ["fy25-er"]
     },
     {
       "type": "delta",

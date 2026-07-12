@@ -1,0 +1,77 @@
+[
+  {
+    "id": "jahez-kpi-digest",
+    "icon": "bar-chart-3",
+    "name": {
+      "en": "Jahez KPI digest",
+      "ar": "ملخص مؤشرات أداء جاهز"
+    },
+    "cadence": {
+      "en": "Weekly",
+      "ar": "أسبوعي"
+    },
+    "schedule": {
+      "en": "Every Monday, 07:00",
+      "ar": "كل إثنين، الساعة 07:00"
+    },
+    "destination": {
+      "en": "IC mailing list",
+      "ar": "القائمة البريدية للجنة الاستثمار"
+    },
+    "nextRun": {
+      "en": "Jul 20, 07:00",
+      "ar": "20 يوليو، 07:00"
+    },
+    "enabled": true
+  },
+  {
+    "id": "quick-commerce-news-sweep",
+    "icon": "newspaper",
+    "name": {
+      "en": "Quick-commerce news sweep (Keeta/HungerStation/Ninja)",
+      "ar": "رصد أخبار التجارة السريعة (كيتا، هنقرستيشن، Ninja)"
+    },
+    "cadence": {
+      "en": "Daily",
+      "ar": "يومي"
+    },
+    "schedule": {
+      "en": "Every day, 06:30",
+      "ar": "يومياً، الساعة 06:30"
+    },
+    "destination": {
+      "en": "#deals-jahez",
+      "ar": "#deals-jahez"
+    },
+    "nextRun": {
+      "en": "Jul 14, 06:30",
+      "ar": "14 يوليو، 06:30"
+    },
+    "enabled": true
+  },
+  {
+    "id": "portfolio-concentration-check",
+    "icon": "pie-chart",
+    "name": {
+      "en": "Portfolio concentration check vs IC Charter caps",
+      "ar": "فحص تركّز المحفظة مقابل حدود ميثاق لجنة الاستثمار"
+    },
+    "cadence": {
+      "en": "Monthly",
+      "ar": "شهري"
+    },
+    "schedule": {
+      "en": "1st of each month",
+      "ar": "أول كل شهر"
+    },
+    "destination": {
+      "en": "Risk",
+      "ar": "المخاطر"
+    },
+    "nextRun": {
+      "en": "Aug 1, 09:00",
+      "ar": "1 أغسطس، 09:00"
+    },
+    "enabled": true
+  }
+]

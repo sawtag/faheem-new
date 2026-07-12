@@ -24,6 +24,7 @@ import {
   type CorpusDoc,
   type Lang,
 } from "@/lib/types";
+import { isUploadId, listUploads, uploadToCorpusDoc } from "@/lib/uploads";
 
 const repoRoot = process.cwd();
 const FIRM_PACKS = ["industry-news-pack", "market-data-comps"];
@@ -172,17 +173,84 @@ export function buildDocBlocks(
   });
 }
 
+// ─────────────────────────── uploaded (session) docs ───────────────────────────
+
+/**
+ * Is an uploaded doc reachable from this chat's context? A workspace-scoped
+ * upload is only visible inside its own workspace; firm/ic contexts and
+ * workspace-less uploads pass through. Prevents a stale cross-workspace id from
+ * being force-included when it appears in `docIds`.
+ */
+function uploadInScope(context: ChatContext, workspace?: string): boolean {
+  if (!workspace) return true;
+  if (context.kind === "workspace") return context.companyId === workspace;
+  return true;
+}
+
+/**
+ * Uploaded docs referenced by this request, as CorpusDocs. Gated strictly on
+ * `upload-*` ids present in `req.docIds` (the composer attach flow) — never
+ * auto-pulled from context, so the static corpus path stays deterministic. Only
+ * uploads with a Files API `fileId` qualify (a session block needs the file
+ * reference). Deterministic order: uploadedAt, then id.
+ */
+export function resolveSessionDocs(req: ChatRequest): CorpusDoc[] {
+  const wanted = new Set((req.docIds ?? []).filter(isUploadId));
+  if (wanted.size === 0) return [];
+  return listUploads()
+    .filter(
+      (u) =>
+        wanted.has(u.id) &&
+        u.fileId !== undefined &&
+        uploadInScope(req.context, u.workspace),
+    )
+    .sort(
+      (a, b) =>
+        a.uploadedAt.localeCompare(b.uploadedAt) || a.id.localeCompare(b.id),
+    )
+    .map(uploadToCorpusDoc);
+}
+
+/**
+ * Document blocks for uploaded docs — always Files-API `file_id` references,
+ * citations enabled, and deliberately NO `cache_control`: these land AFTER the
+ * static cache breakpoint so the static prefix cache still hits.
+ */
+export function buildSessionBlocks(docs: CorpusDoc[], lang: Lang): DocBlock[] {
+  return docs.map((doc) => ({
+    type: "document",
+    source: { type: "file", file_id: doc.fileId! },
+    title: doc.title[lang],
+    citations: { enabled: true },
+  }));
+}
+
 export interface CorpusContext {
   docs: CorpusDoc[];
   blocks: DocBlock[];
 }
 
-/** Filtered docs + parallel document blocks for a chat request. */
+/**
+ * Filtered docs + parallel document blocks for a chat request. Uploaded docs
+ * (when referenced) are appended AFTER the static set: the ephemeral cache
+ * breakpoint stays on the last static block (buildDocBlocks marks its own last
+ * entry), so the static prefix keeps hitting the cache while uploaded docs ride
+ * uncached at the tail. `docs` and `blocks` stay index-aligned so a citation's
+ * `document_index` resolves back to the right id.
+ */
 export function buildCorpusContext(
   req: ChatRequest,
   readFileBytes?: FileReader,
 ): CorpusContext {
-  const docs = filterDocs(req.context, req.docIds, req.agent);
-  const blocks = buildDocBlocks(docs, req.lang, readFileBytes);
-  return { docs, blocks };
+  const staticDocs = filterDocs(req.context, req.docIds, req.agent);
+  const staticBlocks = buildDocBlocks(staticDocs, req.lang, readFileBytes);
+
+  const sessionDocs = resolveSessionDocs(req);
+  if (sessionDocs.length === 0) {
+    return { docs: staticDocs, blocks: staticBlocks };
+  }
+  return {
+    docs: [...staticDocs, ...sessionDocs],
+    blocks: [...staticBlocks, ...buildSessionBlocks(sessionDocs, req.lang)],
+  };
 }

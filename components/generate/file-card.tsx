@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import {
   BadgeCheck,
   Download,
+  Eye,
   FileText,
   Presentation,
   Sheet,
@@ -33,15 +34,19 @@ export function formatFileSize(bytes: number): string {
   return `${(kb / 1024).toFixed(1)} MB`;
 }
 
-/** Landed deliverable — download + jump into the workspace's Artifacts tab. */
+/** Landed deliverable — preview in-app (primary), download, jump to the
+ * workspace's Artifacts tab. Without `onPreview` the download button stays
+ * primary (legacy affordance for mounts with no preview panel). */
 export function FileCard({
   meta,
   sizeBytes,
   workspace,
+  onPreview,
 }: {
   meta: ArtifactMeta;
   sizeBytes: number;
   workspace: string;
+  onPreview?: () => void;
 }) {
   const t = useTranslations("generate");
   const tLibrary = useTranslations("library");
@@ -49,7 +54,11 @@ export function FileCard({
   const { icon: Icon, tile } = KIND_TILE[meta.kind];
 
   return (
-    <Card hover className="p-5">
+    <Card
+      hover
+      className={cn("p-5", onPreview && "cursor-pointer")}
+      onClick={onPreview}
+    >
       <div className="flex items-start justify-between gap-3">
         <span
           className={cn(
@@ -75,22 +84,51 @@ export function FileCard({
           {tLibrary("verified", { n: meta.sources })}
         </p>
       )}
-      <div className="mt-3 flex gap-2">
-        <Button
-          asChild
-          size="sm"
-          variant="outline"
-          startIcon={<Download className="size-4" aria-hidden="true" />}
-        >
-          <a href={meta.file} download>
-            {t("download")}
-          </a>
-        </Button>
+      <div className="mt-3 flex items-center gap-2">
+        {onPreview ? (
+          <Button
+            size="sm"
+            variant="outline"
+            startIcon={<Eye className="size-4" aria-hidden="true" />}
+            onClick={(e) => {
+              e.stopPropagation();
+              onPreview();
+            }}
+          >
+            {t("preview.open")}
+          </Button>
+        ) : (
+          <Button
+            asChild
+            size="sm"
+            variant="outline"
+            startIcon={<Download className="size-4" aria-hidden="true" />}
+          >
+            <a href={meta.file} download>
+              {t("download")}
+            </a>
+          </Button>
+        )}
         <Button asChild size="sm" variant="ghost">
-          <Link href={`/deals/${workspace}?tab=artifacts`}>
+          <Link
+            href={`/deals/${workspace}?tab=artifacts`}
+            onClick={(e) => e.stopPropagation()}
+          >
             {t("openInWorkspace")}
           </Link>
         </Button>
+        {onPreview && (
+          <a
+            href={meta.file}
+            download
+            aria-label={t("download")}
+            title={t("download")}
+            onClick={(e) => e.stopPropagation()}
+            className="text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn ms-auto grid size-8 shrink-0 place-items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          >
+            <Download className="size-4" aria-hidden="true" />
+          </a>
+        )}
       </div>
     </Card>
   );

@@ -23,6 +23,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Composer, type ComposerSubmit } from "@/components/chat/composer";
 import { DocumentsTab } from "@/components/deals/documents-tab";
 import { LeadershipGrid } from "@/components/deals/leadership-grid";
+import { ShareWorkspace } from "@/components/deals/share-workspace";
 import { StageBanner } from "@/components/deals/stage-banner";
 import {
   WorkspaceOverview,
@@ -173,6 +174,8 @@ export function WorkspaceView({
               {deal.statusLine[locale]}
             </p>
           </div>
+          {/* enterprise-flourish: share-modal trigger, flagged one-line mount */}
+          <ShareWorkspace companyName={deal.name} />
         </header>
 
         <section

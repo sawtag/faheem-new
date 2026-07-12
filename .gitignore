@@ -28,6 +28,9 @@ Thumbs.db
 .idea/
 .claude/settings.local.json
 
+# runtime PDF uploads (live-mode only, never committed — see lib/uploads.ts)
+data/uploads/
+
 # NOTE — deliberately TRACKED (do not add here): data/corpus/ (verified PDFs),
 # data/demo-cache/ (golden recordings = the offline demo), data/*.json,
 # public/artifacts/ (pre-generated fallback deliverables), package-lock.json.
