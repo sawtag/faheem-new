@@ -1,0 +1,210 @@
+[
+  {
+    "name": "HRH Prince Mishal Bin Sultan Bin Abdulaziz Al Saud",
+    "role": {
+      "en": "Chairman of the Board · Non-Executive, Investment Committee Chair",
+      "ar": "رئيس مجلس الإدارة · غير تنفيذي، رئيس لجنة الاستثمار"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "Cross-sector investor (IT, investment, real estate, contracting); MPA from the London School of Economics; chairs Alamat International and directs Tharwa Holding."
+    },
+    "source": "FY 2024 Annual Report, p.110",
+    "packPage": 2
+  },
+  {
+    "name": "Abdulaziz Bin Abdulrahman Al Omran",
+    "role": {
+      "en": "Vice Chairman of the Board · Non-Executive, Investment Committee Member",
+      "ar": "نائب رئيس مجلس الإدارة · غير تنفيذي، عضو لجنة الاستثمار"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "Contracting, real estate, asset-management and fintech background; EMBA (London); board seats include Halalah and Rasan (Tameeni), founding partner at Dar Wa Emaar."
+    },
+    "source": "FY 2024 Annual Report, p.111",
+    "packPage": 2
+  },
+  {
+    "name": "Eng. Ghassab Bin Salman Bin Mandeel",
+    "role": {
+      "en": "Chief Executive Officer & Board Member · Executive",
+      "ar": "الرئيس التنفيذي وعضو مجلس الإدارة · تنفيذي"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "Senior leadership across IT, e-commerce and logistics; Computer Science (King Saud University); vice chairman of Blu Store, director of Logi, chairs the Jahez Foundation trustees."
+    },
+    "source": "FY 2024 Annual Report, p.112",
+    "packPage": 3
+  },
+  {
+    "name": "Hamad Bin Abdullah Al Bakr",
+    "role": {
+      "en": "Chief Business Officer & Board Member · Executive",
+      "ar": "رئيس قطاع الأعمال وعضو مجلس الإدارة · تنفيذي"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "30+ years in logistics, e-commerce, telecom and distribution; Oxford advanced management leadership; industrial engineering (KFUPM); director at Blu Store and Logi."
+    },
+    "source": "FY 2024 Annual Report, p.113",
+    "packPage": 3
+  },
+  {
+    "name": "Loulwa Bint Mohammed Bakr",
+    "role": {
+      "en": "Audit Committee Chair & Board Member · Independent, Investment Committee Member",
+      "ar": "رئيسة لجنة المراجعة وعضو مجلس الإدارة · مستقلة، عضو لجنة الاستثمار"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "Investment banking, corporate finance and venture capital; Columbia MBA; CMA General Securities Qualification (CME-1); founder and principal partner of Chrome Advisory."
+    },
+    "source": "FY 2024 Annual Report, p.114",
+    "packPage": 4
+  },
+  {
+    "name": "Abdullah Bin Saud Al Romaih",
+    "role": {
+      "en": "Nomination & Remuneration Committee Chair & Board Member · Independent",
+      "ar": "رئيس لجنة الترشيحات والمكافآت وعضو مجلس الإدارة · مستقل"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "25+ years across finance, industrials, real estate and healthcare; director at Riyadh Chamber and chairman of Jazeera Paints. Board membership ended 16 December 2024."
+    },
+    "source": "FY 2024 Annual Report, p.115",
+    "packPage": 5
+  },
+  {
+    "name": "Salman Bin Abdulmuhsin Al Sudeary",
+    "role": {
+      "en": "Nomination & Remuneration Committee Chair & Board Member · Independent",
+      "ar": "رئيس لجنة الترشيحات والمكافآت وعضو مجلس الإدارة · مستقل"
+    },
+    "group": "board",
+    "oneLiner": {
+      "en": "Investment banking, M&A and digital transformation; MSc Finance (University of Denver), Stanford Executive Program; audit committee member at Almarai, MD at TEJOURY. Joined the board 17 December 2024."
+    },
+    "source": "FY 2024 Annual Report, p.116",
+    "packPage": 5
+  },
+  {
+    "name": "Mishal Bin Ibrahim Al Mishari",
+    "role": {
+      "en": "Deputy Chief Executive Officer",
+      "ar": "نائب الرئيس التنفيذي"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "Deputy CEO since 2017; business development, project management and IT; graduate coursework at Stanford, Babson and UC Irvine; Riyadh Chamber committee member."
+    },
+    "source": "FY 2024 Annual Report, p.117",
+    "packPage": 6
+  },
+  {
+    "name": "Heni Bin Abdul Hakeem Jallouli",
+    "role": {
+      "en": "Chief Financial Officer",
+      "ar": "الرئيس المالي"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "CFO since 2020; certified public accountant with financial control, audit and consultancy experience across car rental, IT and aviation; Harvard Senior Executive Leadership Program."
+    },
+    "source": "FY 2024 Annual Report, p.118",
+    "packPage": 6
+  },
+  {
+    "name": "Mohammad Bin Abdulaziz Al Barrak",
+    "role": {
+      "en": "Chief Technology Officer",
+      "ar": "رئيس قطاع التقنية"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "CTO since 2021; systems and application development background, including independently built food-delivery and shopping apps; software engineering (KFUPM)."
+    },
+    "source": "FY 2024 Annual Report, p.119",
+    "packPage": 7
+  },
+  {
+    "name": "Abdulaziz Bin Mohammad Al Faris",
+    "role": {
+      "en": "Chief Operating Officer",
+      "ar": "رئيس قطاع العمليات"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "COO since 2019 with distribution-sector operating experience; dual bachelor's degrees in supply chain management and accounting (Boise State University)."
+    },
+    "source": "FY 2024 Annual Report, p.119",
+    "packPage": 7
+  },
+  {
+    "name": "Hebah Bint Mohammad Al Zeer",
+    "role": {
+      "en": "Internal Audit Director & Secretary of the Audit Committee",
+      "ar": "مديرة المراجعة الداخلية وأمينة لجنة المراجعة"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "Internal Audit Director since 2021; audit and risk consultancy across hospitality, real estate, tourism and sports operations; MBA (Arab East Colleges)."
+    },
+    "source": "FY 2024 Annual Report, p.119",
+    "packPage": 8
+  },
+  {
+    "name": "Abdulaziz Bin Saud Al Houti",
+    "role": {
+      "en": "Chief Investment Officer",
+      "ar": "رئيس قطاع الاستثمار"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "CIO since 2022; investment management, brokerage and securities custody, plus government advisory on economic policy; MSc Finance (George Washington University)."
+    },
+    "source": "FY 2024 Annual Report, p.120",
+    "packPage": 8
+  },
+  {
+    "name": "Hamad Bin Salem Al Saghir",
+    "role": {
+      "en": "Chief Commercial Officer",
+      "ar": "رئيس القطاع التجاري"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "Joined 2023; marketing, customer experience and business management across fintech, telecom and ICT; marketing (KFUPM) with Harvard executive leadership training."
+    },
+    "source": "FY 2024 Annual Report, p.121",
+    "packPage": 9
+  },
+  {
+    "name": "Saed Bin Bashir Basseet",
+    "role": {
+      "en": "Chief Digital Commerce Officer",
+      "ar": "رئيس قطاع التجارة الرقمية"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "Joined 2024; digital experience, e-business and innovation management across banking, IT and healthcare; MSc Knowledge & Information Systems Management (Southampton)."
+    },
+    "source": "FY 2024 Annual Report, p.121",
+    "packPage": 9
+  },
+  {
+    "name": "Sofiene Mohammed Lamine Marzouki",
+    "role": {
+      "en": "Chief Growth Officer",
+      "ar": "رئيس قطاع النمو"
+    },
+    "group": "executive",
+    "oneLiner": {
+      "en": "Joined 2024; strategy, business development and partnerships leadership across the Middle East and Africa, including CEO and MD roles; CEMS Master in International Management (Rotterdam)."
+    },
+    "source": "FY 2024 Annual Report, p.122",
+    "packPage": 10
+  }
+]

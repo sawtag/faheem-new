@@ -282,5 +282,94 @@
       "loading": "Loading document…",
       "error": "Couldn't load this document."
     }
+  },
+  "deals": {
+    "board": {
+      "title": "Deal pipeline",
+      "subtitle": "From first contact to committee — screening, analysis, and IC review in one governed flow.",
+      "filterLabel": "Filter by origin",
+      "filterAll": "All",
+      "filterInbound": "Inbound (Private)",
+      "filterMarket": "Market Screen (Public)",
+      "originInbound": "Inbound · Private",
+      "originMarket": "Market screen · Public",
+      "empty": "No deals match this filter."
+    },
+    "stage": {
+      "screening": "Screening",
+      "analysis": "Analysis",
+      "icReview": "IC Review",
+      "declined": "Declined"
+    },
+    "gate": {
+      "message": {
+        "screening": "Screening complete — the next step is a human decision.",
+        "analysis": "Deep-dive analysis underway — send to committee when the pack is ready.",
+        "icReview": "With the Investment Committee — the advisory view lives in the IC room.",
+        "declined": "Declined at screening."
+      },
+      "humanGate": "Human decision gate",
+      "advance": "Advance to pitch meeting",
+      "sendToIc": "Send to IC",
+      "queued": "Queued for IC review"
+    },
+    "workspace": {
+      "back": "Deal pipeline",
+      "ask": "Ask Faheem about {company}",
+      "tabs": {
+        "overview": "Overview",
+        "documents": "Documents",
+        "chats": "Chats",
+        "artifacts": "Artifacts",
+        "leadership": "Leadership"
+      }
+    },
+    "scorecard": {
+      "title": "Screening scorecard",
+      "subtitle": "Mandate-fit check against the Lunar IC Charter — every verdict cites its clause.",
+      "pass": "Pass",
+      "warn": "Flag",
+      "fail": "Fail",
+      "cite": "IC Charter · p.{page}",
+      "citeLabel": "Open the IC Charter at page {page}",
+      "anonymized": "Details anonymized — client confidentiality."
+    },
+    "overview": {
+      "originTitle": "Origin",
+      "surfaced": "Surfaced by {detail}",
+      "statsTitle": "FY2025 key figures",
+      "stats": {
+        "gmv": "GMV",
+        "netRevenue": "Net revenue",
+        "netIncome": "Net income",
+        "yoy": "YoY"
+      },
+      "source": "{doc} · p.{page}",
+      "statusTitle": "Status"
+    },
+    "documents": {
+      "meta": "{pages} pages · {size} MB",
+      "type": {
+        "public": "Public",
+        "lunar": "Lunar",
+        "deal": "Data room"
+      },
+      "open": "Open"
+    },
+    "chats": {
+      "empty": "No chats in this workspace yet — ask Faheem above to start one.",
+      "messages": "{count} messages"
+    },
+    "artifacts": {
+      "emptyTitle": "No artifacts yet",
+      "emptyCaption": "Generated memos, models, and board decks will land here.",
+      "download": "Download",
+      "verified": "Verified · {n} sources"
+    },
+    "leadership": {
+      "board": "Board of Directors",
+      "executive": "Executive Management",
+      "sourceLabel": "Open the source for {name}"
+    }
   }
 }
