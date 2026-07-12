@@ -198,9 +198,9 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 - **Acceptance:** every number in both packs carries an inline source+date; added to manifest; WACC inputs complete (rf, ERP, beta, cost of debt path); fable sanity-reviews the comps table.
 
 #### T1.4 Lunar + fictional-deal docs + `deals.json` — **sonnet/medium**
-- [ ] Author (HTML→PDF, Lunar-branded per spec §7): IC Charter & Mandate (firm profile, tech+consumer appetite, 15% hurdle, 10% concentration, 3–5y hold, Shariah screen required — page numbers stable, the screening scorecard cites them), Risk Appetite Statement, Portfolio snapshot, **Qafilah mini data-room** (profile+ask SAR 40M Series B, financial summary, founder bios), **Thara Pay analysis summary** (metrics for IC).
-- [ ] `data/deals.json` per schema: Qafilah (screening rows per spec §11 incl. the concentration ⚠), Jahez (analysis, market-screen origin badge data), Thara Pay (ic-review + icMetrics), Aqar (declined + reason). `lib/deals.ts` loader.
-- **Acceptance:** `validate-data` green; every scorecard `cite` resolves to a real page in the IC Charter PDF; numbers internally consistent (ask vs fund size vs concentration math) — fable reviews Qafilah pack + deals.json line-by-line (fictional ≠ sloppy).
+- [ ] Author (HTML→PDF, Lunar-branded per spec §7): IC Charter & Mandate (firm profile, tech+consumer appetite, 15% hurdle, 10% concentration, 3–5y hold, Shariah screen required — page numbers stable, the screening scorecard cites them), Risk Appetite Statement, Portfolio snapshot, **Shahn mini data-room** (profile+ask SAR 40M Series B, financial summary, founder bios), **Thara Pay analysis summary** (metrics for IC).
+- [ ] `data/deals.json` per schema: Shahn (screening rows per spec §11 incl. the concentration ⚠), Jahez (analysis, market-screen origin badge data), Thara Pay (ic-review + icMetrics), Aqar (declined + reason). `lib/deals.ts` loader.
+- **Acceptance:** `validate-data` green; every scorecard `cite` resolves to a real page in the IC Charter PDF; numbers internally consistent (ask vs fund size vs concentration math) — fable reviews Shahn pack + deals.json line-by-line (fictional ≠ sloppy).
 
 #### T1.5 Leadership pack + Files-API script — **haiku/low**
 - [ ] `leadership-pack.pdf`: Jahez board/exec bios from AR + public sources (each with URL). Add to manifest, `workspace: "jahez"`.
@@ -229,7 +229,7 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 - Files: `app/(app)/layout.tsx`, `app/(app)/chat/[id]/page.tsx`, `components/chat/*`, `lib/nav.ts`, `tests/chat/*`, `e2e/chat.spec.ts`.
 - [ ] Shell: Rogo-layout sidebar (CATALOG §2A) — logo, New Chat, nav (Home, Deals, Library, Agents, Scheduled Tasks visual, Connections), pinned workspaces from deals.json, Arwa footer; language toggle (cookie + `dir` swap, animated); collapse.
 - [ ] Chat: `MessageStream` (marker→chip replacement, streaming append, prose styles), `CitationChip` (mint, numbered, hover quote preview), `SourcesAccordion` (grouped fact→chip per CATALOG §2B), **"Verified — N sources cited" compliance badge on completed answers (rendered from real citation count — the Verification agent made visible)**, `AgentActivity` (timeline of `stage` events: icon, agent name, docs being read, shimmer→check, collapse when done), `PdfPanel` (react-pdf, deep-link to page, zoom, close — **pdfjs worker vendored locally, NEVER the CDN default; e2e must pass with network offline**), `Composer` (auto-grow, **@ typeahead** from registry, **# typeahead** from manifest, chips in input, source-picker flyout w/ grouped toggles + tooltips (CATALOG §4.4), model-tier selector "Faheem · Max/Auto/Light" w/ one-line descriptions, mic (visual), Improve wand on short input + Undo, send states).
-- [ ] Chat persistence: no DB — **`data/seed-chats.json` is the durable layer** (versioned in git; Jahez workspace history, a Qafilah screening explanation, prior artifacts chat — survives browser wipes/machine swaps); localStorage only overlays chats created at runtime. `chat/[id]` resolves seeded + new ids.
+- [ ] Chat persistence: no DB — **`data/seed-chats.json` is the durable layer** (versioned in git; Jahez workspace history, a Shahn screening explanation, prior artifacts chat — survives browser wipes/machine swaps); localStorage only overlays chats created at runtime. `chat/[id]` resolves seeded + new ids.
 - **Acceptance:** component tests — marker replacement (delta text `"…[[2]]"` + citation event → chip 2 rendered, click calls `openDoc("fy25-er", 3)`); @/# typeahead filter + chip insert + payload fields set; Improve swaps textarea and Undo restores. `e2e/chat.spec.ts` (cached fixture): ask scripted question → stages appear then complete → answer streams → chip visible → click → PdfPanel opens with correct page prop → Sources accordion lists the citation. **Gate C(b): fable design-QA (en+ar, RTL flip, motion) — the bar is "screenshot-worthy".**
 - [ ] Commit `feat: shell + flagship chat`.
 
@@ -249,8 +249,8 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 
 #### T3.3 Pipeline board + workspaces — **opus/high** (carries the private→public story on screen)
 - Files: `app/(app)/deals/**`, `components/deals/*`, `e2e/deals.spec.ts`.
-- [ ] Board from `deals.json`: origin filter pills (All / Inbound (Private) / Market Screen (Public)), stage-grouped cards (logo — **Jahez's real logo fetched once and vendored to `public/logos/`; fictional companies use monogram tiles**, sector, ask, origin badge — Jahez's reads "SAHMK/Argaam screen · 2026-07-08", status line, hover lift). Workspace page: header + stage banner with human-gate button ("Advance to pitch meeting" → confetti-free tasteful transition of stage badge), tabs Overview / Documents (manifest docs w/ open-in-viewer) / Chats / Artifacts / Leadership (bio card grid). Qafilah Overview = `ScreeningScorecard` (criterion rows, pass/warn/fail badges, citation chips → IC Charter page in PdfPanel, verdict line, "anonymized" note). Scoped composer "Ask Faheem about {company}".
-- **Acceptance:** component test — scorecard renders rows/verdicts from fixture, cite click handler receives `{docId, page}`; e2e — filter toggles cards; Qafilah workspace shows scorecard; gate button flips stage badge; Jahez workspace Documents lists corpus docs.
+- [ ] Board from `deals.json`: origin filter pills (All / Inbound (Private) / Market Screen (Public)), stage-grouped cards (logo — **Jahez's real logo fetched once and vendored to `public/logos/`; fictional companies use monogram tiles**, sector, ask, origin badge — Jahez's reads "SAHMK/Argaam screen · 2026-07-08", status line, hover lift). Workspace page: header + stage banner with human-gate button ("Advance to pitch meeting" → confetti-free tasteful transition of stage badge), tabs Overview / Documents (manifest docs w/ open-in-viewer) / Chats / Artifacts / Leadership (bio card grid). Shahn Overview = `ScreeningScorecard` (criterion rows, pass/warn/fail badges, citation chips → IC Charter page in PdfPanel, verdict line, "anonymized" note). Scoped composer "Ask Faheem about {company}".
+- **Acceptance:** component test — scorecard renders rows/verdicts from fixture, cite click handler receives `{docId, page}`; e2e — filter toggles cards; Shahn workspace shows scorecard; gate button flips stage badge; Jahez workspace Documents lists corpus docs.
 
 #### T3.4 Faheem IC room — **opus/high** (the closing beat)
 - Files: `app/(app)/ic/page.tsx`, `components/ic/*`, `e2e/ic.spec.ts`.
@@ -292,9 +292,9 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 - **Acceptance:** demo-cache contains all beats; `FAHEEM_MODE=cached` full run works offline (wifi kill test); every palette entry replays from cache.
 
 #### T5.2 Full e2e + RTL sweep — **sonnet/medium** · gate F
-- [ ] `e2e/golden-path.spec.ts`: login → onboarding skim → pipeline (filter, Qafilah scorecard, gate click) → Jahez chat Q&A1 (stages→answer→chip→PDF page) → language toggle → Arabic question renders RTL → deliverables generate+download → IC room ranking → disclaimer visible. Runs fully in cached mode.
+- [ ] `e2e/golden-path.spec.ts`: login → onboarding skim → pipeline (filter, Shahn scorecard, gate click) → Jahez chat Q&A1 (stages→answer→chip→PDF page) → language toggle → Arabic question renders RTL → deliverables generate+download → IC room ranking → disclaimer visible. Runs fully in cached mode.
 - [ ] RTL/i18n sweep: Playwright iterates every route in `ar` — asserts `dir="rtl"`, no horizontal scroll, no missing-message console warnings; screenshots per route/locale saved as artifacts for fable's visual pass.
-- [ ] **Projector viewports**: the golden-path + sweep run at BOTH 1920×1080 and 1366×768 (common projector resolutions) — no clipped layouts, no overflow.
+- [ ] **Laptop viewports**: the golden-path + sweep run at BOTH 1920×1080 and 1366×768 (common laptop resolutions; demo runs in a desktop browser — mobile is a non-target) — no clipped layouts, no overflow.
 - **Acceptance:** suite green twice consecutively (flake check) at both viewports; fable reviews screenshot grid (gate F).
 
 ### P6 — Review & polish
@@ -303,7 +303,6 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 - [ ] Design polish pass — **opus/high** driven by fable's gate-D/F notes (spacing, motion timing, empty states, hover details) across ALL screens, including tightening the sonnet-built ones to the briefs.
 - [ ] Dress rehearsal: fable executes the §3 run of show click-by-click (cached, then live), stopwatch per beat, records deviations → `docs/rehearsal-notes.md`. **Runs against the PRODUCTION build (`next build && next start`), with wifi disabled once, and confirms: pdfjs worker loads offline, LibreOffice/Excel opens the generated workbook on the demo machine, `⌘.` mode overlay works, audit trail grew during the run.**
 - [ ] Optional (fable, if time): draft **Arabic-only slide copy** for the §3 slide beats (problem / category+workflow / close) → `docs/slide-copy.md` — slides are Arabic like the Amad initial pitch deck (final pitch deck generated later, separate task); terminology must match `context/pitch-deck-notes.md` vocabulary AND `messages/ar.json` (one Arabic register across slides + product).
-- [ ] **Projector contrast check** during rehearsal on the actual screen/projector: hairline borders (#E3E9F1) and secondary text must survive washout — if anything vanishes, darken that token one tint in globals.css (single-line fix by design).
 - [ ] **Backup**: copy the built app + data + node_modules (or a `bun run build` tarball) to a USB / second laptop; `demo-rc1` tag pushed.
 - [ ] Final commit + tag `demo-rc1`.
 
@@ -318,7 +317,7 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 | API integration | vitest (route handlers invoked directly) | /api/chat SSE wire format in cached mode, error paths, /api/improve (mocked haiku), /api/generate outputs, /api/auth cookie, /api/documents streaming | `bun run test` |
 | Component | vitest + testing-library | citation chip flow, @/# typeahead, Improve/Undo, source-picker toggles, Dialog/Tabs a11y, stepper | `bun run test` |
 | E2E | Playwright (chromium, `FAHEEM_MODE=cached`) | per-screen smokes + `golden-path.spec.ts` + RTL sweep w/ per-route screenshots | `bun run test:e2e`, gates D/F |
-| Data QA | `scripts/validate-data.ts` (zod) + fable spot-check | schemas, source-page existence, figure verification (gate B), Qafilah/Thara internal consistency | `bun run validate:data` |
+| Data QA | `scripts/validate-data.ts` (zod) + fable spot-check | schemas, source-page existence, figure verification (gate B), Shahn/Thara internal consistency | `bun run validate:data` |
 | Live smoke | `scripts/record-goldens.ts` + manual | real API: citations arrive, pages correct, latency measured | P5 only (post-billing) |
 | Human | fable gates A–G + dress rehearsal | design bar, finance correctness, run-of-show timing | per phase |
 

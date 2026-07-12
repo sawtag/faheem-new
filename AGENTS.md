@@ -46,7 +46,7 @@ Next.js 15 (App Router, TS strict) · Tailwind v4 (theme lives ONLY in `app/glob
 - **Motion language (one system, all agents follow it):** durations/easings from theme tokens only. Page enter = fade + 4px rise (250ms). Lists/grids = staggered reveal (30–40ms/item, cap ~8). Cards = hover lift (shadow token + 1px translate). Numbers on stat/IC/scorecard surfaces = count-up on first reveal (400ms, tabular-nums so nothing shifts). Agent Activity = choreographed stage reveals (shimmer → check morph). Streaming text appends smoothly (no jump-scroll). Logo bars = staggered rise (login + thinking states). Dialogs/popovers = scale 0.98→1 + fade (150ms). Nothing bounces, nothing spins, nothing exceeds 400ms. Subtle > flashy; `prefers-reduced-motion` respected free via motion.
 - Empty states, loading states, and micro-copy are part of the task, not extras.
 - Arabic must look as designed as English — check both before calling a screen done. Arabic financial/agent terminology must match the pitch-deck vocabulary in `context/pitch-deck-notes.md` (one register across slides and product).
-- **Built for a projector**: demo renders on a screen/projector at 1366×768–1080p. Content text ≥15–16px, no information carried by faint grays alone, layouts intact at both viewports. When in doubt, one tint darker.
+- **Desktop-first**: the demo runs in a laptop browser (~1366×768–1920×1080). Content text ≥15–16px. Mobile is NOT a target — don't break it gratuitously, but spend zero effort on it.
 
 ## Sensitive facts (do not violate)
 
