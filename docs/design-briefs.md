@@ -1,5 +1,7 @@
 # Faheem — Per-Screen Design Briefs (T0.3)
 
+> **Addendum (fable, post-gate-A):** the Figma cover/splash frame is ratified as additional LOGIN reference (ideas, not layout law): ① giant low-opacity glyph watermark art — oversized faded bars + a soft emerald swoosh sweeping the bottom edge of the viewport (use the traced Logo paths at low opacity, never a bitmap); ② tagline lockup under the logo: "AI-Powered Investment Analysis" in emerald 13/700; ③ secondary line "Analyzing the future, empowering decisions." as text-secondary caption — bilingual per pitch-deck register. The login card + navy backdrop spec in §1 still stands; blend these in. Serif policy update (AGENTS.md): serif display is also sanctioned for large workspace/IC page display titles.
+
 > **Audience:** the sonnet implementers of T3.1 (Login), T3.5 (Connections + Onboarding stepper), T3.6 (Agents + Library + Audit Trail).
 > **Rule of this document:** you make **zero** visual decisions. Every dimension, token, primitive, motion, state, and string is specified here. If something is genuinely missing, ask fable — do not improvise. **Primitives only, no new visual language, tokens only — deviations get bounced at gate D.**
 
