@@ -5,7 +5,10 @@
     "sector": { "en": "Logistics SaaS", "ar": "برمجيات اللوجستيات (SaaS)" },
     "origin": "inbound",
     "stage": "screening",
-    "ask": { "en": "SAR 40M Series B", "ar": "40 مليون ريال سعودي - السلسلة B" },
+    "ask": {
+      "en": "SAR 40M Series B",
+      "ar": "40 مليون ريال سعودي - السلسلة B"
+    },
     "statusLine": {
       "en": "Screening scorecard complete — 5 pass, 1 concentration flag.",
       "ar": "اكتمل بطاقة الفرز - 5 معايير مستوفاة وتنبيه تركّز واحد."
@@ -22,7 +25,10 @@
           "cite": { "docId": "lunar-ic-charter", "page": 3 }
         },
         {
-          "criterion": { "en": "Ticket vs mandate", "ar": "حجم التذكرة مقابل التفويض" },
+          "criterion": {
+            "en": "Ticket vs mandate",
+            "ar": "حجم التذكرة مقابل التفويض"
+          },
           "verdict": "pass",
           "note": {
             "en": "SAR 40M ask sits within the SAR 20-60M ticket band.",
@@ -40,7 +46,10 @@
           "cite": { "docId": "lunar-ic-charter", "page": 3 }
         },
         {
-          "criterion": { "en": "Shariah pre-screen", "ar": "الفحص الشرعي المبدئي" },
+          "criterion": {
+            "en": "Shariah pre-screen",
+            "ar": "الفحص الشرعي المبدئي"
+          },
           "verdict": "pass",
           "note": {
             "en": "Business activity permissible; no leverage red flags at pre-screen.",
@@ -76,7 +85,10 @@
   {
     "id": "jahez",
     "name": { "en": "Jahez", "ar": "جاهز" },
-    "sector": { "en": "Quick-commerce / food delivery", "ar": "التجارة السريعة وتوصيل الطعام" },
+    "sector": {
+      "en": "Quick-commerce / food delivery",
+      "ar": "التجارة السريعة وتوصيل الطعام"
+    },
     "origin": "market-screen",
     "stage": "analysis",
     "originDetail": {
@@ -91,7 +103,10 @@
   {
     "id": "thara-pay",
     "name": { "en": "Thara Pay", "ar": "ثارا باي" },
-    "sector": { "en": "Fintech — payments infrastructure", "ar": "التقنية المالية - البنية التحتية للمدفوعات" },
+    "sector": {
+      "en": "Fintech — payments infrastructure",
+      "ar": "التقنية المالية - البنية التحتية للمدفوعات"
+    },
     "origin": "inbound",
     "stage": "ic-review",
     "statusLine": {
