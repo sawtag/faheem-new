@@ -84,12 +84,6 @@ test.describe("Skills page", () => {
     // branch, not `take`). Minimal fix: guard the effect with `if (!chat)
     // return;` before calling takeGoldenSelection(), so the pending value
     // isn't consumed until `chat` is actually resolved.
-    test.fixme(
-      true,
-      "components/chat/chat-view.tsx golden-selection effect drops a pending " +
-        "selection on a fresh /chat/new mount (see comment above) — fix is " +
-        "out of this task's file ownership",
-    );
     await page.goto("/skills");
     await page.getByTestId("skill-run-dcf-fcff").click();
     await page.waitForURL(/\/chat\/new\?context=firm/);
@@ -102,12 +96,6 @@ test.describe("Skills page", () => {
     page,
   }) => {
     // Same upstream bug as the prefill test above — see that test's comment.
-    test.fixme(
-      true,
-      "components/chat/chat-view.tsx golden-selection effect drops a pending " +
-        "selection on a fresh /chat/new mount — fix is out of this task's " +
-        "file ownership",
-    );
     await page.goto("/skills");
     await page.getByTestId("skill-run-risk-scorecard").click();
     await page.waitForURL(/\/chat\/new\?context=workspace%3Ajahez/);
