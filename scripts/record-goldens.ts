@@ -59,7 +59,11 @@ async function streamChat(
 ): Promise<SSEEvent[]> {
   const res = await fetch(`${baseUrl}/api/chat`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: {
+      "content-type": "application/json",
+      // auth middleware gates /api/chat; the browser has this cookie on stage
+      cookie: "faheem_session=1",
+    },
     body: JSON.stringify(entry.request),
   });
   if (!res.ok || !res.body) {

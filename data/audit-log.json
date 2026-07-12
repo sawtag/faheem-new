@@ -196,5 +196,125 @@
     "action": "question",
     "question": "Which specialist agents contribute to an IC memo end to end?",
     "citationCount": 5
+  },
+  {
+    "ts": "2026-07-12T19:25:10.920Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:25:10.930Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:25:10.936Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:25:10.943Z",
+    "user": "Ali",
+    "context": "ic",
+    "action": "question",
+    "question": "Rank these deals — strongest risk-adjusted case?",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:25:10.951Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "What would have to be true for Jahez to re-rate to your bull case?",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:25:10.957Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "How exposed is Jahez to Keeta's expansion through 2026?",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:26:33.210Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+    "citationCount": 17
+  },
+  {
+    "ts": "2026-07-12T19:26:40.005Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:26:46.972Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-12T19:28:28.193Z",
+    "user": "Ali",
+    "context": "ic",
+    "action": "question",
+    "question": "Rank these deals — strongest risk-adjusted case?",
+    "citationCount": 17
+  },
+  {
+    "ts": "2026-07-12T19:30:04.702Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "What would have to be true for Jahez to re-rate to your bull case?",
+    "citationCount": 24
+  },
+  {
+    "ts": "2026-07-12T19:30:49.310Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "How exposed is Jahez to Keeta's expansion through 2026?",
+    "citationCount": 17
+  },
+  {
+    "ts": "2026-07-12T19:34:13.501Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+    "citationCount": 27
+  },
+  {
+    "ts": "2026-07-12T19:36:00.097Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
+    "citationCount": 13
+  },
+  {
+    "ts": "2026-07-12T19:39:32.562Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+    "citationCount": 17
   }
 ]

@@ -1,0 +1,655 @@
+{
+  "key": "ce682a0083ebe33b9be3465c60b97107d253d8f1",
+  "request": {
+    "question": "How exposed is Jahez to Keeta's expansion through 2026?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "## Bottom"
+    },
+    {
+      "type": "delta",
+      "text": " Line\n\nJahez is materially exposed to Keeta's expansion, and that exposure has already moved from margin compression to"
+    },
+    {
+      "type": "delta",
+      "text": " an outright quarterly loss. The exposure is concentrated in the KSA delivery platform — the"
+    },
+    {
+      "type": "delta",
+      "text": " Group's largest revenue source — but Jahez retains three structural buffers (in"
+    },
+    {
+      "type": "delta",
+      "text": "-house logistics cost advantage, revenue-mix diversification toward commissions/ads, and the Snoonu-led"
+    },
+    {
+      "type": "delta",
+      "text": " international engine) that have kept the Group profitable at the full-year level where several peers have"
+    },
+    {
+      "type": "delta",
+      "text": " not.\n\n## The Threat Vector\n\nKeeta (Meituan's international arm) entered via Riyadh in September 2024 back"
+    },
+    {
+      "type": "delta",
+      "text": "ed by a SAR 1 billion commitment, and within four months had captured "
+    },
+    {
+      "type": "delta",
+      "text": "roughly 10% of KSA food-"
+    },
+    {
+      "type": "delta",
+      "text": "delivery order volume and 3.6 million app downloads, becoming the #3 platform behind HungerStation and Jahez on the"
+    },
+    {
+      "type": "delta",
+      "text": " back of SAR 100 sign-up vouchers, 50%-off first orders and fee-free delivery."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "industry-news-pack",
+      "page": 2,
+      "quote": "Delivery app Keeta takes on Hungerstation in Saudi Arabia\r\nRest of World · 10 Mar 2025 · restofworld.org/2025/delivery-app-keeta-hungerstation-saudi-arabia\r\nFour months after launch, Keeta had capture"
+    },
+    {
+      "type": "delta",
+      "text": " This is a well"
+    },
+    {
+      "type": "delta",
+      "text": "-capitalized, growth-before-profit assault — "
+    },
+    {
+      "type": "delta",
+      "text": "funded by Meituan, whose market cap the article reported at"
+    },
+    {
+      "type": "delta",
+      "text": " roughly 10x Delivery Hero's."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "industry-news-pack",
+      "page": 2,
+      "quote": "Analysts flagged the open question of whether a growth-before-profit\r\nplaybook — funded by Meituan, whose market cap the article reported at roughly 10x Delivery Hero's — could be\r\nsustained once disc"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nJahez's exposure is heightened by concentration: it"
+    },
+    {
+      "type": "delta",
+      "text": " held "
+    },
+    {
+      "type": "delta",
+      "text": "roughly one-third of Kingdom delivery orders in 2024 (91"
+    },
+    {
+      "type": "delta",
+      "text": "m of 290m platform orders)"
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "industry-news-pack",
+      "page": 3,
+      "quote": "Citing Transport General Authority order data, Jahez held roughly\r\none-third of Kingdom delivery orders in 2024 (91m of 290m platform orders); the report notes both Jahez and\r\nHungerStation remained s"
+    },
+    {
+      "type": "delta",
+      "text": ", and the top-three platforms — Keeta, Jahez and HungerStation — hold a combined order"
+    },
+    {
+      "type": "delta",
+      "text": " share "
+    },
+    {
+      "type": "delta",
+      "text": "above 90% in Q3 2025."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "industry-news-pack",
+      "page": 3,
+      "quote": "Saudi Arabia Quick Commerce Market — industry report\r\nMordor Intelligence · last updated 27 May 2026 · mordorintelligence.com/industry-reports/saudi-arabia-quick-commerce-marke\r\nt\r\nUsing a broader qui"
+    },
+    {
+      "type": "delta",
+      "text": " Any share Keeta takes com"
+    },
+    {
+      "type": "delta",
+      "text": "es largely from the two incumbents.\n\n## Quantified Impact on the P&L\n\n**FY2025 — margin compression.** The compet"
+    },
+    {
+      "type": "delta",
+      "text": "itive intensity is the explicit driver of Jahez's earnings decline. "
+    },
+    {
+      "type": "delta",
+      "text": "Commission revenue grew 16.3% to SAR 1,113.8 million, offsetting a 13.1% decline in delivery fee revenue, prim"
+    },
+    {
+      "type": "delta",
+      "text": "arily as a result of the competitive intensity in the Saudi market."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "Commission revenue grew 16.3% to  1,113.8 \r\nmillion, offsetting a 13.1% decline in delivery fee revenue, primarily as a result of the competitive intensity in \r\nthe Saudi market."
+    },
+    {
+      "type": "delta",
+      "text": " Group adjusted EBITDA fell to SAR 193.0m from"
+    },
+    {
+      "type": "delta",
+      "text": " SAR 250.0m, and "
+    },
+    {
+      "type": "delta",
+      "text": "reflecting a deliberate and measured decision to invest in"
+    },
+    {
+      "type": "delta",
+      "text": " customer retention and market share defence during a period of elevated industry-wide promotional activity. Despite the heightened competition in KSA, Jahez maintained double-digit E"
+    },
+    {
+      "type": "delta",
+      "text": "BITDA margins in KSA Platforms of 11.9% (SAR 208.8 million) and remained profitable at the Group level,"
+    },
+    {
+      "type": "delta",
+      "text": " a key differentiator versus regional peers who prioritized volume over profitability."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "fy25-er",
+      "page": 2,
+      "quote": "o Group Adjusted EBITDA ex ceeded  193 million , reflecting a deliberate and measured decision to \r\ninvest in customer retention and market share defence during a period of elevated industry - wide \r"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe KSA segment — the direct front line against Keeta — took"
+    },
+    {
+      "type": "delta",
+      "text": " the brunt: "
+    },
+    {
+      "type": "delta",
+      "text": "Revenue declined 8.6% YoY as Jahez responded to evolving market conditions by a"
+    },
+    {
+      "type": "delta",
+      "text": "ligning delivery fees more competitively and increasing its focus on commission-based monetization."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "fy25-er",
+      "page": 5,
+      "quote": "2 %. Revenue declined 8.6% YoY as Jahez \r\nresponded to evolving market conditions by aligning delivery fees more competitively and increasing its focus \r\non commission - based monetization."
+    },
+    {
+      "type": "delta",
+      "text": " KSA orders slipped from 90.9m to 88"
+    },
+    {
+      "type": "delta",
+      "text": ".6m even as GMV held flat at SAR 5.8bn.\n\n**Q1 2026 — outright loss.** The clearest single data"
+    },
+    {
+      "type": "delta",
+      "text": " point on exposure: "
+    },
+    {
+      "type": "delta",
+      "text": "Jahez swung to a Group net loss of SAR 9.2 million in"
+    },
+    {
+      "type": "delta",
+      "text": " Q1 2026 (vs. SAR 35.3 million net profit in Q1 2025) despite revenue growing to SAR 725"
+    },
+    {
+      "type": "delta",
+      "text": ".1m"
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "q1-26-fs",
+      "page": 5,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company) \r\nCONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS \r\nAND OTHER COMPREHENSIVE INCOME \r\n (Unaudited)\r\nFor"
+    },
+    {
+      "type": "delta",
+      "text": ", as operating expenses rose to SAR 179.9m on Snoonu consolidation and stepped-up marketing"
+    },
+    {
+      "type": "delta",
+      "text": ". At the unit level, KSA delivery-platform per-order economics turned negative in Q1 2026: ad"
+    },
+    {
+      "type": "delta",
+      "text": "justed EBITDA of **–SAR 0.9 per order**, reflecting a "
+    },
+    {
+      "type": "delta",
+      "text": "Decrease in order profitability by SAR 0.9 to maintain market share."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "q1-26-earnings-call",
+      "page": 20,
+      "quote": "20\r\nTactical delivery campaigns impacting \r\nnet revenue \r\nLower KSA profitability while UoE significantly improved outside of KSA\r\nImprovement in cost per order due to price \r\nnegotiation & fleet opti"
+    },
+    {
+      "type": "delta",
+      "text": " For the full year"
+    },
+    {
+      "type": "delta",
+      "text": " FY2025, that same figure had been –SAR 0.8, with management no"
+    },
+    {
+      "type": "delta",
+      "text": "ting "
+    },
+    {
+      "type": "delta",
+      "text": "Tactical delivery campaigns impacting net revenue."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "fy25-earnings-call",
+      "page": 21,
+      "quote": "Unit Economics Delivery Platforms FY 2025\r\nLower KSA profitability while UoE significantly improved outside of KSA\r\n19.9 \r\n(14.7)\r\n5.1 (2.8)\r\n2.4 \r\nNet Revenue Cost of Revenue Margin Contribution Oper"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## Structural Buffers"
+    },
+    {
+      "type": "delta",
+      "text": " That Cap the Damage\n\n**1. In-house logistics cost advantage.** Jahez's Logi fleet is the key"
+    },
+    {
+      "type": "delta",
+      "text": " offset to Keeta's fee-free delivery. "
+    },
+    {
+      "type": "delta",
+      "text": "Logi"
+    },
+    {
+      "type": "delta",
+      "text": "'s growing in-house delivery capacity has been a meaningful contributor to reducing overall per-delivery unit economics for the Group, helping to partially offset the"
+    },
+    {
+      "type": "delta",
+      "text": " impact of lower delivery fees in the competitive KSA market. During the year, Logi expanded its fleet to over +4,000 drivers under sponsorship compared to +1,800 drivers"
+    },
+    {
+      "type": "delta",
+      "text": " in the prior year. As a result, Logi now accounts for 40% of Jahez deliveries by Q4 2025."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "fy25-er",
+      "page": 5,
+      "quote": "Importantly, Logi’s growing in - house delivery \r\ncapacity has been a meaningful contributor to reducing overall per - delivery unit economics for the Group, \r\nhelping to partially offset the impact o"
+    },
+    {
+      "type": "delta",
+      "text": " The value proposition cites "
+    },
+    {
+      "type": "delta",
+      "text": "~SAR 2 lower delivery cost per order to compensate offers."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "fy25-earnings-call",
+      "page": 9,
+      "quote": "Customer \r\n& Demand \r\nAdvantage\r\nStructural \r\n& Financial \r\nAdvantage\r\nValue-led proposition\r\nCompeting on value, not price alone\r\nTargeted promotions \r\nsupport retention\r\nIncreased AOV \r\ndespite prom"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**2. Revenue-mix diversification."
+    },
+    {
+      "type": "delta",
+      "text": "** Jahez is deliberately shifting away from the delivery-fee line Keeta is attacking, toward commissions, advertising and"
+    },
+    {
+      "type": "delta",
+      "text": " new verticals. Take rate improved to 16.15% (+1.3pp YoY), and "
+    },
+    {
+      "type": "delta",
+      "text": "non-food GMV grew 4x in 2025 compared to the prior year. In total, non-food contribution to GMV increased to"
+    },
+    {
+      "type": "delta",
+      "text": " 7% in 2025, compared to 2% in the prior year."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "fy25-er",
+      "page": 2,
+      "quote": "o Demonstrated high growth in t he non - food segment as GMV grew 4 x in 2025 compared to the \r\nprior year. In total, non - food contribution to GMV increased to 7% in 2025, compared to 2 % in the \r\np"
+    },
+    {
+      "type": "delta",
+      "text": " The noon KSA partnership adds grocery sc"
+    },
+    {
+      "type": "delta",
+      "text": "ale on a low-capex basis, with "
+    },
+    {
+      "type": "delta",
+      "text": "52% of Q1 2026 Grocery GMV growth driven by Noon contribution."
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "q1-26-earnings-call",
+      "page": 8,
+      "quote": "8\r\nJahez KSA Grocery GMV\r\nQ 1 2025 Q 1 2026\r\n2.5 x\r\nGMV Grocery growth\r\nQ 1 2025 to Q 1 2026\r\nAccelerating Grocery GMV growth while enabling Jahez \r\nto scale the vertical through a low - capex model\r\n"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**3. International diversification via Snoonu.** The Qatar acquisition reduces the Group's dependence on the contested KSA market — non"
+    },
+    {
+      "type": "delta",
+      "text": "-KSA reached 37.4% of Q4 GMV, up from 10.7% a year earlier, and Snoonu's non-K"
+    },
+    {
+      "type": "delta",
+      "text": "SA unit economics are now positive (+SAR 3.3 adj. EBITDA per order in FY2025 vs. –SAR 4"
+    },
+    {
+      "type": "delta",
+      "text": ".0 prior year), a contrast to the KSA pressure.\n\n## Read-Through for the Forward View"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nManagement is guiding to continued aggressive spending. FY2026 guidance reflects "
+    },
+    {
+      "type": "delta",
+      "text": "aggressive go-to-market posture, with higher promotional, & customer acquisition investment"
+    },
+    {
+      "type": "delta",
+      "text": "[[15]]"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "fy25-earnings-call",
+      "page": 24,
+      "quote": "FY 2026 Guidance\r\nGuidance reflects aggressive go-to-market posture, with higher promotional, & customer acquisition investment\r\n1."
+    },
+    {
+      "type": "delta",
+      "text": ", with adj"
+    },
+    {
+      "type": "delta",
+      "text": "usted EBITDA guided to SAR 200–220m and "
+    },
+    {
+      "type": "delta",
+      "text": "Q1 Profitability as expected with potential more"
+    },
+    {
+      "type": "delta",
+      "text": " aggressive spending to address competition."
+    },
+    {
+      "type": "delta",
+      "text": "[[16]]"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "q1-26-earnings-call",
+      "page": 23,
+      "quote": "Group net income attributable to shareholders of the parent company \r\nActuals\r\n2026 Net Income considerations:\r\n• Higher D&A following Snoonu consolidation \r\n• Lower contribution from time deposit inc"
+    },
+    {
+      "type": "delta",
+      "text": " Q1 2026 did show a KSA order recovery QoQ ("
+    },
+    {
+      "type": "delta",
+      "text": "Market share recovery in KSA despite Ramadan seasonality, supported by targeted marketing and retention investments"
+    },
+    {
+      "type": "delta",
+      "text": "[[17]]"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "q1-26-earnings-call",
+      "page": 16,
+      "quote": "16\r\n$ b\r\nGMV\r\nGroup GMV growth attributable to Snoonu consolidation; Gained QoQ \r\nmomentum in KSA despite Ramadan seasonality\r\n1.6 \r\n2.1 2.3 \r\nQ1-2025 Q4-2025 Q1-2026\r\n8 %\r\n39 %\r\nAOV\r\nAOV increased 15"
+    },
+    {
+      "type": "delta",
+      "text": "), suggesting the defence is holding volume — but at the cost of per-order profitability.\n\n**"
+    },
+    {
+      "type": "delta",
+      "text": "Net assessment:** Exposure is high and ongoing through 2026 — the price war has already erased ~SAR 57m of Group ad"
+    },
+    {
+      "type": "delta",
+      "text": "justed EBITDA YoY and pushed Q1 into loss. However, Jahez's ex"
+    },
+    {
+      "type": "delta",
+      "text": "posure is *defensible* rather than existential: it remained FY-profitable through"
+    },
+    {
+      "type": "delta",
+      "text": " the peak of the war, its logistics and monetization levers structurally lower the cost of mat"
+    },
+    {
+      "type": "delta",
+      "text": "ching Keeta's offers, and its GMV/market position have held. The key monitor"
+    },
+    {
+      "type": "delta",
+      "text": "able is whether KSA per-order economics recover from negative territory as promotional intensity norm"
+    },
+    {
+      "type": "delta",
+      "text": "alizes — management's own H2-2026 profitability-improvement thesis rests on exactly that."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-12T19:30:49.310Z"
+}

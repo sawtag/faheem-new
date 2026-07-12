@@ -1,0 +1,894 @@
+{
+  "key": "7b59234b8fa1af6d882098c5e520addd3f66673f",
+  "request": {
+    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    },
+    "agent": "risk"
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "## Bottom line\n\nThe"
+    },
+    {
+      "type": "delta",
+      "text": " quick-commerce price war is a **material, already-realized risk,"
+    },
+    {
+      "type": "delta",
+      "text": " not a forward hypothetical** — it has moved Jahez from margin compression (FY2025) to an outright quarterly loss"
+    },
+    {
+      "type": "delta",
+      "text": " (Q1 2026). On mandate fit, I would not let this pass scre"
+    },
+    {
+      "type": "delta",
+      "text": "ening cleanly: the completed analysis marks \"Mandate fit: Pass,\" but there are two governance problems the IC must"
+    },
+    {
+      "type": "delta",
+      "text": " resolve first — **(1) an instrument/stage mismatch** (Jahez is a listed equity, not a Series A–C private company) and **(2"
+    },
+    {
+      "type": "delta",
+      "text": ") a sector-concentration cap that a mandate-band ticket would breach.**\n\n---\n\n## 1. Quantified risk assessment"
+    },
+    {
+      "type": "delta",
+      "text": " — the price war\n\n**The competitive shock is well-documented.** "
+    },
+    {
+      "type": "delta",
+      "text": "Meituan's Keeta br"
+    },
+    {
+      "type": "delta",
+      "text": "and entered Saudi Arabia via Riyadh in September 2024, backed by a SAR 1 billion investment commitment"
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "industry-news-pack",
+      "page": 2,
+      "quote": "Food delivery platform Keeta expands to Riyadh with SR1bn investment\r\nArab News · 9 Oct 2024 · arabnews.com/node/2574628/corporate-news\r\nKeeta (Meituan's international arm) entered Saudi Arabia via Ri"
+    },
+    {
+      "type": "delta",
+      "text": ", and "
+    },
+    {
+      "type": "delta",
+      "text": "within four months had captured roughly 10% of KSA food-delivery order volume and 3.6 million app downloads, becoming the #3 platform behind H"
+    },
+    {
+      "type": "delta",
+      "text": "ungerStation and Jahez"
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "industry-news-pack",
+      "page": 2,
+      "quote": "Delivery app Keeta takes on Hungerstation in Saudi Arabia\r\nRest of World · 10 Mar 2025 · restofworld.org/2025/delivery-app-keeta-hungerstation-saudi-arabia\r\nFour months after launch, Keeta had capture"
+    },
+    {
+      "type": "delta",
+      "text": " through aggressive vouchers and fee-free delivery. The field"
+    },
+    {
+      "type": "delta",
+      "text": " is also capitalized for a long fight — "
+    },
+    {
+      "type": "delta",
+      "text": "Ninja reached un"
+    },
+    {
+      "type": "delta",
+      "text": "icorn status at a US$1.5 billion valuation on a US$254 million pre-IPO round (Jul 2025), running 100+ dark"
+    },
+    {
+      "type": "delta",
+      "text": "-store hubs"
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "industry-news-pack",
+      "page": 2,
+      "quote": "Ninja — company profile (funding, valuation, footprint)\r\nSacra · valuation event Jul 2025, profile accessed 12 Jul 2026 · sacra.com/c/ninja\r\nNinja, the Dhahran-based 30-minute quick-commerce operator,"
+    },
+    {
+      "type": "delta",
+      "text": " — and "
+    },
+    {
+      "type": "delta",
+      "text": "the combined order share of the top three platforms — Keeta, Jahez and HungerStation"
+    },
+    {
+      "type": "delta",
+      "text": " — was above 90% in Q3 2025"
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "industry-news-pack",
+      "page": 3,
+      "quote": "Saudi Arabia Quick Commerce Market — industry report\r\nMordor Intelligence · last updated 27 May 2026 · mordorintelligence.com/industry-reports/saudi-arabia-quick-commerce-marke\r\nt\r\nUsing a broader qui"
+    },
+    {
+      "type": "delta",
+      "text": ".\n\n**Damage already booked (Group, FY2025 "
+    },
+    {
+      "type": "delta",
+      "text": "vs FY2024):**\n\n| Metric | FY2025 | FY2024 | Δ |\n|---|---|---|---|\n| Ad"
+    },
+    {
+      "type": "delta",
+      "text": "j. EBITDA | SAR 193.0m | SAR 250.0m | **−22.8%** |\n| Net profit (sh"
+    },
+    {
+      "type": "delta",
+      "text": "areholders) | SAR 73.0m | SAR 188.0m | **−61.2%** |\n| Gross margin | 22.8% | 24.4% | −1.6pp |\n| Adj."
+    },
+    {
+      "type": "delta",
+      "text": " EBITDA margin | 8.3% | 11.3% | −3.0pp |\n\nSource: "
+    },
+    {
+      "type": "delta",
+      "text": "Net Revenue SAR 2,323.6m (+4.7%); Gross Profit SAR "
+    },
+    {
+      "type": "delta",
+      "text": "530.1m (−2.0%), 22.8% margin; Adj. EBITDA SAR 193.0m (−22.8%), 8.3% marg"
+    },
+    {
+      "type": "delta",
+      "text": "in; Net Profit SAR 73.0m (−61.2%)"
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "2 %\r\nNet Revenue 2,32 3 .6 2,218.7 +4. 7 %\r\nGross Profit 530 .1 541.2 (2.0 % )\r\nGross Profit % of Net Revenue 22. 8 % 24.4% (1.6 ) pp\r\nAdj. EBITDA 193. 0 250.0 (22. 8 % )\r\nAdj. EBITDA % of Net Revenue"
+    },
+    {
+      "type": "delta",
+      "text": ".\n\n**The epicenter is the KSA plat"
+    },
+    {
+      "type": "delta",
+      "text": "form.** "
+    },
+    {
+      "type": "delta",
+      "text": "The KSA delivery segment generated net income of SAR 214.8m and an Adj"
+    },
+    {
+      "type": "delta",
+      "text": "usted EBITDA margin of 11.9%, but revenue declined 8.6% YoY as Jahez aligned delivery fees more competitively."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "fy25-er",
+      "page": 5,
+      "quote": "7) pp\r\n1: Attributable to shareholders of parent company | * Numbers presented may not add up precisely to the totals provided due to rounding\r\nThe KSA delivery platform segment remained profitable in"
+    },
+    {
+      "type": "delta",
+      "text": " KSA Adj. EBITDA fell 28.4% to SAR 208.8m (margin 15.1% → 11.9%). On a unit basis, "
+    },
+    {
+      "type": "delta",
+      "text": "KSA per-order Adj. EBITDA fell by SAR 0.8 to maintain market"
+    },
+    {
+      "type": "delta",
+      "text": " share"
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "fy25-earnings-call",
+      "page": 21,
+      "quote": "Unit Economics Delivery Platforms FY 2025\r\nLower KSA profitability while UoE significantly improved outside of KSA\r\n19.9 \r\n(14.7)\r\n5.1 (2.8)\r\n2.4 \r\nNet Revenue Cost of Revenue Margin Contribution Oper"
+    },
+    {
+      "type": "delta",
+      "text": " (to SAR 2.4 from SAR 3.2). KSA volume also went back"
+    },
+    {
+      "type": "delta",
+      "text": "ward: FY2025 GMV was flat at SAR 5.8bn with orders down 3% to 88.6m."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**The trajectory is what concerns me most.** The compression deepened into an outright loss:\n- "
+    },
+    {
+      "type": "delta",
+      "text": "Q4-2025 Group net income was −SAR 47.9m (−174% YoY)"
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "fy25-earnings-call",
+      "page": 16,
+      "quote": "Group Key Highlights\r\nGroup Net Income *\r\n89%\r\nJahez Group GMV\r\n65.1 \r\n(47.9)\r\n188.0 \r\n73.0 \r\n10.9% -6.9% 8.5% 3.1%\r\n-100%\r\n-80%\r\n-60%\r\n-40%\r\n-20%\r\n0%\r\n20%\r\n40%\r\n60%\r\n80%\r\n100 %\r\n(80.0)\r\n(30.0)\r\n20.0\r"
+    },
+    {
+      "type": "delta",
+      "text": ".\n- "
+    },
+    {
+      "type": "delta",
+      "text": "Q1-"
+    },
+    {
+      "type": "delta",
+      "text": "2026 net loss attributable to shareholders was SAR 9.2m, versus a SAR 35.3m profit in Q1-2025"
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "q1-26-fs",
+      "page": 5,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company) \r\nCONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS \r\nAND OTHER COMPREHENSIVE INCOME \r\n (Unaudited)\r\nFor"
+    },
+    {
+      "type": "delta",
+      "text": ","
+    },
+    {
+      "type": "delta",
+      "text": " even as revenue grew 37.9% (Snoonu consolidation).\n\nAnd management is guiding to **more** prom"
+    },
+    {
+      "type": "delta",
+      "text": "otional intensity, not less: "
+    },
+    {
+      "type": "delta",
+      "text": "FY2026 guidance reflects an aggressive go-to-market posture, with higher promotional and customer-acquisition investment."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "fy25-earnings-call",
+      "page": 24,
+      "quote": "FY 2026 Guidance\r\nGuidance reflects aggressive go-to-market posture, with higher promotional, & customer acquisition investment\r\n1."
+    },
+    {
+      "type": "delta",
+      "text": " So the price war is an ongoing, not a receding, risk.\n\n**Partial mitigants (why this is a 5–"
+    },
+    {
+      "type": "delta",
+      "text": "6/10, not an 8):**\n- **Monetization offset:** "
+    },
+    {
+      "type": "delta",
+      "text": "Commission"
+    },
+    {
+      "type": "delta",
+      "text": " Revenue rose 16.3% and Advertising Revenue 17.5% YoY, partly offsetting the decrease in delivery revenues."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "fy25-er",
+      "page": 2,
+      "quote": "o Increased Commission Revenue 16.3% and increased Advertising Revenue by 17.5% YoY to \r\npartly offset the decrease in delivery revenues."
+    },
+    {
+      "type": "delta",
+      "text": " KSA Q4 take rate reached 16.15% (+1.3pp YoY).\n- **Cost lever via"
+    },
+    {
+      "type": "delta",
+      "text": " in-house logistics:** "
+    },
+    {
+      "type": "delta",
+      "text": "Logi's growing in-house delivery capacity has meaningfully reduced per-del"
+    },
+    {
+      "type": "delta",
+      "text": "ivery unit economics; the fleet expanded to over 4,000 drivers and Logi now accounts for 40% of Jahez deliveries by"
+    },
+    {
+      "type": "delta",
+      "text": " Q4 2025."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "fy25-er",
+      "page": 5,
+      "quote": "Importantly, Logi’s growing in - house delivery \r\ncapacity has been a meaningful contributor to reducing overall per - delivery unit economics for the Group, \r\nhelping to partially offset the impact o"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Diversification:** "
+    },
+    {
+      "type": "delta",
+      "text": "The Group's new verticals supported a"
+    },
+    {
+      "type": "delta",
+      "text": " more than 2x YoY increase in revenue from Sales of Goods and Subscriptions"
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "fy25-er",
+      "page": 2,
+      "quote": "o The Group’s new verticals continued to ramp up, supporting a more than 2x YoY increase in revenue \r\nfrom Sales of Goods and Subscriptions 1."
+    },
+    {
+      "type": "delta",
+      "text": ", and non-KSA unit economics improved materially (+SAR 3.3/"
+    },
+    {
+      "type": "delta",
+      "text": "order FY, +SAR 1.7/order Q1-2026).\n- **Balance-sheet resilience:** "
+    },
+    {
+      "type": "delta",
+      "text": "Cash and cash equivalents stood at SAR 510.7m at 31 March 2026."
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "q1-26-fs",
+      "page": 4,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company)\r\nCONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSTION \r\nAs at 31 March 2026 \r\nSaudi Riyal ) ( \r\n2\r\nNote\r"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Relative positioning:** "
+    },
+    {
+      "type": "delta",
+      "text": "Jahez maintained double-digit KSA EBITDA margins (11.9%) and remained profitable at the"
+    },
+    {
+      "type": "delta",
+      "text": " Group level, a differentiator versus regional peers who prioritized volume over profitability."
+    },
+    {
+      "type": "delta",
+      "text": "[[15]]"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "fy25-er",
+      "page": 2,
+      "quote": "o Group Adjusted EBITDA ex ceeded  193 million , reflecting a deliberate and measured decision to \r\ninvest in customer retention and market share defence during a period of elevated industry - wide \r"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe completed analysis scored qu"
+    },
+    {
+      "type": "delta",
+      "text": "antified risk at "
+    },
+    {
+      "type": "delta",
+      "text": "5.5 / 10, with mandate fit and Shariah screen both marked \"Pass\""
+    },
+    {
+      "type": "delta",
+      "text": "[[16]]"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": ". I would flag that a 5.5 arguably understates the near-term skew given the Q4"
+    },
+    {
+      "type": "delta",
+      "text": "/Q1 losses and the guided escalation of spend — the downside cases de"
+    },
+    {
+      "type": "delta",
+      "text": "serve heavier weighting.\n\n---\n\n## 2. Mandate-fit assessment — two problems to resolve before this"
+    },
+    {
+      "type": "delta",
+      "text": " advances\n\n**Problem A — instrument/stage mismatch (the most important issue).** The Charter's invest"
+    },
+    {
+      "type": "delta",
+      "text": "ment criteria apply to a *private growth-equity opportunity*, and require a "
+    },
+    {
+      "type": "delta",
+      "text": "financing stage of Series A through Series"
+    },
+    {
+      "type": "delta",
+      "text": " C and a ticket size of SAR 20,000,000–60,000,000 per investment"
+    },
+    {
+      "type": "delta",
+      "text": "[[17]]"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Criterion Mandate\r\nSector Technology & Consumer only\r\nTicket size SAR 20,000,000 – SAR 60,000,000 per investment\r\nFinancing stage Series A through Series C\r\nTarget holding period 3 – 5 years\r\nDomicile"
+    },
+    {
+      "type": "delta",
+      "text": ". But Jahez is a **listed public equity**"
+    },
+    {
+      "type": "delta",
+      "text": " — "
+    },
+    {
+      "type": "delta",
+      "text": "TADAWUL: 6017, market cap ~SAR 2.60bn"
+    },
+    {
+      "type": "delta",
+      "text": "[[18]]"
+    },
+    {
+      "type": "citation",
+      "n": 18,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "A. Jahez Market Snapshot\r\nSHARE PRICE\r\nSAR 12.79\r\nstockanalysis.com, 10 Jul\r\n2026 close\r\nMARKET CAP\r\nSAR 2.60bn\r\nstockanalysis.com, 10 Jul\r\n2026\r\nSHARES OUTSTANDING\r\n203.26m\r\nstockanalysis.com, 10 Jul"
+    },
+    {
+      "type": "delta",
+      "text": " — not a Series A–C private company. Yet the completed analysis frames it in private-growth-equity terms (\"Implied IRR at entry,\" "
+    },
+    {
+      "type": "delta",
+      "text": "ticket, hurdle rate) and marks mandate fit \"Pass.\" That is a category error: either the name is being mis-routed through the private pipeline (in"
+    },
+    {
+      "type": "delta",
+      "text": " which case it fails the Series A–C criterion and needs an explicit waiver), or it belongs in the public-equities book (in which case the IRR-hurdle/ticket under"
+    },
+    {
+      "type": "delta",
+      "text": "writing lens in the summary is the wrong framework). **The IC needs to decide which book this sits in before"
+    },
+    {
+      "type": "delta",
+      "text": " the return math means anything.**\n\n**Problem B — sector concentration.** Jahez is squarely a techn"
+    },
+    {
+      "type": "delta",
+      "text": "ology/consumer name, and that bucket is near its ceiling: "
+    },
+    {
+      "type": "delta",
+      "text": "the Technology & Consumer sector bucket sits at "
+    },
+    {
+      "type": "delta",
+      "text": "8.5% of AUM against the Charter's 10% cap, leaving 1.5 percentage points of headroom."
+    },
+    {
+      "type": "delta",
+      "text": "[[19]]"
+    },
+    {
+      "type": "citation",
+      "n": 19,
+      "docId": "lunar-portfolio",
+      "page": 1,
+      "quote": "Holding Sector Strategy % of AUM\r\nTechCo Arabia (private) Technology Private growth equity 3.5%\r\nBasalt Retail Holdings (private) Consumer Private growth equity 2.5%\r\nstc Group Technology Public equit"
+    },
+    {
+      "type": "delta",
+      "text": " The Char"
+    },
+    {
+      "type": "delta",
+      "text": "ter's calculation is post-deal: "
+    },
+    {
+      "type": "delta",
+      "text": "a SAR 40M ticket (2.0% of AUM) would bring the bucket to 10.5"
+    },
+    {
+      "type": "delta",
+      "text": "% of AUM — above the cap — and must be flagged as a concentration warning at screening, per the Charter's post-deal calculation methodology."
+    },
+    {
+      "type": "delta",
+      "text": "[[20]]"
+    },
+    {
+      "type": "citation",
+      "n": 20,
+      "docId": "lunar-portfolio",
+      "page": 2,
+      "quote": "A SAR 40M ticket (2.0% of AUM at the firm's current\r\n~SAR 2.0bn base) would bring the bucket to 10.5% of AUM — above the cap — and must be flagged as a concentration\r\nwarning at screening rather than "
+    },
+    {
+      "type": "delta",
+      "text": " Under"
+    },
+    {
+      "type": "delta",
+      "text": " the Charter, "
+    },
+    {
+      "type": "delta",
+      "text": "a proposed investment that would push the measure above 10% does not automatically fail, but requires explicit"
+    },
+    {
+      "type": "delta",
+      "text": " IC acknowledgement of the mandate breach before the deal may advance."
+    },
+    {
+      "type": "delta",
+      "text": "[[21]]"
+    },
+    {
+      "type": "citation",
+      "n": 21,
+      "docId": "lunar-ic-charter",
+      "page": 4,
+      "quote": "A proposed investment that would push either measure above 10% is\r\nflagged at screening as a concentration warning; it does not automatically fail, but it requires explicit IC acknowledgement\r\nof the "
+    },
+    {
+      "type": "delta",
+      "text": " In practice only ~SAR 30M of"
+    },
+    {
+      "type": "delta",
+      "text": " mandate-band capacity exists before the cap binds.\n\n**What does fit:** sector (technology/consumer) and ge"
+    },
+    {
+      "type": "delta",
+      "text": "ography (KSA nexus) are clean passes, and on return the analysis shows "
+    },
+    {
+      "type": "delta",
+      "text": "an implied IRR at entry of 17.1% against the 15.0% hurdle, with a scenario-weighted expected return of 16.8%"
+    },
+    {
+      "type": "delta",
+      "text": "[[22]]"
+    },
+    {
+      "type": "citation",
+      "n": 22,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": ". But that clears the hurdle by only ~210bps — and the Risk Appetite Statement is explicit that "
+    },
+    {
+      "type": "delta",
+      "text": "deals clearing the hurdle by a narrow margin are held to tighter downside monitoring and more conservative scenario weighting."
+    },
+    {
+      "type": "delta",
+      "text": "[[23]]"
+    },
+    {
+      "type": "citation",
+      "n": 23,
+      "docId": "lunar-risk-appetite",
+      "page": 1,
+      "quote": "Deals clearing the hurdle by a narrow\r\nmargin are held to tighter downside monitoring and more conservative scenario weighting in the analysis stage."
+    },
+    {
+      "type": "delta",
+      "text": " Given the company"
+    },
+    {
+      "type": "delta",
+      "text": " just printed a quarterly loss, the downside weighting is exactly where I'd ap"
+    },
+    {
+      "type": "delta",
+      "text": "ply scrutiny.\n\n**Two data/methodology caveats for the IC file:**\n- **W"
+    },
+    {
+      "type": "delta",
+      "text": "ACC rests on incomplete inputs.** The comparables pack flagged that Jahez's own beta is unusable and warned that "
+    },
+    {
+      "type": "delta",
+      "text": "a bottom-up beta requires each comp's debt/equity and marginal tax rate, which were not cleanly available — flagged"
+    },
+    {
+      "type": "delta",
+      "text": " as a modeling next step rather than estimated."
+    },
+    {
+      "type": "delta",
+      "text": "[[24]]"
+    },
+    {
+      "type": "citation",
+      "n": 24,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "The standard fix is a bottom-up beta built\r\nfrom unlevered comparable-company betas re-levered to Jahez's capital structure; that requires each comp's debt/equity\r\nand marginal tax rate, which were no"
+    },
+    {
+      "type": "delta",
+      "text": " The completed analysis nonetheless applies a 1.82x comp-set"
+    },
+    {
+      "type": "delta",
+      "text": " beta (essentially the raw average of DoorDash 1.78x and Delivery Hero 1.86x), which is precisely the shortcut the pack c"
+    },
+    {
+      "type": "delta",
+      "text": "autioned against.\n- **A net-cash discrepancy.** The summary states "
+    },
+    {
+      "type": "delta",
+      "text": "the balance sheet carries SAR 16.6m of net"
+    },
+    {
+      "type": "delta",
+      "text": " cash"
+    },
+    {
+      "type": "delta",
+      "text": "[[25]]"
+    },
+    {
+      "type": "citation",
+      "n": 25,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "The balance sheet carries SAR 16.6m of net\r\ncash."
+    },
+    {
+      "type": "delta",
+      "text": ", which cannot be reconciled with the Q1-2026 statements (SAR 510.7m cash against"
+    },
+    {
+      "type": "delta",
+      "text": " SAR 161.2m of Islamic facilities). This should be corrected before the memo goes to the IC.\n\n---\n\n## Recommendation to"
+    },
+    {
+      "type": "delta",
+      "text": " Risk & Portfolio Monitoring\n\nTreat this as **flagged, not cleared**."
+    },
+    {
+      "type": "delta",
+      "text": " The price-war risk is real and escalating but partly mitigated by take-rate/ads monetization, Logi cost"
+    },
+    {
+      "type": "delta",
+      "text": " efficiency, Snoonu diversification and a strong cash position — a mid-range"
+    },
+    {
+      "type": "delta",
+      "text": " risk read is defensible. The blocking items are governance, not th"
+    },
+    {
+      "type": "delta",
+      "text": "esis: resolve the public-vs-private book question, and recognize that any mandate-band tech/consumer ticket tri"
+    },
+    {
+      "type": "delta",
+      "text": "ggers a sector-cap concentration warning requiring an explicit IC acknowledgement. Consistent with the Charter, "
+    },
+    {
+      "type": "delta",
+      "text": "any advisory tooling used in"
+    },
+    {
+      "type": "delta",
+      "text": " preparation is explicitly non-decisional — it may rank, compare and flag sensitivities, but the Committee alone decides"
+    },
+    {
+      "type": "delta",
+      "text": "[[26]]"
+    },
+    {
+      "type": "citation",
+      "n": 26,
+      "docId": "lunar-ic-charter",
+      "page": 2,
+      "quote": "Any advisory tooling used in preparation is explicitly non-decisional — it may rank, compare, and\r\nflag sensitivities, but the Committee alone decides."
+    },
+    {
+      "type": "delta",
+      "text": ", and "
+    },
+    {
+      "type": "delta",
+      "text": "any waiver of a Charter limit requires an explicit, minuted IC vote."
+    },
+    {
+      "type": "delta",
+      "text": "[[27]]"
+    },
+    {
+      "type": "citation",
+      "n": 27,
+      "docId": "lunar-risk-appetite",
+      "page": 3,
+      "quote": "Any waiver of a Charter limit requires an explicit, minuted IC vote."
+    },
+    {
+      "type": "delta",
+      "text": " This note is a sense"
+    },
+    {
+      "type": "delta",
+      "text": "-check for that vote, not a substitute for it."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-12T19:34:13.500Z"
+}

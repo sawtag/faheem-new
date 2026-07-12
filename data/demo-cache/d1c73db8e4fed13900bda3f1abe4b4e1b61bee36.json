@@ -1,0 +1,824 @@
+{
+  "key": "d1c73db8e4fed13900bda3f1abe4b4e1b61bee36",
+  "request": {
+    "question": "What would have to be true for Jahez to re-rate to your bull case?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "## Bott"
+    },
+    {
+      "type": "delta",
+      "text": "om line up front\n\nThe completed analysis frames Jahez around a scenario-weighted expected return of "
+    },
+    {
+      "type": "delta",
+      "text": "16.8%, which blends bull, base and bear cases and remains above the "
+    },
+    {
+      "type": "delta",
+      "text": "15.0% hurdle even after weighting for downside"
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " — but the granular bull-case inputs (terminal growth, margin exit r"
+    },
+    {
+      "type": "delta",
+      "text": "ates) are not itemized in my connected sources. What I can do is reconstruct, from the operating drivers in the filings, the specific inflections that would have"
+    },
+    {
+      "type": "delta",
+      "text": " to occur for Jahez to re-rate to the upper end of that distribution. Five"
+    },
+    {
+      "type": "delta",
+      "text": " conditions matter, roughly in order of importance.\n\n## 1. KSA competitive intensity has to ease —"
+    },
+    {
+      "type": "delta",
+      "text": " and monetization has to hold the gains\n\nThis is the swing factor. The Keeta-led price war drove "
+    },
+    {
+      "type": "delta",
+      "text": "KSA delivery-platform revenue down 8.6% YoY as Jahez aligned delivery fees more competitively"
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "fy25-er",
+      "page": 5,
+      "quote": "Revenue declined 8.6% YoY as Jahez \r\nresponded to evolving market conditions by aligning delivery fees more competitively and increasing its focus \r\non commission - based monetization."
+    },
+    {
+      "type": "delta",
+      "text": ","
+    },
+    {
+      "type": "delta",
+      "text": " and group net income compressed. The bull case requires the pivot toward commission monetization to more"
+    },
+    {
+      "type": "delta",
+      "text": " than offset the delivery-fee compression on a sustained basis: "
+    },
+    {
+      "type": "delta",
+      "text": "commission revenue grew 16.3% to"
+    },
+    {
+      "type": "delta",
+      "text": " SAR 1,113.8 million, offsetting a 13.1% decline in delivery-fee revenue, primarily as a result of compet"
+    },
+    {
+      "type": "delta",
+      "text": "itive intensity in the Saudi market."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "Commission revenue grew 16.3% to  1,113.8 \r\nmillion, offsetting a 13.1% decline in delivery fee revenue, primarily as a result of the competitive intensity in \r\nthe Saudi market."
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe take-rate lever is the clearest re-rating"
+    },
+    {
+      "type": "delta",
+      "text": " path. Take rate has already climbed — "
+    },
+    {
+      "type": "delta",
+      "text": "continued improvement in take rate by +1.3pp YoY"
+    },
+    {
+      "type": "delta",
+      "text": " reaching 16.15% in KSA in Q4"
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "fy25-earnings-call",
+      "page": 6,
+      "quote": "Key highlights for Q4 - 2025\r\nNon-KSA \r\nPlatforms\r\n• Snoonuto serve as Jahez Group’s international arm for all non-KSA operations\r\n• 18% gross profit margin supported by improvement in ads revenue, co"
+    },
+    {
+      "type": "delta",
+      "text": " — and management explicitly flags that "
+    },
+    {
+      "type": "delta",
+      "text": "lower current take rate provides structural"
+    },
+    {
+      "type": "delta",
+      "text": " monetization upside, with Jahez balancing profitability with merchant success."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "fy25-earnings-call",
+      "page": 9,
+      "quote": "Customer \r\n& Demand \r\nAdvantage\r\nStructural \r\n& Financial \r\nAdvantage\r\nValue-led proposition\r\nCompeting on value, not price alone\r\nTargeted promotions \r\nsupport retention\r\nIncreased AOV \r\ndespite prom"
+    },
+    {
+      "type": "delta",
+      "text": " Bull case: promotional spend norm"
+    },
+    {
+      "type": "delta",
+      "text": "alizes, KSA orders re-accelerate (Q1-2026 already show"
+    },
+    {
+      "type": "delta",
+      "text": "ed "
+    },
+    {
+      "type": "delta",
+      "text": "market share recovery in KSA despite Ramadan seasonality, supported by targeted marketing and retention investments"
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "q1-26-earnings-call",
+      "page": 16,
+      "quote": "16\r\n$ b\r\nGMV\r\nGroup GMV growth attributable to Snoonu consolidation; Gained QoQ \r\nmomentum in KSA despite Ramadan seasonality\r\n1.6 \r\n2.1 2.3 \r\nQ1-2025 Q4-2025 Q1-2026\r\n8 %\r\n39 %\r\nAOV\r\nAOV increased 15"
+    },
+    {
+      "type": "delta",
+      "text": "), and the higher take rate sticks rather than being competed away.\n\n## 2. Non-KSA /"
+    },
+    {
+      "type": "delta",
+      "text": " Snoonu turns clearly EBITDA-positive at scale\n\nNon-KSA is transitioning from a large drag to a pot"
+    },
+    {
+      "type": "delta",
+      "text": "ential contributor. The loss has already narrowed dramatically: "
+    },
+    {
+      "type": "delta",
+      "text": "net revenue rose 118"
+    },
+    {
+      "type": "delta",
+      "text": ".3% YoY to SAR 462.4 million while Adjusted EBITDA losses narrowed to SAR 14.4 million, with margin improving to"
+    },
+    {
+      "type": "delta",
+      "text": " negative 3.1% from negative 26.5% in FY2024."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "fy25-er",
+      "page": 6,
+      "quote": "3 % YoY to  462.4 million, \r\nwhile Adjusted EBITDA losses narrowed significantly to  14.4 million, with margin improving to negative 3.1% \r\nfrom negative 26.5% in FY2024."
+    },
+    {
+      "type": "delta",
+      "text": " The acquired platform is itself already profitable — "
+    },
+    {
+      "type": "delta",
+      "text": "Snoonu grew GMV 66% YoY to SAR 2.36 billion, expanded gross revenue 72% to SAR 904"
+    },
+    {
+      "type": "delta",
+      "text": ".8 million, and generated profitable EBITDA of SAR 53.7 million."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "fy25-er",
+      "page": 6,
+      "quote": "Snoonu delivered a strong FY2025, with GMV growing 66% YoY to  2.3 6 billion and gross revenue expanding \r\n72 % to  904.8 million, underpinned by rapid user and engagement growth."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "fy25-er",
+      "page": 6,
+      "quote": "Snoonu generated profitable EBITDA  5 3 .7 million, \r\nreflecting disciplined cost management as the business scales."
+    },
+    {
+      "type": "delta",
+      "text": "\n\nFor the bull case, the seg"
+    },
+    {
+      "type": "delta",
+      "text": "ment has to cross into consolidated profitability. Management guided that "
+    },
+    {
+      "type": "delta",
+      "text": "EBITDA for non-Saudi platforms is expected to turn positive within the next two quarters."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "fy24-ar",
+      "page": 25,
+      "quote": "Our EBITDA for non-Saudi platforms \r\nhas shown substantial improvement \r\nand is expected to turn positive within \r\nthe next two quarters."
+    },
+    {
+      "type": "delta",
+      "text": " The upside optionality is the international rollout"
+    },
+    {
+      "type": "delta",
+      "text": " executing cleanly: Snoonu as the platform for "
+    },
+    {
+      "type": "delta",
+      "text": "initial rollout in Kuwait"
+    },
+    {
+      "type": "delta",
+      "text": " and Bahrain starting with food delivery, with Bahrain launch in H2 2026, plus Oman identified as the next market."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "fy25-earnings-call",
+      "page": 12,
+      "quote": "Platform-led \r\ninternational expansion\r\n Snoonu to lead all \r\ninternational markets outside \r\nKSA\r\n Supports a multi-vertical \r\ngrowth strategy focused on \r\nengagement, retention, and \r\nwallet share"
+    },
+    {
+      "type": "delta",
+      "text": " Kuwait has already soft-launched, so proof of the multi-vertical playbook travelling profitably is the mil"
+    },
+    {
+      "type": "delta",
+      "text": "estone to watch.\n\n## 3. Non-food / grocery verticals scale into a meaningful GMV mix\n\nThe di"
+    },
+    {
+      "type": "delta",
+      "text": "versification story is inflecting fast. "
+    },
+    {
+      "type": "delta",
+      "text": "Non-food GMV grew 4x in 2025 vers"
+    },
+    {
+      "type": "delta",
+      "text": "us the prior year, lifting non-food contribution to GMV to 7% from 2%."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "fy25-er",
+      "page": 2,
+      "quote": "o Demonstrated high growth in t he non - food segment as GMV grew 4 x in 2025 compared to the \r\nprior year. In total, non - food contribution to GMV increased to 7% in 2025, compared to 2 % in the \r\np"
+    },
+    {
+      "type": "delta",
+      "text": " The capital-light grocery model"
+    },
+    {
+      "type": "delta",
+      "text": " via noon is the accelerant: "
+    },
+    {
+      "type": "delta",
+      "text": "Jahez KSA grocery GMV grew 2.5x"
+    },
+    {
+      "type": "delta",
+      "text": " from Q1 2025 to Q1 2026, with 52% of that growth driven by the noon contribution — J"
+    },
+    {
+      "type": "delta",
+      "text": "ahez earning commission on grocery GMV fulfilled and delivered by noon."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "q1-26-earnings-call",
+      "page": 8,
+      "quote": "8\r\nJahez KSA Grocery GMV\r\nQ 1 2025 Q 1 2026\r\n2.5 x\r\nGMV Grocery growth\r\nQ 1 2025 to Q 1 2026\r\nAccelerating Grocery GMV growth while enabling Jahez \r\nto scale the vertical through a low - capex model\r\n"
+    },
+    {
+      "type": "delta",
+      "text": " Bull case: this comp"
+    },
+    {
+      "type": "delta",
+      "text": "ounds toward a double-digit GMV mix, diversifying away from price-compet"
+    },
+    {
+      "type": "delta",
+      "text": "ed food delivery and lifting blended take economics.\n\n## 4. Logi keeps comp"
+    },
+    {
+      "type": "delta",
+      "text": "ressing per-order delivery cost\n\nLogi is the structural cost advantage that lets Jahez discount without b"
+    },
+    {
+      "type": "delta",
+      "text": "leeding. It reached "
+    },
+    {
+      "type": "delta",
+      "text": "40% of Jahez deliveries by Q4 "
+    },
+    {
+      "type": "delta",
+      "text": "2025 with improving unit cost of delivery, expanding its fleet to over 4,000 sponsored drivers"
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "fy25-er",
+      "page": 5,
+      "quote": "As a result, Logi now accounts for 40% of Jahez deliveries by Q4 2025 with improving unit cost of delivery."
+    },
+    {
+      "type": "delta",
+      "text": ", and turned"
+    },
+    {
+      "type": "delta",
+      "text": " in "
+    },
+    {
+      "type": "delta",
+      "text": "adjusted EBITDA up 87.6% YoY to SAR 8.5 million with marg"
+    },
+    {
+      "type": "delta",
+      "text": "in doubling to 8.1% in Q1 2026."
+    },
+    {
+      "type": "delta",
+      "text": "[[15]]"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "q1-26-earnings-call",
+      "page": 6,
+      "quote": "Key highlights for Q 1 - 2026\r\nNon - KSA \r\nPlatforms\r\n• Qatar ( Snoonu ) continues to be the main growth engine, delivering strong GMV and strong multi verticality results \r\n• Bahrain & Kuwait – focus"
+    },
+    {
+      "type": "delta",
+      "text": " The KSA unit economics already show "
+    },
+    {
+      "type": "delta",
+      "text": "improvement in cost per order due to price negotiation and fleet optimization."
+    },
+    {
+      "type": "delta",
+      "text": "[[16]]"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "fy25-earnings-call",
+      "page": 21,
+      "quote": "Unit Economics Delivery Platforms FY 2025\r\nLower KSA profitability while UoE significantly improved outside of KSA\r\n19.9 \r\n(14.7)\r\n5.1 (2.8)\r\n2.4 \r\nNet Revenue Cost of Revenue Margin Contribution Oper"
+    },
+    {
+      "type": "delta",
+      "text": " Bull case: in-house f"
+    },
+    {
+      "type": "delta",
+      "text": "ulfilment share keeps rising, driving the ~SAR 2 lower delivery cost per order that funds compet"
+    },
+    {
+      "type": "delta",
+      "text": "itive offers while protecting contribution margin.\n\n## 5. The one-offs don't recur and net income re-inflects\n\nF"
+    },
+    {
+      "type": "delta",
+      "text": "Y2025 profitability was distorted by non-cash and deal items"
+    },
+    {
+      "type": "delta",
+      "text": ". "
+    },
+    {
+      "type": "delta",
+      "text": "Net income compressed 61.2% YoY to SAR 73.0m, driven by SAR 55.4m of"
+    },
+    {
+      "type": "delta",
+      "text": " Q4-2025 one-off items — Red Color impairment, Marn goodwill impairment, Others-segment ECL, and Snoonu de"
+    },
+    {
+      "type": "delta",
+      "text": "al costs — layered on take-rate pressure."
+    },
+    {
+      "type": "delta",
+      "text": "[[17]]"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " The bull case simply requires these not to repeat, comb"
+    },
+    {
+      "type": "delta",
+      "text": "ined with the H2 margin recovery management is guiding to: "
+    },
+    {
+      "type": "delta",
+      "text": "profitability expected to improve sequentially across the year with"
+    },
+    {
+      "type": "delta",
+      "text": " a stronger H2 profile, supported by cost optimization initiatives underway across the Group."
+    },
+    {
+      "type": "delta",
+      "text": "[[18]]"
+    },
+    {
+      "type": "citation",
+      "n": 18,
+      "docId": "fy25-earnings-call",
+      "page": 24,
+      "quote": "Gross Order Value including Delivery Fees and Value Added Tax\r\n24\r\n2026 Net Income considerations:\r\n• Higher D&A following Snoonu consolidation\r\n• Lower contribution from time deposit income, \r\npartia"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## How this maps to the valuation\n\nThe DCF is built at"
+    },
+    {
+      "type": "delta",
+      "text": " a "
+    },
+    {
+      "type": "delta",
+      "text": "WACC of 13.31% with a 3.0% Gordon terminal growth rate, producing an implied IRR of 17.1"
+    },
+    {
+      "type": "delta",
+      "text": "% at entry."
+    },
+    {
+      "type": "delta",
+      "text": "[[19]]"
+    },
+    {
+      "type": "citation",
+      "n": 19,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology:\r\na discounted cash flow (FCFF) model, discounted at a CAPM-derived WACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a\r\n5.0% equity risk premium, for a 13.7% cost of equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": " A bull-case re-rate is essentially the market"
+    },
+    {
+      "type": "delta",
+      "text": " pricing in: (a) a higher sustainable EBITDA margin than the FY2025 exit of "
+    },
+    {
+      "type": "delta",
+      "text": "8.3% adjusted EBITDA margin, down from 11"
+    },
+    {
+      "type": "delta",
+      "text": ".3%"
+    },
+    {
+      "type": "delta",
+      "text": "[[20]]"
+    },
+    {
+      "type": "citation",
+      "n": 20,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "0 250.0 (22. 8 % )\r\nAdj. EBITDA % of Net Revenue 8.3% 11.3% (3.0 ) pp\r\nNet Profit 1 73.0 188.0 (61.2 %)\r\nNet Profit % of Net Revenue 3."
+    },
+    {
+      "type": "delta",
+      "text": ", recovering back toward the double-digit KSA level; and (b) a higher terminal growth assum"
+    },
+    {
+      "type": "delta",
+      "text": "ption justified by the non-food/international mix shift. If FY2026 lands at the"
+    },
+    {
+      "type": "delta",
+      "text": " top of guidance — "
+    },
+    {
+      "type": "delta",
+      "text": "GMV of ~SAR 10.1"
+    },
+    {
+      "type": "delta",
+      "text": "–10.8bn (+10–20%) and adjusted EBITDA of ~SAR 200–220m"
+    },
+    {
+      "type": "delta",
+      "text": "[[21]]"
+    },
+    {
+      "type": "citation",
+      "n": 21,
+      "docId": "q1-26-earnings-call",
+      "page": 23,
+      "quote": "$\r\nFY 2026 \r\nguidance ¹\r\nQ 1 2026 FY 2025 \r\nGOV ²\r\n~ 12.2 –13.0 b\r\n9 % –16 %\r\n2.8 b 9.3 b\r\nGMV ~ 10.1–10.8 b\r\n10 % –20 %\r\n2.3 b 7.3 b\r\nNet Revenue ~ 3.1–3.5 b\r\n7% –21%\r\n0.7 b 2.3 b\r\nAdj. EBITDA ~ 200 "
+    },
+    {
+      "type": "delta",
+      "text": " — with the"
+    },
+    {
+      "type": "delta",
+      "text": " one-offs behind it, the earnings base that today makes the "
+    },
+    {
+      "type": "delta",
+      "text": "trailing P/E of"
+    },
+    {
+      "type": "delta",
+      "text": " 92.76x unrepresentative because of depressed trailing-twelve-month earnings"
+    },
+    {
+      "type": "delta",
+      "text": "[[22]]"
+    },
+    {
+      "type": "citation",
+      "n": 22,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "Trailing P/E of 92.76x is distorted by depressed trailing-twelve\u0002month earnings (see Q1 2026 net loss, Industry & News Pack §3) — not representative of a normalized multiple."
+    },
+    {
+      "type": "delta",
+      "text": " normalizes,"
+    },
+    {
+      "type": "delta",
+      "text": " and the multiple compresses on recovering earnings rather than on price.\n\n## The"
+    },
+    {
+      "type": "delta",
+      "text": " key caveat\n\nNone of this is guaranteed, and the near-term direction is the w"
+    },
+    {
+      "type": "delta",
+      "text": "rong way: "
+    },
+    {
+      "type": "delta",
+      "text": "Jahez swung to a Group net loss of SAR 9.2m in Q1 2026 vers"
+    },
+    {
+      "type": "delta",
+      "text": "us SAR 35.3m net profit in Q1 2025 despite revenue growing 37.9% YoY, as operating"
+    },
+    {
+      "type": "delta",
+      "text": " expenses rose on Snoonu consolidation and stepped-up marketing."
+    },
+    {
+      "type": "delta",
+      "text": "[[23]]"
+    },
+    {
+      "type": "citation",
+      "n": 23,
+      "docId": "fy25-er",
+      "page": 3,
+      "quote": "Following the Snoonu acquisition, we \r\nannounced a clear vision for our international expansion and positioned Snoonu as the Group's \r\ncore operating platform outside Saudi Arabia. Snoonu's multi - ve"
+    },
+    {
+      "type": "delta",
+      "text": " Management is explicitly leaning *"
+    },
+    {
+      "type": "delta",
+      "text": "into* spend, not away — "
+    },
+    {
+      "type": "delta",
+      "text": "guidance reflects an aggressive go-to-market posture with"
+    },
+    {
+      "type": "delta",
+      "text": " higher promotional and customer-acquisition investment."
+    },
+    {
+      "type": "delta",
+      "text": "[[24]]"
+    },
+    {
+      "type": "citation",
+      "n": 24,
+      "docId": "q1-26-earnings-call",
+      "page": 23,
+      "quote": "Group net income attributable to shareholders of the parent company \r\nActuals\r\n2026 Net Income considerations:\r\n• Higher D&A following Snoonu consolidation \r\n• Lower contribution from time deposit inc"
+    },
+    {
+      "type": "delta",
+      "text": " So the bull case is fundamentally a bet that the current invest"
+    },
+    {
+      "type": "delta",
+      "text": "ment phase is transitional and that KSA competitive intensity moderates in H2"
+    },
+    {
+      "type": "delta",
+      "text": " 2026; if the price war persists into 2027, the same levers that dr"
+    },
+    {
+      "type": "delta",
+      "text": "ive the bull case invert into the bear case.\n\nWould you like me to pressure-test which of these five conditions the"
+    },
+    {
+      "type": "delta",
+      "text": " scenario-weighted 16.8% is most sensitive to, or lay out the corresponding bear-case triggers?"
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-12T19:30:04.701Z"
+}
