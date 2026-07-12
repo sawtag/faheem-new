@@ -105,3 +105,154 @@ body {
   background-color: var(--color-accent-100);
   color: var(--color-navy);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * T0.2 EXTENSIONS — appended by the theme+primitives task (existing values
+ * above are UNTOUCHED, per the ownership note). Everything here is a new token
+ * or references one; no literal ever leaks into app/** or components/**.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+@theme {
+  /* Accessible text-on-tint for status pills. warning (#f59e0b) and danger
+   * (#ef233c) are too light to read as TEXT on their own -50 tints, so the
+   * ramps gain a darker text step. Same hue family, WCAG-AA on the 50 tint. */
+  --color-warning-700: #b45309;
+  --color-danger-700: #c1122a;
+}
+
+/* ── primitive motion: keyframes (durations/easings are pulled from the tokens
+ *    at each call site so the whole system stays quantized to the motion tokens).
+ *    Radix drives mount/exit via data-state; the browser runs these. ── */
+@keyframes faheem-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes faheem-overlay-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes faheem-dialog-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes faheem-dialog-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+}
+@keyframes faheem-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes faheem-pop-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+@keyframes faheem-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes faheem-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dialog surfaces (scale .98→1 + fade, 150ms) — Dialog primitive. */
+.faheem-overlay {
+  animation: faheem-overlay-in var(--duration-fast) var(--ease);
+}
+.faheem-overlay[data-state="closed"] {
+  animation: faheem-overlay-out var(--duration-fast) var(--ease);
+}
+.faheem-dialog {
+  animation: faheem-dialog-in var(--duration-fast) var(--ease);
+}
+.faheem-dialog[data-state="closed"] {
+  animation: faheem-dialog-out var(--duration-fast) var(--ease);
+}
+
+/* Popovers/menus/tooltips — origin-aware pop (scale .98→1 + fade, 150ms). */
+.faheem-pop {
+  transform-origin: var(--radix-popper-transform-origin, center);
+  animation: faheem-pop-in var(--duration-fast) var(--ease);
+}
+.faheem-pop[data-state="closed"] {
+  animation: faheem-pop-out var(--duration-fast) var(--ease);
+}
+
+/* Inline busy spinner — the ONE sanctioned rotation (button/inline loading,
+ * explicitly specified in the primitives + login briefs). Everywhere else the
+ * system signals "working" with shimmer, the logo bar-rise, or count-up. */
+.faheem-spin {
+  animation: faheem-spin 0.7s linear infinite;
+}
+
+/* Skeleton: light placeholder + a soft card-colored sheen sweep. */
+.faheem-skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-navy-50);
+}
+.faheem-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-card) 65%, transparent),
+    transparent
+  );
+  animation: faheem-shimmer 1.5s ease-in-out infinite;
+}
+
+/* prefers-reduced-motion: kill the decorative motion; keep the spinner as a
+ * (slowed) functional busy indicator. The logo's JS motion opts out via
+ * useReducedMotion separately. */
+@media (prefers-reduced-motion: reduce) {
+  .faheem-overlay,
+  .faheem-overlay[data-state="closed"],
+  .faheem-dialog,
+  .faheem-dialog[data-state="closed"],
+  .faheem-pop,
+  .faheem-pop[data-state="closed"],
+  .faheem-skeleton::after {
+    animation: none;
+  }
+  .faheem-spin {
+    animation-duration: 1.4s;
+  }
+}
