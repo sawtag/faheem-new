@@ -2,12 +2,9 @@
   <img src="docs/screenshots/hero.png" alt="Faheem — omnibox home screen" width="100%">
 </p>
 
-<!-- DEMO VIDEO: drag demo-assets/readme-demo.mp4 into this spot using the GitHub web editor (edit README → drop the file here) — GitHub renders an inline player. Committed video files do NOT render; it must be the web-editor upload. -->
-
 https://github.com/user-attachments/assets/c040594d-95c6-43b1-922a-92dfd39fee00
 
 [golden-path-backup.webm](https://github.com/user-attachments/assets/3d0cbf12-d962-40a1-a65c-8bd5b1fc9f1b)
-
 
 <h1 align="center">Faheem</h1>
 
