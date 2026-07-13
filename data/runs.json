@@ -1,0 +1,98 @@
+[
+  {
+    "id": "run-jahez-deep-dive-001",
+    "kind": "deep-dive",
+    "workspace": "jahez",
+    "status": "complete",
+    "startedAt": "2026-07-12T20:38:07.000Z",
+    "completedAt": "2026-07-12T21:22:22.687Z",
+    "citationsTotal": 17,
+    "lanes": [
+      {
+        "agent": "research",
+        "docIds": [
+          "industry-news-pack",
+          "market-data-comps",
+          "fy25-earnings-call"
+        ],
+        "summary": {
+          "en": "Screened the quick-commerce universe and ingested Jahez's FY2025 filings and peer data.",
+          "ar": "فرز قطاع التجارة السريعة واستيعاب إفصاحات جاهز للسنة المالية 2025 وبيانات النظراء."
+        }
+      },
+      {
+        "agent": "doc-intel",
+        "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"],
+        "summary": {
+          "en": "Extracted the Group financial summary and footnotes across the FY2025 and Q1 2026 statements.",
+          "ar": "استخراج ملخص المجموعة المالي والإيضاحات من قوائم السنة المالية 2025 والربع الأول 2026."
+        }
+      },
+      {
+        "agent": "valuation",
+        "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"],
+        "summary": {
+          "en": "Built the DCF (FCFF, WACC, Gordon terminal value), trading comps and a scenario sensitivity.",
+          "ar": "بناء نموذج التدفقات النقدية المخصومة (FCFF وWACC والقيمة النهائية) والمقارنات وتحليل حساسية السيناريوهات."
+        }
+      },
+      {
+        "agent": "comparables",
+        "docIds": ["market-data-comps", "fy25-er"],
+        "summary": {
+          "en": "Constructed the quick-commerce comp set and mapped multiples to growth and margin.",
+          "ar": "بناء مجموعة المقارنات للتجارة السريعة وربط المضاعفات بالنمو والهامش."
+        }
+      },
+      {
+        "agent": "risk",
+        "docIds": [
+          "industry-news-pack",
+          "market-data-comps",
+          "lunar-ic-charter"
+        ],
+        "summary": {
+          "en": "Scored the price-war risk (probability × impact) and ran the mandate-fit and concentration checks.",
+          "ar": "تقييم مخاطر حرب الأسعار (الاحتمال × الأثر) وإجراء فحوصات ملاءمة التفويض والتركّز."
+        }
+      },
+      {
+        "agent": "writing",
+        "docIds": ["fy25-er", "jahez-analysis-summary"],
+        "summary": {
+          "en": "Drafted the IC memo, valuation model and board deck from the verified inputs.",
+          "ar": "صياغة مذكرة لجنة الاستثمار ونموذج التقييم وعرض مجلس الإدارة من المدخلات الموثّقة."
+        }
+      },
+      {
+        "agent": "compliance",
+        "docIds": ["q1-26-fs", "fy25-er"],
+        "summary": {
+          "en": "Ran the AAOIFI Shariah screen and fact-checked every figure against its cited source.",
+          "ar": "إجراء الفحص الشرعي وفق منهجية أيوفي والتحقق من كل رقم مقابل مصدره المستشهد به."
+        }
+      }
+    ],
+    "outputs": ["jahez-xlsx", "jahez-docx", "jahez-pptx"]
+  },
+  {
+    "id": "run-darb-screening-001",
+    "kind": "screening",
+    "workspace": "darb",
+    "status": "complete",
+    "startedAt": "2026-07-12T09:02:00.000Z",
+    "completedAt": "2026-07-12T09:06:24.000Z",
+    "citationsTotal": 6,
+    "lanes": [
+      {
+        "agent": "screening",
+        "docIds": ["lunar-ic-charter", "darb-dataroom"],
+        "summary": {
+          "en": "Scored Darb against the IC Charter — 5 pass, 1 concentration flag.",
+          "ar": "تقييم درب مقابل ميثاق لجنة الاستثمار — 5 معايير مستوفاة وتنبيه تركّز واحد."
+        }
+      }
+    ],
+    "outputs": []
+  }
+]
