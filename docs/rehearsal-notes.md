@@ -35,7 +35,7 @@ pdfjs worker: vendored, loads offline ✓. All six goldens replay from cache ✓
 1. `git clone` (or the backup tarball) → `npm ci` → `cp .env(.example)` with the real key → `npm run build`.
 2. Sanity: `FAHEEM_E2E_PROD=1 npm run test:e2e` once on the demo machine (≈3 min).
 3. **Within 1h of the slot:** load `.env`, run `npx tsx scripts/prewarm.ts`.
-4. Start: `FAHEEM_MODE=cached PORT=3000 npm run start` — cached is the bulletproof default; **⌘. switches to live/auto** for judge Q&A (the overlay shows mode + cache status).
+4. Start: `PORT=3000 npm run start:cache` — cached is the bulletproof scripted-demo mode; **⌘. switches to live/auto** for judge Q&A (the overlay shows mode + cache status). (`start:auto` / `start:live` boot straight into those; bare `npm start` smart-defaults to auto when the key is present.)
 5. Scripted questions: **⌘K only** — never type them (palette carries the exact recorded requests incl. chips).
 6. Copy `demo-assets/talabat-q1-2026-results.pdf` to the demo machine for the upload beat (live mode only; cached mode politely refuses uploads).
 7. The Improve wand hides itself on golden questions and no-ops in cached mode — safe to gesture at, click only on a scratch question in live mode.

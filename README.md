@@ -88,24 +88,27 @@ npm run dev
 
 Open `http://localhost:3000` and sign in with **any username and password** — auth is intentionally mocked for the demo. `ANTHROPIC_API_KEY` is optional: **the app runs fully offline in cached mode, replaying recorded golden answers with realistic streaming — no key needed to see the full product.**
 
-`FAHEEM_MODE` (env var, cookie `faheem_mode` overrides it at runtime) controls how chat answers are sourced:
+**Three answer modes**, launched explicitly or chosen for you:
 
 - `cached` — replays a recorded, human-reviewed answer with simulated token streaming. Fully offline, deterministic, no API key.
 - `live` — calls the real Claude API with the corpus as cited document blocks.
 - `auto` — tries live, falls back to cached on a timeout (venue-wifi-safe).
 
+Pick one with a script — `npm run dev:cache | dev:auto | dev:live` (or `start:cache | start:auto | start:live` on a production build). Bare `npm run dev` / `npm start` uses a **smart default**: `auto` when a key is present, `cached` when it isn't — so a keyless clone always runs offline, and a keyed machine gets the live experience by default. The cookie set by the **⌘.** overlay overrides everything at runtime.
+
 Two hidden affordances make the cached demo path reliable: **⌘K** opens a palette of the recorded golden questions — selecting one inserts the exact text the cache was recorded against, so no on-stage typo can cause a miss. **⌘.** opens a small mode-switch overlay showing whether the last answer was served live or from cache.
 
-| Command                              | What it does                                                             |
-| ------------------------------------ | ------------------------------------------------------------------------ |
-| `npm install`                        | Install dependencies (npm only, deliberately — no bun anywhere)          |
-| `npm run dev`                        | Start the Next.js dev server                                             |
-| `npm run check`                      | `tsc --noEmit` + ESLint + Prettier `--check`                             |
-| `npm run test`                       | Vitest — unit + integration suite                                        |
-| `npm run test:e2e`                   | Playwright — full suite across two viewports, `FAHEEM_MODE=cached`       |
-| `FAHEEM_E2E_PROD=1 npm run test:e2e` | Same suite against a production build (`next build && next start`)       |
-| `npm run validate:data`              | Zod-validates the corpus manifest, `deals.json`, and `model-inputs.json` |
-| `npm run verify`                     | `check` + `test` + `validate:data` — the pre-commit gate                 |
+| Command                              | What it does                                                                      |
+| ------------------------------------ | --------------------------------------------------------------------------------- |
+| `npm install`                        | Install dependencies (npm only, deliberately — no bun anywhere)                   |
+| `npm run dev`                        | Dev server (smart default mode); `dev:cache` / `dev:auto` / `dev:live` to pin one |
+| `npm start`                          | Production server; `start:cache` / `start:auto` / `start:live` to pin one         |
+| `npm run check`                      | `tsc --noEmit` + ESLint + Prettier `--check`                                      |
+| `npm run test`                       | Vitest — unit + integration suite                                                 |
+| `npm run test:e2e`                   | Playwright — full suite across two viewports, `FAHEEM_MODE=cached`                |
+| `FAHEEM_E2E_PROD=1 npm run test:e2e` | Same suite against a production build (`next build && next start`)                |
+| `npm run validate:data`              | Zod-validates the corpus manifest, `deals.json`, and `model-inputs.json`          |
+| `npm run verify`                     | `check` + `test` + `validate:data` — the pre-commit gate                          |
 
 ## 🏗️ Architecture
 

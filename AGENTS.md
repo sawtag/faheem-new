@@ -10,7 +10,8 @@ Read this before touching anything. It is the contract for every agent working i
 
 ```bash
 npm install              # deps (npm + Node — deliberately boring; no bun anywhere)
-npm run dev              # next dev
+npm run dev              # next dev — smart default mode (auto when keyed, else cached)
+npm run dev:cache        # dev pinned to cached | dev:auto | dev:live  (start:* = prod variants)
 npm run check            # tsc --noEmit && eslint . && prettier --check .
 npm run test             # vitest run (unit + integration)
 npm run test:e2e         # playwright (starts app with FAHEEM_MODE=cached)

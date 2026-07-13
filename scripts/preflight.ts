@@ -499,7 +499,7 @@ async function main(): Promise<void> {
   console.log(
     `  1. Within 1h of the slot: load .env, run \`npx tsx scripts/prewarm.ts\``,
   );
-  console.log(`  2. Start: FAHEEM_MODE=cached PORT=${port} npm run start`);
+  console.log(`  2. Start: PORT=${port} npm run start:cache`);
   console.log(
     `  3. Ask questions via ⌘K only (never type them) — ⌘. toggles live for judge Q&A`,
   );
