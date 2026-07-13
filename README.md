@@ -2,6 +2,8 @@
   <img src="docs/screenshots/hero.png" alt="Faheem — omnibox home screen" width="100%">
 </p>
 
+<!-- DEMO VIDEO: drag demo-assets/readme-demo.mp4 into this spot using the GitHub web editor (edit README → drop the file here) — GitHub renders an inline player. Committed video files do NOT render; it must be the web-editor upload. -->
+
 <h1 align="center">Faheem</h1>
 
 <p align="center">
