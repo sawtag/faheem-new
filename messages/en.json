@@ -186,7 +186,8 @@
       "connections": "Connections",
       "audit": "Audit Trail",
       "ic": "IC Room",
-      "skills": "Skills"
+      "skills": "Skills",
+      "dashboard": "Dashboard"
     },
     "emailToast": {
       "title": "Faheem works in your inbox",
@@ -596,5 +597,69 @@
     "runsInArabic": "Runs in Arabic",
     "roadmap": "MVP roadmap",
     "roadmapHint": "Full automation ships on the MVP roadmap."
+  },
+  "dashboard": {
+    "title": "Firm overview",
+    "caption": "Lunar Investments · Riyadh — لونار للاستثمار",
+    "stats": {
+      "pipeline": {
+        "label": "Active pipeline",
+        "caption": "from the live pipeline"
+      },
+      "aum": {
+        "label": "Assets under management",
+        "value": "SAR {value}bn",
+        "source": "IC Charter · p.{page}"
+      },
+      "mandate": {
+        "label": "Mandate headroom",
+        "exposureLabel": "Technology & Consumer exposure",
+        "headroom": "{value}pp headroom to the {cap}% cap",
+        "source": "Portfolio p.{expPage} · cap: IC Charter p.{capPage}",
+        "barAria": "Sector exposure {exposure}% of a {cap}% cap"
+      },
+      "icQueue": {
+        "label": "IC review queue",
+        "next": "Next: {name}",
+        "empty": "No deals awaiting the committee",
+        "link": "Open IC room"
+      }
+    },
+    "runs": {
+      "title": "Analysis Runs",
+      "subtitle": "Every analysis is a logged, replayable run — stages, sources, and outputs.",
+      "kind": {
+        "deepDive": "Deep-dive analysis",
+        "screening": "Screening run"
+      },
+      "status": {
+        "complete": "Complete"
+      },
+      "elapsed": "{minutes} min",
+      "progressLabel": "Progress",
+      "lanesTitle": "Specialist lanes",
+      "docsRead": "Documents read",
+      "outputsTitle": "Deliverables",
+      "citations": "{count} citations · from the recorded analysis run",
+      "checks": "{count} checks",
+      "auditFooter": "Logged to the audit trail — every answer and artifact traceable.",
+      "laneComplete": "{name} — complete"
+    },
+    "macro": {
+      "title": "Saudi macro",
+      "subtitle": "GASTAT / SAMA — official sources",
+      "realGdp": "Real GDP · FY2025",
+      "cpi": "CPI, average · FY2025",
+      "repoRate": "SAMA repo rate",
+      "source": "GASTAT/SAMA pack · p.{page}"
+    },
+    "recent": {
+      "title": "Recent analyses",
+      "viewAll": "View all deals"
+    },
+    "activity": {
+      "title": "Activity",
+      "viewAll": "View audit trail"
+    }
   }
 }

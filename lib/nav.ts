@@ -20,6 +20,7 @@ export interface NavItem {
 /** Primary nav — the demo's load-bearing routes + one visual-only teaser. */
 export const PRIMARY_NAV: NavItem[] = [
   { key: "home", href: "/", icon: "house" },
+  { key: "dashboard", href: "/dashboard", icon: "layout-dashboard" },
   { key: "deals", href: "/deals", icon: "briefcase-business" },
   { key: "ic", href: "/ic", icon: "scale" },
   { key: "library", href: "/library", icon: "library-big" },

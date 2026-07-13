@@ -17,6 +17,7 @@ export const LOCALE_COOKIE = "faheem_locale";
 export const ROUTES = [
   "/",
   "/login",
+  "/dashboard",
   "/deals",
   "/deals/darb",
   "/deals/jahez",
@@ -37,7 +38,7 @@ export const ROUTES = [
  * fell back to the raw key instead of resolving a message.
  */
 export const MESSAGE_KEY_LEAK_RE =
-  /\b(shell|chat|home|deals|ic|agents|library|audit|connections|onboarding|login|generate)\.[a-z]/i;
+  /\b(shell|chat|home|deals|ic|agents|library|audit|connections|onboarding|login|generate|dashboard)\.[a-z]/i;
 
 /**
  * The single recorded demo-cache fixture (T2.2) — read at test setup rather

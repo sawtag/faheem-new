@@ -1,0 +1,30 @@
+{
+  "aumSarBn": { "value": 2.0, "sourceDoc": "lunar-ic-charter", "page": 1 },
+  "hurdlePct": { "value": 15, "sourceDoc": "lunar-ic-charter", "page": 4 },
+  "singleNameCapPct": {
+    "value": 10,
+    "sourceDoc": "lunar-ic-charter",
+    "page": 4
+  },
+  "sectorCapPct": { "value": 10, "sourceDoc": "lunar-ic-charter", "page": 4 },
+  "sectorExposurePct": {
+    "value": 8.5,
+    "sourceDoc": "lunar-portfolio",
+    "page": 1
+  },
+  "macro": [
+    {
+      "key": "realGdp",
+      "value": 4.5,
+      "sourceDoc": "gastat-macro-pack",
+      "page": 2
+    },
+    { "key": "cpi", "value": 2.0, "sourceDoc": "gastat-macro-pack", "page": 3 },
+    {
+      "key": "repoRate",
+      "value": 4.25,
+      "sourceDoc": "gastat-macro-pack",
+      "page": 5
+    }
+  ]
+}
