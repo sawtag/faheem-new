@@ -38,3 +38,6 @@ data/uploads/
 
 # user-owned pitch deck workspace — never commit
 presentation/
+
+# demo-day local assets (upload-beat PDFs etc.) — never commit
+demo-assets/
