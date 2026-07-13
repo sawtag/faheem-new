@@ -1,0 +1,500 @@
+{
+  "key": "dc3e2d681162256d950c94b4dd95f0e07ba7eeb3",
+  "request": {
+    "question": "The trading comps imply a much higher value than your DCF — why the gap, and which should the committee trust?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "Lead answer: the gap is largely an artifact of *what each"
+    },
+    {
+      "type": "delta",
+      "text": " method is priced off*, not a genuine disagreement about value — and the comparables"
+    },
+    {
+      "type": "delta",
+      "text": " pack itself instructs that the DCF is the anchor and comps are only a sense-check. I'"
+    },
+    {
+      "type": "delta",
+      "text": "d also flag that neither deliverable actually publishes a comps-implied equity value next to a DCF-implied one"
+    },
+    {
+      "type": "delta",
+      "text": ", so I can't quantify the \"gap\" precisely from the connected sources; what I can do is explain the divergence and tell you"
+    },
+    {
+      "type": "delta",
+      "text": " which to weight.\n\n## Why a comps read sits above the DCF\n\n**1. Comps capitalise"
+    },
+    {
+      "type": "delta",
+      "text": " today's revenue; the DCF discounts a depressed forward path.** Jahez is in an earnings trough: "
+    },
+    {
+      "type": "delta",
+      "text": "Q1-2026 printed a SAR 9.2m net loss, and the balance sheet carries only SAR"
+    },
+    {
+      "type": "delta",
+      "text": " 16.6m of net cash"
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss. The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": ", on the back of FY2025 margin compression where "
+    },
+    {
+      "type": "delta",
+      "text": "gross margin fell to 22.8% (FY2024A: 24.4%) and adjusted EBITDA margin contracted to 8.3%"
+    },
+    {
+      "type": "delta",
+      "text": " (FY2024A: 11.3%)"
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": ". A revenue multiple applied to current sales ignores that trough; a"
+    },
+    {
+      "type": "delta",
+      "text": " FCFF model discounts through it. That structurally pulls the DCF below a na"
+    },
+    {
+      "type": "delta",
+      "text": "ive multiple read.\n\n**2. The comp set is extraordinarily dispersed, and the high end isn't applicable.** "
+    },
+    {
+      "type": "delta",
+      "text": "EV/Revenue ranges from 0.97x (Delivery Hero) to 5.53x (DoorDash), and EV/EBITDA from "
+    },
+    {
+      "type": "delta",
+      "text": "12.9x (Talabat) to 60.25x (DoorDash) — which largely tracks each platform's profitability profile rather than a single \"delivery sector\" multiple."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "D. Football-Field Note\r\nThe comp set shows wide dispersion — EV/Revenue from 0.97x (Delivery Hero, EU-listed, thinner margins) to 5.53x\r\n(DoorDash, US-listed, scale premium), and EV/EBITDA from 12.9x "
+    },
+    {
+      "type": "delta",
+      "text": " DoorDash's "
+    },
+    {
+      "type": "delta",
+      "text": "5.53x EV/Revenue and 60.25x EV/EBITDA"
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "DoorDash,\r\nInc.\r\nNASDAQ:\r\nDASH\r\n5.53x 60.25x 91.43x n/a stockanalysis.com 12\r\nJul\r\n2026\r\nDelivery\r\nHero SE\r\nETR:\r\nDHER\r\n0.97x 30.16x n/a (loss-making) n/a stockanalysis.com 12\r\nJul\r\n2026\r\nSupplementar"
+    },
+    {
+      "type": "delta",
+      "text": " re"
+    },
+    {
+      "type": "delta",
+      "text": "flect a US scale premium; letting that name pull a comps average upward is what"
+    },
+    {
+      "type": "delta",
+      "text": " creates the illusion of a \"much higher\" value.\n\n**3. The one metric that would normalise across profitability is missing.** "
+    },
+    {
+      "type": "delta",
+      "text": "EV/GMV is marked n/a across the board — none of the free sources reliably expose EV alongside a matched-period, matched-currency G"
+    },
+    {
+      "type": "delta",
+      "text": "MV figure"
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "C. Trading Comparables\r\nEV/GMV is marked n/a across the board — none of the free sources below reliably expose EV alongside a matched-period,\r\nmatched-currency GMV figure; computing it would require e"
+    },
+    {
+      "type": "delta",
+      "text": ", so we can't triangulate on the measure least distorted by the current margin squ"
+    },
+    {
+      "type": "delta",
+      "text": "eeze.\n\n**4. The trailing P/E is meaningless right now.** "
+    },
+    {
+      "type": "delta",
+      "text": "Trailing P/E of 92.76x is distorted"
+    },
+    {
+      "type": "delta",
+      "text": " by depressed trailing-twelve-month earnings — not representative of a normalized multiple."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "Trailing P/E of 92.76x is distorted by depressed trailing-twelve\u0002month earnings (see Q1 2026 net loss, Industry & News Pack §3) — not representative of a normalized multiple."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## Which the committee should trust\n\nThe com"
+    },
+    {
+      "type": "delta",
+      "text": "ps pack answers this directly. "
+    },
+    {
+      "type": "delta",
+      "text": "Given the incomplete beta/cost-of-deb"
+    },
+    {
+      "type": "delta",
+      "text": "t inputs, this comps table should be treated as a sense-check on a primary DCF, not a standalone valuation — flag to IC that neither approach alone resolves a tight range,"
+    },
+    {
+      "type": "delta",
+      "text": " and that the WACC build needs the outstanding items closed out before the DCF is final."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "Given the incomplete beta/cost-of-debt\r\ninputs in §B, this comps table should be treated as a sense-check on a primary DCF, not a standalone valuation —\r\nflag to IC that neither approach alone resolve"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nSo: **the DCF is the anchor**, with comps as a band"
+    },
+    {
+      "type": "delta",
+      "text": " around it. Within the comps, weight is not equal — "
+    },
+    {
+      "type": "delta",
+      "text": "Talabat is the most structurally comparable name (single"
+    },
+    {
+      "type": "delta",
+      "text": "-region GCC food-delivery platform, DFM-listed, broadly comparable margin profile) and should carry the most weight of the four; DoorDash and Delivery Hero"
+    },
+    {
+      "type": "delta",
+      "text": " are useful range markers but trade on different growth and scale assumptions than a KSA-only platform."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "Talabat is the most\r\nstructurally comparable name (single-region GCC food-delivery platform, DFM-listed, broadly comparable margin\r\nprofile) and should carry the most weight of the four in any comps-b"
+    },
+    {
+      "type": "delta",
+      "text": " Talabat's "
+    },
+    {
+      "type": "delta",
+      "text": "1"
+    },
+    {
+      "type": "delta",
+      "text": ".88x EV/Revenue, 12.90x EV/EBITDA and 16.70x P/E (TTM)"
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "Company Listing EV/Revenue EV/EBITDA P/E (TTM) EV/GMV Source Date\r\nTalabat\r\nHolding\r\nDFM:\r\nTALABAT\r\n1.88x 12.90x 16.70x n/a stockanalysis.com 12\r\nJul\r\n2026\r\nDeliveroo\r\nplc\r\nDelisted — acquired by Door"
+    },
+    {
+      "type": "delta",
+      "text": " are a far more s"
+    },
+    {
+      "type": "delta",
+      "text": "ober cross-check than the DoorDash end of the range.\n\n## The important caveat — don't over-trust the DCF either"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe DCF is built on a WACC whose inputs the comps pack flags as unfinished. The anal"
+    },
+    {
+      "type": "delta",
+      "text": "ysis uses "
+    },
+    {
+      "type": "delta",
+      "text": "a CAPM-derived WACC of 13.31% (4.6% risk-free + 1.82x comp-"
+    },
+    {
+      "type": "delta",
+      "text": "set beta at a 5.0% equity risk premium)"
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": ". That 1.82x is effectively the D"
+    },
+    {
+      "type": "delta",
+      "text": "oorDash/Delivery Hero average, and the comps pack is explicit that this is not a finished input: "
+    },
+    {
+      "type": "delta",
+      "text": "the standard"
+    },
+    {
+      "type": "delta",
+      "text": " fix is a bottom-up beta built from unlevered comparable-company betas re-levered to Jahez's capital structure; that requires each comp's debt/"
+    },
+    {
+      "type": "delta",
+      "text": "equity and marginal tax rate, which were not cleanly available from free sources in this pass — flagged as a modeling next step rather than estimated here."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "The standard fix is a bottom-up beta built\r\nfrom unlevered comparable-company betas re-levered to Jahez's capital structure; that requires each comp's debt/equity\r\nand marginal tax rate, which were no"
+    },
+    {
+      "type": "delta",
+      "text": " Separately, "
+    },
+    {
+      "type": "delta",
+      "text": "Talabat's beta is n/a (insufficient trading history) and a"
+    },
+    {
+      "type": "delta",
+      "text": " Jahez-specific cost of debt could not be sourced."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "(component\r\nof the above)\r\nComparable\u0002company\r\nlevered beta\r\n— DoorDash\r\n(DASH)\r\n1.78 (5Y) stockanalysis.com/stocks/dash/statistics 12 Jul\r\n2026\r\nComparable\u0002company\r\nlevered beta\r\n— Delivery\r\nHero (DH"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**My judgment (labelled as such):** the \"gap\" is not ev"
+    },
+    {
+      "type": "delta",
+      "text": "idence the stock is deeply undervalued — it's evidence that a current-revenue multiple flatters a company"
+    },
+    {
+      "type": "delta",
+      "text": " in an earnings trough while a forward DCF does not. I'd tell the IC to anchor on the DCF,"
+    },
+    {
+      "type": "delta",
+      "text": " use a *Talabat-weighted* comps band (not a four-name average, and explicitly excluding the"
+    },
+    {
+      "type": "delta",
+      "text": " DoorDash high end) as the sanity check, and treat neither as final until the bottom-up beta and cost-of-debt inputs in the"
+    },
+    {
+      "type": "delta",
+      "text": " WACC build are closed. What would change this view: a completed re-levered beta and a sourced cost of debt —"
+    },
+    {
+      "type": "delta",
+      "text": " if those move the WACC materially, the DCF value (and therefore the size of any"
+    },
+    {
+      "type": "delta",
+      "text": " apparent gap) moves with it."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-13T06:47:56.135Z"
+}

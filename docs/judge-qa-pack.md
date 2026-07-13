@@ -77,8 +77,8 @@
 **If pressed:** Jahez also just printed a quarterly loss — a marginally higher model output on shakier ground isn't worth more than a cushioned, well-supported one.
 
 ### F5. "You call 55 million of losses 'one-off.' Is that real, or is that an excuse?"
-**A:** Fair challenge — and it's itemized, each piece cited to the earnings call. **It's 12.2 million writing down the Red Color acquisition, 11.8 million on Marn goodwill, 23.4 million of credit-loss provisions, and 8 million of Snoonu deal costs — 55.4 million, genuinely one-time.** But we don't hide behind it: strip it all out and margins *still* fell because of the price war. Our risk note says exactly that.
-**Point at:** Excel → Scenarios & Risk / the earnings-call source (p.6) behind the decomposition.
+**A:** Fair challenge — and it's itemized, each piece cited to the earnings call: **12.2 million on the Red Color portfolio, 11.8 million on Marn goodwill, 23.4 million of credit-loss provisions, and 8 million of Snoonu deal costs — 55.4 million.** And here's the part that wins the room: **ask Faheem this exact question.** Our own analyst pushes back — it treats only about 20 million as cleanly non-recurring and flags the credit losses as already repeating in Q1. We don't hide behind management's framing; the system audits it.
+**Point at:** ⌘K → "Are the one-offs really one-off?" — let Faheem's recorded answer make the argument, then the earnings-call source (p.6) behind the decomposition.
 **If pressed:** The one-offs explain the headline; the take-rate pressure is the real story — and it's why we're cautious, not bullish.
 
 ### F6. "What would actually flip your recommendation?"

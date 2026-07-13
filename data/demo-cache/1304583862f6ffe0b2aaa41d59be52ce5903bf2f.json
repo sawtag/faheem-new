@@ -1,0 +1,483 @@
+{
+  "key": "1304583862f6ffe0b2aaa41d59be52ce5903bf2f",
+  "request": {
+    "question": "Does Jahez pass the AAOIFI Shariah screen?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "## Answer"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nYes — on the Lunar Charter's AAOIFI-style methodology, Jahez passes all three tests, and com"
+    },
+    {
+      "type": "delta",
+      "text": "fortably so on the two quantitative ratios. The completed analysis reaches the same conclusion ("
+    },
+    {
+      "type": "delta",
+      "text": "Shariah screen: Pass"
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "), but here is my own quantified check against each criterion.\n\n## The three"
+    },
+    {
+      "type": "delta",
+      "text": " tests\n\n**1. Business-activity test — Pass (qualitative)**\nThe Charter requires the core activity to be Shariah-permissible and "
+    },
+    {
+      "type": "delta",
+      "text": "excludes conventional banking/insurance, alcohol, gambling, conventional financial services, and similarly excluded activities."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": " J"
+    },
+    {
+      "type": "delta",
+      "text": "ahez's core business is on-demand food delivery, quick-commerce, last-mile logistics and cloud kitchens — "
+    },
+    {
+      "type": "delta",
+      "text": "the Group operates several brands and subsidiaries providing on-demand services, q-commerce, last mile delivery, digital sol"
+    },
+    {
+      "type": "delta",
+      "text": "utions and Cloud kitchens and shelving, connecting customers, merchants and delivery partners across 100 cities in the Kingdom in addition to Qatar,"
+    },
+    {
+      "type": "delta",
+      "text": " Bahrain and Kuwait."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "fy25-er",
+      "page": 12,
+      "quote": "Box 2065 Riyadh –12444 Saudi Arabia, Commercial Registration 1010895874\r\nAbout Jahez International Company for Information System Technology \r\nThe Group operates several brands and subsidiaries provid"
+    },
+    {
+      "type": "delta",
+      "text": " None of this is an excluded activity.\n\n**2. Interest-bearing debt ratio — Pass (well inside the 33% cap)"
+    },
+    {
+      "type": "delta",
+      "text": "**\nTest threshold: "
+    },
+    {
+      "type": "delta",
+      "text": "Interest-bearing debt < 33% of market capitalisation."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n-"
+    },
+    {
+      "type": "delta",
+      "text": " Interest-bearing debt (most recent, 31 March 2026): non-current Islamic facilities of "
+    },
+    {
+      "type": "delta",
+      "text": "141,144,688"
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "q1-26-fs",
+      "page": 4,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company)\r\nCONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSTION \r\nAs at 31 March 2026 \r\nSaudi Riyal ) ( \r\n2\r\nNote\r"
+    },
+    {
+      "type": "delta",
+      "text": " plus short-term Islamic facilities of SAR 20,074,148, i.e. ~SAR"
+    },
+    {
+      "type": "delta",
+      "text": " 161.2m total.\n- Market cap: "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 2.60bn (stockanalysis.com, 10 Jul 2026)"
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "A. Jahez Market Snapshot\r\nSHARE PRICE\r\nSAR 12.79\r\nstockanalysis.com, 10 Jul\r\n2026 close\r\nMARKET CAP\r\nSAR 2.60bn\r\nstockanalysis.com, 10 Jul\r\n2026\r\nSHARES OUTSTANDING\r\n203.26m\r\nstockanalysis.com, 10 Jul"
+    },
+    {
+      "type": "delta",
+      "text": ", with an Argaam cross-check of SAR 2,698.5m.\n\nRatio ≈ 161.2m / 2,600m ≈ **6.2%** — far below the "
+    },
+    {
+      "type": "delta",
+      "text": "33% ceiling. Even if IFRS-16 lease liabilities were treated as debt (a stricter inter"
+    },
+    {
+      "type": "delta",
+      "text": "pretation), the completed analysis notes "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 161.2m of debt and SAR 332."
+    },
+    {
+      "type": "delta",
+      "text": "9m of IFRS-16 lease liabilities"
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": ", which combined is ~SAR 494m / 2,600m ≈ 19%"
+    },
+    {
+      "type": "delta",
+      "text": " — still a clear pass.\n\n**3. Non-permissible income ratio — Pass (on the cleanest fully-disclosed year)**\nTest"
+    },
+    {
+      "type": "delta",
+      "text": " threshold: "
+    },
+    {
+      "type": "delta",
+      "text": "Income from non-permissible sources < 5% of total revenue."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": " The relevant non-permissible line is interest/finance income on"
+    },
+    {
+      "type": "delta",
+      "text": " cash deposits.\n\n- FY2024 (fully disclosed): finance income of "
+    },
+    {
+      "type": "delta",
+      "text": "48,537,021"
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "fy24-ar",
+      "page": 87,
+      "quote": "01 02 03 04 05 06 Financial statements\r\nNote\r\n31 December\r\n2024\r\n31 December\r\n2023\r\nRevenue 23 2,218,662,735 1,784,755,283\r\nCost of revenue 24 (1,677,500,170) (1,378,877,760)\r\nGross profit 541,162,565"
+    },
+    {
+      "type": "delta",
+      "text": " against gross revenue of "
+    },
+    {
+      "type": "delta",
+      "text": "2,386,980,714"
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "fy24-ar",
+      "page": 106,
+      "quote": "Jahez International Company for Information Systems Technology (A Saudi Joint Stock Company)\r\nNotes to the Consolidated Financial Statements\r\nFor the year ended 31 December 2024 \r\n(Saudi Riyal)\r\nJahez"
+    },
+    {
+      "type": "delta",
+      "text": " — **≈2.0%**"
+    },
+    {
+      "type": "delta",
+      "text": ", comfortably under 5%.\n\n## Judgment flags\n\n- **Two items where I'm exercising judgment, not cert"
+    },
+    {
+      "type": "delta",
+      "text": "ainty:**\n  1. *FY2025 non-permissible income ratio not independently computed.* The FY2025 fin"
+    },
+    {
+      "type": "delta",
+      "text": "ance-income line is not broken out in my connected sources (the FY2025 release combines financing cost and"
+    },
+    {
+      "type": "delta",
+      "text": " zakat). However, finance income is declining sharply — "
+    },
+    {
+      "type": "delta",
+      "text": "finance income 808,230 (Q1 2026) v"
+    },
+    {
+      "type": "delta",
+      "text": "s 11,233,532 (Q1 2025)"
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "q1-26-fs",
+      "page": 5,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company) \r\nCONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS \r\nAND OTHER COMPREHENSIVE INCOME \r\n (Unaudited)\r\nFor"
+    },
+    {
+      "type": "delta",
+      "text": " — as the cash balance fell, so the ratio is direct"
+    },
+    {
+      "type": "delta",
+      "text": "ionally moving further below 5%, not toward it. What would change this: the disclosed FY2025 finance-income fig"
+    },
+    {
+      "type": "delta",
+      "text": "ure.\n  2. *\"Interest-bearing\" classification.* Jahez's main facility is a Shariah-compliant Tawarruq struct"
+    },
+    {
+      "type": "delta",
+      "text": "ure, not conventional debt; a small Snoonu subsidiary carries "
+    },
+    {
+      "type": "delta",
+      "text": "a b"
+    },
+    {
+      "type": "delta",
+      "text": "ank loans of QAR 16.5 million, equivalent to SAR 16.9 million, from a Gulf bank at the prevailing interest rates."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "q1-26-fs",
+      "page": 24,
+      "quote": "(“Snoonu”), has a bank loans of \r\nQAR 16.5 million, equivalent to SAR 16.9 million, from a Gulf bank at the prevailing interest rates."
+    },
+    {
+      "type": "delta",
+      "text": " This"
+    },
+    {
+      "type": "delta",
+      "text": " conventional-rate piece is immaterial (<1% of market cap) and does not move the ratio conclusion.\n\n- **"
+    },
+    {
+      "type": "delta",
+      "text": "Process note (Charter, not my judgment):** even a quantitative-ratio miss would not auto-exclude — "
+    },
+    {
+      "type": "delta",
+      "text": "A company failing the business-activity test is excluded outright. A company failing either quantitative ratio is flagged and referred to the Committ"
+    },
+    {
+      "type": "delta",
+      "text": "ee for a purification-and-waiver discussion rather than an automatic exclusion."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "A company failing either quantitative ratio is flagged and\r\nreferred to the Committee for a purification-and-waiver discussion rather than an automatic exclusion, consistent with\r\nstandard AAOIFI prac"
+    },
+    {
+      "type": "delta",
+      "text": " Since Jahez passes all three, no such"
+    },
+    {
+      "type": "delta",
+      "text": " referral is triggered on the screen itself.\n\nNet: clean pass on business activity, a ~6% debt ratio versus a 33% cap, and ~2% non-permissible"
+    },
+    {
+      "type": "delta",
+      "text": " income (FY2024) versus a 5% cap."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-13T06:49:47.467Z"
+}

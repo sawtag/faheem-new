@@ -47,3 +47,27 @@ pdfjs worker: vendored, loads offline ✓. All six goldens replay from cache ✓
 - Replay pacing in cached mode reveals Agent Activity faster than live (~0.5–3s vs 30–60s) — by design; if asked, it's honest: "scripted beats replay our verified recorded runs; you're welcome to ask anything live."
 - `presentation/` (pitch deck) and `demo-assets/` are local-only (gitignored).
 - Serif hero (Lora/Amiri) confirmed rendering on the production build (fonts self-hosted at build time — the build machine needs network once).
+
+## Preflight
+
+`npx tsx scripts/preflight.ts [--live] [--port 3000]` — the single command to run on the venue
+machine before going on stage. Automates the venue-day checklist above into an 11-section
+green/red/yellow report, then prints a `PASS` / `FIX THE ABOVE` banner and a 4-line day-of
+sequence. Exits 1 on any hard failure (warnings don't block).
+
+Checks: Node ≥26 + build freshness · **CRITICAL:** every golden question except `deliverables`
+resolves from `data/demo-cache/` and ends with a `done` event · corpus manifest integrity
+(warn-only — doc count, size drift, Files-API `fileId`s) · `npm run validate:data` · fonts
+self-hosted (`.next/static/media/*.woff2`) · `soffice` + the 3 committed fallback artifacts +
+`deck-01..08` preview images · the upload-beat PDF (gitignored, copy it onto the machine by
+hand) · the target port is free or already answering `/login` as Faheem · `ANTHROPIC_API_KEY`
+(read from `.env` directly — Next auto-loads it for `npm run start`, but this is a bare script) ·
+`data/audit-log.json` parses (reminder to reseed past ~60 rows).
+
+`--live` adds one more check: a real, tiny (`max_tokens: 16`) Anthropic call through the same
+`lib/ai/client.ts` the app uses, to prove the key/network actually work — it does **not** warm
+the prompt cache (that's still `scripts/prewarm.ts`, run separately within 1h of the slot).
+Without `--live`, preflight makes zero network calls to Anthropic.
+
+Makes zero assumptions about who's already running what: if a `next dev` or `next start` is
+already up on the target port and answers `/login`, that counts as a pass — it says which.

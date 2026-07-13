@@ -8,8 +8,8 @@ import {
 } from "@/lib/demo/golden-questions";
 
 describe("GOLDEN_QUESTIONS — data/golden-questions.json", () => {
-  it("has 7 entries with unique ids", () => {
-    expect(GOLDEN_QUESTIONS).toHaveLength(7);
+  it("has 11 entries with unique ids", () => {
+    expect(GOLDEN_QUESTIONS).toHaveLength(11);
     const ids = GOLDEN_QUESTIONS.map((q) => q.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
@@ -69,7 +69,17 @@ describe("filterGoldenQuestions — palette filter logic", () => {
       "en",
     );
     expect(jahezEn.map((q) => q.id).sort()).toEqual(
-      ["qa1", "qa2", "deliverables", "followup-bull", "followup-keeta"].sort(),
+      [
+        "qa1",
+        "qa2",
+        "deliverables",
+        "followup-bull",
+        "followup-keeta",
+        "wacc-build",
+        "comps-gap",
+        "oneoff-check",
+        "shariah-en",
+      ].sort(),
     );
 
     const darbEn = filterGoldenQuestions(
@@ -96,7 +106,7 @@ describe("filterGoldenQuestions — palette filter logic", () => {
 
   it("a null context (no chat surface on screen — Home, Deals, Agents…) shows every entry in that language", () => {
     const all = filterGoldenQuestions(GOLDEN_QUESTIONS, null, "en");
-    expect(all).toHaveLength(6); // every en entry
+    expect(all).toHaveLength(10); // every en entry
   });
 });
 
@@ -106,7 +116,7 @@ describe("groupGoldenQuestions", () => {
       filterGoldenQuestions(GOLDEN_QUESTIONS, null, "en"),
     );
     expect([...groups.keys()]).toEqual(["workspace:jahez", "ic"]);
-    expect(groups.get("workspace:jahez")).toHaveLength(5);
+    expect(groups.get("workspace:jahez")).toHaveLength(9);
     expect(groups.get("ic")).toHaveLength(1);
   });
 });

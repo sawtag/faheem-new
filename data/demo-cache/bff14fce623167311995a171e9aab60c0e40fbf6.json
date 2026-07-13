@@ -1,0 +1,421 @@
+{
+  "key": "bff14fce623167311995a171e9aab60c0e40fbf6",
+  "request": {
+    "question": "Is the SAR 55M of Q4 one-offs genuinely non-recurring? Break it down.",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "Lead answer: No — treating the full"
+    },
+    {
+      "type": "delta",
+      "text": " SAR 55.4m as clean, non-recurring is too generous. On my read of"
+    },
+    {
+      "type": "delta",
+      "text": " the components, only roughly SAR 20m is genuinely one-off; the balance (~SAR 35"
+    },
+    {
+      "type": "delta",
+      "text": "m) sits in line items that are recurring by nature and, in the case of the"
+    },
+    {
+      "type": "delta",
+      "text": " ECL, has already partially repeated in Q1 2026. Judgment flag appl"
+    },
+    {
+      "type": "delta",
+      "text": "ied throughout — I'll mark what would change my view.\n\n**The four components (management's dis"
+    },
+    {
+      "type": "delta",
+      "text": "closure)**"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "Red Color recorded SAR 12.2m losses related to impairment in the group's portfolio companies; go"
+    },
+    {
+      "type": "delta",
+      "text": "odwill impairment of SAR 11.8m related to Marn; Others Segment ECL of SAR 23.4m; and Snoonu deal expenses of ~SAR 8m."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "fy25-earnings-call",
+      "page": 6,
+      "quote": "Key highlights for Q4 - 2025\r\nNon-KSA \r\nPlatforms\r\n• Snoonuto serve as Jahez Group’s international arm for all non-KSA operations\r\n• 18% gross profit margin supported by improvement in ads revenue, co"
+    },
+    {
+      "type": "delta",
+      "text": " The industry-pack cross-check corroborates the same split — "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 23.4m credit-loss provisions, SAR 11.8m goodwill impairment, SAR 12m investment losses, SAR 8m acquis"
+    },
+    {
+      "type": "delta",
+      "text": "ition costs."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "industry-news-pack",
+      "page": 4,
+      "quote": "Jahez CEO: Q4 impacted by SAR 55M one-off items, revenue may rise 7–21% in 2026\r\nArgaam · 31 Mar 2026 · argaam.com/en/article/articledetail/id/1892181\r\nQ4 2025 profit was dented by roughly SAR 55m of "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Item-by-item recurrence assessment**\n\n**1. Snoonu deal expenses ~SAR 8m — genuin"
+    },
+    {
+      "type": "delta",
+      "text": "ely non-recurring.** M&A transaction costs tied to a one-time acquisition close. Clean add-back. No basis to exp"
+    },
+    {
+      "type": "delta",
+      "text": "ect repetition.\n\n**2. Marn goodwill impairment SAR 11.8m — non-recurring as a charge, but a red flag on"
+    },
+    {
+      "type": "delta",
+      "text": " underlying value.** You cannot impair the same goodwill twice, so the SAR 11.8m charge itself won't recur. But it"
+    },
+    {
+      "type": "delta",
+      "text": " is a non-cash write-down signalling deterioration in the Marn cash-generating unit's outlook. That the"
+    },
+    {
+      "type": "delta",
+      "text": " business needs fixing is confirmed one quarter later: "
+    },
+    {
+      "type": "delta",
+      "text": "Net Revenue of SAR "
+    },
+    {
+      "type": "delta",
+      "text": "22.8m in Q1 2026, down 7.2% YoY mainly due to Marn restructuring & strategy revision; Marn repositioning toward higher-quality merch"
+    },
+    {
+      "type": "delta",
+      "text": "ant cohorts aimed at improving the underlying credit-risk profile."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "q1-26-earnings-call",
+      "page": 6,
+      "quote": "Key highlights for Q 1 - 2026\r\nNon - KSA \r\nPlatforms\r\n• Qatar ( Snoonu ) continues to be the main growth engine, delivering strong GMV and strong multi verticality results \r\n• Bahrain & Kuwait – focus"
+    },
+    {
+      "type": "delta",
+      "text": " Judgment: I'd add the charge back"
+    },
+    {
+      "type": "delta",
+      "text": " but not treat the impairment as evidence the Marn problem is behind them.\n\n**3. Red"
+    },
+    {
+      "type": "delta",
+      "text": " Color / portfolio fair-value losses SAR 12.2m — recurring in nature, not a true one-off.** These are f"
+    },
+    {
+      "type": "delta",
+      "text": "air-value marks on a corporate-VC (FVTPL) portfolio, which swing every period. For the full year, "
+    },
+    {
+      "type": "delta",
+      "text": "fair value differences were (11,308,115)"
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "q1-26-fs",
+      "page": 22,
+      "quote": "Movement in investments is as follows: \r\n31 March\r\n2026\r\n31 December \r\n2025\r\n31 March \r\n2025\r\nBalance at the beginning of the period/ year 85,813,977 68,296,898 68,296,898\r\nAdditions during the period"
+    },
+    {
+      "type": "delta",
+      "text": " in FY2025 — i.e"
+    },
+    {
+      "type": "delta",
+      "text": ". the \"one-off\" is essentially the whole-year mark landing in Q4. These marks can move"
+    },
+    {
+      "type": "delta",
+      "text": " either direction: Q1 2026 booked zero FVTPL movement versus a SAR 5."
+    },
+    {
+      "type": "delta",
+      "text": "2m loss in Q1 2025. Labelling a volatile mark-to-market line as non-recurring is not defensible; it is"
+    },
+    {
+      "type": "delta",
+      "text": " a normal, recurring source of P&L noise for a company running a venture book"
+    },
+    {
+      "type": "delta",
+      "text": ".\n\n**4. Others-segment ECL SAR 23.4m — the weakest \"one-off\" claim, and it has already partly repeated.** This is the largest chunk."
+    },
+    {
+      "type": "delta",
+      "text": " At the segment level, "
+    },
+    {
+      "type": "delta",
+      "text": "the YoY decline was primarily driven by a significant increase in expected credit losses (ECL), which r"
+    },
+    {
+      "type": "delta",
+      "text": "ose to SAR 29.4 million in FY 2025 from SAR 0.5 million in the prior year."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "fy25-er",
+      "page": 7,
+      "quote": "The YoY decline was primarily \r\ndriven by a significant increase in expected credit losses (ECL), which rose to  2 9 .4 million in FY 2025 from \r\n0.5 million in the prior year."
+    },
+    {
+      "type": "delta",
+      "text": " Two re"
+    },
+    {
+      "type": "delta",
+      "text": "asons I do not treat this as clean: (a) at Group level, ECL is a standing add-back line,"
+    },
+    {
+      "type": "delta",
+      "text": " not an exceptional item — "
+    },
+    {
+      "type": "delta",
+      "text": "ECL Adjustment SAR 31.5m in FY2025 versus SAR 13.8"
+    },
+    {
+      "type": "delta",
+      "text": "m in FY2024"
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "fy25-er",
+      "page": 8,
+      "quote": "8 ) pp\r\nOther Income/Expense (9.4) (39.9) (76.3 %)\r\nDepreciation & Amortization 89.4 51.0 + 75.4%\r\nFinancing Cost & Zakat 12.5 24.9 (49.9%)\r\nECL Adjustment 31.5 13.8 + 128.3 %\r\nOther Mgmt."
+    },
+    {
+      "type": "delta",
+      "text": "; and (b) it recurred in Q1 2026, where the Others segment again car"
+    },
+    {
+      "type": "delta",
+      "text": "ried an ECL charge of SAR 5.0m within a Group impairment loss on trade receivables of SA"
+    },
+    {
+      "type": "delta",
+      "text": "R 7.7m. The Marn credit-quality repositioning noted above tells you the receivables problem is structural to the merchant base, not a"
+    },
+    {
+      "type": "delta",
+      "text": " single bad-debt event.\n\n**Analyst bottom line**\n\n- Genuinely non-recurring: Snoonu"
+    },
+    {
+      "type": "delta",
+      "text": " deal costs (~SAR 8m) and the goodwill-impairment charge itself (SAR 11.8m) → ~SAR 20m.\n- Recurring/"
+    },
+    {
+      "type": "delta",
+      "text": "volatile by nature: FVTPL marks (SAR 12.2m) and ECL (SAR 23.4m) → ~SAR 35m,"
+    },
+    {
+      "type": "delta",
+      "text": " of which the ECL has demonstrably continued into Q1 2026.\n\nFor normalisation purposes I would"
+    },
+    {
+      "type": "delta",
+      "text": " strip out roughly SAR 20m, not SAR 55m, and haircut Q"
+    },
+    {
+      "type": "delta",
+      "text": "4 \"adjusted\" profitability accordingly. What would change this view: (i) evidence the"
+    },
+    {
+      "type": "delta",
+      "text": " Marn merchant-book ECL genuinely normalises toward the FY2024 ~SAR 0.5m run-rate rather than the"
+    },
+    {
+      "type": "delta",
+      "text": " elevated Q1 2026 level, and (ii) the Red Color portfolio marks stabilising rather than swinging. Note"
+    },
+    {
+      "type": "delta",
+      "text": " management does not present these as \"exceptional/non-recurring\" in the audited reconciliation — "
+    },
+    {
+      "type": "delta",
+      "text": "the reconciliation lists them as standing \"ECL Adjustment\" and \"Other Mgmt. Adjust"
+    },
+    {
+      "type": "delta",
+      "text": "ments\" add-backs"
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "fy25-er",
+      "page": 8,
+      "quote": "8 ) pp\r\nOther Income/Expense (9.4) (39.9) (76.3 %)\r\nDepreciation & Amortization 89.4 51.0 + 75.4%\r\nFinancing Cost & Zakat 12.5 24.9 (49.9%)\r\nECL Adjustment 31.5 13.8 + 128.3 %\r\nOther Mgmt. Adjustments"
+    },
+    {
+      "type": "delta",
+      "text": " — which is itself a tell that at least the ECL is treated as an ongoing, if"
+    },
+    {
+      "type": "delta",
+      "text": " lumpy, cost of the business."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-13T06:48:49.252Z"
+}

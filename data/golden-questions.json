@@ -8,7 +8,10 @@
     "request": {
       "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
       "lang": "en",
-      "context": { "kind": "workspace", "companyId": "jahez" },
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      },
       "docIds": ["fy25-er"]
     }
   },
@@ -21,7 +24,10 @@
     "request": {
       "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
       "lang": "en",
-      "context": { "kind": "workspace", "companyId": "jahez" },
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      },
       "agent": "risk"
     }
   },
@@ -34,7 +40,10 @@
     "request": {
       "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
       "lang": "ar",
-      "context": { "kind": "workspace", "companyId": "jahez" }
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
     }
   },
   {
@@ -46,7 +55,9 @@
     "request": {
       "question": "Rank these deals — strongest risk-adjusted case?",
       "lang": "en",
-      "context": { "kind": "ic" }
+      "context": {
+        "kind": "ic"
+      }
     }
   },
   {
@@ -58,7 +69,10 @@
     "request": {
       "question": "Prepare the IC memo, DCF model, and committee deck.",
       "lang": "en",
-      "context": { "kind": "workspace", "companyId": "jahez" }
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
     }
   },
   {
@@ -70,7 +84,10 @@
     "request": {
       "question": "What would have to be true for Jahez to re-rate to your bull case?",
       "lang": "en",
-      "context": { "kind": "workspace", "companyId": "jahez" }
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
     }
   },
   {
@@ -82,7 +99,70 @@
     "request": {
       "question": "How exposed is Jahez to Keeta's expansion through 2026?",
       "lang": "en",
-      "context": { "kind": "workspace", "companyId": "jahez" }
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
+    }
+  },
+  {
+    "id": "wacc-build",
+    "label": {
+      "en": "Jahez — walk through the WACC build",
+      "ar": "جاهز — تفصيل بناء تكلفة رأس المال"
+    },
+    "request": {
+      "question": "Walk me through the WACC build for the Jahez valuation — where does every input come from?",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
+    }
+  },
+  {
+    "id": "comps-gap",
+    "label": {
+      "en": "Jahez — comps vs DCF gap",
+      "ar": "جاهز — الفجوة بين المضاعفات والتدفقات المخصومة"
+    },
+    "request": {
+      "question": "The trading comps imply a much higher value than your DCF — why the gap, and which should the committee trust?",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
+    }
+  },
+  {
+    "id": "oneoff-check",
+    "label": {
+      "en": "Jahez — are the one-offs really one-off?",
+      "ar": "جاهز — هل البنود غير المتكررة فعلاً غير متكررة؟"
+    },
+    "request": {
+      "question": "Is the SAR 55M of Q4 one-offs genuinely non-recurring? Break it down.",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
+    }
+  },
+  {
+    "id": "shariah-en",
+    "label": {
+      "en": "Jahez — AAOIFI Shariah screen (EN)",
+      "ar": "جاهز — الفحص الشرعي (بالإنجليزية)"
+    },
+    "request": {
+      "question": "Does Jahez pass the AAOIFI Shariah screen?",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
     }
   }
 ]
