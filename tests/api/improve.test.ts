@@ -27,7 +27,12 @@ describe("POST /api/improve", () => {
     const res = await POST(
       new Request("http://localhost/api/improve", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        // Improve is a live-only feature — it no-ops in cached mode (defense in
+        // depth against rewriting a golden question). Declare live explicitly.
+        headers: {
+          "content-type": "application/json",
+          cookie: "faheem_mode=live",
+        },
         body: JSON.stringify({ question: "jahez good?", lang: "en" }),
       }),
     );

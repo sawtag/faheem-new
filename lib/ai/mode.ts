@@ -1,10 +1,13 @@
 /**
  * Runtime mode resolution + cached-replay pacing.
  *
- * Precedence: cookie `faheem_mode` > FAHEEM_MODE env > "auto" (the on-stage
- * panic switch — cookie always wins). Replay pacing spreads text deltas by
- * FAHEEM_REPLAY_DELAY_MS (tests set 0); the full orchestration (live / auto /
- * fallback) lives in sse.ts.
+ * Precedence: cookie `faheem_mode` > FAHEEM_MODE env > smart default. The
+ * smart default is `auto` when an API key is present (live-first, with the
+ * recorded cache as the safety net) and `cached` when it's absent (a keyless
+ * fresh clone / backup laptop still runs fully offline, no live-call error).
+ * The cookie is the on-stage panic switch and always wins. Replay pacing
+ * spreads text deltas by FAHEEM_REPLAY_DELAY_MS (tests set 0); the full
+ * orchestration (live / auto / fallback) lives in sse.ts.
  */
 import type { CacheEntry, FaheemMode, SSEEvent } from "@/lib/types";
 
@@ -29,7 +32,7 @@ export function resolveMode(cookieMode?: string): FaheemMode {
   return (
     normalizeMode(cookieMode) ??
     normalizeMode(process.env.FAHEEM_MODE) ??
-    "auto"
+    (process.env.ANTHROPIC_API_KEY ? "auto" : "cached")
   );
 }
 
