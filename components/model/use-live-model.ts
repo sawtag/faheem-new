@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { BASE_ASSUMPTIONS, buildModel } from "@/lib/model/compute";
+import { validateEdit } from "@/lib/model/edit-parser";
 import type { Assumptions, ModelKey, ModelOutputs } from "@/lib/model/types";
 
 /** Immutably set a dotted assumption path — "g" (scalar) or "ordersGrowth.0"
@@ -89,7 +90,12 @@ export function useLiveModel(): LiveModel {
   }, [outputs]);
 
   const setAssumption = React.useCallback((key: string, value: number) => {
-    setAssumptions((prev) => withAssumption(prev, key, value));
+    // same hard gate as /api/model-edit: whitelist + sane-bounds clamp, so a
+    // grid stepper can't drive an assumption somewhere the engine can't
+    // survive (e.g. terminal growth past WACC → Gordon TV blows up)
+    const valid = validateEdit(key, value);
+    if (!valid) return;
+    setAssumptions((prev) => withAssumption(prev, key, valid.value));
   }, []);
 
   const reset = React.useCallback(() => setAssumptions(BASE_ASSUMPTIONS), []);
