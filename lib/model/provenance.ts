@@ -692,13 +692,14 @@ export function buildNodes(
       "assumptions.holdYears",
     ]),
   );
-  // IC hurdle: 15% gross IRR per the Lunar IC Charter & Investment Mandate
-  // (mandate economics, p.3 — the page deals.json cites for mandate criteria).
-  // Already a percent-number in ModelResult (15), so no conversion.
+  // IC hurdle: 15% gross IRR per the Lunar IC Charter — "Hurdle rate: no
+  // private growth-equity commitment may be underwritten below a 15% base-case
+  // IRR", p.4 (verified via pdftotext). Already a percent-number in
+  // ModelResult (15), so no conversion.
   put("ic.hurdle", result.ic.hurdle, "%", {
     kind: "sourced",
     docId: "lunar-ic-charter",
-    page: 3,
+    page: 4,
   });
   put(
     "ic.expectedReturn",

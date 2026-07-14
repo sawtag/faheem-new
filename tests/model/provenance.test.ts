@@ -102,7 +102,7 @@ describe("spot checks", () => {
     expect(h.provenance).toEqual({
       kind: "sourced",
       docId: "lunar-ic-charter",
-      page: 3,
+      page: 4,
     });
   });
 

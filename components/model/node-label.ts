@@ -1,0 +1,218 @@
+/**
+ * components/model/node-label — human labels for ModelKeys.
+ *
+ * `ValueNode.labelKey` is always the literal `model.nodes.<key>` (fixed by
+ * lib/model/provenance.ts). Authoring one message per node would mean
+ * hundreds of near-duplicate strings ("Net revenue — FY26E" ×8 years ×3
+ * scenarios ×...), so this resolver takes a two-tier approach:
+ *
+ *  1. A curated set of ~45 EXACT keys (the WACC build, DCF chain, scenario
+ *     scalars, Shariah ratios, comps range, IC summary — the nodes actually
+ *     surfaced in the demo) get a hand-written `model.nodes.<key>` message,
+ *     looked up directly via `t.has()`.
+ *  2. Everything else (the FY23A–FY30E revenue-driver/statement series, the
+ *     per-scenario per-year arrays, the assumption arrays, comps multiples,
+ *     sensitivity axes/grids — the bulk of the 150+ node graph) is pattern-
+ *     matched against the ModelKey shape and composed from a small library
+ *     of reusable part-labels (`model.nodes.series.*`, `.scenarios.*`,
+ *     `.comp.*`, `.compMetric.*`, `.axis.*`, `.grid.*`) plus
+ *     `lib/model/compute.ts`'s YEARS constant, via `model.nodes.templates.*`
+ *     interpolation templates. No indexed key ever needs its own message.
+ *
+ * A final `humanize()` fallback (split on '.', camelCase → spaced, title
+ * case) guarantees no key is ever left unresolved or leaks a raw i18n key
+ * into the UI — it's a defensive net for any node shape this file doesn't
+ * yet know about, not the primary path.
+ */
+import type { useTranslations } from "next-intl";
+import { YEARS } from "@/lib/model/compute";
+import type { ModelKey } from "@/lib/model/types";
+
+type T = ReturnType<typeof useTranslations>;
+
+const F0 = 3; // first forecast index (FY26E) — mirrors compute.ts/provenance.ts
+
+/** metric name → `model.nodes.series.<key>` part-label, shared by the plain
+ * 0..7 arrays, the per-scenario 0..4 arrays, and the assumption arrays. */
+const SERIES: Record<string, string> = {
+  orders: "orders",
+  aov: "aov",
+  gmv: "gmv",
+  netRev: "netRev",
+  takeRate: "takeRate",
+  commission: "commission",
+  ebitda: "ebitda",
+  dna: "dna",
+  ebit: "ebit",
+  nopat: "nopat",
+  capex: "capex",
+  dnwc: "dnwc",
+  fcff: "fcff",
+  revGrowth: "revGrowth",
+  ebitdaMargin: "ebitdaMargin",
+  pvf: "pvf",
+  pvFcff: "pvFcff",
+  ordersGrowth: "ordersGrowth",
+  aovGrowth: "aovGrowth",
+  netRevRate: "netRevRate",
+  bullRevDelta: "bullRevDelta",
+  bearRevDelta: "bearRevDelta",
+};
+
+const SCENARIO_SCALARS: Record<string, string> = {
+  sumPv: "sumPv",
+  g: "terminalGrowth",
+  tv: "terminalValue",
+  pvTv: "pvTerminalValue",
+  ev: "enterpriseValue",
+  equity: "equityValue",
+  perShare: "perShare",
+  upside: "upside",
+  irr: "irr",
+};
+
+const COMPS = new Set(["talabat", "doordash", "dhero"]);
+const COMP_METRICS: Record<string, string> = {
+  evRev: "evRev",
+  evEbitda: "evEbitda",
+  pe: "pe",
+};
+const AXES = new Set(["waccAxis", "gAxis", "takeAxis", "gmvGrowthAxis"]);
+const GRIDS = new Set(["grid1", "grid2"]);
+
+function yearAt(i: number): string {
+  return YEARS[i] ?? `Y${i}`;
+}
+
+function humanize(key: ModelKey): string {
+  return key
+    .split(".")
+    .map((part) =>
+      /^\d+$/.test(part)
+        ? `#${Number(part) + 1}`
+        : part
+            .replace(/([a-z\d])([A-Z])/g, "$1 $2")
+            .replace(/^./, (c) => c.toUpperCase()),
+    )
+    .join(" · ");
+}
+
+export function getNodeLabel(key: ModelKey, t: T): string {
+  const exact = `model.nodes.${key}`;
+  if (t.has(exact)) return t(exact);
+
+  // scenario-prefixed series: "base.netRev.2", "bull.pvFcff.4"
+  let m = /^(base|bull|bear)\.([a-zA-Z]+)\.(\d)$/.exec(key);
+  if (m) {
+    const [, scen, metric, idxStr] = m as unknown as [
+      string,
+      string,
+      string,
+      string,
+    ];
+    const series = metric ? SERIES[metric] : undefined;
+    if (series) {
+      return t("model.nodes.templates.scenarioSeries", {
+        scenario: t(`model.nodes.scenarios.${scen}`),
+        series: t(`model.nodes.series.${series}`),
+        year: yearAt(F0 + Number(idxStr)),
+      });
+    }
+  }
+
+  // scenario scalars: "base.perShare", "bull.tv"
+  m = /^(base|bull|bear)\.([a-zA-Z]+)$/.exec(key);
+  if (m) {
+    const [, scen, metric] = m as unknown as [string, string, string];
+    const label = metric ? SCENARIO_SCALARS[metric] : undefined;
+    if (label) {
+      return t("model.nodes.templates.scenarioScalar", {
+        scenario: t(`model.nodes.scenarios.${scen}`),
+        series: t(`model.nodes.series.${label}`),
+      });
+    }
+  }
+
+  // assumption arrays: "assumptions.ordersGrowth.0", "assumptions.riskWeights.3"
+  m = /^assumptions\.([a-zA-Z]+)\.(\d)$/.exec(key);
+  if (m) {
+    const [, name, idxStr] = m as unknown as [string, string, string];
+    const idx = Number(idxStr);
+    if (name === "riskWeights") {
+      return t("model.nodes.templates.riskWeight", { n: idx + 1 });
+    }
+    const series = name ? SERIES[name] : undefined;
+    if (series) {
+      return t("model.nodes.templates.series", {
+        series: t(`model.nodes.series.${series}`),
+        year: yearAt(F0 + idx),
+      });
+    }
+  }
+
+  // plain 0..7 series: "orders.5", "ebitda.2"
+  m = /^([a-zA-Z]+)\.(\d)$/.exec(key);
+  if (m) {
+    const [, metric, idxStr] = m as unknown as [string, string, string];
+    const series = metric ? SERIES[metric] : undefined;
+    if (series) {
+      return t("model.nodes.templates.series", {
+        series: t(`model.nodes.series.${series}`),
+        year: yearAt(Number(idxStr)),
+      });
+    }
+  }
+
+  // comps / market multiples: "comps.evRev.talabat", "mkt.pe.doordash"
+  m = /^(comps|mkt)\.([a-zA-Z]+)\.([a-z]+)$/.exec(key);
+  if (m) {
+    const [, ns, metric, comp] = m as unknown as [
+      string,
+      string,
+      string,
+      string,
+    ];
+    if (comp && COMPS.has(comp) && metric && COMP_METRICS[metric]) {
+      const template =
+        ns === "comps"
+          ? "model.nodes.templates.compsImplied"
+          : "model.nodes.templates.compsMultiple";
+      return t(template, {
+        comp: t(`model.nodes.comp.${comp}`),
+        metric: t(`model.nodes.compMetric.${COMP_METRICS[metric]}`),
+      });
+    }
+  }
+
+  // sensitivity axis points: "waccAxis.2"
+  m = /^(waccAxis|gAxis|takeAxis|gmvGrowthAxis)\.(\d)$/.exec(key);
+  if (m) {
+    const [, axis, idxStr] = m as unknown as [string, string, string];
+    if (axis && AXES.has(axis)) {
+      return t("model.nodes.templates.axis", {
+        axis: t(`model.nodes.axis.${axis}`),
+        n: Number(idxStr) + 1,
+      });
+    }
+  }
+
+  // sensitivity grid cells: "grid1.2.3"
+  m = /^(grid1|grid2)\.(\d)\.(\d)$/.exec(key);
+  if (m) {
+    const [, grid, rowStr, colStr] = m as unknown as [
+      string,
+      string,
+      string,
+      string,
+    ];
+    if (grid && GRIDS.has(grid)) {
+      return t("model.nodes.templates.gridCell", {
+        grid: t(`model.nodes.grid.${grid}`),
+        row: Number(rowStr) + 1,
+        col: Number(colStr) + 1,
+      });
+    }
+  }
+
+  return humanize(key);
+}
