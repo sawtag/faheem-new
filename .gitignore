@@ -26,7 +26,7 @@ Thumbs.db
 # editors / local tooling
 .vscode/
 .idea/
-.claude/settings.local.json
+.claude/
 
 # runtime PDF uploads (live-mode only, never committed — see lib/uploads.ts)
 data/uploads/
