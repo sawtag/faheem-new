@@ -100,7 +100,7 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Conversational model edits — editable assumptions, source-locked actuals, agent choreography                   | WS-C       | ✅ Implemented |
 | Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                 | WS-D       | ✅ Implemented |
 | Sentiment card — qualitative signal over a labeled illustrative social pack                                    | WS-D       | ✅ Implemented |
-| Draft-to-IC email (compose modal → `mailto`, human sends)                                                      | WS-E       | 🔲 Remaining   |
+| Draft-to-IC email (compose modal → `mailto`, human sends)                                                      | WS-E       | ✅ Implemented |
 | Integration: new goldens, ⌘K entries, run-of-show beat, preflight + AGENTS.md + README updates, tag `demo-rc3` | WS-F       | 🔲 Remaining   |
 
 ## 🚀 Quickstart

@@ -196,7 +196,13 @@ export const AuditEntrySchema = z.object({
   user: z.string(),
   /** contextKey per the cache-key spec, e.g. "workspace:jahez" | "firm" | "ic" */
   context: z.string(),
-  action: z.enum(["question", "artifact", "stage-advance", "model-edit"]),
+  action: z.enum([
+    "question",
+    "artifact",
+    "stage-advance",
+    "model-edit",
+    "ic-draft",
+  ]),
   question: z.string().optional(),
   citationCount: z.number().int().nonnegative().optional(),
   /** artifact filename when action === "artifact" */

@@ -84,7 +84,8 @@
     "filterFirm": "الشركة",
     "contextFirm": "لونار",
     "userAli": "علي",
-    "actionModelEdit": "تعديل النموذج"
+    "actionModelEdit": "تعديل النموذج",
+    "actionIcDraft": "صياغة بريد للجنة"
   },
   "connections": {
     "title": "الاتصالات",
@@ -546,6 +547,29 @@
       "openInExcel": "فتح في Excel",
       "fallbackTitle": "المعاينة غير متاحة",
       "fallbackCaption": "الملف جاهز — يمكنك تنزيله أدناه."
+    },
+    "draft": {
+      "trigger": "صياغة بريد للجنة الاستثمار",
+      "title": "صياغة بريد للجنة الاستثمار",
+      "caption": "يفتح هذا برنامج البريد لديك — راجع الرسالة وأرسلها بنفسك.",
+      "toLabel": "إلى",
+      "subjectLabel": "الموضوع",
+      "bodyLabel": "نص الرسالة",
+      "recipientPlaceholder": "أضف مستلماً، ثم اضغط Enter",
+      "removeChip": "إزالة {value}",
+      "defaultRecipientName": "مجموعة لجنة الاستثمار بلونار",
+      "cancel": "إلغاء",
+      "openInOutlook": "فتح في Outlook",
+      "subject": "{company} — مواد اللجنة والتوصية",
+      "body": {
+        "greeting": "السادة أعضاء لجنة الاستثمار المحترمين،",
+        "summary": "مرفقة حزمة مواد اللجنة الخاصة بـ{company}. يُقيّم نموذج التدفقات النقدية المخصومة لفهيم — في الحالة الأساسية — المركز عند {perShare} للسهم، بعائد داخلي متوقع مرجّح بالسيناريوهات {irr} مقابل عتبة التفويض البالغة {hurdle}. {shariah}",
+        "shariahPass": "الفحص الشرعي مستوفى.",
+        "shariahFail": "الفحص الشرعي غير مستوفى.",
+        "materialsLabel": "المواد المرفقة:",
+        "closing": "يسعدني استعراض النموذج أو الإجابة عن أي استفسارات قبل الاجتماع.",
+        "signOff": "علي\nلونار للاستثمار"
+      }
     }
   },
   "demo": {

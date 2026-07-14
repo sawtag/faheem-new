@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import {
   CheckCheck,
   FileOutput,
+  Mail,
   MessageSquareText,
   SlidersHorizontal,
 } from "lucide-react";
@@ -28,6 +29,7 @@ const ACTION_ICON = {
   artifact: FileOutput,
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
+  "ic-draft": Mail,
 } as const;
 
 /** "Jul 12, 09:41" — no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
@@ -239,6 +241,7 @@ export function AuditTrail({
     artifact: t("actionArtifact"),
     "stage-advance": t("actionScreening"),
     "model-edit": t("actionModelEdit"),
+    "ic-draft": t("actionIcDraft"),
   };
 
   const filters: { value: ContextFilter; label: string }[] = [

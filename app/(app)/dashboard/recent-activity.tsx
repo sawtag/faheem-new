@@ -7,6 +7,7 @@ import {
   ArrowRight,
   CheckCheck,
   FileOutput,
+  Mail,
   MessageSquareText,
   SlidersHorizontal,
 } from "lucide-react";
@@ -20,6 +21,7 @@ const ACTION_ICON = {
   artifact: FileOutput,
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
+  "ic-draft": Mail,
 } as const;
 
 /** "Jul 12, 09:41" — Western digits both locales (mirrors the audit trail). */
@@ -164,6 +166,7 @@ function ActivityFeed({
     artifact: tAudit("actionArtifact"),
     "stage-advance": tAudit("actionScreening"),
     "model-edit": tAudit("actionModelEdit"),
+    "ic-draft": tAudit("actionIcDraft"),
   };
 
   return (

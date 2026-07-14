@@ -84,7 +84,8 @@
     "filterFirm": "Firm",
     "contextFirm": "Lunar",
     "userAli": "Ali",
-    "actionModelEdit": "Model edit"
+    "actionModelEdit": "Model edit",
+    "actionIcDraft": "IC email drafted"
   },
   "connections": {
     "title": "Connections",
@@ -546,6 +547,29 @@
       "openInExcel": "Open in Excel",
       "fallbackTitle": "Preview unavailable",
       "fallbackCaption": "The file itself is ready — download it below."
+    },
+    "draft": {
+      "trigger": "Draft email to IC",
+      "title": "Draft email to IC",
+      "caption": "This opens your mail client — you review and send.",
+      "toLabel": "To",
+      "subjectLabel": "Subject",
+      "bodyLabel": "Body",
+      "recipientPlaceholder": "Add a recipient, then press Enter",
+      "removeChip": "Remove {value}",
+      "defaultRecipientName": "Lunar IC Group",
+      "cancel": "Cancel",
+      "openInOutlook": "Open in Outlook",
+      "subject": "{company} — IC materials & recommendation",
+      "body": {
+        "greeting": "Dear Investment Committee,",
+        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {shariah}",
+        "shariahPass": "The Shariah screen passes.",
+        "shariahFail": "The Shariah screen does not pass.",
+        "materialsLabel": "Materials:",
+        "closing": "Happy to walk through the model or take questions ahead of the meeting.",
+        "signOff": "Ali\nLunar Investments"
+      }
     }
   },
   "demo": {
