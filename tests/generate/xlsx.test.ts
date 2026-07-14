@@ -16,11 +16,9 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import ExcelJS from "exceljs";
 import { beforeAll, describe, expect, it } from "vitest";
-import {
-  buildJahezWorkbook,
-  computeModel,
-  type ModelResult,
-} from "@/lib/generate/xlsx";
+import { buildJahezWorkbook } from "@/lib/generate/xlsx";
+import { computeModel } from "@/lib/model/compute";
+import type { ModelResult } from "@/lib/model/types";
 import { loadModelInputs, sourceLabel } from "@/lib/generate/shared";
 
 let wb: ExcelJS.Workbook;

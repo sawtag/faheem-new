@@ -268,4 +268,23 @@ export const CONNECTORS: Connector[] = [
     status: "available",
     tile: { kind: "monogram", initial: "C" },
   },
+  {
+    id: "social-alt-data",
+    name: {
+      en: "Social & Alt-Data",
+      ar: "المحتوى الاجتماعي والبيانات البديلة",
+    },
+    description: {
+      en: "Real social/forum feeds & alt-data — MVP roadmap",
+      ar: "تغذيات اجتماعية ومنتديات وبيانات بديلة حقيقية — على خارطة طريق الإصدار الأولي",
+    },
+    tooltip: {
+      en: "Live social, forum and alt-data feeds for the Market Sentiment agent. Today the agent reads a clearly-labeled illustrative demo pack — this connector is what would replace it in production.",
+      ar: "تغذيات حية من المحتوى الاجتماعي والمنتديات والبيانات البديلة لوكيل المزاج السوقي. حالياً يقرأ الوكيل حزمة توضيحية تجريبية مُعلَّمة بوضوح — وهذا الموصّل هو ما سيحل محلها في الإنتاج.",
+    },
+    group: "external",
+    status: "available",
+    badge: "mvp",
+    tile: { kind: "monogram", initial: "S" },
+  },
 ];

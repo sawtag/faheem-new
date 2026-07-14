@@ -23,3 +23,7 @@ context/
 
 # machine-generated pitch-deck build (user-owned, not app code)
 presentation/
+
+# frozen pre-refactor computeModel() snapshot — the byte-identical gate for
+# lib/model (tests/model/compute.test.ts); machine-generated, never reformat.
+tests/fixtures/model-base-snapshot.json

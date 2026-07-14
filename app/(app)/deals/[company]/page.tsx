@@ -98,6 +98,7 @@ export default async function WorkspacePage({
       artifacts={workspaceArtifacts(company)}
       leaders={company === "jahez" ? LEADERS : []}
       stats={company === "jahez" ? jahezStats() : []}
+      hasModel={company === "jahez"}
     />
   );
 }

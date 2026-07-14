@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { getLocale, getTranslations } from "next-intl/server";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
+import { SentimentCard } from "@/components/deals/sentiment-card";
 import { WorkspaceAnalytics } from "@/components/deals/workspace-analytics";
 import { DEALS, dealById } from "@/lib/deals";
 import {
@@ -174,7 +175,10 @@ export default async function DashboardPage() {
           <div className="min-w-0 lg:col-span-2">
             <WorkspaceAnalytics />
           </div>
-          <MacroCard lines={macroLines} />
+          <div className="flex flex-col gap-4">
+            <MacroCard lines={macroLines} />
+            <SentimentCard companyId="jahez" compact />
+          </div>
         </div>
         <RecentActivity
           deals={recentDeals}

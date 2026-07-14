@@ -228,6 +228,47 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
     }
   });
 
+  await test.step("Live Model beat: chip edit → recompute → Methodology drill → back (WS-F)", async () => {
+    // right after deliverables generate in the run-of-show (docs/rehearsal-notes.md,
+    // plan §6) — thorough acceptance already lives in e2e/model.spec.ts; this is
+    // the honest minimal slice that keeps the golden path a true walk of the
+    // whole demo run-of-show.
+    await page.goto("/deals/jahez/model");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Jahez" }),
+    ).toBeVisible();
+
+    const perShare = page.locator('[data-node-key="base.perShare"]').first();
+    await expect(perShare).toContainText("14.36");
+
+    // scripted chip — "Raise FY26 order growth to 20%" — the specialist team
+    // choreographs, then Valuation's completed stage applies the recompute.
+    await clickUntil(page.getByTestId("edit-chip-growth"), async () => {
+      await expect(page.getByTestId("edit-choreography")).toBeVisible();
+    });
+    await expect(perShare).not.toContainText("14.36");
+    await expect(page.getByTestId("diff-chip")).toBeVisible();
+
+    // a computed cell's Methodology drills to a sourced leaf → the source PDF
+    await page.getByRole("tab", { name: "DCF" }).click();
+    await clickUntil(page.locator('[data-node-key="wacc"]'), async () => {
+      await expect(page.getByTestId("methodology-sheet")).toBeVisible();
+    });
+    const sheet = page.getByTestId("methodology-sheet");
+    await sheet.getByRole("button", { name: /Cost of equity/i }).click();
+    await sheet.getByRole("button", { name: /Risk-free rate/i }).click();
+    await sheet.getByRole("button", { name: "Open source" }).click();
+    await expect(
+      page.getByText("Market Data & Comparables Snapshot"),
+    ).toBeVisible();
+
+    // back to the workspace for the next beat
+    await page.goto("/deals/jahez");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Jahez" }),
+    ).toBeVisible();
+  });
+
   await test.step("/ic: table shows both deal columns + disclaimer", async () => {
     await page.goto("/ic");
     await expect(

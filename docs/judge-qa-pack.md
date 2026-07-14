@@ -46,9 +46,29 @@
 **If pressed:** SSO and formal certifications are scoped to the roadmap — we're careful never to overclaim compliance to a room of bankers.
 
 ### T7. "Isn't this just a wrapper around some prompts?"
-**A:** If it were, the numbers wouldn't be clickable. **Under the hood there's context routing that picks the right agent and document set, a citation transform that turns model output into deep-links, cache discipline so it's fast, and a generation engine that writes real Excel formulas — all under 314 automated tests.** The prompt is maybe five percent of it; the trust machinery is the product.
+**A:** If it were, the numbers wouldn't be clickable. **Under the hood there's context routing that picks the right agent and document set, a citation transform that turns model output into deep-links, cache discipline so it's fast, and a generation engine that writes real Excel formulas — all under 463 automated tests.** The prompt is maybe five percent of it; the trust machinery is the product.
 **Point at:** click through to the Excel model — live WACC and DCF formulas, every cell source-commented.
 **If pressed:** "Prompt-only" can't open a PowerPoint deck in the client's brand with every figure traced to a page. That's engineering.
+
+### T8. "Are those Live Model numbers recomputed live, or pre-baked for the demo?"
+**A:** Live. **It's a pure TypeScript engine running in your browser — the exact same engine that builds the Excel model — and the base case is snapshot-gated so it can never silently drift.** Change an assumption and every dependent number (WACC, DCF, IRR, the sensitivity grid) recomputes in front of you, no server round-trip, no sleight of hand.
+**Point at:** Live Model → a suggested chip → watch the numbers count up while the specialist team choreographs the recompute (Valuation → Critical Review → Compliance → Writing).
+**If pressed:** The cached chat replay you saw earlier is scripted conversation; this is a different thing entirely — a real, deterministic calculation happening on this laptop, right now.
+
+### T9. "Can I just tell it to change revenue?"
+**A:** Try it — **sourced actuals are locked; only analyst assumptions are editable, and the system tells you exactly why when you push on the wrong line.** Every number in the model is one of two things: a sourced actual traced to a filing page, or a computed value with a formula and an input chain — only the second kind can move.
+**Point at:** the command bar → "Change FY25 revenue to SAR 2 billion" → Critical Review refuses gracefully: "that figure is a sourced actual — source-locked."
+**If pressed:** That's the two-tier provenance rule, not a UI restriction bolted on after the fact — the same whitelist gate a live judge what-if has to pass through too.
+
+### T10. "Is that Sentiment card showing real social data?"
+**A:** No, and we say so on the card itself: **it's a clearly labeled illustrative pack — synthetic, never presented as real scraped posts — and it never feeds the valuation or claims a sourced number.** It's a qualitative signal only: a label plus a one-line rationale, explicitly marked "signal only — not a valuation input."
+**Point at:** the Sentiment card → "View the social pack" → every post tagged "illustrative demo data."
+**If pressed:** Real social and alt-data feeds are a named connector on our roadmap page — we'd rather ship an honest placeholder than dress synthetic data up as real.
+
+### T11. "What model wrote the draft IC email?"
+**A:** No model wrote it. **It's a deterministic template that populates itself from the live model's current headline numbers, and a human reviews and sends it.** There's no generation step to hallucinate in — the numbers are pulled straight from the same engine you just watched recompute.
+**Point at:** Draft to IC → the compose modal → edit any line → "Open in Outlook" — the human's own email client sends it.
+**If pressed:** We could route the prose through the model later for polish, but for a number-bearing email to a committee, a template you can trust beats a generation you have to double-check.
 
 ---
 

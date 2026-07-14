@@ -59,6 +59,52 @@ test.describe("⌘K demo palette", () => {
   });
 });
 
+test.describe("⌘K demo palette — Live Model beat (WS-F)", () => {
+  test("selecting a Live Model entry from another page navigates to the model and prefills the composer with the exact chip text", async ({
+    page,
+  }) => {
+    await page.goto("/deals/jahez");
+    await expect(
+      page.getByTestId("palette-item-model-growth"),
+    ).not.toBeVisible();
+
+    await page.keyboard.press("Control+k");
+    const entry = page.getByTestId("palette-item-model-growth");
+    await expect(entry).toBeVisible();
+    await entry.click();
+
+    await expect(page).toHaveURL(/\/deals\/jahez\/model$/);
+    await expect(page.getByTestId("edit-composer-input")).toHaveValue(
+      "Raise FY26 order growth to 20%",
+    );
+
+    // not yet applied — prefill only, same as the golden-question palette
+    await expect(page.getByTestId("edit-choreography")).toHaveCount(0);
+  });
+
+  test("selecting a Live Model entry while already on the model page prefills without navigating", async ({
+    page,
+  }) => {
+    await page.goto("/deals/jahez/model");
+    await page.keyboard.press("Control+k");
+    await page.getByTestId("palette-item-model-locked").click();
+
+    await expect(page).toHaveURL(/\/deals\/jahez\/model$/);
+    await expect(page.getByTestId("edit-composer-input")).toHaveValue(
+      "Change FY25 revenue to SAR 2 billion",
+    );
+  });
+
+  test("hides Live Model entries on another company's deal page", async ({
+    page,
+  }) => {
+    await page.goto("/deals/darb");
+    await page.keyboard.press("Control+k");
+
+    await expect(page.getByTestId("palette-item-model-growth")).toHaveCount(0);
+  });
+});
+
 test.describe("⌘. mode overlay", () => {
   test("is hidden until ⌘., then switching mode sets the faheem_mode cookie with no reload", async ({
     page,

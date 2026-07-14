@@ -6,6 +6,7 @@ import { animate, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { ScreeningScorecard } from "@/components/deals/screening-scorecard";
+import { SentimentCard } from "@/components/deals/sentiment-card";
 import { WorkspaceAnalytics } from "@/components/deals/workspace-analytics";
 import { cn, formatPercent, formatSAR } from "@/lib/utils";
 import type { Cite, Deal, Lang, Localized } from "@/lib/types";
@@ -134,7 +135,12 @@ export function WorkspaceOverview({
         </section>
       )}
 
-      {deal.id === "jahez" && <WorkspaceAnalytics />}
+      {deal.id === "jahez" && (
+        <>
+          <WorkspaceAnalytics />
+          <SentimentCard companyId={deal.id} />
+        </>
+      )}
 
       {!deal.originDetail && stats.length === 0 && (
         <Card padding="sm" elevated>

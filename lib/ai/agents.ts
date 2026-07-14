@@ -42,6 +42,15 @@ export const AGENTS: AgentInfo[] = [
     icon: "telescope",
   },
   {
+    id: "news-intel",
+    name: { en: "News & Market Intelligence", ar: "الأخبار واستخبارات السوق" },
+    stage: 2,
+    methodsKey: "agents.methods.news-intel",
+    systemFlavor: "workspace",
+    defaultDocIds: ["industry-news-pack", "market-data-comps"],
+    icon: "newspaper",
+  },
+  {
     id: "doc-intel",
     name: { en: "Document Intelligence", ar: "ذكاء المستندات" },
     stage: 2,
@@ -49,6 +58,18 @@ export const AGENTS: AgentInfo[] = [
     systemFlavor: "workspace",
     defaultDocIds: ["fy25-er", "q1-26-fs", "fy24-ar"],
     icon: "file-search",
+  },
+  {
+    id: "accounting-qoe",
+    name: {
+      en: "Accounting & Quality of Earnings",
+      ar: "المحاسبة وجودة الأرباح",
+    },
+    stage: 2,
+    methodsKey: "agents.methods.accounting-qoe",
+    systemFlavor: "workspace",
+    defaultDocIds: ["fy25-er", "q1-26-fs"],
+    icon: "receipt-text",
   },
   {
     id: "valuation",
@@ -82,6 +103,15 @@ export const AGENTS: AgentInfo[] = [
     icon: "shield-alert",
   },
   {
+    id: "sentiment",
+    name: { en: "Market Sentiment", ar: "المزاج السوقي" },
+    stage: 2,
+    methodsKey: "agents.methods.sentiment",
+    systemFlavor: "workspace",
+    defaultDocIds: [],
+    icon: "gauge",
+  },
+  {
     id: "writing",
     name: { en: "Deliverable Writing", ar: "كتابة التقارير" },
     stage: 2,
@@ -98,6 +128,15 @@ export const AGENTS: AgentInfo[] = [
     systemFlavor: "workspace",
     defaultDocIds: ["q1-26-fs", "fy25-er"],
     icon: "shield-check",
+  },
+  {
+    id: "critical-review",
+    name: { en: "Critical Review", ar: "المراجعة النقدية" },
+    stage: 2,
+    methodsKey: "agents.methods.critical-review",
+    systemFlavor: "workspace",
+    defaultDocIds: ["fy25-er", "q1-26-fs", "market-data-comps"],
+    icon: "microscope",
   },
   {
     id: "ic",
