@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MethodologyPanel } from "@/components/model/methodology-panel";
 import { AssumptionsTab } from "@/components/model/assumptions-tab";
+import { EditComposer } from "@/components/model/edit-composer";
 import { DcfTab } from "@/components/model/dcf-tab";
 import { SensitivityTab } from "@/components/model/sensitivity-tab";
 import { ModelCell, ModelProvider } from "@/components/model/model-grid";
@@ -298,6 +299,9 @@ export function LiveModel({
               </Button>
             </div>
           </div>
+
+          {/* conversational edit — WS-C */}
+          <EditComposer model={model} companyId={companyId} />
 
           {/* tabs */}
           <Tabs defaultValue="assumptions" className="mt-8">

@@ -1,4 +1,6 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
 import { clickUntil } from "./helpers";
 
 /**
@@ -99,5 +101,132 @@ test.describe("Live Model — Jahez", () => {
     await expect(page.locator("aside canvas").last()).toBeVisible({
       timeout: 20000,
     });
+  });
+});
+
+/**
+ * WS-C acceptance — conversational edit + agent-team choreography, cached mode
+ * (scripted parser, fully offline). A suggested chip drives the whole beat:
+ * POST /api/model-edit → the specialist team plays in the Agent Activity
+ * language → Valuation's completed stage applies the recompute → the diff chip
+ * + updated recommendation land → the audit trail grows. A source-locked chip
+ * degrades gracefully (Critical Review raises the lock; values never move).
+ */
+const AUDIT_LOG = path.join(process.cwd(), "data/audit-log.json");
+
+function readAudit(): Array<{ action?: string; question?: string }> {
+  try {
+    return JSON.parse(fs.readFileSync(AUDIT_LOG, "utf-8"));
+  } catch {
+    return [];
+  }
+}
+
+function trackOffHost(page: Page): string[] {
+  const offHost: string[] = [];
+  page.on("request", (req) => {
+    const url = req.url();
+    if (!/^https?:\/\//.test(url)) return; // ignore data:/blob:/ws:
+    const host = new URL(url).hostname;
+    if (host !== "localhost" && host !== "127.0.0.1") offHost.push(url);
+  });
+  return offHost;
+}
+
+test.describe("Live Model — conversational edit (WS-C)", () => {
+  test("suggested chip → choreography → recompute + diff chip + audit trail, offline", async ({
+    page,
+  }) => {
+    const offHost = trackOffHost(page);
+    await page.goto("/deals/jahez/model");
+
+    const perShare = page.locator('[data-node-key="base.perShare"]').first();
+    await expect(perShare).toContainText("14.36");
+    const before = readAudit().length;
+
+    // pick the scripted chip — "Raise FY26 order growth to 20%"
+    await clickUntil(page.getByTestId("edit-chip-growth"), async () => {
+      await expect(page.getByTestId("edit-choreography")).toBeVisible();
+    });
+
+    // the team plays in order; compliance is visibly skipped (no leverage change)
+    await expect(page.getByTestId("edit-stage-valuation")).toBeVisible();
+    await expect(page.getByTestId("edit-stage-critical-review")).toBeVisible();
+    await expect(page.getByTestId("edit-stage-compliance")).toHaveAttribute(
+      "data-status",
+      "skipped",
+    );
+    await expect(page.getByTestId("edit-stage-writing")).toBeVisible();
+
+    // Valuation's completed stage applied the edit: outputs moved + diff chip
+    await expect(perShare).not.toContainText("14.36");
+    await expect(page.getByTestId("diff-chip")).toBeVisible();
+
+    // the recomputed one-line recommendation (house-formatted, real numbers)
+    const rec = page.getByTestId("edit-recommendation");
+    await expect(rec).toBeVisible();
+    await expect(rec).toContainText("SAR");
+    await expect(rec).toContainText("%");
+
+    // audit trail grew with the old→new model-edit entry
+    await expect
+      .poll(
+        () =>
+          readAudit().some(
+            (e) =>
+              e.action === "model-edit" &&
+              (e.question ?? "").includes("ordersGrowth.0"),
+          ),
+        { timeout: 10000 },
+      )
+      .toBe(true);
+    expect(readAudit().length).toBeGreaterThan(before);
+
+    // …and renders on the /audit page
+    await page.goto("/audit");
+    await expect(page.getByText("Model edit").first()).toBeVisible();
+    await expect(page.getByText(/ordersGrowth\.0/).first()).toBeVisible();
+
+    // fully offline: zero non-localhost requests (cached mode never calls out)
+    expect(offHost, `off-host requests:\n${offHost.join("\n")}`).toEqual([]);
+  });
+
+  test("source-locked chip → Critical Review raises the lock, values unchanged", async ({
+    page,
+  }) => {
+    const offHost = trackOffHost(page);
+    await page.goto("/deals/jahez/model");
+
+    const perShare = page.locator('[data-node-key="base.perShare"]').first();
+    await expect(perShare).toContainText("14.36");
+
+    // "Change FY25 revenue to SAR 2 billion" — a sourced actual
+    await clickUntil(page.getByTestId("edit-chip-locked"), async () => {
+      await expect(page.getByTestId("edit-choreography")).toBeVisible();
+    });
+
+    await expect(
+      page.getByTestId("edit-stage-critical-review"),
+    ).toHaveAttribute("data-status", "flagged");
+    const locked = page.getByTestId("edit-source-locked");
+    await expect(locked).toBeVisible();
+    await expect(locked).toContainText(/source-locked/i);
+
+    // the model never moved; no recommendation pretends otherwise
+    await expect(perShare).toContainText("14.36");
+    await expect(page.getByTestId("edit-recommendation")).toHaveCount(0);
+
+    // the blocked attempt is still audited
+    await expect
+      .poll(
+        () =>
+          readAudit().some((e) =>
+            (e.question ?? "").includes("source-locked (blocked): revenue"),
+          ),
+        { timeout: 10000 },
+      )
+      .toBe(true);
+
+    expect(offHost, `off-host requests:\n${offHost.join("\n")}`).toEqual([]);
   });
 });

@@ -8,6 +8,7 @@ import {
   CheckCheck,
   FileOutput,
   MessageSquareText,
+  SlidersHorizontal,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { LogoTile } from "@/components/ui/logo-tile";
@@ -18,6 +19,7 @@ const ACTION_ICON = {
   question: MessageSquareText,
   artifact: FileOutput,
   "stage-advance": CheckCheck,
+  "model-edit": SlidersHorizontal,
 } as const;
 
 /** "Jul 12, 09:41" — Western digits both locales (mirrors the audit trail). */
@@ -161,6 +163,7 @@ function ActivityFeed({
     question: tAudit("actionQuestion"),
     artifact: tAudit("actionArtifact"),
     "stage-advance": tAudit("actionScreening"),
+    "model-edit": tAudit("actionModelEdit"),
   };
 
   return (

@@ -3,7 +3,12 @@
 import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
-import { CheckCheck, FileOutput, MessageSquareText } from "lucide-react";
+import {
+  CheckCheck,
+  FileOutput,
+  MessageSquareText,
+  SlidersHorizontal,
+} from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { LogoTile } from "@/components/ui/logo-tile";
@@ -22,6 +27,7 @@ const ACTION_ICON = {
   question: MessageSquareText,
   artifact: FileOutput,
   "stage-advance": CheckCheck,
+  "model-edit": SlidersHorizontal,
 } as const;
 
 /** "Jul 12, 09:41" — no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
@@ -232,6 +238,7 @@ export function AuditTrail({
     question: t("actionQuestion"),
     artifact: t("actionArtifact"),
     "stage-advance": t("actionScreening"),
+    "model-edit": t("actionModelEdit"),
   };
 
   const filters: { value: ContextFilter; label: string }[] = [

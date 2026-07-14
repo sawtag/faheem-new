@@ -83,7 +83,8 @@
     "filterAll": "All",
     "filterFirm": "Firm",
     "contextFirm": "Lunar",
-    "userAli": "Ali"
+    "userAli": "Ali",
+    "actionModelEdit": "Model edit"
   },
   "connections": {
     "title": "Connections",
@@ -1016,6 +1017,30 @@
         "caption": "The interactive model is live for Jahez today. Coverage for {company} is on the analyst roadmap.",
         "back": "Back to workspace"
       }
+    },
+    "edit": {
+      "placeholder": "Ask for a change — “raise FY26 order growth to 20%”",
+      "inputLabel": "Model edit instruction",
+      "submit": "Apply",
+      "working": "The team is on it",
+      "chips": {
+        "growth": "Raise FY26 order growth to 20%",
+        "terminal": "What if terminal growth is 3.5%?",
+        "margin": "Set FY30 EBITDA margin to 12.5%",
+        "locked": "Change FY25 revenue to SAR 2 billion"
+      },
+      "stages": {
+        "valuation": "Recomputing the DCF with the new assumption",
+        "critical-review": "Re-verifying the provenance chain",
+        "critical-review-locked": "Flagged — that figure is a sourced actual",
+        "compliance": "Re-checking the Shariah ratios",
+        "compliance-skip": "No leverage change — no re-check needed",
+        "writing": "Updating the recommendation line"
+      },
+      "recommendationAbove": "Updated view: {perShare} fair value / share — weighted IRR {irr} clears the {hurdle} hurdle.",
+      "recommendationBelow": "Updated view: {perShare} fair value / share — weighted IRR {irr} is below the {hurdle} hurdle.",
+      "sourceLocked": "That figure is a sourced actual — source-locked. Actuals come from the source documents; edit an assumption instead.",
+      "unparsed": "Couldn’t map that to an editable assumption. Try “raise FY26 order growth to 20%” or “what if terminal growth is 3.5%?”."
     }
   },
   "sentiment": {

@@ -97,7 +97,7 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Methodology panel — explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                     | WS-A2      | ✅ Implemented |
 | Grid spike + kill-switch decision (gate G1)                                                                    | WS-B0      | ✅ Implemented |
 | Live Model UI — the Jahez DCF as an interactive grid                                                           | WS-B       | ✅ Implemented |
-| Conversational model edits — editable assumptions, source-locked actuals, agent choreography                   | WS-C       | 🔲 Remaining   |
+| Conversational model edits — editable assumptions, source-locked actuals, agent choreography                   | WS-C       | ✅ Implemented |
 | Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                 | WS-D       | ✅ Implemented |
 | Sentiment card — qualitative signal over a labeled illustrative social pack                                    | WS-D       | ✅ Implemented |
 | Draft-to-IC email (compose modal → `mailto`, human sends)                                                      | WS-E       | 🔲 Remaining   |
