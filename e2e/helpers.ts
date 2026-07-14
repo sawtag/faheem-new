@@ -21,6 +21,7 @@ export const ROUTES = [
   "/deals",
   "/deals/darb",
   "/deals/jahez",
+  "/deals/jahez/model",
   "/ic",
   "/agents",
   "/library",

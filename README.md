@@ -95,8 +95,8 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                         | WS-A       | ✅ Implemented |
 | Provenance engine — `Provenance` / `ValueNode` types, zero orphan numbers (tested)                             | WS-A       | ✅ Implemented |
 | Methodology panel — explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                     | WS-A2      | ✅ Implemented |
-| Grid spike + kill-switch decision (gate G1)                                                                    | WS-B0      | 🔲 Remaining   |
-| Live Model UI — the Jahez DCF as an interactive grid                                                           | WS-B       | 🔲 Remaining   |
+| Grid spike + kill-switch decision (gate G1)                                                                    | WS-B0      | ✅ Implemented |
+| Live Model UI — the Jahez DCF as an interactive grid                                                           | WS-B       | ✅ Implemented |
 | Conversational model edits — editable assumptions, source-locked actuals, agent choreography                   | WS-C       | 🔲 Remaining   |
 | Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                 | WS-D       | 🔲 Remaining   |
 | Sentiment card — qualitative signal over a labeled illustrative social pack                                    | WS-D       | 🔲 Remaining   |

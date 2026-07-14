@@ -11,11 +11,13 @@ import {
   BadgeCheck,
   Download,
   FileText,
+  LineChart,
   MessageSquareText,
   Presentation,
   Sheet,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { Logo } from "@/components/ui/logo";
@@ -79,6 +81,7 @@ export function WorkspaceView({
   artifacts,
   leaders,
   stats,
+  hasModel = false,
 }: {
   deal: Deal;
   docs: CorpusDoc[];
@@ -86,8 +89,11 @@ export function WorkspaceView({
   artifacts: ArtifactMeta[];
   leaders: Leader[];
   stats: WorkspaceStat[];
+  /** the workspace has a Live Model surface (only Jahez, today) */
+  hasModel?: boolean;
 }) {
   const t = useTranslations("deals.workspace");
+  const tModel = useTranslations("model.live");
   const locale = useLocale() as Lang;
   const router = useRouter();
 
@@ -176,8 +182,22 @@ export function WorkspaceView({
               {deal.statusLine[locale]}
             </p>
           </div>
-          {/* enterprise-flourish: share-modal trigger, flagged one-line mount */}
-          <ShareWorkspace companyName={deal.name} />
+          <div className="ms-auto flex items-center gap-2">
+            {hasModel && (
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                startIcon={<LineChart className="size-4" aria-hidden="true" />}
+              >
+                <Link href={`/deals/${deal.id}/model`}>
+                  {tModel("openAction")}
+                </Link>
+              </Button>
+            )}
+            {/* enterprise-flourish: share-modal trigger, flagged one-line mount */}
+            <ShareWorkspace companyName={deal.name} />
+          </div>
         </header>
 
         <section

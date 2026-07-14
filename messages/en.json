@@ -889,6 +889,129 @@
       "actualFcff": "Actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT — capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
       "hurdle": "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate — the committee's minimum acceptable return for new positions.",
       "riskWeights": "Quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25 — peak-weighted so one severe risk dominates."
+    },
+    "live": {
+      "eyebrow": "Live model",
+      "openAction": "Live Model",
+      "back": "Back to workspace",
+      "reset": "Reset to base",
+      "atBase": "At base assumptions",
+      "diff": "{count, plural, one {# value updated} other {# values updated}}",
+      "tabs": {
+        "assumptions": "Assumptions",
+        "dcf": "DCF",
+        "sensitivity": "Sensitivity"
+      },
+      "hero": {
+        "perShare": "DCF value / share",
+        "weightedIrr": "Weighted IRR",
+        "vsPrice": "vs SAR {price} share price · {upside} upside",
+        "recomputes": "Recomputes in-browser — the same engine that builds the Excel."
+      },
+      "strip": {
+        "title": "Scenario summary",
+        "perShare": "Value / share",
+        "irr": "IRR",
+        "weight": "{value} weight"
+      },
+      "cell": {
+        "locked": "Source-locked",
+        "lockedCaption": "Sourced actual — locked",
+        "editableCaption": "Analyst assumption — editable",
+        "selectHint": "Select any cell to trace how it is computed."
+      },
+      "editor": {
+        "decrease": "Decrease {name}",
+        "increase": "Increase {name}",
+        "field": "{name} value"
+      },
+      "panel": {
+        "title": "Methodology",
+        "close": "Close methodology panel",
+        "empty": "Select any cell and trace it back to its source — every number, sourced or computed."
+      },
+      "assumptions": {
+        "intro": "Only analyst assumptions are editable; sourced actuals stay locked. Edit a cell and the model recomputes instantly.",
+        "groups": {
+          "drivers": {
+            "title": "Revenue & margin drivers",
+            "caption": "Per-year order growth, AOV growth, monetization and EBITDA margin, FY26E–FY30E."
+          },
+          "scenario": {
+            "title": "Scenario deltas",
+            "caption": "Parallel shifts applied to base net-revenue growth for the bull and bear cases."
+          },
+          "conversion": {
+            "title": "Cash conversion",
+            "caption": "D&A, capex and working-capital drags as a share of net revenue."
+          },
+          "discount": {
+            "title": "Discount rate & tax",
+            "caption": "Cost-of-debt spread and the zakat rate feeding WACC and NOPAT."
+          },
+          "terminal": {
+            "title": "Terminal growth",
+            "caption": "Long-run nominal growth for the Gordon terminal value, per scenario."
+          },
+          "weighting": {
+            "title": "Scenario weighting & terminal margin",
+            "caption": "Probability weights and margin deltas across the three cases."
+          },
+          "risk": {
+            "title": "Hold period & risk register",
+            "caption": "IRR hold window and the probability×impact weights behind the risk composite."
+          }
+        }
+      },
+      "dcf": {
+        "legend": {
+          "actual": "Actual",
+          "forecast": "Forecast"
+        },
+        "wacc": {
+          "title": "WACC build",
+          "caption": "Cost of equity via CAPM, blended with the after-tax cost of debt at capital-structure weights."
+        },
+        "drivers": {
+          "title": "Revenue build",
+          "caption": "Orders and AOV compound into GMV; net revenue is GMV × the monetization rate."
+        },
+        "statement": {
+          "title": "Forecast statement & FCFF",
+          "caption": "Base case — margin to EBITDA, then to NOPAT and free cash flow to the firm."
+        },
+        "pv": {
+          "title": "Discounting & valuation bridge",
+          "caption": "Explicit-period FCFF plus the Gordon terminal value, discounted to enterprise, equity and per-share value."
+        },
+        "charts": {
+          "fcff": "Free cash flow path — base case",
+          "perShare": "Value per share by scenario",
+          "fcffSeries": "FCFF",
+          "perShareSeries": "Value / share"
+        }
+      },
+      "sensitivity": {
+        "intro": "Two-way stress grids — every cell is live and traceable. The base case is ringed.",
+        "grid1": {
+          "title": "Value / share — WACC × terminal growth",
+          "caption": "How the DCF value per share moves as the discount rate and long-run growth shift.",
+          "colAxis": "WACC →",
+          "rowAxis": "Terminal growth ↓"
+        },
+        "grid2": {
+          "title": "FY30E EBITDA — take rate × GMV growth",
+          "caption": "Terminal-year profitability against monetization and volume assumptions.",
+          "colAxis": "GMV growth →",
+          "rowAxis": "Take rate ↓"
+        },
+        "base": "Base"
+      },
+      "empty": {
+        "title": "No live model yet",
+        "caption": "The interactive model is live for Jahez today. Coverage for {company} is on the analyst roadmap.",
+        "back": "Back to workspace"
+      }
     }
   }
 }
