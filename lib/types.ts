@@ -32,6 +32,11 @@ export const AGENT_IDS = [
   "writing",
   "compliance",
   "ic",
+  // WS-D roster expansion (live-model-provenance plan §1 Pillar 3, §3 WS-D)
+  "accounting-qoe",
+  "critical-review",
+  "news-intel",
+  "sentiment",
 ] as const;
 
 export const AgentIdSchema = z.enum(AGENT_IDS);
@@ -230,6 +235,45 @@ export const SeedChatSchema = z.object({
   ),
 });
 export type SeedChat = z.infer<typeof SeedChatSchema>;
+
+// ───────────────────────── market sentiment (WS-D) ──────────────────────────
+// Live-model-provenance plan §0: sentiment is a qualitative SIGNAL, never a
+// sourced number. Both schemas are `.strict()` — an accidental `sourceDoc`,
+// `page` or `value` field (the sourced-number shape from ModelInputSchema/
+// CiteSchema) fails validation immediately, not just at test time.
+
+/** data/social-pack.json = SocialPost[] — clearly-labeled ILLUSTRATIVE/synthetic
+ * demo content (never real scraped posts); the only thing the sentiment agent
+ * is allowed to "read". */
+export const SocialPostSchema = z
+  .object({
+    id: z.string(),
+    sourceType: z.enum(["forum", "social", "news-headline"]),
+    /** generic synthetic handle, e.g. "@ksa_markets_watch" — never a real person */
+    handle: z.string(),
+    text: LocalizedSchema,
+    tone: z.enum(["bullish", "bearish", "neutral", "skeptical", "meme"]),
+    /** timestamp-ish field — illustrative, not a market data timestamp */
+    postedAt: z.string(),
+  })
+  .strict();
+export type SocialPost = z.infer<typeof SocialPostSchema>;
+
+/** data/sentiment.json = SentimentEntry[] — one label + rationale per company.
+ * NEVER a `{value, sourceDoc, page}` shape (rule: sentiment carries no sourced
+ * number). `signalOnly` is a literal marker rendered verbatim in the UI. */
+export const SentimentEntrySchema = z
+  .object({
+    companyId: z.string(),
+    label: z.enum(["constructive", "cautious", "negative-drift"]),
+    rationale: LocalizedSchema,
+    /** always true — the literal "signal only, not a valuation input" marker */
+    signalOnly: z.literal(true),
+    /** SocialPost.id[] this rationale draws its themes from */
+    postIds: z.array(z.string()).min(1),
+  })
+  .strict();
+export type SentimentEntry = z.infer<typeof SentimentEntrySchema>;
 
 // ─────────────────────────────── agent registry ─────────────────────────────
 

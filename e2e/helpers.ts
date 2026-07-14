@@ -39,7 +39,7 @@ export const ROUTES = [
  * fell back to the raw key instead of resolving a message.
  */
 export const MESSAGE_KEY_LEAK_RE =
-  /\b(shell|chat|home|deals|ic|agents|library|audit|connections|onboarding|login|generate|dashboard)\.[a-z]/i;
+  /\b(shell|chat|home|deals|ic|agents|library|audit|connections|onboarding|login|generate|dashboard|sentiment)\.[a-z]/i;
 
 /**
  * The single recorded demo-cache fixture (T2.2) — read at test setup rather

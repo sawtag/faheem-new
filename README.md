@@ -98,8 +98,8 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Grid spike + kill-switch decision (gate G1)                                                                    | WS-B0      | ✅ Implemented |
 | Live Model UI — the Jahez DCF as an interactive grid                                                           | WS-B       | ✅ Implemented |
 | Conversational model edits — editable assumptions, source-locked actuals, agent choreography                   | WS-C       | 🔲 Remaining   |
-| Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                 | WS-D       | 🔲 Remaining   |
-| Sentiment card — qualitative signal over a labeled illustrative social pack                                    | WS-D       | 🔲 Remaining   |
+| Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                 | WS-D       | ✅ Implemented |
+| Sentiment card — qualitative signal over a labeled illustrative social pack                                    | WS-D       | ✅ Implemented |
 | Draft-to-IC email (compose modal → `mailto`, human sends)                                                      | WS-E       | 🔲 Remaining   |
 | Integration: new goldens, ⌘K entries, run-of-show beat, preflight + AGENTS.md + README updates, tag `demo-rc3` | WS-F       | 🔲 Remaining   |
 

@@ -1,0 +1,21 @@
+[
+  {
+    "companyId": "jahez",
+    "label": "cautious",
+    "rationale": {
+      "en": "Retail and forum chatter reads cautious, not bearish: price-war discounting and reactions to the Q1 2026 net loss dominate the conversation, but diversification and macro-growth threads keep the tone from tipping fully negative.",
+      "ar": "نبرة المحتوى الاجتماعي والمنتديات حذرة وليست سلبية بالكامل: خصومات حرب الأسعار وردود الفعل على خسارة الربع الأول 2026 تتصدر النقاش، لكن خيوط التنويع والنمو الكلي تمنع النبرة من الانزلاق إلى السلبية الكاملة."
+    },
+    "signalOnly": true,
+    "postIds": [
+      "sp-01",
+      "sp-02",
+      "sp-03",
+      "sp-04",
+      "sp-05",
+      "sp-06",
+      "sp-07",
+      "sp-08"
+    ]
+  }
+]

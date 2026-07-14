@@ -165,4 +165,42 @@ test.describe("Jahez workspace", () => {
       card.getByText(/Q4 2025 Earnings Results/).first(),
     ).toBeVisible();
   });
+
+  test("overview shows the Market Sentiment card with the signal-only disclaimer", async ({
+    page,
+  }) => {
+    await page.goto("/deals/jahez");
+    const card = page.getByTestId("sentiment-card");
+    await expect(card).toBeVisible();
+    await expect(card.getByText("Cautious", { exact: true })).toBeVisible();
+    await expect(
+      card.getByText("Signal only — not a valuation input"),
+    ).toBeVisible();
+
+    // peeking the pack lists the illustrative posts, each clearly tagged.
+    await card.getByRole("button", { name: "View the social pack" }).click();
+    await expect(
+      page.getByText("Illustrative social & forum pack"),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Illustrative demo data").first(),
+    ).toBeVisible();
+  });
+
+  test("Market Sentiment card shows the disclaimer bilingually (AR)", async ({
+    page,
+    context,
+    baseURL,
+  }) => {
+    await context.addCookies([
+      { name: "faheem_locale", value: "ar", url: baseURL },
+    ]);
+    await page.goto("/deals/jahez");
+    const card = page.getByTestId("sentiment-card");
+    await expect(card).toBeVisible();
+    await expect(card.getByText("حذر", { exact: true })).toBeVisible();
+    await expect(
+      card.getByText("مؤشر استرشادي فقط — وليس مدخلاً للتقييم"),
+    ).toBeVisible();
+  });
 });

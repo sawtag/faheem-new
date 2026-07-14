@@ -20,10 +20,10 @@
   },
   "agents": {
     "title": "Agents",
-    "subtitle": "7 specialist teams · 20+ agents — orchestrated, auditable, human-gated.",
+    "subtitle": "11 specialist teams · 20+ agents — orchestrated, auditable, human-gated.",
     "stage1": "Stage 1 — Screening",
     "stage2": "Stage 2 — Deep Analysis",
-    "stage2Caption": "7 specialist teams · 20+ agents",
+    "stage2Caption": "11 specialist teams · 20+ agents",
     "stage3": "Stage 3 — Investment Committee",
     "gate1": "Human gate — the analyst decides",
     "gate2": "Human gate — the analyst reviews every deliverable",
@@ -39,12 +39,16 @@
       "orchestrator": "Task routing · Sequencing · Specialist hand-off",
       "screening": "Intake questionnaire · Mandate-fit scorecard · Policy checks vs IC Charter",
       "research": "Screening universe · Filings ingestion · News & expert-network sweep",
+      "news-intel": "Industry & news-pack monitoring · Competitor pricing-move tracking · Sector signal triage vs the filings",
       "doc-intel": "Prospectus/CIM extraction · Footnote & related-party analysis · Covenant summaries",
+      "accounting-qoe": "Non-recurring & one-off item identification · Revenue-recognition and related-party review · Normalized-earnings bridge from reported to adjusted",
       "valuation": "DCF (FCFF/FCFE, WACC, Gordon TV) · Trading comps · Precedents · LBO-lite · Sensitivity & scenarios",
       "comparables": "Comp-set construction · Multiple regression vs growth/margin",
       "risk": "Quantified risk scorecard (probability × impact) · Scenario-weighted return · Mandate-breach & concentration checks",
+      "sentiment": "Social & forum theme tagging on the illustrative demo pack · Label + one-line rationale, signal only — never a sourced figure",
       "writing": "IC memos · Research notes · Pitch decks · Periodic reports",
       "compliance": "Shariah screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
+      "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
       "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
     }
   },
@@ -1013,5 +1017,34 @@
         "back": "Back to workspace"
       }
     }
+  },
+  "sentiment": {
+    "title": "Market sentiment",
+    "caption": "Qualitative read on social & forum chatter",
+    "signalOnly": "Signal only — not a valuation input",
+    "viewPack": "View the social pack",
+    "labels": {
+      "constructive": "Constructive",
+      "cautious": "Cautious",
+      "negative-drift": "Negative drift"
+    },
+    "dialog": {
+      "title": "Illustrative social & forum pack",
+      "caption": "Synthetic demo content written for this pack — never real scraped posts, never a data source.",
+      "illustrativeTag": "Illustrative demo data",
+      "sourceTypes": {
+        "forum": "Forum",
+        "social": "Social",
+        "newsHeadline": "News headline"
+      },
+      "tones": {
+        "bullish": "Bullish",
+        "bearish": "Bearish",
+        "neutral": "Neutral",
+        "skeptical": "Skeptical",
+        "meme": "Meme"
+      }
+    },
+    "empty": "No sentiment read for {company} yet."
   }
 }
