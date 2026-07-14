@@ -5,7 +5,8 @@
  *   npx tsx tests/generate/preview.ts
  */
 import { writeFileSync } from "node:fs";
-import { buildJahezWorkbook, computeModel } from "@/lib/generate/xlsx";
+import { buildJahezWorkbook } from "@/lib/generate/xlsx";
+import { computeModel } from "@/lib/model/compute";
 
 async function main() {
   const m = computeModel();

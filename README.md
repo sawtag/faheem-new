@@ -78,30 +78,30 @@ The in-app walkthrough judges see, ⌘K-driven end to end so nothing gets mistyp
 
 Where the product stands: everything shipped at `demo-rc2` versus the next wave from `BUILD-BRIEF.md` (detailed in `docs/superpowers/plans/2026-07-13-live-model-provenance-plan.md`).
 
-| Feature                                                                                                       | Wave        | Status         |
-| ------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
-| Login + onboarding (connector catalog, mandate questionnaire → IC Charter)                                    | `demo-rc2`  | ✅ Implemented |
-| Deal pipeline + Darb screening scorecard (human gate #1)                                                      | `demo-rc2`  | ✅ Implemented |
-| Jahez chat with citation chips + PDF passage highlighting                                                     | `demo-rc2`  | ✅ Implemented |
-| Arabic / Shariah beat — bilingual EN/AR, full RTL                                                             | `demo-rc2`  | ✅ Implemented |
-| Deliverables generation (xlsx / docx / pptx) + in-app preview                                                 | `demo-rc2`  | ✅ Implemented |
-| IC room ranking vs. hurdle rate (advisory-only)                                                               | `demo-rc2`  | ✅ Implemented |
-| Dashboard — mandate headroom + Analysis Runs panel                                                            | `demo-rc2`  | ✅ Implemented |
-| Audit trail                                                                                                   | `demo-rc2`  | ✅ Implemented |
-| Skills library                                                                                                | `demo-rc2`  | ✅ Implemented |
-| Live PDF upload into the citation engine                                                                      | `demo-rc2`  | ✅ Implemented |
-| Stage safety: ⌘K golden palette, ⌘. mode overlay, cached/auto/live modes, preflight script                    | `demo-rc2`  | ✅ Implemented |
-| 10-agent roster (Screening, 7 analysis teams, IC, orchestrator)                                               | `demo-rc2`  | ✅ Implemented |
-| Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                        | WS-A        | 🔲 Remaining   |
-| Provenance engine — `Provenance` / `ValueNode` types, zero orphan numbers (tested)                            | WS-A        | 🔲 Remaining   |
-| Methodology panel — explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                    | WS-A2       | 🔲 Remaining   |
-| Grid spike + kill-switch decision (gate G1)                                                                   | WS-B0       | 🔲 Remaining   |
-| Live Model UI — the Jahez DCF as an interactive grid                                                          | WS-B        | 🔲 Remaining   |
-| Conversational model edits — editable assumptions, source-locked actuals, agent choreography                  | WS-C        | 🔲 Remaining   |
-| Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                | WS-D        | 🔲 Remaining   |
-| Sentiment card — qualitative signal over a labeled illustrative social pack                                   | WS-D        | 🔲 Remaining   |
-| Draft-to-IC email (compose modal → `mailto`, human sends)                                                     | WS-E        | 🔲 Remaining   |
-| Integration: new goldens, ⌘K entries, run-of-show beat, preflight + AGENTS.md + README updates, tag `demo-rc3` | WS-F        | 🔲 Remaining   |
+| Feature                                                                                                        | Wave       | Status         |
+| -------------------------------------------------------------------------------------------------------------- | ---------- | -------------- |
+| Login + onboarding (connector catalog, mandate questionnaire → IC Charter)                                     | `demo-rc2` | ✅ Implemented |
+| Deal pipeline + Darb screening scorecard (human gate #1)                                                       | `demo-rc2` | ✅ Implemented |
+| Jahez chat with citation chips + PDF passage highlighting                                                      | `demo-rc2` | ✅ Implemented |
+| Arabic / Shariah beat — bilingual EN/AR, full RTL                                                              | `demo-rc2` | ✅ Implemented |
+| Deliverables generation (xlsx / docx / pptx) + in-app preview                                                  | `demo-rc2` | ✅ Implemented |
+| IC room ranking vs. hurdle rate (advisory-only)                                                                | `demo-rc2` | ✅ Implemented |
+| Dashboard — mandate headroom + Analysis Runs panel                                                             | `demo-rc2` | ✅ Implemented |
+| Audit trail                                                                                                    | `demo-rc2` | ✅ Implemented |
+| Skills library                                                                                                 | `demo-rc2` | ✅ Implemented |
+| Live PDF upload into the citation engine                                                                       | `demo-rc2` | ✅ Implemented |
+| Stage safety: ⌘K golden palette, ⌘. mode overlay, cached/auto/live modes, preflight script                     | `demo-rc2` | ✅ Implemented |
+| 10-agent roster (Screening, 7 analysis teams, IC, orchestrator)                                                | `demo-rc2` | ✅ Implemented |
+| Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                         | WS-A       | 🔲 Remaining   |
+| Provenance engine — `Provenance` / `ValueNode` types, zero orphan numbers (tested)                             | WS-A       | 🔲 Remaining   |
+| Methodology panel — explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                     | WS-A2      | 🔲 Remaining   |
+| Grid spike + kill-switch decision (gate G1)                                                                    | WS-B0      | 🔲 Remaining   |
+| Live Model UI — the Jahez DCF as an interactive grid                                                           | WS-B       | 🔲 Remaining   |
+| Conversational model edits — editable assumptions, source-locked actuals, agent choreography                   | WS-C       | 🔲 Remaining   |
+| Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                 | WS-D       | 🔲 Remaining   |
+| Sentiment card — qualitative signal over a labeled illustrative social pack                                    | WS-D       | 🔲 Remaining   |
+| Draft-to-IC email (compose modal → `mailto`, human sends)                                                      | WS-E       | 🔲 Remaining   |
+| Integration: new goldens, ⌘K entries, run-of-show beat, preflight + AGENTS.md + README updates, tag `demo-rc3` | WS-F       | 🔲 Remaining   |
 
 ## 🚀 Quickstart
 
