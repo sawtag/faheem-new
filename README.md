@@ -92,8 +92,8 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Live PDF upload into the citation engine                                                                       | `demo-rc2` | ✅ Implemented |
 | Stage safety: ⌘K golden palette, ⌘. mode overlay, cached/auto/live modes, preflight script                     | `demo-rc2` | ✅ Implemented |
 | 10-agent roster (Screening, 7 analysis teams, IC, orchestrator)                                                | `demo-rc2` | ✅ Implemented |
-| Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                         | WS-A       | 🔲 Remaining   |
-| Provenance engine — `Provenance` / `ValueNode` types, zero orphan numbers (tested)                             | WS-A       | 🔲 Remaining   |
+| Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                         | WS-A       | ✅ Implemented |
+| Provenance engine — `Provenance` / `ValueNode` types, zero orphan numbers (tested)                             | WS-A       | ✅ Implemented |
 | Methodology panel — explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                     | WS-A2      | 🔲 Remaining   |
 | Grid spike + kill-switch decision (gate G1)                                                                    | WS-B0      | 🔲 Remaining   |
 | Live Model UI — the Jahez DCF as an interactive grid                                                           | WS-B       | 🔲 Remaining   |
