@@ -184,13 +184,9 @@ export function WorkspaceView({
           </div>
           <div className="ms-auto flex items-center gap-2">
             {hasModel && (
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-                startIcon={<LineChart className="size-4" aria-hidden="true" />}
-              >
+              <Button asChild variant="outline" size="sm">
                 <Link href={`/deals/${deal.id}/model`}>
+                  <LineChart className="size-4" aria-hidden="true" />
                   {tModel("openAction")}
                 </Link>
               </Button>

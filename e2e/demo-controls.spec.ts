@@ -94,6 +94,15 @@ test.describe("⌘K demo palette — Live Model beat (WS-F)", () => {
       "Change FY25 revenue to SAR 2 billion",
     );
   });
+
+  test("hides Live Model entries on another company's deal page", async ({
+    page,
+  }) => {
+    await page.goto("/deals/darb");
+    await page.keyboard.press("Control+k");
+
+    await expect(page.getByTestId("palette-item-model-growth")).toHaveCount(0);
+  });
 });
 
 test.describe("⌘. mode overlay", () => {

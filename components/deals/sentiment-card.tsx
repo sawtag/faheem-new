@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Eye, Gauge, Info } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Badge, type BadgeProps } from "@/components/ui/badge";
@@ -53,6 +53,7 @@ export function SentimentCard({
 }) {
   const t = useTranslations("sentiment");
   const locale = useLocale() as Lang;
+  const reduce = useReducedMotion();
   const [open, setOpen] = React.useState(false);
 
   const entry = sentimentByCompany(companyId);
@@ -62,9 +63,9 @@ export function SentimentCard({
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, y: 4 }}
+        initial={reduce ? false : { opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: EASE }}
+        transition={reduce ? { duration: 0 } : { duration: 0.25, ease: EASE }}
       >
         <Card
           padding={compact ? "sm" : "md"}

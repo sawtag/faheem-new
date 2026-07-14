@@ -103,6 +103,21 @@ test.describe("Agents page", () => {
     await expect(
       page.getByTestId("agent-card-sentiment").getByText("المزاج السوقي"),
     ).toBeVisible();
+    await expect(
+      page
+        .getByTestId("agent-card-accounting-qoe")
+        .getByText("المحاسبة وجودة الأرباح"),
+    ).toBeVisible();
+    await expect(
+      page
+        .getByTestId("agent-card-critical-review")
+        .getByText("المراجعة النقدية"),
+    ).toBeVisible();
+    await expect(
+      page
+        .getByTestId("agent-card-news-intel")
+        .getByText("الأخبار واستخبارات السوق"),
+    ).toBeVisible();
   });
 
   test("toggles flip and dim the card content", async ({ page }) => {

@@ -1,6 +1,12 @@
 import * as React from "react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { NextIntlClientProvider } from "next-intl";
 import en from "@/messages/en.json";
@@ -30,6 +36,7 @@ beforeAll(() => {
 });
 
 afterEach(() => {
+  vi.useRealTimers();
   vi.unstubAllGlobals();
 });
 
@@ -85,6 +92,7 @@ describe("EditComposer — admitted edit", () => {
 
     // choreography completes: recommendation line lands (Writing done)
     await screen.findByTestId("edit-recommendation");
+    expect(screen.getByTestId("edit-composer-input")).toHaveValue("");
 
     // stages rendered in the team order; compliance visibly skipped for a
     // non-debt/zakat edit
@@ -134,6 +142,7 @@ describe("EditComposer — admitted edit", () => {
     await user.keyboard("set zakat to 2%{Enter}");
 
     await screen.findByTestId("edit-recommendation");
+    expect(screen.getByTestId("edit-composer-input")).toHaveValue("");
     expect(
       screen.getByTestId("edit-stage-compliance").getAttribute("data-status"),
     ).toBe("done");
@@ -214,5 +223,42 @@ describe("EditComposer — unparsed", () => {
     await screen.findByTestId("edit-unparsed");
     expect(screen.queryByTestId("edit-choreography")).toBeNull();
     expect(cell(container, "base.perShare").textContent).toBe(before);
+    expect(screen.getByTestId("edit-composer-input")).toHaveValue(
+      "do a barrel roll",
+    );
+  });
+
+  it("aborts a stalled request, restores the submit control, and retains the instruction", async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn(
+      (_url: string | URL | Request, init?: RequestInit) =>
+        new Promise<Response>((_resolve, reject) => {
+          init?.signal?.addEventListener("abort", () => {
+            reject(new DOMException("Aborted", "AbortError"));
+          });
+        }),
+    );
+    vi.stubGlobal("fetch", fetchMock);
+    renderModel();
+
+    const input = screen.getByTestId("edit-composer-input");
+    const instruction = "raise terminal growth to 3.5%";
+    fireEvent.change(input, { target: { value: instruction } });
+    fireEvent.submit(input.closest("form")!);
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(10_000);
+    });
+
+    expect(screen.getByTestId("edit-unparsed")).toBeInTheDocument();
+    expect(input).toHaveValue(instruction);
+    expect(
+      screen.getByRole("button", { name: en.model.edit.submit }),
+    ).toBeEnabled();
+    const [, init] = fetchMock.mock.calls[0] as unknown as [
+      string,
+      RequestInit,
+    ];
+    expect(init.signal?.aborted).toBe(true);
   });
 });

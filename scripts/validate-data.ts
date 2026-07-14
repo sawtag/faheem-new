@@ -221,7 +221,13 @@ for (const [label, relativePath] of [
 ] as const) {
   const absolutePath = path.join(repoRoot, relativePath);
   if (!existsSync(absolutePath)) continue;
-  const raw: unknown = JSON.parse(readFileSync(absolutePath, "utf-8"));
+  let raw: unknown;
+  try {
+    raw = JSON.parse(readFileSync(absolutePath, "utf-8"));
+  } catch (error) {
+    fail(`${label}: invalid JSON — ${(error as Error).message}`);
+    continue;
+  }
   const hits = walkForSourcedNumberShape(raw, label);
   for (const hit of hits) {
     fail(

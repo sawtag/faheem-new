@@ -735,8 +735,8 @@
       "rf": "Risk-free rate",
       "erp": "Equity risk premium",
       "mkt": {
-        "betaDash": "DoorDash beta",
-        "betaDher": "Delivery Hero beta"
+        "betaDash": "Peer 1 beta",
+        "betaDher": "Peer 2 beta"
       },
       "beta": "Levered beta",
       "ke": "Cost of equity",
@@ -816,9 +816,9 @@
         "bear": "Bear case"
       },
       "comp": {
-        "talabat": "Talabat",
-        "doordash": "DoorDash",
-        "dhero": "Delivery Hero"
+        "talabat": "Regional peer",
+        "doordash": "Peer 1",
+        "dhero": "Peer 2"
       },
       "compMetric": {
         "evRev": "EV/Revenue",
@@ -851,7 +851,7 @@
       "kd-pre": "Pre-tax cost of debt: the risk-free rate plus a credit spread reflecting Jahez's borrowing risk. No clean market-quoted Jahez credit spread exists, so the spread is analyst judgment (see rationale).",
       "kd-after": "After-tax cost of debt: the pre-tax cost of debt reduced by the zakat tax shield, since financing costs are effectively deductible.",
       "wacc": "Weighted average cost of capital: the blended return the business must generate to satisfy both equity and debt holders, weighted by how much of the capital structure each represents.",
-      "beta-comp-set": "Levered beta from the DoorDash/Delivery Hero comp set (the median of the two). Jahez's own listed beta is a thin-trading artifact, so the discount rate borrows risk from close global peers instead.",
+      "beta-comp-set": "Levered beta from the two-peer comp set (the median of the two). Jahez's own listed beta is a thin-trading artifact, so the discount rate borrows risk from close global peers instead.",
       "market-cap": "Market capitalization: shares outstanding times the current share price — what the market currently pays for all of Jahez's equity.",
       "capital-total": "Total invested capital: market cap plus interest-bearing debt — the base the WACC weights (equity weight, debt weight) are computed against.",
       "weight-equity": "Equity's share of total capital — how much of Jahez's capital structure is funded by shareholders rather than lenders.",
@@ -904,7 +904,7 @@
       "risk-composite": "Quantified risk composite: a peak-weighted blend of the register's probability-times-impact scores (60% the single worst risk, 40% the average across all risks), rescaled to a 0–10 score, so one severe risk can't hide inside a good average."
     },
     "rationale": {
-      "beta": "Levered beta = comp-set median of DoorDash (1.78) and Delivery Hero (1.86) — Talabat excluded (insufficient trading history). Jahez's own 5Y beta (0.02) is a thin-trading artifact and is NOT used. A bottom-up unlever/relever to Jahez's capital structure is the flagged next step.",
+      "beta": "Levered beta = comp-set median of Peer 1 (1.78) and Peer 2 (1.86) — the regional peer is excluded (insufficient trading history). Jahez's own 5Y beta (0.02) is a thin-trading artifact and is NOT used. A bottom-up unlever/relever to Jahez's capital structure is the flagged next step.",
       "spread": "Cost-of-debt spread of +200bps over the risk-free rate. No clean Jahez credit spread is sourceable (the Cbonds Saudi IG index is paywalled; the sovereign USD spread of ~50–100bps is sovereign, not corporate). 200bps reflects an unrated but cash-generative KSA mid-cap.",
       "zakat": "Saudi zakat convention, ~2.5% of the zakat base for Saudi/GCC-owned entities (vs. the 20% CIT that applies to foreign ownership). Q1-26 zakat of SAR 0.12m sat on a pre-zakat loss, so no meaningful effective rate is observable. Applied as the NOPAT tax rate and the debt tax shield.",
       "g": "Long-run nominal terminal growth ~3.0% — broadly Saudi long-term inflation / nominal GDP, below the explicit-period growth and above zero real. Bull 3.5% / bear 2.5%.",

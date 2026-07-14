@@ -145,6 +145,18 @@ describe("POST /api/model-edit — scripted path", () => {
     expect(readAudit()).toHaveLength(0); // nothing actionable, nothing logged
   });
 
+  it("falls back safely when a mode cookie has malformed percent-encoding", async () => {
+    setClientForTests(poisonClient());
+
+    const res = await post(
+      { instruction: "do something nice", lang: "en" },
+      "faheem_mode=%E0%A4%A",
+    );
+    const json = (await res.json()) as { kind: string };
+    expect(res.status).toBe(200);
+    expect(json.kind).toBe("unparsed");
+  });
+
   it("probability edit returns the rebalance companions (Σ = 1)", async () => {
     setClientForTests(poisonClient());
 

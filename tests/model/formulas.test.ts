@@ -24,6 +24,12 @@ describe("FORMULAS registry", () => {
     }
   });
 
+  it("uses anonymized labels for the beta peers", () => {
+    const formula = FORMULAS["beta-comp-set"]!.katex;
+    expect(formula).toContain(String.raw`\text{Peer 1}`);
+    expect(formula).toContain(String.raw`\text{Peer 2}`);
+  });
+
   it("every formulaId referenced in the base node graph exists", () => {
     const { nodes } = buildModel(BASE_ASSUMPTIONS);
     const referenced = new Set<string>();

@@ -128,7 +128,7 @@ export function MethodologyPanel({
         key={current}
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, ease: EASE }}
+        transition={{ duration: 0.15, ease: EASE }}
         className="flex flex-col gap-4"
       >
         <header className="flex flex-col gap-1">

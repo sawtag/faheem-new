@@ -1,36 +1,12 @@
 "use client";
 
-import * as React from "react";
 import { useTranslations } from "next-intl";
 import { SquarePen } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { YEARS } from "@/lib/model/compute";
 import { GridTable, ModelCell, RowLabel } from "@/components/model/model-grid";
+import { ModelSectionCard } from "@/components/model/model-section-card";
 
 const FORECAST_YEARS = YEARS.slice(3); // FY26E..FY30E
-
-function GroupCard({
-  titleKey,
-  captionKey,
-  children,
-}: {
-  titleKey: string;
-  captionKey: string;
-  children: React.ReactNode;
-}) {
-  const t = useTranslations();
-  return (
-    <Card padding="md" elevated className="min-w-0">
-      <div className="mb-3 flex flex-col gap-0.5">
-        <h3 className="text-navy text-[0.9375rem] font-bold">{t(titleKey)}</h3>
-        <p className="text-text-secondary text-xs leading-relaxed">
-          {t(captionKey)}
-        </p>
-      </div>
-      {children}
-    </Card>
-  );
-}
 
 /** Per-year editable driver grid — one row per family, FY26E..FY30E columns.
  * Row labels use the family-level series part-label (a row spans every
@@ -95,45 +71,45 @@ export function AssumptionsTab() {
         {t("model.live.assumptions.intro")}
       </p>
 
-      <GroupCard
+      <ModelSectionCard
         titleKey="model.live.assumptions.groups.drivers.title"
         captionKey="model.live.assumptions.groups.drivers.caption"
       >
         <PerYearGrid
           rows={["ordersGrowth", "aovGrowth", "netRevRate", "ebitdaMargin"]}
         />
-      </GroupCard>
+      </ModelSectionCard>
 
-      <GroupCard
+      <ModelSectionCard
         titleKey="model.live.assumptions.groups.scenario.title"
         captionKey="model.live.assumptions.groups.scenario.caption"
       >
         <PerYearGrid rows={["bullRevDelta", "bearRevDelta"]} />
-      </GroupCard>
+      </ModelSectionCard>
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        <GroupCard
+        <ModelSectionCard
           titleKey="model.live.assumptions.groups.conversion.title"
           captionKey="model.live.assumptions.groups.conversion.caption"
         >
           <ScalarGroup keys={["dnaRate", "capexRate", "nwcRate"]} />
-        </GroupCard>
+        </ModelSectionCard>
 
-        <GroupCard
+        <ModelSectionCard
           titleKey="model.live.assumptions.groups.discount.title"
           captionKey="model.live.assumptions.groups.discount.caption"
         >
           <ScalarGroup keys={["spread", "zakat"]} />
-        </GroupCard>
+        </ModelSectionCard>
 
-        <GroupCard
+        <ModelSectionCard
           titleKey="model.live.assumptions.groups.terminal.title"
           captionKey="model.live.assumptions.groups.terminal.caption"
         >
           <ScalarGroup keys={["g", "gBull", "gBear"]} />
-        </GroupCard>
+        </ModelSectionCard>
 
-        <GroupCard
+        <ModelSectionCard
           titleKey="model.live.assumptions.groups.weighting.title"
           captionKey="model.live.assumptions.groups.weighting.caption"
         >
@@ -147,9 +123,9 @@ export function AssumptionsTab() {
               "ebitdaMarginTerminal",
             ]}
           />
-        </GroupCard>
+        </ModelSectionCard>
 
-        <GroupCard
+        <ModelSectionCard
           titleKey="model.live.assumptions.groups.risk.title"
           captionKey="model.live.assumptions.groups.risk.caption"
         >
@@ -164,7 +140,7 @@ export function AssumptionsTab() {
               "riskWeights.5",
             ]}
           />
-        </GroupCard>
+        </ModelSectionCard>
       </div>
     </div>
   );

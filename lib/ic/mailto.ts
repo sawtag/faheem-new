@@ -42,22 +42,25 @@ function buildHref(to: string[], subject: string, body: string): string {
 
 /** Shortens `body` (already CRLF-normalized) so its ENCODED length fits
  * `budget` characters, appending TRUNCATION_SUFFIX. Binary search over the
- * cut point since encodeURIComponent's expansion ratio varies by character
- * (a CRLF alone costs 6 encoded chars). */
+ * code-point cut point since encodeURIComponent's expansion ratio varies by
+ * character (a CRLF alone costs 6 encoded chars). */
 function trimBodyToEncodedBudget(body: string, budget: number): string {
   if (encodeURIComponent(body).length <= budget) return body;
   const suffixLen = encodeURIComponent(TRUNCATION_SUFFIX).length;
   const textBudget = Math.max(0, budget - suffixLen);
+  const codePoints = Array.from(body);
 
   let lo = 0;
-  let hi = body.length;
+  let hi = codePoints.length;
   while (lo < hi) {
     const mid = Math.ceil((lo + hi) / 2);
-    const candidateLen = encodeURIComponent(body.slice(0, mid)).length;
+    const candidateLen = encodeURIComponent(
+      codePoints.slice(0, mid).join(""),
+    ).length;
     if (candidateLen <= textBudget) lo = mid;
     else hi = mid - 1;
   }
-  return body.slice(0, lo) + TRUNCATION_SUFFIX;
+  return codePoints.slice(0, lo).join("") + TRUNCATION_SUFFIX;
 }
 
 /**

@@ -88,4 +88,17 @@ describe("buildMailtoHref", () => {
     expect(href.length).toBeLessThanOrEqual(MAILTO_MAX_LENGTH);
     expect(href.startsWith("mailto:a%40b.com?subject=s&body=")).toBe(true);
   });
+
+  it("truncates an oversized emoji-only body on code-point boundaries", () => {
+    const { href, truncated } = buildMailtoHref({
+      to: ["a@b.com"],
+      subject: "s",
+      body: "🚀".repeat(1000),
+    });
+
+    expect(truncated).toBe(true);
+    expect(href.length).toBeLessThanOrEqual(MAILTO_MAX_LENGTH);
+    const encodedBody = new URL(href).searchParams.get("body");
+    expect(encodedBody).toMatch(/^🚀+\r\n…$/u);
+  });
 });

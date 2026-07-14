@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import { expect, test } from "@playwright/test";
+import { readAudit } from "./helpers";
 
 /**
  * WS-E acceptance (live-model-provenance plan §3) — Draft-to-IC. Two
@@ -11,16 +10,6 @@ import { expect, test } from "@playwright/test";
  * numbers and the actually-generated artifact names — no live model call,
  * fully offline (cached mode).
  */
-const AUDIT_LOG = path.join(process.cwd(), "data/audit-log.json");
-
-function readAudit(): Array<{ action?: string; question?: string }> {
-  try {
-    return JSON.parse(fs.readFileSync(AUDIT_LOG, "utf-8"));
-  } catch {
-    return [];
-  }
-}
-
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
     { name: "faheem_session", value: "e2e-draft-to-ic", url: baseURL },

@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft, LineChart } from "lucide-react";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import type { Lang, Localized } from "@/lib/types";
@@ -11,15 +9,15 @@ import type { Lang, Localized } from "@/lib/types";
  * Jahez has one today) — house empty-state pattern: mono glyph, title,
  * roadmap caption, back link.
  */
-export function ModelEmptyState({
+export async function ModelEmptyState({
   companyId,
   companyName,
 }: {
   companyId: string;
   companyName: Localized;
 }) {
-  const t = useTranslations();
-  const locale = useLocale() as Lang;
+  const [t, localeValue] = await Promise.all([getTranslations(), getLocale()]);
+  const locale = localeValue as Lang;
 
   return (
     <main className="mx-auto max-w-[1040px] px-8 pt-10 pb-16">

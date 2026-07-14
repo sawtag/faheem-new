@@ -18,6 +18,7 @@ import type { LiveModel } from "@/components/model/use-live-model";
 import type { AgentId, Lang } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
+const MODEL_EDIT_TIMEOUT_MS = 10_000;
 
 /** Per-stage beat. Start→done inside one beat keeps every reveal <400ms
  * (AGENTS.md motion law); reduced motion collapses the whole run to instant. */
@@ -209,18 +210,21 @@ export function EditComposer({
     });
   };
 
-  const submit = async (instruction: string) => {
+  const submit = async (instruction: string): Promise<boolean> => {
     const trimmed = instruction.trim();
-    if (!trimmed || busy) return;
+    if (!trimmed || busy) return false;
     setBusy(true);
     setNotice(null);
     setRun(null);
     for (const id of timeouts.current) clearTimeout(id);
     timeouts.current = [];
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), MODEL_EDIT_TIMEOUT_MS);
     try {
       const res = await fetch("/api/model-edit", {
         method: "POST",
         headers: { "content-type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
           instruction: trimmed,
           lang: locale,
@@ -228,18 +232,33 @@ export function EditComposer({
           companyId,
         }),
       });
+      if (!res.ok) {
+        setNotice("unparsed");
+        return false;
+      }
       const data = (await res.json()) as EditResponse;
       if (data.kind === "edit" && data.assumptionKey != null) {
         playEdit(data);
-      } else if (data.kind === "source-locked") {
-        playLocked();
-      } else {
-        setNotice("unparsed");
+        return true;
       }
+      if (data.kind === "source-locked") {
+        playLocked();
+        return true;
+      }
+      setNotice("unparsed");
+      return false;
     } catch {
       setNotice("unparsed");
+      return false;
     } finally {
+      clearTimeout(timeout);
       setBusy(false);
+    }
+  };
+
+  const submitAndClear = async (instruction: string) => {
+    if (await submit(instruction)) {
+      setText((current) => (current === instruction ? "" : current));
     }
   };
 
@@ -256,7 +275,7 @@ export function EditComposer({
         className="flex items-center gap-2"
         onSubmit={(e) => {
           e.preventDefault();
-          void submit(text);
+          void submitAndClear(text);
         }}
       >
         <Sparkles
@@ -299,7 +318,7 @@ export function EditComposer({
             onClick={() => {
               const instruction = t(`chips.${chip.key}`);
               setText(instruction);
-              void submit(instruction);
+              void submitAndClear(instruction);
             }}
             className="bg-navy-50 text-navy-700 hover:bg-navy-100 focus-visible:ring-accent focus-visible:ring-offset-card rounded-pill px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50"
           >

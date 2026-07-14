@@ -11,11 +11,15 @@ import { IcRoom } from "@/components/ic/ic-room";
 function loadJahezArtifacts(): ArtifactMeta[] {
   const file = path.join(process.cwd(), "data/artifacts.json");
   if (!fs.existsSync(file)) return [];
-  const parsed = ArtifactMetaSchema.array().safeParse(
-    JSON.parse(fs.readFileSync(file, "utf-8")),
-  );
-  if (!parsed.success) return [];
-  return parsed.data.filter((a) => a.workspace === "jahez");
+  try {
+    const parsed = ArtifactMetaSchema.array().safeParse(
+      JSON.parse(fs.readFileSync(file, "utf-8")),
+    );
+    if (!parsed.success) return [];
+    return parsed.data.filter((a) => a.workspace === "jahez");
+  } catch {
+    return [];
+  }
 }
 
 /**

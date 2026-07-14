@@ -80,6 +80,30 @@ const COMP_METRICS: Record<string, string> = {
 const AXES = new Set(["waccAxis", "gAxis", "takeAxis", "gmvGrowthAxis"]);
 const GRIDS = new Set(["grid1", "grid2"]);
 
+function matchGroups(
+  pattern: RegExp,
+  value: string,
+  count: 2,
+): [string, string] | null;
+function matchGroups(
+  pattern: RegExp,
+  value: string,
+  count: 3,
+): [string, string, string] | null;
+function matchGroups(
+  pattern: RegExp,
+  value: string,
+  count: 2 | 3,
+): [string, string] | [string, string, string] | null {
+  const result = pattern.exec(value);
+  const first = result?.[1];
+  const second = result?.[2];
+  if (first === undefined || second === undefined) return null;
+  if (count === 2) return [first, second];
+  const third = result?.[3];
+  return third === undefined ? null : [first, second, third];
+}
+
 function yearAt(i: number): string {
   return YEARS[i] ?? `Y${i}`;
 }
@@ -102,14 +126,13 @@ export function getNodeLabel(key: ModelKey, t: T): string {
   if (t.has(exact)) return t(exact);
 
   // scenario-prefixed series: "base.netRev.2", "bull.pvFcff.4"
-  let m = /^(base|bull|bear)\.([a-zA-Z]+)\.(\d)$/.exec(key);
-  if (m) {
-    const [, scen, metric, idxStr] = m as unknown as [
-      string,
-      string,
-      string,
-      string,
-    ];
+  const scenarioSeries = matchGroups(
+    /^(base|bull|bear)\.([a-zA-Z]+)\.(\d)$/,
+    key,
+    3,
+  );
+  if (scenarioSeries) {
+    const [scen, metric, idxStr] = scenarioSeries;
     const series = metric ? SERIES[metric] : undefined;
     if (series) {
       return t("model.nodes.templates.scenarioSeries", {
@@ -121,9 +144,9 @@ export function getNodeLabel(key: ModelKey, t: T): string {
   }
 
   // scenario scalars: "base.perShare", "bull.tv"
-  m = /^(base|bull|bear)\.([a-zA-Z]+)$/.exec(key);
-  if (m) {
-    const [, scen, metric] = m as unknown as [string, string, string];
+  const scenarioScalar = matchGroups(/^(base|bull|bear)\.([a-zA-Z]+)$/, key, 2);
+  if (scenarioScalar) {
+    const [scen, metric] = scenarioScalar;
     const label = metric ? SCENARIO_SCALARS[metric] : undefined;
     if (label) {
       return t("model.nodes.templates.scenarioScalar", {
@@ -134,9 +157,13 @@ export function getNodeLabel(key: ModelKey, t: T): string {
   }
 
   // assumption arrays: "assumptions.ordersGrowth.0", "assumptions.riskWeights.3"
-  m = /^assumptions\.([a-zA-Z]+)\.(\d)$/.exec(key);
-  if (m) {
-    const [, name, idxStr] = m as unknown as [string, string, string];
+  const assumptionArray = matchGroups(
+    /^assumptions\.([a-zA-Z]+)\.(\d)$/,
+    key,
+    2,
+  );
+  if (assumptionArray) {
+    const [name, idxStr] = assumptionArray;
     const idx = Number(idxStr);
     if (name === "riskWeights") {
       return t("model.nodes.templates.riskWeight", { n: idx + 1 });
@@ -151,9 +178,9 @@ export function getNodeLabel(key: ModelKey, t: T): string {
   }
 
   // plain 0..7 series: "orders.5", "ebitda.2"
-  m = /^([a-zA-Z]+)\.(\d)$/.exec(key);
-  if (m) {
-    const [, metric, idxStr] = m as unknown as [string, string, string];
+  const plainSeries = matchGroups(/^([a-zA-Z]+)\.(\d)$/, key, 2);
+  if (plainSeries) {
+    const [metric, idxStr] = plainSeries;
     const series = metric ? SERIES[metric] : undefined;
     if (series) {
       return t("model.nodes.templates.series", {
@@ -163,15 +190,14 @@ export function getNodeLabel(key: ModelKey, t: T): string {
     }
   }
 
-  // comps / market multiples: "comps.evRev.talabat", "mkt.pe.doordash"
-  m = /^(comps|mkt)\.([a-zA-Z]+)\.([a-z]+)$/.exec(key);
-  if (m) {
-    const [, ns, metric, comp] = m as unknown as [
-      string,
-      string,
-      string,
-      string,
-    ];
+  // comps / market multiples: "comps.evRev.<peer>", "mkt.pe.<peer>"
+  const compMultiple = matchGroups(
+    /^(comps|mkt)\.([a-zA-Z]+)\.([a-z]+)$/,
+    key,
+    3,
+  );
+  if (compMultiple) {
+    const [ns, metric, comp] = compMultiple;
     if (comp && COMPS.has(comp) && metric && COMP_METRICS[metric]) {
       const template =
         ns === "comps"
@@ -185,9 +211,13 @@ export function getNodeLabel(key: ModelKey, t: T): string {
   }
 
   // sensitivity axis points: "waccAxis.2"
-  m = /^(waccAxis|gAxis|takeAxis|gmvGrowthAxis)\.(\d)$/.exec(key);
-  if (m) {
-    const [, axis, idxStr] = m as unknown as [string, string, string];
+  const axisPoint = matchGroups(
+    /^(waccAxis|gAxis|takeAxis|gmvGrowthAxis)\.(\d)$/,
+    key,
+    2,
+  );
+  if (axisPoint) {
+    const [axis, idxStr] = axisPoint;
     if (axis && AXES.has(axis)) {
       return t("model.nodes.templates.axis", {
         axis: t(`model.nodes.axis.${axis}`),
@@ -197,14 +227,9 @@ export function getNodeLabel(key: ModelKey, t: T): string {
   }
 
   // sensitivity grid cells: "grid1.2.3"
-  m = /^(grid1|grid2)\.(\d)\.(\d)$/.exec(key);
-  if (m) {
-    const [, grid, rowStr, colStr] = m as unknown as [
-      string,
-      string,
-      string,
-      string,
-    ];
+  const gridCell = matchGroups(/^(grid1|grid2)\.(\d)\.(\d)$/, key, 3);
+  if (gridCell) {
+    const [grid, rowStr, colStr] = gridCell;
     if (grid && GRIDS.has(grid)) {
       return t("model.nodes.templates.gridCell", {
         grid: t(`model.nodes.grid.${grid}`),

@@ -24,6 +24,7 @@ import { BASE_ASSUMPTIONS, RATIONALE, buildModel } from "@/lib/model/compute";
 import { parseEdit } from "@/lib/model/edit-parser";
 import { FORMULAS } from "@/lib/model/formulas";
 import { provenanceViolations } from "@/lib/model/provenance";
+import modelBaseSnapshot from "@/tests/fixtures/model-base-snapshot.json";
 import {
   AuditEntrySchema,
   CorpusDocSchema,
@@ -435,9 +436,13 @@ function checkLiveModelBeat(): void {
   try {
     const { result, nodes } = buildModel(BASE_ASSUMPTIONS);
     const headline: [string, number, number][] = [
-      ["base.perShare", result.base.perShare, 14.3638147029964],
-      ["base.irr", result.base.irr, 0.17065733106145453],
-      ["weightedReturn", result.weightedReturn, 0.16768822193164545],
+      ["base.perShare", result.base.perShare, modelBaseSnapshot.base.perShare],
+      ["base.irr", result.base.irr, modelBaseSnapshot.base.irr],
+      [
+        "weightedReturn",
+        result.weightedReturn,
+        modelBaseSnapshot.weightedReturn,
+      ],
     ];
     const drifted = headline.filter(
       ([, actual, expected]) => actual !== expected,

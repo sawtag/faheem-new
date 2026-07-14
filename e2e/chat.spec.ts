@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
-import fs from "node:fs";
-import path from "node:path";
+import { readAudit } from "./helpers";
 
 /**
  * Flagship chat acceptance (FAHEEM_MODE=cached). Opens the seeded Jahez chat,
@@ -11,15 +10,6 @@ import path from "node:path";
  */
 const QUESTION =
   "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?";
-const AUDIT_LOG = path.join(process.cwd(), "data/audit-log.json");
-
-function readAudit(): Array<{ question?: string; context?: string }> {
-  try {
-    return JSON.parse(fs.readFileSync(AUDIT_LOG, "utf-8"));
-  } catch {
-    return [];
-  }
-}
 
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([

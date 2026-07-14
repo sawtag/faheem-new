@@ -1,14 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Card } from "@/components/ui/card";
 import { formatNodeValue } from "@/components/model/format";
 import {
   GridTable,
   ModelCell,
   useModelCtx,
 } from "@/components/model/model-grid";
+import { ModelSectionCard } from "@/components/model/model-section-card";
 import type { Lang } from "@/lib/types";
 
 const IDX = [0, 1, 2, 3, 4];
@@ -104,40 +103,6 @@ function SensitivityGrid({
   );
 }
 
-function GridCard({
-  titleKey,
-  captionKey,
-  children,
-  baseNote,
-}: {
-  titleKey: string;
-  captionKey: string;
-  children: React.ReactNode;
-  baseNote?: boolean;
-}) {
-  const t = useTranslations();
-  return (
-    <Card padding="md" elevated className="min-w-0">
-      <div className="mb-3 flex flex-col gap-0.5">
-        <h3 className="text-navy text-[0.9375rem] font-bold">{t(titleKey)}</h3>
-        <p className="text-text-secondary text-xs leading-relaxed">
-          {t(captionKey)}
-        </p>
-      </div>
-      {children}
-      {baseNote && (
-        <p className="text-text-secondary mt-2 flex items-center gap-1.5 text-[0.6875rem]">
-          <span
-            className="ring-navy inline-block size-2.5 rounded-[2px] ring-2"
-            aria-hidden="true"
-          />
-          {t("model.live.sensitivity.base")}
-        </p>
-      )}
-    </Card>
-  );
-}
-
 export function SensitivityTab() {
   const t = useTranslations();
   return (
@@ -145,10 +110,18 @@ export function SensitivityTab() {
       <p className="text-text-secondary text-[0.8125rem] leading-relaxed">
         {t("model.live.sensitivity.intro")}
       </p>
-      <GridCard
+      <ModelSectionCard
         titleKey="model.live.sensitivity.grid1.title"
         captionKey="model.live.sensitivity.grid1.caption"
-        baseNote
+        footer={
+          <p className="text-text-secondary mt-2 flex items-center gap-1.5 text-[0.6875rem]">
+            <span
+              className="ring-navy inline-block size-2.5 rounded-[2px] ring-2"
+              aria-hidden="true"
+            />
+            {t("model.live.sensitivity.base")}
+          </p>
+        }
       >
         <SensitivityGrid
           gridKey="grid1"
@@ -156,8 +129,8 @@ export function SensitivityTab() {
           colAxis="waccAxis"
           highlight={[2, 2]}
         />
-      </GridCard>
-      <GridCard
+      </ModelSectionCard>
+      <ModelSectionCard
         titleKey="model.live.sensitivity.grid2.title"
         captionKey="model.live.sensitivity.grid2.caption"
       >
@@ -166,7 +139,7 @@ export function SensitivityTab() {
           rowAxis="takeAxis"
           colAxis="gmvGrowthAxis"
         />
-      </GridCard>
+      </ModelSectionCard>
     </div>
   );
 }

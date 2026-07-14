@@ -4,14 +4,25 @@ import type { Locator, Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 
 /**
- * Shared helpers for golden-path.spec.ts and rtl-sweep.spec.ts — kept out of
- * the individual specs so the route inventory and fixture-loading logic have
- * one home (plan §T5.2). Cookie names are duplicated as literals (not
+ * Shared Playwright helpers. Cookie names are duplicated as literals (not
  * imported from lib/locale.ts) to match the convention already established by
  * the per-screen specs (login.spec.ts, home.spec.ts, deals.spec.ts, …).
  */
 export const SESSION_COOKIE = "faheem_session";
 export const LOCALE_COOKIE = "faheem_locale";
+export const AUDIT_LOG = path.join(process.cwd(), "data/audit-log.json");
+
+export function readAudit(): Array<{
+  action?: string;
+  question?: string;
+  context?: string;
+}> {
+  try {
+    return JSON.parse(fs.readFileSync(AUDIT_LOG, "utf-8"));
+  } catch {
+    return [];
+  }
+}
 
 /** Full route inventory (plan §T5.2 / messages/*.json namespaces). */
 export const ROUTES = [

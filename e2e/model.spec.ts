@@ -1,7 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import fs from "node:fs";
-import path from "node:path";
-import { clickUntil } from "./helpers";
+import { clickUntil, readAudit } from "./helpers";
 
 /**
  * WS-B acceptance — the Live Model surface (Jahez).
@@ -112,16 +110,6 @@ test.describe("Live Model — Jahez", () => {
  * + updated recommendation land → the audit trail grows. A source-locked chip
  * degrades gracefully (Critical Review raises the lock; values never move).
  */
-const AUDIT_LOG = path.join(process.cwd(), "data/audit-log.json");
-
-function readAudit(): Array<{ action?: string; question?: string }> {
-  try {
-    return JSON.parse(fs.readFileSync(AUDIT_LOG, "utf-8"));
-  } catch {
-    return [];
-  }
-}
-
 function trackOffHost(page: Page): string[] {
   const offHost: string[] = [];
   page.on("request", (req) => {

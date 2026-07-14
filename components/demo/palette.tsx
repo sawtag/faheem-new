@@ -44,6 +44,13 @@ function currentPageContext(): ChatContext | null {
   return null;
 }
 
+function currentDealCompanyId(): string | null {
+  return (
+    /^\/deals\/([^/]+)(?:\/model)?\/?$/.exec(window.location.pathname)?.[1] ??
+    null
+  );
+}
+
 /**
  * ⌘K stage-only demo palette (P5a) — opens ONLY on ⌘K/Ctrl+K, no visible
  * affordance. Lists the golden questions (data/golden-questions.json)
@@ -85,13 +92,14 @@ export function DemoPalette() {
     [filtered],
   );
 
-  // Same scoping rule filterGoldenQuestions applies to a workspace:jahez
-  // entry — visible everywhere except the IC room and another company's
-  // workspace, since the beat only exists for Jahez.
+  // The model beat exists for one company. A deal page has no chat context,
+  // so inspect its route separately while leaving non-deal firm pages visible.
+  const dealCompanyId = open && !ctx ? currentDealCompanyId() : null;
   const showModelSection =
-    !ctx ||
-    ctx.kind === "firm" ||
-    (ctx.kind === "workspace" && ctx.companyId === MODEL_EDIT_COMPANY_ID);
+    ctx?.kind === "firm" ||
+    (ctx?.kind === "workspace" && ctx.companyId === MODEL_EDIT_COMPANY_ID) ||
+    (!ctx &&
+      (dealCompanyId === null || dealCompanyId === MODEL_EDIT_COMPANY_ID));
 
   function selectModelEdit(beat: ModelEditBeat) {
     publishModelEditPrefill(tChip(beat.chipKey));

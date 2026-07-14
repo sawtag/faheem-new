@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { AnswerChart } from "@/components/chat/answer-chart";
@@ -15,33 +14,11 @@ import {
   RowLabel,
   useModelCtx,
 } from "@/components/model/model-grid";
+import { ModelSectionCard } from "@/components/model/model-section-card";
 
 const ALL_YEARS = YEARS.map((_, i) => i); // 0..7 FY23A..FY30E
 const FORECAST_IDX = [0, 1, 2, 3, 4]; // base-scenario indices → FY26E..FY30E
 const F0 = 3;
-
-function SectionCard({
-  titleKey,
-  captionKey,
-  children,
-}: {
-  titleKey: string;
-  captionKey: string;
-  children: React.ReactNode;
-}) {
-  const t = useTranslations();
-  return (
-    <Card padding="md" elevated className="min-w-0">
-      <div className="mb-3 flex flex-col gap-0.5">
-        <h3 className="text-navy text-[0.9375rem] font-bold">{t(titleKey)}</h3>
-        <p className="text-text-secondary text-xs leading-relaxed">
-          {t(captionKey)}
-        </p>
-      </div>
-      {children}
-    </Card>
-  );
-}
 
 /** Actual/Forecast column legend. */
 function Legend() {
@@ -314,34 +291,34 @@ function Charts() {
 export function DcfTab() {
   return (
     <div className="flex flex-col gap-5">
-      <SectionCard
+      <ModelSectionCard
         titleKey="model.live.dcf.wacc.title"
         captionKey="model.live.dcf.wacc.caption"
       >
         <WaccBuild />
-      </SectionCard>
+      </ModelSectionCard>
 
-      <SectionCard
+      <ModelSectionCard
         titleKey="model.live.dcf.drivers.title"
         captionKey="model.live.dcf.drivers.caption"
       >
         <Legend />
         <RevenueGrid />
-      </SectionCard>
+      </ModelSectionCard>
 
-      <SectionCard
+      <ModelSectionCard
         titleKey="model.live.dcf.statement.title"
         captionKey="model.live.dcf.statement.caption"
       >
         <StatementGrid />
-      </SectionCard>
+      </ModelSectionCard>
 
-      <SectionCard
+      <ModelSectionCard
         titleKey="model.live.dcf.pv.title"
         captionKey="model.live.dcf.pv.caption"
       >
         <PvBridge />
-      </SectionCard>
+      </ModelSectionCard>
 
       <Charts />
     </div>

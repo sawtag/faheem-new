@@ -85,6 +85,11 @@ describe("sentiment/social-pack data — no sourced-number shape", () => {
     expect(SOCIAL_PACK.length).toBeLessThanOrEqual(10);
   });
 
+  it("describes delivery-fee competition with generic entrant wording", () => {
+    expect(SOCIAL_PACK[0]!.text.en).toContain("new entrants");
+    expect(SOCIAL_PACK[0]!.text.ar).toContain("اللاعبين الجدد");
+  });
+
   it("jahez has a recorded sentiment read with a defensible label", () => {
     const jahez = sentimentByCompany("jahez");
     expect(jahez).toBeDefined();
