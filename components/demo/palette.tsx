@@ -11,6 +11,13 @@ import {
   type GoldenQuestion,
 } from "@/lib/demo/golden-questions";
 import { publishGoldenSelection } from "@/lib/demo/golden-bus";
+import {
+  MODEL_EDIT_BEATS,
+  MODEL_EDIT_COMPANY_ID,
+  MODEL_EDIT_PATH,
+  type ModelEditBeat,
+} from "@/lib/demo/model-edit-questions";
+import { publishModelEditPrefill } from "@/lib/demo/model-edit-bus";
 import { parseContext, resolveChat, serializeContext } from "@/lib/chats";
 import type { ChatContext, Lang } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -49,6 +56,8 @@ function currentPageContext(): ChatContext | null {
  */
 export function DemoPalette() {
   const t = useTranslations("demo.palette");
+  const tModelLabel = useTranslations("demo.palette.modelEdits");
+  const tChip = useTranslations("model.edit.chips");
   const locale = useLocale() as Lang;
   const router = useRouter();
 
@@ -75,6 +84,22 @@ export function DemoPalette() {
     () => groupGoldenQuestions(filtered),
     [filtered],
   );
+
+  // Same scoping rule filterGoldenQuestions applies to a workspace:jahez
+  // entry — visible everywhere except the IC room and another company's
+  // workspace, since the beat only exists for Jahez.
+  const showModelSection =
+    !ctx ||
+    ctx.kind === "firm" ||
+    (ctx.kind === "workspace" && ctx.companyId === MODEL_EDIT_COMPANY_ID);
+
+  function selectModelEdit(beat: ModelEditBeat) {
+    publishModelEditPrefill(tChip(beat.chipKey));
+    if (window.location.pathname !== MODEL_EDIT_PATH) {
+      router.push(MODEL_EDIT_PATH);
+    }
+    setOpen(false);
+  }
 
   function select(entry: GoldenQuestion) {
     const here = currentPageContext();
@@ -114,7 +139,7 @@ export function DemoPalette() {
         </div>
 
         <div className="max-h-[60vh] overflow-y-auto p-2">
-          {filtered.length === 0 && (
+          {filtered.length === 0 && !showModelSection && (
             <p className="text-text-secondary px-3 py-6 text-center text-sm">
               {t("empty")}
             </p>
@@ -146,6 +171,31 @@ export function DemoPalette() {
               ))}
             </div>
           ))}
+          {showModelSection && (
+            <div className="mb-1 last:mb-0">
+              <p className="text-text-secondary px-3 py-1.5 text-[0.6875rem] font-bold tracking-[0.04em] uppercase">
+                {t("groupModel")}
+              </p>
+              {MODEL_EDIT_BEATS.map((beat) => (
+                <button
+                  key={beat.id}
+                  type="button"
+                  data-testid={`palette-item-${beat.id}`}
+                  onClick={() => selectModelEdit(beat)}
+                  className={cn(
+                    "rounded-btn hover:bg-navy-50 focus-visible:ring-accent focus-visible:-ring-offset-1 flex w-full flex-col items-start gap-0.5 px-3 py-2 text-start outline-none focus-visible:ring-2",
+                  )}
+                >
+                  <span className="text-navy text-sm font-semibold">
+                    {tModelLabel(beat.chipKey)}
+                  </span>
+                  <span className="text-text-secondary line-clamp-1 text-xs">
+                    {tChip(beat.chipKey)}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

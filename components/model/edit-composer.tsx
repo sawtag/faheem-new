@@ -8,6 +8,11 @@ import { getAgent } from "@/lib/ai/agents";
 import { Button } from "@/components/ui/button";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { baseField, type EditPair } from "@/lib/model/edit-parser";
+import {
+  subscribeModelEditPrefill,
+  takeModelEditPrefill,
+  type ModelEditPrefill,
+} from "@/lib/demo/model-edit-bus";
 import { cn, formatPercent, formatSAR } from "@/lib/utils";
 import type { LiveModel } from "@/components/model/use-live-model";
 import type { AgentId, Lang } from "@/lib/types";
@@ -122,6 +127,20 @@ export function EditComposer({
     },
     [],
   );
+
+  // ⌘K palette hand-off (WS-F, lib/demo/model-edit-bus.ts — same pull-and-clear
+  // pattern as ChatView's golden-bus): a Live Model beat entry prefills the
+  // instruction text, same as clicking one of the chips below, but leaves
+  // submitting to the presenter's Enter/Apply (matches the golden-question
+  // palette, which also only ever prefills).
+  React.useEffect(() => {
+    function apply(prefill: ModelEditPrefill) {
+      setText(prefill.text);
+    }
+    const pending = takeModelEditPrefill();
+    if (pending) apply(pending);
+    return subscribeModelEditPrefill(apply);
+  }, []);
 
   const at = (ms: number, fn: () => void) => {
     timeouts.current.push(setTimeout(fn, ms));

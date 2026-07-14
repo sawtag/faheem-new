@@ -579,7 +579,14 @@
       "empty": "No scripted questions for this screen.",
       "groupFirm": "Firm",
       "groupIc": "IC Room",
-      "groupWorkspace": "Workspace"
+      "groupWorkspace": "Workspace",
+      "groupModel": "Live Model",
+      "modelEdits": {
+        "growth": "Raise FY26 order growth",
+        "terminal": "Terminal growth what-if",
+        "margin": "Set FY30 EBITDA margin",
+        "locked": "Source-locked demo"
+      }
     },
     "mode": {
       "title": "Faheem mode",

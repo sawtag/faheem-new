@@ -16,10 +16,20 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { renderToString } from "katex";
 import { cacheKey, readCacheEntry } from "@/lib/ai/cache";
 import { getClient, getModel } from "@/lib/ai/client";
 import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
-import { AuditEntrySchema, CorpusDocSchema } from "@/lib/types";
+import { BASE_ASSUMPTIONS, RATIONALE, buildModel } from "@/lib/model/compute";
+import { parseEdit } from "@/lib/model/edit-parser";
+import { FORMULAS } from "@/lib/model/formulas";
+import { provenanceViolations } from "@/lib/model/provenance";
+import {
+  AuditEntrySchema,
+  CorpusDocSchema,
+  SentimentEntrySchema,
+  SocialPostSchema,
+} from "@/lib/types";
 
 const repoRoot = process.cwd();
 
@@ -407,9 +417,170 @@ function checkAuditLog(): void {
   }
 }
 
-/** 11. --live only: one tiny real API call to prove connectivity/auth. */
+/**
+ * 11. Live Model beat (WS-F) — the demo-integration venue checks for the new
+ * ⌘K section: `buildModel(BASE_ASSUMPTIONS)` reproduces today's headline
+ * numbers byte-identical (a fable-level decision to change, not a code edit —
+ * AGENTS.md `lib/model/**`), the provenance graph carries zero orphans
+ * (reuses the same `provenanceViolations` walk as tests/model/provenance.test.ts),
+ * the edit-parser's scripted set (the four ⌘K/chip instructions, incl. one
+ * Arabic instruction and the source-locked demo) still parses to the right
+ * assumption keys, the sentiment/social-pack files are schema-valid and carry
+ * no sourced-number shape (mirrors the WS-D invariant validate:data enforces),
+ * and every FormulaDef's KaTeX string still renders. Zero network calls.
+ */
+function checkLiveModelBeat(): void {
+  section(11, "Live Model beat (WS-F)");
+
+  try {
+    const { result, nodes } = buildModel(BASE_ASSUMPTIONS);
+    const headline: [string, number, number][] = [
+      ["base.perShare", result.base.perShare, 14.3638147029964],
+      ["base.irr", result.base.irr, 0.17065733106145453],
+      ["weightedReturn", result.weightedReturn, 0.16768822193164545],
+    ];
+    const drifted = headline.filter(
+      ([, actual, expected]) => actual !== expected,
+    );
+    if (drifted.length === 0 && result.shariah.pass === true) {
+      ok(
+        "buildModel(BASE_ASSUMPTIONS) headline numbers byte-identical + Shariah PASS",
+      );
+    } else {
+      bad(
+        `engine drift — ${drifted.map(([k, a, e]) => `${k}=${a} (want ${e})`).join(", ") || `shariah.pass=${result.shariah.pass}`}`,
+        "a base-case number changed — that's a fable-level decision (AGENTS.md lib/model/**), not a code edit",
+      );
+    }
+
+    const manifestDocIds = new Set<string>(
+      (
+        JSON.parse(
+          fs.readFileSync(
+            path.join(repoRoot, "data/corpus/manifest.json"),
+            "utf-8",
+          ),
+        ) as { id: string }[]
+      ).map((d) => d.id),
+    );
+    const violations = provenanceViolations(
+      nodes,
+      FORMULAS,
+      BASE_ASSUMPTIONS,
+      manifestDocIds,
+      new Set(Object.keys(RATIONALE)),
+    );
+    if (violations.length === 0) {
+      ok(`provenance graph — ${Object.keys(nodes).length} nodes, 0 orphans`);
+    } else {
+      bad(
+        `provenance graph — ${violations.length} violation(s): ${violations.slice(0, 3).join("; ")}`,
+        "npx vitest run tests/model/provenance.test.ts for details",
+      );
+    }
+  } catch (err) {
+    bad(
+      `engine/provenance check threw: ${errMsg(err)}`,
+      "npx vitest run tests/model for details",
+    );
+  }
+
+  try {
+    const spot: [string, "en" | "ar", string][] = [
+      ["Raise FY26 order growth to 20%", "en", "ordersGrowth.0"],
+      ["What if terminal growth is 3.5%?", "en", "g"],
+      ["Set FY30 EBITDA margin to 12.5%", "en", "ebitdaMargin.4"],
+      ["ارفع نمو الطلبات لعام 2026 إلى 20٪", "ar", "ordersGrowth.0"],
+    ];
+    const failed = spot.filter(([instruction, lang, key]) => {
+      const parsed = parseEdit(instruction, lang, BASE_ASSUMPTIONS);
+      return parsed.kind !== "edit" || parsed.assumptionKey !== key;
+    });
+    if (failed.length === 0) {
+      ok(
+        `edit-parser — ${spot.length}/${spot.length} scripted instructions parse (incl. 1 Arabic)`,
+      );
+    } else {
+      bad(
+        `edit-parser — ${failed.length}/${spot.length} scripted instruction(s) failed to parse`,
+        "npx vitest run tests/model/edit-parser.test.ts",
+      );
+    }
+
+    const locked = parseEdit(
+      "Change FY25 revenue to SAR 2 billion",
+      "en",
+      BASE_ASSUMPTIONS,
+    );
+    if (locked.kind === "source-locked" && locked.target === "revenue") {
+      ok('edit-parser — source-locked demo instruction rejected ("revenue")');
+    } else {
+      bad(
+        `edit-parser — source-locked demo instruction returned ${JSON.stringify(locked)}`,
+        "npx vitest run tests/model/edit-parser.test.ts",
+      );
+    }
+  } catch (err) {
+    bad(
+      `edit-parser check threw: ${errMsg(err)}`,
+      "npx vitest run tests/model/edit-parser.test.ts",
+    );
+  }
+
+  try {
+    const socialPack = SocialPostSchema.array().parse(
+      JSON.parse(
+        fs.readFileSync(path.join(repoRoot, "data/social-pack.json"), "utf-8"),
+      ),
+    );
+    const sentiment = SentimentEntrySchema.array().parse(
+      JSON.parse(
+        fs.readFileSync(path.join(repoRoot, "data/sentiment.json"), "utf-8"),
+      ),
+    );
+    ok(
+      `data/social-pack.json — ${socialPack.length} illustrative post(s), schema valid`,
+    );
+    ok(
+      `data/sentiment.json — ${sentiment.length} entr(y/ies), schema valid, all signalOnly (strict schema — no sourced-number shape)`,
+    );
+  } catch (err) {
+    bad(
+      `sentiment/social-pack schema check failed: ${errMsg(err)}`,
+      "npm run validate:data for details",
+    );
+  }
+
+  try {
+    const brokenFormulas = Object.entries(FORMULAS).filter(([, def]) => {
+      try {
+        renderToString(def.katex, { throwOnError: true });
+        return false;
+      } catch {
+        return true;
+      }
+    });
+    if (brokenFormulas.length === 0) {
+      ok(
+        `katex renders all ${Object.keys(FORMULAS).length} FormulaDef entries`,
+      );
+    } else {
+      bad(
+        `katex failed to render: ${brokenFormulas.map(([id]) => id).join(", ")}`,
+        "check the KaTeX string in lib/model/formulas.ts",
+      );
+    }
+  } catch (err) {
+    bad(
+      `katex import/render check threw: ${errMsg(err)}`,
+      "npm install (is katex present?) or check lib/model/formulas.ts",
+    );
+  }
+}
+
+/** 12. --live only: one tiny real API call to prove connectivity/auth. */
 async function checkLive(): Promise<void> {
-  section(11, "Live API call (--live)");
+  section(12, "Live API call (--live)");
   if (!process.env.ANTHROPIC_API_KEY) {
     bad(
       "ANTHROPIC_API_KEY not set — cannot run the --live check",
@@ -476,6 +647,7 @@ async function main(): Promise<void> {
 
   checkApiKey();
   checkAuditLog();
+  checkLiveModelBeat();
 
   if (live) {
     try {
