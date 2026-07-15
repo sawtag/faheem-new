@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronRight, Search, SlidersHorizontal } from "lucide-react";
+import { ChevronRight, Folder, Search, SlidersHorizontal } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LogoTile } from "@/components/ui/logo-tile";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { ConnectorAvatar } from "@/components/connections/connector-avatar";
-import { BrandGlyph } from "@/components/chat/brand-glyph";
 import { CONNECTORS } from "@/lib/connectors";
 import {
   SOURCE_GROUPS,
@@ -39,11 +39,17 @@ function bareDomain(url: string): string {
     .replace(/\/.*$/, "");
 }
 
-/** Up to four connected connectors previewed in the "Manage connectors" row. */
-const MANAGE_PREVIEW = CONNECTORS.filter((c) => c.status === "connected").slice(
-  0,
-  4,
-);
+/** Curated mini-cluster for the "Manage connectors" row — colorful workplace
+ *  glyphs (all connected), overlapped like an avatar stack. */
+const MANAGE_PREVIEW_IDS = ["sharepoint", "gdrive", "slack", "gmail"];
+const MANAGE_PREVIEW = MANAGE_PREVIEW_IDS.flatMap((id) => {
+  const c = CONNECTORS.find((x) => x.id === id);
+  return c ? [c] : [];
+});
+
+/** Rows that get the folder-scope affordance (a muted folder glyph before the
+ *  toggle) — file-store sources the analyst scopes to specific folders. */
+const FOLDER_SCOPED = new Set(["sharepoint", "gdrive", "shared-folder"]);
 
 /** Staggered row entrance — capped so the last row never crosses 400ms. */
 const rowVariants = {
@@ -337,6 +343,12 @@ function Submenu({
                   <span className="text-navy min-w-0 flex-1 truncate text-sm font-medium">
                     {s.name[locale]}
                   </span>
+                  {FOLDER_SCOPED.has(s.id) && (
+                    <Folder
+                      className="text-text-secondary/60 size-3.5 shrink-0"
+                      aria-hidden="true"
+                    />
+                  )}
                   <Toggle
                     checked={enabled[s.id] ?? true}
                     onCheckedChange={(v) =>
@@ -354,7 +366,8 @@ function Submenu({
   );
 }
 
-/** 24px source tile — monogram, lucide icon, or simple-icons brand glyph. */
+/** 24px source glyph column — monogram tile, lucide tile, or a bare vendored
+ *  brand logo (20px, no background — the colorful-glyph look). */
 function SourceGlyph({ icon, label }: { icon: SourceIcon; label: string }) {
   if (icon.kind === "monogram") {
     return (
@@ -366,13 +379,23 @@ function SourceGlyph({ icon, label }: { icon: SourceIcon; label: string }) {
       />
     );
   }
+  if (icon.kind === "image") {
+    return (
+      <span className="grid size-6 shrink-0 place-items-center">
+        <Image
+          src={icon.src}
+          alt=""
+          width={20}
+          height={20}
+          unoptimized
+          className="size-5 object-contain"
+        />
+      </span>
+    );
+  }
   return (
     <span className="bg-navy-50 text-navy-600 rounded-btn grid size-6 shrink-0 place-items-center">
-      {icon.kind === "lucide" ? (
-        <LucideIcon name={icon.name} className="size-3.5" />
-      ) : (
-        <BrandGlyph brand={icon.brand} className="size-3.5" />
-      )}
+      <LucideIcon name={icon.name} className="size-3.5" />
     </span>
   );
 }

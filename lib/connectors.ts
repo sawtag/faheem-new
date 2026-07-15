@@ -13,11 +13,15 @@
  * §2.7: "monogram letters never flip") — always set explicitly, never derived
  * from the localized name's first character.
  *
- * `simple-icons` (16.26.0) has no glyphs for Bloomberg, PitchBook, Intralinks,
- * Datasite, Capital IQ or marketaux (verified against the package's icon
- * data — these are enterprise/fintech brands outside its consumer-tech-heavy
- * catalog). Those five + marketaux fall back to the monogram tile, same as
- * every Saudi connector without a clean SVG (AGENTS.md assets policy).
+ * Brand logos are vendored under `public/logos/connectors/` (see its
+ * manifest.json for per-file provenance) and referenced as `image` tiles;
+ * brands whose sourced asset is mush at tile size (full lockups, faint seals,
+ * washed crops) or that sourcing failed for (Bloomberg, PitchBook, Intralinks,
+ * Datasite, marketaux, WAMID) fall back to the monogram tile, same as every
+ * Saudi connector without a clean SVG (AGENTS.md assets policy).
+ *
+ * Ordering (standing user rule): within each status section, Saudi/local
+ * connectors sort ABOVE international ones.
  */
 import type { Localized } from "@/lib/types";
 
@@ -27,7 +31,8 @@ export type ConnectorBadge = "beta" | "mvp";
 
 export type ConnectorTile =
   | { kind: "monogram"; initial: string; tint?: "navy" | "accent" }
-  | { kind: "icon"; icon: "layout-template"; tint?: "navy" | "accent" };
+  | { kind: "icon"; icon: "layout-template"; tint?: "navy" | "accent" }
+  | { kind: "image"; src: string };
 
 export interface Connector {
   id: string;
@@ -75,20 +80,34 @@ export const CONNECTORS: Connector[] = [
     tile: { kind: "monogram", initial: "أ", tint: "accent" },
   },
   {
-    id: "marketaux",
-    name: { en: "marketaux", ar: "marketaux" },
+    id: "sahmk",
+    name: { en: "SAHMK API", ar: "سهمك" },
     description: {
-      en: "Global market news API",
-      ar: "واجهة أخبار الأسواق العالمية",
+      en: "350+ Tadawul companies, fundamentals & prices",
+      ar: "أكثر من 350 شركة مدرجة في تداول — بيانات أساسية وأسعار",
     },
     tooltip: {
-      en: "Global market news API that broadens Faheem's coverage beyond the Saudi market.",
-      ar: "واجهة أخبار عالمية للأسواق توسّع تغطية فهيم إلى ما وراء السوق السعودية.",
+      en: "Fundamentals and live prices for 350+ Tadawul-listed companies.",
+      ar: "بيانات أساسية وأسعار لحظية لأكثر من 350 شركة مدرجة في تداول.",
     },
     group: "external",
     status: "connected",
-    badge: "beta",
-    tile: { kind: "monogram", initial: "M", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/sahmk.png" },
+  },
+  {
+    id: "gastat",
+    name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
+    description: {
+      en: "Official statistics publications — synced to the data room",
+      ar: "إصدارات إحصائية رسمية — مرتبطة بغرفة البيانات",
+    },
+    tooltip: {
+      en: "Official Saudi statistics — the authoritative source for macro and sector indicators.",
+      ar: "الإحصاءات الرسمية السعودية — المصدر المعتمد للمؤشرات الكلية والقطاعية.",
+    },
+    group: "external",
+    status: "connected",
+    tile: { kind: "monogram", initial: "إ", tint: "navy" },
   },
   {
     id: "lunar-data-room",
@@ -120,11 +139,6 @@ export const CONNECTORS: Connector[] = [
     status: "connected",
     tile: { kind: "icon", icon: "layout-template", tint: "navy" },
   },
-  // Internal workplace systems — the OAuth integrations behind the composer's
-  // "Internal Sources" picker group (lib/sources.ts). Connected so the picker's
-  // "Manage connectors" link lands on a coherent Connections page. Microsoft/
-  // Google brands have no clean glyph in simple-icons 16.26.0, so they use
-  // monogram tiles here, matching this file's convention for every other brand.
   {
     id: "shared-folder",
     name: { en: "Windows Shared Folder", ar: "مجلد Windows المشترك" },
@@ -140,6 +154,24 @@ export const CONNECTORS: Connector[] = [
     status: "connected",
     tile: { kind: "monogram", initial: "W", tint: "navy" },
   },
+  // International connected — market feeds + workplace systems (the OAuth
+  // integrations behind the composer's Internal Sources picker group).
+  {
+    id: "marketaux",
+    name: { en: "marketaux", ar: "marketaux" },
+    description: {
+      en: "Global market news API",
+      ar: "واجهة أخبار الأسواق العالمية",
+    },
+    tooltip: {
+      en: "Global market news API that broadens Faheem's coverage beyond the Saudi market.",
+      ar: "واجهة أخبار عالمية للأسواق توسّع تغطية فهيم إلى ما وراء السوق السعودية.",
+    },
+    group: "external",
+    status: "connected",
+    badge: "beta",
+    tile: { kind: "monogram", initial: "M", tint: "navy" },
+  },
   {
     id: "sharepoint",
     name: { en: "SharePoint", ar: "SharePoint" },
@@ -153,7 +185,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "S", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/sharepoint.svg" },
   },
   {
     id: "onedrive",
@@ -168,7 +200,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "O", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/onedrive.svg" },
   },
   {
     id: "outlook",
@@ -183,7 +215,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "O", tint: "accent" },
+    tile: { kind: "image", src: "/logos/connectors/outlook.svg" },
   },
   {
     id: "teams",
@@ -198,7 +230,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "T", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/teams.svg" },
   },
   {
     id: "gmail",
@@ -213,7 +245,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "G", tint: "accent" },
+    tile: { kind: "image", src: "/logos/connectors/gmail.svg" },
   },
   {
     id: "google-calendar",
@@ -228,7 +260,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "C", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/google-calendar.svg" },
   },
   {
     id: "gdrive",
@@ -243,7 +275,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "G", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/gdrive.svg" },
   },
   {
     id: "slack",
@@ -258,7 +290,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "S", tint: "accent" },
+    tile: { kind: "image", src: "/logos/connectors/slack.svg" },
   },
   {
     id: "salesforce",
@@ -273,25 +305,73 @@ export const CONNECTORS: Connector[] = [
     },
     group: "internal",
     status: "connected",
-    tile: { kind: "monogram", initial: "S", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/salesforce.svg" },
   },
-
-  // ── Available ──────────────────────────────────────────────────────────
   {
-    id: "sahmk",
-    name: { en: "SAHMK API", ar: "سهمك" },
+    id: "granola",
+    name: { en: "Granola", ar: "Granola" },
     description: {
-      en: "350+ Tadawul companies, fundamentals & prices",
-      ar: "أكثر من 350 شركة مدرجة في تداول — بيانات أساسية وأسعار",
+      en: "AI meeting notes and call transcripts",
+      ar: "ملاحظات الاجتماعات ونصوص المكالمات بالذكاء الاصطناعي",
     },
     tooltip: {
-      en: "Fundamentals and live prices for 350+ Tadawul-listed companies.",
-      ar: "بيانات أساسية وأسعار لحظية لأكثر من 350 شركة مدرجة في تداول.",
+      en: "AI meeting notes and call transcripts from deal-team calls.",
+      ar: "ملاحظات اجتماعات ونصوص مكالمات فريق الصفقة بالذكاء الاصطناعي.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/granola.png" },
+  },
+
+  // ── Available (Saudi/local first) ──────────────────────────────────────
+  {
+    id: "od-data-gov-sa",
+    name: { en: "od.data.gov.sa", ar: "od.data.gov.sa" },
+    description: {
+      en: "Saudi open government data",
+      ar: "البيانات الحكومية المفتوحة السعودية",
+    },
+    tooltip: {
+      en: "Saudi Arabia's open government data platform — public datasets across sectors.",
+      ar: "منصة البيانات الحكومية المفتوحة في السعودية — بيانات عامة تغطي مختلف القطاعات.",
+    },
+    group: "external",
+    status: "available",
+    tile: { kind: "monogram", initial: "ب", tint: "navy" },
+  },
+  {
+    id: "rega",
+    name: { en: "REGA", ar: "الهيئة العامة للعقار" },
+    description: {
+      en: "Real-estate market indicators",
+      ar: "مؤشرات سوق العقار",
+    },
+    tooltip: {
+      en: "Real-estate market indicators from Saudi Arabia's real estate authority.",
+      ar: "مؤشرات سوق العقار الصادرة عن الهيئة العامة للعقار.",
+    },
+    group: "external",
+    status: "available",
+    tile: { kind: "monogram", initial: "ع", tint: "navy" },
+  },
+  {
+    id: "alinma-open-banking",
+    name: {
+      en: "Alinma Open Banking",
+      ar: "الإنماء — الخدمات المصرفية المفتوحة",
+    },
+    description: {
+      en: "Books & ERP via SAMA open-banking framework",
+      ar: "الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لساما",
+    },
+    tooltip: {
+      en: "Books and ERP data via SAMA's open-banking framework.",
+      ar: "بيانات الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لدى ساما.",
     },
     group: "external",
     status: "available",
     badge: "mvp",
-    tile: { kind: "monogram", initial: "س", tint: "navy" },
+    tile: { kind: "monogram", initial: "ا", tint: "accent" },
   },
   {
     id: "bloomberg",
@@ -345,70 +425,6 @@ export const CONNECTORS: Connector[] = [
     tile: { kind: "monogram", initial: "D" },
   },
   {
-    id: "od-data-gov-sa",
-    name: { en: "od.data.gov.sa", ar: "od.data.gov.sa" },
-    description: {
-      en: "Saudi open government data",
-      ar: "البيانات الحكومية المفتوحة السعودية",
-    },
-    tooltip: {
-      en: "Saudi Arabia's open government data platform — public datasets across sectors.",
-      ar: "منصة البيانات الحكومية المفتوحة في السعودية — بيانات عامة تغطي مختلف القطاعات.",
-    },
-    group: "external",
-    status: "available",
-    tile: { kind: "monogram", initial: "ب", tint: "navy" },
-  },
-  {
-    id: "rega",
-    name: { en: "REGA", ar: "الهيئة العامة للعقار" },
-    description: {
-      en: "Real-estate market indicators",
-      ar: "مؤشرات سوق العقار",
-    },
-    tooltip: {
-      en: "Real-estate market indicators from Saudi Arabia's real estate authority.",
-      ar: "مؤشرات سوق العقار الصادرة عن الهيئة العامة للعقار.",
-    },
-    group: "external",
-    status: "available",
-    tile: { kind: "monogram", initial: "ع", tint: "navy" },
-  },
-  {
-    id: "gastat",
-    name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
-    description: {
-      en: "Official statistics publications — synced to the data room",
-      ar: "إصدارات إحصائية رسمية — مرتبطة بغرفة البيانات",
-    },
-    tooltip: {
-      en: "Official Saudi statistics — the authoritative source for macro and sector indicators.",
-      ar: "الإحصاءات الرسمية السعودية — المصدر المعتمد للمؤشرات الكلية والقطاعية.",
-    },
-    group: "external",
-    status: "connected",
-    tile: { kind: "monogram", initial: "إ", tint: "navy" },
-  },
-  {
-    id: "alinma-open-banking",
-    name: {
-      en: "Alinma Open Banking",
-      ar: "الإنماء — الخدمات المصرفية المفتوحة",
-    },
-    description: {
-      en: "Books & ERP via SAMA open-banking framework",
-      ar: "الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لساما",
-    },
-    tooltip: {
-      en: "Books and ERP data via SAMA's open-banking framework.",
-      ar: "بيانات الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لدى ساما.",
-    },
-    group: "external",
-    status: "available",
-    badge: "mvp",
-    tile: { kind: "monogram", initial: "ا", tint: "accent" },
-  },
-  {
     id: "capital-iq",
     name: { en: "Capital IQ", ar: "Capital IQ" },
     description: {
@@ -421,7 +437,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "external",
     status: "available",
-    tile: { kind: "monogram", initial: "C" },
+    tile: { kind: "image", src: "/logos/connectors/capital-iq.svg" },
   },
   {
     id: "social-alt-data",

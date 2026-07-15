@@ -7,11 +7,13 @@
  * To add a data source, append one entry here — the composer picker, toggles,
  * and tooltips derive from it. Nothing else needs editing.
  *
- * Icon policy (AGENTS.md assets rule): GCC/Saudi providers and data vendors
- * without a clean brand SVG use monogram tiles (initial + navy/accent tint, the
- * same shape lib/connectors.ts uses); international SaaS with a glyph in the
- * installed `simple-icons` use a `brand` glyph; everything generic uses a lucide
- * icon. Tile initials are FIXED per entry regardless of locale.
+ * Icon policy (AGENTS.md assets rule): providers with a crisp vendored brand
+ * glyph in `public/logos/connectors/` (see its manifest.json for provenance)
+ * use an `image` icon, rendered bare at row size; providers whose sourced
+ * asset reads as mush at 20px (full lockups, faint seals, washed crops) and
+ * the ones sourcing failed for keep monogram tiles (initial + navy/accent
+ * tint, the same shape lib/connectors.ts uses); generic concepts use lucide
+ * icons. Tile initials are FIXED per entry regardless of locale.
  *
  * Order matters: within each group GCC/local providers come first, then the
  * international set. `external` → `broker` → `internal` is the picker's group
@@ -28,18 +30,15 @@ export const SOURCE_GROUPS: readonly SourceGroup[] = [
   "internal",
 ];
 
-/** simple-icons brand glyphs available in the installed package (16.26.0). */
-export type BrandSlug = "gmail" | "google-calendar" | "google-drive";
-
 /**
  * A source's tile/icon. Mirrors lib/connectors.ts's discriminated `ConnectorTile`
  * shape rather than parallel optional fields: `monogram` (letter tile),
- * `lucide` (kebab icon name) or `brand` (simple-icons glyph).
+ * `lucide` (kebab icon name) or `image` (vendored brand glyph, rendered bare).
  */
 export type SourceIcon =
   | { kind: "monogram"; initial: string; tint?: "navy" | "accent" }
   | { kind: "lucide"; name: string }
-  | { kind: "brand"; brand: BrandSlug };
+  | { kind: "image"; src: string };
 
 export interface Source {
   id: string;
@@ -65,7 +64,7 @@ export const SOURCES: Source[] = [
       ar: "بيانات تداول اللحظية — أسعار تاسي ونمو والقوائم المالية والإعلانات.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "س", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/sahmk.png" },
   },
   {
     id: "wamid",
@@ -109,7 +108,7 @@ export const SOURCES: Source[] = [
       ar: "أسعار لحظية ونهاية اليوم وأخبار لأكثر من 80 سوقًا من بينها تداول.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "م", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/mubasher.svg" },
   },
   {
     id: "sama-open-data",
@@ -142,7 +141,7 @@ export const SOURCES: Source[] = [
       ar: "واجهات مصرفية مفتوحة مرخصة من ساما لبيانات الحسابات والمعاملات.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "ل", tint: "accent" },
+    icon: { kind: "image", src: "/logos/connectors/lean.svg" },
   },
   {
     id: "zawya",
@@ -216,7 +215,7 @@ export const SOURCES: Source[] = [
       ar: "البيانات الأساسية والتقديرات وبيانات السوق من S&P Capital IQ.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "C", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/capital-iq.svg" },
   },
   {
     id: "crunchbase",
@@ -227,7 +226,7 @@ export const SOURCES: Source[] = [
       ar: "ملفات الشركات الناشئة والخاصة وجولات التمويل والمستثمرون.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "C", tint: "accent" },
+    icon: { kind: "image", src: "/logos/connectors/crunchbase.png" },
   },
   {
     id: "third-bridge",
@@ -238,7 +237,7 @@ export const SOURCES: Source[] = [
       ar: "نصوص مقابلات شبكة الخبراء مع متخصصي القطاعات.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "T", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/third-bridge.png" },
   },
   {
     id: "international-filings",
@@ -259,7 +258,7 @@ export const SOURCES: Source[] = [
       ar: "سجل الشركات في المملكة المتحدة — الإفصاحات والمديرون والملكية.",
     },
     group: "external",
-    icon: { kind: "monogram", initial: "C", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/companies-house.svg" },
   },
 
   // ── Broker research (Saudi/MENA sell-side houses) ───────────────────────
@@ -272,7 +271,7 @@ export const SOURCES: Source[] = [
       ar: "أبحاث الأسهم السعودية وتغطية القطاعات.",
     },
     group: "broker",
-    icon: { kind: "monogram", initial: "S", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/snb-capital.png" },
   },
   {
     id: "alrajhi-capital",
@@ -283,7 +282,7 @@ export const SOURCES: Source[] = [
       ar: "أبحاث الأسهم السعودية واستراتيجية السوق.",
     },
     group: "broker",
-    icon: { kind: "monogram", initial: "R", tint: "accent" },
+    icon: { kind: "image", src: "/logos/connectors/alrajhi-capital.png" },
   },
   {
     id: "jadwa",
@@ -305,7 +304,7 @@ export const SOURCES: Source[] = [
       ar: "أبحاث الأسهم والتغطيات الجديدة في قطاعات تاسي.",
     },
     group: "broker",
-    icon: { kind: "monogram", initial: "R", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/riyad-capital.png" },
   },
   {
     id: "efg-hermes",
@@ -316,7 +315,7 @@ export const SOURCES: Source[] = [
       ar: "أبحاث واستراتيجية على مستوى الشرق الأوسط وشمال أفريقيا.",
     },
     group: "broker",
-    icon: { kind: "monogram", initial: "E", tint: "accent" },
+    icon: { kind: "image", src: "/logos/connectors/efg-hermes.png" },
   },
 
   // ── Internal · the firm's own systems (native corpus first) ─────────────
@@ -379,7 +378,7 @@ export const SOURCES: Source[] = [
       ar: "مواقع الفرق والمذكرات ومكتبات المستندات.",
     },
     group: "internal",
-    icon: { kind: "monogram", initial: "S", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/sharepoint.svg" },
   },
   {
     id: "onedrive",
@@ -390,7 +389,7 @@ export const SOURCES: Source[] = [
       ar: "ملفات العمل المتزامنة للمحللين.",
     },
     group: "internal",
-    icon: { kind: "monogram", initial: "O", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/onedrive.svg" },
   },
   {
     id: "outlook",
@@ -401,7 +400,7 @@ export const SOURCES: Source[] = [
       ar: "سلاسل بريد فريق الصفقة والمرفقات.",
     },
     group: "internal",
-    icon: { kind: "monogram", initial: "O", tint: "accent" },
+    icon: { kind: "image", src: "/logos/connectors/outlook.svg" },
   },
   {
     id: "teams",
@@ -412,7 +411,7 @@ export const SOURCES: Source[] = [
       ar: "رسائل قنوات الصفقات والملفات المشتركة.",
     },
     group: "internal",
-    icon: { kind: "monogram", initial: "T", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/teams.svg" },
   },
   {
     id: "gmail",
@@ -423,7 +422,7 @@ export const SOURCES: Source[] = [
       ar: "البريد المرتبط بالصفقات والمرفقات.",
     },
     group: "internal",
-    icon: { kind: "brand", brand: "gmail" },
+    icon: { kind: "image", src: "/logos/connectors/gmail.svg" },
   },
   {
     id: "google-calendar",
@@ -434,7 +433,7 @@ export const SOURCES: Source[] = [
       ar: "الاجتماعات ومواعيد لجنة الاستثمار وجداول الجولات الترويجية.",
     },
     group: "internal",
-    icon: { kind: "brand", brand: "google-calendar" },
+    icon: { kind: "image", src: "/logos/connectors/google-calendar.svg" },
   },
   {
     id: "gdrive",
@@ -445,7 +444,7 @@ export const SOURCES: Source[] = [
       ar: "المجلدات المشتركة ومستندات العمل.",
     },
     group: "internal",
-    icon: { kind: "brand", brand: "google-drive" },
+    icon: { kind: "image", src: "/logos/connectors/gdrive.svg" },
   },
   {
     id: "slack",
@@ -456,7 +455,7 @@ export const SOURCES: Source[] = [
       ar: "قنوات مكتب الصفقات والقرارات المثبتة.",
     },
     group: "internal",
-    icon: { kind: "monogram", initial: "S", tint: "accent" },
+    icon: { kind: "image", src: "/logos/connectors/slack.svg" },
   },
   {
     id: "salesforce",
@@ -467,7 +466,18 @@ export const SOURCES: Source[] = [
       ar: "سجلات العلاقات وخط أنابيب الصفقات.",
     },
     group: "internal",
-    icon: { kind: "monogram", initial: "S", tint: "navy" },
+    icon: { kind: "image", src: "/logos/connectors/salesforce.svg" },
+  },
+  {
+    id: "granola",
+    url: "https://granola.ai",
+    name: { en: "Granola", ar: "Granola" },
+    description: {
+      en: "AI meeting notes and call transcripts.",
+      ar: "ملاحظات الاجتماعات ونصوص المكالمات بالذكاء الاصطناعي.",
+    },
+    group: "internal",
+    icon: { kind: "image", src: "/logos/connectors/granola.png" },
   },
 ];
 

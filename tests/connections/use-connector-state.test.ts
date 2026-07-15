@@ -7,15 +7,15 @@ describe("useConnectorsState", () => {
     const { result } = renderHook(() => useConnectorsState());
 
     expect(
-      result.current.connectors.find((c) => c.id === "sahmk")?.status,
+      result.current.connectors.find((c) => c.id === "bloomberg")?.status,
     ).toBe("available");
 
-    act(() => result.current.connect("sahmk"));
+    act(() => result.current.connect("bloomberg"));
 
     expect(
-      result.current.connectors.find((c) => c.id === "sahmk")?.status,
+      result.current.connectors.find((c) => c.id === "bloomberg")?.status,
     ).toBe("connected");
-    expect(result.current.justConnectedId).toBe("sahmk");
+    expect(result.current.justConnectedId).toBe("bloomberg");
   });
 
   it("disconnect() moves a default-connected connector back to 'available'", () => {

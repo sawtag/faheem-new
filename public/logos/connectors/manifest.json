@@ -1,0 +1,219 @@
+[
+  {
+    "id": "sahmk",
+    "file": "sahmk.png",
+    "format": "png",
+    "source_url": "https://sahmk.sa/apple-icon-180x180.png",
+    "note": "180x180 apple-touch icon, clean icon-only mark; no SVG available on site"
+  },
+  {
+    "id": "wamid",
+    "file": null,
+    "format": "failed",
+    "source_url": null,
+    "note": "FAILED. Only asset found was a 32x32 favicon.png (below 64px minimum); no larger icon, no SVG, no usable Wikimedia/Brandfetch match"
+  },
+  {
+    "id": "wathq",
+    "file": "wathq.svg",
+    "format": "svg",
+    "source_url": "https://developer.wathq.sa/sites/default/themes/custom/wathq_theme/logo.svg",
+    "note": "Quality warning: this is the full lockup (icon + Arabic/English wordmark, viewBox 129x65), not a standalone square icon - no icon-only mark exists on the site. wathq.sa itself blocks scripted requests (F5 WAF); sourced from developer.wathq.sa instead"
+  },
+  {
+    "id": "argaam-plus",
+    "file": null,
+    "format": "failed",
+    "source_url": null,
+    "note": "FAILED. Best candidate was a 57x57 apple-touch-icon (below 64px minimum); Wikimedia only has a low-res 172x56 wordmark, not an icon"
+  },
+  {
+    "id": "mubasher",
+    "file": "mubasher.svg",
+    "format": "svg",
+    "source_url": "https://english.mubasher.info/favicon-32x32.svg",
+    "note": "Clean icon-only mark (blue rounded square with 'P' symbol), verified real SVG paths"
+  },
+  {
+    "id": "sama-open-data",
+    "file": "sama-open-data.svg",
+    "format": "svg",
+    "source_url": "https://www.sama.gov.sa/_layouts/15/SAMA.Portal/assets/images/favicon.svg",
+    "note": "Official SAMA circular emblem/seal"
+  },
+  {
+    "id": "gastat",
+    "file": "gastat.svg",
+    "format": "svg",
+    "source_url": "https://www.stats.gov.sa (site favicon asset)",
+    "note": "Official abstract GASTAT icon mark"
+  },
+  {
+    "id": "lean",
+    "file": "lean.svg",
+    "format": "svg",
+    "source_url": "https://leantech.me/favicon.svg",
+    "note": "Clean vector square mark, official site favicon"
+  },
+  {
+    "id": "zawya",
+    "file": "zawya.png",
+    "format": "png",
+    "source_url": "https://www.zawya.com/favicon-196x196.png",
+    "note": "196x196 PNG, official site favicon (no clean SVG found)"
+  },
+  {
+    "id": "snb-capital",
+    "file": "snb-capital.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'SNB Capital' app (itunes.apple.com)",
+    "note": "Quality warning: official site favicon links were broken/HTML redirects; used official App Store icon (512x512) as fallback"
+  },
+  {
+    "id": "alrajhi-capital",
+    "file": "alrajhi-capital.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for app id6443600368, linked from alrajhi-capital.sa homepage",
+    "note": "Quality warning: site favicons were only 32-48px .ico (below threshold); used official App Store icon (512x512) confirmed via link on their own homepage"
+  },
+  {
+    "id": "jadwa",
+    "file": "jadwa.png",
+    "format": "png",
+    "source_url": "https://www.jadwa.com/sites/default/files/jadwa-fav.png",
+    "note": "185x177 PNG, official site favicon (no clean SVG found)"
+  },
+  {
+    "id": "riyad-capital",
+    "file": "riyad-capital.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'Riyad Capital' app (itunes.apple.com)",
+    "note": "Quality warning: site favicons were only 32px .ico (below threshold); used official App Store icon (512x512) as fallback"
+  },
+  {
+    "id": "efg-hermes",
+    "file": "efg-hermes.png",
+    "format": "png",
+    "source_url": "https://www.efg-hermes.com/uploads/footer_logo_32da805591.svg (icon portion extracted)",
+    "note": "Quality warning: site's combined SVG logo has icon+wordmark as one embedded raster; rendered at high-res and cropped to isolate the square bar-mark icon only (350x350)"
+  },
+  {
+    "id": "pitchbook",
+    "file": "pitchbook.png",
+    "format": "png",
+    "source_url": "https://commons.wikimedia.org/wiki/File:PitchBook_Data_Logo.png",
+    "note": "Quality warning: official site blocked by Cloudflare on all direct/proxy attempts; icon-only 'flag' glyph was cropped out of the official Wikimedia wordmark asset (129x134), no separate icon file was publicly retrievable"
+  },
+  {
+    "id": "capital-iq",
+    "file": "capital-iq.svg",
+    "format": "svg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:S%26P_Logo.svg",
+    "note": "Classic diagonal-split 'S&P' icon mark used as S&P Global's compact brand mark for the Capital IQ connector; official spglobal.com blocked all requests (Akamai WAF, 403)"
+  },
+  {
+    "id": "crunchbase",
+    "file": "crunchbase.png",
+    "format": "png",
+    "source_url": "https://crunchbase.com/apple-touch-icon.png",
+    "note": "Clean official 'cb' icon mark, 180x180, direct from site"
+  },
+  {
+    "id": "third-bridge",
+    "file": "third-bridge.png",
+    "format": "png",
+    "source_url": "https://thirdbridge.com/assets/favicons/android-chrome-512x512.png",
+    "note": "Official bridge-pier icon mark, 512x512"
+  },
+  {
+    "id": "companies-house",
+    "file": "companies-house.svg",
+    "format": "svg",
+    "source_url": "https://www.gov.uk (frontend favicon SVG asset)",
+    "note": "Quality warning: Companies House has no distinct icon separate from the shared GOV.UK crest mark; used the official GOV.UK crown/crest icon since companieshouse.gov.uk doesn't expose its own distinct icon"
+  },
+  {
+    "id": "sec-filings",
+    "file": "sec-filings.svg",
+    "format": "svg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Seal_of_the_United_States_Securities_and_Exchange_Commission.svg",
+    "note": "Official SEC seal, verified pure vector paths (no embedded raster); 223KB is genuine seal detail, not a raster embed, so it was kept despite exceeding the 200KB heuristic"
+  },
+  {
+    "id": "sharepoint",
+    "file": "sharepoint.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Microsoft_Office_SharePoint_(2025%E2%80%93present).svg",
+    "note": "Current (2025-present) full-color product icon from Wikimedia Commons"
+  },
+  {
+    "id": "onedrive",
+    "file": "onedrive.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Microsoft_OneDrive_Icon_(2025_-_present).svg",
+    "note": "Current full-color product icon from Wikimedia Commons"
+  },
+  {
+    "id": "outlook",
+    "file": "outlook.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Microsoft_Outlook_Icon_(2025%E2%80%93present).svg",
+    "note": "Current (2025-present) full-color product icon from Wikimedia Commons"
+  },
+  {
+    "id": "teams",
+    "file": "teams.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Microsoft_Office_Teams_(2025%E2%80%93present).svg",
+    "note": "Current full-color product icon from Wikimedia Commons; small viewBox but scales cleanly"
+  },
+  {
+    "id": "gmail",
+    "file": "gmail.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Gmail_icon_(2026).svg",
+    "note": "Latest 2026 refresh, full-color, from Wikimedia Commons"
+  },
+  {
+    "id": "google-calendar",
+    "file": "google-calendar.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Google_Calendar_icon_(2026).svg",
+    "note": "Latest 2026 refresh, full-color, from Wikimedia Commons"
+  },
+  {
+    "id": "gdrive",
+    "file": "gdrive.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Google_Drive_icon_(2026).svg",
+    "note": "Latest 2026 refresh, full-color, from Wikimedia Commons"
+  },
+  {
+    "id": "slack",
+    "file": "slack.svg",
+    "format": "svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
+    "note": "Official 4-color hashtag mark, icon-only, from Wikimedia Commons"
+  },
+  {
+    "id": "salesforce",
+    "file": "salesforce.svg",
+    "format": "svg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salesforce.com_logo.svg",
+    "note": "Quality warning: Commons has no text-free cloud-only variant; this is the compact cloud mark with a small 'salesforce' wordmark baked in (viewBox 273x191, not square) - industry-standard connector-tile representation"
+  },
+  {
+    "id": "shared-folder",
+    "file": null,
+    "format": "skipped",
+    "source_url": null,
+    "note": "Skipped per instructions - generic connector, no brand"
+  },
+  {
+    "id": "granola",
+    "file": "granola.png",
+    "format": "png",
+    "source_url": "https://www.granola.ai/favicon/apple-touch-icon.png",
+    "note": "180x180 apple-touch icon; the site's favicon.svg was a raster PNG wrapped in an SVG container (RealFaviconGenerator output, not a true vector), so the equivalent clean PNG was used instead"
+  }
+]

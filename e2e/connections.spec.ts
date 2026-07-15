@@ -43,9 +43,15 @@ test.describe("Connections page", () => {
       page.locator(".min-h-16", { hasText: "Bloomberg" }),
     ).toBeVisible();
 
+    // SAHMK is live (the composer picker treats it as a connected source).
     const sahmkRow = page.locator(".min-h-16", { hasText: "SAHMK API" });
     await expect(
-      sahmkRow.getByRole("button", { name: "Connect" }),
+      sahmkRow.getByText("Connected", { exact: true }),
+    ).toBeVisible();
+
+    const bloombergRow = page.locator(".min-h-16", { hasText: "Bloomberg" });
+    await expect(
+      bloombergRow.getByRole("button", { name: "Connect" }),
     ).toBeVisible();
 
     expect(errors).toEqual([]);
@@ -98,8 +104,8 @@ test.describe("Connections page", () => {
     page,
   }) => {
     await page.goto("/connections");
-    const sahmkRow = page.locator(".min-h-16", { hasText: "SAHMK API" });
-    await sahmkRow.getByRole("button", { name: "Connect" }).click();
+    const bloombergRow = page.locator(".min-h-16", { hasText: "Bloomberg" });
+    await bloombergRow.getByRole("button", { name: "Connect" }).click();
 
     const dialog = page.getByRole("dialog");
     await expect(
@@ -116,10 +122,10 @@ test.describe("Connections page", () => {
     await expect(dialog).toBeHidden({ timeout: 3000 });
 
     await expect(
-      sahmkRow.getByRole("button", { name: "Configure" }),
+      bloombergRow.getByRole("button", { name: "Configure" }),
     ).toBeVisible();
     await expect(
-      sahmkRow.getByText("Connected", { exact: true }),
+      bloombergRow.getByText("Connected", { exact: true }),
     ).toBeVisible();
   });
 });
