@@ -222,9 +222,6 @@
       "agentsHeader": "Agents",
       "docsHeader": "Documents",
       "noMatches": "No matches",
-      "sources": "Sources",
-      "sourcesExternal": "External",
-      "sourcesInternal": "Internal",
       "modelLabel": "Model"
     },
     "model": {
@@ -241,35 +238,16 @@
         "desc": "Faster drafting and quick lookups"
       }
     },
-    "source": {
-      "tadawul": {
-        "name": "Tadawul disclosures",
-        "desc": "Official Saudi Exchange filings, disclosures and announcements."
-      },
-      "argaam": {
-        "name": "Argaam",
-        "desc": "Saudi financial news and market data."
-      },
-      "news": {
-        "name": "News",
-        "desc": "Global market news and industry coverage."
-      },
-      "web": {
-        "name": "Web",
-        "desc": "Open web search for context beyond your sources."
-      },
-      "dataroom": {
-        "name": "Lunar Data Room",
-        "desc": "Deal documents and internal files."
-      },
-      "templates": {
-        "name": "Templates",
-        "desc": "Lunar-branded memo, model and deck templates."
-      },
-      "mandate": {
-        "name": "Mandate",
-        "desc": "Your IC Charter — cited back in every decision."
-      }
+    "sourcePicker": {
+      "trigger": "Data sources",
+      "all": "All sources",
+      "count": "{count} sources",
+      "external": "External Sources",
+      "broker": "Broker Research",
+      "internal": "Internal Sources",
+      "search": "Search sources…",
+      "noMatches": "No sources match",
+      "manage": "Manage connectors"
     },
     "activity": {
       "working": "Analyzing",

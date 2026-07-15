@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest";
 import { CONNECTORS } from "@/lib/connectors";
 
 describe("CONNECTORS", () => {
-  // 15 from the design brief + "Social & Alt-Data" (WS-D roadmap connector —
-  // real social/alt-data feeds live here, same MVP-roadmap posture as
-  // SAHMK/Alinma; the sentiment agent itself only ever reads the illustrative
-  // demo pack, per the live-model-provenance plan §0 sentiment rule).
-  it("has the 16-connector catalog (design-brief 15 + the Social & Alt-Data roadmap connector)", () => {
-    expect(CONNECTORS).toHaveLength(16);
+  // 15 from the design brief + "Social & Alt-Data" (WS-D roadmap connector) +
+  // the 10 internal workplace integrations backing the composer's Internal
+  // Sources picker group (lib/sources.ts) — added connected so the picker's
+  // "Manage connectors" link lands on a coherent Connections page.
+  it("has the 26-connector catalog (16 base + 10 internal workplace integrations)", () => {
+    expect(CONNECTORS).toHaveLength(26);
   });
 
   it("has unique ids", () => {
@@ -15,9 +15,9 @@ describe("CONNECTORS", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it("has 6 connected and 10 available, in that order", () => {
+  it("has 16 connected and 10 available, connected-first", () => {
     const statuses = CONNECTORS.map((c) => c.status);
-    expect(statuses.filter((s) => s === "connected")).toHaveLength(6);
+    expect(statuses.filter((s) => s === "connected")).toHaveLength(16);
     expect(statuses.filter((s) => s === "available")).toHaveLength(10);
     // Connected entries all precede Available entries (wizard grid order).
     const firstAvailable = statuses.indexOf("available");

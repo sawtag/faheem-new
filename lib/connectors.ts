@@ -120,6 +120,161 @@ export const CONNECTORS: Connector[] = [
     status: "connected",
     tile: { kind: "icon", icon: "layout-template", tint: "navy" },
   },
+  // Internal workplace systems — the OAuth integrations behind the composer's
+  // "Internal Sources" picker group (lib/sources.ts). Connected so the picker's
+  // "Manage connectors" link lands on a coherent Connections page. Microsoft/
+  // Google brands have no clean glyph in simple-icons 16.26.0, so they use
+  // monogram tiles here, matching this file's convention for every other brand.
+  {
+    id: "shared-folder",
+    name: { en: "Windows Shared Folder", ar: "مجلد Windows المشترك" },
+    description: {
+      en: "Deal files on the firm's network shares",
+      ar: "ملفات الصفقات على مجلدات الشبكة الداخلية للشركة",
+    },
+    tooltip: {
+      en: "Deal files on the firm's Windows network shares, indexed for search.",
+      ar: "ملفات الصفقات على مجلدات شبكة Windows الداخلية، مفهرسة للبحث.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "W", tint: "navy" },
+  },
+  {
+    id: "sharepoint",
+    name: { en: "SharePoint", ar: "SharePoint" },
+    description: {
+      en: "Team sites, memos, and document libraries",
+      ar: "مواقع الفرق والمذكرات ومكتبات المستندات",
+    },
+    tooltip: {
+      en: "SharePoint team sites, memos and document libraries across the firm.",
+      ar: "مواقع فرق SharePoint والمذكرات ومكتبات المستندات عبر الشركة.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "S", tint: "navy" },
+  },
+  {
+    id: "onedrive",
+    name: { en: "OneDrive", ar: "OneDrive" },
+    description: {
+      en: "Analysts' synced working files",
+      ar: "ملفات العمل المتزامنة للمحللين",
+    },
+    tooltip: {
+      en: "Each analyst's synced OneDrive working files.",
+      ar: "ملفات العمل المتزامنة لكل محلل على OneDrive.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "O", tint: "navy" },
+  },
+  {
+    id: "outlook",
+    name: { en: "Outlook", ar: "Outlook" },
+    description: {
+      en: "Deal-team email threads and attachments",
+      ar: "سلاسل بريد فريق الصفقة والمرفقات",
+    },
+    tooltip: {
+      en: "Deal-team Outlook threads and attachments, kept in context.",
+      ar: "سلاسل بريد فريق الصفقة ومرفقاته في Outlook، ضمن السياق.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "O", tint: "accent" },
+  },
+  {
+    id: "teams",
+    name: { en: "Microsoft Teams", ar: "Microsoft Teams" },
+    description: {
+      en: "Deal-channel messages and shared files",
+      ar: "رسائل قنوات الصفقات والملفات المشتركة",
+    },
+    tooltip: {
+      en: "Microsoft Teams deal-channel messages and shared files.",
+      ar: "رسائل قنوات الصفقات والملفات المشتركة على Microsoft Teams.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "T", tint: "navy" },
+  },
+  {
+    id: "gmail",
+    name: { en: "Gmail", ar: "Gmail" },
+    description: {
+      en: "Deal-related mail and attachments",
+      ar: "البريد المرتبط بالصفقات والمرفقات",
+    },
+    tooltip: {
+      en: "Deal-related Gmail messages and attachments.",
+      ar: "رسائل ومرفقات Gmail المرتبطة بالصفقات.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "G", tint: "accent" },
+  },
+  {
+    id: "google-calendar",
+    name: { en: "Google Calendar", ar: "تقويم Google" },
+    description: {
+      en: "Meetings, IC dates, and roadshow schedules",
+      ar: "الاجتماعات ومواعيد لجنة الاستثمار وجداول الجولات الترويجية",
+    },
+    tooltip: {
+      en: "Meetings, IC dates and roadshow schedules from Google Calendar.",
+      ar: "الاجتماعات ومواعيد لجنة الاستثمار وجداول الجولات من تقويم Google.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "C", tint: "navy" },
+  },
+  {
+    id: "gdrive",
+    name: { en: "Google Drive", ar: "Google Drive" },
+    description: {
+      en: "Shared drives and working documents",
+      ar: "المجلدات المشتركة ومستندات العمل",
+    },
+    tooltip: {
+      en: "Google Drive shared drives and working documents.",
+      ar: "المجلدات المشتركة ومستندات العمل على Google Drive.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "G", tint: "navy" },
+  },
+  {
+    id: "slack",
+    name: { en: "Slack", ar: "Slack" },
+    description: {
+      en: "Deal-desk channels and pinned decisions",
+      ar: "قنوات مكتب الصفقات والقرارات المثبتة",
+    },
+    tooltip: {
+      en: "Slack deal-desk channels and the decisions pinned in them.",
+      ar: "قنوات مكتب الصفقات على Slack والقرارات المثبتة فيها.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "S", tint: "accent" },
+  },
+  {
+    id: "salesforce",
+    name: { en: "Salesforce", ar: "Salesforce" },
+    description: {
+      en: "Relationship and pipeline records",
+      ar: "سجلات العلاقات وخط أنابيب الصفقات",
+    },
+    tooltip: {
+      en: "Salesforce relationship and pipeline records for sourcing context.",
+      ar: "سجلات العلاقات وخط أنابيب الصفقات في Salesforce لسياق التوريد.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "S", tint: "navy" },
+  },
 
   // ── Available ──────────────────────────────────────────────────────────
   {
