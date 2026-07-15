@@ -28,7 +28,7 @@ export function LanguageToggle() {
       asChild
       variant="neutral"
       size="sm"
-      className="absolute end-6 top-6 z-20 border-none bg-transparent px-3 py-1.5 text-xs text-white/70 hover:bg-transparent hover:text-white"
+      className="text-text-secondary hover:text-navy absolute end-6 top-6 z-20 border-none bg-transparent px-3 py-1.5 text-xs hover:bg-transparent"
     >
       <button type="button" onClick={toggleLocale} dir="ltr">
         EN | عربي

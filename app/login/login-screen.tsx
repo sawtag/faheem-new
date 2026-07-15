@@ -84,15 +84,14 @@ export function LoginScreen() {
   }
 
   return (
-    <main className="bg-navy relative isolate flex min-h-svh items-center justify-center overflow-hidden p-4">
-      {/* backdrop — the design team's finished dark splash cover
-         (public/backgrounds/growth-dark.png): deep-navy field with the emerald
-         growth-swoosh and glass bars climbing off the bottom-right, the raster
-         twin of the app's light hero art. `object-cover` fills the viewport at
-         any aspect; `rtl:-scale-x-100` mirrors the composition in Arabic so the
-         growth arrow climbs "forward" along the RTL reading flow (matching the
-         home hero). The whole splash is the one genuinely dark surface in an
-         otherwise light-mode app, so the dark asset earns its place here. */}
+    <main className="bg-bg relative isolate flex min-h-svh items-center justify-center overflow-hidden p-4">
+      {/* backdrop — the design team's finished LIGHT splash cover
+         (public/backgrounds/growth-light.png), the same asset the home hero
+         uses so sign-in flows seamlessly into the app with no light/dark seam.
+         `object-cover object-bottom` anchors the emerald growth-swoosh + glass
+         bars to the bottom edge under the centred card; `rtl:-scale-x-100`
+         mirrors it in Arabic so the arrow climbs "forward" along the RTL
+         reading flow. The whole app is light-mode, login included. */}
       <motion.div
         aria-hidden="true"
         className="absolute inset-0"
@@ -104,12 +103,12 @@ export function LoginScreen() {
         }}
       >
         <Image
-          src="/backgrounds/growth-dark.png"
+          src="/backgrounds/growth-light.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover rtl:-scale-x-100"
+          className="object-cover object-bottom rtl:-scale-x-100"
         />
       </motion.div>
 
