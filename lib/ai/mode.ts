@@ -32,7 +32,11 @@ export function resolveMode(cookieMode?: string): FaheemMode {
   return (
     normalizeMode(cookieMode) ??
     normalizeMode(process.env.FAHEEM_MODE) ??
-    (process.env.ANTHROPIC_API_KEY ? "auto" : "cached")
+    // FAHEEM_ANTHROPIC_KEY: alias for managed sandboxes (claude.ai cloud
+    // sessions) that may reserve the canonical name; see lib/ai/client.ts.
+    (process.env.ANTHROPIC_API_KEY || process.env.FAHEEM_ANTHROPIC_KEY
+      ? "auto"
+      : "cached")
   );
 }
 

@@ -89,9 +89,18 @@ export interface FaheemClient {
 let injected: FaheemClient | null = null;
 let cachedReal: Anthropic | null = null;
 
-/** The one real SDK instance, `new Anthropic()` resolves the key from the env. */
+/**
+ * ANTHROPIC_API_KEY, falling back to FAHEEM_ANTHROPIC_KEY for managed
+ * sandboxes (claude.ai cloud sessions) that may reserve the canonical name.
+ * Same fallback is inlined in lib/ai/mode.ts, which must not import this
+ * SDK-bearing module.
+ */
+const apiKey = (): string | undefined =>
+  process.env.ANTHROPIC_API_KEY || process.env.FAHEEM_ANTHROPIC_KEY;
+
+/** The one real SDK instance. */
 function realClient(): Anthropic {
-  if (!cachedReal) cachedReal = new Anthropic();
+  if (!cachedReal) cachedReal = new Anthropic({ apiKey: apiKey() });
   return cachedReal;
 }
 
@@ -129,7 +138,7 @@ export async function uploadPdf(
   filename: string,
 ): Promise<string | null> {
   if (injectedUploader) return injectedUploader(bytes, filename);
-  if (!process.env.ANTHROPIC_API_KEY) return null;
+  if (!apiKey()) return null;
   const file = await toFile(bytes, filename, { type: "application/pdf" });
   const res = await realClient().beta.files.upload(
     { file },

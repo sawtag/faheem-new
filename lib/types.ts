@@ -5,6 +5,7 @@
  *
  * Env contract (.env / .env.example):
  *   ANTHROPIC_API_KEY     server-only; SDK imported ONLY in lib/ai/client.ts + API routes
+ *   FAHEEM_ANTHROPIC_KEY  alias for ANTHROPIC_API_KEY (managed sandboxes may reserve the canonical name)
  *   FAHEEM_MODE           live | cached | auto   (runtime override: cookie "faheem_mode" wins)
  *   FAHEEM_MODEL          default "claude-opus-4-8"
  *   FAHEEM_IMPROVE_MODEL  default "claude-haiku-4-5"
