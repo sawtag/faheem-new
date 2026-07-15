@@ -33,16 +33,31 @@ import { pathToFileURL } from "node:url";
 const ROOT = process.cwd();
 
 // `@/lib/...` → `<repo>/lib/....ts`, the builders and everything they import
-// use the tsconfig `@/*` alias, which plain node doesn't know about.
+// use the tsconfig `@/*` alias, which plain node doesn't know about. JSON
+// imports (lib/model/compute's static data/model-inputs.json) additionally
+// need the `type: "json"` import attribute under plain node ESM, which the
+// bundler-style source imports don't carry, attach it here.
 registerHooks({
   resolve(specifier, context, nextResolve) {
     if (specifier.startsWith("@/")) {
       const base = path.join(ROOT, specifier.slice(2));
       for (const file of [base, `${base}.ts`, `${base}.tsx`]) {
         if (fs.existsSync(file) && fs.statSync(file).isFile()) {
-          return { url: pathToFileURL(file).href, shortCircuit: true };
+          const url = pathToFileURL(file).href;
+          if (file.endsWith(".json")) {
+            return {
+              url,
+              importAttributes: { type: "json" },
+              shortCircuit: true,
+            };
+          }
+          return { url, shortCircuit: true };
         }
       }
+    }
+    if (specifier.endsWith(".json")) {
+      const resolved = nextResolve(specifier, context);
+      return { ...resolved, importAttributes: { type: "json" } };
     }
     return nextResolve(specifier, context);
   },
