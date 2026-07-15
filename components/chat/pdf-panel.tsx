@@ -6,7 +6,9 @@ import "react-pdf/dist/Page/TextLayer.css";
 import {
   ChevronLeft,
   ChevronRight,
-  Maximize,
+  Maximize2,
+  Minimize2,
+  MoveHorizontal,
   X,
   ZoomIn,
   ZoomOut,
@@ -84,6 +86,61 @@ export default function PdfPanel({
   const [failed, setFailed] = React.useState(false);
   const [width, setWidth] = React.useState(0);
   const bodyRef = React.useRef<HTMLDivElement>(null);
+
+  // In-app maximize: the SAME tree re-flows into a full-viewport overlay (no
+  // remount, so the loaded document, page, and zoom all survive) and the
+  // ResizeObserver below re-fits the page width automatically. Esc restores;
+  // the X still closes the panel entirely from either state.
+  //
+  // The panel's ancestors include a motion.aside whose transform makes it the
+  // containing block for `fixed`, so plain fixed positioning stays trapped in
+  // the side column. The Popover API escapes to the browser top layer WITHOUT
+  // moving the DOM (nothing remounts, the rendered canvas persists); the
+  // attribute is only present while maximized so the UA's `display: none` for
+  // closed popovers never touches the docked panel.
+  const [maximized, setMaximized] = React.useState(false);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  const firstRender = React.useRef(true);
+  React.useLayoutEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    if (maximized) {
+      // guard: only claim popover when the API exists (jsdom lacks it; the
+      // attribute alone would hide the element via the UA's closed-popover rule)
+      if (typeof el.showPopover === "function") {
+        el.setAttribute("popover", "manual");
+        el.showPopover();
+      }
+    } else if (el.hasAttribute("popover")) {
+      if (typeof el.hidePopover === "function") {
+        try {
+          el.hidePopover();
+        } catch {
+          /* already hidden */
+        }
+      }
+      el.removeAttribute("popover");
+    }
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    // dialog-family motion on toggle: re-trigger the 150ms pop (scale+fade)
+    el.classList.remove("faheem-pop");
+    void el.offsetWidth;
+    el.classList.add("faheem-pop");
+  }, [maximized]);
+  React.useEffect(() => {
+    if (!maximized) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        setMaximized(false);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [maximized]);
 
   // Track the available width so "fit width" and zoom scale from it. The
   // observer fires once on observe(), so no synchronous initial setState.
@@ -283,7 +340,16 @@ export default function PdfPanel({
       : t("page", { page: clampedPage });
 
   return (
-    <div className="bg-card flex h-full flex-col">
+    <div
+      ref={rootRef}
+      className={cn(
+        "bg-card flex flex-col",
+        // popover UA styles bring their own margin/border/padding: zero them
+        maximized
+          ? "shadow-modal fixed inset-0 z-50 m-0 h-screen max-h-none w-screen max-w-none overflow-hidden border-0 p-0"
+          : "h-full",
+      )}
+    >
       {/* header: doc title + controls */}
       <div className="border-border flex h-14 shrink-0 items-center gap-2 border-b px-3">
         <p
@@ -312,7 +378,17 @@ export default function PdfPanel({
             <ZoomIn className="size-4" />
           </IconButton>
           <IconButton label={t("fit")} onClick={() => setZoom(1)}>
-            <Maximize className="size-4" />
+            <MoveHorizontal className="size-4" />
+          </IconButton>
+          <IconButton
+            label={maximized ? t("exitFull") : t("expand")}
+            onClick={() => setMaximized((m) => !m)}
+          >
+            {maximized ? (
+              <Minimize2 className="size-4" />
+            ) : (
+              <Maximize2 className="size-4" />
+            )}
           </IconButton>
           <span className="bg-border mx-1 h-5 w-px" aria-hidden="true" />
           <IconButton label={t("close")} onClick={onClose}>
