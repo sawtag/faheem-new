@@ -125,13 +125,16 @@ export function GlyphBackdrop({
   // content.
   //
   // The composition is authored LTR (bars + arrowhead climb toward the physical
-  // top-right); the whole layer is pinned `dir="ltr"` so it never mirrors, and
-  // `object-bottom` anchors the artwork to the bottom edge under the centred
-  // hero content, whose surrounding whitespace is the image's own pale field.
+  // top-right). Unlike the small logo mark — a fixed brand asset that never
+  // mirrors — this full-bleed environmental art DOES mirror under RTL via
+  // `rtl:-scale-x-100`: the growth arrow then climbs up-and-LEFT, i.e. "forward"
+  // along the Arabic reading flow, and settles into the bottom-left open corner
+  // opposite the flipped sidebar. `object-bottom` anchors it to the bottom edge
+  // under the centred hero content, whose surrounding whitespace is the image's
+  // own pale field.
   return (
     <div
       aria-hidden="true"
-      dir="ltr"
       className={cn(
         "pointer-events-none absolute inset-0 z-0 overflow-hidden",
         className,
@@ -143,7 +146,7 @@ export function GlyphBackdrop({
         fill
         priority
         sizes="100vw"
-        className="object-cover object-bottom"
+        className="object-cover object-bottom rtl:-scale-x-100"
       />
       {/* soft top fade so the serif greeting stays crisp over the palest band */}
       <div className="from-bg absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b to-transparent" />
