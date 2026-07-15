@@ -321,9 +321,9 @@
         "prompt": "Run an AAOIFI compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
       }
     },
-    "brief": {
-      "title": "While you were away",
-      "audit": "Full audit trail"
+    "activity": {
+      "summary": "4 agent tasks completed overnight",
+      "link": "View activity"
     }
   },
   "deals": {

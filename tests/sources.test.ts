@@ -55,15 +55,24 @@ describe("SOURCES taxonomy", () => {
     ]);
   });
 
-  it("opens the broker group with the four Saudi houses, before EFG Hermes", () => {
+  it("opens the broker group with the seven Saudi houses, before the regional block", () => {
     const ids = sourcesInGroup("broker").map((s) => s.id);
-    expect(ids.slice(0, 4)).toEqual([
+    expect(ids.slice(0, 7)).toEqual([
       "snb-capital",
       "alrajhi-capital",
       "jadwa",
       "riyad-capital",
+      "alinma-capital",
+      "aljazira-capital",
+      "gib-capital",
     ]);
-    expect(ids.indexOf("efg-hermes")).toBeGreaterThanOrEqual(4);
+    expect(ids.slice(7)).toEqual([
+      "efg-hermes",
+      "arqaam-capital",
+      "sico",
+      "kamco-invest",
+      "markaz",
+    ]);
   });
 
   it("opens the internal group with the native/local block, before any SaaS", () => {

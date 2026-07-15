@@ -2,9 +2,10 @@ import { expect, test } from "@playwright/test";
 
 /**
  * T3.2 acceptance (plan §T3.2): the omnibox home. A quick-action pill prefills
- * the composer, submitting hands off to `/chat/new?q=…`, a briefing row routes
- * to its surface, and the Arabic hero renders RTL with the name in emerald.
- * The session cookie is set up front so the auth middleware lets `/` through.
+ * the composer, submitting hands off to `/chat/new?q=…`, the quiet overnight-
+ * activity line links to `/audit`, and the Arabic hero renders RTL with the
+ * name in emerald. The session cookie is set up front so the auth middleware
+ * lets `/` through.
  */
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
@@ -48,17 +49,20 @@ test("submitting the composer hands off to /chat/new?q=…", async ({ page }) =>
   expect(seen.some((u) => /\/chat\/new\?q=/.test(u))).toBe(true);
 });
 
-test("a briefing row routes to its surface", async ({ page }) => {
+test("the overnight-activity line renders and links to /audit", async ({
+  page,
+}) => {
   await page.goto("/");
 
-  const brief = page.locator("section").filter({
-    has: page.getByRole("heading", { name: "While you were away" }),
-  });
-  await brief
-    .getByRole("link", { name: /Screening complete for Darb/ })
-    .click();
+  await expect(
+    page.getByText("4 agent tasks completed overnight"),
+  ).toBeVisible();
 
-  await expect(page).toHaveURL(/\/deals\/darb$/);
+  const link = page.getByRole("link", { name: "View activity" });
+  await expect(link).toHaveAttribute("href", "/audit");
+  await link.click();
+
+  await expect(page).toHaveURL(/\/audit$/);
 });
 
 test("ar locale renders the RTL hero with the name in emerald", async ({

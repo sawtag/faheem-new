@@ -20,7 +20,6 @@ import {
   AuditEntrySchema,
   CorpusDocSchema,
   DealSchema,
-  HomeBriefItemSchema,
   ModelInputSchema,
   SeedChatSchema,
   SentimentEntrySchema,
@@ -124,7 +123,6 @@ const modelInputs = loadAndValidate(
 loadAndValidate("data/audit-log.json", AuditEntrySchema.array());
 loadAndValidate("data/artifacts.json", ArtifactMetaSchema.array());
 loadAndValidate("data/seed-chats.json", SeedChatSchema.array());
-loadAndValidate("data/home-brief.json", HomeBriefItemSchema.array());
 const socialPack = loadAndValidate(
   "data/social-pack.json",
   SocialPostSchema.array(),
