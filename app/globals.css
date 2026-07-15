@@ -54,11 +54,6 @@
   --color-text: #101d3a;
   --color-text-secondary: #314160;
 
-  /* ── sidebar rail (quiet terminal: near-white navy wash, deeper at the foot;
-   *    stops sit between card and navy-100 so AA contrast holds) ── */
-  --color-sidebar-top: #fbfdfe;
-  --color-sidebar-bottom: #e9f0f9;
-
   /* ── status ── */
   --color-warning: #f59e0b;
   --color-warning-50: #fef3e2;
@@ -71,6 +66,10 @@
   --radius-pill: 20px;
 
   /* ── elevation (quiet finance-terminal: hairlines first, shadows sparingly) ── */
+  /* rail: symmetric glow so the sidebar reads elevated beside the content;
+   * the start side sits off-canvas, so only the logical end edge shows and
+   * the same token works in both directions */
+  --shadow-rail: 0 0 24px rgba(8, 33, 82, 0.06);
   --shadow-card: 0 10px 24px rgba(8, 33, 82, 0.03);
   --shadow-hover:
     0 12px 32px rgba(8, 33, 82, 0.08), 0 2px 6px rgba(8, 33, 82, 0.05);

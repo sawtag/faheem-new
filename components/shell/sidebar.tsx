@@ -4,8 +4,10 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { motion } from "motion/react";
 import { Folder, PanelLeftClose, PanelLeftOpen, SquarePen } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { Logo } from "@/components/ui/logo";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
@@ -39,13 +41,20 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        // Quiet terminal rail: a near-white navy wash (tokens in globals.css)
-        // that deepens toward the foot, separating the rail from the content
-        // canvas without shouting. Hairline end border stays the divider.
-        "border-border from-sidebar-top to-sidebar-bottom sticky top-0 flex h-screen shrink-0 flex-col border-e bg-gradient-to-b transition-[width] duration-[var(--duration)] ease-[var(--ease)]",
+        // Elevated rail: a whisper white → navy-50 wash, hairline end border,
+        // and a soft symmetric glow (only the end edge shows) so the sidebar
+        // reads as a raised surface beside the content, not a colored column.
+        "border-border from-card to-navy-50 sticky top-0 isolate flex h-screen shrink-0 flex-col border-e bg-gradient-to-b shadow-[var(--shadow-rail)] transition-[width] duration-[var(--duration)] ease-[var(--ease)]",
         collapsed ? "w-16" : "w-[260px]",
       )}
     >
+      {/* brand moment: the growth artwork whispers behind the footer (3%) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-64 overflow-hidden"
+      >
+        <GlyphBackdrop variant="hero" className="opacity-[0.03]" />
+      </div>
       {/* header: logo + collapse toggle */}
       <div
         className={cn(
@@ -139,8 +148,8 @@ export function Sidebar({
         )}
       </nav>
 
-      {/* footer: Ali + firm + language (a touch more tint grounds the rail) */}
-      <div className="border-border bg-navy-100/40 border-t p-3">
+      {/* footer: Ali + firm + language, a grounded band over the brand moment */}
+      <div className="border-border bg-navy-100/50 border-t p-3">
         <div
           className={cn(
             "flex items-center gap-2.5",
@@ -178,7 +187,8 @@ function NewChatButton({
     <Link
       href="/chat/new"
       className={cn(
-        "border-border bg-card text-navy hover:border-navy-300 hover:bg-navy-50 focus-visible:ring-accent focus-visible:ring-offset-card rounded-pill inline-flex h-10 items-center border font-bold shadow-[var(--shadow-card)] transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        // the rail's single color anchor: filled emerald CTA with a hover lift
+        "bg-accent text-card hover:bg-accent-600 focus-visible:ring-accent focus-visible:ring-offset-card rounded-pill inline-flex h-10 items-center font-bold shadow-[var(--shadow-card)] transition-[background-color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease)] outline-none hover:-translate-y-px hover:shadow-[var(--shadow-hover)] focus-visible:ring-2 focus-visible:ring-offset-2",
         collapsed
           ? "w-full justify-center px-0"
           : "w-full justify-center gap-2 px-4 text-[0.9375rem]",
@@ -197,6 +207,19 @@ function NewChatButton({
   );
 }
 
+/** 3px emerald indicator on the logical start edge of the active row. */
+function ActiveBar() {
+  return (
+    <motion.span
+      aria-hidden="true"
+      initial={{ opacity: 0, scaleY: 0.4 }}
+      animate={{ opacity: 1, scaleY: 1 }}
+      transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-accent rounded-pill absolute start-0 top-1/2 h-5 w-[3px] -translate-y-1/2"
+    />
+  );
+}
+
 function SectionLabel({
   collapsed,
   children,
@@ -206,7 +229,7 @@ function SectionLabel({
 }) {
   if (collapsed) return <div className="bg-border mx-auto my-3 h-px w-6" />;
   return (
-    <p className="text-text-secondary px-2.5 pt-5 pb-1.5 text-[0.6875rem] font-bold tracking-[0.06em] uppercase">
+    <p className="text-navy-500 px-2.5 pt-5 pb-1.5 text-[0.65rem] font-bold tracking-[0.09em] uppercase">
       {children}
     </p>
   );
@@ -228,20 +251,26 @@ function NavRow({
   side: "left" | "right";
 }) {
   const rowClass = cn(
-    "flex h-10 items-center rounded-btn text-[0.9375rem] font-semibold transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none",
+    "group relative flex h-10 items-center rounded-btn text-[0.9375rem] font-semibold transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none",
     collapsed ? "justify-center px-0" : "gap-3 px-2.5",
     item.disabled
       ? "text-text-secondary/60 cursor-default"
       : active
-        ? "bg-accent-50 text-accent-800"
-        : "text-text-secondary hover:bg-navy-100/50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card focus-visible:ring-2 focus-visible:ring-offset-2",
+        ? "bg-accent-50 text-navy-900"
+        : "text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card focus-visible:ring-2 focus-visible:ring-offset-2",
   );
 
   const inner = (
     <>
+      {active && <ActiveBar />}
       <LucideIcon
         name={item.icon}
-        className="size-5 shrink-0"
+        className={cn(
+          "size-5 shrink-0 transition-transform duration-[var(--duration-fast)] ease-[var(--ease)]",
+          active
+            ? "text-accent"
+            : "group-hover:translate-x-px rtl:group-hover:-translate-x-px",
+        )}
         strokeWidth={2}
       />
       {!collapsed && <span className="truncate">{label}</span>}
@@ -298,14 +327,23 @@ function ProjectRow({
       href={`/deals/${workspace.id}`}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "rounded-btn focus-visible:ring-accent focus-visible:ring-offset-card flex h-10 items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "group rounded-btn focus-visible:ring-accent focus-visible:ring-offset-card relative flex h-10 items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         collapsed ? "justify-center px-0" : "gap-3 px-2.5",
         active
-          ? "bg-accent-50 text-accent-800"
-          : "text-text-secondary hover:bg-navy-100/50 hover:text-navy",
+          ? "bg-accent-50 text-navy-900"
+          : "text-text-secondary hover:bg-navy-50 hover:text-navy",
       )}
     >
-      <Folder className="size-4 shrink-0" aria-hidden="true" />
+      {active && <ActiveBar />}
+      <Folder
+        className={cn(
+          "size-4 shrink-0 transition-[color,transform] duration-[var(--duration-fast)] ease-[var(--ease)]",
+          active
+            ? "text-accent"
+            : "group-hover:text-accent group-hover:translate-x-px rtl:group-hover:-translate-x-px",
+        )}
+        aria-hidden="true"
+      />
       {!collapsed && (
         <span className="flex min-w-0 items-baseline gap-1.5">
           <span className="truncate text-[0.9375rem] font-semibold">
