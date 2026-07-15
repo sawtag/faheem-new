@@ -228,6 +228,21 @@ export const ArtifactMetaSchema = z.object({
 });
 export type ArtifactMeta = z.infer<typeof ArtifactMetaSchema>;
 
+/** data/home-brief.json = HomeBriefItem[]: the home "While you were away"
+ * agentic briefing rows (seeded narrative events; counts must never contradict
+ * the corpus/deals story). Icon choice is data (AGENTS.md assets policy). */
+export const HomeBriefItemSchema = z.object({
+  id: z.string(),
+  /** lucide icon name (kebab-case) */
+  icon: z.string(),
+  text: LocalizedSchema,
+  /** static seeded relative time; digits stay Western in both locales */
+  time: LocalizedSchema,
+  /** in-app route the row links to */
+  href: z.string(),
+});
+export type HomeBriefItem = z.infer<typeof HomeBriefItemSchema>;
+
 /** data/seed-chats.json = SeedChat[], durable seeded history; localStorage overlays runtime chats */
 export const SeedChatSchema = z.object({
   id: z.string(),

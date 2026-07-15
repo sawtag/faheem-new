@@ -324,13 +324,9 @@
         "prompt": "Run an AAOIFI Shariah screen on Jahez: debt-to-market-cap, non-permissible income and liquidity ratios, with a clear pass or fail on each threshold."
       }
     },
-    "recent": {
-      "title": "Recent workspaces"
-    },
-    "stages": {
-      "screening": "Screening",
-      "analysis": "Deep Analysis",
-      "ic-review": "IC Review"
+    "brief": {
+      "title": "While you were away",
+      "audit": "Full audit trail"
     }
   },
   "deals": {

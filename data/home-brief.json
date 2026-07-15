@@ -1,0 +1,42 @@
+[
+  {
+    "id": "tadawul-sync",
+    "icon": "file-check",
+    "text": {
+      "en": "Tadawul disclosures synced: 2 new Jahez filings ingested and indexed.",
+      "ar": "تمت مزامنة إفصاحات تداول: تم استيعاب وفهرسة إفصاحين جديدين لجاهز."
+    },
+    "time": { "en": "2h ago", "ar": "قبل ساعتين" },
+    "href": "/library"
+  },
+  {
+    "id": "darb-screening",
+    "icon": "shield-check",
+    "text": {
+      "en": "Screening complete for Darb: 5 criteria pass, 1 concentration flag.",
+      "ar": "اكتمل الفرز لدرب: اجتياز 5 معايير وتنبيه تركّز واحد."
+    },
+    "time": { "en": "5h ago", "ar": "قبل 5 ساعات" },
+    "href": "/deals/darb"
+  },
+  {
+    "id": "thara-memo",
+    "icon": "file-text",
+    "text": {
+      "en": "IC memo draft for Thara Pay is ready for review.",
+      "ar": "مسودة مذكرة لجنة الاستثمار لثارا باي جاهزة للمراجعة."
+    },
+    "time": { "en": "1d ago", "ar": "قبل يوم" },
+    "href": "/ic"
+  },
+  {
+    "id": "sector-scan",
+    "icon": "calendar-clock",
+    "text": {
+      "en": "Weekly quick-commerce sector scan ran: 3 signals flagged for review.",
+      "ar": "تم تشغيل المسح الأسبوعي لقطاع التجارة السريعة ورصد 3 إشارات للمراجعة."
+    },
+    "time": { "en": "2d ago", "ar": "قبل يومين" },
+    "href": "/scheduled"
+  }
+]
