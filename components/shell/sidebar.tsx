@@ -4,10 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { PanelLeftClose, PanelLeftOpen, SquarePen } from "lucide-react";
+import { Folder, PanelLeftClose, PanelLeftOpen, SquarePen } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Logo } from "@/components/ui/logo";
-import { LogoTile } from "@/components/ui/logo-tile";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { LocaleToggle } from "@/components/shell/locale-toggle";
@@ -118,10 +117,10 @@ export function Sidebar({
 
         {pinned.length > 0 && (
           <>
-            <SectionLabel collapsed={collapsed}>{t("pinned")}</SectionLabel>
+            <SectionLabel collapsed={collapsed}>{t("projects")}</SectionLabel>
             <ul className="flex flex-col gap-0.5">
               {pinned.map((ws) => (
-                <PinnedRow
+                <ProjectRow
                   key={ws.id}
                   workspace={ws}
                   collapsed={collapsed}
@@ -273,7 +272,8 @@ function NavRow({
   );
 }
 
-function PinnedRow({
+/** Projects section row — a deal workspace behind a plain folder icon. */
+function ProjectRow({
   workspace,
   collapsed,
   active,
@@ -290,22 +290,18 @@ function PinnedRow({
   const row = (
     <Link
       href={`/deals/${workspace.id}`}
+      aria-current={active ? "page" : undefined}
       className={cn(
         "rounded-btn focus-visible:ring-accent focus-visible:ring-offset-card flex h-10 items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        collapsed ? "justify-center px-0" : "gap-2.5 px-2",
-        active ? "bg-navy-50" : "hover:bg-navy-50",
+        collapsed ? "justify-center px-0" : "gap-3 px-2.5",
+        active
+          ? "bg-navy-50 text-navy-700"
+          : "text-text-secondary hover:bg-navy-50 hover:text-navy",
       )}
     >
-      <LogoTile label={workspace.name.en} initial={name.charAt(0)} size={24} />
+      <Folder className="size-4 shrink-0" aria-hidden="true" />
       {!collapsed && (
-        <span
-          className={cn(
-            "truncate text-[0.9375rem] font-semibold",
-            active ? "text-navy-700" : "text-text-secondary",
-          )}
-        >
-          {name}
-        </span>
+        <span className="truncate text-[0.9375rem] font-semibold">{name}</span>
       )}
     </Link>
   );
