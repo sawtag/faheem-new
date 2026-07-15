@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { Plus, Search } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -77,14 +78,18 @@ export default function ConnectionsPage() {
             {t("subtitle")}
           </p>
         </div>
-        <Button
-          size="sm"
-          startIcon={<Plus className="size-4" />}
-          onClick={() => setMcpOpen(true)}
-          className="shrink-0"
-        >
-          {t("addMcp")}
-        </Button>
+        <div className="flex shrink-0 items-center gap-2">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/onboarding">{t("runSetup")}</Link>
+          </Button>
+          <Button
+            size="sm"
+            startIcon={<Plus className="size-4" />}
+            onClick={() => setMcpOpen(true)}
+          >
+            {t("addMcp")}
+          </Button>
+        </div>
       </div>
 
       <Input
