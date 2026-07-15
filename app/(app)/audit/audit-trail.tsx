@@ -174,7 +174,7 @@ function Row({
             {actionLabels[entry.action]}
           </span>
           {detail && (
-            <span className="text-text-secondary truncate">, {detail}</span>
+            <span className="text-text-secondary truncate">· {detail}</span>
           )}
         </span>
         <span role="cell" className="relative justify-self-end">

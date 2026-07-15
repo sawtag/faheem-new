@@ -233,8 +233,8 @@ function NavRow({
     item.disabled
       ? "text-text-secondary/60 cursor-default"
       : active
-        ? "bg-navy-50 text-navy-700"
-        : "text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card focus-visible:ring-2 focus-visible:ring-offset-2",
+        ? "bg-accent-50 text-accent-800"
+        : "text-text-secondary hover:bg-navy-100/50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card focus-visible:ring-2 focus-visible:ring-offset-2",
   );
 
   const inner = (
@@ -301,8 +301,8 @@ function ProjectRow({
         "rounded-btn focus-visible:ring-accent focus-visible:ring-offset-card flex h-10 items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         collapsed ? "justify-center px-0" : "gap-3 px-2.5",
         active
-          ? "bg-navy-50 text-navy-700"
-          : "text-text-secondary hover:bg-navy-50 hover:text-navy",
+          ? "bg-accent-50 text-accent-800"
+          : "text-text-secondary hover:bg-navy-100/50 hover:text-navy",
       )}
     >
       <Folder className="size-4 shrink-0" aria-hidden="true" />

@@ -55,9 +55,9 @@
   --color-text-secondary: #314160;
 
   /* ── sidebar rail (quiet terminal: near-white navy wash, deeper at the foot;
-   *    stops sit between card and navy-50/navy-100 so AA contrast holds) ── */
-  --color-sidebar-top: #fafcfe;
-  --color-sidebar-bottom: #eef3fa;
+   *    stops sit between card and navy-100 so AA contrast holds) ── */
+  --color-sidebar-top: #fbfdfe;
+  --color-sidebar-bottom: #e9f0f9;
 
   /* ── status ── */
   --color-warning: #f59e0b;
