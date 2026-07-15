@@ -96,6 +96,7 @@
     "configure": "تهيئة",
     "connect": "ربط",
     "disconnect": "إلغاء الربط",
+    "visitWebsite": "زيارة الموقع الإلكتروني",
     "moreActions": "المزيد من الإجراءات",
     "cancel": "إلغاء",
     "searchPlaceholder": "ابحث في الموصلات…",
@@ -247,6 +248,7 @@
       "internal": "المصادر الداخلية",
       "search": "ابحث في المصادر…",
       "noMatches": "لا توجد مصادر مطابقة",
+      "visit": "زيارة الموقع",
       "manage": "إدارة الموصّلات"
     },
     "activity": {

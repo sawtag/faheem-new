@@ -4,7 +4,13 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronRight, Folder, Search, SlidersHorizontal } from "lucide-react";
+import {
+  ChevronRight,
+  ExternalLink,
+  Folder,
+  Search,
+  SlidersHorizontal,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -254,6 +260,7 @@ export function SourcePicker() {
                     tipSide={tipSide}
                     searchLabel={t("search")}
                     emptyLabel={t("noMatches")}
+                    visitLabel={t("visit")}
                   />
                 </motion.div>
               )}
@@ -275,6 +282,7 @@ function Submenu({
   tipSide,
   searchLabel,
   emptyLabel,
+  visitLabel,
 }: {
   group: SourceGroup;
   query: string;
@@ -285,6 +293,7 @@ function Submenu({
   tipSide: "left" | "right";
   searchLabel: string;
   emptyLabel: string;
+  visitLabel: string;
 }) {
   const q = query.trim().toLowerCase();
   const rows = sourcesInGroup(group).filter(
@@ -325,7 +334,8 @@ function Submenu({
                 side={tipSide}
                 content={
                   <span className="block">
-                    <span className="font-semibold">{s.name[locale]}</span>,{" "}
+                    <span className="font-semibold">{s.name[locale]}</span>
+                    {": "}
                     {s.description[locale]}
                     {s.url && (
                       <span
@@ -338,11 +348,25 @@ function Submenu({
                   </span>
                 }
               >
-                <div className="rounded-btn hover:bg-navy-50 flex items-center gap-2.5 px-1.5 py-1.5 transition-colors">
+                <div className="rounded-btn hover:bg-navy-50 group flex items-center gap-2.5 px-1.5 py-1.5 transition-colors">
                   <SourceGlyph icon={s.icon} label={s.name[locale]} />
                   <span className="text-navy min-w-0 flex-1 truncate text-sm font-medium">
                     {s.name[locale]}
                   </span>
+                  {s.url && (
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${visitLabel}: ${s.name[locale]}`}
+                      className="text-text-secondary hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn grid size-6 shrink-0 place-items-center opacity-0 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease)] outline-none group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2"
+                    >
+                      <ExternalLink
+                        className="size-3.5 rtl:-scale-x-100"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )}
                   {FOLDER_SCOPED.has(s.id) && (
                     <Folder
                       className="text-text-secondary/60 size-3.5 shrink-0"

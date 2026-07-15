@@ -96,6 +96,7 @@
     "configure": "Configure",
     "connect": "Connect",
     "disconnect": "Disconnect",
+    "visitWebsite": "Visit website",
     "moreActions": "More actions",
     "cancel": "Cancel",
     "searchPlaceholder": "Search connectors…",
@@ -247,6 +248,7 @@
       "internal": "Internal Sources",
       "search": "Search sources…",
       "noMatches": "No sources match",
+      "visit": "Visit site",
       "manage": "Manage connectors"
     },
     "activity": {
