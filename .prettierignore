@@ -20,6 +20,12 @@ BUILD-BRIEF.md
 terms.md
 docs/
 context/
+CLAUDE.md
+.claude/
+# explicit re-ignore: the .gitignore negation (!.claude/skills/) un-ignores this
+# for prettier v3's combined ignore stack; vendored skills stay byte-identical
+# to ~/.claude/skills — never reformat.
+.claude/skills/
 
 # machine-generated pitch-deck build (user-owned, not app code)
 presentation/

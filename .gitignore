@@ -26,9 +26,10 @@ Thumbs.db
 # editors / local tooling
 .vscode/
 .idea/
-# .claude is local-only EXCEPT skills, which claude.ai web sessions load from the repo
+# .claude is local-only EXCEPT skills + settings (hooks), which claude.ai web sessions load from the repo
 .claude/*
 !.claude/skills/
+!.claude/settings.json
 
 # runtime PDF uploads (live-mode only, never committed — see lib/uploads.ts)
 data/uploads/

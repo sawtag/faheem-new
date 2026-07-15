@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -d node_modules ] || { echo 'Fresh clone: running npm ci (~1-2 min)...'; npm ci --no-audit --no-fund >/tmp/npm-ci.log 2>&1 && echo 'npm ci OK - dependencies installed, dev server and tests are runnable.' || { echo 'npm ci FAILED - last lines of /tmp/npm-ci.log:'; tail -30 /tmp/npm-ci.log; }; }",
+            "timeout": 900
+          }
+        ]
+      }
+    ]
+  }
+}
