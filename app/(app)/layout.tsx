@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import { AppShell } from "@/components/shell/app-shell";
-import { EmailToast } from "@/components/shell/email-toast";
 import type { PinnedWorkspace } from "@/components/shell/sidebar";
 import { DemoPalette } from "@/components/demo/palette";
 import { ModeOverlay } from "@/components/demo/mode-overlay";
@@ -39,8 +38,6 @@ export default async function AppLayout({
       <AppShell pinned={pinnedWorkspaces()}>{children}</AppShell>
       <DemoPalette />
       <ModeOverlay initialMode={initialMode} />
-      {/* enterprise-flourish: ambient inbox nudge, flagged one-line mount */}
-      <EmailToast />
     </>
   );
 }

@@ -195,11 +195,6 @@
       "ic": "IC Room",
       "skills": "Skills",
       "dashboard": "Dashboard"
-    },
-    "emailToast": {
-      "title": "Faheem works in your inbox",
-      "body": "Forward any CIM or data-room link to <email>faheem@lunar-inv.sa</email>. Your analyst picks it up.",
-      "dismiss": "Dismiss"
     }
   },
   "chat": {
