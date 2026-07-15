@@ -107,7 +107,9 @@ export const CONNECTORS: Connector[] = [
     },
     group: "external",
     status: "connected",
-    tile: { kind: "monogram", initial: "إ", tint: "navy" },
+    // Real GASTAT mark on the 40px tile; the picker keeps the monogram (the
+    // thin linework fails the crisp bar at 20px, lib/sources.ts).
+    tile: { kind: "image", src: "/logos/connectors/gastat.svg" },
   },
   {
     id: "lunar-data-room",
