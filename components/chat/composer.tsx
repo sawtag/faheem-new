@@ -36,6 +36,7 @@ import { cn } from "@/lib/utils";
 const DOCS = manifest as CorpusDoc[];
 const MODEL_TIERS = ["auto", "max", "light"] as const;
 type ModelTier = (typeof MODEL_TIERS)[number];
+const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
 
 const EXTERNAL_SOURCES = [
   { key: "tadawul", icon: "building-2" },
@@ -217,12 +218,9 @@ export function Composer({
   const isGoldenText = GOLDEN_QUESTIONS.some(
     (g) => g.request.question === text.trim(),
   );
+  const hasText = text.trim().length > 0;
   const showWand =
-    !streaming &&
-    !improved &&
-    !improving &&
-    !isGoldenText &&
-    text.trim().length > 0;
+    !streaming && !improved && !improving && !isGoldenText && hasText;
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
@@ -562,27 +560,29 @@ export function Composer({
 
           <div className="ms-auto flex items-center gap-1">
             <AnimatePresence mode="wait">
-              {improved ? (
+              {improved && hasText ? (
                 <motion.button
                   key="undo"
                   type="button"
                   onClick={undo}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.15, ease: EASE }}
                   className="text-accent-700 hover:text-accent-800 focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn px-2 py-1 text-sm font-semibold underline-offset-2 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-offset-2"
                 >
                   {t("undo")}
                 </motion.button>
-              ) : showWand || improving ? (
+              ) : (showWand || improving) && hasText ? (
                 <motion.button
                   key="wand"
                   type="button"
                   onClick={improve}
                   disabled={improving}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.15, ease: EASE }}
                   className="text-accent-700 hover:bg-accent-50 focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn inline-flex items-center gap-1.5 px-2 py-1 text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60"
                 >
                   <Sparkles
