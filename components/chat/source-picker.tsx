@@ -321,7 +321,7 @@ function Submenu({
           {emptyLabel}
         </p>
       ) : (
-        <div className="max-h-64 overflow-y-auto">
+        <div className="faheem-scrollbar max-h-64 overflow-y-auto">
           {rows.map((s, i) => (
             <motion.div
               key={s.id}

@@ -327,7 +327,7 @@ export function ChatView({ id }: { id: string }) {
         <div
           ref={scrollRef}
           onScroll={onScroll}
-          className="flex-1 overflow-y-auto"
+          className="faheem-scrollbar flex-1 overflow-y-auto"
         >
           <div className="mx-auto flex max-w-3xl flex-col gap-8 px-6 py-8">
             {isEmpty && chat && (

@@ -91,7 +91,7 @@ export function Sidebar({
       </div>
 
       {/* scrollable nav region */}
-      <nav className="flex-1 overflow-x-hidden overflow-y-auto px-3 pt-1 pb-4">
+      <nav className="faheem-scrollbar flex-1 overflow-x-hidden overflow-y-auto px-3 pt-1 pb-4">
         <ul className="flex flex-col gap-0.5">
           {PRIMARY_NAV.map((item) => (
             <NavRow

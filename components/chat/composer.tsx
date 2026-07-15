@@ -834,7 +834,7 @@ function TypeaheadMenu({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 4 }}
       transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-      className="border-border bg-card shadow-hover rounded-card absolute inset-x-0 bottom-full z-20 mb-2 max-h-64 overflow-y-auto border p-1.5"
+      className="border-border bg-card shadow-hover rounded-card faheem-scrollbar absolute inset-x-0 bottom-full z-20 mb-2 max-h-64 overflow-y-auto border p-1.5"
     >
       <p className="text-text-secondary px-2.5 py-1 text-[0.6875rem] font-bold tracking-[0.04em] uppercase">
         {trigger.kind === "@" ? headerAgents : headerDocs}

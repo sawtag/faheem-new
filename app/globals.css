@@ -99,6 +99,39 @@
   letter-spacing: 0;
 }
 
+/* Slim, buttonless scroll rail for in-app panes (sidebar nav, chat thread,
+ * picker submenus). Invisible at rest; a muted rounded navy thumb appears
+ * while the pane is hovered. No arrow buttons, transparent track, so the
+ * rail never reads as a bleeding native control against adjacent chrome.
+ * Lands on the logical outside edge automatically under RTL. */
+@utility faheem-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover {
+    scrollbar-color: var(--color-navy-200) transparent;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: var(--color-navy-200);
+  }
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
