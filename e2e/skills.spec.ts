@@ -1,6 +1,15 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import goldenQuestions from "../data/golden-questions.json" with { type: "json" };
 import skillsData from "../data/skills.json" with { type: "json" };
+
+// Registry cards only — the grid can also hold user-created custom skills
+// (e2e/custom-skills.spec.ts runs concurrently against the same shared
+// store), so registry counts must exclude `skill-card-custom-*`.
+function registryCards(page: Page) {
+  return page.locator(
+    '[data-testid^="skill-card-"]:not([data-testid^="skill-card-custom-"])',
+  );
+}
 
 /**
  * Skills Library acceptance — the finance-grade analyst-playbook catalog.
@@ -28,7 +37,7 @@ test.describe("Skills page", () => {
   }) => {
     await page.goto("/skills");
     await expect(page.getByRole("heading", { name: "Skills" })).toBeVisible();
-    await expect(page.locator('[data-testid^="skill-card-"]')).toHaveCount(10);
+    await expect(registryCards(page)).toHaveCount(10);
     await expect(
       page.getByText("DCF — FCFF Build", { exact: true }),
     ).toBeVisible();
@@ -49,15 +58,15 @@ test.describe("Skills page", () => {
 
   test("category filter pills narrow the grid", async ({ page }) => {
     await page.goto("/skills");
-    await expect(page.locator('[data-testid^="skill-card-"]')).toHaveCount(10);
+    await expect(registryCards(page)).toHaveCount(10);
 
     await page.getByRole("button", { name: "Valuation", exact: true }).click();
-    await expect(page.locator('[data-testid^="skill-card-"]')).toHaveCount(4);
+    await expect(registryCards(page)).toHaveCount(4);
     await expect(page.getByTestId("skill-card-dcf-fcff")).toBeVisible();
     await expect(page.getByTestId("skill-card-ic-memo")).toHaveCount(0);
 
     await page.getByRole("button", { name: "All", exact: true }).click();
-    await expect(page.locator('[data-testid^="skill-card-"]')).toHaveCount(10);
+    await expect(registryCards(page)).toHaveCount(10);
   });
 
   test("Run on a prefill skill lands on a fresh chat with the composer pre-filled, unsent", async ({

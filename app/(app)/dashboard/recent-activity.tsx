@@ -12,6 +12,7 @@ import {
   MessageSquareText,
   SlidersHorizontal,
   Trash2,
+  Wrench,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { LogoTile } from "@/components/ui/logo-tile";
@@ -26,6 +27,8 @@ const ACTION_ICON = {
   "ic-draft": Mail,
   "agent-created": Bot,
   "agent-deleted": Trash2,
+  "skill-created": Wrench,
+  "skill-deleted": Trash2,
 } as const;
 
 /** "Jul 12, 09:41" — Western digits both locales (mirrors the audit trail). */
@@ -173,6 +176,8 @@ function ActivityFeed({
     "ic-draft": tAudit("actionIcDraft"),
     "agent-created": tAudit("actionAgentCreated"),
     "agent-deleted": tAudit("actionAgentDeleted"),
+    "skill-created": tAudit("actionSkillCreated"),
+    "skill-deleted": tAudit("actionSkillDeleted"),
   };
 
   return (

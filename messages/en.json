@@ -108,7 +108,9 @@
     "actionModelEdit": "Model edit",
     "actionIcDraft": "IC email drafted",
     "actionAgentCreated": "Agent created",
-    "actionAgentDeleted": "Agent deleted"
+    "actionAgentDeleted": "Agent deleted",
+    "actionSkillCreated": "Skill created",
+    "actionSkillDeleted": "Skill deleted"
   },
   "connections": {
     "title": "Connections",
@@ -655,7 +657,27 @@
     "run": "Run",
     "runsInArabic": "Runs in Arabic",
     "roadmap": "MVP roadmap",
-    "roadmapHint": "Full automation ships on the MVP roadmap."
+    "roadmapHint": "Full automation ships on the MVP roadmap.",
+    "customBadge": "Custom",
+    "addSkill": "Add skill",
+    "dialogTitle": "New skill",
+    "dialogHint": "Give it a name, a category, and a one-line description — the prefill is what Run drops into the chat composer.",
+    "nameLabel": "Name",
+    "namePlaceholder": "e.g. Working-Capital Sweep",
+    "categoryLabel": "Category",
+    "descLabel": "Description",
+    "descPlaceholder": "A one-line summary shown on the card.",
+    "prefillLabel": "Run prefill",
+    "prefillPlaceholder": "What should Run drop into the chat composer?",
+    "prefillHint": "This is what Run drops into the chat composer — it isn't sent for you.",
+    "enhance": "Enhance",
+    "enhancing": "Enhancing…",
+    "undo": "Undo",
+    "cancel": "Cancel",
+    "create": "Create skill",
+    "creating": "Creating…",
+    "createError": "Couldn't create the skill — try again.",
+    "deleteSkill": "Delete skill"
   },
   "dashboard": {
     "title": "Firm overview",

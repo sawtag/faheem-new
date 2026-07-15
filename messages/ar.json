@@ -108,7 +108,9 @@
     "actionModelEdit": "تعديل النموذج",
     "actionIcDraft": "صياغة بريد للجنة",
     "actionAgentCreated": "إنشاء وكيل",
-    "actionAgentDeleted": "حذف وكيل"
+    "actionAgentDeleted": "حذف وكيل",
+    "actionSkillCreated": "إنشاء مهارة",
+    "actionSkillDeleted": "حذف مهارة"
   },
   "connections": {
     "title": "الاتصالات",
@@ -655,7 +657,27 @@
     "run": "تشغيل",
     "runsInArabic": "يعمل بالعربية",
     "roadmap": "ضمن خارطة الطريق",
-    "roadmapHint": "الأتمتة الكاملة ضمن خارطة طريق المنتج."
+    "roadmapHint": "الأتمتة الكاملة ضمن خارطة طريق المنتج.",
+    "customBadge": "مخصّص",
+    "addSkill": "إضافة مهارة",
+    "dialogTitle": "مهارة جديدة",
+    "dialogHint": "امنحها اسماً وتصنيفاً ووصفاً من سطر واحد — النص التمهيدي هو ما يضعه زر التشغيل في مربع المحادثة.",
+    "nameLabel": "الاسم",
+    "namePlaceholder": "مثال: مسح رأس المال العامل",
+    "categoryLabel": "التصنيف",
+    "descLabel": "الوصف",
+    "descPlaceholder": "ملخص من سطر واحد يظهر على البطاقة.",
+    "prefillLabel": "نص التشغيل التمهيدي",
+    "prefillPlaceholder": "ما الذي يجب أن يضعه زر التشغيل في مربع المحادثة؟",
+    "prefillHint": "هذا ما يضعه زر التشغيل في مربع المحادثة — لا يُرسَل نيابة عنك.",
+    "enhance": "تحسين",
+    "enhancing": "جارٍ التحسين…",
+    "undo": "تراجع",
+    "cancel": "إلغاء",
+    "create": "إنشاء المهارة",
+    "creating": "جارٍ الإنشاء…",
+    "createError": "تعذّر إنشاء المهارة — حاول مرة أخرى.",
+    "deleteSkill": "حذف المهارة"
   },
   "dashboard": {
     "title": "نظرة عامة على الشركة",

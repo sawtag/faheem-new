@@ -1,22 +1,59 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { SKILL_CATEGORIES, type Skill, type SkillCategory } from "@/lib/skills";
+import type { CustomSkill } from "@/lib/custom-skills";
 import { filterSkills } from "./filter-skills";
 import { SkillCard } from "./skill-card";
+import {
+  AddSkillDialog,
+  AddSkillTile,
+  CustomSkillCard,
+} from "./custom-skill-card";
 
 type Filter = SkillCategory | "all";
 
 /**
  * /skills — header, category filter pills (Library-page pill pattern), and
- * the 2-col playbook grid. Static registry data (no async loading state,
- * same as the Agents page).
+ * the playbook grid: built-in registry cards, then user-created custom
+ * skills (both respecting the active filter), then the "Add skill" tile,
+ * which is always the grid's last cell regardless of filter.
  */
-export function SkillsClient({ skills }: { skills: Skill[] }) {
+export function SkillsClient({
+  skills,
+  initialCustomSkills,
+}: {
+  skills: Skill[];
+  initialCustomSkills: CustomSkill[];
+}) {
   const t = useTranslations("skills");
+  const router = useRouter();
   const [filter, setFilter] = React.useState<Filter>("all");
+  const [customSkills, setCustomSkills] = React.useState(initialCustomSkills);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  // Sync local state when the server list changes (router.refresh() after a
+  // create/delete round-trip) — render-time prop adjustment, same convention
+  // as CustomAgentsSection.
+  const [prevInitial, setPrevInitial] = React.useState(initialCustomSkills);
+  if (initialCustomSkills !== prevInitial) {
+    setPrevInitial(initialCustomSkills);
+    setCustomSkills(initialCustomSkills);
+  }
+
+  function handleCreated(skill: CustomSkill) {
+    setCustomSkills((prev) => [...prev, skill]);
+    setDialogOpen(false);
+    router.refresh();
+  }
+
+  function handleDeleted(id: string) {
+    setCustomSkills((prev) => prev.filter((s) => s.id !== id));
+    router.refresh();
+  }
 
   const filters: { value: Filter; label: string }[] = [
     { value: "all", label: t("filterAll") },
@@ -27,6 +64,10 @@ export function SkillsClient({ skills }: { skills: Skill[] }) {
   ];
 
   const visible = filterSkills(skills, filter);
+  const visibleCustom =
+    filter === "all"
+      ? customSkills
+      : customSkills.filter((s) => s.category === filter);
 
   return (
     <>
@@ -60,7 +101,24 @@ export function SkillsClient({ skills }: { skills: Skill[] }) {
         {visible.map((skill, i) => (
           <SkillCard key={skill.id} skill={skill} index={i} />
         ))}
+        {visibleCustom.map((skill) => (
+          <CustomSkillCard
+            key={skill.id}
+            skill={skill}
+            onDeleted={() => handleDeleted(skill.id)}
+          />
+        ))}
+        <AddSkillTile
+          label={t("addSkill")}
+          onClick={() => setDialogOpen(true)}
+        />
       </div>
+
+      <AddSkillDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        onCreated={handleCreated}
+      />
     </>
   );
 }

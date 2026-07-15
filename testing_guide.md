@@ -86,6 +86,19 @@ Toggle **العربية** (bottom-left) and revisit any of the above: full RTL c
 - Both actions are logged: check the **Audit Trail** page for "Agent created" / "Agent deleted" entries, each carrying "&lt;name&gt; — &lt;role&gt;".
 - Custom agents are deliberately **not** @-mentionable in chat — they're a standalone roster, not wired into the orchestration protocol.
 
+## 11. Custom skills — build your own playbook
+
+**Where:** **Skills** page — the dashed **"Add skill"** tile, always the last card in the grid.
+
+- Click it — a dialog opens asking for a **Name**, a **Category** (pill picker: Valuation / Diligence / Risk & Compliance / Output, "Valuation" selected by default), a one-line **Description** (what shows on the card), and a **Run prefill** — the text Run drops into the chat composer, unsent.
+- Type a rough prefill (e.g. "check working capital swings for red flags"), then click the **✨ Enhance** wand inside the textarea — it reuses the exact same prompt-improver route the chat composer's Improve wand calls (`/api/improve`), rewriting your rough line into a structured analyst prompt. **Undo** restores exactly what you typed before.
+- **Create skill** is disabled until the name/description/prefill all clear their minimum lengths. On success the dialog closes and a new card appears in the grid — Wrench icon tile, your name, category, description, and a **Custom** badge.
+- The category filter pills narrow custom cards exactly like built-in ones; the **"Add skill"** tile itself always stays visible regardless of which pill is active.
+- Click **Run** on a custom card: it lands you on a fresh chat (`/chat/new?context=firm`) with your prefill text sitting in the composer, unsent — same mechanism a built-in prefill skill (e.g. DCF — FCFF Build) uses.
+- Click the trash icon to delete a custom card — it disappears immediately.
+- Both actions are logged: check the **Audit Trail** page for "Skill created" / "Skill deleted" entries, each carrying "&lt;name&gt; — &lt;category&gt;".
+- Built-in skills are untouched — no edit or delete affordance ever appears on them.
+
 ---
 
 **Still in progress:** the final code review of the whole wave, the full production e2e run (needs the dev server stopped briefly), and the `demo-rc3` tag.
