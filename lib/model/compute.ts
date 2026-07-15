@@ -1,12 +1,12 @@
 /**
- * lib/model/compute — the pure valuation engine (Jahez DCF + comps + Shariah +
+ * lib/model/compute, the pure valuation engine (Jahez DCF + comps + Shariah +
  * risk composite), extracted from lib/generate/xlsx.ts so the Excel builder and
  * the Live Model UI share one implementation.
  *
- * Client-safe: no node:fs / ExcelJS — sourced actuals come from the static
+ * Client-safe: no node:fs / ExcelJS, sourced actuals come from the static
  * import in inputs.ts. `buildModel(a)` parameterizes every analyst assumption;
  * `computeModel()` keeps the legacy zero-arg contract for the Office builders
- * (byte-identical at BASE_ASSUMPTIONS — snapshot-gated in tests).
+ * (byte-identical at BASE_ASSUMPTIONS, snapshot-gated in tests).
  */
 import { MKT, getModelInputs } from "@/lib/model/inputs";
 import { buildNodes } from "@/lib/model/provenance";
@@ -31,7 +31,7 @@ export const YEARS = [
 const F0 = 3; // first forecast index (FY26E)
 
 // ════════════════════════════════ assumptions ═══════════════════════════════
-// Every value here is an analyst judgment (no clean source) — each renders in
+// Every value here is an analyst judgment (no clean source), each renders in
 // the gold assumption style with its rationale (RATIONALE) as the cell comment.
 export const BASE_ASSUMPTIONS: Assumptions = {
   spread: 0.02, // cost-of-debt spread over rf
@@ -61,12 +61,12 @@ export const BASE_ASSUMPTIONS: Assumptions = {
 };
 
 export const RATIONALE = {
-  beta: "levered beta = comp-set median of DoorDash 1.78 and Delivery Hero 1.86 (Talabat n/a — insufficient trading history), per Market Data & Comparables Snapshot p.3. Jahez's own 0.02 5Y beta is a thin-trading artifact and is NOT used. A bottom-up unlever/relever to Jahez's capital structure is the flagged next step.",
+  beta: "levered beta = comp-set median of DoorDash 1.78 and Delivery Hero 1.86 (Talabat n/a, insufficient trading history), per Market Data & Comparables Snapshot p.3. Jahez's own 0.02 5Y beta is a thin-trading artifact and is NOT used. A bottom-up unlever/relever to Jahez's capital structure is the flagged next step.",
   spread:
     "cost-of-debt spread of +200bps over the risk-free rate. No clean Jahez credit spread is sourceable (Cbonds Saudi IG index is paywalled; the sovereign USD spread of ~50–100bps is sovereign, not corporate). 200bps reflects an unrated but cash-generative KSA mid-cap.",
   zakat:
     "Saudi zakat convention ~2.5% of the zakat base for Saudi/GCC-owned entities (vs the 20% CIT that applies to foreign ownership). Q1-26 zakat of SAR 0.12m sat on a pre-zakat loss, so no meaningful effective rate is observable. Applied as the NOPAT tax rate and the debt tax-shield.",
-  g: "long-run nominal terminal growth ~3.0% — broadly Saudi long-term inflation / nominal GDP, below the explicit-period growth and above zero real. Bull 3.5% / Bear 2.5%.",
+  g: "long-run nominal terminal growth ~3.0%, broadly Saudi long-term inflation / nominal GDP, below the explicit-period growth and above zero real. Bull 3.5% / Bear 2.5%.",
   hold: "IRR hold period = 4 years, the mid-point of Lunar's 3–5 year mandate window (see Lunar IC Charter).",
   dna: "D&A held at 3.5% of net revenue (FY25 actual ~3.85%; normalises slightly lower as the IFRS-16 right-of-use base matures).",
   capex:
@@ -77,25 +77,25 @@ export const RATIONALE = {
   aovGrowth:
     "AOV growth FY26E +6% (basket-mix + inflation; Q1-26 AOV +15% YoY on Snoonu mix), tapering to +3%.",
   netRevRate:
-    "net-revenue monetisation (net revenue / GMV) eases from FY25's 32.1% to 31.0% in FY26E then holds at 30.5% — reflecting continued delivery-fee competition (KSA platform revenue fell 8.6% YoY in FY25) before stabilising.",
+    "net-revenue monetisation (net revenue / GMV) eases from FY25's 32.1% to 31.0% in FY26E then holds at 30.5%, reflecting continued delivery-fee competition (KSA platform revenue fell 8.6% YoY in FY25) before stabilising.",
   ebitdaMargin:
-    "EBITDA margin path anchored to management's FY2026 guidance of SAR 200–220m adj. EBITDA (~7.5% on forecast revenue), recovering to 12.0% by FY30E as Q4-25 one-offs roll off, Snoonu (FY25 adj. EBITDA +SAR 53.7m, profitable) consolidates for a full year, and operating leverage builds — a terminal margin at ~the FY24 peak plus modest leverage.",
+    "EBITDA margin path anchored to management's FY2026 guidance of SAR 200–220m adj. EBITDA (~7.5% on forecast revenue), recovering to 12.0% by FY30E as Q4-25 one-offs roll off, Snoonu (FY25 adj. EBITDA +SAR 53.7m, profitable) consolidates for a full year, and operating leverage builds, a terminal margin at ~the FY24 peak plus modest leverage.",
   scenario:
     "bull/bear apply parallel shifts to net-revenue growth (±~3–4pp/yr) and EBITDA margin (±1.5pp) with terminal growth of 3.5% / 2.5%; WACC is held constant to isolate the operating case.",
-  prob: "scenario probabilities 25% bull / 50% base / 25% bear — analyst's central-case weighting.",
-  exit: "exit convention: the share price converges to intrinsic value at exit, and intrinsic value compounds at the cost of equity over the hold. IRR = (1+Ke)·(value/entry)^(1/years) − 1 — buying at fair value earns Ke; the discount to value is the additional annualised premium.",
+  prob: "scenario probabilities 25% bull / 50% base / 25% bear, analyst's central-case weighting.",
+  exit: "exit convention: the share price converges to intrinsic value at exit, and intrinsic value compounds at the cost of equity over the hold. IRR = (1+Ke)·(value/entry)^(1/years) − 1, buying at fair value earns Ke; the discount to value is the additional annualised premium.",
   debtFlat:
     "interest-bearing debt and lease liabilities held flat at the FY25 audited level across the forecast (no disclosed amortisation schedule).",
   cashRoll:
-    "forecast cash rolled forward as prior-year cash + FCFF (no dividends/financing modelled — Jahez pays negligible dividends and is net-cash).",
+    "forecast cash rolled forward as prior-year cash + FCFF (no dividends/financing modelled, Jahez pays negligible dividends and is net-cash).",
   netIncome:
     "forecast net income simplified to EBIT×(1−zakat); net finance cost is ~nil given the net-cash balance sheet.",
   actualFcff:
-    "actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT — capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
+    "actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT, capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
   hurdle:
-    "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate — the committee's minimum acceptable return for new positions.",
+    "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate, the committee's minimum acceptable return for new positions.",
   riskWeights:
-    "quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25 — peak-weighted so one severe risk dominates.",
+    "quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25, peak-weighted so one severe risk dominates.",
 } as const;
 
 // strict-mode (noUncheckedIndexedAccess) bounds-asserting access helper: array

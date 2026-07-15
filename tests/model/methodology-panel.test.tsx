@@ -27,7 +27,7 @@ function renderPanel(
   );
 }
 
-describe("MethodologyPanel — computed node", () => {
+describe("MethodologyPanel, computed node", () => {
   it("renders the explainer, the KaTeX formula, and one chip per input", () => {
     renderPanel({ nodeKey: "wacc" });
 
@@ -41,7 +41,7 @@ describe("MethodologyPanel — computed node", () => {
       screen.getByRole("img", { name: FORMULAS.wacc!.katex }),
     ).toBeInTheDocument();
 
-    // wacc's provenance.inputs = ["we", "ke", "wd", "kdAfter"] — one chip each
+    // wacc's provenance.inputs = ["we", "ke", "wd", "kdAfter"], one chip each
     const waccNode = nodes.wacc!;
     if (waccNode.provenance.kind !== "computed")
       throw new Error("expected computed");
@@ -49,7 +49,7 @@ describe("MethodologyPanel — computed node", () => {
       we: "Weight of equity",
       ke: "Cost of equity",
       wd: "Weight of debt",
-      kdAfter: "Cost of debt — after-tax",
+      kdAfter: "Cost of debt · after-tax",
     };
     expect(waccNode.provenance.inputs).toEqual(Object.keys(inputLabels));
     for (const label of Object.values(inputLabels)) {
@@ -64,14 +64,14 @@ describe("MethodologyPanel — computed node", () => {
     await userEvent.click(screen.getByText("Weight of equity"));
 
     expect(onNavigate).toHaveBeenCalledWith("we");
-    // the panel now renders "we"'s own node — its curated label appears as
+    // the panel now renders "we"'s own node, its curated label appears as
     // the current heading, and a breadcrumb trail back to wacc is visible.
     expect(screen.getAllByText("Weight of equity").length).toBeGreaterThan(0);
     expect(screen.getByRole("button", { name: "WACC" })).toBeInTheDocument();
   });
 });
 
-describe("MethodologyPanel — sourced node", () => {
+describe("MethodologyPanel, sourced node", () => {
   it("shows the doc + page and fires onOpenSource with docId/page", async () => {
     const onOpenSource = vi.fn();
     renderPanel({ nodeKey: "rf", onOpenSource });
@@ -87,20 +87,20 @@ describe("MethodologyPanel — sourced node", () => {
   });
 });
 
-describe("MethodologyPanel — assumption node", () => {
+describe("MethodologyPanel, assumption node", () => {
   it("shows the value, the analyst-assumption badge, and the rationale text", () => {
     renderPanel({ nodeKey: "assumptions.g" });
 
     expect(screen.getByText("Analyst assumption")).toBeInTheDocument();
     // model.rationale.g is authored EN, verbatim-ish to RATIONALE.g (compute.ts)
-    // — same substance, house-style capitalization/spelling.
+    //, same substance, house-style capitalization/spelling.
     expect(
       screen.getByText(/long-run nominal terminal growth/i),
     ).toBeInTheDocument();
   });
 });
 
-describe("FORMULAS registry — message + KaTeX integrity", () => {
+describe("FORMULAS registry, message + KaTeX integrity", () => {
   it("every formula id has a non-empty explainer message in en AND ar", () => {
     for (const id of Object.keys(FORMULAS)) {
       const enMsg = (en.model.formulas as Record<string, string>)[id];
@@ -121,7 +121,7 @@ describe("FORMULAS registry — message + KaTeX integrity", () => {
   });
 });
 
-describe("RATIONALE registry — message integrity", () => {
+describe("RATIONALE registry, message integrity", () => {
   it("every rationale key has a message in en AND ar", () => {
     for (const key of Object.keys(RATIONALE)) {
       const enMsg = (en.model.rationale as Record<string, string>)[key];
@@ -149,7 +149,7 @@ describe("RTL", () => {
 
   it("renders indexed/pattern-labeled nodes under ar without leaking keys", () => {
     // netRev.4 / base.perShare exercise the pattern-based label fallback
-    // (not a curated exact `model.nodes.<key>` message) — this is the RTL
+    // (not a curated exact `model.nodes.<key>` message), this is the RTL
     // sweep's most important negative case.
     for (const key of [
       "netRev.4",

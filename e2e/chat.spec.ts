@@ -9,7 +9,7 @@ import { readAudit } from "./helpers";
  * (pdfjs worker vendored locally, landmine #3) and a grown audit trail.
  */
 const QUESTION =
-  "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?";
+  "Break down Jahez's FY2025 unit economics: GMV, take rate, AOV, and why did net income compress 61%?";
 
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
@@ -74,7 +74,7 @@ test("cached stream → citation → PDF → sources, offline & audited", async 
   ).toMatch(/group financial summary/i);
 
   // Sources accordion lists the citations (its header carries the source
-  // count, e.g. "5 Sources" — distinct from the composer's "Sources" picker)
+  // count, e.g. "5 Sources", distinct from the composer's "Sources" picker)
   await page
     .getByRole("button", { name: /\d+ Sources/ })
     .last()
@@ -101,7 +101,7 @@ test("cached stream → citation → PDF → sources, offline & audited", async 
  * Inline financial table + chart. The a5d75d22 fixture above carries no markdown
  * table, so this drives the recorded "risk assessment" golden (qa2), whose
  * answer contains the FY2025/FY2024 metrics table. It's reached via the ⌘K demo
- * palette — the only path that supplies the recorded `agent:"risk"` so the
+ * palette, the only path that supplies the recorded `agent:"risk"` so the
  * exact-key cache is hit (question text alone would miss). The streamed table
  * renders as a real <table> with right-aligned numerics, then toggles to a
  * hand-rolled SVG bar chart.

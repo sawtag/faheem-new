@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 /**
- * /dashboard acceptance — the firm mission-control screen (differentiation
+ * /dashboard acceptance, the firm mission-control screen (differentiation
  * surface). Purely additive: a new route rendered from seeded firm/runs data,
  * no chat-engine contact. Covers the governance stats (sourced), the Analysis
  * Runs centerpiece (lanes + deliverables wired to the in-app preview), the

@@ -55,9 +55,9 @@ test("POST /api/generate/all lands all three artifacts, each servable and non-tr
   // Library now shows the three landed cards.
   await page.goto("/library");
   await expect(page.getByRole("heading", { name: "Library" })).toBeVisible();
-  await expect(page.getByText("Jahez — Valuation Model")).toBeVisible();
-  await expect(page.getByText("Jahez — IC Memo")).toBeVisible();
-  await expect(page.getByText("Jahez — Board Deck")).toBeVisible();
+  await expect(page.getByText("Jahez · Valuation Model")).toBeVisible();
+  await expect(page.getByText("Jahez · IC Memo")).toBeVisible();
+  await expect(page.getByText("Jahez · Board Deck")).toBeVisible();
   await expect(page.getByText("Verified · 5 sources")).toHaveCount(3);
 });
 
@@ -75,12 +75,12 @@ test("deliverables chat: run completes → deck preview auto-opens with the 8-sl
   // its own (three artifacts × three phases at the demo pace, then the beat).
   const preview = page.getByTestId("artifact-preview");
   await expect(preview).toBeVisible({ timeout: 60_000 });
-  await expect(preview.getByText("Jahez — Board Deck")).toBeVisible();
+  await expect(preview.getByText("Jahez · Board Deck")).toBeVisible();
   await expect(
     preview.getByText(/Generated · .* · Lunar Investments/),
   ).toBeVisible();
 
-  // full thumbnail rail — all 8 slides, slide 1 active
+  // full thumbnail rail, all 8 slides, slide 1 active
   const thumbs = preview.getByRole("button", { name: /^Slide \d$/ });
   await expect(thumbs).toHaveCount(8);
   await expect(preview.getByText("Slide 1 of 8")).toBeVisible();
@@ -119,13 +119,13 @@ test("deliverables chat: run completes → deck preview auto-opens with the 8-sl
     expect(res.status(), asset).toBe(200);
   }
 
-  // close, then re-open from a file card's primary Preview affordance —
+  // close, then re-open from a file card's primary Preview affordance,
   // the model opens on its Cover sheet with the open-in-Excel CTA.
   await preview.getByRole("button", { name: "Close preview" }).click();
   await expect(preview).toBeHidden();
   await page.getByRole("button", { name: "Preview" }).first().click();
   await expect(preview).toBeVisible();
-  await expect(preview.getByText("Jahez — Valuation Model")).toBeVisible();
+  await expect(preview.getByText("Jahez · Valuation Model")).toBeVisible();
   await expect(
     preview.getByRole("link", { name: "Open in Excel" }),
   ).toBeVisible();
@@ -143,5 +143,5 @@ test("POST /api/generate/xlsx alone regenerates just that one entry (idempotent,
   expect(events.filter((e) => e.type === "artifact")).toHaveLength(1);
 
   await page.goto("/library");
-  await expect(page.getByText("Jahez — Valuation Model")).toHaveCount(1);
+  await expect(page.getByText("Jahez · Valuation Model")).toHaveCount(1);
 });

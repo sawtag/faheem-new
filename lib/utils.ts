@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 /**
- * Locale that renders WESTERN (Latin) digits in both languages — AGENTS.md
+ * Locale that renders WESTERN (Latin) digits in both languages, AGENTS.md
  * rule 2 (financial figures are Western digits in en AND ar). The `-u-nu-latn`
  * unicode extension keeps Arabic month names / conventions while forcing Latin
  * numerals, so a column of figures never shifts script between locales.

@@ -1,7 +1,7 @@
 {
-  "key": "dc3e2d681162256d950c94b4dd95f0e07ba7eeb3",
+  "key": "c4ee3431f9aea08ccc6d33ad0feae3471848cc5e",
   "request": {
-    "question": "The trading comps imply a much higher value than your DCF — why the gap, and which should the committee trust?",
+    "question": "The trading comps imply a much higher value than your DCF. Why the gap, and which should the committee trust?",
     "lang": "en",
     "context": {
       "kind": "workspace",
@@ -113,7 +113,7 @@
     },
     {
       "type": "delta",
-      "text": " method is priced off*, not a genuine disagreement about value — and the comparables"
+      "text": " method is priced off*, not a genuine disagreement about value, and the comparables"
     },
     {
       "type": "delta",
@@ -195,7 +195,7 @@
     },
     {
       "type": "delta",
-      "text": "12.9x (Talabat) to 60.25x (DoorDash) — which largely tracks each platform's profitability profile rather than a single \"delivery sector\" multiple."
+      "text": "12.9x (Talabat) to 60.25x (DoorDash), which largely tracks each platform's profitability profile rather than a single \"delivery sector\" multiple."
     },
     {
       "type": "delta",
@@ -241,7 +241,7 @@
     },
     {
       "type": "delta",
-      "text": "EV/GMV is marked n/a across the board — none of the free sources reliably expose EV alongside a matched-period, matched-currency G"
+      "text": "EV/GMV is marked n/a across the board, none of the free sources reliably expose EV alongside a matched-period, matched-currency G"
     },
     {
       "type": "delta",
@@ -272,7 +272,7 @@
     },
     {
       "type": "delta",
-      "text": " by depressed trailing-twelve-month earnings — not representative of a normalized multiple."
+      "text": " by depressed trailing-twelve-month earnings, not representative of a normalized multiple."
     },
     {
       "type": "delta",
@@ -299,7 +299,7 @@
     },
     {
       "type": "delta",
-      "text": "t inputs, this comps table should be treated as a sense-check on a primary DCF, not a standalone valuation — flag to IC that neither approach alone resolves a tight range,"
+      "text": "t inputs, this comps table should be treated as a sense-check on a primary DCF, not a standalone valuation, flag to IC that neither approach alone resolves a tight range,"
     },
     {
       "type": "delta",
@@ -322,7 +322,7 @@
     },
     {
       "type": "delta",
-      "text": " around it. Within the comps, weight is not equal — "
+      "text": " around it. Within the comps, weight is not equal, "
     },
     {
       "type": "delta",
@@ -376,7 +376,7 @@
     },
     {
       "type": "delta",
-      "text": "ober cross-check than the DoorDash end of the range.\n\n## The important caveat — don't over-trust the DCF either"
+      "text": "ober cross-check than the DoorDash end of the range.\n\n## The important caveat, don't over-trust the DCF either"
     },
     {
       "type": "delta",
@@ -423,7 +423,7 @@
     },
     {
       "type": "delta",
-      "text": "equity and marginal tax rate, which were not cleanly available from free sources in this pass — flagged as a modeling next step rather than estimated here."
+      "text": "equity and marginal tax rate, which were not cleanly available from free sources in this pass, flagged as a modeling next step rather than estimated here."
     },
     {
       "type": "delta",
@@ -465,7 +465,7 @@
     },
     {
       "type": "delta",
-      "text": "idence the stock is deeply undervalued — it's evidence that a current-revenue multiple flatters a company"
+      "text": "idence the stock is deeply undervalued, it's evidence that a current-revenue multiple flatters a company"
     },
     {
       "type": "delta",
@@ -481,7 +481,7 @@
     },
     {
       "type": "delta",
-      "text": " WACC build are closed. What would change this view: a completed re-levered beta and a sourced cost of debt —"
+      "text": " WACC build are closed. What would change this view: a completed re-levered beta and a sourced cost of debt, "
     },
     {
       "type": "delta",

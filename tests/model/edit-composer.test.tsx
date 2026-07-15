@@ -13,7 +13,7 @@ import en from "@/messages/en.json";
 import { LiveModel } from "@/components/model/live-model";
 
 /**
- * WS-C acceptance — the conversational edit composer on the Live Model.
+ * WS-C acceptance, the conversational edit composer on the Live Model.
  * /api/model-edit is mocked at the fetch boundary (zero network); reduced
  * motion is forced so the choreography clock collapses and value assertions
  * are deterministic.
@@ -65,7 +65,7 @@ function stubEditApi(payload: unknown) {
   return fetchMock;
 }
 
-describe("EditComposer — admitted edit", () => {
+describe("EditComposer, admitted edit", () => {
   it("chip submit → choreography stages in order → value applied at Valuation → recommendation", async () => {
     const fetchMock = stubEditApi({
       kind: "edit",
@@ -112,7 +112,7 @@ describe("EditComposer — admitted edit", () => {
       screen.getByTestId("edit-stage-valuation").getAttribute("data-status"),
     ).toBe("done");
 
-    // the value actually applied — outputs moved off base
+    // the value actually applied, outputs moved off base
     await waitFor(() => {
       expect(cell(container, "base.perShare").textContent).not.toContain(
         "14.36",
@@ -178,7 +178,7 @@ describe("EditComposer — admitted edit", () => {
   });
 });
 
-describe("EditComposer — source-locked", () => {
+describe("EditComposer, source-locked", () => {
   it("locked chip → Critical Review flags the lock → bilingual message, model unchanged", async () => {
     stubEditApi({
       kind: "source-locked",
@@ -210,7 +210,7 @@ describe("EditComposer — source-locked", () => {
   });
 });
 
-describe("EditComposer — unparsed", () => {
+describe("EditComposer, unparsed", () => {
   it("shows the gentle hint and leaves the model untouched", async () => {
     stubEditApi({ kind: "unparsed", summary: "nope" });
     const user = userEvent.setup();

@@ -15,7 +15,7 @@ const PLACEHOLDERS = ["p1", "p2", "p3", "p4"] as const;
 const ROTATE_MS = 3500;
 
 /**
- * The omnibox home — on camera at every demo beat transition. A serif two-tone
+ * The omnibox home, on camera at every demo beat transition. A serif two-tone
  * greeting, the shared Composer in its hero variant (rotating contextual
  * placeholder, full affordances), quick-action pills that prefill it, and the
  * recent-workspace cards. Firm context: submitting hands off to `/chat/new`.
@@ -26,7 +26,7 @@ export function HomeHero({ deals }: { deals: Deal[] }) {
   const router = useRouter();
   const reduce = useReducedMotion();
 
-  // rotating placeholder — pauses while the composer is focused
+  // rotating placeholder, pauses while the composer is focused
   const [phIndex, setPhIndex] = React.useState(0);
   const [focused, setFocused] = React.useState(false);
   React.useEffect(() => {

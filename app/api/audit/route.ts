@@ -1,5 +1,5 @@
 /**
- * GET /api/audit — data/audit-log.json contents (server-only fs read), polled
+ * GET /api/audit, data/audit-log.json contents (server-only fs read), polled
  * by the Audit Trail panel every 5s. FAHEEM_AUDIT_PATH overrides the target
  * (mirrors lib/audit.ts's append side, and the override tests already use).
  */

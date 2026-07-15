@@ -1,7 +1,7 @@
 {
-  "key": "7b59234b8fa1af6d882098c5e520addd3f66673f",
+  "key": "9950aadfb90bf03a06ea2070cabaa34ea5cf5736",
   "request": {
-    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+    "question": "@Risk & Portfolio Monitoring: run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
     "lang": "en",
     "context": {
       "kind": "workspace",
@@ -14,13 +14,21 @@
       "type": "stage",
       "agent": "risk",
       "status": "start",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "done",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
@@ -46,25 +54,39 @@
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
@@ -76,7 +98,7 @@
     },
     {
       "type": "delta",
-      "text": " not a forward hypothetical** — it has moved Jahez from margin compression (FY2025) to an outright quarterly loss"
+      "text": " not a forward hypothetical**, it has moved Jahez from margin compression (FY2025) to an outright quarterly loss"
     },
     {
       "type": "delta",
@@ -88,7 +110,7 @@
     },
     {
       "type": "delta",
-      "text": " resolve first — **(1) an instrument/stage mismatch** (Jahez is a listed equity, not a Series A–C private company) and **(2"
+      "text": " resolve first, **(1) an instrument/stage mismatch** (Jahez is a listed equity, not a Series A–C private company) and **(2"
     },
     {
       "type": "delta",
@@ -96,7 +118,7 @@
     },
     {
       "type": "delta",
-      "text": " — the price war\n\n**The competitive shock is well-documented.** "
+      "text": ", the price war\n\n**The competitive shock is well-documented.** "
     },
     {
       "type": "delta",
@@ -146,7 +168,7 @@
     },
     {
       "type": "delta",
-      "text": " is also capitalized for a long fight — "
+      "text": " is also capitalized for a long fight, "
     },
     {
       "type": "delta",
@@ -173,15 +195,15 @@
     },
     {
       "type": "delta",
-      "text": " — and "
+      "text": ", and "
     },
     {
       "type": "delta",
-      "text": "the combined order share of the top three platforms — Keeta, Jahez and HungerStation"
+      "text": "the combined order share of the top three platforms, Keeta, Jahez and HungerStation"
     },
     {
       "type": "delta",
-      "text": " — was above 90% in Q3 2025"
+      "text": ", was above 90% in Q3 2025"
     },
     {
       "type": "delta",
@@ -520,15 +542,15 @@
     },
     {
       "type": "delta",
-      "text": "/Q1 losses and the guided escalation of spend — the downside cases de"
+      "text": "/Q1 losses and the guided escalation of spend, the downside cases de"
     },
     {
       "type": "delta",
-      "text": "serve heavier weighting.\n\n---\n\n## 2. Mandate-fit assessment — two problems to resolve before this"
+      "text": "serve heavier weighting.\n\n---\n\n## 2. Mandate-fit assessment, two problems to resolve before this"
     },
     {
       "type": "delta",
-      "text": " advances\n\n**Problem A — instrument/stage mismatch (the most important issue).** The Charter's invest"
+      "text": " advances\n\n**Problem A, instrument/stage mismatch (the most important issue).** The Charter's invest"
     },
     {
       "type": "delta",
@@ -559,7 +581,7 @@
     },
     {
       "type": "delta",
-      "text": " — "
+      "text": ", "
     },
     {
       "type": "delta",
@@ -578,7 +600,7 @@
     },
     {
       "type": "delta",
-      "text": " — not a Series A–C private company. Yet the completed analysis frames it in private-growth-equity terms (\"Implied IRR at entry,\" "
+      "text": ", not a Series A–C private company. Yet the completed analysis frames it in private-growth-equity terms (\"Implied IRR at entry,\" "
     },
     {
       "type": "delta",
@@ -594,7 +616,7 @@
     },
     {
       "type": "delta",
-      "text": " the return math means anything.**\n\n**Problem B — sector concentration.** Jahez is squarely a techn"
+      "text": " the return math means anything.**\n\n**Problem B, sector concentration.** Jahez is squarely a techn"
     },
     {
       "type": "delta",
@@ -633,7 +655,7 @@
     },
     {
       "type": "delta",
-      "text": "% of AUM — above the cap — and must be flagged as a concentration warning at screening, per the Charter's post-deal calculation methodology."
+      "text": "% of AUM, above the cap, and must be flagged as a concentration warning at screening, per the Charter's post-deal calculation methodology."
     },
     {
       "type": "delta",
@@ -702,7 +724,7 @@
     },
     {
       "type": "delta",
-      "text": ". But that clears the hurdle by only ~210bps — and the Risk Appetite Statement is explicit that "
+      "text": ". But that clears the hurdle by only ~210bps, and the Risk Appetite Statement is explicit that "
     },
     {
       "type": "delta",
@@ -737,7 +759,7 @@
     },
     {
       "type": "delta",
-      "text": "a bottom-up beta requires each comp's debt/equity and marginal tax rate, which were not cleanly available — flagged"
+      "text": "a bottom-up beta requires each comp's debt/equity and marginal tax rate, which were not cleanly available, flagged"
     },
     {
       "type": "delta",
@@ -803,7 +825,7 @@
     },
     {
       "type": "delta",
-      "text": " efficiency, Snoonu diversification and a strong cash position — a mid-range"
+      "text": " efficiency, Snoonu diversification and a strong cash position, a mid-range"
     },
     {
       "type": "delta",
@@ -823,7 +845,7 @@
     },
     {
       "type": "delta",
-      "text": " preparation is explicitly non-decisional — it may rank, compare and flag sensitivities, but the Committee alone decides"
+      "text": " preparation is explicitly non-decisional, it may rank, compare and flag sensitivities, but the Committee alone decides"
     },
     {
       "type": "delta",

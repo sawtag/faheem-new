@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { SOURCE_GROUPS, SOURCES, sourcesInGroup } from "@/lib/sources";
 
-/** External capabilities that are concepts, not discrete providers — no url. */
+/** External capabilities that are concepts, not discrete providers, no url. */
 const EXTERNAL_WITHOUT_URL = new Set([
   "earnings",
   "investor-presentations",
@@ -32,7 +32,7 @@ describe("SOURCES taxonomy", () => {
     }
   });
 
-  it("orders external sources GCC-first — sahmk leads the group", () => {
+  it("orders external sources GCC-first, sahmk leads the group", () => {
     expect(sourcesInGroup("external")[0]?.id).toBe("sahmk");
   });
 

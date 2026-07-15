@@ -7,7 +7,7 @@ import { setClientForTests, type FaheemClient } from "@/lib/ai/client";
 import type { AuditEntry } from "@/lib/types";
 
 /**
- * WS-C acceptance — /api/model-edit. The Anthropic client is ALWAYS mocked
+ * WS-C acceptance, /api/model-edit. The Anthropic client is ALWAYS mocked
  * (house pattern, AGENTS.md rule 10): zero live calls in the suite. The audit
  * log is redirected to a temp file via FAHEEM_AUDIT_PATH so unit runs never
  * dirty data/audit-log.json.
@@ -34,19 +34,19 @@ function readAudit(): AuditEntry[] {
   return JSON.parse(fs.readFileSync(auditFile, "utf-8")) as AuditEntry[];
 }
 
-/** A client whose every method throws — proves a path never touches the SDK. */
+/** A client whose every method throws, proves a path never touches the SDK. */
 function poisonClient(): FaheemClient {
   return {
     beta: {
       messages: {
         stream: () => {
-          throw new Error("SDK touched — live call attempted");
+          throw new Error("SDK touched, live call attempted");
         },
       },
     },
     messages: {
       create: async () => {
-        throw new Error("SDK touched — live call attempted");
+        throw new Error("SDK touched, live call attempted");
       },
     },
   };
@@ -82,7 +82,7 @@ function post(body: unknown, cookie?: string): Promise<Response> {
   );
 }
 
-describe("POST /api/model-edit — scripted path", () => {
+describe("POST /api/model-edit, scripted path", () => {
   it("parses a scripted edit offline and appends an old→new audit entry", async () => {
     setClientForTests(poisonClient()); // any SDK touch fails the test
 
@@ -202,7 +202,7 @@ describe("POST /api/model-edit — scripted path", () => {
   });
 });
 
-describe("POST /api/model-edit — live fallback (mocked client)", () => {
+describe("POST /api/model-edit, live fallback (mocked client)", () => {
   it("uses the mocked live parse only for unparsed instructions in live mode", async () => {
     setClientForTests(
       mockCreate({ kind: "edit", assumptionKey: "g", value: 0.04 }),
@@ -222,7 +222,7 @@ describe("POST /api/model-edit — live fallback (mocked client)", () => {
     expect(json.value).toBeCloseTo(0.04, 10);
   });
 
-  it("REJECTS an illegal key returned by the model — whitelist re-validation", async () => {
+  it("REJECTS an illegal key returned by the model, whitelist re-validation", async () => {
     setClientForTests(
       mockCreate({ kind: "edit", assumptionKey: "fy25.gmv", value: 2000 }),
     );
@@ -274,7 +274,7 @@ describe("POST /api/model-edit — live fallback (mocked client)", () => {
   });
 });
 
-describe("POST /api/model-edit — validation", () => {
+describe("POST /api/model-edit, validation", () => {
   it("400s on an invalid body", async () => {
     const res = await post({ lang: "en" });
     expect(res.status).toBe(400);

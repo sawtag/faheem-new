@@ -37,7 +37,7 @@ const AGENT_ICONS: Record<
 };
 
 const STAGE1 = AGENTS.filter((a) => a.stage === 1);
-// orchestrator routes automatically — it gets a banner on the Agents page
+// orchestrator routes automatically, it gets a banner on the Agents page
 // (T3.6), not a toggle card here (design-briefs §2.4: "9 cards total").
 const STAGE2 = AGENTS.filter((a) => a.stage === 2 && a.id !== "orchestrator");
 const STAGE3 = AGENTS.filter((a) => a.stage === 3);

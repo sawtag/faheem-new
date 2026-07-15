@@ -11,7 +11,7 @@ const DISMISS_KEY = "faheem_email_toast_dismissed";
 const DELAY_MS = 2000;
 const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
 
-// Rise+fade, asymmetric in/out (design brief: 250ms in, 150ms out) — a
+// Rise+fade, asymmetric in/out (design brief: 250ms in, 150ms out), a
 // variants map (rather than one `transition` prop) is what lets enter and
 // exit carry different durations.
 const variants = {
@@ -22,10 +22,10 @@ const variants = {
 /**
  * Ambient "Faheem lives in your inbox" nudge (enterprise-flourish #1).
  * Mounted once in the (app) layout, alongside the existing DemoPalette/
- * ModeOverlay stage overlays — same "renders nothing until its own condition
+ * ModeOverlay stage overlays, same "renders nothing until its own condition
  * fires" shape. Shows once per browser session (sessionStorage survives the
  * client-side navigations that keep this component mounted across routes),
- * 2s after the first non-/chat render — the flagship streaming beat never
+ * 2s after the first non-/chat render, the flagship streaming beat never
  * gets upstaged by a toast.
  */
 export function EmailToast() {

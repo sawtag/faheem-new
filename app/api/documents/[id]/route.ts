@@ -1,5 +1,5 @@
 /**
- * GET /api/documents/[id] — streams a PDF by id, feeding the react-pdf viewer's
+ * GET /api/documents/[id], streams a PDF by id, feeding the react-pdf viewer's
  * deep-links. Two sources, checked in order:
  *   1. the verified corpus manifest → data/corpus/<file>
  *   2. the runtime upload registry → data/uploads/<upload-id>.pdf

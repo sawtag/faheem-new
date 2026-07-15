@@ -1,14 +1,14 @@
 /**
- * Jahez valuation workbook — the Lunar-branded Excel deliverable (§11 tab spec).
+ * Jahez valuation workbook, the Lunar-branded Excel deliverable (§11 tab spec).
  *
  * Nine tabs, every populated cell traceable: sourced inputs carry a
  * "Source: <doc>, p.<n>" comment + Faheem deep-link; analyst assumptions carry a
- * distinct gold-tinted style + an "Assumption — analyst judgment: …" comment.
+ * distinct gold-tinted style + an "Assumption, analyst judgment: …" comment.
  * Every computed cell is a REAL Excel formula (cross-sheet references), written
  * with a cached `result` so the file shows correct numbers the instant a judge
- * opens it — click any cell and the formula is there.
+ * opens it, click any cell and the formula is there.
  *
- * `computeModel()` (lib/model/compute — the pure engine shared with the Live
+ * `computeModel()` (lib/model/compute, the pure engine shared with the Live
  * Model UI) is the single numeric source of truth: it recomputes the whole model
  * in TS so (a) the formula `result` caches are correct and (b) the test can
  * cross-check the workbook by independent recomputation.
@@ -261,7 +261,7 @@ const num = (
 export async function buildJahezWorkbook(): Promise<Buffer> {
   const model = computeModel();
   const wb = new ExcelJS.Workbook();
-  wb.creator = "Faheem — Lunar Investments";
+  wb.creator = "Faheem, Lunar Investments";
   wb.company = "Lunar Investments";
   wb.created = new Date("2026-07-12T00:00:00Z");
 
@@ -306,7 +306,7 @@ export async function buildJahezWorkbook(): Promise<Buffer> {
   buildShariah(wb.addWorksheet(SHEETS.shariah, tabColor()), model, reg, SHEETS);
   buildCover(cover, model, reg, SHEETS);
 
-  // print setup — fit each sheet to one page wide for clean PDF/print output
+  // print setup, fit each sheet to one page wide for clean PDF/print output
   for (const ws of wb.worksheets) {
     ws.pageSetup = {
       orientation: ws.name === SHEETS.cover ? "portrait" : "landscape",
@@ -373,7 +373,7 @@ function buildAssumptions(
   let r = headerBand(
     ws,
     5,
-    "Lunar Investments · Jahez Group — Valuation Assumptions",
+    "Lunar Investments · Jahez Group, Valuation Assumptions",
     "Discount-rate build, terminal assumptions & operating drivers",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
@@ -462,48 +462,48 @@ function buildAssumptions(
   };
 
   rowSourced(
-    "Risk-free rate — Saudi 'Sah' sukuk proxy",
+    "Risk-free rate, Saudi 'Sah' sukuk proxy",
     model.rf,
     FMT.rate2,
     MKT.rf,
     "rf",
   );
   rowSourced(
-    "Equity risk premium — KSA total ERP (Damodaran)",
+    "Equity risk premium, KSA total ERP (Damodaran)",
     model.erp,
     FMT.rate2,
     MKT.erp,
     "erp",
   );
   rowSourced(
-    "Comp levered beta — DoorDash (DASH), 5Y",
+    "Comp levered beta, DoorDash (DASH), 5Y",
     MKT.betaDash.value,
     FMT.beta,
     MKT.betaDash,
     "betaDash",
   );
   rowSourced(
-    "Comp levered beta — Delivery Hero (DHER), 5Y",
+    "Comp levered beta, Delivery Hero (DHER), 5Y",
     MKT.betaDher.value,
     FMT.beta,
     MKT.betaDher,
     "betaDher",
   );
   // Talabat beta n/a
-  label(ws, 2, r, "Comp levered beta — Talabat (TALABAT)");
+  label(ws, 2, r, "Comp levered beta, Talabat (TALABAT)");
   put(ws, 3, r, "n/a", {
     kind: "sourced",
     align: "right",
     note:
       sourceComment({ sourceDoc: "market-data-comps", page: 3 }) +
-      "\nn/a — insufficient trading history (IPO'd Dec 2024)",
+      "\nn/a, insufficient trading history (IPO'd Dec 2024)",
   });
   ws.getCell(r, 4).value = "beta";
   styleUnit(ws, r);
   link(5, r, { sourceDoc: "market-data-comps", page: 3 } as Sourced);
   r++;
   rowAssum(
-    "Beta used — comp-set median",
+    "Beta used, comp-set median",
     num(
       `(${A1(RR(reg.assum.betaDash).c, RR(reg.assum.betaDash).r)}+${A1(RR(reg.assum.betaDher).c, RR(reg.assum.betaDher).r)})/2`,
       model.beta,
@@ -514,7 +514,7 @@ function buildAssumptions(
     "beta",
   );
   rowDerived(
-    "Cost of equity — CAPM (rf + β × ERP)",
+    "Cost of equity, CAPM (rf + β × ERP)",
     `${A1(RR(reg.assum.rf).c, RR(reg.assum.rf).r)}+${A1(RR(reg.assum.beta).c, RR(reg.assum.beta).r)}*${A1(RR(reg.assum.erp).c, RR(reg.assum.erp).r)}`,
     model.ke,
     FMT.rate2,
@@ -564,7 +564,7 @@ function buildAssumptions(
     "SAR m",
   );
   rowSourced(
-    "Interest-bearing debt — Islamic facilities (D)",
+    "Interest-bearing debt, Islamic facilities (D)",
     model.debt,
     FMT.sarM,
     { sourceDoc: "q1-26-fs", page: 4, unit: "SAR m" } as Sourced,
@@ -648,21 +648,21 @@ function buildAssumptions(
 
   r = section(ws, 2, 5, r, "4 · Operating drivers & margins (analyst)");
   rowAssum(
-    "D&A — % of net revenue",
+    "D&A, % of net revenue",
     A.dnaRate,
     FMT.rate,
     RATIONALE.dna,
     "dnaRate",
   );
   rowAssum(
-    "Capex — % of net revenue",
+    "Capex, % of net revenue",
     A.capexRate,
     FMT.rate,
     RATIONALE.capex,
     "capexRate",
   );
   rowAssum(
-    "ΔNWC — % of change in net revenue",
+    "ΔNWC, % of change in net revenue",
     A.nwcRate,
     FMT.rate,
     RATIONALE.nwc,
@@ -674,7 +674,7 @@ function buildAssumptions(
     2,
     5,
     r + 1,
-    "Sourced cells (grey) carry the source document + page and a faheem:// deep-link into Faheem's viewer. Gold cells are labelled analyst assumptions — hover any cell for its full rationale.",
+    "Sourced cells (grey) carry the source document + page and a faheem:// deep-link into Faheem's viewer. Gold cells are labelled analyst assumptions, hover any cell for its full rationale.",
   );
 }
 
@@ -719,7 +719,7 @@ function buildRevenue(
   let r = headerBand(
     ws,
     10,
-    "Jahez Group — Revenue Drivers",
+    "Jahez Group, Revenue Drivers",
     "Orders × AOV = GMV → monetisation → net revenue · FY23A–FY25A actuals, FY26E–FY30E driven",
   );
   r = 3;
@@ -956,8 +956,8 @@ function buildRevenue(
     r++;
   };
   const segStart = r;
-  seg("  Platforms — KSA", "fy25.segment_ksa_net_revenue");
-  seg("  Platforms — Non-KSA", "fy25.segment_nonksa_net_revenue");
+  seg("  Platforms, KSA", "fy25.segment_ksa_net_revenue");
+  seg("  Platforms, Non-KSA", "fy25.segment_nonksa_net_revenue");
   seg("  Logistics", "fy25.segment_logistics_net_revenue");
   seg("  Others", "fy25.segment_others_net_revenue");
   label(ws, 2, r, "  Sum of segments (pre-elimination)", { italic: true });
@@ -1018,8 +1018,8 @@ function buildStatement(
   headerBand(
     ws,
     10,
-    "Jahez Group — Summary 3-Statement",
-    "P&L · balance sheet · cash flow — FY23A–FY25A actual, FY26E–FY30E projected by formula",
+    "Jahez Group, Summary 3-Statement",
+    "P&L · balance sheet · cash flow, FY23A–FY25A actual, FY26E–FY30E projected by formula",
   );
   let r = 3;
   yearHeaders(ws, r);
@@ -1031,7 +1031,7 @@ function buildStatement(
     X(sheets.rev, 3 + i, RR(reg.rev.netRev).r);
 
   r = section(ws, 2, 10, r, "Profit & loss (SAR m)");
-  // Net revenue — link to Revenue Drivers
+  // Net revenue, link to Revenue Drivers
   label(ws, 2, r, "Net revenue", { bold: true });
   reg.stmt.netRev = { c: 3, r };
   for (let i = 0; i < 8; i++)
@@ -1343,7 +1343,7 @@ function buildDcf(
   headerBand(
     ws,
     10,
-    "Jahez Group — Discounted Cash Flow (FCFF)",
+    "Jahez Group, Discounted Cash Flow (FCFF)",
     "Explicit FY26E–FY30E PV + Gordon terminal value → enterprise value → equity bridge → value per share",
   );
   let r = 3;
@@ -1556,8 +1556,8 @@ function buildSensitivity(
   let r = headerBand(
     ws,
     8,
-    "Jahez Group — Sensitivity",
-    "Live formula grids (no data-table feature) — corners recompute from the DCF's own FCFF stream",
+    "Jahez Group, Sensitivity",
+    "Live formula grids (no data-table feature), corners recompute from the DCF's own FCFF stream",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
 
@@ -1567,7 +1567,7 @@ function buildSensitivity(
     2,
     8,
     r,
-    "Value per share (SAR) — WACC (→) × terminal growth (↓)",
+    "Value per share (SAR), WACC (→) × terminal growth (↓)",
   );
   ws.getCell(r, 2).value = "g \\ WACC";
   ws.getCell(r, 2).font = {
@@ -1628,7 +1628,7 @@ function buildSensitivity(
     2,
     8,
     r,
-    "FY30E Adj. EBITDA (SAR m) — GMV growth (→) × net-revenue rate (↓)",
+    "FY30E Adj. EBITDA (SAR m), GMV growth (→) × net-revenue rate (↓)",
   );
   ws.getCell(r, 2).value = "take \\ GMV g";
   ws.getCell(r, 2).font = {
@@ -1669,7 +1669,7 @@ function buildSensitivity(
     2,
     8,
     r + 1,
-    "Grid 1 cells hold the full DCF closed form — Σ FCFFₜ/(1+WACC)ᵗ + Gordon TV + net cash, all divided by shares — reading each column's WACC and each row's g live. The centre cell equals the DCF value per share exactly.",
+    "Grid 1 cells hold the full DCF closed form, Σ FCFFₜ/(1+WACC)ᵗ + Gordon TV + net cash, all divided by shares, reading each column's WACC and each row's g live. The centre cell equals the DCF value per share exactly.",
   );
 }
 
@@ -1685,7 +1685,7 @@ function sensFormula(
   gAddr: string,
 ): string {
   const w = `${waccColL}$${waccHdrRow}`; // WACC header cell (col fixed by letter, row abs)
-  const gRef = `$B${gAddr.match(/\d+/)?.[0]}`; // g header cell — col B abs, row from gAddr
+  const gRef = `$B${gAddr.match(/\d+/)?.[0]}`; // g header cell, col B abs, row from gAddr
   const fcff = (i: number): string => X(sheets.dcf, 6 + i, RR(reg.dcf.fcff).r);
   const parts: string[] = [];
   for (let t = 0; t < 5; t++) parts.push(`${fcff(t)}/(1+${w})^${t + 1}`);
@@ -1722,7 +1722,7 @@ function buildComps(
   let r = headerBand(
     ws,
     7,
-    "Jahez Group — Trading Comparables",
+    "Jahez Group, Trading Comparables",
     "Sourced multiples → implied value per share · football field vs DCF · unsourced cells never filled",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
@@ -1788,7 +1788,7 @@ function buildComps(
       });
       reg2.pe = r;
     } else naCell(ws, 5, r, peNote);
-    naCell(ws, 6, r, "n/a — no matched-period EV/GMV in sources"); // EV/GMV n/a across the board
+    naCell(ws, 6, r, "n/a, no matched-period EV/GMV in sources"); // EV/GMV n/a across the board
     r++;
     return reg2;
   };
@@ -1802,7 +1802,7 @@ function buildComps(
   label(ws, 2, r, "Deliveroo (delisted)", { italic: true, color: B.inkMuted });
   ws.mergeCells(r, 3, r, 6);
   ws.getCell(r, 3).value =
-    "Delisted — acquired by DoorDash 2 Oct 2025; no longer a standalone public comp";
+    "Delisted, acquired by DoorDash 2 Oct 2025; no longer a standalone public comp";
   ws.getCell(r, 3).font = {
     name: B.sans,
     size: 9,
@@ -1822,7 +1822,7 @@ function buildComps(
     MKT.dheroEvRev,
     MKT.dheroEvEbitda,
     null,
-    "n/a — loss-making (TTM), P/E not meaningful",
+    "n/a, loss-making (TTM), P/E not meaningful",
   );
 
   // Jahez metrics + implied value
@@ -1832,7 +1832,7 @@ function buildComps(
     2,
     7,
     r,
-    "Implied value per share (SAR) — multiple × Jahez metric, bridged to equity",
+    "Implied value per share (SAR), multiple × Jahez metric, bridged to equity",
   );
   label(ws, 2, r, "Jahez FY25A metric (SAR m / SAR)", { italic: true });
   const netRevRef = X(sheets.rev, 5, RR(reg.rev.netRev).r);
@@ -1946,7 +1946,7 @@ function buildComps(
 
   // Football field
   r++;
-  r = section(ws, 2, 7, r, "Football field — implied value range vs DCF");
+  r = section(ws, 2, 7, r, "Football field, implied value range vs DCF");
   // MIN/MEDIAN/MAX reference the implied block (3 companies × the multiple cols)
   const impliedFirstRow = metricRow + 1;
   const ffRange = `${A1(3, impliedFirstRow)}:${A1(5, impliedFirstRow + 2)}`;
@@ -1965,15 +1965,15 @@ function buildComps(
     });
     r++;
   };
-  ffRow("Comps implied — minimum", "MIN", model.comps.field.min);
+  ffRow("Comps implied, minimum", "MIN", model.comps.field.min);
   ffRow(
-    "Comps implied — median",
+    "Comps implied, median",
     "MEDIAN",
     model.comps.field.median,
     true,
     "total",
   );
-  ffRow("Comps implied — maximum", "MAX", model.comps.field.max);
+  ffRow("Comps implied, maximum", "MAX", model.comps.field.max);
   label(ws, 2, r, "DCF value per share", { bold: true });
   put(
     ws,
@@ -2009,7 +2009,7 @@ function buildComps(
     2,
     7,
     r + 1,
-    "The comp set is deliberately wide (single-market Talabat to scale-premium DoorDash) and trailing metrics are depressed by FY25 one-offs — treat comps as a sense-check on the DCF, not a standalone valuation. EV/GMV and Delivery Hero P/E are 'n/a — not sourced' and are never filled in.",
+    "The comp set is deliberately wide (single-market Talabat to scale-premium DoorDash) and trailing metrics are depressed by FY25 one-offs, treat comps as a sense-check on the DCF, not a standalone valuation. EV/GMV and Delivery Hero P/E are 'n/a, not sourced' and are never filled in.",
   );
 }
 
@@ -2044,7 +2044,7 @@ function buildScenarios(
   let r = headerBand(
     ws,
     8,
-    "Jahez Group — Scenarios & Risk",
+    "Jahez Group, Scenarios & Risk",
     "Bull / base / bear DCFs · IRR at entry vs 15% hurdle · scenario-weighted return · quantified risk register",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
@@ -2603,7 +2603,7 @@ function buildShariah(
   let r = headerBand(
     ws,
     6,
-    "Jahez Group — Shariah Screen (AAOIFI-style)",
+    "Jahez Group, Shariah Screen (AAOIFI-style)",
     "Financial-ratio screens by formula from the balance sheet · pass/fail flags",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
@@ -2683,7 +2683,7 @@ function buildShariah(
     model.shariah.cashRatio,
     0.33,
     model.shariah.cashPass,
-    "Cash only — interest-bearing securities not separately disclosed; screened on cash (<33%)",
+    "Cash only, interest-bearing securities not separately disclosed; screened on cash (<33%)",
   );
   // memo: debt incl leases
   label(ws, 2, r, "  Memo: (debt + leases) / market cap", {
@@ -2716,12 +2716,12 @@ function buildShariah(
     },
   };
   ws.getCell(r, 5).alignment = { horizontal: "center" };
-  label(ws, 6, r, "IFRS-16 leases included (stricter view) — still passes", {
+  label(ws, 6, r, "IFRS-16 leases included (stricter view), still passes", {
     size: 9,
     color: B.inkMuted,
   });
   r++;
-  // non-permissible income — not disclosed
+  // non-permissible income, not disclosed
   label(ws, 2, r, "Non-permissible income / total revenue");
   const npi = ws.getCell(r, 3);
   npi.value = "n/d";
@@ -2750,7 +2750,7 @@ function buildShariah(
     ws,
     6,
     r,
-    "Not separately disclosed — screened via business-activity test (permissible food delivery/logistics; Islamic financing)",
+    "Not separately disclosed, screened via business-activity test (permissible food delivery/logistics; Islamic financing)",
     { size: 9, color: B.inkMuted },
   );
   ws.getRow(r).height = 30;
@@ -2800,7 +2800,7 @@ function buildCover(
     { width: 22 },
     { width: 24 },
   ];
-  // Charcoal header band — three separate merged rows (title / subtitle / gold rule)
+  // Charcoal header band, three separate merged rows (title / subtitle / gold rule)
   const bandRow = (rr: number): void => {
     ws.mergeCells(rr, 1, rr, 5);
     for (let c = 1; c <= 5; c++) ws.getCell(rr, c).fill = fillOf(B.charcoal);
@@ -2856,7 +2856,7 @@ function buildCover(
   ws.getRow(r).height = 42;
   ws.mergeCells(r, 4, r, 5);
   const ratingLbl = ws.getCell(r, 4);
-  ratingLbl.value = "Rating (advisory only — the committee decides)";
+  ratingLbl.value = "Rating (advisory only, the committee decides)";
   ratingLbl.font = {
     name: B.sans,
     size: 10,
@@ -3004,7 +3004,7 @@ function buildCover(
     2,
     5,
     r + 1,
-    "All figures are live formulas referencing the model tabs — target price = DCF!Value per share, upside = DCF, IRR & weighted return = Scenarios & Risk, Shariah = Shariah Screen. Advisory only: the Investment Committee decides. Prepared by Faheem for Lunar Investments, 12 Jul 2026. Not investment advice.",
+    "All figures are live formulas referencing the model tabs, target price = DCF!Value per share, upside = DCF, IRR & weighted return = Scenarios & Risk, Shariah = Shariah Screen. Advisory only: the Investment Committee decides. Prepared by Faheem for Lunar Investments, 12 Jul 2026. Not investment advice.",
   );
 
   ws.getColumn(1).width = 3;

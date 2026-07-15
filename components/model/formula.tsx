@@ -8,7 +8,7 @@ import "katex/dist/katex.min.css";
  * KaTeX-rendered formula (display mode). Formula source is the vetted
  * FORMULAS registry (lib/model/formulas.ts), never user input, so the
  * generated markup is trusted. Numeric-LTR convention (AGENTS.md /
- * spec §7): the formula body stays LTR even under the Arabic locale — only
+ * spec §7): the formula body stays LTR even under the Arabic locale, only
  * surrounding chrome flips.
  */
 export function Formula({ tex }: { tex: string }) {

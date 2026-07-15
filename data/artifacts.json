@@ -3,8 +3,8 @@
     "id": "jahez-xlsx",
     "kind": "xlsx",
     "name": {
-      "en": "Jahez — Valuation Model",
-      "ar": "جاهز — نموذج التقييم"
+      "en": "Jahez · Valuation Model",
+      "ar": "جاهز · نموذج التقييم"
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-valuation-model.xlsx",
@@ -15,8 +15,8 @@
     "id": "jahez-docx",
     "kind": "docx",
     "name": {
-      "en": "Jahez — IC Memo",
-      "ar": "جاهز — مذكرة لجنة الاستثمار"
+      "en": "Jahez · IC Memo",
+      "ar": "جاهز · مذكرة لجنة الاستثمار"
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-ic-memo.docx",
@@ -27,8 +27,8 @@
     "id": "jahez-pptx",
     "kind": "pptx",
     "name": {
-      "en": "Jahez — Board Deck",
-      "ar": "جاهز — العرض التقديمي لمجلس الإدارة"
+      "en": "Jahez · Board Deck",
+      "ar": "جاهز · العرض التقديمي لمجلس الإدارة"
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-board-deck.pptx",

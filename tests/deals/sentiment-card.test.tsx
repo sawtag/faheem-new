@@ -25,7 +25,7 @@ describe("SentimentCard", () => {
       screen.getByText(/price-war discounting and reactions/i),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Signal only — not a valuation input"),
+      screen.getByText("Signal only, not a valuation input"),
     ).toBeInTheDocument();
     // no leaked i18n keys
     expect(screen.queryByText(/sentiment\./)).not.toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("SentimentCard", () => {
     expect(screen.getByText("المزاج السوقي")).toBeInTheDocument();
     expect(screen.getByText("حذر")).toBeInTheDocument();
     expect(
-      screen.getByText("مؤشر استرشادي فقط — وليس مدخلاً للتقييم"),
+      screen.getByText("مؤشر استرشادي فقط، وليس مدخلاً للتقييم"),
     ).toBeInTheDocument();
     expect(screen.queryByText(/sentiment\./)).not.toBeInTheDocument();
   });
@@ -73,7 +73,7 @@ describe("SentimentCard", () => {
   it("compact variant still renders the disclaimer without the descriptive caption", () => {
     renderCard("en", true);
     expect(
-      screen.getByText("Signal only — not a valuation input"),
+      screen.getByText("Signal only, not a valuation input"),
     ).toBeInTheDocument();
     expect(
       screen.queryByText("Qualitative read on social & forum chatter"),

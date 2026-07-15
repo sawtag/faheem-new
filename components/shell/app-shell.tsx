@@ -7,7 +7,7 @@ import { Sidebar, type PinnedWorkspace } from "@/components/shell/sidebar";
 
 /**
  * App frame: collapsible sidebar + content region. The content is keyed on the
- * locale so a language switch crossfades (250ms) rather than snapping — the
+ * locale so a language switch crossfades (250ms) rather than snapping, the
  * subtle motion the shell brief calls for. Sidebar is sticky/full-height; each
  * page decides its own scroll (the chat page fills the viewport and scrolls
  * its two columns independently).

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { ensureSampleFixture } from "../tests/fixtures/make-pdf";
 
 /**
- * "Upload any PDF and ask about it" — the demo's answer to "is this hardcoded?".
+ * "Upload any PDF and ask about it", the demo's answer to "is this hardcoded?".
  * Runs against the CACHED e2e server (no API key), so the live Files-API leg is
  * skipped: the upload is still saved, registered, viewable, and attachable. This
  * spec proves the two judge-visible guarantees under cached mode:
@@ -11,7 +11,7 @@ import { ensureSampleFixture } from "../tests/fixtures/make-pdf";
  *      never a hallucinated answer).
  *   2. Documents-tab drop-zone → the uploaded doc opens in the SAME PdfPanel via
  *      the documents route (served by upload-id).
- * (The live end — real citations grounded in the uploaded PDF — is smoke-tested
+ * (The live end, real citations grounded in the uploaded PDF, is smoke-tested
  * by hand with a key; impossible to assert here without one.)
  */
 const FIXTURE = ensureSampleFixture();

@@ -24,7 +24,7 @@ const MODEL_EDIT_TIMEOUT_MS = 10_000;
  * (AGENTS.md motion law); reduced motion collapses the whole run to instant. */
 const STEP_MS = 340;
 
-/** Assumption fields whose edit moves debt-cost / zakat inputs — the only
+/** Assumption fields whose edit moves debt-cost / zakat inputs, the only
  * edits where the Compliance agent has anything to re-check (the Shariah
  * ratios themselves derive purely from sourced balance-sheet actuals). */
 const COMPLIANCE_RELEVANT = new Set(["spread", "zakat"]);
@@ -93,7 +93,7 @@ function lockedStages(): Stage[] {
 /**
  * The conversational edit composer (WS-C): a slim command bar over the Live
  * Model. The instruction goes to /api/model-edit (scripted-first, offline in
- * cached mode); an admitted edit plays as the specialist team working —
+ * cached mode); an admitted edit plays as the specialist team working,
  * Valuation recomputes (the numbers move when its stage completes) → Critical
  * Review re-verifies provenance → Compliance re-checks Shariah ratios only for
  * debt/zakat-relevant edits (otherwise visibly "no re-check needed") → Writing
@@ -129,7 +129,7 @@ export function EditComposer({
     [],
   );
 
-  // ⌘K palette hand-off (WS-F, lib/demo/model-edit-bus.ts — same pull-and-clear
+  // ⌘K palette hand-off (WS-F, lib/demo/model-edit-bus.ts, same pull-and-clear
   // pattern as ChatView's golden-bus): a Live Model beat entry prefills the
   // instruction text, same as clicking one of the chips below, but leaves
   // submitting to the presenter's Enter/Apply (matches the golden-question
@@ -401,7 +401,7 @@ export function EditComposer({
   );
 }
 
-/** The one-line recommendation, recomputed from the CURRENT outputs — per-share
+/** The one-line recommendation, recomputed from the CURRENT outputs, per-share
  * fair value and weighted IRR vs the sourced IC hurdle, house formatters only. */
 function useRecommendation(
   model: LiveModel,
@@ -435,7 +435,7 @@ function WorkingDot() {
   );
 }
 
-/** One choreography row — the Agent Activity visual language (icon tile,
+/** One choreography row, the Agent Activity visual language (icon tile,
  * bilingual agent name, caption, shimmer-dot → check morph). */
 function StageItem({
   stage,

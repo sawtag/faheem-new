@@ -21,7 +21,7 @@ const VERDICT: Record<
 };
 
 /**
- * The Screening Agent's mandate-fit scorecard (spec §11) — criterion rows with
+ * The Screening Agent's mandate-fit scorecard (spec §11), criterion rows with
  * pass/warn/fail verdicts, each citing the Lunar IC Charter. Pure render from
  * deals.json rows; `onCite` receives the citation so the workspace can open
  * the PdfPanel at the cited page.

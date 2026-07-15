@@ -33,49 +33,79 @@
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "start",
-      "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "done",
-      "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "start",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "done",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
@@ -189,7 +219,7 @@
     },
     {
       "type": "delta",
-      "text": "ين الربوي إلى القيمة السوقية (نجاح — نحو 6%)\n\n**البس"
+      "text": "ين الربوي إلى القيمة السوقية (نجاح، نحو 6%)\n\n**البس"
     },
     {
       "type": "delta",
@@ -352,7 +382,7 @@
     },
     {
       "type": "delta",
-      "text": "ظ)، تبقى النسبة دون العُشر — واخت"
+      "text": "ظ)، تبقى النسبة دون العُشر، واخت"
     },
     {
       "type": "delta",
@@ -360,7 +390,7 @@
     },
     {
       "type": "delta",
-      "text": "بة الدخل غير المسموح به إلى الإيرادات (نجاح — نحو 2%)\n\nالدخل غير المبا"
+      "text": "بة الدخل غير المسموح به إلى الإيرادات (نجاح، نحو 2%)\n\nالدخل غير المبا"
     },
     {
       "type": "delta",
@@ -406,7 +436,7 @@
     },
     {
       "type": "delta",
-      "text": " — أي نحو **2.2%**، دون سقف 5%.\n\nوتراجعت هذه النسب"
+      "text": "، أي نحو **2.2%**، دون سقف 5%.\n\nوتراجعت هذه النسب"
     },
     {
       "type": "delta",
@@ -437,7 +467,7 @@
     },
     {
       "type": "delta",
-      "text": " — أي نحو 0.11% فقط.\n\n## الخلاصة وال"
+      "text": "، أي نحو 0.11% فقط.\n\n## الخلاصة وال"
     },
     {
       "type": "delta",
@@ -519,7 +549,7 @@
     },
     {
       "type": "delta",
-      "text": "تمل نقاشاً — فتمويلات التورّق الإسلامية مهيك"
+      "text": "تمل نقاشاً، فتمويلات التورّق الإسلامية مهيك"
     },
     {
       "type": "delta",
@@ -527,7 +557,7 @@
     },
     {
       "type": "delta",
-      "text": "ضمن الدين التقليدي — لكن النتيجة لا تتغيّر تحت أي من"
+      "text": "ضمن الدين التقليدي، لكن النتيجة لا تتغيّر تحت أي من"
     },
     {
       "type": "delta",
@@ -559,7 +589,7 @@
     },
     {
       "type": "delta",
-      "text": ".38 مليون سهم) — غالباً بسبب تمييز الأسهم الحرة ع"
+      "text": ".38 مليون سهم)، غالباً بسبب تمييز الأسهم الحرة ع"
     },
     {
       "type": "delta",

@@ -2,7 +2,7 @@
 
 /**
  * Design-QA surface (gate A): every primitive, every variant, rendered once
- * LTR/EN and once RTL/AR. Dev-only — hardcoded copy is permitted here (and only
+ * LTR/EN and once RTL/AR. Dev-only, hardcoded copy is permitted here (and only
  * here); the token + logical-property lint rules still apply.
  */
 
@@ -96,7 +96,7 @@ const en = {
   tooltip: "Tooltip",
   hoverMe: "Hover me",
   tooltipBody:
-    "Official Tadawul filings — Faheem's primary public-market source.",
+    "Official Tadawul filings, Faheem's primary public-market source.",
   stepper: "Stepper",
   connect: "Connect",
   agentsStep: "Agents & skills",
@@ -154,8 +154,7 @@ const ar: Record<keyof typeof en, string> = {
   remove: "إزالة",
   tooltip: "التلميح",
   hoverMe: "مرّر المؤشر",
-  tooltipBody:
-    "إفصاحات تداول الرسمية — مصدر فهيم الأساسي لبيانات السوق العامة.",
+  tooltipBody: "إفصاحات تداول الرسمية، مصدر فهيم الأساسي لبيانات السوق العامة.",
   stepper: "الخطوات",
   connect: "الربط",
   agentsStep: "الوكلاء والمهارات",
@@ -493,10 +492,10 @@ export default function KitchenSinkPage() {
       <header className="flex flex-col gap-2">
         <Logo variant="horizontal-bilingual" size={40} />
         <h1 className="text-h1 text-navy mt-4 font-extrabold">
-          Faheem UI — Kitchen Sink
+          Faheem UI, Kitchen Sink
         </h1>
         <p className="text-text-secondary text-[0.9375rem]">
-          Every primitive, every variant — reviewed LTR/EN and RTL/AR.
+          Every primitive, every variant, reviewed LTR/EN and RTL/AR.
         </p>
       </header>
 

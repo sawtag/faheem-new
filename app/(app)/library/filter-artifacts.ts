@@ -3,7 +3,7 @@ import type { ArtifactMeta, Lang } from "@/lib/types";
 /** Library filter pills (design-briefs §3.3): All / IC Memos / Models / Decks. */
 export type LibraryFilter = "all" | "docx" | "xlsx" | "pptx";
 
-/** Pure filter+search over the artifact list — kept standalone so it's unit-testable without fs/network. */
+/** Pure filter+search over the artifact list, kept standalone so it's unit-testable without fs/network. */
 export function filterArtifacts(
   artifacts: ArtifactMeta[],
   filter: LibraryFilter,

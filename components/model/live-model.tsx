@@ -59,7 +59,7 @@ function HeroNumber({
   return <motion.span className="financial tabular-nums">{text}</motion.span>;
 }
 
-/** "N values updated" chip — mounts fresh per recompute (keyed on nonce) and
+/** "N values updated" chip, mounts fresh per recompute (keyed on nonce) and
  * self-dismisses; no setState in an effect body. */
 function DiffChip({ label }: { label: string }) {
   const [shown, setShown] = React.useState(true);
@@ -300,7 +300,7 @@ export function LiveModel({
             </div>
           </div>
 
-          {/* conversational edit — WS-C */}
+          {/* conversational edit, WS-C */}
           <EditComposer model={model} companyId={companyId} />
 
           {/* tabs */}
@@ -364,7 +364,7 @@ export function LiveModel({
           )}
         </AnimatePresence>
 
-        {/* source PDF, drilled from a sourced leaf — sits above the sheet */}
+        {/* source PDF, drilled from a sourced leaf, sits above the sheet */}
         <AnimatePresence>
           {openDoc && (
             <motion.aside

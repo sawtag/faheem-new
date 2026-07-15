@@ -36,7 +36,7 @@ afterEach(() => {
   if (fs.existsSync(auditFile)) fs.rmSync(auditFile);
 });
 
-describe("POST /api/chat — cached mode + uploaded doc", () => {
+describe("POST /api/chat, cached mode + uploaded doc", () => {
   const req: ChatRequest = {
     question: "What does the uploaded memo say about margins?",
     lang: "en",

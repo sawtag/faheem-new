@@ -1,5 +1,5 @@
 /**
- * Generation SSE protocol — shared between the route (app/api/generate/[artifact])
+ * Generation SSE protocol, shared between the route (app/api/generate/[artifact])
  * and the client panel. Deliberately NOT part of lib/types.ts's SSEEvent union
  * (that's the chat contract, fable-owned): deliverable generation has a
  * different shape (per-artifact phase choreography + a final file payload), so

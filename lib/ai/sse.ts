@@ -4,7 +4,7 @@
  *
  * Live wire mapping: text deltas stream as `delta` events; at each cited text
  * block's end we append a `[[n]]` marker delta (n sequential) and emit the
- * matching `citation` event — docId resolved via `document_index` into the exact
+ * matching `citation` event, docId resolved via `document_index` into the exact
  * doc order from corpus.ts, page from `start_page_number` (1-indexed), quote =
  * trimmed `cited_text` (≤200 chars). `done` carries `cached:false` for live.
  */
@@ -123,8 +123,8 @@ async function* stages(
 
 function gracefulCachedError(lang: Lang): string {
   return lang === "ar"
-    ? "هذا السؤال غير مُسجّل في مجموعة العرض بعد. في وضع العرض المُسجّل، اختر سؤالاً من لوحة الأوامر (⌘K) — فتلك هي مجموعة أسئلة العرض المُسجّلة والموثّقة."
-    : "This question isn't in the recorded demo set. In cached mode, pick one from the ⌘K palette — those are the pre-recorded, verified demo questions.";
+    ? "هذا السؤال غير مُسجّل في مجموعة العرض بعد. في وضع العرض المُسجّل، اختر سؤالاً من لوحة الأوامر (⌘K)، فتلك هي مجموعة أسئلة العرض المُسجّلة والموثّقة."
+    : "This question isn't in the recorded demo set. In cached mode, pick one from the ⌘K palette, those are the pre-recorded, verified demo questions.";
 }
 
 function liveFailNoCache(lang: Lang): string {
@@ -135,13 +135,13 @@ function liveFailNoCache(lang: Lang): string {
 
 function midStreamError(lang: Lang): string {
   return lang === "ar"
-    ? "انقطع الاتصال أثناء الإجابة — يتم الرجوع إلى الإجابة الموثّقة من الذاكرة المؤقتة."
-    : "Connection issue — answering from the verified cache.";
+    ? "انقطع الاتصال أثناء الإجابة، يتم الرجوع إلى الإجابة الموثّقة من الذاكرة المؤقتة."
+    : "Connection issue, answering from the verified cache.";
 }
 
 /**
  * Surface the real exception in the server log before the graceful SSE path
- * swallows it — the UI only ever sees a calm fallback message, so without this
+ * swallows it, the UI only ever sees a calm fallback message, so without this
  * a rehearsal failure (bad API key, corpus read, model error) leaves no trace
  * of the root cause.
  */

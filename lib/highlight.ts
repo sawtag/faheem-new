@@ -4,20 +4,20 @@
  * page's pdfjs text items, find the best matching character ranges so the
  * PdfPanel can wrap them in <mark> spans.
  *
- * PDF text extraction is ragged — items split mid-sentence (or mid-word),
- * quotes carry linebreak artifacts, curly punctuation differs — so both sides
+ * PDF text extraction is ragged, items split mid-sentence (or mid-word),
+ * quotes carry linebreak artifacts, curly punctuation differs, so both sides
  * are normalized (NFKC, lowercase, unified quotes/dashes, soft hyphens
  * dropped) and compared with ALL whitespace removed. An index map from every
  * squashed character back to its (item, char) origin turns a match in the
  * squashed domain into per-item ranges.
  *
  * Tiers (first hit wins), thresholds tuned against all 120 recorded quotes in
- * data/demo-cache — 111 match fully; the tiers below catch the other 9:
+ * data/demo-cache, 111 match fully; the tiers below catch the other 9:
  *   1. full quote found verbatim (post-normalization);
  *   2. longest quote PREFIX found, if it spans ≥40 chars of the raw quote;
  *   3. longest whole-token RUN of the quote found contiguously in the page
  *      (punctuation-only edge tokens trimmed), if it spans ≥25 raw chars OR
- *      is a multi-word run of ≥12 squashed chars — this catches composed
+ *      is a multi-word run of ≥12 squashed chars, this catches composed
  *      quotes like "Average Order Value 64.9 (+5.2% YoY)" whose label exists
  *      on the page but whose value sits in a different table cell;
  *   4. no match → null. The caller falls back to page-level open, silently.
@@ -201,7 +201,7 @@ function bestTokenRun(
 /**
  * Find the best match for `quote` across the page's text items. `items` is
  * TextContent.items mapped to each item's `str` ("" for non-text items), in
- * order — span itemIndex values index into that same array.
+ * order, span itemIndex values index into that same array.
  * Returns null when nothing clears the thresholds (caller shows page-only).
  */
 export function matchQuote(
@@ -212,18 +212,18 @@ export function matchQuote(
   const q = squashQuote(quote);
   if (q.text.length === 0 || page.text.length === 0) return null;
 
-  // 1 — full match
+  // 1, full match
   const full = page.text.indexOf(q.text);
   if (full !== -1) return toSpans(page, full, full + q.text.length);
 
-  // 2 — longest prefix
+  // 2, longest prefix
   const pfx = longestPrefix(page.text, q.text);
   if (pfx > 0 && rawSpan(q, 0, pfx) >= PREFIX_MIN_RAW) {
     const at = page.text.indexOf(q.text.slice(0, pfx));
     return toSpans(page, at, at + pfx);
   }
 
-  // 3 — best whole-token run
+  // 3, best whole-token run
   const run = bestTokenRun(page.text, q);
   if (run) {
     const len = run.end - run.start;

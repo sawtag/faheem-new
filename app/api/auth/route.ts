@@ -1,5 +1,5 @@
 /**
- * POST /api/auth — mock sign-in (AGENTS.md rule 10: any NON-EMPTY username +
+ * POST /api/auth, mock sign-in (AGENTS.md rule 10: any NON-EMPTY username +
  * password succeeds; there is no real credential check). Sets the
  * `faheem_session` cookie the middleware gate looks for; empty/whitespace-only
  * fields get a 400 so the login screen can render its inline error.
@@ -10,7 +10,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const SESSION_COOKIE = "faheem_session";
-const SESSION_MAX_AGE_S = 60 * 60 * 24 * 7; // 1 week — demo session
+const SESSION_MAX_AGE_S = 60 * 60 * 24 * 7; // 1 week, demo session
 
 const AuthRequestSchema = z.object({
   username: z.string(),

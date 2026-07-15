@@ -18,15 +18,15 @@ describe("buildMailtoHref", () => {
   it("builds a well-formed mailto: href with encoded subject + body", () => {
     const { href, truncated } = buildMailtoHref({
       to: ["ali@lunar-inv.sa"],
-      subject: "Jahez — IC materials",
+      subject: "Jahez, IC materials",
       body: "Dear IC,\n\nSee attached.",
     });
     expect(truncated).toBe(false);
     expect(href.startsWith("mailto:ali%40lunar-inv.sa?")).toBe(true);
     expect(href).toContain(
-      `subject=${encodeURIComponent("Jahez — IC materials")}`,
+      `subject=${encodeURIComponent("Jahez, IC materials")}`,
     );
-    // body is CRLF-normalized before encoding — %0D%0A per line break
+    // body is CRLF-normalized before encoding, %0D%0A per line break
     expect(href).toContain("body=Dear%20IC%2C%0D%0A%0D%0ASee%20attached.");
   });
 
@@ -65,7 +65,7 @@ describe("buildMailtoHref", () => {
 
   it("trims an oversized body to fit MAILTO_MAX_LENGTH, leaving recipients + subject intact", () => {
     const to = ["Lunar IC Group <ic@lunar-inv.sa>"];
-    const subject = "Jahez — IC materials & recommendation";
+    const subject = "Jahez, IC materials & recommendation";
     const body = "x".repeat(5000);
 
     const { href, truncated } = buildMailtoHref({ to, subject, body });

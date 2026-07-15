@@ -68,7 +68,7 @@ describe("ComparisonTable", () => {
     const pending = screen.getByTestId("ic-pending-jahez");
     expect(pending).toHaveTextContent(/metrics pending model sign-off/i);
 
-    // The populated column still shows its pass badges — no fake numbers leak
+    // The populated column still shows its pass badges, no fake numbers leak
     // into the pending one.
     expect(screen.getAllByText("Pass")).toHaveLength(2);
     expect(screen.getByTestId("ic-irr-delta-thara-pay")).toBeInTheDocument();

@@ -11,7 +11,7 @@
       "ar": "40 مليون ريال سعودي - السلسلة B"
     },
     "statusLine": {
-      "en": "Screening scorecard complete — 5 pass, 1 concentration flag.",
+      "en": "Screening scorecard complete: 5 pass, 1 concentration flag.",
       "ar": "اكتمل بطاقة الفرز - 5 معايير مستوفاة وتنبيه تركّز واحد."
     },
     "screening": {
@@ -78,7 +78,7 @@
         }
       ],
       "verdict": {
-        "en": "Recommend advancing to pitch meeting — 5 pass, 1 flag. Decision: yours.",
+        "en": "Recommend advancing to pitch meeting: 5 pass, 1 flag. Decision: yours.",
         "ar": "يُوصى بالانتقال إلى اجتماع العرض التقديمي - 5 معايير مستوفاة وتنبيه واحد. القرار لكم."
       }
     }
@@ -99,7 +99,7 @@
       "ar": "فرز SAHMK/أرقام · 2026-07-08"
     },
     "statusLine": {
-      "en": "Deep-dive analysis in progress — valuation, unit economics, and scenario modelling underway.",
+      "en": "Deep-dive analysis in progress: valuation, unit economics, and scenario modelling underway.",
       "ar": "التحليل المعمّق قيد التنفيذ - التقييم والاقتصاد التشغيلي ونمذجة السيناريوهات جارية."
     },
     "icMetrics": {
@@ -110,8 +110,8 @@
       "mandateFit": "pass",
       "shariah": "pass",
       "recommendation": {
-        "en": "Strongest risk-adjusted case — clears the hurdle in base and bull; bear case falls short. The committee decides.",
-        "ar": "أقوى حالة معدّلة بالمخاطر — يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
+        "en": "Strongest risk-adjusted case: clears the hurdle in base and bull; bear case falls short. The committee decides.",
+        "ar": "أقوى حالة معدّلة بالمخاطر: يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
       },
       "cite": { "docId": "jahez-analysis-summary", "page": 2 }
     }
@@ -121,13 +121,13 @@
     "name": { "en": "Thara Pay", "ar": "ثارا باي" },
     "listing": { "en": "Pre-IPO", "ar": "قبل الطرح" },
     "sector": {
-      "en": "Fintech — payments infrastructure",
+      "en": "Fintech · payments infrastructure",
       "ar": "التقنية المالية - البنية التحتية للمدفوعات"
     },
     "origin": "inbound",
     "stage": "ic-review",
     "statusLine": {
-      "en": "Analysis complete — in Investment Committee review.",
+      "en": "Analysis complete, now in Investment Committee review.",
       "ar": "اكتمل التحليل - قيد مراجعة لجنة الاستثمار."
     },
     "icMetrics": {
@@ -152,7 +152,7 @@
     "origin": "inbound",
     "stage": "declined",
     "statusLine": {
-      "en": "Declined at screening — outside sector mandate.",
+      "en": "Declined at screening (outside sector mandate).",
       "ar": "تم الاعتذار عند الفرز - خارج نطاق التفويض القطاعي."
     },
     "declineReason": {

@@ -1,5 +1,5 @@
 /**
- * POST /api/chat — validates a ChatRequest and streams the SSE engine output.
+ * POST /api/chat, validates a ChatRequest and streams the SSE engine output.
  * Counts real citation events and appends one audit entry after the stream
  * completes (feeds the Audit Trail panel). Mode is resolved from the
  * `faheem_mode` cookie (the on-stage panic switch) inside the engine.
@@ -17,7 +17,7 @@ const EVENT_STREAM_HEADERS = {
   Connection: "keep-alive",
 } as const;
 
-/** Uploaded docs are live-mode only — cached mode can never have a recording. */
+/** Uploaded docs are live-mode only, cached mode can never have a recording. */
 function uploadInCachedMessage(lang: Lang): string {
   return lang === "ar"
     ? "المستندات المرفوعة متاحة في الوضع المباشر فقط. بدّل إلى الوضع المباشر (⌘.) للسؤال عن مستند مرفوع."

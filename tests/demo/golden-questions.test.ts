@@ -7,7 +7,7 @@ import {
   groupGoldenQuestions,
 } from "@/lib/demo/golden-questions";
 
-describe("GOLDEN_QUESTIONS — data/golden-questions.json", () => {
+describe("GOLDEN_QUESTIONS, data/golden-questions.json", () => {
   it("has 11 entries with unique ids", () => {
     expect(GOLDEN_QUESTIONS).toHaveLength(11);
     const ids = GOLDEN_QUESTIONS.map((q) => q.id);
@@ -27,7 +27,7 @@ describe("GOLDEN_QUESTIONS — data/golden-questions.json", () => {
   it("the ic-rank entry matches the IC room's first suggested pill verbatim (messages/en.json ic.chat.suggest1)", () => {
     const entry = goldenQuestionById("ic-rank");
     expect(entry?.request.question).toBe(
-      "Rank these deals — strongest risk-adjusted case?",
+      "Rank these deals: strongest risk-adjusted case?",
     );
   });
 
@@ -56,7 +56,7 @@ describe("GOLDEN_QUESTIONS — data/golden-questions.json", () => {
   });
 });
 
-describe("filterGoldenQuestions — palette filter logic", () => {
+describe("filterGoldenQuestions, palette filter logic", () => {
   it("shows nothing when the current locale doesn't match an entry's recorded lang", () => {
     const ic = filterGoldenQuestions(GOLDEN_QUESTIONS, { kind: "ic" }, "ar");
     expect(ic).toEqual([]);
@@ -104,7 +104,7 @@ describe("filterGoldenQuestions — palette filter logic", () => {
     expect(ic.map((q) => q.id)).toEqual(["ic-rank"]);
   });
 
-  it("a null context (no chat surface on screen — Home, Deals, Agents…) shows every entry in that language", () => {
+  it("a null context (no chat surface on screen, Home, Deals, Agents…) shows every entry in that language", () => {
     const all = filterGoldenQuestions(GOLDEN_QUESTIONS, null, "en");
     expect(all).toHaveLength(10); // every en entry
   });

@@ -28,7 +28,7 @@ const ROLES: Role[] = ["view", "comment", "edit"];
 const SUCCESS_MS = 400;
 
 /**
- * Share-workspace dialog (enterprise-flourish #2) — reference:
+ * Share-workspace dialog (enterprise-flourish #2), reference:
  * context/rogo-screens/swappy-20260709_182820.png (ideas, not layout law).
  * Cosmetic/no-persistence: chips, role, and "shared" state all reset the
  * next time the dialog opens. Mirrors the connections OAuth modal's
@@ -45,7 +45,7 @@ export function ShareWorkspace({ companyName }: { companyName: Localized }) {
   const [role, setRole] = React.useState<Role>("view");
   const [stage, setStage] = React.useState<"form" | "success">("form");
 
-  // Reset whenever the dialog transitions to open — a render-time state
+  // Reset whenever the dialog transitions to open, a render-time state
   // adjustment (React's guidance for resetting state on a prop change),
   // matching the connections OAuth/MCP modals' existing convention.
   const [prevOpen, setPrevOpen] = React.useState(open);

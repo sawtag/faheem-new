@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Segmented-pill radio option / multi-select filter chip (design-briefs
- * §2.4 step 3 — holding period, drawdown tolerance, sector appetite all
+ * §2.4 step 3, holding period, drawdown tolerance, sector appetite all
  * share this exact selected/unselected treatment).
  */
 export function Chip({

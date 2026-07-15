@@ -4,7 +4,7 @@ const STAGGER_S = 0.03;
 
 /**
  * Motion props for a staggered list/grid reveal (design-briefs §0.3): 30ms
- * per item, capped at 8 — items past the cap reveal together with the 8th.
+ * per item, capped at 8, items past the cap reveal together with the 8th.
  */
 export function reveal(index: number) {
   return {

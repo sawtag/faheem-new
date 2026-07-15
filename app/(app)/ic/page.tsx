@@ -5,7 +5,7 @@ import { ArtifactMetaSchema, DealSchema, type ArtifactMeta } from "@/lib/types";
 import { icColumns } from "@/components/ic/metrics";
 import { IcRoom } from "@/components/ic/ic-room";
 
-/** data/artifacts.json, filtered to Jahez — feeds the IC room's secondary
+/** data/artifacts.json, filtered to Jahez, feeds the IC room's secondary
  * Draft-to-IC trigger (WS-E). Mirrors app/(app)/library/page.tsx's fs read;
  * absent-file is a valid, expected state (no deliverables run yet). */
 function loadJahezArtifacts(): ArtifactMeta[] {
@@ -23,7 +23,7 @@ function loadJahezArtifacts(): ArtifactMeta[] {
 }
 
 /**
- * Faheem IC room (T3.4) — the closing beat. Columns are the analysis-complete
+ * Faheem IC room (T3.4), the closing beat. Columns are the analysis-complete
  * pipeline (Jahez + Thara Pay) selected from `deals.json`; a deal without
  * `icMetrics` renders a pending column, never fake numbers. All interactivity
  * (count-up, chat stream, PdfPanel) lives in the client `IcRoom`.

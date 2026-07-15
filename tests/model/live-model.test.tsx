@@ -7,7 +7,7 @@ import en from "@/messages/en.json";
 import ar from "@/messages/ar.json";
 import { LiveModel } from "@/components/model/live-model";
 
-// Force reduced motion so every count-up lands on its value immediately —
+// Force reduced motion so every count-up lands on its value immediately,
 // deterministic value assertions, no rAF flakiness.
 beforeAll(() => {
   Object.defineProperty(window, "matchMedia", {
@@ -42,17 +42,17 @@ function cell(container: HTMLElement, key: string): HTMLElement {
   return el;
 }
 
-describe("LiveModel — base render", () => {
+describe("LiveModel, base render", () => {
   it("renders base-case numbers straight from the engine", () => {
     const { container } = renderModel();
-    // scenario strip is always mounted — base per-share = SAR 14.36
+    // scenario strip is always mounted, base per-share = SAR 14.36
     expect(cell(container, "base.perShare").textContent).toContain("14.36");
     expect(cell(container, "bull.perShare").textContent).toContain("19.24");
     expect(cell(container, "bear.perShare").textContent).toContain("10.03");
   });
 });
 
-describe("LiveModel — assumption edit → recompute", () => {
+describe("LiveModel, assumption edit → recompute", () => {
   it("editing an assumption cell recomputes outputs and surfaces the diff chip", async () => {
     const user = userEvent.setup();
     const { container } = renderModel();
@@ -74,7 +74,7 @@ describe("LiveModel — assumption edit → recompute", () => {
   });
 });
 
-describe("LiveModel — sourced cells are locked", () => {
+describe("LiveModel, sourced cells are locked", () => {
   it("a sourced cell shows the lock affordance and offers NO edit control", async () => {
     const user = userEvent.setup();
     const { container } = renderModel();
@@ -102,7 +102,7 @@ describe("LiveModel — sourced cells are locked", () => {
   });
 });
 
-describe("LiveModel — Methodology panel", () => {
+describe("LiveModel, Methodology panel", () => {
   it("opens on cell click on that cell's node", async () => {
     const user = userEvent.setup();
     const { container } = renderModel();
@@ -111,7 +111,7 @@ describe("LiveModel — Methodology panel", () => {
     await user.click(await waitFor(() => cell(container, "wacc")));
 
     const sheet = await screen.findByTestId("methodology-sheet");
-    // the panel heads on the clicked node — WACC — and renders its formula
+    // the panel heads on the clicked node, WACC, and renders its formula
     expect(within(sheet).getAllByText("WACC").length).toBeGreaterThan(0);
     expect(
       within(sheet).getByText(en.model.formulas.wacc as string),
@@ -119,7 +119,7 @@ describe("LiveModel — Methodology panel", () => {
   });
 });
 
-describe("LiveModel — reset", () => {
+describe("LiveModel, reset", () => {
   it("Reset-to-base returns outputs to the base case", async () => {
     const user = userEvent.setup();
     const { container } = renderModel();
@@ -144,7 +144,7 @@ describe("LiveModel — reset", () => {
   });
 });
 
-describe("LiveModel — Arabic", () => {
+describe("LiveModel, Arabic", () => {
   it("renders under ar without leaking i18n keys and keeps the grid body LTR", () => {
     const { container } = renderModel("ar");
     // no raw model.* keys leaked into rendered text

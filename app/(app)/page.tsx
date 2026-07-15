@@ -3,7 +3,7 @@ import dealsData from "@/data/deals.json";
 import type { Deal } from "@/lib/types";
 
 /**
- * Home / omnibox (T3.2) — the serif-hero landing on camera at every demo beat.
+ * Home / omnibox (T3.2), the serif-hero landing on camera at every demo beat.
  * Server component: hands the live (non-declined) deals, in curated demo order,
  * to the client hero. Everything interactive (composer, pills, rotation) is in
  * HomeHero.

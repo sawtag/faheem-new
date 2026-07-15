@@ -1,5 +1,5 @@
 /**
- * POST /api/improve — rewrites a rough question into a structured equity-research
+ * POST /api/improve, rewrites a rough question into a structured equity-research
  * prompt with the Haiku improver (non-streaming, structured JSON output).
  * Body: { question, lang } → { improved }.
  */
@@ -31,7 +31,7 @@ export async function POST(request: Request): Promise<Response> {
   const { question, lang } = parsed.data;
 
   // The prompt improver always calls the real Haiku model, in every mode
-  // (cached/auto/live) — it's a cheap, fast call and the demo ships a working
+  // (cached/auto/live), it's a cheap, fast call and the demo ships a working
   // key. A failure (no key, network, malformed output) falls back to the
   // original question rather than breaking the composer.
   let improved = question;

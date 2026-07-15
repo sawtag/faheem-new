@@ -2,20 +2,20 @@
  * Pure, React-free helpers for the inline data-viz layer (unit-tested against
  * every markdown table extracted from data/demo-cache in tests/chat/chart-data.test.ts):
  *
- *   parseNumericCell   — "SAR 193.0m" → 193 · "−22.8%" → -22.8 · "(5.0)" → -5 · "5 / 10" → 5
- *   parseMarkdownTable — pipe block → { headers, rows, malformed } (streaming-safe)
- *   classifyTable      — decides if a table is chartable and how (grouped/bar + hurdle line)
- *   buildJahezAnalytics— the Jahez workspace-overview panels, straight from model-inputs.json
+ *   parseNumericCell, "SAR 193.0m" → 193 · "−22.8%" → -22.8 · "(5.0)" → -5 · "5 / 10" → 5
+ *   parseMarkdownTable, pipe block → { headers, rows, malformed } (streaming-safe)
+ *   classifyTable, decides if a table is chartable and how (grouped/bar + hurdle line)
+ *   buildJahezAnalytics, the Jahez workspace-overview panels, straight from model-inputs.json
  *
  * Every displayed figure keeps its source: this module only extracts and shapes
  * numbers that already exist in the recorded answers / model-inputs (AGENTS.md
- * rule 5 — never invents a value).
+ * rule 5, never invents a value).
  */
 import type { ModelInput } from "@/lib/types";
 
 // ─────────────────────────────── cell parsing ───────────────────────────────
 
-/** Which axis a value belongs on — bars only ever share ONE family (honest axis). */
+/** Which axis a value belongs on, bars only ever share ONE family (honest axis). */
 export type UnitFamily =
   "currency" | "percent" | "pp" | "score" | "number" | "none";
 
@@ -24,7 +24,7 @@ export interface NumericParse {
   value: number | null;
   unit: UnitFamily;
   negative: boolean;
-  /** the original cell was wrapped in parentheses — an accounting negative */
+  /** the original cell was wrapped in parentheses, an accounting negative */
   parenthesized: boolean;
 }
 
@@ -151,7 +151,7 @@ export function parseMarkdownTable(
     const cells = splitRow(line);
     if (cells.length === n) rows.push(cells);
     else if (cells.length < n && idx === dataLines.length - 1) {
-      // trailing partial row — still arriving during streaming, ignore
+      // trailing partial row, still arriving during streaming, ignore
     } else malformed = true;
   });
 
@@ -171,7 +171,7 @@ function columnCells(table: ParsedTable, col: number): string[] {
   return table.rows.map((r) => r[col] ?? "");
 }
 
-/** A column whose data cells are ≥50% numeric — right-aligned in the rendered table. */
+/** A column whose data cells are ≥50% numeric, right-aligned in the rendered table. */
 export function isNumericColumn(table: ParsedTable, col: number): boolean {
   const cells = columnCells(table, col);
   if (cells.length === 0) return false;
@@ -181,7 +181,7 @@ export function isNumericColumn(table: ParsedTable, col: number): boolean {
   return numeric / cells.length >= 0.5;
 }
 
-/** A "change" column (header says so, or its cells are mostly pp / signed) — excluded from chart series. */
+/** A "change" column (header says so, or its cells are mostly pp / signed), excluded from chart series. */
 export function isDeltaColumn(table: ParsedTable, col: number): boolean {
   if (isDeltaHeader(table.headers[col] ?? "")) return true;
   const parsed = columnCells(table, col)
@@ -398,16 +398,16 @@ function inputMap(inputs: ModelInput[]): Map<string, ModelInput> {
 }
 
 /**
- * Build the two Jahez overview panels straight from model-inputs.json — every
+ * Build the two Jahez overview panels straight from model-inputs.json, every
  * value carries its source, nothing is derived or invented (rule 5).
  *
  * Panel ① (top-line growth): GMV + Net revenue across FY2023–FY2025. GMV and
  * Net revenue are the two size metrics that legibly share ONE linear axis;
- * net income (~SAR 73m vs GMV ~SAR 7,245m) cannot — its collapse is carried by
+ * net income (~SAR 73m vs GMV ~SAR 7,245m) cannot, its collapse is carried by
  * the net-income stat card's YoY delta above and by panel ②'s margin lines,
  * which keeps us to the two-series (navy + accent) design law.
  *
- * Panel ② (profitability): gross margin + Adj. EBITDA margin, FY2024→FY2025 —
+ * Panel ② (profitability): gross margin + Adj. EBITDA margin, FY2024→FY2025,
  * both are disclosed as a single group % in the release; a Q1-26 point is
  * intentionally NOT added (no disclosed group margin for the quarter).
  */

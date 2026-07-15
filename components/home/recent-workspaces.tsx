@@ -18,7 +18,7 @@ const STAGE_VARIANT: Record<Deal["stage"], BadgeProps["variant"]> = {
 };
 
 /**
- * "Recent workspaces" — the live (non-declined) deals as tappable cards under
+ * "Recent workspaces", the live (non-declined) deals as tappable cards under
  * the omnibox. Monogram tile (no vendored logo yet), name, stage badge, sector
  * and status line; hover-lifts and routes into the company workspace. Cards
  * reveal with a staggered rise (motion law, cap 8).

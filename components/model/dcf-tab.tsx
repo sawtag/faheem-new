@@ -64,7 +64,7 @@ function YearHead({ indices }: { indices: number[] }) {
   );
 }
 
-/** Revenue build — plain 0..7 series, 8 year columns, actuals dimmed. */
+/** Revenue build, plain 0..7 series, 8 year columns, actuals dimmed. */
 function RevenueGrid() {
   const t = useTranslations();
   const rows = ["orders", "aov", "gmv", "netRev", "takeRate"];

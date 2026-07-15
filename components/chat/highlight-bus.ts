@@ -3,11 +3,11 @@
  * citation chip / Sources row stashes its quote here right before calling
  * `onOpen(docId, page)`; PdfPanel subscribes (useSyncExternalStore) and, when
  * the stash matches the doc+page it is showing, highlights the quote in the
- * text layer. This keeps every `onOpenDoc(docId, page)` call site — ChatView,
- * IcRoom, Documents tab, scorecards — untouched: quote-less opens simply have
+ * text layer. This keeps every `onOpenDoc(docId, page)` call site, ChatView,
+ * IcRoom, Documents tab, scorecards, untouched: quote-less opens simply have
  * no matching stash and stay page-level.
  *
- * The stash survives until replaced (never cleared on read — safe under
+ * The stash survives until replaced (never cleared on read, safe under
  * StrictMode double-effects); `nonce` lets the panel re-center/re-pulse when
  * the same citation is clicked again.
  */

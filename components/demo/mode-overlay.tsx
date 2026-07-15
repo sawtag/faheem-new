@@ -19,10 +19,10 @@ function setModeCookie(mode: FaheemMode): void {
 
 /**
  * Stage-only mode overlay (P5a §3.4/T2.1's cookie `faheem_mode` panic switch,
- * finally getting a UI) — ⌘./Ctrl+. toggles a tiny bottom-corner panel; no
+ * finally getting a UI), ⌘./Ctrl+. toggles a tiny bottom-corner panel; no
  * visible affordance otherwise. Shows the effective mode (cookie > env
  * default, `initialMode` is resolved server-side in app/(app)/layout.tsx) and
- * a 3-way switch that writes the cookie directly — the next `/api/chat`
+ * a 3-way switch that writes the cookie directly, the next `/api/chat`
  * fetch picks it up with no reload, since `route.ts` re-reads the cookie
  * header per-request. Also surfaces the last response's cache status via the
  * mode-bus (published from components/chat/stream.ts).

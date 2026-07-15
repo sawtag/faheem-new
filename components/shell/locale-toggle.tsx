@@ -8,7 +8,7 @@ import type { Lang } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Language toggle — flips the `faheem_locale` cookie and refreshes so the
+ * Language toggle, flips the `faheem_locale` cookie and refreshes so the
  * server re-renders `lang`/`dir`. AppShell crossfades the content region on the
  * locale change (keyed motion), so this control just does the swap.
  */

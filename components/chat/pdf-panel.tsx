@@ -22,22 +22,22 @@ import { cn } from "@/lib/utils";
 
 /**
  * PDF viewer (react-pdf) deep-linked to a cited page, with the cited passage
- * highlighted in the text layer (AGENTS.md rule 5 — every number's source is
+ * highlighted in the text layer (AGENTS.md rule 5, every number's source is
  * clickable AND visibly marked).
  *
- * LANDMINE #3 — the pdfjs worker is VENDORED locally (public/pdf.worker.min.mjs,
+ * LANDMINE #3, the pdfjs worker is VENDORED locally (public/pdf.worker.min.mjs,
  * copied from pdfjs-dist at build time), never the unpkg/cdnjs default. This
  * assignment runs after react-pdf's own import-time default, so it wins, and the
  * whole viewer works with the network offline (the e2e asserts zero off-host
  * requests). The text layer renders ONLY when a citation quote is being
  * highlighted; its CSS is bundled locally (the import above), annotation layer
- * stays off — still zero off-host fetches.
+ * stays off, still zero off-host fetches.
  */
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 // Stable reference (react-pdf reloads the doc if `options` identity changes).
 // standardFontDataUrl is VENDORED (public/standard-fonts/, copied from
-// pdfjs-dist) so substituted fonts use pdfjs's own faces — never a network
+// pdfjs-dist) so substituted fonts use pdfjs's own faces, never a network
 // fetch. Deliberately no cMapUrl.
 const PDF_OPTIONS = { standardFontDataUrl: "/standard-fonts/" } as const;
 
@@ -124,7 +124,7 @@ export default function PdfPanel({
   const spansByItem = React.useMemo(() => {
     if (!quote || !textLayer || textLayer.page !== clampedPage) return null;
     const spans = matchQuote(quote, textLayer.items);
-    if (!spans) return null; // silent fallback — page-level only, never an error
+    if (!spans) return null; // silent fallback, page-level only, never an error
     const map = new Map<number, { start: number; end: number }[]>();
     for (const s of spans) {
       const list = map.get(s.itemIndex) ?? [];
@@ -152,12 +152,12 @@ export default function PdfPanel({
 
   // pdf.js sizes every text-layer span from the PDF's *declared* metrics, but
   // some corpus pages PAINT wider (per-glyph tracking the metadata doesn't
-  // report — e.g. fy25-er headings run exactly 1.25× their declared width),
-  // leaving the layer — and any highlight in it — short of the pixels. For
+  // report, e.g. fy25-er headings run exactly 1.25× their declared width),
+  // leaving the layer, and any highlight in it, short of the pixels. For
   // each marked span, read the rendered canvas's own pixels across the span's
   // row, detect the painted glyph run (word gaps bridged, column gaps stop
   // it), and stretch the span to hug the paint. Only line-initial spans (run
-  // starting at the span's left edge) are touched, only stretched, capped —
+  // starting at the span's left edge) are touched, only stretched, capped,
   // and any miss silently keeps the declared width.
   const recalibrateMarks = React.useCallback(() => {
     const body = bodyRef.current;

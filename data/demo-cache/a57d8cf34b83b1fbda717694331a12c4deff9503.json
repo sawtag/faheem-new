@@ -1,7 +1,7 @@
 {
-  "key": "38cb37480a331e1224827c037ffb1cf93cf63875",
+  "key": "a57d8cf34b83b1fbda717694331a12c4deff9503",
   "request": {
-    "question": "Rank these deals — strongest risk-adjusted case?",
+    "question": "Rank these deals: strongest risk-adjusted case?",
     "lang": "en",
     "context": {
       "kind": "ic"
@@ -12,49 +12,75 @@
       "type": "stage",
       "agent": "comparables",
       "status": "start",
-      "docIds": ["market-data-comps", "fy25-er"]
+      "docIds": [
+        "market-data-comps",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "comparables",
       "status": "done",
-      "docIds": ["market-data-comps", "fy25-er"]
+      "docIds": [
+        "market-data-comps",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "start",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "done",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "ic",
       "status": "start",
-      "docIds": ["thara-analysis", "lunar-ic-charter"]
+      "docIds": [
+        "thara-analysis",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "ic",
       "status": "done",
-      "docIds": ["thara-analysis", "lunar-ic-charter"]
+      "docIds": [
+        "thara-analysis",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
@@ -66,11 +92,11 @@
     },
     {
       "type": "delta",
-      "text": " close second but carries materially weaker valuation confidence and deteriorating fundamentals.** (Of the live pipeline — Darb, Thara Pay,"
+      "text": " close second but carries materially weaker valuation confidence and deteriorating fundamentals.** (Of the live pipeline, Darb, Thara Pay,"
     },
     {
       "type": "delta",
-      "text": " Aqar Development — only Thara Pay and Jahez have completed analyses in front of the Committee; Aqar Development is named as"
+      "text": " Aqar Development, only Thara Pay and Jahez have completed analyses in front of the Committee; Aqar Development is named as"
     },
     {
       "type": "delta",
@@ -235,7 +261,7 @@
     },
     {
       "type": "delta",
-      "text": "k score, and — decisively — on the reliability of the inputs behind those numbers.\n\n**Thara Pay's return is better-c"
+      "text": "k score, and, decisively, on the reliability of the inputs behind those numbers.\n\n**Thara Pay's return is better-c"
     },
     {
       "type": "delta",
@@ -247,7 +273,7 @@
     },
     {
       "type": "delta",
-      "text": ".5 points of margin at entry. The scenario-weighted expected return of 16.2% — which blends bull, base, and bear cases — remains comfortably above the hurdle even"
+      "text": ".5 points of margin at entry. The scenario-weighted expected return of 16.2%, which blends bull, base, and bear cases, remains comfortably above the hurdle even"
     },
     {
       "type": "delta",
@@ -309,7 +335,7 @@
     },
     {
       "type": "delta",
-      "text": " free sources in this pass — flagged as a modeling next step rather than estimated here."
+      "text": " free sources in this pass, flagged as a modeling next step rather than estimated here."
     },
     {
       "type": "delta",
@@ -359,7 +385,7 @@
     },
     {
       "type": "delta",
-      "text": "ressed 61.2% YoY to SAR 73.0m — driven by SAR 55.4m of Q4-2025 one-off items… layered on take"
+      "text": "ressed 61.2% YoY to SAR 73.0m, driven by SAR 55.4m of Q4-2025 one-off items… layered on take"
     },
     {
       "type": "delta",
@@ -490,7 +516,7 @@
     },
     {
       "type": "delta",
-      "text": "\n\n## What would change the conclusion —"
+      "text": "\n\n## What would change the conclusion, "
     },
     {
       "type": "delta",
@@ -529,7 +555,7 @@
     },
     {
       "type": "delta",
-      "text": " hurdle —"
+      "text": " hurdle, "
     },
     {
       "type": "delta",
@@ -545,7 +571,7 @@
     },
     {
       "type": "delta",
-      "text": "ge narrows if new-entrant competition in payments compresses take rates faster than modeled — one of the named"
+      "text": "ge narrows if new-entrant competition in payments compresses take rates faster than modeled, one of the named"
     },
     {
       "type": "delta",
@@ -561,7 +587,7 @@
     },
     {
       "type": "delta",
-      "text": " neither analysis alone resolves a tight range.\n\nAdvisory only — the investment decision rests with the committee."
+      "text": " neither analysis alone resolves a tight range.\n\nAdvisory only: the investment decision rests with the committee."
     },
     {
       "type": "done",

@@ -1,58 +1,83 @@
 {
-  "key": "a5d75d22e500c568dcf612d329e4de27657d1245",
+  "key": "1d924ffc93e1f16fc6ac5808c41f4c8b17b41a3c",
   "request": {
-    "question": "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?",
+    "question": "Break down Jahez's FY2025 unit economics: GMV, take rate, AOV, and why did net income compress 61%?",
     "lang": "en",
-    "context": { "kind": "workspace", "companyId": "jahez" }
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
   },
   "events": [
     {
       "type": "stage",
       "agent": "research",
       "status": "start",
-      "docIds": ["market-data-comps", "fy25-earnings-call"]
+      "docIds": [
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
     },
     {
       "type": "stage",
       "agent": "research",
       "status": "done",
-      "docIds": ["market-data-comps", "fy25-earnings-call"]
+      "docIds": [
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": ["fy25-er", "q1-26-fs"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": ["fy25-er", "q1-26-fs"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "start",
-      "docIds": ["fy25-er", "fy25-earnings-call"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "done",
-      "docIds": ["fy25-er", "fy25-earnings-call"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
@@ -60,7 +85,7 @@
     },
     {
       "type": "delta",
-      "text": "- **GMV** reached SAR 7,245.2M, up 10.8% YoY[[1]] — volume is still compounding.\n"
+      "text": "- **GMV** reached SAR 7,245.2M, up 10.8% YoY[[1]], volume is still compounding.\n"
     },
     {
       "type": "citation",
@@ -108,7 +133,7 @@
     },
     {
       "type": "delta",
-      "text": "The bulk is one-time — roughly **SAR 55.4M of Q4 one-offs** (Red Color and Marn impairments, an Others-segment ECL charge, and Snoonu deal expenses)[[5]] — but adjusted profitability still softened as delivery costs and D&A outran the take-rate gains.\n\n"
+      "text": "The bulk is one-time, roughly **SAR 55.4M of Q4 one-offs** (Red Color and Marn impairments, an Others-segment ECL charge, and Snoonu deal expenses)[[5]], but adjusted profitability still softened as delivery costs and D&A outran the take-rate gains.\n\n"
     },
     {
       "type": "citation",
@@ -119,9 +144,12 @@
     },
     {
       "type": "delta",
-      "text": "Bottom line: a compounding franchise absorbing a real but mostly non-recurring margin shock — the number to underwrite is the FY2026 exit take rate, not the FY2025 net income."
+      "text": "Bottom line: a compounding franchise absorbing a real but mostly non-recurring margin shock, the number to underwrite is the FY2026 exit take rate, not the FY2025 net income."
     },
-    { "type": "done", "cached": true }
+    {
+      "type": "done",
+      "cached": true
+    }
   ],
   "recordedAt": "2026-07-11T10:00:00.000Z"
 }

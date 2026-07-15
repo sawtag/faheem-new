@@ -1,5 +1,5 @@
 /**
- * lib/model/edit-parser — the scripted-first, offline-deterministic parser that
+ * lib/model/edit-parser, the scripted-first, offline-deterministic parser that
  * turns a plain-language model-edit instruction into `{assumptionKey, value}`.
  *
  * WS-C (live-model-provenance plan §3). Pure + client-safe (no node:fs, no SDK,
@@ -10,8 +10,8 @@
  *
  * The whitelist is the SINGLE SOURCE OF TRUTH for what may be edited: scalar
  * assumption keys + per-year array keys (index bounds derived from
- * BASE_ASSUMPTIONS' array lengths). Anything else — a sourced actual, a typo, a
- * hallucinated key from the live fallback — is rejected before it can reach the
+ * BASE_ASSUMPTIONS' array lengths). Anything else, a sourced actual, a typo, a
+ * hallucinated key from the live fallback, is rejected before it can reach the
  * recompute. Sourced actuals (FY23–25 revenue/GMV/EBITDA, the share price) are
  * detected and returned as a graceful "source-locked" outcome; they never map
  * to a writable key.
@@ -30,7 +30,7 @@ export type EditParse =
       kind: "edit";
       assumptionKey: string;
       value: number;
-      /** companion edits — scenario-probability rebalance so Σprob stays 1 */
+      /** companion edits, scenario-probability rebalance so Σprob stays 1 */
       also?: EditPair[];
     }
   | { kind: "source-locked"; target: string }
@@ -49,7 +49,7 @@ interface FieldSpec {
   max: number;
 }
 
-/** documented sane bounds — see README/plan §3 WS-C. */
+/** documented sane bounds, see README/plan §3 WS-C. */
 const SCALAR_SPECS: Record<string, FieldSpec> = {
   spread: { kind: "rate", min: 0, max: 0.1 }, // cost-of-debt spread 0–10pp
   zakat: { kind: "rate", min: 0, max: 0.3 }, // tax/zakat rate 0–30%
@@ -78,7 +78,7 @@ const ARRAY_SPECS: Record<string, FieldSpec> = {
   riskWeights: { kind: "score", min: 0, max: 25 }, // P×I, each 1–5
 };
 
-/** array index bounds — derived from BASE_ASSUMPTIONS (the single source of truth). */
+/** array index bounds, derived from BASE_ASSUMPTIONS (the single source of truth). */
 const ARRAY_LEN: Record<string, number> = Object.fromEntries(
   Object.entries(BASE_ASSUMPTIONS)
     .filter(([, v]) => Array.isArray(v))
@@ -122,7 +122,7 @@ export function validateEdit(
   return { assumptionKey, value: clamp(nativeValue, spec.min, spec.max) };
 }
 
-/** Every legal assumptionKey — scalar keys + expanded array indices. */
+/** Every legal assumptionKey, scalar keys + expanded array indices. */
 export function whitelistKeys(): string[] {
   const keys = Object.keys(SCALAR_SPECS);
   for (const [field, len] of Object.entries(ARRAY_LEN)) {
@@ -409,7 +409,7 @@ export function parseEdit(
       idx = forecastYearIndex(t);
       if (idx === null) {
         // A per-year driver pinned to an ACTUAL year (FY23–25) is out of the
-        // editable forecast window — treat as source-locked, not a silent FY26.
+        // editable forecast window, treat as source-locked, not a silent FY26.
         if (mentionsActualYear(t))
           return { kind: "source-locked", target: metric.field };
         idx = 0; // no year given → first forecast year (FY26E)
@@ -459,7 +459,7 @@ export const PROB_KEYS = ["probBull", "probBase", "probBear"] as const;
 
 /**
  * Editing one scenario probability proportionally rebalances the other two so
- * Σprob stays EXACTLY 1 — non-normalized weights would make the weighted
+ * Σprob stays EXACTLY 1, non-normalized weights would make the weighted
  * per-share / IRR mathematically wrong. If the other two currently sum to 0
  * the remainder is split evenly.
  */

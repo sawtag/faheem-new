@@ -78,7 +78,7 @@ function detectTrigger(
 }
 
 /**
- * The omnibox composer — shared by the chat page and (later) the home hero.
+ * The omnibox composer, shared by the chat page and (later) the home hero.
  * Owns: auto-grow textarea, @-agent / #-doc typeahead → removable chips (which
  * set ChatRequest.agent / docIds), the source-picker flyout, the model-tier
  * selector, the Improve wand (+Undo), and the idle→active→streaming send button.
@@ -112,7 +112,7 @@ export function Composer({
   /** Push text into the composer + focus it (quick-action pills). Bump `nonce`
    *  to re-apply the same text. `agent`/`docIds` (P5a demo palette) also seed
    *  the chips, so a golden-question selection reproduces the exact recorded
-   *  ChatRequest — backward-compatible, both optional. */
+   *  ChatRequest, backward-compatible, both optional. */
   prefill?: { text: string; nonce: number; agent?: AgentId; docIds?: string[] };
   onFocusChange?: (focused: boolean) => void;
 }) {
@@ -200,7 +200,7 @@ export function Composer({
       .slice(0, 6);
   }, [trigger, uploadedDocs]);
 
-  // Never offer Improve on a recorded golden question (⌘K/skills prefill) —
+  // Never offer Improve on a recorded golden question (⌘K/skills prefill),
   // a rewrite desyncs the cache key and kills the beat on stage.
   const isGoldenText = GOLDEN_QUESTIONS.some(
     (g) => g.request.question === text.trim(),

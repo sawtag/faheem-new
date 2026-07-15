@@ -21,7 +21,7 @@ const ARTIFACTS: ArtifactMeta[] = [
   {
     id: "jahez-xlsx",
     kind: "xlsx",
-    name: { en: "Jahez — Valuation Model", ar: "جاهز — نموذج التقييم" },
+    name: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
     workspace: "jahez",
     file: "/artifacts/jahez-valuation-model.xlsx",
     createdAt: "2026-07-12T21:22:18.068Z",
@@ -29,7 +29,7 @@ const ARTIFACTS: ArtifactMeta[] = [
   {
     id: "jahez-docx",
     kind: "docx",
-    name: { en: "Jahez — IC Memo", ar: "جاهز — مذكرة لجنة الاستثمار" },
+    name: { en: "Jahez · IC Memo", ar: "جاهز · مذكرة لجنة الاستثمار" },
     workspace: "jahez",
     file: "/artifacts/jahez-ic-memo.docx",
     createdAt: "2026-07-12T21:22:19.564Z",
@@ -59,7 +59,7 @@ describe("DraftToIc", () => {
     const dialog = screen.getByTestId("draft-to-ic-dialog");
     expect(within(dialog).getByText("Draft email to IC")).toBeInTheDocument();
 
-    // pre-selected recipient chip, not fabricated — the house "Lunar IC Group" alias
+    // pre-selected recipient chip, not fabricated, the house "Lunar IC Group" alias
     const chips = within(dialog).getByTestId("draft-to-ic-recipients");
     expect(chips).toHaveTextContent("Lunar IC Group <ic@lunar-inv.sa>");
 
@@ -67,9 +67,9 @@ describe("DraftToIc", () => {
     const subject = within(dialog).getByTestId(
       "draft-to-ic-subject",
     ) as HTMLInputElement;
-    expect(subject.value).toBe("Jahez — IC materials & recommendation");
+    expect(subject.value).toBe("Jahez: IC materials & recommendation");
 
-    // body carries computeModel()'s ACTUAL numbers, house-formatted — never literals
+    // body carries computeModel()'s ACTUAL numbers, house-formatted, never literals
     const result = computeModel();
     const perShare = formatSAR(result.base.perShare, "en", {
       unit: "abs",
@@ -89,9 +89,9 @@ describe("DraftToIc", () => {
     expect(body.value).toContain(
       result.shariah.pass ? "The Shariah screen passes." : "does not pass",
     );
-    // artifact names, real ones passed in — bulleted
-    expect(body.value).toContain("- Jahez — Valuation Model");
-    expect(body.value).toContain("- Jahez — IC Memo");
+    // artifact names, real ones passed in, bulleted
+    expect(body.value).toContain("- Jahez · Valuation Model");
+    expect(body.value).toContain("- Jahez · IC Memo");
     expect(body.value).toContain("Ali");
   });
 
@@ -168,7 +168,7 @@ describe("DraftToIc", () => {
     expect(recordIcDraft).toHaveBeenCalledTimes(1);
     expect(recordIcDraft).toHaveBeenCalledWith(
       "jahez",
-      "Jahez — IC materials & recommendation",
+      "Jahez: IC materials & recommendation",
     );
   });
 

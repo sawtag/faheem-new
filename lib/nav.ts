@@ -1,6 +1,6 @@
 /**
  * Sidebar navigation model (T2.2). Routes + lucide icon names live here as DATA
- * (AGENTS.md asset/icon policy — never pick an entity's icon inline in JSX).
+ * (AGENTS.md asset/icon policy, never pick an entity's icon inline in JSX).
  * Labels resolve via next-intl under the "shell.nav" namespace; the shell
  * renders lucide icons from `icon` through the kebab→component resolver.
  */
@@ -11,13 +11,13 @@ export interface NavItem {
   href: string;
   /** lucide icon name (kebab-case), resolved by iconFor() */
   icon: string;
-  /** visual-only entry (Scheduled Tasks) — rendered dimmed, not linked */
+  /** visual-only entry (Scheduled Tasks), rendered dimmed, not linked */
   disabled?: boolean;
   /** i18n key under `shell.*` for the disabled-item tooltip */
   tooltipKey?: string;
 }
 
-/** Primary nav — the demo's load-bearing routes + one visual-only teaser. */
+/** Primary nav, the demo's load-bearing routes + one visual-only teaser. */
 export const PRIMARY_NAV: NavItem[] = [
   { key: "home", href: "/", icon: "house" },
   { key: "dashboard", href: "/dashboard", icon: "layout-dashboard" },
@@ -29,7 +29,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { key: "scheduled", href: "/scheduled", icon: "calendar-clock" },
 ];
 
-/** Settings group — governance + integrations. */
+/** Settings group, governance + integrations. */
 export const SETTINGS_NAV: NavItem[] = [
   { key: "connections", href: "/connections", icon: "link-2" },
   { key: "audit", href: "/audit", icon: "scroll-text" },

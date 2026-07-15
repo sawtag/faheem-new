@@ -1,13 +1,15 @@
 {
-  "key": "571d73f074ed6c005008fe4bd822cbc2cee5a9fc",
+  "key": "f277de27f5b12aa688a644ba7e72c9d5a48cdb94",
   "request": {
-    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
     "lang": "en",
     "context": {
       "kind": "workspace",
       "companyId": "jahez"
     },
-    "docIds": ["fy25-er"]
+    "docIds": [
+      "fy25-er"
+    ]
   },
   "events": [
     {
@@ -26,25 +28,33 @@
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "start",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "done",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
@@ -62,17 +72,21 @@
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["fy25-er"]
+      "docIds": [
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
-      "text": "## Jahez FY2025 Unit Economics — Decomposition\n\n**B"
+      "text": "## Jahez FY2025 Unit Economics, Decomposition\n\n**B"
     },
     {
       "type": "delta",
@@ -84,7 +98,7 @@
     },
     {
       "type": "delta",
-      "text": " step-up in D&A, and a spike in credit losses/impairments — driving the"
+      "text": " step-up in D&A, and a spike in credit losses/impairments, driving the"
     },
     {
       "type": "delta",
@@ -134,11 +148,11 @@
     },
     {
       "type": "delta",
-      "text": "\n\nSo GMV growth was split evenly between frequency (orders) and ticket size (AOV) — a bal"
+      "text": "\n\nSo GMV growth was split evenly between frequency (orders) and ticket size (AOV), a bal"
     },
     {
       "type": "delta",
-      "text": "anced, healthy composition rather than growth bought purely through volume.\n\n### 2. Take rate — the posit"
+      "text": "anced, healthy composition rather than growth bought purely through volume.\n\n### 2. Take rate, the posit"
     },
     {
       "type": "delta",
@@ -173,7 +187,7 @@
     },
     {
       "type": "delta",
-      "text": " 10.8% GMV growth). This reflects a deliberate mix shift — "
+      "text": " 10.8% GMV growth). This reflects a deliberate mix shift, "
     },
     {
       "type": "delta",
@@ -382,11 +396,11 @@
     },
     {
       "type": "delta",
-      "text": " The compression sits almost entirely *below* gross profit — margin held"
+      "text": " The compression sits almost entirely *below* gross profit, margin held"
     },
     {
       "type": "delta",
-      "text": " there — and stacks up as follows:\n\n**a) OpEx surge (+26"
+      "text": " there, and stacks up as follows:\n\n**a) OpEx surge (+26"
     },
     {
       "type": "delta",
@@ -494,7 +508,7 @@
     },
     {
       "type": "delta",
-      "text": " This is largely the Logi fleet expansion — the same"
+      "text": " This is largely the Logi fleet expansion, the same"
     },
     {
       "type": "delta",
@@ -564,7 +578,7 @@
     },
     {
       "type": "delta",
-      "text": " that partially cushioned the fall:** below-the-line items moved favorably — "
+      "text": " that partially cushioned the fall:** below-the-line items moved favorably, "
     },
     {
       "type": "delta",
@@ -627,7 +641,7 @@
     },
     {
       "type": "delta",
-      "text": "ase Other Activities segment. The KSA core delivery platform still ran a 12.2% net margin — the \"quality\" of the comp"
+      "text": "ase Other Activities segment. The KSA core delivery platform still ran a 12.2% net margin, the \"quality\" of the comp"
     },
     {
       "type": "delta",

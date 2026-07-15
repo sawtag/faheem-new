@@ -2,12 +2,12 @@ import { expect, test, type Page } from "@playwright/test";
 import { clickUntil, readAudit } from "./helpers";
 
 /**
- * WS-B acceptance — the Live Model surface (Jahez).
+ * WS-B acceptance, the Live Model surface (Jahez).
  * Base-case values render straight from the engine; editing an assumption
  * recomputes in-browser (outputs move, "N values updated" chip appears); a
  * computed cell's Methodology drills its input chain to a sourced leaf, whose
  * "Open source" mounts the PdfPanel at the cited page (highlight machinery is
- * covered elsewhere — here we assert the panel opens on the right page).
+ * covered elsewhere, here we assert the panel opens on the right page).
  */
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
@@ -15,7 +15,7 @@ test.beforeEach(async ({ context, baseURL }) => {
   ]);
 });
 
-test.describe("Live Model — Jahez", () => {
+test.describe("Live Model, Jahez", () => {
   test("workspace links to the model; tabs render real base-case values", async ({
     page,
   }) => {
@@ -103,7 +103,7 @@ test.describe("Live Model — Jahez", () => {
 });
 
 /**
- * WS-C acceptance — conversational edit + agent-team choreography, cached mode
+ * WS-C acceptance, conversational edit + agent-team choreography, cached mode
  * (scripted parser, fully offline). A suggested chip drives the whole beat:
  * POST /api/model-edit → the specialist team plays in the Agent Activity
  * language → Valuation's completed stage applies the recompute → the diff chip
@@ -121,7 +121,7 @@ function trackOffHost(page: Page): string[] {
   return offHost;
 }
 
-test.describe("Live Model — conversational edit (WS-C)", () => {
+test.describe("Live Model, conversational edit (WS-C)", () => {
   test("suggested chip → choreography → recompute + diff chip + audit trail, offline", async ({
     page,
   }) => {
@@ -132,7 +132,7 @@ test.describe("Live Model — conversational edit (WS-C)", () => {
     await expect(perShare).toContainText("14.36");
     const before = readAudit().length;
 
-    // pick the scripted chip — "Raise FY26 order growth to 20%"
+    // pick the scripted chip, "Raise FY26 order growth to 20%"
     await clickUntil(page.getByTestId("edit-chip-growth"), async () => {
       await expect(page.getByTestId("edit-choreography")).toBeVisible();
     });
@@ -188,7 +188,7 @@ test.describe("Live Model — conversational edit (WS-C)", () => {
     const perShare = page.locator('[data-node-key="base.perShare"]').first();
     await expect(perShare).toContainText("14.36");
 
-    // "Change FY25 revenue to SAR 2 billion" — a sourced actual
+    // "Change FY25 revenue to SAR 2 billion", a sourced actual
     await clickUntil(page.getByTestId("edit-chip-locked"), async () => {
       await expect(page.getByTestId("edit-choreography")).toBeVisible();
     });

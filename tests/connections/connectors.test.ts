@@ -6,7 +6,7 @@ import { CONNECTORS } from "@/lib/connectors";
 describe("CONNECTORS", () => {
   // 15 from the design brief + "Social & Alt-Data" (WS-D roadmap connector) +
   // the 11 internal workplace integrations backing the composer's Internal
-  // Sources picker group (lib/sources.ts) — connected so the picker's
+  // Sources picker group (lib/sources.ts), connected so the picker's
   // "Manage connectors" link lands on a coherent Connections page.
   it("has the 27-connector catalog (16 base + 11 workplace integrations)", () => {
     expect(CONNECTORS).toHaveLength(27);

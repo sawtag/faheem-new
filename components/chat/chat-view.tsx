@@ -61,7 +61,7 @@ interface LiveTurn {
   elapsedMs?: number;
   /** P5a deliverables beat: an exact match on the "deliverables" golden
    *  question renders GenerationPanel inline instead of streaming an answer
-   *  — no /api/chat call for this turn. */
+   *, no /api/chat call for this turn. */
   kind?: "generation";
 }
 interface OpenDoc {
@@ -87,7 +87,7 @@ export function ChatView({ id }: { id: string }) {
   const startedFor = React.useRef<string | null>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const stick = React.useRef(true);
-  // Carries the full submit payload (incl. agent/docIds — not part of the
+  // Carries the full submit payload (incl. agent/docIds, not part of the
   // persisted SeedChat message schema) across the `/chat/new` → `/chat/[id]`
   // hand-off, so a golden-question palette selection with a chip reproduces
   // the exact recorded ChatRequest on the very first turn of a fresh chat.
@@ -134,7 +134,7 @@ export function ChatView({ id }: { id: string }) {
           );
         });
       } catch {
-        /* aborted or network drop — leave the partial turn as-is */
+        /* aborted or network drop, leave the partial turn as-is */
       } finally {
         const elapsedMs = performance.now() - startedAt;
         setLiveTurns((prev) =>
@@ -159,7 +159,7 @@ export function ChatView({ id }: { id: string }) {
   );
 
   // P5a deliverables beat: renders GenerationPanel inline instead of a
-  // streamed answer — no /api/chat call, no SSEEvents to reduce. The panel
+  // streamed answer, no /api/chat call, no SSEEvents to reduce. The panel
   // owns its own progress UI and audits its own artifacts (one entry per
   // artifact via /api/generate/[artifact]), so there is nothing further to
   // persist here beyond the user's turn.
@@ -185,7 +185,7 @@ export function ChatView({ id }: { id: string }) {
 
   // ⌘K demo palette hand-off: apply a golden-question selection only when it
   // targets THIS chat's context (guards against a stray live event reaching
-  // an unrelated, still-mounted chat mid-navigation) — `take()` catches a
+  // an unrelated, still-mounted chat mid-navigation), `take()` catches a
   // selection published just before `/chat/new` navigation completes,
   // `subscribe` catches one fired while already on the right chat.
   React.useEffect(() => {
@@ -198,7 +198,7 @@ export function ChatView({ id }: { id: string }) {
       }
       setGoldenPrefill(sel);
     }
-    // Only consume the pending selection once the chat has resolved — take()
+    // Only consume the pending selection once the chat has resolved, take()
     // clears the stash, so pulling it while `chat` is still null (fresh
     // /chat/new mount, resolution runs in a later effect) destroys the
     // palette/skill hand-off before it can ever apply.
@@ -212,7 +212,7 @@ export function ChatView({ id }: { id: string }) {
   // Resolve the chat client-side (localStorage overlay + URL). `/chat/new?q=…`
   // mints a runtime chat and redirects; `/chat/new` with no query is the empty
   // state. Resolution reads localStorage / searchParams, so it can only run
-  // after mount — a legitimate external-store sync, not derived state.
+  // after mount, a legitimate external-store sync, not derived state.
   React.useEffect(() => {
     const context = parseContext(searchParams.get("context"));
     if (id === "new") {
@@ -247,7 +247,7 @@ export function ChatView({ id }: { id: string }) {
   // Auto-stream a trailing user turn (the /chat/new → /chat/[id] hand-off).
   // Prefers the full payload stashed by onSubmit (carries agent/docIds, which
   // the persisted SeedChat message schema has no field for) over the bare
-  // question text — otherwise a golden-question chip fired from an empty
+  // question text, otherwise a golden-question chip fired from an empty
   // `/chat/new` composer would silently lose its agent/doc scoping.
   React.useEffect(() => {
     if (!chat || !pendingUser) return;

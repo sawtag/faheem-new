@@ -49,7 +49,7 @@ function useProgress(reduce: boolean | null, duration = 0.4): number {
 
 /**
  * Jahez overview analytics (jahez only): one card, two panels reading straight
- * from model-inputs.json — ① GMV vs Net revenue grouped bars FY2023–FY2025,
+ * from model-inputs.json, ① GMV vs Net revenue grouped bars FY2023–FY2025,
  * ② gross + Adj. EBITDA margin trend FY2024→FY2025. Every value carries its
  * source in the panel footer; nothing is derived (AGENTS.md rule 5). Count-up /
  * draw-in on first reveal per the motion law.

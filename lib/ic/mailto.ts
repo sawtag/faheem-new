@@ -1,10 +1,10 @@
 /**
- * lib/ic/mailto — pure `mailto:` URL builder for the Draft-to-IC compose
- * modal (WS-E, live-model-provenance plan §3). No network, no window — a
+ * lib/ic/mailto, pure `mailto:` URL builder for the Draft-to-IC compose
+ * modal (WS-E, live-model-provenance plan §3). No network, no window, a
  * plain function so the encoding/CRLF/length rules unit-test in isolation
  * (React-free, mirrors lib/model/edit-parser.ts's shape).
  *
- * mailto URLs have a practical cross-client cap (~2000 chars — Outlook's
+ * mailto URLs have a practical cross-client cap (~2000 chars, Outlook's
  * ShellExecute path on Windows is the tightest at ~2083); MAILTO_MAX_LENGTH
  * stays comfortably under that. When the fully-encoded href would exceed it,
  * the BODY (never the recipients or subject) is trimmed to fit, with a
@@ -23,12 +23,12 @@ export interface MailtoResult {
   truncated: boolean;
 }
 
-/** Conservative cross-client cap — see module doc. */
+/** Conservative cross-client cap, see module doc. */
 export const MAILTO_MAX_LENGTH = 1900;
 
 const TRUNCATION_SUFFIX = "\r\n…";
 
-/** RFC 6068 mailto bodies read best as CRLF — normalize any line-ending mix
+/** RFC 6068 mailto bodies read best as CRLF, normalize any line-ending mix
  * (textarea input is usually \n) before encoding. */
 export function normalizeCrlf(text: string): string {
   return text.replace(/\r\n|\r|\n/g, "\r\n");

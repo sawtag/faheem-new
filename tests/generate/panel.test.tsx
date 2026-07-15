@@ -37,11 +37,11 @@ function fakeStream() {
 
 function meta(kind: ArtifactMeta["kind"]): ArtifactMeta {
   const names: Record<ArtifactMeta["kind"], { en: string; ar: string }> = {
-    xlsx: { en: "Jahez — Valuation Model", ar: "جاهز — نموذج التقييم" },
-    docx: { en: "Jahez — IC Memo", ar: "جاهز — مذكرة لجنة الاستثمار" },
+    xlsx: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
+    docx: { en: "Jahez · IC Memo", ar: "جاهز · مذكرة لجنة الاستثمار" },
     pptx: {
-      en: "Jahez — Board Deck",
-      ar: "جاهز — العرض التقديمي لمجلس الإدارة",
+      en: "Jahez · Board Deck",
+      ar: "جاهز · العرض التقديمي لمجلس الإدارة",
     },
   };
   const files: Record<ArtifactMeta["kind"], string> = {
@@ -127,7 +127,7 @@ describe("GenerationPanel", () => {
       sizeBytes: 48_128,
     });
     expect(
-      await screen.findByText("Jahez — Valuation Model"),
+      await screen.findByText("Jahez · Valuation Model"),
     ).toBeInTheDocument();
     expect(screen.getByText("47 KB")).toBeInTheDocument();
 
@@ -146,11 +146,11 @@ describe("GenerationPanel", () => {
     fake.push({ type: "done" });
     fake.close();
 
-    expect(await screen.findByText("Jahez — IC Memo")).toBeInTheDocument();
-    // findAll — once the run completes the deck preview auto-opens (below) and
+    expect(await screen.findByText("Jahez · IC Memo")).toBeInTheDocument();
+    // findAll, once the run completes the deck preview auto-opens (below) and
     // its header repeats the deck name, so a single-match query would throw.
     expect(
-      (await screen.findAllByText("Jahez — Board Deck")).length,
+      (await screen.findAllByText("Jahez · Board Deck")).length,
     ).toBeGreaterThanOrEqual(1);
 
     // all three cards carry the real "Verified · N sources" caption
@@ -205,7 +205,7 @@ describe("GenerationPanel", () => {
       await screen.findByText("Couldn't generate this file. Try again."),
     ).toBeInTheDocument();
 
-    // the other two rows are unaffected — still pending
+    // the other two rows are unaffected, still pending
     expect(screen.getByText("Valuation Model")).toBeInTheDocument();
     expect(screen.getByText("Board Deck")).toBeInTheDocument();
 

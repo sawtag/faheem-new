@@ -131,7 +131,7 @@ describe("cross-sheet formulas (not literals)", () => {
         if (f) formulas.push(f);
       });
     });
-    // no headline number is a literal — each references a model tab
+    // no headline number is a literal, each references a model tab
     expect(formulas.some((f) => f.includes("'DCF'!"))).toBe(true);
     expect(formulas.some((f) => f.includes("'Scenarios & Risk'!"))).toBe(true);
     expect(formulas.some((f) => f.includes("'Shariah Screen'!"))).toBe(true);
@@ -145,9 +145,9 @@ describe("cross-sheet formulas (not literals)", () => {
     const ws = wb.getWorksheet("Assumptions")!;
     const waccRow = findLabelRow(ws, 2, "WACC");
     const f = formulaOf(ws, `C${waccRow}`);
-    // We*Ke + Wd*KdAfter — four cell refs, one '+' and two '*'
+    // We*Ke + Wd*KdAfter, four cell refs, one '+' and two '*'
     expect(f).toMatch(/C\d+\*C\d+\+C\d+\*C\d+/);
-    const keRow = findLabelRow(ws, 2, "Cost of equity — CAPM (rf + β × ERP)");
+    const keRow = findLabelRow(ws, 2, "Cost of equity, CAPM (rf + β × ERP)");
     expect(formulaOf(ws, `C${keRow}`)).toMatch(/C\d+\+C\d+\*C\d+/);
   });
 
@@ -204,7 +204,7 @@ describe("sourced cells carry exact source comments (≥10 across tabs)", () => 
 
   it("assumption cells are labelled analyst judgments", () => {
     const ws = wb.getWorksheet("Assumptions")!;
-    const note = findNote(ws, "Assumption — analyst judgment:");
+    const note = findNote(ws, "Assumption, analyst judgment:");
     expect(note).toBeTruthy();
   });
 });

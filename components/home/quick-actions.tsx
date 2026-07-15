@@ -18,7 +18,7 @@ const PILLS = [
 
 /**
  * Quick-action pills. Each click prefills the omnibox with a full, Jahez-flavored
- * analyst prompt and focuses it — the presenter fires a real analysis in one tap.
+ * analyst prompt and focuses it, the presenter fires a real analysis in one tap.
  */
 export function QuickActions({ onPick }: { onPick: (prompt: string) => void }) {
   const t = useTranslations("home.pills");

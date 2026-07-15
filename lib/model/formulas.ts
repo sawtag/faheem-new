@@ -1,9 +1,9 @@
 /**
- * lib/model/formulas — the FormulaDef registry.
+ * lib/model/formulas, the FormulaDef registry.
  *
  * Every `formulaId` the provenance node graph references resolves here. The
  * KaTeX strings are the display formulas and MUST match what compute.ts
- * actually does (gate G5 — finance judges read them). `explainerKey` is the
+ * actually does (gate G5, finance judges read them). `explainerKey` is the
  * next-intl key for the bilingual plain-language explainer (content authored
  * in a later workstream; the key string is the contract).
  */

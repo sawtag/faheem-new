@@ -1,5 +1,5 @@
 /**
- * Step 3 mandate & risk questionnaire state (design-briefs §2.4) — defaults
+ * Step 3 mandate & risk questionnaire state (design-briefs §2.4), defaults
  * prefilled to Lunar's real mandate values (15% IRR hurdle, 10% single-name
  * concentration cap, 3–5y holding, Shariah required) so the demo's closing
  * card ("this becomes your IC Charter") reflects the actual Lunar IC Charter.

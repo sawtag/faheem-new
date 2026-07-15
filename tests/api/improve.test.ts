@@ -7,7 +7,7 @@ afterEach(() => setClientForTests(null));
 describe("POST /api/improve", () => {
   it("returns the rewritten prompt from the mocked improver", async () => {
     const improved =
-      "Analyze Jahez's FY2025 unit economics — GMV growth, take rate, AOV, and contribution margin — and explain the ~61% net-income compression.";
+      "Analyze Jahez's FY2025 unit economics, GMV growth, take rate, AOV, and contribution margin, and explain the ~61% net-income compression.";
     const mock: FaheemClient = {
       beta: {
         messages: {
@@ -27,7 +27,7 @@ describe("POST /api/improve", () => {
     const res = await POST(
       new Request("http://localhost/api/improve", {
         method: "POST",
-        // Improve always calls Haiku, in every mode (cached/auto/live) — declare
+        // Improve always calls Haiku, in every mode (cached/auto/live), declare
         // cached explicitly to prove it isn't skipped there.
         headers: {
           "content-type": "application/json",

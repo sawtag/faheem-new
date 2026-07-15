@@ -277,7 +277,7 @@ function NavRow({
   );
 }
 
-/** Projects section row — a deal workspace behind a plain folder icon. */
+/** Projects section row, a deal workspace behind a plain folder icon. */
 function ProjectRow({
   workspace,
   collapsed,

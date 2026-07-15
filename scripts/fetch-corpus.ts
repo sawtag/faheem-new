@@ -94,7 +94,7 @@ async function main() {
         anyFailed = true;
       }
     } else {
-      console.warn(`No sourceUrl for ${doc.id} — skipping`);
+      console.warn(`No sourceUrl for ${doc.id}, skipping`);
     }
   }
 

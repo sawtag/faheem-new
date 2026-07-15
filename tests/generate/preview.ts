@@ -1,5 +1,5 @@
 /**
- * Scratch preview — NOT part of the vitest suite (filename lacks `.test.`).
+ * Scratch preview, NOT part of the vitest suite (filename lacks `.test.`).
  * Writes the Jahez workbook to /tmp and prints the headline outputs.
  *
  *   npx tsx tests/generate/preview.ts

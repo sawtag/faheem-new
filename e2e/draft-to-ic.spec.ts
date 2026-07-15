@@ -2,12 +2,12 @@ import { expect, test } from "@playwright/test";
 import { readAudit } from "./helpers";
 
 /**
- * WS-E acceptance (live-model-provenance plan §3) — Draft-to-IC. Two
+ * WS-E acceptance (live-model-provenance plan §3), Draft-to-IC. Two
  * surfaces render the same `DraftToIc` modal: the primary trigger under the
  * deliverables panel (right after "Prepare the IC memo…" lands its three
  * artifacts) and the secondary trigger in the IC room header (scoped to
  * Jahez, the one worked model). Both prefill from REAL computeModel()
- * numbers and the actually-generated artifact names — no live model call,
+ * numbers and the actually-generated artifact names, no live model call,
  * fully offline (cached mode).
  */
 test.beforeEach(async ({ context, baseURL }) => {
@@ -26,7 +26,7 @@ test.describe("Draft to IC", () => {
     await page.goto(`/chat/new?q=${encodeURIComponent(question)}`);
     await expect(page).toHaveURL(/\/chat\/(?!new)/);
 
-    // the deck preview auto-opens over everything — close it so the
+    // the deck preview auto-opens over everything, close it so the
     // Draft-to-IC trigger underneath is clickable.
     const preview = page.getByTestId("artifact-preview");
     await expect(preview).toBeVisible({ timeout: 60_000 });
@@ -40,7 +40,7 @@ test.describe("Draft to IC", () => {
     const dialog = page.getByTestId("draft-to-ic-dialog");
     await expect(dialog).toBeVisible();
 
-    // pre-selected recipient chip — the house "Lunar IC Group" alias, not a
+    // pre-selected recipient chip, the house "Lunar IC Group" alias, not a
     // fabricated named roster.
     await expect(dialog.getByTestId("draft-to-ic-recipients")).toContainText(
       "Lunar IC Group <ic@lunar-inv.sa>",
@@ -48,7 +48,7 @@ test.describe("Draft to IC", () => {
 
     // subject prefilled with the company name
     await expect(dialog.getByTestId("draft-to-ic-subject")).toHaveValue(
-      "Jahez — IC materials & recommendation",
+      "Jahez: IC materials & recommendation",
     );
 
     // body carries the REAL base-case DCF numbers (matches e2e/model.spec.ts's
@@ -59,16 +59,16 @@ test.describe("Draft to IC", () => {
     await expect(body).toHaveValue(/16\.8%/);
     await expect(body).toHaveValue(/15%/);
     await expect(body).toHaveValue(/The Shariah screen passes\./);
-    await expect(body).toHaveValue(/- Jahez — Valuation Model/);
-    await expect(body).toHaveValue(/- Jahez — IC Memo/);
-    await expect(body).toHaveValue(/- Jahez — Board Deck/);
+    await expect(body).toHaveValue(/- Jahez · Valuation Model/);
+    await expect(body).toHaveValue(/- Jahez · IC Memo/);
+    await expect(body).toHaveValue(/- Jahez · Board Deck/);
     await expect(body).toHaveValue(/Ali\nLunar Investments/);
 
     // body is editable
     await body.fill("A hand-edited body for the committee.");
     await expect(body).toHaveValue("A hand-edited body for the committee.");
 
-    // mailto href is well-formed — protocol + encoded subject/body present
+    // mailto href is well-formed, protocol + encoded subject/body present
     const openInOutlook = dialog.getByTestId("draft-to-ic-open-in-outlook");
     const href = await openInOutlook.getAttribute("href");
     expect(href).toMatch(/^mailto:/);
@@ -77,7 +77,7 @@ test.describe("Draft to IC", () => {
       encodeURIComponent("A hand-edited body for the committee."),
     );
 
-    // clicking hands off to the mail client (mailto:) — the SPA itself never
+    // clicking hands off to the mail client (mailto:), the SPA itself never
     // navigates away, and the audit trail grows with one "ic-draft" entry.
     const before = readAudit().length;
     const urlBefore = page.url();
@@ -90,7 +90,7 @@ test.describe("Draft to IC", () => {
           readAudit().some(
             (e) =>
               e.action === "ic-draft" &&
-              (e.question ?? "").includes("Jahez — IC materials"),
+              (e.question ?? "").includes("Jahez: IC materials"),
           ),
         { timeout: 10_000 },
       )
@@ -117,10 +117,10 @@ test.describe("Draft to IC", () => {
     const dialog = page.getByTestId("draft-to-ic-dialog");
     await expect(dialog).toBeVisible();
     await expect(dialog.getByTestId("draft-to-ic-subject")).toHaveValue(
-      "Jahez — IC materials & recommendation",
+      "Jahez: IC materials & recommendation",
     );
     await expect(dialog.getByTestId("draft-to-ic-body")).toHaveValue(
-      /- Jahez — Board Deck/,
+      /- Jahez · Board Deck/,
     );
 
     await dialog.getByRole("button", { name: "Cancel" }).click();

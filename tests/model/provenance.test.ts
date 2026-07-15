@@ -1,9 +1,9 @@
 /**
- * "No orphan numbers" — invariants over the base-case provenance node graph:
+ * "No orphan numbers", invariants over the base-case provenance node graph:
  *  (a) computed inputs resolve to existing nodes, (b) acyclic, (c) every path
  *  terminates at sourced | assumption, (d) formulaIds exist in FORMULAS,
  *  (e) assumptionKeys resolve into Assumptions, (f) sourced docIds exist in
- *  data/corpus/manifest.json — plus spot checks on key nodes.
+ *  data/corpus/manifest.json, plus spot checks on key nodes.
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";

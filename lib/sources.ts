@@ -1,10 +1,10 @@
 /**
- * Data-source taxonomy — the single source of truth for the composer's nested
+ * Data-source taxonomy, the single source of truth for the composer's nested
  * "All sources" picker (external market data · broker research · internal
  * systems). The picker groups, master toggles, submenu rows and hover tooltips
  * all derive from this array.
  *
- * To add a data source, append one entry here — the composer picker, toggles,
+ * To add a data source, append one entry here, the composer picker, toggles,
  * and tooltips derive from it. Nothing else needs editing.
  *
  * Icon policy (AGENTS.md assets rule): providers with a crisp vendored brand
@@ -46,10 +46,10 @@ export interface Source {
   description: Localized;
   group: SourceGroup;
   icon: SourceIcon;
-  /** Canonical provider/developer page — the bare domain shows in the picker
+  /** Canonical provider/developer page, the bare domain shows in the picker
    *  tooltip as a credibility signal (text only, never a live link). */
   url?: string;
-  /** initial toggle state — defaults ON when omitted. */
+  /** initial toggle state, defaults ON when omitted. */
   defaultOn?: boolean;
 }
 
@@ -60,8 +60,8 @@ export const SOURCES: Source[] = [
     url: "https://www.sahmk.sa/developers/docs",
     name: { en: "SAHMK", ar: "سهمك" },
     description: {
-      en: "Real-time Tadawul market data — TASI and Nomu quotes, financials, and announcements.",
-      ar: "بيانات تداول اللحظية — أسعار تاسي ونمو والقوائم المالية والإعلانات.",
+      en: "Real-time Tadawul market data, TASI and Nomu quotes, financials, and announcements.",
+      ar: "بيانات تداول اللحظية، أسعار تاسي ونمو والقوائم المالية والإعلانات.",
     },
     group: "external",
     icon: { kind: "image", src: "/logos/connectors/sahmk.png" },
@@ -82,8 +82,8 @@ export const SOURCES: Source[] = [
     url: "https://developer.wathq.sa",
     name: { en: "Wathq", ar: "وثق" },
     description: {
-      en: "Ministry of Commerce APIs — commercial registry, ownership, and national-address lookups.",
-      ar: "واجهات وزارة التجارة — السجل التجاري والملكية والعنوان الوطني.",
+      en: "Ministry of Commerce APIs, commercial registry, ownership, and national-address lookups.",
+      ar: "واجهات وزارة التجارة، السجل التجاري والملكية والعنوان الوطني.",
     },
     group: "external",
     icon: { kind: "monogram", initial: "و", tint: "navy" },
@@ -113,10 +113,10 @@ export const SOURCES: Source[] = [
   {
     id: "sama-open-data",
     url: "https://www.sama.gov.sa/en-US/EconomicReports/pages/database.aspx",
-    name: { en: "SAMA Open Data", ar: "ساما — البيانات المفتوحة" },
+    name: { en: "SAMA Open Data", ar: "ساما، البيانات المفتوحة" },
     description: {
-      en: "Official Saudi Central Bank statistics — rates, FX, and banking-sector data.",
-      ar: "إحصاءات البنك المركزي السعودي الرسمية — الأسعار والصرف والقطاع المصرفي.",
+      en: "Official Saudi Central Bank statistics, rates, FX, and banking-sector data.",
+      ar: "إحصاءات البنك المركزي السعودي الرسمية، الأسعار والصرف والقطاع المصرفي.",
     },
     group: "external",
     icon: { kind: "monogram", initial: "س", tint: "accent" },
@@ -126,8 +126,8 @@ export const SOURCES: Source[] = [
     url: "https://database.stats.gov.sa",
     name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
     description: {
-      en: "Saudi official statistics API — economy, demographics, and labor market.",
-      ar: "واجهة الإحصاءات الرسمية السعودية — الاقتصاد والسكان وسوق العمل.",
+      en: "Saudi official statistics API, economy, demographics, and labor market.",
+      ar: "واجهة الإحصاءات الرسمية السعودية، الاقتصاد والسكان وسوق العمل.",
     },
     group: "external",
     icon: { kind: "monogram", initial: "إ", tint: "navy" },
@@ -169,8 +169,8 @@ export const SOURCES: Source[] = [
     url: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
     name: { en: "SEC Filings", ar: "إفصاحات SEC" },
     description: {
-      en: "Filings from the U.S. Securities and Exchange Commission — 10-K, 10-Q, 8-K, and more.",
-      ar: "إفصاحات هيئة الأوراق المالية الأمريكية — 10-K و10-Q و8-K وغيرها.",
+      en: "Filings from the U.S. Securities and Exchange Commission, 10-K, 10-Q, 8-K, and more.",
+      ar: "إفصاحات هيئة الأوراق المالية الأمريكية، 10-K و10-Q و8-K وغيرها.",
     },
     group: "external",
     icon: { kind: "lucide", name: "landmark" },
@@ -200,8 +200,8 @@ export const SOURCES: Source[] = [
     url: "https://pitchbook.com/products/direct-access-data",
     name: { en: "PitchBook", ar: "PitchBook" },
     description: {
-      en: "Private-market intelligence — company firmographics, latest financing, active investors, and fund data.",
-      ar: "معلومات الأسواق الخاصة — بيانات الشركات وآخر جولات التمويل والمستثمرين النشطين وبيانات الصناديق.",
+      en: "Private-market intelligence, company firmographics, latest financing, active investors, and fund data.",
+      ar: "معلومات الأسواق الخاصة، بيانات الشركات وآخر جولات التمويل والمستثمرين النشطين وبيانات الصناديق.",
     },
     group: "external",
     icon: { kind: "monogram", initial: "P", tint: "accent" },
@@ -254,8 +254,8 @@ export const SOURCES: Source[] = [
     url: "https://developer.company-information.service.gov.uk",
     name: { en: "UK Companies House", ar: "سجل الشركات البريطاني" },
     description: {
-      en: "UK company registry — filings, officers, and ownership.",
-      ar: "سجل الشركات في المملكة المتحدة — الإفصاحات والمديرون والملكية.",
+      en: "UK company registry, filings, officers, and ownership.",
+      ar: "سجل الشركات في المملكة المتحدة، الإفصاحات والمديرون والملكية.",
     },
     group: "external",
     icon: { kind: "image", src: "/logos/connectors/companies-house.svg" },
@@ -343,8 +343,8 @@ export const SOURCES: Source[] = [
     id: "mandate",
     name: { en: "Mandate", ar: "التفويض" },
     description: {
-      en: "Your IC Charter — cited back in every decision.",
-      ar: "ميثاق لجنة الاستثمار — يُستشهد به في كل قرار.",
+      en: "Your IC Charter, cited back in every decision.",
+      ar: "ميثاق لجنة الاستثمار، يُستشهد به في كل قرار.",
     },
     group: "internal",
     icon: { kind: "lucide", name: "scroll-text" },

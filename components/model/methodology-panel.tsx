@@ -31,10 +31,10 @@ export interface MethodologyPanelProps {
   /** the full provenance node graph (buildModel(...).nodes) */
   nodes: Record<ModelKey, ValueNode>;
   /** fired whenever the panel drills into a different node (chip click or
-   * breadcrumb navigation) — the panel manages its own breadcrumb trail, this
+   * breadcrumb navigation), the panel manages its own breadcrumb trail, this
    * is a notify-only hook for embedders that want to mirror the selection */
   onNavigate?: (key: ModelKey) => void;
-  /** sourced leaves call this instead of opening a PdfPanel themselves — the
+  /** sourced leaves call this instead of opening a PdfPanel themselves, the
    * panel stashes the citation highlight (reusing the existing chat
    * mechanism) and leaves actually mounting/positioning PdfPanel to the
    * embedder, since that differs between a chat pane and a Live Model sheet */

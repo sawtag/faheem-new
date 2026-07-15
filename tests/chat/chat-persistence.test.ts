@@ -12,7 +12,7 @@ import {
  * `liveTurns` useState resets to []. The only turns that survive are those the
  * remount can re-read via `resolveChat`. Pre-fix, a new turn on a SEEDED chat
  * was never persisted (append was a runtime-only no-op), so it vanished on
- * toggle. These tests pin the persistence that makes the turn survive — and
+ * toggle. These tests pin the persistence that makes the turn survive, and
  * guard that the sacred seed JSON is never mutated.
  *
  * This jsdom build ships no Storage, so we polyfill an in-memory localStorage

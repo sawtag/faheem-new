@@ -8,7 +8,7 @@ import { isTableStart, parseMarkdownTable } from "@/lib/chart-data";
  * Minimal answer-prose renderer for the analyst register the demo authors:
  * `**bold**` lead-ins, `## ` sub-heads, `- ` bullet lists, blank-line
  * paragraphs, GitHub-style `|` tables (delegated to `AnswerTable`), and inline
- * `[[n]]` citation markers (delegated to `renderCitation`). Deliberately small —
+ * `[[n]]` citation markers (delegated to `renderCitation`). Deliberately small,
  * the corpus of markdown is ours, so a full markdown engine would be dead
  * weight (AGENTS.md rule 6).
  */

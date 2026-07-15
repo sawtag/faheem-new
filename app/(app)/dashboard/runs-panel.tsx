@@ -229,12 +229,12 @@ function ProgressBar({ label }: { label: string }) {
 }
 
 /**
- * Analysis Runs — the /dashboard centerpiece and the screen's differentiator:
+ * Analysis Runs, the /dashboard centerpiece and the screen's differentiator:
  * one recorded Jahez deep-dive rendered as an orchestrated, auditable run (7
  * specialist lanes with the real documents each consumed, a shimmer→check
  * cascade on first reveal, the three landed deliverables wired to the existing
  * in-app preview, and a footer that ties every answer to the audit trail),
- * plus a collapsed Darb screening run. No engine contact — pure seed data.
+ * plus a collapsed Darb screening run. No engine contact, pure seed data.
  */
 export function RunsPanel({
   run,
@@ -351,7 +351,7 @@ export function RunsPanel({
         </Link>
       </Card>
 
-      {/* collapsed second run — Darb screening */}
+      {/* collapsed second run, Darb screening */}
       <Link
         href={`/deals/${screening.workspace}`}
         data-testid="screening-run"

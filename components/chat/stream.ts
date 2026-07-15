@@ -3,7 +3,7 @@
  * separated per the SSE contract) into SSEEvents and hands each to `onEvent`.
  * Cancellation is the caller's AbortController (the composer's stop button).
  *
- * P5a: also publishes a `done` event's `cached` flag onto the mode-bus — the
+ * P5a: also publishes a `done` event's `cached` flag onto the mode-bus, the
  * one place every chat surface (ChatView, IcChatPanel) funnels through, so
  * the stage-only ⌘. mode overlay can show "last response: cached/live"
  * without either surface wiring it by hand.

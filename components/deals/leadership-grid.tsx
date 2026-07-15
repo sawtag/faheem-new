@@ -72,8 +72,8 @@ function LeaderCard({
 }
 
 /**
- * Jahez leadership tab — board + executive bio grid from data/leadership.json
- * (initials tiles, no photos — assets policy). The source link opens the
+ * Jahez leadership tab, board + executive bio grid from data/leadership.json
+ * (initials tiles, no photos, assets policy). The source link opens the
  * leadership pack in the PdfPanel at that bio's page.
  */
 export function LeadershipGrid({

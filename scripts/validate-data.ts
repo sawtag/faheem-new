@@ -1,6 +1,6 @@
 /**
  * Validates the static data pack against the zod schemas in lib/types.ts.
- * Every file is OPTIONAL — data lands progressively from P1 tasks. A missing
+ * Every file is OPTIONAL, data lands progressively from P1 tasks. A missing
  * file is a no-op ("skipped"), an invalid one fails the run (exit 1).
  *
  * Cross-checks (only run when both sides of a check are present):
@@ -190,7 +190,7 @@ if (socialPack && sentiment) {
 // Rule: sentiment/qualitative signals never emit a sourced number (live-model-
 // provenance plan §0). SentimentEntrySchema/SocialPostSchema are `.strict()`,
 // which already rejects an accidental sourceDoc/page/value shape at parse
-// time — this is a second, independent check that walks the RAW JSON (before
+// time, this is a second, independent check that walks the RAW JSON (before
 // zod strips anything) so the guarantee holds even if a future edit relaxes
 // the schema.
 function walkForSourcedNumberShape(node: unknown, keyPath: string): string[] {
@@ -225,13 +225,13 @@ for (const [label, relativePath] of [
   try {
     raw = JSON.parse(readFileSync(absolutePath, "utf-8"));
   } catch (error) {
-    fail(`${label}: invalid JSON — ${(error as Error).message}`);
+    fail(`${label}: invalid JSON, ${(error as Error).message}`);
     continue;
   }
   const hits = walkForSourcedNumberShape(raw, label);
   for (const hit of hits) {
     fail(
-      `${hit}: sentiment/social-pack data must never carry a sourced-number field (sourceDoc/page) — sentiment is signal only`,
+      `${hit}: sentiment/social-pack data must never carry a sourced-number field (sourceDoc/page), sentiment is signal only`,
     );
   }
 }

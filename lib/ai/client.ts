@@ -2,8 +2,8 @@
  * Anthropic SDK factory + the minimal client surface the engine uses.
  *
  * AGENTS.md rule 10: the SDK is imported ONLY here (and API routes may import
- * this module). The real client is constructed lazily so unit tests — which
- * inject a mock via setClientForTests — never touch the network and never need
+ * this module). The real client is constructed lazily so unit tests, which
+ * inject a mock via setClientForTests, never touch the network and never need
  * ANTHROPIC_API_KEY.
  *
  * We deliberately type against a small structural interface (FaheemClient)
@@ -26,7 +26,7 @@ export interface PageLocationCitation {
   end_page_number?: number;
 }
 
-/** Non-PDF citation shapes — not emitted for our all-PDF corpus, kept for narrowing. */
+/** Non-PDF citation shapes, not emitted for our all-PDF corpus, kept for narrowing. */
 export interface OtherCitation {
   type: "char_location" | "content_block_location";
   cited_text: string;
@@ -89,7 +89,7 @@ export interface FaheemClient {
 let injected: FaheemClient | null = null;
 let cachedReal: Anthropic | null = null;
 
-/** The one real SDK instance — `new Anthropic()` resolves the key from the env. */
+/** The one real SDK instance, `new Anthropic()` resolves the key from the env. */
 function realClient(): Anthropic {
   if (!cachedReal) cachedReal = new Anthropic();
   return cachedReal;
@@ -108,7 +108,7 @@ export function getClient(): FaheemClient {
 
 // ─────────────────────────── Files API (uploads) ───────────────────────────
 
-/** Test seam for the Files API upload — bypasses the SDK + network entirely. */
+/** Test seam for the Files API upload, bypasses the SDK + network entirely. */
 type Uploader = (bytes: Buffer, filename: string) => Promise<string>;
 let injectedUploader: Uploader | null = null;
 

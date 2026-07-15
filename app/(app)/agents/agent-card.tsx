@@ -14,7 +14,7 @@ import { AGENT_ICONS } from "./agent-icons";
 const DIM =
   "opacity-55 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease)]";
 
-/** In AR the AR name leads (bigger) and EN becomes the secondary line — same boxes, swapped content (design-briefs §3.7). */
+/** In AR the AR name leads (bigger) and EN becomes the secondary line, same boxes, swapped content (design-briefs §3.7). */
 function useLeadName(nameEn: string, nameAr: string) {
   const locale = useLocale() as Lang;
   return locale === "ar"
@@ -152,7 +152,7 @@ export function SpecialistAgentCard({
   );
 }
 
-/** Stage 2's fixture — no toggle, the orchestrator is not optional. */
+/** Stage 2's fixture, no toggle, the orchestrator is not optional. */
 export function OrchestratorBanner({
   name,
   desc,
@@ -185,7 +185,7 @@ export function OrchestratorBanner({
 /**
  * Footer caption shared by the Screening card ("Cites: …") and IC card
  * ("Advisory only …"). `icon` takes a pre-rendered element (not a component
- * reference) — this crosses the server/client boundary from page.tsx, and
+ * reference), this crosses the server/client boundary from page.tsx, and
  * only elements, not bare function/component values, are serializable there.
  */
 export function AgentCardFooter({

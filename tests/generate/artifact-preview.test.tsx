@@ -8,11 +8,11 @@ import type { ArtifactMeta } from "@/lib/types";
 
 function meta(kind: ArtifactMeta["kind"]): ArtifactMeta {
   const names: Record<ArtifactMeta["kind"], { en: string; ar: string }> = {
-    xlsx: { en: "Jahez — Valuation Model", ar: "جاهز — نموذج التقييم" },
-    docx: { en: "Jahez — IC Memo", ar: "جاهز — مذكرة لجنة الاستثمار" },
+    xlsx: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
+    docx: { en: "Jahez · IC Memo", ar: "جاهز · مذكرة لجنة الاستثمار" },
     pptx: {
-      en: "Jahez — Board Deck",
-      ar: "جاهز — العرض التقديمي لمجلس الإدارة",
+      en: "Jahez · Board Deck",
+      ar: "جاهز · العرض التقديمي لمجلس الإدارة",
     },
   };
   const files: Record<ArtifactMeta["kind"], string> = {
@@ -51,7 +51,7 @@ describe("ArtifactPreview", () => {
 
     const panel = screen.getByTestId("artifact-preview");
     expect(panel).toHaveAttribute("role", "dialog");
-    expect(screen.getByText("Jahez — Board Deck")).toBeInTheDocument();
+    expect(screen.getByText("Jahez · Board Deck")).toBeInTheDocument();
     expect(
       screen.getByText("Generated · Jul 12, 2026 · Lunar Investments"),
     ).toBeInTheDocument();
@@ -103,7 +103,7 @@ describe("ArtifactPreview", () => {
     renderPreview(meta("xlsx"));
     expect(
       screen.getByText(
-        "Full model: open in Excel — every input cell carries its source.",
+        "Full model: open in Excel, every input cell carries its source.",
       ),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Open in Excel/ })).toHaveAttribute(
@@ -120,13 +120,13 @@ describe("ArtifactPreview", () => {
 
     expect(screen.getByText("Preview unavailable")).toBeInTheDocument();
     expect(
-      screen.getByText("The file itself is ready — download it below."),
+      screen.getByText("The file itself is ready, download it below."),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Download$/ })).toHaveAttribute(
       "href",
       "/artifacts/jahez-board-deck.pptx",
     );
-    // every preview image is gone — nothing broken left on screen
+    // every preview image is gone, nothing broken left on screen
     expect(container.querySelectorAll("img")).toHaveLength(0);
   });
 });

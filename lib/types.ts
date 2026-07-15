@@ -1,5 +1,5 @@
 /**
- * Faheem shared contracts — fable-owned (AGENTS.md rule 7).
+ * Faheem shared contracts, fable-owned (AGENTS.md rule 7).
  * Agents code AGAINST these types; never redefine, fork, or edit them.
  * Change requests go through fable via your task result summary.
  *
@@ -13,7 +13,7 @@
  *   FAHEEM_TIMEOUT_MS     auto-mode first-token timeout, default 10000
  *
  * Cache key spec (implemented in lib/ai/cache.ts, reused by scripts/record-goldens.ts
- * and the ⌘K demo palette — all three MUST agree):
+ * and the ⌘K demo palette, all three MUST agree):
  *   contextKey = ctx.kind === "workspace" ? `workspace:${ctx.companyId}` : ctx.kind
  *   key = sha1([question, lang, contextKey, agent ?? "", (docIds ?? []).join(",")].join("|"))
  */
@@ -118,7 +118,7 @@ export const CorpusDocSchema = z.object({
 });
 export type CorpusDoc = z.infer<typeof CorpusDocSchema>;
 
-/** data/model-inputs.json = ModelInput[] — keys are `<period>.<metric>` snake_case, e.g. "fy25.gmv" */
+/** data/model-inputs.json = ModelInput[], keys are `<period>.<metric>` snake_case, e.g. "fy25.gmv" */
 export const ModelInputSchema = z.object({
   key: z.string(),
   value: z.number(),
@@ -142,7 +142,7 @@ export type ScreeningRow = z.infer<typeof ScreeningRowSchema>;
 export const IcMetricsSchema = z.object({
   /** implied IRR at entry, percent (e.g. 17.2) */
   irr: z.number(),
-  /** mandate hurdle, percent — Lunar's is 15 */
+  /** mandate hurdle, percent, Lunar's is 15 */
   hurdle: z.number(),
   /** scenario-weighted expected return, percent */
   expectedReturn: z.number(),
@@ -165,7 +165,7 @@ export const DealSchema = z.object({
   sector: LocalizedSchema,
   origin: z.enum(["inbound", "market-screen"]),
   stage: z.enum(["screening", "analysis", "ic-review", "declined"]),
-  /** e.g. "SAR 40M Series B" — absent for public market positions */
+  /** e.g. "SAR 40M Series B", absent for public market positions */
   ask: LocalizedSchema.optional(),
   statusLine: LocalizedSchema,
   /** public/ path to a vendored real logo; absent → monogram tile (AGENTS.md assets policy) */
@@ -193,7 +193,7 @@ export const CacheEntrySchema = z.object({
 });
 export type CacheEntry = z.infer<typeof CacheEntrySchema>;
 
-/** data/audit-log.json = AuditEntry[] — append-only; feeds the Audit Trail panel */
+/** data/audit-log.json = AuditEntry[], append-only; feeds the Audit Trail panel */
 export const AuditEntrySchema = z.object({
   ts: z.string(),
   user: z.string(),
@@ -213,7 +213,7 @@ export const AuditEntrySchema = z.object({
 });
 export type AuditEntry = z.infer<typeof AuditEntrySchema>;
 
-/** data/artifacts.json = ArtifactMeta[] — generate route appends; Library + workspace Artifacts tab render from it */
+/** data/artifacts.json = ArtifactMeta[], generate route appends; Library + workspace Artifacts tab render from it */
 export const ArtifactMetaSchema = z.object({
   id: z.string(),
   kind: z.enum(["xlsx", "docx", "pptx"]),
@@ -223,12 +223,12 @@ export const ArtifactMetaSchema = z.object({
   /** public URL path, e.g. "/artifacts/jahez-valuation-model.xlsx" */
   file: z.string(),
   createdAt: z.string(),
-  /** distinct cited source docs feeding the artifact — drives the "Verified · N sources" caption */
+  /** distinct cited source docs feeding the artifact, drives the "Verified · N sources" caption */
   sources: z.number().int().nonnegative().optional(),
 });
 export type ArtifactMeta = z.infer<typeof ArtifactMetaSchema>;
 
-/** data/seed-chats.json = SeedChat[] — durable seeded history; localStorage overlays runtime chats */
+/** data/seed-chats.json = SeedChat[], durable seeded history; localStorage overlays runtime chats */
 export const SeedChatSchema = z.object({
   id: z.string(),
   title: LocalizedSchema,
@@ -247,28 +247,28 @@ export type SeedChat = z.infer<typeof SeedChatSchema>;
 
 // ───────────────────────── market sentiment (WS-D) ──────────────────────────
 // Live-model-provenance plan §0: sentiment is a qualitative SIGNAL, never a
-// sourced number. Both schemas are `.strict()` — an accidental `sourceDoc`,
+// sourced number. Both schemas are `.strict()`, an accidental `sourceDoc`,
 // `page` or `value` field (the sourced-number shape from ModelInputSchema/
 // CiteSchema) fails validation immediately, not just at test time.
 
-/** data/social-pack.json = SocialPost[] — clearly-labeled ILLUSTRATIVE/synthetic
+/** data/social-pack.json = SocialPost[], clearly-labeled ILLUSTRATIVE/synthetic
  * demo content (never real scraped posts); the only thing the sentiment agent
  * is allowed to "read". */
 export const SocialPostSchema = z
   .object({
     id: z.string(),
     sourceType: z.enum(["forum", "social", "news-headline"]),
-    /** generic synthetic handle, e.g. "@ksa_markets_watch" — never a real person */
+    /** generic synthetic handle, e.g. "@ksa_markets_watch", never a real person */
     handle: z.string(),
     text: LocalizedSchema,
     tone: z.enum(["bullish", "bearish", "neutral", "skeptical", "meme"]),
-    /** timestamp-ish field — illustrative, not a market data timestamp */
+    /** timestamp-ish field, illustrative, not a market data timestamp */
     postedAt: z.string(),
   })
   .strict();
 export type SocialPost = z.infer<typeof SocialPostSchema>;
 
-/** data/sentiment.json = SentimentEntry[] — one label + rationale per company.
+/** data/sentiment.json = SentimentEntry[], one label + rationale per company.
  * NEVER a `{value, sourceDoc, page}` shape (rule: sentiment carries no sourced
  * number). `signalOnly` is a literal marker rendered verbatim in the UI. */
 export const SentimentEntrySchema = z
@@ -276,7 +276,7 @@ export const SentimentEntrySchema = z
     companyId: z.string(),
     label: z.enum(["constructive", "cautious", "negative-drift"]),
     rationale: LocalizedSchema,
-    /** always true — the literal "signal only, not a valuation input" marker */
+    /** always true, the literal "signal only, not a valuation input" marker */
     signalOnly: z.literal(true),
     /** SocialPost.id[] this rationale draws its themes from */
     postIds: z.array(z.string()).min(1),
@@ -286,7 +286,7 @@ export type SentimentEntry = z.infer<typeof SentimentEntrySchema>;
 
 // ─────────────────────────────── agent registry ─────────────────────────────
 
-/** Entries live in lib/ai/agents.ts — one source of truth for @-typeahead, Agent Activity, Agents page */
+/** Entries live in lib/ai/agents.ts, one source of truth for @-typeahead, Agent Activity, Agents page */
 export interface AgentInfo {
   id: AgentId;
   name: Localized;
@@ -296,6 +296,6 @@ export interface AgentInfo {
   /** system-prompt flavor selector used by lib/ai/prompts.ts */
   systemFlavor: string;
   defaultDocIds: string[];
-  /** lucide icon name — icon choice is registry data, never inline in JSX (AGENTS.md assets policy) */
+  /** lucide icon name, icon choice is registry data, never inline in JSX (AGENTS.md assets policy) */
   icon: string;
 }

@@ -5,7 +5,7 @@ import { Switch as RSwitch } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 /**
- * Switch toggle — accent track when on, thumb slides 150ms. Radix mirrors the
+ * Switch toggle, accent track when on, thumb slides 150ms. Radix mirrors the
  * checked position under `dir="rtl"` via the paired translate variants.
  */
 export const Toggle = React.forwardRef<

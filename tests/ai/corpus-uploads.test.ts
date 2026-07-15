@@ -60,7 +60,7 @@ function req(over: Partial<ChatRequest> = {}): ChatRequest {
   };
 }
 
-describe("resolveSessionDocs — gating + scoping", () => {
+describe("resolveSessionDocs, gating + scoping", () => {
   it("empty when no upload ids in docIds (even if registry has uploads)", () => {
     registerUpload(A);
     expect(resolveSessionDocs(req({ docIds: ["fy25-er"] }))).toEqual([]);
@@ -139,7 +139,7 @@ describe("buildSessionBlocks", () => {
   });
 });
 
-describe("buildCorpusContext — uploaded docs append AFTER the static breakpoint", () => {
+describe("buildCorpusContext, uploaded docs append AFTER the static breakpoint", () => {
   it("no uploads → identical to the static path (regression)", () => {
     registerUpload(A); // present but not referenced
     const r = req({ docIds: ["fy25-er", "fy24-ar"] });

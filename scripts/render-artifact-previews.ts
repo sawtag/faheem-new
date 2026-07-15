@@ -8,9 +8,9 @@
  *   memo-01.png … memo-03.png   IC memo, first 3 pages   (1280px wide)
  *   model-cover.png             workbook Cover sheet      (page 1 of the PDF)
  *
- * Run: node scripts/render-artifact-previews.ts        (idempotent — overwrites)
+ * Run: node scripts/render-artifact-previews.ts        (idempotent, overwrites)
  *
- * Plain `node` (26+, native type stripping) — NOT tsx: tsx's CJS-interop hands
+ * Plain `node` (26+, native type stripping), NOT tsx: tsx's CJS-interop hands
  * pptxgenjs's dual package to the builders as a namespace object ("PptxGenJS
  * is not a constructor"), while node's own ESM loader resolves the `import`
  * condition correctly. The registerHooks() shim below teaches node the
@@ -18,7 +18,7 @@
  *
  * STATIC-FALLBACK HONESTY: these PNGs are committed and served as the in-app
  * preview (components/generate/artifact-preview.tsx). They are rendered from
- * the SAME deterministic builders /api/generate runs — content comes only from
+ * the SAME deterministic builders /api/generate runs, content comes only from
  * git-versioned JSON, so a regenerated file cannot diverge from these images
  * unless a builder or data file changes. If one ever does, re-run this script
  * at rehearsal time and re-commit the PNGs alongside the change.
@@ -32,7 +32,7 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = process.cwd();
 
-// `@/lib/...` → `<repo>/lib/....ts` — the builders and everything they import
+// `@/lib/...` → `<repo>/lib/....ts`, the builders and everything they import
 // use the tsconfig `@/*` alias, which plain node doesn't know about.
 registerHooks({
   resolve(specifier, context, nextResolve) {

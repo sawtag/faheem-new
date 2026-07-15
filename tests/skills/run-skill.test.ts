@@ -55,7 +55,7 @@ describe("resolveSkillRun", () => {
     expect(ar.lang).toBe("ar");
   });
 
-  it("a prefill skill is never fixedLang, even when the active UI locale is ar — regression guard for the 'Runs in Arabic' hint, which must only ever appear for a goldenId skill with a truly fixed (locale-independent) language, never merely because the UI itself is in Arabic", () => {
+  it("a prefill skill is never fixedLang, even when the active UI locale is ar, regression guard for the 'Runs in Arabic' hint, which must only ever appear for a goldenId skill with a truly fixed (locale-independent) language, never merely because the UI itself is in Arabic", () => {
     for (const s of SKILLS) {
       if (!s.run || "goldenId" in s.run) continue;
       const target = resolveSkillRun(s, "ar")!;

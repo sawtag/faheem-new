@@ -1,7 +1,7 @@
 /**
  * Golden-path cache: the demo's record/replay store, keyed exactly per the
  * cache-key spec in lib/types.ts. scripts/record-goldens.ts and the ⌘K demo
- * palette MUST compute the same key — the formula lives here, nowhere else.
+ * palette MUST compute the same key, the formula lives here, nowhere else.
  *
  *   contextKey = ctx.kind === "workspace" ? `workspace:${ctx.companyId}` : ctx.kind
  *   key = sha1([question, lang, contextKey, agent ?? "", (docIds ?? []).join(",")].join("|"))

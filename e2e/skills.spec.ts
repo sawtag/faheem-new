@@ -3,7 +3,7 @@ import goldenQuestions from "../data/golden-questions.json" with { type: "json" 
 import skillsData from "../data/skills.json" with { type: "json" };
 
 /**
- * Skills Library acceptance — the finance-grade analyst-playbook catalog.
+ * Skills Library acceptance, the finance-grade analyst-playbook catalog.
  * Card anatomy, filter pills, per-card toggle dim, and the two Run flavors:
  * `goldenId` skills fire the exact ⌘K-palette golden-bus insert (byte-
  * identical to data/golden-questions.json, same cache key); `prefill` skills
@@ -30,7 +30,7 @@ test.describe("Skills page", () => {
     await expect(page.getByRole("heading", { name: "Skills" })).toBeVisible();
     await expect(page.locator('[data-testid^="skill-card-"]')).toHaveCount(10);
     await expect(
-      page.getByText("DCF — FCFF Build", { exact: true }),
+      page.getByText("DCF, FCFF Build", { exact: true }),
     ).toBeVisible();
     await expect(
       page.getByText("Covenant Sweep", { exact: true }),
@@ -63,21 +63,21 @@ test.describe("Skills page", () => {
   test("Run on a prefill skill lands on a fresh chat with the composer pre-filled, unsent", async ({
     page,
   }) => {
-    // KNOWN UPSTREAM BUG (not in this page's code — components/chat/chat-view.tsx
+    // KNOWN UPSTREAM BUG (not in this page's code, components/chat/chat-view.tsx
     // is out of this task's file ownership, see AGENTS.md "stay in your lane"):
     // ChatView's golden-selection effect (lines ~190-203) calls
     // takeGoldenSelection() on every run, including the FIRST run on a fresh
-    // `/chat/new` mount where `chat` is still the initial `undefined` — so the
+    // `/chat/new` mount where `chat` is still the initial `undefined`, so the
     // pending selection published by run-skill.ts's publishGoldenSelection()
     // (immediately before router.push) is consumed and discarded before `chat`
     // resolves one render later. The effect's own comment ("`take()` catches a
     // selection published just before `/chat/new` navigation completes")
     // describes the intended behavior, which the current effect ordering does
     // not deliver. Reproduced directly against a running dev server (not just
-    // in this spec) — confirmed independent of this page: navigating the ⌘K
+    // in this spec), confirmed independent of this page: navigating the ⌘K
     // palette itself (components/demo/palette.tsx) from any page where
     // `currentPageContext()` returns something other than the target context
-    // (e.g. Home, Agents, Library — any page that isn't already the exact
+    // (e.g. Home, Agents, Library, any page that isn't already the exact
     // matching /chat/[id]) hits the same path and would drop the selection
     // too; the only reason demo-controls.spec.ts is green today is that its
     // one scenario is already on the matching chat page (the `subscribe`
@@ -95,7 +95,7 @@ test.describe("Skills page", () => {
   test("Run on risk-scorecard fires the exact recorded qa2 request into the Jahez workspace chat", async ({
     page,
   }) => {
-    // Same upstream bug as the prefill test above — see that test's comment.
+    // Same upstream bug as the prefill test above, see that test's comment.
     await page.goto("/skills");
     await page.getByTestId("skill-run-risk-scorecard").click();
     await page.waitForURL(/\/chat\/new\?context=workspace%3Ajahez/);

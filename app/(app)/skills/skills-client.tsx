@@ -10,7 +10,7 @@ import { SkillCard } from "./skill-card";
 type Filter = SkillCategory | "all";
 
 /**
- * /skills — header, category filter pills (Library-page pill pattern), and
+ * /skills, header, category filter pills (Library-page pill pattern), and
  * the 2-col playbook grid. Static registry data (no async loading state,
  * same as the Agents page).
  */

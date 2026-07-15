@@ -1,5 +1,5 @@
 /**
- * Jahez IC memo — the Lunar-branded Word deliverable (§11 "IC memo (Word) sections").
+ * Jahez IC memo, the Lunar-branded Word deliverable (§11 "IC memo (Word) sections").
  *
  * Nine sections exactly per spec: Executive summary & recommendation ·
  * Investment thesis (3 pillars) · Company & industry · Financial analysis ·
@@ -7,13 +7,13 @@
  * Catalysts & monitoring KPIs · Appendix: sources.
  *
  * All prose comes from `data/narratives.json` template strings, resolved via
- * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())` — every
+ * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())`, every
  * quantitative claim traces to a `ModelInput` or a `computeModel()` output, never
  * a hand-typed number (AGENTS.md rule 5). Tables (actuals, scenarios, risk
  * register, Shariah ratios, mandate-fit, sources appendix) are built directly
  * from the same data, so the numbers in prose and in tables can never drift
  * apart. Lunar brand (charcoal + gold, serif headings) comes from
- * `lib/generate/shared.ts`'s `lunarBrand` — the one legal home for Office hexes.
+ * `lib/generate/shared.ts`'s `lunarBrand`, the one legal home for Office hexes.
  */
 import {
   AlignmentType,
@@ -95,7 +95,7 @@ function coverBand(
     spaceAfter?: number;
   },
 ): Paragraph {
-  // vertical breathing room scaled to font size (twips = 1/20pt) — NOT the
+  // vertical breathing room scaled to font size (twips = 1/20pt), NOT the
   // `spacing.line` unit (240ths of a line); mixing the two caused the band
   // paragraphs to overlap instead of stacking.
   const pad = Math.round(opts.size * 0.3 * 20);
@@ -270,7 +270,7 @@ function dataTable(
 // ═════════════════════════════ appendix (sources) ═══════════════════════════
 // Every ModelInput key actually cited (by placeholder) anywhere in the memo
 // prose, plus the handful of policy/industry-pack pages cited inline as plain
-// text (not ModelInput-backed figures) — grouped by doc for the sources table.
+// text (not ModelInput-backed figures), grouped by doc for the sources table.
 const CITED_MODEL_INPUT_KEYS = [
   "fy23.gmv",
   "fy23.orders",
@@ -376,7 +376,7 @@ export async function buildIcMemo(): Promise<Buffer> {
             color: B.charcoalMid,
           }),
           new TextRun({
-            text: "\tInvestment Committee Memorandum — Jahez International (Tadawul: 6017)",
+            text: "\tInvestment Committee Memorandum, Jahez International (Tadawul: 6017)",
             font: B.sans,
             size: half(8.5),
             italics: true,
@@ -394,7 +394,7 @@ export async function buildIcMemo(): Promise<Buffer> {
         spacing: { before: 60 },
         children: [
           new TextRun({
-            text: "Prepared by Faheem for Lunar Investments — Advisory only. Not investment advice.",
+            text: "Prepared by Faheem for Lunar Investments, Advisory only. Not investment advice.",
             font: B.sans,
             size: half(8),
             italics: true,
@@ -473,7 +473,7 @@ export async function buildIcMemo(): Promise<Buffer> {
       spacing: { before: 200, after: 200 },
       children: [
         new TextRun({
-          text: "Advisory only — the investment decision rests with the Investment Committee.",
+          text: "Advisory only, the investment decision rests with the Investment Committee.",
           font: B.sans,
           size: half(10),
           italics: true,
@@ -527,7 +527,7 @@ export async function buildIcMemo(): Promise<Buffer> {
       [9, 12, 12, 9, 12, 11, 9, 11, 15],
     ),
     caption(
-      "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Shariah Screen tabs) — see the workbook for the full formula chain.",
+      "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Shariah Screen tabs), see the workbook for the full formula chain.",
     ),
     body(memo.execSummary),
   ];
@@ -618,16 +618,16 @@ export async function buildIcMemo(): Promise<Buffer> {
         scenarioRow("Bull (25%)", model.bull),
         [
           "Probability-weighted",
-          "—",
+          "–",
           fact(facts, "calc.weightedPerShare"),
-          "—",
+          "–",
           fact(facts, "calc.weightedReturn"),
         ],
       ],
       [30, 18, 18, 18, 16],
     ),
     caption(
-      `Source: Faheem Valuation Model — DCF tab (WACC ${fact(facts, "calc.wacc")}, cost of equity ${fact(facts, "calc.costOfEquity")}); Market Data & Comparables Snapshot, p.2-4.`,
+      `Source: Faheem Valuation Model, DCF tab (WACC ${fact(facts, "calc.wacc")}, cost of equity ${fact(facts, "calc.costOfEquity")}); Market Data & Comparables Snapshot, p.2-4.`,
     ),
   ];
 
@@ -715,7 +715,7 @@ export async function buildIcMemo(): Promise<Buffer> {
     ...memo.monitoringKpis.map((k: string) => bullet(k)),
   ];
 
-  // ── Section 9: Appendix — sources ──
+  // ── Section 9: Appendix, sources ──
   const section9 = [
     h1("Appendix: Sources"),
     body(
@@ -725,11 +725,11 @@ export async function buildIcMemo(): Promise<Buffer> {
   ];
 
   const doc = new Document({
-    title: "Jahez International — Investment Committee Memorandum",
+    title: "Jahez International, Investment Committee Memorandum",
     creator: "Faheem",
     subject: "Jahez International Company (Tadawul: 6017)",
     description:
-      "Lunar Investments IC memo — advisory only, generated by Faheem",
+      "Lunar Investments IC memo, advisory only, generated by Faheem",
     sections: [
       {
         properties: {

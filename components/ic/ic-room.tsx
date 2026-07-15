@@ -28,7 +28,7 @@ interface OpenDoc {
 }
 
 /**
- * The Faheem IC room — the demo's closing beat. A Bloomberg-terminal committee
+ * The Faheem IC room, the demo's closing beat. A Bloomberg-terminal committee
  * sheet (ComparisonTable) beside the advisory chat, under a permanent
  * advisory-only banner. Owns the shared PdfPanel so both the recommendation
  * cite chips and the chat citations open the same document viewer.
@@ -40,7 +40,7 @@ export function IcRoom({
 }: {
   columns: Deal[];
   dateISO: string;
-  /** Jahez's already-landed deliverables (data/artifacts.json) — the secondary
+  /** Jahez's already-landed deliverables (data/artifacts.json), the secondary
    * Draft-to-IC trigger, scoped to the one worked model per AGENTS.md's scope
    * discipline. Empty until the deliverables beat has run once. */
   jahezArtifacts?: ArtifactMeta[];

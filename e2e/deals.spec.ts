@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 /**
- * T3.3 acceptance — pipeline board + company workspaces.
+ * T3.3 acceptance, pipeline board + company workspaces.
  * Board: origin filter pills toggle card visibility. Darb workspace: the
  * Screening Agent scorecard (6 rows, one flag), citation chip → PdfPanel at
  * the cited IC Charter page, and the human-gate stage flip. Jahez workspace:
@@ -71,7 +71,7 @@ test.describe("Darb workspace (screening)", () => {
       page.getByText(/Recommend advancing to pitch meeting/),
     ).toBeVisible();
     await expect(
-      page.getByText("Details anonymized — client confidentiality."),
+      page.getByText("Details anonymized (client confidentiality)."),
     ).toBeVisible();
   });
 
@@ -174,7 +174,7 @@ test.describe("Jahez workspace", () => {
     await expect(card).toBeVisible();
     await expect(card.getByText("Cautious", { exact: true })).toBeVisible();
     await expect(
-      card.getByText("Signal only — not a valuation input"),
+      card.getByText("Signal only, not a valuation input"),
     ).toBeVisible();
 
     // peeking the pack lists the illustrative posts, each clearly tagged.
@@ -200,7 +200,7 @@ test.describe("Jahez workspace", () => {
     await expect(card).toBeVisible();
     await expect(card.getByText("حذر", { exact: true })).toBeVisible();
     await expect(
-      card.getByText("مؤشر استرشادي فقط — وليس مدخلاً للتقييم"),
+      card.getByText("مؤشر استرشادي فقط، وليس مدخلاً للتقييم"),
     ).toBeVisible();
   });
 });

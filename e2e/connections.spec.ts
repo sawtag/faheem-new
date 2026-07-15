@@ -4,7 +4,7 @@ import { expect, test, type Page } from "@playwright/test";
  * T3.5 acceptance (plan §T3.5): the onboarding stepper completes end-to-end,
  * the "Add custom MCP" modal opens/validates/accepts a URL, and the fake
  * OAuth modal flow ends with the connector shown as Connected. Auth
- * middleware may or may not exist yet (parallel task) — setting the session
+ * middleware may or may not exist yet (parallel task), setting the session
  * cookie up front makes this spec pass either way.
  */
 test.beforeEach(async ({ context, baseURL }) => {
@@ -142,7 +142,7 @@ test.describe("Onboarding stepper", () => {
     ).toBeVisible();
     await expect(page.getByText("Step 1 of 3")).toBeVisible();
 
-    // Step 1 — Connect: pre-connected rows show a check, others show Connect,
+    // Step 1, Connect: pre-connected rows show a check, others show Connect,
     // and the dashed "Add custom MCP" card is the last grid cell.
     await expect(page.getByText("Lunar Data Room")).toBeVisible();
     await expect(
@@ -150,7 +150,7 @@ test.describe("Onboarding stepper", () => {
     ).toBeVisible();
     await page.getByRole("button", { name: "Continue" }).click();
 
-    // Step 2 — Agents & skills: registry-driven toggle grid, default ON.
+    // Step 2, Agents & skills: registry-driven toggle grid, default ON.
     await expect(page.getByText("Step 2 of 3")).toBeVisible();
     await expect(page.getByText("Screening Agent")).toBeVisible();
     await expect(page.getByText("@screening")).toBeVisible();
@@ -158,7 +158,7 @@ test.describe("Onboarding stepper", () => {
     await expect(firstToggle).toHaveAttribute("aria-checked", "true");
     await page.getByRole("button", { name: "Continue" }).click();
 
-    // Step 3 — Mandate & risk: prefilled to Lunar's real mandate values.
+    // Step 3, Mandate & risk: prefilled to Lunar's real mandate values.
     await expect(page.getByText("Step 3 of 3")).toBeVisible();
     await expect(page.getByLabel("Target IRR hurdle")).toHaveValue("15");
     await expect(page.getByLabel("Max single-name concentration")).toHaveValue(
@@ -166,7 +166,7 @@ test.describe("Onboarding stepper", () => {
     );
     await page.getByRole("button", { name: "Create IC Charter" }).click();
 
-    // Completion card — the closing "this becomes your IC Charter" beat.
+    // Completion card, the closing "this becomes your IC Charter" beat.
     await expect(
       page.getByRole("heading", { name: "Your IC Charter is ready" }),
     ).toBeVisible();

@@ -88,8 +88,8 @@
         "agent": "screening",
         "docIds": ["lunar-ic-charter", "darb-dataroom"],
         "summary": {
-          "en": "Scored Darb against the IC Charter — 5 pass, 1 concentration flag.",
-          "ar": "تقييم درب مقابل ميثاق لجنة الاستثمار — 5 معايير مستوفاة وتنبيه تركّز واحد."
+          "en": "Scored Darb against the IC Charter, 5 pass, 1 concentration flag.",
+          "ar": "تقييم درب مقابل ميثاق لجنة الاستثمار، 5 معايير مستوفاة وتنبيه تركّز واحد."
         }
       }
     ],

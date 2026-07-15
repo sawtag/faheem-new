@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 /**
- * T3.6 acceptance — Agents / Library / Audit Trail (the governance beat).
+ * T3.6 acceptance, Agents / Library / Audit Trail (the governance beat).
  * `faheem_session` is set defensively: the auth middleware lands in a
  * parallel task, but once it does these routes should still be reachable
  * without a fresh login prompt.
@@ -48,7 +48,7 @@ test.describe("Agents page", () => {
       page.getByText("التحقق والامتثال", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByText("فهيم — مستشار لجنة الاستثمار", { exact: true }),
+      page.getByText("فهيم، مستشار لجنة الاستثمار", { exact: true }),
     ).toBeVisible();
     await expect(
       page.getByText("المحاسبة وجودة الأرباح", { exact: true }),
@@ -138,11 +138,11 @@ test.describe("Agents page", () => {
     await page.goto("/agents");
     await expect(page.getByRole("separator")).toHaveCount(3);
     await expect(
-      page.getByRole("separator", { name: "Human gate — the analyst decides" }),
+      page.getByRole("separator", { name: "Human gate: the analyst decides" }),
     ).toBeVisible();
     await expect(
       page.getByRole("separator", {
-        name: "Human gate — the committee decides",
+        name: "Human gate: the committee decides",
       }),
     ).toBeVisible();
   });
@@ -168,7 +168,7 @@ test.describe("Library page", () => {
         page.getByRole("link", { name: "Ask Faheem to prepare an IC memo" }),
       ).toBeVisible();
     } else {
-      // artifacts.json is present (e.g. authored by T4.3) — cards render instead.
+      // artifacts.json is present (e.g. authored by T4.3), cards render instead.
       await expect(page.getByText("Verified ·").first()).toBeVisible();
     }
   });

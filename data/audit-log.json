@@ -44,7 +44,7 @@
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "Break down Jahez's unit economics — contribution margin per order.",
+    "question": "Break down Jahez's unit economics: contribution margin per order.",
     "citationCount": 9
   },
   {
@@ -202,7 +202,7 @@
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
     "citationCount": 0
   },
   {
@@ -210,7 +210,7 @@
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+    "question": "@Risk & Portfolio Monitoring: run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
     "citationCount": 0
   },
   {
@@ -226,7 +226,7 @@
     "user": "Ali",
     "context": "ic",
     "action": "question",
-    "question": "Rank these deals — strongest risk-adjusted case?",
+    "question": "Rank these deals: strongest risk-adjusted case?",
     "citationCount": 0
   },
   {
@@ -250,7 +250,7 @@
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "Break down Jahez's FY2025 unit economics — GMV, take rate, AOV, and why did net income compress 61%?",
+    "question": "Break down Jahez's FY2025 unit economics: GMV, take rate, AOV, and why did net income compress 61%?",
     "citationCount": 5
   },
   {
@@ -275,5 +275,13 @@
     "action": "question",
     "question": "From the uploaded Talabat Q1 2026 results deck, what GMV growth did Talabat report, and how does it compare to Jahez's FY2025 GMV growth?",
     "citationCount": 4
+  },
+  {
+    "ts": "2026-07-15T18:37:34.244Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
+    "citationCount": 23
   }
 ]

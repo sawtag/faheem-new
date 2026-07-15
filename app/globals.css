@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /*
- * Faheem theme — THE single source of visual truth (AGENTS.md rule 4).
+ * Faheem theme, THE single source of visual truth (AGENTS.md rule 4).
  * Fable-owned. Agents: request additions via task summaries; T0.2 may APPEND
  * extension tokens (never modify existing values). No hex/shadow/duration
- * literals anywhere in app/** or components/** — lint-enforced.
+ * literals anywhere in app/** or components/**, lint-enforced.
  *
  * Values from the Faheem UI Kit (spec §7), extended with tint ramps.
  * Light mode ONLY (AGENTS.md rule 1).
@@ -112,7 +112,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
- * T0.2 EXTENSIONS — appended by the theme+primitives task (existing values
+ * T0.2 EXTENSIONS, appended by the theme+primitives task (existing values
  * above are UNTOUCHED, per the ownership note). Everything here is a new token
  * or references one; no literal ever leaks into app/** or components/**.
  * ═══════════════════════════════════════════════════════════════════════════ */
@@ -194,7 +194,7 @@ body {
   }
 }
 
-/* Dialog surfaces (scale .98→1 + fade, 150ms) — Dialog primitive. */
+/* Dialog surfaces (scale .98→1 + fade, 150ms), Dialog primitive. */
 .faheem-overlay {
   animation: faheem-overlay-in var(--duration-fast) var(--ease);
 }
@@ -208,7 +208,7 @@ body {
   animation: faheem-dialog-out var(--duration-fast) var(--ease);
 }
 
-/* Popovers/menus/tooltips — origin-aware pop (scale .98→1 + fade, 150ms). */
+/* Popovers/menus/tooltips, origin-aware pop (scale .98→1 + fade, 150ms). */
 .faheem-pop {
   transform-origin: var(--radix-popper-transform-origin, center);
   animation: faheem-pop-in var(--duration-fast) var(--ease);
@@ -217,7 +217,7 @@ body {
   animation: faheem-pop-out var(--duration-fast) var(--ease);
 }
 
-/* Inline busy spinner — the ONE sanctioned rotation (button/inline loading,
+/* Inline busy spinner, the ONE sanctioned rotation (button/inline loading,
  * explicitly specified in the primitives + login briefs). Everywhere else the
  * system signals "working" with shimmer, the logo bar-rise, or count-up. */
 .faheem-spin {

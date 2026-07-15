@@ -1,6 +1,6 @@
 /**
  * Gate G3: the extracted engine is byte-identical to the pre-refactor
- * computeModel() at base assumptions — deep-equal against the frozen fixture
+ * computeModel() at base assumptions, deep-equal against the frozen fixture
  * (tests/fixtures/model-base-snapshot.json, generated BEFORE the refactor).
  * Plus determinism, a non-base sanity check, and the lib/model client-safety
  * rule (no node:fs / exceljs imports anywhere under lib/model/).

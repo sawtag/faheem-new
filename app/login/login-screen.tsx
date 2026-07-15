@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import type { Lang } from "@/lib/types";
 import { LanguageToggle } from "./language-toggle";
 
-// design-briefs.md §1.5 — durations/easing mirror the theme's --duration
+// design-briefs.md §1.5, durations/easing mirror the theme's --duration
 // tokens (250ms / 150ms); framer-motion needs numeric seconds so these are
 // re-expressed here rather than the CSS var (same convention as logo.tsx).
 const EASE = [0.4, 0, 0.2, 1] as const;
@@ -85,7 +85,7 @@ export function LoginScreen() {
 
   return (
     <main className="bg-bg relative isolate flex min-h-svh items-center justify-center overflow-hidden p-4">
-      {/* backdrop — the design team's finished LIGHT splash cover
+      {/* backdrop, the design team's finished LIGHT splash cover
          (public/backgrounds/growth-light.png), the same asset the home hero
          uses so sign-in flows seamlessly into the app with no light/dark seam.
          `object-cover object-bottom` anchors the emerald growth-swoosh + glass
@@ -145,7 +145,7 @@ export function LoginScreen() {
             )}
           </div>
 
-          {/* addendum brand lockup — tagline + caption under the logo (blended
+          {/* addendum brand lockup, tagline + caption under the logo (blended
              into the otherwise-unchanged §1 card spec; see task summary). */}
           <p className="text-accent mt-2 text-center text-[0.8125rem] font-bold">
             {t("tagline")}

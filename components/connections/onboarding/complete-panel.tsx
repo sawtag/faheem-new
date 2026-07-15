@@ -6,7 +6,7 @@ import { CheckDraw } from "@/components/connections/check-draw";
 import { CountUp } from "@/components/connections/count-up";
 import type { MandateState } from "@/components/connections/onboarding/mandate-state";
 
-/** Onboarding closing card — "this becomes your IC Charter" (design-briefs §2.4). */
+/** Onboarding closing card, "this becomes your IC Charter" (design-briefs §2.4). */
 export function CompletePanel({ mandate }: { mandate: MandateState }) {
   const t = useTranslations("onboarding");
 

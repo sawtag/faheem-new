@@ -31,7 +31,7 @@ const GROUP_ICON: Record<SourceGroup, string> = {
   internal: "building-2",
 };
 
-/** Bare domain for the tooltip credibility line — no protocol, www, or path. */
+/** Bare domain for the tooltip credibility line, no protocol, www, or path. */
 function bareDomain(url: string): string {
   return url
     .replace(/^https?:\/\//, "")
@@ -39,7 +39,7 @@ function bareDomain(url: string): string {
     .replace(/\/.*$/, "");
 }
 
-/** Curated mini-cluster for the "Manage connectors" row — colorful workplace
+/** Curated mini-cluster for the "Manage connectors" row, colorful workplace
  *  glyphs (all connected), overlapped like an avatar stack. */
 const MANAGE_PREVIEW_IDS = ["sharepoint", "gdrive", "slack", "gmail"];
 const MANAGE_PREVIEW = MANAGE_PREVIEW_IDS.flatMap((id) => {
@@ -48,10 +48,10 @@ const MANAGE_PREVIEW = MANAGE_PREVIEW_IDS.flatMap((id) => {
 });
 
 /** Rows that get the folder-scope affordance (a muted folder glyph before the
- *  toggle) — file-store sources the analyst scopes to specific folders. */
+ *  toggle), file-store sources the analyst scopes to specific folders. */
 const FOLDER_SCOPED = new Set(["sharepoint", "gdrive", "shared-folder"]);
 
-/** Staggered row entrance — capped so the last row never crosses 400ms. */
+/** Staggered row entrance, capped so the last row never crosses 400ms. */
 const rowVariants = {
   hidden: { opacity: 0, y: 4 },
   show: (i: number) => ({
@@ -65,7 +65,7 @@ const rowVariants = {
  * The composer's nested "All sources" picker. Level 1 lists the three source
  * groups (master toggle + chevron into a submenu) and a "Manage connectors"
  * shortcut; level 2 opens beside it with a search box and the group's source
- * rows (per-row toggle + hover tooltip). Selection is local, cosmetic state —
+ * rows (per-row toggle + hover tooltip). Selection is local, cosmetic state,
  * the composer's load-bearing output never depends on it (same posture as the
  * model-tier selector).
  */
@@ -85,7 +85,7 @@ export function SourcePicker() {
   const panelRef = React.useRef<HTMLDivElement>(null);
   // Submenu vertical alignment. The popover always opens upward from the
   // composer, but the composer itself sits anywhere from mid-viewport (home
-  // hero) to the bottom edge (docked chat) — so the level-2 flyout grows
+  // hero) to the bottom edge (docked chat), so the level-2 flyout grows
   // upward (bottom-aligned with level 1) when there's room above, and flips
   // downward when there isn't. Measured per open, never mid-animation.
   const [dropUp, setDropUp] = React.useState(true);
@@ -160,7 +160,7 @@ export function SourcePicker() {
             transition={{ duration: 0.15, ease: EASE }}
             className="absolute start-0 bottom-full z-20 mb-2"
           >
-            {/* Level 1 — groups + manage connectors */}
+            {/* Level 1, groups + manage connectors */}
             <div className="border-border bg-card shadow-hover rounded-card w-72 border p-2">
               {SOURCE_GROUPS.map((g) => (
                 <div
@@ -230,7 +230,7 @@ export function SourcePicker() {
               </Link>
             </div>
 
-            {/* Level 2 — submenu beside level 1, on the logical end side */}
+            {/* Level 2, submenu beside level 1, on the logical end side */}
             <AnimatePresence>
               {group && (
                 <motion.div
@@ -325,7 +325,7 @@ function Submenu({
                 side={tipSide}
                 content={
                   <span className="block">
-                    <span className="font-semibold">{s.name[locale]}</span> —{" "}
+                    <span className="font-semibold">{s.name[locale]}</span>,{" "}
                     {s.description[locale]}
                     {s.url && (
                       <span
@@ -366,8 +366,8 @@ function Submenu({
   );
 }
 
-/** 24px source glyph column — monogram tile, lucide tile, or a bare vendored
- *  brand logo (20px, no background — the colorful-glyph look). */
+/** 24px source glyph column, monogram tile, lucide tile, or a bare vendored
+ *  brand logo (20px, no background, the colorful-glyph look). */
 function SourceGlyph({ icon, label }: { icon: SourceIcon; label: string }) {
   if (icon.kind === "monogram") {
     return (

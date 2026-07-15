@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import type { Connector } from "@/lib/connectors";
 import type { Lang } from "@/lib/types";
 
-/** Onboarding Step 1 connector card — "wizard dress" of the same connector data (design-briefs §2.4). */
+/** Onboarding Step 1 connector card, "wizard dress" of the same connector data (design-briefs §2.4). */
 export function ConnectorWizardCard({
   connector,
   justConnected,

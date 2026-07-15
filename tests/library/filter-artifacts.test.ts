@@ -7,8 +7,8 @@ const artifacts: ArtifactMeta[] = [
     id: "a1",
     kind: "docx",
     name: {
-      en: "Jahez — IC Investment Memo",
-      ar: "جاهز — مذكرة لجنة الاستثمار",
+      en: "Jahez, IC Investment Memo",
+      ar: "جاهز · مذكرة لجنة الاستثمار",
     },
     workspace: "jahez",
     file: "/artifacts/jahez-ic-memo.docx",
@@ -18,7 +18,7 @@ const artifacts: ArtifactMeta[] = [
   {
     id: "a2",
     kind: "xlsx",
-    name: { en: "Jahez — Valuation Model", ar: "جاهز — نموذج التقييم" },
+    name: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
     workspace: "jahez",
     file: "/artifacts/jahez-valuation-model.xlsx",
     createdAt: "2026-07-07T10:15:00Z",
@@ -27,7 +27,7 @@ const artifacts: ArtifactMeta[] = [
   {
     id: "a3",
     kind: "pptx",
-    name: { en: "Thara Pay — Board Deck", ar: "ثارا باي — عرض المجلس" },
+    name: { en: "Thara Pay، Board Deck", ar: "ثارا باي، عرض المجلس" },
     workspace: "thara-pay",
     file: "/artifacts/thara-pay-board-deck.pptx",
     createdAt: "2026-07-11T09:22:00Z",

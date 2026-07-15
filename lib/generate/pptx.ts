@@ -1,5 +1,5 @@
 /**
- * Jahez board deck — the Lunar-branded PowerPoint deliverable (§11 "Board deck
+ * Jahez board deck, the Lunar-branded PowerPoint deliverable (§11 "Board deck
  * (PPTX) ~8 slides").
  *
  * ① thesis-on-a-page ② market map ③ unit-economics bridge ④ valuation football
@@ -9,11 +9,11 @@
  * page number on every slide).
  *
  * Titles/subtitles/commentary come from `data/narratives.json`, resolved via
- * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())` — the
+ * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())`, the
  * same fact bag the IC memo uses, so the deck can never disagree with the memo
  * or the workbook (AGENTS.md rule 5). Every chart on the data slides (unit-
  * economics bridge, football field, scenario bars, risk grid) is drawn with
- * native pptxgenjs shapes from `ModelResult` directly — no invented figures,
+ * native pptxgenjs shapes from `ModelResult` directly, no invented figures,
  * no chart-library guesswork.
  */
 import PptxGenJS from "pptxgenjs";
@@ -116,7 +116,7 @@ function defineMaster(pptx: PptxGenJS): void {
       },
       {
         text: {
-          text: "Prepared by Faheem for Lunar Investments — Advisory only. Not investment advice.",
+          text: "Prepared by Faheem for Lunar Investments, Advisory only. Not investment advice.",
           options: {
             x: CONTENT_X,
             y: SLIDE_H - 0.38,
@@ -503,7 +503,7 @@ function buildSlide4(
     fill: { color: B.positive },
     line: { color: B.charcoal, width: 0.75 },
   });
-  slide.addText(`DCF target — SAR ${model.base.perShare.toFixed(2)}`, {
+  slide.addText(`DCF target, SAR ${model.base.perShare.toFixed(2)}`, {
     x: xDcf - 1.1,
     y: barY - 1.0,
     w: 2.2,
@@ -523,7 +523,7 @@ function buildSlide4(
     h: barH + 0.3,
     line: { color: B.negative, width: 1.5 },
   });
-  slide.addText(`Current — SAR ${model.price.toFixed(2)}`, {
+  slide.addText(`Current, SAR ${model.price.toFixed(2)}`, {
     x: xCur - 0.9,
     y: barY + barH + 0.38,
     w: 1.8,
@@ -611,7 +611,7 @@ function buildSlide5(
     h: 0,
     line: { color: B.gold, width: 1.75, dashType: "dash" },
   });
-  slide.addText(`Lunar hurdle — ${model.ic.hurdle.toFixed(1)}%`, {
+  slide.addText(`Lunar hurdle, ${model.ic.hurdle.toFixed(1)}%`, {
     x: chartX + chartW - 2.7,
     y: hurdleY - 0.34,
     w: 2.7,
@@ -882,7 +882,7 @@ function buildSlide7(
     [
       bodyCell("Single-name concentration (10% cap)"),
       bodyCell("PASS*", { bold: true, color: B.positive }),
-      bodyCell("Sized within cap — final ticket sizing is an IC decision"),
+      bodyCell("Sized within cap, final ticket sizing is an IC decision"),
       bodyCell("p.4"),
     ],
     [
@@ -912,7 +912,7 @@ function buildSlide7(
     autoPage: false,
   });
   slide.addText(
-    "* Concentration pass is directional — final ticket sizing is an Investment Committee decision, not asserted here.",
+    "* Concentration pass is directional, final ticket sizing is an Investment Committee decision, not asserted here.",
     {
       x: CONTENT_X,
       y: 5.55,
@@ -993,7 +993,7 @@ export async function buildBoardDeck(): Promise<Buffer> {
   pptx.layout = "LAYOUT_WIDE";
   pptx.author = "Faheem";
   pptx.company = "Lunar Investments";
-  pptx.title = "Jahez International — Board Deck";
+  pptx.title = "Jahez International, Board Deck";
   defineMaster(pptx);
 
   buildSlide1(pptx, deck.slide1);

@@ -10,10 +10,10 @@ import {
 
 /**
  * WS-D acceptance (live-model-provenance plan §0): sentiment/social-pack data
- * NEVER carries a sourced-number shape ({value, sourceDoc, page} — the
+ * NEVER carries a sourced-number shape ({value, sourceDoc, page}, the
  * ModelInput/Cite shape used everywhere else in the corpus). This walks the
  * RAW JSON on disk (not the zod-parsed objects) so the guarantee holds even
- * if a schema is loosened later — the same defensive check scripts/
+ * if a schema is loosened later, the same defensive check scripts/
  * validate-data.ts runs at build time.
  */
 function walk(node: unknown, hits: string[], keyPath: string) {
@@ -25,7 +25,7 @@ function walk(node: unknown, hits: string[], keyPath: string) {
     for (const forbidden of ["sourceDoc", "page", "value"]) {
       if (Object.prototype.hasOwnProperty.call(node, forbidden)) {
         // "value" alone isn't forbidden everywhere, but paired with
-        // sourceDoc/page it's the sourced-number shape — flag sourceDoc/page
+        // sourceDoc/page it's the sourced-number shape, flag sourceDoc/page
         // unconditionally (the hard rule), and only flag "value" if it also
         // has a sourceDoc or page sibling.
         if (forbidden !== "value") {
@@ -51,7 +51,7 @@ function rawJson(relativePath: string): unknown {
   return JSON.parse(fs.readFileSync(abs, "utf-8"));
 }
 
-describe("sentiment/social-pack data — no sourced-number shape", () => {
+describe("sentiment/social-pack data, no sourced-number shape", () => {
   it("data/sentiment.json has no sourceDoc/page keys anywhere", () => {
     const hits: string[] = [];
     walk(rawJson("data/sentiment.json"), hits, "sentiment");

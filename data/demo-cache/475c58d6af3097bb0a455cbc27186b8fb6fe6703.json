@@ -1,7 +1,7 @@
 {
-  "key": "87439f9fffcc4d4cb09dbdc01698c9883c37fa6e",
+  "key": "475c58d6af3097bb0a455cbc27186b8fb6fe6703",
   "request": {
-    "question": "Walk me through the WACC build for the Jahez valuation — where does every input come from?",
+    "question": "Walk me through the WACC build for the Jahez valuation: where does every input come from?",
     "lang": "en",
     "context": {
       "kind": "workspace",
@@ -109,7 +109,7 @@
     },
     {
       "type": "delta",
-      "text": "## WACC build for Jahez — input"
+      "text": "## WACC build for Jahez, input"
     },
     {
       "type": "delta",
@@ -144,7 +144,7 @@
     },
     {
       "type": "delta",
-      "text": " build is incomplete.\n\n### Cost of equity (13.7%) — three CAPM inputs\n\n| Input | Value used | Source |"
+      "text": " build is incomplete.\n\n### Cost of equity (13.7%), three CAPM inputs\n\n| Input | Value used | Source |"
     },
     {
       "type": "delta",
@@ -152,11 +152,11 @@
     },
     {
       "type": "delta",
-      "text": "Risk-free rate proxy — Sah Sukuk"
+      "text": "Risk-free rate proxy, Sah Sukuk"
     },
     {
       "type": "delta",
-      "text": " (govt savings product) return 4.60%, arabnews.com — Arab News, \"Saudi Arabia opens June"
+      "text": " (govt savings product) return 4.60%, arabnews.com, Arab News, \"Saudi Arabia opens June"
     },
     {
       "type": "delta",
@@ -206,7 +206,7 @@
     },
     {
       "type": "delta",
-      "text": ") |\n| Beta | 1.82x | Comp-set average — see below |\n\nThe beta of 1.82 is the sim"
+      "text": ") |\n| Beta | 1.82x | Comp-set average, see below |\n\nThe beta of 1.82 is the sim"
     },
     {
       "type": "delta",
@@ -241,7 +241,7 @@
     },
     {
       "type": "delta",
-      "text": "Talabat (TALABAT) — n/a — insufficient trading history (IPO'd Dec 2024, page reports beta n"
+      "text": "Talabat (TALABAT), n/a, insufficient trading history (IPO'd Dec 2024, page reports beta n"
     },
     {
       "type": "delta",
@@ -264,7 +264,7 @@
     },
     {
       "type": "delta",
-      "text": ".6% + 9.1% = 13.7%.\n\n### Cost of debt and the debt weighting — this is where the build"
+      "text": ".6% + 9.1% = 13.7%.\n\n### Cost of debt and the debt weighting, this is where the build"
     },
     {
       "type": "delta",
@@ -276,7 +276,7 @@
     },
     {
       "type": "delta",
-      "text": "Cost of debt — Jahez-specific: n/a — not sourced. No rated Jahez public debt ident"
+      "text": "Cost of debt, Jahez-specific: n/a, not sourced. No rated Jahez public debt ident"
     },
     {
       "type": "delta",
@@ -311,7 +311,7 @@
     },
     {
       "type": "delta",
-      "text": " only, not a WACC input) ~50–100 bps, S&P Global Ratings commentary, via WebSearch synthesis — verify against a primary S&P note"
+      "text": " only, not a WACC input) ~50–100 bps, S&P Global Ratings commentary, via WebSearch synthesis, verify against a primary S&P note"
     },
     {
       "type": "delta",
@@ -338,7 +338,7 @@
     },
     {
       "type": "delta",
-      "text": " Given Jahez actually carries debt — a "
+      "text": " Given Jahez actually carries debt, a "
     },
     {
       "type": "delta",
@@ -388,7 +388,7 @@
     },
     {
       "type": "delta",
-      "text": " —"
+      "text": ", "
     },
     {
       "type": "delta",
@@ -400,7 +400,7 @@
     },
     {
       "type": "delta",
-      "text": "veats the comps pack raises — and the analysis appears to have skipped\n\n1. **Beta method.** The p"
+      "text": "veats the comps pack raises, and the analysis appears to have skipped\n\n1. **Beta method.** The p"
     },
     {
       "type": "delta",
@@ -412,7 +412,7 @@
     },
     {
       "type": "delta",
-      "text": " requires each comp's debt/equity and marginal tax rate, which were not cleanly available from free sources in this pass — flagged as a modeling next"
+      "text": " requires each comp's debt/equity and marginal tax rate, which were not cleanly available from free sources in this pass, flagged as a modeling next"
     },
     {
       "type": "delta",
@@ -435,7 +435,7 @@
     },
     {
       "type": "delta",
-      "text": " and Delivery Hero's *levered* betas — the shortcut the pack flagged, not the re-levered bottom-up"
+      "text": " and Delivery Hero's *levered* betas, the shortcut the pack flagged, not the re-levered bottom-up"
     },
     {
       "type": "delta",
@@ -447,7 +447,7 @@
     },
     {
       "type": "delta",
-      "text": "ahez's own reported 5Y beta (0.02...) is not usable for a bottom-up WACC — a beta that low on"
+      "text": "ahez's own reported 5Y beta (0.02...) is not usable for a bottom-up WACC, a beta that low on"
     },
     {
       "type": "delta",
@@ -474,7 +474,7 @@
     },
     {
       "type": "delta",
-      "text": " stockanalysis.com). The **debt side is not** — cost of debt is unsourced, and the p"
+      "text": " stockanalysis.com). The **debt side is not**, cost of debt is unsourced, and the p"
     },
     {
       "type": "delta",
@@ -505,7 +505,7 @@
     },
     {
       "type": "delta",
-      "text": " closing — (i) a Jahez-specific cost of debt (the SAIBOR-linked facility rate is the natural primary source, s"
+      "text": " closing, (i) a Jahez-specific cost of debt (the SAIBOR-linked facility rate is the natural primary source, s"
     },
     {
       "type": "delta",

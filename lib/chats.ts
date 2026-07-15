@@ -55,8 +55,8 @@ function saveRuntimeChats(chats: SeedChat[]): void {
 /**
  * Resolve a chat by id. The runtime overlay wins over the seed: once a seeded
  * chat gains a new turn (see `mutateChat`) an augmented clone lives in the
- * overlay under the same id, and that augmented copy — seed history + new
- * turns — is what must resolve. Un-augmented seed chats fall through to the
+ * overlay under the same id, and that augmented copy, seed history + new
+ * turns, is what must resolve. Un-augmented seed chats fall through to the
  * pristine seed. This is what lets a just-asked turn survive the locale-toggle
  * remount (AppShell keys `motion.main` by locale → full ChatView remount →
  * `liveTurns` useState resets): the turn was persisted, so it replays as
@@ -69,7 +69,7 @@ export function resolveChat(id: string): SeedChat | undefined {
   );
 }
 
-/** First ~9 words / 52 chars of the question — the runtime chat's title. */
+/** First ~9 words / 52 chars of the question, the runtime chat's title. */
 function deriveTitle(question: string): string {
   const clean = question.trim().replace(/\s+/g, " ");
   const short = clean.split(" ").slice(0, 9).join(" ");
@@ -101,7 +101,7 @@ export function createRuntimeChat(
 /**
  * Apply a mutation to the overlay copy of a chat, persisting the result. If the
  * id belongs to a seed chat with no overlay yet, a clone of the seed is
- * promoted into the overlay first — the sacred `data/seed-chats.json` is never
+ * promoted into the overlay first, the sacred `data/seed-chats.json` is never
  * mutated (only the localStorage clone grows). This is why a new turn on a
  * SEEDED chat now survives a reload / the locale-toggle remount, not just turns
  * on runtime-created chats.

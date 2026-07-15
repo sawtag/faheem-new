@@ -1,16 +1,16 @@
 /**
- * Connector catalog — the single source of truth for the Connections page
+ * Connector catalog, the single source of truth for the Connections page
  * (`/connections`) and the onboarding stepper's Connect step (`/onboarding`).
  * Both surfaces render the SAME array in the SAME order (AGENTS.md asset
  * policy: connector tiles/copy are data, never inline in JSX).
  *
- * `group` distinguishes Lunar's own systems from third-party/market sources —
+ * `group` distinguishes Lunar's own systems from third-party/market sources,
  * unused by this task's screens but kept so the home omnibox source-picker
  * (spec §4 item 2, a different task) can reuse this module rather than
  * redefining the catalog.
  *
  * Tile letters are FIXED per connector regardless of locale (design-briefs
- * §2.7: "monogram letters never flip") — always set explicitly, never derived
+ * §2.7: "monogram letters never flip"), always set explicitly, never derived
  * from the localized name's first character.
  *
  * Brand logos are vendored under `public/logos/connectors/` (see its
@@ -39,7 +39,7 @@ export interface Connector {
   name: Localized;
   /** row/card one-liner */
   description: Localized;
-  /** hover tooltip — one sentence (design-briefs §2.9 wow detail #1) */
+  /** hover tooltip, one sentence (design-briefs §2.9 wow detail #1) */
   tooltip: Localized;
   group: ConnectorGroup;
   status: ConnectorStatus;
@@ -57,8 +57,8 @@ export const CONNECTORS: Connector[] = [
       ar: "إفصاحات وإعلانات تداول الرسمية",
     },
     tooltip: {
-      en: "Official Tadawul filings, disclosures and announcements — Faheem's primary public-market source.",
-      ar: "إفصاحات تداول الرسمية — مصدر فهيم الأساسي لبيانات السوق العامة.",
+      en: "Official Tadawul filings, disclosures and announcements, Faheem's primary public-market source.",
+      ar: "إفصاحات تداول الرسمية، مصدر فهيم الأساسي لبيانات السوق العامة.",
     },
     group: "external",
     status: "connected",
@@ -84,7 +84,7 @@ export const CONNECTORS: Connector[] = [
     name: { en: "SAHMK API", ar: "سهمك" },
     description: {
       en: "350+ Tadawul companies, fundamentals & prices",
-      ar: "أكثر من 350 شركة مدرجة في تداول — بيانات أساسية وأسعار",
+      ar: "أكثر من 350 شركة مدرجة في تداول، بيانات أساسية وأسعار",
     },
     tooltip: {
       en: "Fundamentals and live prices for 350+ Tadawul-listed companies.",
@@ -98,12 +98,12 @@ export const CONNECTORS: Connector[] = [
     id: "gastat",
     name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
     description: {
-      en: "Official statistics publications — synced to the data room",
-      ar: "إصدارات إحصائية رسمية — مرتبطة بغرفة البيانات",
+      en: "Official statistics publications, synced to the data room",
+      ar: "إصدارات إحصائية رسمية، مرتبطة بغرفة البيانات",
     },
     tooltip: {
-      en: "Official Saudi statistics — the authoritative source for macro and sector indicators.",
-      ar: "الإحصاءات الرسمية السعودية — المصدر المعتمد للمؤشرات الكلية والقطاعية.",
+      en: "Official Saudi statistics, the authoritative source for macro and sector indicators.",
+      ar: "الإحصاءات الرسمية السعودية، المصدر المعتمد للمؤشرات الكلية والقطاعية.",
     },
     group: "external",
     status: "connected",
@@ -117,8 +117,8 @@ export const CONNECTORS: Connector[] = [
       ar: "مستندات الصفقات والملفات الداخلية",
     },
     tooltip: {
-      en: "Lunar's own deal documents and internal files — the private corpus behind every workspace.",
-      ar: "مستندات الصفقات والملفات الداخلية الخاصة بلونار — القاعدة الخاصة وراء كل مساحة عمل.",
+      en: "Lunar's own deal documents and internal files, the private corpus behind every workspace.",
+      ar: "مستندات الصفقات والملفات الداخلية الخاصة بلونار، القاعدة الخاصة وراء كل مساحة عمل.",
     },
     group: "internal",
     status: "connected",
@@ -154,7 +154,7 @@ export const CONNECTORS: Connector[] = [
     status: "connected",
     tile: { kind: "monogram", initial: "W", tint: "navy" },
   },
-  // International connected — market feeds + workplace systems (the OAuth
+  // International connected, market feeds + workplace systems (the OAuth
   // integrations behind the composer's Internal Sources picker group).
   {
     id: "marketaux",
@@ -332,8 +332,8 @@ export const CONNECTORS: Connector[] = [
       ar: "البيانات الحكومية المفتوحة السعودية",
     },
     tooltip: {
-      en: "Saudi Arabia's open government data platform — public datasets across sectors.",
-      ar: "منصة البيانات الحكومية المفتوحة في السعودية — بيانات عامة تغطي مختلف القطاعات.",
+      en: "Saudi Arabia's open government data platform, public datasets across sectors.",
+      ar: "منصة البيانات الحكومية المفتوحة في السعودية، بيانات عامة تغطي مختلف القطاعات.",
     },
     group: "external",
     status: "available",
@@ -358,7 +358,7 @@ export const CONNECTORS: Connector[] = [
     id: "alinma-open-banking",
     name: {
       en: "Alinma Open Banking",
-      ar: "الإنماء — الخدمات المصرفية المفتوحة",
+      ar: "الإنماء، الخدمات المصرفية المفتوحة",
     },
     description: {
       en: "Books & ERP via SAMA open-banking framework",
@@ -393,8 +393,8 @@ export const CONNECTORS: Connector[] = [
     name: { en: "PitchBook", ar: "PitchBook" },
     description: { en: "Private-market data", ar: "بيانات الأسواق الخاصة" },
     tooltip: {
-      en: "Private-market data — deal comps, valuations and investor activity.",
-      ar: "بيانات الأسواق الخاصة — الصفقات المماثلة والتقييمات ونشاط المستثمرين.",
+      en: "Private-market data, deal comps, valuations and investor activity.",
+      ar: "بيانات الأسواق الخاصة، الصفقات المماثلة والتقييمات ونشاط المستثمرين.",
     },
     group: "external",
     status: "available",
@@ -446,12 +446,12 @@ export const CONNECTORS: Connector[] = [
       ar: "المحتوى الاجتماعي والبيانات البديلة",
     },
     description: {
-      en: "Real social/forum feeds & alt-data — MVP roadmap",
-      ar: "تغذيات اجتماعية ومنتديات وبيانات بديلة حقيقية — على خارطة طريق الإصدار الأولي",
+      en: "Real social/forum feeds & alt-data, MVP roadmap",
+      ar: "تغذيات اجتماعية ومنتديات وبيانات بديلة حقيقية، على خارطة طريق الإصدار الأولي",
     },
     tooltip: {
-      en: "Live social, forum and alt-data feeds for the Market Sentiment agent. Today the agent reads a clearly-labeled illustrative demo pack — this connector is what would replace it in production.",
-      ar: "تغذيات حية من المحتوى الاجتماعي والمنتديات والبيانات البديلة لوكيل المزاج السوقي. حالياً يقرأ الوكيل حزمة توضيحية تجريبية مُعلَّمة بوضوح — وهذا الموصّل هو ما سيحل محلها في الإنتاج.",
+      en: "Live social, forum and alt-data feeds for the Market Sentiment agent. Today the agent reads a clearly-labeled illustrative demo pack, this connector is what would replace it in production.",
+      ar: "تغذيات حية من المحتوى الاجتماعي والمنتديات والبيانات البديلة لوكيل المزاج السوقي. حالياً يقرأ الوكيل حزمة توضيحية تجريبية مُعلَّمة بوضوح، وهذا الموصّل هو ما سيحل محلها في الإنتاج.",
     },
     group: "external",
     status: "available",

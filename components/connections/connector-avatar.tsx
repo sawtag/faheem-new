@@ -16,7 +16,7 @@ const ICON_GLYPH: Record<LogoTileSize, string> = {
   24: "size-3.5",
   40: "size-5",
 };
-/** Image-tile inset (px) — the brand glyph floats inside a neutral card tile. */
+/** Image-tile inset (px), the brand glyph floats inside a neutral card tile. */
 const IMAGE_INSET: Record<LogoTileSize, number> = { 16: 12, 24: 16, 40: 26 };
 
 /** Resolves a connector's `tile` spec to a monogram, lucide-icon, or vendored

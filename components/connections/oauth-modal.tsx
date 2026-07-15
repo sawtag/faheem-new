@@ -22,7 +22,7 @@ const CONNECTING_MS = 900;
 const SUCCESS_MS = 900;
 
 /**
- * Fake OAuth modal (design-briefs §2.3) — three internal states: authorize →
+ * Fake OAuth modal (design-briefs §2.3), three internal states: authorize →
  * connecting (~900ms) → success (auto-dismiss ~900ms). `onConnected` fires
  * the moment the success state is entered, so the caller can migrate the row
  * and start the "mint wash" while the modal is still closing.
@@ -42,7 +42,7 @@ export function OAuthModal({
   const locale = useLocale() as Lang;
   const [stage, setStage] = React.useState<Stage>("authorize");
 
-  // Reset to "authorize" whenever the dialog transitions to open — a render-time
+  // Reset to "authorize" whenever the dialog transitions to open, a render-time
   // state adjustment (not an effect) per React's guidance for resetting state
   // when a prop changes: https://react.dev/learn/you-might-not-need-an-effect
   const [prevOpen, setPrevOpen] = React.useState(open);
@@ -51,7 +51,7 @@ export function OAuthModal({
     if (open) setStage("authorize");
   }
 
-  // `onConnected`/`onOpenChange` are ordinary (unmemoized) callback props —
+  // `onConnected`/`onOpenChange` are ordinary (unmemoized) callback props,
   // stash the latest in a ref so the stage-transition effect below only
   // re-runs when the stage itself changes, not on every parent re-render
   // (an unstable dep here previously caused an infinite update loop).

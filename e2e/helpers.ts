@@ -45,7 +45,7 @@ export const ROUTES = [
 ] as const;
 
 /**
- * Namespaced i18n keys (messages/en.json top-level namespaces) — if any of
+ * Namespaced i18n keys (messages/en.json top-level namespaces), if any of
  * these leak into rendered text un-translated (e.g. "chat.thinking"), next-intl
  * fell back to the raw key instead of resolving a message.
  */
@@ -53,7 +53,7 @@ export const MESSAGE_KEY_LEAK_RE =
   /\b(shell|chat|home|deals|ic|agents|library|audit|connections|onboarding|login|generate|dashboard|sentiment)\.[a-z]/i;
 
 /**
- * The single recorded demo-cache fixture (T2.2) — read at test setup rather
+ * The single recorded demo-cache fixture (T2.2), read at test setup rather
  * than hardcoded, so the golden path always asks the exact question the
  * cached SSE transcript was recorded for.
  */
@@ -62,11 +62,11 @@ export function loadDemoCacheFixture(): {
   lang: "en" | "ar";
   context: { kind: string; companyId?: string };
 } {
-  // Pick the T2.2 chat fixture EXPLICITLY — demo-cache now holds all six
+  // Pick the T2.2 chat fixture EXPLICITLY, demo-cache now holds all six
   // recorded goldens, so "first file" grabs the wrong request (regression:
   // it selected the ic-rank golden and filled it into the Jahez workspace →
   // guaranteed cache miss). This fixture is the only jahez-workspace entry
-  // with no docIds/agent and the plain "— GMV, take rate, AOV" phrasing.
+  // with no docIds/agent and the plain ", GMV, take rate, AOV" phrasing.
   const dir = path.join(process.cwd(), "data/demo-cache");
   for (const file of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
     const req = JSON.parse(
@@ -77,7 +77,7 @@ export function loadDemoCacheFixture(): {
       req.context?.companyId === "jahez" &&
       !req.docIds &&
       !req.agent &&
-      req.question.startsWith("Break down Jahez's FY2025 unit economics — GMV")
+      req.question.startsWith("Break down Jahez's FY2025 unit economics, GMV")
     ) {
       return req;
     }
@@ -93,7 +93,7 @@ export function routeSlug(route: string): string {
   return route.replace(/^\//, "").replace(/\//g, "-");
 }
 
-/** No horizontal scrollbar — the RTL flip must not blow out any layout. */
+/** No horizontal scrollbar, the RTL flip must not blow out any layout. */
 export async function expectNoHorizontalOverflow(page: Page): Promise<void> {
   await expect
     .poll(
@@ -109,9 +109,9 @@ export async function expectNoHorizontalOverflow(page: Page): Promise<void> {
 
 /**
  * Click `locator`, retrying the click itself if `check` doesn't pass shortly
- * after — not just retrying `check` alone. This machine runs the suite at
+ * after, not just retrying `check` alone. This machine runs the suite at
  * high parallelism (16 workers), and a click that lands in the beat right
- * after `page.goto()` — before React has finished hydrating that DOM node —
+ * after `page.goto()`, before React has finished hydrating that DOM node,
  * is silently swallowed (the element is visible/stable/enabled, so
  * Playwright's own actionability checks pass; there's just no listener
  * attached yet). A plain `await locator.click(); await expect(check)` then

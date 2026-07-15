@@ -1,5 +1,5 @@
 /**
- * Cross-page prefill bus (P5a) — bridges the ⌘K demo palette (mounted once in
+ * Cross-page prefill bus (P5a), bridges the ⌘K demo palette (mounted once in
  * app/(app)/layout.tsx, outside any single chat surface) to whichever
  * composer should receive the selection: ChatView's Composer (workspace/firm
  * entries) or IcChatPanel's IcComposer (ic entries).
@@ -35,7 +35,7 @@ export function publishGoldenSelection(
   for (const listener of listeners) listener(pending);
 }
 
-/** Pull-and-clear — call once on mount to catch a selection from just before navigation. */
+/** Pull-and-clear, call once on mount to catch a selection from just before navigation. */
 export function takeGoldenSelection(): GoldenSelection | null {
   const value = pending;
   pending = null;

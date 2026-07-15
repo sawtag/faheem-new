@@ -33,49 +33,79 @@
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "start",
-      "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "done",
-      "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "start",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "done",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
@@ -106,7 +136,7 @@
     },
     {
       "type": "delta",
-      "text": " — but the granular bull-case inputs (terminal growth, margin exit r"
+      "text": ", but the granular bull-case inputs (terminal growth, margin exit r"
     },
     {
       "type": "delta",
@@ -118,7 +148,7 @@
     },
     {
       "type": "delta",
-      "text": " conditions matter, roughly in order of importance.\n\n## 1. KSA competitive intensity has to ease —"
+      "text": " conditions matter, roughly in order of importance.\n\n## 1. KSA competitive intensity has to ease, "
     },
     {
       "type": "delta",
@@ -180,7 +210,7 @@
     },
     {
       "type": "delta",
-      "text": " path. Take rate has already climbed — "
+      "text": " path. Take rate has already climbed, "
     },
     {
       "type": "delta",
@@ -203,7 +233,7 @@
     },
     {
       "type": "delta",
-      "text": " — and management explicitly flags that "
+      "text": ", and management explicitly flags that "
     },
     {
       "type": "delta",
@@ -288,7 +318,7 @@
     },
     {
       "type": "delta",
-      "text": " The acquired platform is itself already profitable — "
+      "text": " The acquired platform is itself already profitable, "
     },
     {
       "type": "delta",
@@ -415,7 +445,7 @@
     },
     {
       "type": "delta",
-      "text": " from Q1 2025 to Q1 2026, with 52% of that growth driven by the noon contribution — J"
+      "text": " from Q1 2025 to Q1 2026, with 52% of that growth driven by the noon contribution, J"
     },
     {
       "type": "delta",
@@ -543,11 +573,11 @@
     },
     {
       "type": "delta",
-      "text": " Q4-2025 one-off items — Red Color impairment, Marn goodwill impairment, Others-segment ECL, and Snoonu de"
+      "text": " Q4-2025 one-off items, Red Color impairment, Marn goodwill impairment, Others-segment ECL, and Snoonu de"
     },
     {
       "type": "delta",
-      "text": "al costs — layered on take-rate pressure."
+      "text": "al costs, layered on take-rate pressure."
     },
     {
       "type": "delta",
@@ -651,7 +681,7 @@
     },
     {
       "type": "delta",
-      "text": " top of guidance — "
+      "text": " top of guidance, "
     },
     {
       "type": "delta",
@@ -674,7 +704,7 @@
     },
     {
       "type": "delta",
-      "text": " — with the"
+      "text": ", with the"
     },
     {
       "type": "delta",
@@ -744,7 +774,7 @@
     },
     {
       "type": "delta",
-      "text": "into* spend, not away — "
+      "text": "into* spend, not away, "
     },
     {
       "type": "delta",

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
 import { SKILL_CATEGORIES, SKILLS, SkillSchema } from "@/lib/skills";
 
-describe("SKILLS — data/skills.json", () => {
+describe("SKILLS, data/skills.json", () => {
   it("has 10 entries with unique ids", () => {
     expect(SKILLS).toHaveLength(10);
     const ids = SKILLS.map((s) => s.id);

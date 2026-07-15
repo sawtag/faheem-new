@@ -1,5 +1,5 @@
 /**
- * Agent registry — the single source of truth for the @-typeahead, the Agent
+ * Agent registry, the single source of truth for the @-typeahead, the Agent
  * Activity timeline, and the Agents page (spec §4 item 8, deck slide 9).
  *
  * `icon` is a lucide-react icon name: icon choice is registry data, never
@@ -140,7 +140,7 @@ export const AGENTS: AgentInfo[] = [
   },
   {
     id: "ic",
-    name: { en: "Faheem IC", ar: "فهيم — مستشار لجنة الاستثمار" },
+    name: { en: "Faheem IC", ar: "فهيم، مستشار لجنة الاستثمار" },
     stage: 3,
     methodsKey: "agents.methods.ic",
     systemFlavor: "ic",
