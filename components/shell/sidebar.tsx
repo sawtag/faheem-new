@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 export interface PinnedWorkspace {
   id: string;
   name: Localized;
+  /** muted market-type suffix on the Projects row, e.g. "Public" / «عام» */
+  listing?: Localized;
 }
 
 /** Sidebar: logo · New Chat · primary nav · Settings · Pinned · Ali footer. */
@@ -290,6 +292,7 @@ function ProjectRow({
   side: "left" | "right";
 }) {
   const name = workspace.name[locale];
+  const listing = workspace.listing?.[locale];
   const row = (
     <Link
       href={`/deals/${workspace.id}`}
@@ -304,14 +307,23 @@ function ProjectRow({
     >
       <Folder className="size-4 shrink-0" aria-hidden="true" />
       {!collapsed && (
-        <span className="truncate text-[0.9375rem] font-semibold">{name}</span>
+        <span className="flex min-w-0 items-baseline gap-1.5">
+          <span className="truncate text-[0.9375rem] font-semibold">
+            {name}
+          </span>
+          {listing && (
+            <span className="text-text-secondary/70 shrink-0 text-xs font-medium whitespace-nowrap">
+              {listing}
+            </span>
+          )}
+        </span>
       )}
     </Link>
   );
   return (
     <li>
       {collapsed ? (
-        <Tooltip side={side} content={name}>
+        <Tooltip side={side} content={listing ? `${name} · ${listing}` : name}>
           {row}
         </Tooltip>
       ) : (

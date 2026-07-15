@@ -159,6 +159,9 @@ export type IcMetrics = z.infer<typeof IcMetricsSchema>;
 export const DealSchema = z.object({
   id: z.string(),
   name: LocalizedSchema,
+  /** market/ownership type shown as a muted suffix in the sidebar Projects
+   *  rows, e.g. "Public" / "Private" / "Pre-IPO" (bilingual, optional) */
+  listing: LocalizedSchema.optional(),
   sector: LocalizedSchema,
   origin: z.enum(["inbound", "market-screen"]),
   stage: z.enum(["screening", "analysis", "ic-review", "declined"]),

@@ -2,6 +2,7 @@
   {
     "id": "darb",
     "name": { "en": "Darb", "ar": "درب" },
+    "listing": { "en": "Private", "ar": "خاص" },
     "sector": { "en": "Logistics SaaS", "ar": "برمجيات اللوجستيات (SaaS)" },
     "origin": "inbound",
     "stage": "screening",
@@ -85,6 +86,7 @@
   {
     "id": "jahez",
     "name": { "en": "Jahez", "ar": "جاهز" },
+    "listing": { "en": "Public", "ar": "عام" },
     "sector": {
       "en": "Quick-commerce / food delivery",
       "ar": "التجارة السريعة وتوصيل الطعام"
@@ -117,6 +119,7 @@
   {
     "id": "thara-pay",
     "name": { "en": "Thara Pay", "ar": "ثارا باي" },
+    "listing": { "en": "Pre-IPO", "ar": "قبل الطرح" },
     "sector": {
       "en": "Fintech — payments infrastructure",
       "ar": "التقنية المالية - البنية التحتية للمدفوعات"
@@ -144,6 +147,7 @@
   {
     "id": "aqar",
     "name": { "en": "Aqar Development", "ar": "عقار للتطوير" },
+    "listing": { "en": "Private", "ar": "خاص" },
     "sector": { "en": "Real estate development", "ar": "التطوير العقاري" },
     "origin": "inbound",
     "stage": "declined",

@@ -24,7 +24,7 @@ const PIN_ORDER = ["jahez", "darb", "thara-pay"];
 function pinnedWorkspaces(): PinnedWorkspace[] {
   return dealsData
     .filter((d) => d.stage !== "declined")
-    .map((d) => ({ id: d.id, name: d.name }))
+    .map((d) => ({ id: d.id, name: d.name, listing: d.listing }))
     .sort((a, b) => PIN_ORDER.indexOf(a.id) - PIN_ORDER.indexOf(b.id));
 }
 
