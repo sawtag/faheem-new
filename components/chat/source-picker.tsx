@@ -76,6 +76,13 @@ export function SourcePicker() {
   );
 
   const rootRef = React.useRef<HTMLDivElement>(null);
+  const panelRef = React.useRef<HTMLDivElement>(null);
+  // Submenu vertical alignment. The popover always opens upward from the
+  // composer, but the composer itself sits anywhere from mid-viewport (home
+  // hero) to the bottom edge (docked chat) — so the level-2 flyout grows
+  // upward (bottom-aligned with level 1) when there's room above, and flips
+  // downward when there isn't. Measured per open, never mid-animation.
+  const [dropUp, setDropUp] = React.useState(true);
 
   const close = React.useCallback(() => {
     setOpen(false);
@@ -114,7 +121,12 @@ export function SourcePicker() {
       return next;
     });
 
+  // Max rendered submenu height: search row + capped rows list + padding.
+  const SUBMENU_MAX_H = 320;
+
   const openSubmenu = (g: SourceGroup) => {
+    const rect = panelRef.current?.getBoundingClientRect();
+    setDropUp(!rect || rect.bottom >= SUBMENU_MAX_H + 8);
     setGroup(g);
     setQuery("");
   };
@@ -135,6 +147,7 @@ export function SourcePicker() {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={panelRef}
             initial={{ opacity: 0, scale: 0.98, y: 4 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: 4 }}
@@ -220,7 +233,10 @@ export function SourcePicker() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: locale === "ar" ? 6 : -6 }}
                   transition={{ duration: 0.15, ease: EASE }}
-                  className="border-border bg-card shadow-hover rounded-card absolute start-full top-0 ms-2 w-72 border p-2"
+                  className={cn(
+                    "border-border bg-card shadow-hover rounded-card absolute start-full ms-2 w-72 border p-2",
+                    dropUp ? "bottom-0" : "top-0",
+                  )}
                 >
                   <Submenu
                     group={group}
