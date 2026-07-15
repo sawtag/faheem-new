@@ -18,6 +18,7 @@ import {
 } from "@/components/generate/reduce";
 import { FileCard, KIND_TILE } from "@/components/generate/file-card";
 import { ArtifactPreview } from "@/components/generate/artifact-preview";
+import { DraftToIc } from "@/components/ic/draft-to-ic";
 import type { ArtifactMeta } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
@@ -43,6 +44,7 @@ export function GenerationPanel({
   const [preview, setPreview] = React.useState<ArtifactMeta | null>(null);
   const started = React.useRef(false);
   const autoOpened = React.useRef(false);
+  const reduce = useReducedMotion();
 
   React.useEffect(() => {
     if (!autoStart || started.current) return;
@@ -64,6 +66,9 @@ export function GenerationPanel({
   }, [autoStart, artifacts]);
 
   const { rows, done } = reduceGenerateEvents(ARTIFACT_KINDS, events);
+  const landedArtifacts = rows
+    .map((row) => row.meta)
+    .filter((meta): meta is ArtifactMeta => meta !== null);
 
   // The money moment: the run completes → progress ticks settle → the board
   // deck slides open on its own, one beat after the last card's morph.
@@ -91,6 +96,16 @@ export function GenerationPanel({
           );
         })}
       </div>
+      {done && landedArtifacts.length > 0 && (
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.22, ease: EASE, delay: 0.28 }}
+          className="mt-3"
+        >
+          <DraftToIc workspace={workspace} artifacts={landedArtifacts} />
+        </motion.div>
+      )}
       <ArtifactPreview meta={preview} onClose={() => setPreview(null)} />
     </>
   );

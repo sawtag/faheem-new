@@ -22,9 +22,13 @@ import {
   DealSchema,
   ModelInputSchema,
   SeedChatSchema,
+  SentimentEntrySchema,
+  SocialPostSchema,
   type CorpusDoc,
   type Deal,
   type ModelInput,
+  type SentimentEntry,
+  type SocialPost,
 } from "../lib/types";
 
 const repoRoot = path.resolve(import.meta.dirname, "..");
@@ -119,6 +123,14 @@ const modelInputs = loadAndValidate(
 loadAndValidate("data/audit-log.json", AuditEntrySchema.array());
 loadAndValidate("data/artifacts.json", ArtifactMetaSchema.array());
 loadAndValidate("data/seed-chats.json", SeedChatSchema.array());
+const socialPack = loadAndValidate(
+  "data/social-pack.json",
+  SocialPostSchema.array(),
+);
+const sentiment = loadAndValidate(
+  "data/sentiment.json",
+  SentimentEntrySchema.array(),
+);
 
 console.log("\nCross-checks...");
 
@@ -146,6 +158,82 @@ if (modelInputs) {
     "model inputs",
     modelInputs.map((input: ModelInput) => input.key),
   );
+}
+
+if (socialPack) {
+  checkUniqueIds(
+    "social pack",
+    socialPack.map((post: SocialPost) => post.id),
+  );
+}
+
+if (sentiment) {
+  checkUniqueIds(
+    "sentiment",
+    sentiment.map((entry: SentimentEntry) => entry.companyId),
+  );
+}
+
+if (socialPack && sentiment) {
+  const postIds = new Set(socialPack.map((post: SocialPost) => post.id));
+  for (const entry of sentiment) {
+    for (const id of entry.postIds) {
+      if (!postIds.has(id)) {
+        fail(
+          `sentiment["${entry.companyId}"]: points at unknown social-pack post "${id}"`,
+        );
+      }
+    }
+  }
+}
+
+// Rule: sentiment/qualitative signals never emit a sourced number (live-model-
+// provenance plan §0). SentimentEntrySchema/SocialPostSchema are `.strict()`,
+// which already rejects an accidental sourceDoc/page/value shape at parse
+// time — this is a second, independent check that walks the RAW JSON (before
+// zod strips anything) so the guarantee holds even if a future edit relaxes
+// the schema.
+function walkForSourcedNumberShape(node: unknown, keyPath: string): string[] {
+  if (Array.isArray(node)) {
+    return node.flatMap((item, i) =>
+      walkForSourcedNumberShape(item, `${keyPath}[${i}]`),
+    );
+  }
+  if (node && typeof node === "object") {
+    const keys = Object.keys(node as Record<string, unknown>);
+    const hits: string[] = [];
+    for (const forbidden of ["sourceDoc", "page"]) {
+      if (keys.includes(forbidden)) {
+        hits.push(`${keyPath}.${forbidden}`);
+      }
+    }
+    for (const [k, v] of Object.entries(node as Record<string, unknown>)) {
+      hits.push(...walkForSourcedNumberShape(v, `${keyPath}.${k}`));
+    }
+    return hits;
+  }
+  return [];
+}
+
+for (const [label, relativePath] of [
+  ["data/social-pack.json", "data/social-pack.json"],
+  ["data/sentiment.json", "data/sentiment.json"],
+] as const) {
+  const absolutePath = path.join(repoRoot, relativePath);
+  if (!existsSync(absolutePath)) continue;
+  let raw: unknown;
+  try {
+    raw = JSON.parse(readFileSync(absolutePath, "utf-8"));
+  } catch (error) {
+    fail(`${label}: invalid JSON — ${(error as Error).message}`);
+    continue;
+  }
+  const hits = walkForSourcedNumberShape(raw, label);
+  for (const hit of hits) {
+    fail(
+      `${hit}: sentiment/social-pack data must never carry a sourced-number field (sourceDoc/page) — sentiment is signal only`,
+    );
+  }
 }
 
 if (manifest && (modelInputs || deals)) {

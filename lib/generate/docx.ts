@@ -47,7 +47,7 @@ import {
   riskRegister,
   type NarrativeFacts,
 } from "@/lib/generate/shared";
-import { computeModel } from "@/lib/generate/xlsx";
+import { computeModel } from "@/lib/model/compute";
 
 // ════════════════════════════ narrative shapes ══════════════════════════════
 interface Pillar {

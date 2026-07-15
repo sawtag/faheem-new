@@ -1,0 +1,90 @@
+[
+  {
+    "id": "sp-01",
+    "sourceType": "social",
+    "handle": "@ksa_markets_watch",
+    "tone": "skeptical",
+    "postedAt": "2026-05-14T09:20:00Z",
+    "text": {
+      "en": "Jahez posting a net loss this quarter isn't shocking once you see how aggressively new entrants are competing on delivery fees across Riyadh — this price war has a while to run yet.",
+      "ar": "خسارة جاهز الفصلية هذا الربع غير مفاجئة بعد ما شفناه من منافسة اللاعبين الجدد على رسوم التوصيل في الرياض — حرب الأسعار هذي بعدها طويلة."
+    }
+  },
+  {
+    "id": "sp-02",
+    "sourceType": "forum",
+    "handle": "tadawul_talk_forum",
+    "tone": "bearish",
+    "postedAt": "2026-05-15T14:05:00Z",
+    "text": {
+      "en": "Anyone else worried the Q1 loss becomes the new normal? Take rate keeps climbing but so does the discounting from the new entrants. Margin story feels shakier than the GMV headline suggests.",
+      "ar": "أحد غيري قلقان تصير الخسارة الفصلية وضعاً معتاداً؟ نسبة العمولة تكبر لكن كذلك التخفيضات من اللاعبين الجدد. قصة الهامش أضعف مما توحي به أرقام إجمالي المبيعات."
+    }
+  },
+  {
+    "id": "sp-03",
+    "sourceType": "social",
+    "handle": "@souq_sentiment",
+    "tone": "meme",
+    "postedAt": "2026-05-16T18:40:00Z",
+    "text": {
+      "en": "me refreshing my delivery apps every hour to see whose promo code is more insane today 🍔📉 #priceWar #quickCommerceKSA",
+      "ar": "أنا أفتح تطبيقات التوصيل كل ساعة أشوف كود خصم مين أجن اليوم 🍔📉 #حرب_الأسعار #التجارة_السريعة"
+    }
+  },
+  {
+    "id": "sp-04",
+    "sourceType": "news-headline",
+    "handle": "GulfBiz Wire",
+    "tone": "neutral",
+    "postedAt": "2026-05-20T07:00:00Z",
+    "text": {
+      "en": "Saudi quick-commerce players lean into discount cycle as delivery apps chase share ahead of summer demand season.",
+      "ar": "لاعبو التجارة السريعة في السعودية يوسّعون دورة الخصومات مع تسابق تطبيقات التوصيل على الحصة السوقية قبل موسم الطلب الصيفي."
+    }
+  },
+  {
+    "id": "sp-05",
+    "sourceType": "social",
+    "handle": "@nomad_investor_sa",
+    "tone": "bullish",
+    "postedAt": "2026-05-22T11:15:00Z",
+    "text": {
+      "en": "Zoom out: Saudi e-commerce penetration is still early and Vision 2030 logistics spend keeps compounding. One noisy quarter from a price war doesn't change that runway.",
+      "ar": "لو تزوم بعيد: انتشار التجارة الإلكترونية بالسعودية لسه في بداياته، وإنفاق الخدمات اللوجستية ضمن رؤية 2030 مستمر بالنمو. ربع سنوي واحد مضطرب بسبب حرب أسعار ما يغيّر هذا المسار الطويل."
+    }
+  },
+  {
+    "id": "sp-06",
+    "sourceType": "forum",
+    "handle": "riyadh_startups_board",
+    "tone": "neutral",
+    "postedAt": "2026-06-02T20:10:00Z",
+    "text": {
+      "en": "Logistics diversification (the Snoonu piece) is the interesting bit buried under the loss headline — worth watching whether that segment keeps scaling faster than the core delivery business gets squeezed.",
+      "ar": "التنويع نحو الخدمات اللوجستية (قسم سنونو) هو الجزء المثير المدفون تحت عنوان الخسارة — يستاهل المتابعة إذا استمر هذا القطاع بالنمو أسرع من انضغاط قطاع التوصيل الأساسي."
+    }
+  },
+  {
+    "id": "sp-07",
+    "sourceType": "social",
+    "handle": "@retail_fud_ksa",
+    "tone": "bearish",
+    "postedAt": "2026-06-18T16:45:00Z",
+    "text": {
+      "en": "Every new entrant in this space is burning cash to buy market share. Doesn't feel sustainable for anyone until someone blinks on delivery-fee subsidies.",
+      "ar": "كل لاعب جديد في السوق يحرق كاش عشان يشتري حصة سوقية. ما تحس إنها وضعية مستدامة لأي طرف لين أحد يتراجع عن دعم رسوم التوصيل."
+    }
+  },
+  {
+    "id": "sp-08",
+    "sourceType": "forum",
+    "handle": "gcc_value_investors",
+    "tone": "skeptical",
+    "postedAt": "2026-07-05T08:30:00Z",
+    "text": {
+      "en": "Watching the take-rate trend more than the headline loss — if commission monetization keeps rising while GMV growth holds, the price war is a margin story, not a demand story. Still want another clean quarter before calling a bottom.",
+      "ar": "أتابع اتجاه نسبة العمولة أكثر من عنوان الخسارة — إذا استمر تحصيل العمولة بالارتفاع مع استمرار نمو إجمالي المبيعات، فحرب الأسعار قصة هامش لا قصة طلب. لسه أبي أشوف ربعاً سنوياً نظيفاً ثانياً قبل ما أقول إنها وصلت القاع."
+    }
+  }
+]

@@ -7,9 +7,10 @@ import { useLocale, useTranslations } from "next-intl";
 import { ComparisonTable } from "@/components/ic/comparison-table";
 import { AdvisoryDisclaimer } from "@/components/ic/advisory-disclaimer";
 import { IcChatPanel } from "@/components/ic/ic-chat-panel";
+import { DraftToIc } from "@/components/ic/draft-to-ic";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import manifest from "@/data/corpus/manifest.json";
-import type { CorpusDoc, Deal, Lang } from "@/lib/types";
+import type { ArtifactMeta, CorpusDoc, Deal, Lang } from "@/lib/types";
 import { formatDate, formatPercent } from "@/lib/utils";
 
 const PdfPanel = dynamic(() => import("@/components/chat/pdf-panel"), {
@@ -35,9 +36,14 @@ interface OpenDoc {
 export function IcRoom({
   columns,
   dateISO,
+  jahezArtifacts = [],
 }: {
   columns: Deal[];
   dateISO: string;
+  /** Jahez's already-landed deliverables (data/artifacts.json) — the secondary
+   * Draft-to-IC trigger, scoped to the one worked model per AGENTS.md's scope
+   * discipline. Empty until the deliverables beat has run once. */
+  jahezArtifacts?: ArtifactMeta[];
 }) {
   const t = useTranslations("ic");
   const locale = useLocale() as Lang;
@@ -71,12 +77,25 @@ export function IcRoom({
     >
       <header className="relative isolate shrink-0 px-8 pt-8 pb-5">
         <GlyphBackdrop variant="panel" />
-        <h1 className="text-navy relative z-10 font-serif text-[2.125rem] leading-tight font-semibold">
-          {t("title")}
-        </h1>
-        <p className="text-text-secondary relative z-10 mt-1.5 text-[0.9375rem]">
-          {subtitle}
-        </p>
+        <div className="relative z-10 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-navy font-serif text-[2.125rem] leading-tight font-semibold">
+              {t("title")}
+            </h1>
+            <p className="text-text-secondary mt-1.5 text-[0.9375rem]">
+              {subtitle}
+            </p>
+          </div>
+          {jahezArtifacts.length > 0 && (
+            <DraftToIc
+              workspace="jahez"
+              artifacts={jahezArtifacts}
+              variant="ghost"
+              size="sm"
+              className="mt-1.5 shrink-0"
+            />
+          )}
+        </div>
       </header>
 
       <div className="shrink-0 px-8">

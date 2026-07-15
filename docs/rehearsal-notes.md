@@ -20,6 +20,43 @@ Full walk with **every non-localhost request blocked** (0 external requests even
 
 pdfjs worker: vendored, loads offline ✓. All six goldens replay from cache ✓ (`done.cached:true` drives the ⌘. overlay).
 
+## Live Model beat (WS-F) — new in the run-of-show, flagged for re-rehearsal
+
+Slots in right after **Deliverables** generate ("…and it's not a dead file" — the whole
+point of the beat) and before **Upload any PDF** (README beat table: 10:30–12:30, ~2 min —
+Upload/IC-room/Audit-close all shift by +2:00). This beat has not yet been walked with a
+stopwatch on the production build — do that pass before the slot (plan §6: "you
+re-rehearse the new beat"). Fully offline and scripted, same as the rest of cached mode.
+
+**Where:** Jahez workspace → **Live Model** (header button, or `/deals/jahez/model`).
+
+**⌘K entries — never type them:**
+
+1. From anywhere, ⌘K → **Live Model** section → **"Raise FY26 order growth to 20%"** —
+   selecting it navigates to the model (if you're not already there) and fills the
+   command bar; press Enter/Apply. Watch the specialist team choreograph in order —
+   Valuation → Critical Review → Compliance → Writing — while the DCF value/share and
+   IRR count up to their new numbers.
+2. Click any computed number (WACC on the DCF tab is a reliable one) → **Methodology**
+   panel opens → drill **Cost of equity → Risk-free rate** → **Open source** — the PDF
+   opens on the cited page, passage highlighted.
+3. **The source-locked flourish:** ⌘K → **Live Model** → **"Change FY25 revenue to SAR 2
+   billion"** — Critical Review refuses gracefully ("that figure is a sourced actual —
+   source-locked"); the numbers never move. This is the beat that *proves* the
+   immutability claim instead of merely stating it — don't skip it.
+
+**What to say:** "This isn't a static export — it's the same engine that builds the
+Excel, running live, right here in the browser, **and it's not a dead file**." After the
+source-locked attempt: "Sourced actuals are locked — only assumptions are editable. Every
+number you've seen today still resolves to either a source or a formula — here's the
+formula, and here's where it bottoms out."
+
+**Fallback:** if anything hiccups mid-recompute (a slow reveal, a stuck choreography
+stage), hit **Reset to base** and carry on — the whole beat is offline and deterministic
+(the scripted edit-parser, zero network calls), so a reset costs nothing and nothing is
+actually lost. Same recovery instinct as the rest of cached mode: reload calmly, ⌘K
+reopens the exact entry, never retype.
+
 ## Live path — PASSED (venue-network scenario, real API)
 
 - **Prewarm** (fresh 1h-TTL cache write, 16-doc corpus): **17s**, cost ≈ $3–5. Run `npx tsx scripts/prewarm.ts` (with `.env` loaded) **within the hour before the slot**.
@@ -51,7 +88,7 @@ pdfjs worker: vendored, loads offline ✓. All six goldens replay from cache ✓
 ## Preflight
 
 `npx tsx scripts/preflight.ts [--live] [--port 3000]` — the single command to run on the venue
-machine before going on stage. Automates the venue-day checklist above into an 11-section
+machine before going on stage. Automates the venue-day checklist above into a 12-section
 green/red/yellow report, then prints a `PASS` / `FIX THE ABOVE` banner and a 4-line day-of
 sequence. Exits 1 on any hard failure (warnings don't block).
 
@@ -62,7 +99,11 @@ self-hosted (`.next/static/media/*.woff2`) · `soffice` + the 3 committed fallba
 `deck-01..08` preview images · the upload-beat PDF (gitignored, copy it onto the machine by
 hand) · the target port is free or already answering `/login` as Faheem · `ANTHROPIC_API_KEY`
 (read from `.env` directly — Next auto-loads it for `npm run start`, but this is a bare script) ·
-`data/audit-log.json` parses (reminder to reseed past ~60 rows).
+`data/audit-log.json` parses (reminder to reseed past ~60 rows) · **Live Model beat (WS-F):**
+`buildModel(BASE_ASSUMPTIONS)` headline numbers byte-identical + Shariah PASS, the provenance
+graph carries zero orphans, the edit-parser's scripted set (incl. an Arabic instruction and the
+source-locked demo) still parses, `data/sentiment.json` / `data/social-pack.json` stay schema-valid
+with no sourced-number shape, and every `FormulaDef`'s KaTeX renders — zero network calls.
 
 `--live` adds one more check: a real, tiny (`max_tokens: 16`) Anthropic call through the same
 `lib/ai/client.ts` the app uses, to prove the key/network actually work — it does **not** warm
