@@ -93,8 +93,13 @@
 }
 
 /* Financial figures: digits always Inter + tabular so columns never shift.
- * (Western digits are guaranteed by the codepoints; Inter leads the stack.) */
+ * The explicit family pins Inter first even on Arabic pages (where the
+ * document stack leads with Plex Arabic); Arabic words inside financial
+ * spans still fall through to the Arabic families per glyph. */
 @utility financial {
+  font-family:
+    var(--font-inter), var(--font-plex-arabic), ui-sans-serif, system-ui,
+    sans-serif;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
 }
@@ -137,6 +142,19 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Arabic documents lead with the Arabic families. next/font's metric
+ * fallbacks ("Inter Fallback" = local Arial, "Lora Fallback" = local Times)
+ * carry Arabic glyphs on real machines and have no unicode-range restriction,
+ * so with Inter/Lora first they swallow ALL Arabic text and IBM Plex Sans
+ * Arabic / Amiri are never reached. Reordering per-locale fixes it; Latin
+ * text and digits inside Arabic pages still fall through per glyph. */
+html[lang="ar"] {
+  --font-sans:
+    var(--font-plex-arabic), var(--font-inter), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-serif: var(--font-amiri), var(--font-lora), Georgia, serif;
 }
 
 ::selection {
