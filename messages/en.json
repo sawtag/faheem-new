@@ -50,7 +50,28 @@
       "compliance": "Shariah screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
       "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
-    }
+    },
+    "customTitle": "Your agents",
+    "customCaption": "Your own specialists — the description acts as the agent's brief.",
+    "addAgent": "Add agent",
+    "dialogTitle": "New agent",
+    "dialogHint": "Give it a name, a role, and a working brief — the description IS the agent's prompt.",
+    "nameLabel": "Name",
+    "namePlaceholder": "e.g. Sector Screener",
+    "roleLabel": "Role",
+    "rolePlaceholder": "e.g. Retail & e-commerce specialist",
+    "descLabel": "Description",
+    "descPlaceholder": "What should this agent focus on, and how should it work?",
+    "descHint": "This is the agent's working brief — write it like a prompt.",
+    "enhance": "Enhance",
+    "enhancing": "Enhancing…",
+    "undo": "Undo",
+    "cancel": "Cancel",
+    "create": "Create agent",
+    "creating": "Creating…",
+    "createError": "Couldn't create the agent — try again.",
+    "customBadge": "Custom",
+    "deleteAgent": "Delete agent"
   },
   "library": {
     "title": "Library",
@@ -85,7 +106,9 @@
     "contextFirm": "Lunar",
     "userAli": "Ali",
     "actionModelEdit": "Model edit",
-    "actionIcDraft": "IC email drafted"
+    "actionIcDraft": "IC email drafted",
+    "actionAgentCreated": "Agent created",
+    "actionAgentDeleted": "Agent deleted"
   },
   "connections": {
     "title": "Connections",

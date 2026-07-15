@@ -5,11 +5,13 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowRight,
+  Bot,
   CheckCheck,
   FileOutput,
   Mail,
   MessageSquareText,
   SlidersHorizontal,
+  Trash2,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { LogoTile } from "@/components/ui/logo-tile";
@@ -22,6 +24,8 @@ const ACTION_ICON = {
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
   "ic-draft": Mail,
+  "agent-created": Bot,
+  "agent-deleted": Trash2,
 } as const;
 
 /** "Jul 12, 09:41" — Western digits both locales (mirrors the audit trail). */
@@ -167,6 +171,8 @@ function ActivityFeed({
     "stage-advance": tAudit("actionScreening"),
     "model-edit": tAudit("actionModelEdit"),
     "ic-draft": tAudit("actionIcDraft"),
+    "agent-created": tAudit("actionAgentCreated"),
+    "agent-deleted": tAudit("actionAgentDeleted"),
   };
 
   return (

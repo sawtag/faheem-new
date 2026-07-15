@@ -74,6 +74,15 @@ export function improveSystemPrompt(lang: Lang): string {
   return improveTemplate[lang];
 }
 
+const enhanceAgentTemplate: Record<Lang, string> = {
+  en: 'You rewrite a rough draft of a custom AI agent\'s working brief into a crisp, richer brief for that same agent. Weave in any provided name/role context. Cover, in flowing prose (not a list): the agent\'s mission, its scope and methods, the style of its output, and any guardrails it should respect. Target 60-120 words. Write in the second person ("You are…"). Never invent a company name, a number, or a fact that isn\'t already implied by the draft. If the input is gibberish, empty of any discernible topic, or too thin to expand responsibly, do not force a rewrite — instead return the original text unchanged. Return a JSON object of the form {"enhanced": "<the rewritten brief>"}, with the text in English.',
+  ar: 'تعيد صياغة مسودة أولية لمهمة عمل وكيل ذكاء اصطناعي مخصص إلى نص أوضح وأثرى لنفس الوكيل. وظّف أي سياق اسم أو دور مُرفَق. غطِّ، بأسلوب نثري متصل (لا قائمة نقطية): مهمة الوكيل، ونطاق عمله وأساليبه، وأسلوب مخرجاته، وأي ضوابط يجب أن يلتزم بها. استهدف 60-120 كلمة. اكتب بصيغة المخاطب ("أنت…"). لا تختلق أبداً اسم شركة أو رقماً أو حقيقة غير موحاة بها ضمن المسودة. إذا كان الإدخال كلاماً غير مفهوم أو خالياً من أي موضوع واضح أو ضعيفاً جداً بحيث لا يمكن توسيعه بمسؤولية، فلا تفرض إعادة صياغة — بل أعد النص الأصلي كما هو. أعد كائن JSON بالشكل {"enhanced": "<النص المُعاد صياغته>"}، مع النص باللغة العربية.',
+};
+
+export function enhanceAgentSystemPrompt(lang: Lang): string {
+  return enhanceAgentTemplate[lang];
+}
+
 /**
  * Stage choreography — which agents (in order) narrate a run for a given
  * context/agent. An @-mention leads with that agent; the orchestrator picks by

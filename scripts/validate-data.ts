@@ -19,6 +19,7 @@ import {
   ArtifactMetaSchema,
   AuditEntrySchema,
   CorpusDocSchema,
+  CustomAgentSchema,
   DealSchema,
   ModelInputSchema,
   SeedChatSchema,
@@ -123,6 +124,7 @@ const modelInputs = loadAndValidate(
 loadAndValidate("data/audit-log.json", AuditEntrySchema.array());
 loadAndValidate("data/artifacts.json", ArtifactMetaSchema.array());
 loadAndValidate("data/seed-chats.json", SeedChatSchema.array());
+loadAndValidate("data/custom-agents.json", CustomAgentSchema.array());
 const socialPack = loadAndValidate(
   "data/social-pack.json",
   SocialPostSchema.array(),

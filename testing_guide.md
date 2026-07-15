@@ -74,6 +74,18 @@ Four new cards with real methods and data stories: **Accounting & Quality of Ear
 
 Toggle **العربية** (bottom-left) and revisit any of the above: full RTL chrome, while model grids stay numeric-LTR (Western digits) per finance convention.
 
+## 10. Custom agents — build your own specialist
+
+**Where:** **Agents** page, bottom section ("Your agents"), below the 14-agent registry and the last human-gate marker.
+
+- Click the dashed **"Add agent"** tile — a dialog opens asking for a **Name**, a **Role**, and a free-text **Description**. The description _is_ the agent's working brief; there's no separate prompt field.
+- Type a rough draft in the description box (e.g. "watches competitor pricing moves and flags anything unusual"), then click the **✨ Enhance** wand inside the textarea — it calls the same Haiku prompt-improver infrastructure as the composer's Improve wand and rewrites the draft into a fuller brief (mission, scope, output style, guardrails), in whichever language you typed in. The box washes with the accent tint while the enhanced version sits in the field.
+- Not happy with it? **Undo** restores exactly what you typed before — re-run Enhance as many times as you like.
+- **Create agent** is disabled until all three fields clear the minimum length; on success the dialog closes and a new card appears in the grid with a **Custom** badge, the icon tile, and your name/role/description (all rendered as plain typed text — no translation).
+- Click the trash icon on a custom card to delete it — the card disappears immediately.
+- Both actions are logged: check the **Audit Trail** page for "Agent created" / "Agent deleted" entries, each carrying "&lt;name&gt; — &lt;role&gt;".
+- Custom agents are deliberately **not** @-mentionable in chat — they're a standalone roster, not wired into the orchestration protocol.
+
 ---
 
 **Still in progress:** the final code review of the whole wave, the full production e2e run (needs the dev server stopped briefly), and the `demo-rc3` tag.
