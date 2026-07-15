@@ -2,7 +2,7 @@
  * Tiny, dependency-free valid-PDF generator for tests + the e2e upload fixture.
  * Builds a single-page PDF (Helvetica base font) with a correct xref table, so
  * both the upload route's magic-byte check and the react-pdf viewer are happy.
- * No new deps — just hand-assembled bytes with computed offsets.
+ * No new deps, just hand-assembled bytes with computed offsets.
  */
 import fs from "node:fs";
 import path from "node:path";

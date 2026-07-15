@@ -13,7 +13,7 @@ import type { CorpusDoc, Deal } from "@/lib/types";
 
 const DOCS = new Map((manifest as CorpusDoc[]).map((d) => [d.id, d]));
 
-/** Every sourced figure in firm.json — pairs the value with its citation. */
+/** Every sourced figure in firm.json, pairs the value with its citation. */
 const SOURCED = [
   FIRM.aumSarBn,
   FIRM.hurdlePct,

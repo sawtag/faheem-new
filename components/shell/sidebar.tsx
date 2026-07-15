@@ -4,10 +4,11 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { PanelLeftClose, PanelLeftOpen, SquarePen } from "lucide-react";
+import { motion } from "motion/react";
+import { Folder, PanelLeftClose, PanelLeftOpen, SquarePen } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { Logo } from "@/components/ui/logo";
-import { LogoTile } from "@/components/ui/logo-tile";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { LocaleToggle } from "@/components/shell/locale-toggle";
@@ -18,6 +19,8 @@ import { cn } from "@/lib/utils";
 export interface PinnedWorkspace {
   id: string;
   name: Localized;
+  /** muted market-type suffix on the Projects row, e.g. "Public" / «عام» */
+  listing?: Localized;
 }
 
 /** Sidebar: logo · New Chat · primary nav · Settings · Pinned · Ali footer. */
@@ -38,10 +41,20 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "border-border bg-card sticky top-0 flex h-screen shrink-0 flex-col border-e transition-[width] duration-[var(--duration)] ease-[var(--ease)]",
+        // Elevated rail: a whisper white → navy-50 wash, hairline end border,
+        // and a soft symmetric glow (only the end edge shows) so the sidebar
+        // reads as a raised surface beside the content, not a colored column.
+        "border-border from-card to-navy-50 sticky top-0 isolate flex h-screen shrink-0 flex-col border-e bg-gradient-to-b shadow-[var(--shadow-rail)] transition-[width] duration-[var(--duration)] ease-[var(--ease)]",
         collapsed ? "w-16" : "w-[260px]",
       )}
     >
+      {/* brand moment: the growth artwork whispers behind the footer (3%) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-64 overflow-hidden"
+      >
+        <GlyphBackdrop variant="hero" className="opacity-[0.03]" />
+      </div>
       {/* header: logo + collapse toggle */}
       <div
         className={cn(
@@ -87,7 +100,7 @@ export function Sidebar({
       </div>
 
       {/* scrollable nav region */}
-      <nav className="flex-1 overflow-x-hidden overflow-y-auto px-3 pt-1 pb-4">
+      <nav className="faheem-scrollbar flex-1 overflow-x-hidden overflow-y-auto px-3 pt-1 pb-4">
         <ul className="flex flex-col gap-0.5">
           {PRIMARY_NAV.map((item) => (
             <NavRow
@@ -118,10 +131,10 @@ export function Sidebar({
 
         {pinned.length > 0 && (
           <>
-            <SectionLabel collapsed={collapsed}>{t("pinned")}</SectionLabel>
+            <SectionLabel collapsed={collapsed}>{t("projects")}</SectionLabel>
             <ul className="flex flex-col gap-0.5">
               {pinned.map((ws) => (
-                <PinnedRow
+                <ProjectRow
                   key={ws.id}
                   workspace={ws}
                   collapsed={collapsed}
@@ -135,8 +148,8 @@ export function Sidebar({
         )}
       </nav>
 
-      {/* footer: Ali + firm + language */}
-      <div className="border-border border-t p-3">
+      {/* footer: Ali + firm + language, a grounded band over the brand moment */}
+      <div className="border-border bg-navy-100/50 border-t p-3">
         <div
           className={cn(
             "flex items-center gap-2.5",
@@ -174,7 +187,8 @@ function NewChatButton({
     <Link
       href="/chat/new"
       className={cn(
-        "border-border bg-card text-navy hover:border-navy-300 hover:bg-navy-50 focus-visible:ring-accent focus-visible:ring-offset-card rounded-pill inline-flex h-10 items-center border font-bold shadow-[var(--shadow-card)] transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        // the rail's single color anchor: filled emerald CTA with a hover lift
+        "bg-accent text-card hover:bg-accent-600 focus-visible:ring-accent focus-visible:ring-offset-card rounded-pill inline-flex h-10 items-center font-bold shadow-[var(--shadow-card)] transition-[background-color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease)] outline-none hover:-translate-y-px hover:shadow-[var(--shadow-hover)] focus-visible:ring-2 focus-visible:ring-offset-2",
         collapsed
           ? "w-full justify-center px-0"
           : "w-full justify-center gap-2 px-4 text-[0.9375rem]",
@@ -193,6 +207,19 @@ function NewChatButton({
   );
 }
 
+/** 3px emerald indicator on the logical start edge of the active row. */
+function ActiveBar() {
+  return (
+    <motion.span
+      aria-hidden="true"
+      initial={{ opacity: 0, scaleY: 0.4 }}
+      animate={{ opacity: 1, scaleY: 1 }}
+      transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-accent rounded-pill absolute start-0 top-1/2 h-5 w-[3px] -translate-y-1/2"
+    />
+  );
+}
+
 function SectionLabel({
   collapsed,
   children,
@@ -202,7 +229,7 @@ function SectionLabel({
 }) {
   if (collapsed) return <div className="bg-border mx-auto my-3 h-px w-6" />;
   return (
-    <p className="text-text-secondary px-2.5 pt-5 pb-1.5 text-[0.6875rem] font-bold tracking-[0.06em] uppercase">
+    <p className="text-navy-500 px-2.5 pt-5 pb-1.5 text-[0.65rem] font-bold tracking-[0.09em] uppercase">
       {children}
     </p>
   );
@@ -224,20 +251,26 @@ function NavRow({
   side: "left" | "right";
 }) {
   const rowClass = cn(
-    "flex h-10 items-center rounded-btn text-[0.9375rem] font-semibold transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none",
+    "group relative flex h-10 items-center rounded-btn text-[0.9375rem] font-semibold transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none",
     collapsed ? "justify-center px-0" : "gap-3 px-2.5",
     item.disabled
       ? "text-text-secondary/60 cursor-default"
       : active
-        ? "bg-navy-50 text-navy-700"
+        ? "bg-accent-50 text-navy-900"
         : "text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card focus-visible:ring-2 focus-visible:ring-offset-2",
   );
 
   const inner = (
     <>
+      {active && <ActiveBar />}
       <LucideIcon
         name={item.icon}
-        className="size-5 shrink-0"
+        className={cn(
+          "size-5 shrink-0 transition-transform duration-[var(--duration-fast)] ease-[var(--ease)]",
+          active
+            ? "text-accent"
+            : "group-hover:translate-x-px rtl:group-hover:-translate-x-px",
+        )}
         strokeWidth={2}
       />
       {!collapsed && <span className="truncate">{label}</span>}
@@ -273,7 +306,8 @@ function NavRow({
   );
 }
 
-function PinnedRow({
+/** Projects section row, a deal workspace behind a plain folder icon. */
+function ProjectRow({
   workspace,
   collapsed,
   active,
@@ -287,24 +321,39 @@ function PinnedRow({
   side: "left" | "right";
 }) {
   const name = workspace.name[locale];
+  const listing = workspace.listing?.[locale];
   const row = (
     <Link
       href={`/deals/${workspace.id}`}
+      aria-current={active ? "page" : undefined}
       className={cn(
-        "rounded-btn focus-visible:ring-accent focus-visible:ring-offset-card flex h-10 items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        collapsed ? "justify-center px-0" : "gap-2.5 px-2",
-        active ? "bg-navy-50" : "hover:bg-navy-50",
+        "group rounded-btn focus-visible:ring-accent focus-visible:ring-offset-card relative flex h-10 items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        collapsed ? "justify-center px-0" : "gap-3 px-2.5",
+        active
+          ? "bg-accent-50 text-navy-900"
+          : "text-text-secondary hover:bg-navy-50 hover:text-navy",
       )}
     >
-      <LogoTile label={workspace.name.en} initial={name.charAt(0)} size={24} />
+      {active && <ActiveBar />}
+      <Folder
+        className={cn(
+          "size-4 shrink-0 transition-[color,transform] duration-[var(--duration-fast)] ease-[var(--ease)]",
+          active
+            ? "text-accent"
+            : "group-hover:text-accent group-hover:translate-x-px rtl:group-hover:-translate-x-px",
+        )}
+        aria-hidden="true"
+      />
       {!collapsed && (
-        <span
-          className={cn(
-            "truncate text-[0.9375rem] font-semibold",
-            active ? "text-navy-700" : "text-text-secondary",
+        <span className="flex min-w-0 items-baseline gap-1.5">
+          <span className="truncate text-[0.9375rem] font-semibold">
+            {name}
+          </span>
+          {listing && (
+            <span className="text-text-secondary/70 shrink-0 text-xs font-medium whitespace-nowrap">
+              {listing}
+            </span>
           )}
-        >
-          {name}
         </span>
       )}
     </Link>
@@ -312,7 +361,7 @@ function PinnedRow({
   return (
     <li>
       {collapsed ? (
-        <Tooltip side={side} content={name}>
+        <Tooltip side={side} content={listing ? `${name} · ${listing}` : name}>
           {row}
         </Tooltip>
       ) : (

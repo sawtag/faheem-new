@@ -41,7 +41,7 @@ const TABS = [
   "Sensitivity",
   "Comps",
   "Scenarios & Risk",
-  "Shariah Screen",
+  "Compliance Screen",
 ];
 
 /** exceljs formula cell → its formula string ("" if the cell is a literal). */
@@ -122,7 +122,7 @@ describe("cross-sheet formulas (not literals)", () => {
     expect(formulaOf(ws, `F${pvfRow}`)).toContain("'Assumptions'!");
   });
 
-  it("Cover headline cells are formulas referencing DCF, Scenarios and Shariah tabs", () => {
+  it("Cover headline cells are formulas referencing DCF, Scenarios and Compliance tabs", () => {
     const ws = wb.getWorksheet("Cover")!;
     const formulas: string[] = [];
     ws.eachRow((row) => {
@@ -131,10 +131,10 @@ describe("cross-sheet formulas (not literals)", () => {
         if (f) formulas.push(f);
       });
     });
-    // no headline number is a literal — each references a model tab
+    // no headline number is a literal, each references a model tab
     expect(formulas.some((f) => f.includes("'DCF'!"))).toBe(true);
     expect(formulas.some((f) => f.includes("'Scenarios & Risk'!"))).toBe(true);
-    expect(formulas.some((f) => f.includes("'Shariah Screen'!"))).toBe(true);
+    expect(formulas.some((f) => f.includes("'Compliance Screen'!"))).toBe(true);
     // the recommendation is an IF() over the weighted return, not a hardcoded word
     expect(formulas.some((f) => /^IF\(.*'Scenarios & Risk'!/.test(f))).toBe(
       true,
@@ -145,14 +145,14 @@ describe("cross-sheet formulas (not literals)", () => {
     const ws = wb.getWorksheet("Assumptions")!;
     const waccRow = findLabelRow(ws, 2, "WACC");
     const f = formulaOf(ws, `C${waccRow}`);
-    // We*Ke + Wd*KdAfter — four cell refs, one '+' and two '*'
+    // We*Ke + Wd*KdAfter, four cell refs, one '+' and two '*'
     expect(f).toMatch(/C\d+\*C\d+\+C\d+\*C\d+/);
-    const keRow = findLabelRow(ws, 2, "Cost of equity — CAPM (rf + β × ERP)");
+    const keRow = findLabelRow(ws, 2, "Cost of equity, CAPM (rf + β × ERP)");
     expect(formulaOf(ws, `C${keRow}`)).toMatch(/C\d+\+C\d+\*C\d+/);
   });
 
-  it("Shariah screen ratios and flags are formulas", () => {
-    const ws = wb.getWorksheet("Shariah Screen")!;
+  it("Compliance screen ratios and flags are formulas", () => {
+    const ws = wb.getWorksheet("Compliance Screen")!;
     const debtRow = findLabelRow(ws, 2, "Interest-bearing debt / market cap");
     expect(formulaOf(ws, `C${debtRow}`)).toContain("'Assumptions'!");
     expect(formulaOf(ws, `E${debtRow}`)).toMatch(/^IF\(/);
@@ -204,7 +204,7 @@ describe("sourced cells carry exact source comments (≥10 across tabs)", () => 
 
   it("assumption cells are labelled analyst judgments", () => {
     const ws = wb.getWorksheet("Assumptions")!;
-    const note = findNote(ws, "Assumption — analyst judgment:");
+    const note = findNote(ws, "Assumption, analyst judgment:");
     expect(note).toBeTruthy();
   });
 });
@@ -270,9 +270,9 @@ describe("base-case model sanity", () => {
     expect(model.bear.perShare).toBeLessThan(model.base.perShare);
     expect(model.base.perShare).toBeLessThan(model.bull.perShare);
   });
-  it("Shariah screens pass with the sourced balance sheet", () => {
-    expect(model.shariah.pass).toBe(true);
-    expect(model.shariah.debtRatio).toBeLessThan(0.33);
+  it("Compliance screens pass with the sourced balance sheet", () => {
+    expect(model.compliance.pass).toBe(true);
+    expect(model.compliance.debtRatio).toBeLessThan(0.33);
   });
   it("weighted expected return clears the 15% hurdle", () => {
     expect(model.weightedReturn).toBeGreaterThan(0.15);

@@ -9,7 +9,7 @@ import { stashCitationHighlight } from "@/components/chat/highlight-bus";
 import { cn } from "@/lib/utils";
 
 /**
- * Collapsible fact→source map under each answer (CATALOG §2B) — every citation
+ * Collapsible fact→source map under each answer (CATALOG §2B), every citation
  * as quote + doc title + page + numbered chip. A row click behaves like the
  * inline chip: it opens the cited page in the PdfPanel with the quoted
  * passage highlighted (audit-ready).

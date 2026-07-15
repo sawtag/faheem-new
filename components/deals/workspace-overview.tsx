@@ -13,7 +13,7 @@ import type { Cite, Deal, Lang, Localized } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
 
-/** One verified figure for the Jahez stats row — value + its source ref, read verbatim from model-inputs.json by the page. */
+/** One verified figure for the Jahez stats row, value + its source ref, read verbatim from model-inputs.json by the page. */
 export interface WorkspaceStat {
   /** i18n key under `deals.overview.stats.*` */
   key: string;
@@ -25,7 +25,7 @@ export interface WorkspaceStat {
   deltaPct?: number;
 }
 
-/** 400ms count-up on first reveal (motion law) — skipped under reduced motion. */
+/** 400ms count-up on first reveal (motion law), skipped under reduced motion. */
 function useCountUp(target: number): number {
   const reduced = useReducedMotion();
   const [value, setValue] = React.useState(reduced ? target : 0);

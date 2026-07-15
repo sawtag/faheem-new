@@ -66,7 +66,7 @@ function MacroLine({
 }
 
 /**
- * Saudi macro strip — three GASTAT/SAMA figures (real GDP, average CPI, SAMA
+ * Saudi macro strip, three GASTAT/SAMA figures (real GDP, average CPI, SAMA
  * repo rate), each transcribed verbatim from the corpus macro pack with its
  * exact page cited (AGENTS.md rule 5). Count-up on first reveal.
  */

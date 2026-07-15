@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 
 /**
- * "Verified — N sources cited" — the Verification agent made visible. Rendered
+ * "Verified, N sources cited", the Verification agent made visible. Rendered
  * only from the REAL citation count; zero citations → no badge (never faked).
  */
 export function VerifiedBadge({ count }: { count: number }) {

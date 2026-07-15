@@ -39,7 +39,7 @@ function workspaceChats(companyId: string): WorkspaceChat[] {
   }));
 }
 
-/** data/artifacts.json is written by the generate route (T4.3) — absent until then, a valid empty state. */
+/** data/artifacts.json is written by the generate route (T4.3), absent until then, a valid empty state. */
 function workspaceArtifacts(companyId: string): ArtifactMeta[] {
   const file = path.join(process.cwd(), "data/artifacts.json");
   if (!fs.existsSync(file)) return [];
@@ -52,7 +52,7 @@ function workspaceArtifacts(companyId: string): ArtifactMeta[] {
 }
 
 /**
- * Jahez key figures — the three headline FY2025 entries read VERBATIM from
+ * Jahez key figures, the three headline FY2025 entries read VERBATIM from
  * model-inputs.json (rule 5: no invented numbers), each carrying its source
  * doc + page for the caption. NI additionally shows the disclosed YoY delta.
  */

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { matchQuote } from "@/lib/highlight";
 
-describe("matchQuote — citation quote → text-layer ranges", () => {
+describe("matchQuote, citation quote → text-layer ranges", () => {
   it("finds an exact match inside a single item", () => {
     const items = [
       "Header",
@@ -39,7 +39,7 @@ describe("matchQuote — citation quote → text-layer ranges", () => {
       "Adjusted EBITDA margin expanded 240bps to 11.2% in FY2025 driven by pricing.",
     ];
     const spans = matchQuote(
-      "Adjusted EBITDA margin expanded 240bps to 11.2% — commentary added by the analyst afterwards",
+      "Adjusted EBITDA margin expanded 240bps to 11.2%, commentary added by the analyst afterwards",
       items,
     );
     // highlights the prefix that IS on the page (≥40 chars), nothing else
@@ -50,7 +50,7 @@ describe("matchQuote — citation quote → text-layer ranges", () => {
     // table extraction: label and value live in different cells
     const items = ["Metric", "Average Order Value", "64.9", "+5.2%", "GMV"];
     const spans = matchQuote("Average Order Value 64.9 (+5.2% YoY)", items);
-    // label + adjacent value both covered — a multi-span fragment
+    // label + adjacent value both covered, a multi-span fragment
     expect(spans).toEqual([
       { itemIndex: 1, start: 0, end: 19 },
       { itemIndex: 2, start: 0, end: 4 },
@@ -63,7 +63,7 @@ describe("matchQuote — citation quote → text-layer ranges", () => {
       "Take Rate = Commission Revenue / GMV (definition)",
       items,
     );
-    // the run extends through "/" but the dangling slash is trimmed —
+    // the run extends through "/" but the dangling slash is trimmed,
     // the highlighted run is exactly "Commission Revenue"
     expect(spans).toEqual([{ itemIndex: 0, start: 7, end: 25 }]);
   });

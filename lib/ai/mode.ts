@@ -32,7 +32,11 @@ export function resolveMode(cookieMode?: string): FaheemMode {
   return (
     normalizeMode(cookieMode) ??
     normalizeMode(process.env.FAHEEM_MODE) ??
-    (process.env.ANTHROPIC_API_KEY ? "auto" : "cached")
+    // FAHEEM_ANTHROPIC_KEY: alias for managed sandboxes (claude.ai cloud
+    // sessions) that may reserve the canonical name; see lib/ai/client.ts.
+    (process.env.ANTHROPIC_API_KEY || process.env.FAHEEM_ANTHROPIC_KEY
+      ? "auto"
+      : "cached")
   );
 }
 
@@ -57,7 +61,7 @@ export function readModeConfig(cookieMode?: string): ModeConfig {
  * Replays a recorded entry in-order, pacing text deltas by delayMs. Recordings
  * capture `done.cached:false` from the live run that produced them; a replay
  * IS served from cache (cached mode or an auto/live fallback), so the terminal
- * `done` is rewritten to `cached:true` — that flag drives the ⌘. mode overlay
+ * `done` is rewritten to `cached:true`, that flag drives the ⌘. mode overlay
  * ("served from cache") and must be truthful.
  */
 export async function* replay(

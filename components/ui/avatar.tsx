@@ -21,7 +21,7 @@ const SIZES = {
 
 export type AvatarSize = keyof typeof SIZES;
 
-/** People only (initials tile, navy) — companies/connectors use `LogoTile`. */
+/** People only (initials tile, navy), companies/connectors use `LogoTile`. */
 export function Avatar({
   name,
   src,

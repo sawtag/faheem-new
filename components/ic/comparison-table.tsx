@@ -31,7 +31,7 @@ const ROWS = [
   "expectedReturn",
   "riskScore",
   "mandateFit",
-  "shariah",
+  "compliance",
   "recommendation",
 ] as const;
 type RowKey = (typeof ROWS)[number];
@@ -39,7 +39,7 @@ type RowKey = (typeof ROWS)[number];
 /**
  * The committee sheet: one column per analysis-complete deal, six metric rows,
  * rendered straight from `deals.json` `icMetrics`. A deal still in analysis (no
- * `icMetrics`) shows a pending state — skeleton cells + caption — never fake
+ * `icMetrics`) shows a pending state, skeleton cells + caption, never fake
  * numbers (the Jahez metrics land at model sign-off before demo day).
  */
 export function ComparisonTable({
@@ -201,10 +201,10 @@ function MetricCell({
           {m.mandateFit === "pass" ? t("pass") : t("warn")}
         </Badge>
       );
-    case "shariah":
+    case "compliance":
       return (
-        <Badge variant={m.shariah === "pass" ? "mint" : "danger"}>
-          {m.shariah === "pass" ? t("pass") : t("fail")}
+        <Badge variant={m.compliance === "pass" ? "mint" : "danger"}>
+          {m.compliance === "pass" ? t("pass") : t("fail")}
         </Badge>
       );
     case "recommendation":
@@ -242,7 +242,7 @@ function IrrCell({
         ? "text-danger-700"
         : "text-text-secondary";
   const mark =
-    delta.tone === "above" ? "▲" : delta.tone === "below" ? "▼" : "—";
+    delta.tone === "above" ? "▲" : delta.tone === "below" ? "▼" : "–";
   const label =
     delta.tone === "equal"
       ? t("deltaEqual")

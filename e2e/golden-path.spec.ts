@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { clickUntil, loadDemoCacheFixture } from "./helpers";
 
 /**
- * T5.2 golden path — one serial run through the full demo run-of-show
+ * T5.2 golden path, one serial run through the full demo run-of-show
  * (plan §T5.2, gate F), entirely in `FAHEEM_MODE=cached` (playwright.config.ts
  * webServer env): login → home hero → onboarding (3 steps) → pipeline filter →
  * Darb scorecard + human gate → Jahez documents → seeded chat Q&A (cached
@@ -10,22 +10,22 @@ import { clickUntil, loadDemoCacheFixture } from "./helpers";
  * to Arabic and back → Library artifacts → Faheem IC room.
  *
  * Kept as ONE test (not a serial `describe`) so each beat runs against the
- * live DOM state left by the previous beat — no cross-test page handoff, no
+ * live DOM state left by the previous beat, no cross-test page handoff, no
  * re-navigation/re-login between beats, which is what "mirrors the run of
  * show" means here. `test.step` groups each beat in the HTML report.
  *
- * LOCALE-TOGGLE SURVIVAL (P6 item 1 — fixed): AppShell keys its content region
+ * LOCALE-TOGGLE SURVIVAL (P6 item 1, fixed): AppShell keys its content region
  * by locale (`key={locale}` on `motion.main`, for the crossfade) which fully
  * remounts ChatView, and its live turns live in plain `React.useState`. That
  * used to silently discard the just-asked Q&A on a language toggle. The fix
- * write-throughs each turn to the localStorage overlay (lib/chats.ts) — seeded
- * chats included — so the remount re-reads it as history. The "language toggle
+ * write-throughs each turn to the localStorage overlay (lib/chats.ts), seeded
+ * chats included, so the remount re-reads it as history. The "language toggle
  * to AR" step below now asserts the just-asked live answer survives the toggle,
  * not merely the pre-seeded history.
  *
  * Clicks that land right after a `page.goto()` use `clickUntil` (helpers.ts):
  * at this suite's parallelism the click can beat React's hydration of that
- * specific node — the element is already visible/stable so Playwright's
+ * specific node, the element is already visible/stable so Playwright's
  * actionability checks pass, but no listener is attached yet and the click is
  * silently swallowed. `clickUntil` re-issues the click, not just the check.
  */
@@ -90,8 +90,11 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
   });
 
   await test.step("open Darb -> scorecard visible (6 rows, warn row)", async () => {
+    // navigation check gets a wide inner window: a re-click while the dev
+    // server is still compiling/streaming the darb route CANCELS the pending
+    // navigation, so tight retries can livelock the step under full load
     await clickUntil(page.locator('[data-deal="darb"]').getByRole("link"), () =>
-      expect(page).toHaveURL(/\/deals\/darb$/, { timeout: 2500 }),
+      expect(page).toHaveURL(/\/deals\/darb$/, { timeout: 8000 }),
     );
 
     await expect(page.getByTestId("scorecard-row")).toHaveCount(6);
@@ -195,7 +198,7 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
 
     // …AND the just-asked live turn survives the remount (P6 item 1 fix). The
     // streamed answer was written through to the overlay before the toggle, so
-    // the remounted ChatView replays it as history — the "64.9%" figure from
+    // the remounted ChatView replays it as history, the "64.9%" figure from
     // that answer is still on screen after flipping to Arabic.
     await expect(page.getByText(/64\.9/).first()).toBeVisible();
   });
@@ -212,9 +215,9 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
   await test.step("/library shows 3 artifact cards + download links HEAD 200", async () => {
     await page.goto("/library");
     await expect(page.getByRole("heading", { name: "Library" })).toBeVisible();
-    await expect(page.getByText("Jahez — Valuation Model")).toBeVisible();
-    await expect(page.getByText("Jahez — IC Memo")).toBeVisible();
-    await expect(page.getByText("Jahez — Board Deck")).toBeVisible();
+    await expect(page.getByText("Jahez · Valuation Model")).toBeVisible();
+    await expect(page.getByText("Jahez · IC Memo")).toBeVisible();
+    await expect(page.getByText("Jahez · Board Deck")).toBeVisible();
 
     const hrefs = await page
       .locator("a[download]")
@@ -230,7 +233,7 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
 
   await test.step("Live Model beat: chip edit → recompute → Methodology drill → back (WS-F)", async () => {
     // right after deliverables generate in the run-of-show (docs/rehearsal-notes.md,
-    // plan §6) — thorough acceptance already lives in e2e/model.spec.ts; this is
+    // plan §6), thorough acceptance already lives in e2e/model.spec.ts; this is
     // the honest minimal slice that keeps the golden path a true walk of the
     // whole demo run-of-show.
     await page.goto("/deals/jahez/model");
@@ -241,7 +244,7 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
     const perShare = page.locator('[data-node-key="base.perShare"]').first();
     await expect(perShare).toContainText("14.36");
 
-    // scripted chip — "Raise FY26 order growth to 20%" — the specialist team
+    // scripted chip, "Raise FY26 order growth to 20%", the specialist team
     // choreographs, then Valuation's completed stage applies the recompute.
     await clickUntil(page.getByTestId("edit-chip-growth"), async () => {
       await expect(page.getByTestId("edit-choreography")).toBeVisible();
@@ -276,13 +279,13 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
     ).toBeVisible();
     await expect(page.getByTestId("ic-comparison-table")).toBeVisible();
 
-    // Tolerate both states for Jahez (metrics landed vs. still pending) — the
+    // Tolerate both states for Jahez (metrics landed vs. still pending), the
     // column itself must render either way; Thara Pay is always populated.
     await expect(page.getByTestId("ic-col-jahez")).toBeVisible();
     await expect(page.getByTestId("ic-col-thara-pay")).toBeVisible();
 
     await expect(page.getByTestId("ic-advisory-disclaimer")).toHaveText(
-      "Advisory only — the investment decision rests with the committee.",
+      "Advisory only: the investment decision rests with the committee.",
     );
   });
 });

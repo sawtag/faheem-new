@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import type { Deal, Lang } from "@/lib/types";
 
 /**
- * One pipeline card. Real logos come from deals.json (`logo` path — Jahez's is
+ * One pipeline card. Real logos come from deals.json (`logo` path, Jahez's is
  * vendored); fictional companies fall back to the monogram tile (assets
  * policy). Declined deals render muted with the decline reason in place of the
  * status line.

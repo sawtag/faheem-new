@@ -33,49 +33,79 @@
       "type": "stage",
       "agent": "doc-intel",
       "status": "start",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "doc-intel",
       "status": "done",
-      "docIds": ["fy25-er", "q1-26-fs", "fy24-ar"]
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "start",
-      "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
     },
     {
       "type": "stage",
       "agent": "valuation",
       "status": "done",
-      "docIds": ["fy25-er", "fy25-earnings-call", "market-data-comps"]
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "start",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "risk",
       "status": "done",
-      "docIds": ["industry-news-pack", "market-data-comps", "lunar-ic-charter"]
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "start",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "stage",
       "agent": "compliance",
       "status": "done",
-      "docIds": ["q1-26-fs", "fy25-er"]
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
     },
     {
       "type": "delta",
@@ -87,11 +117,11 @@
     },
     {
       "type": "delta",
-      "text": " an outright quarterly loss. The exposure is concentrated in the KSA delivery platform — the"
+      "text": " an outright quarterly loss. The exposure is concentrated in the KSA delivery platform, the"
     },
     {
       "type": "delta",
-      "text": " Group's largest revenue source — but Jahez retains three structural buffers (in"
+      "text": " Group's largest revenue source, but Jahez retains three structural buffers (in"
     },
     {
       "type": "delta",
@@ -138,7 +168,7 @@
     },
     {
       "type": "delta",
-      "text": "-capitalized, growth-before-profit assault — "
+      "text": "-capitalized, growth-before-profit assault, "
     },
     {
       "type": "delta",
@@ -188,7 +218,7 @@
     },
     {
       "type": "delta",
-      "text": ", and the top-three platforms — Keeta, Jahez and HungerStation — hold a combined order"
+      "text": ", and the top-three platforms, Keeta, Jahez and HungerStation, hold a combined order"
     },
     {
       "type": "delta",
@@ -215,7 +245,7 @@
     },
     {
       "type": "delta",
-      "text": "es largely from the two incumbents.\n\n## Quantified Impact on the P&L\n\n**FY2025 — margin compression.** The compet"
+      "text": "es largely from the two incumbents.\n\n## Quantified Impact on the P&L\n\n**FY2025, margin compression.** The compet"
     },
     {
       "type": "delta",
@@ -277,7 +307,7 @@
     },
     {
       "type": "delta",
-      "text": "\n\nThe KSA segment — the direct front line against Keeta — took"
+      "text": "\n\nThe KSA segment, the direct front line against Keeta, took"
     },
     {
       "type": "delta",
@@ -308,7 +338,7 @@
     },
     {
       "type": "delta",
-      "text": ".6m even as GMV held flat at SAR 5.8bn.\n\n**Q1 2026 — outright loss.** The clearest single data"
+      "text": ".6m even as GMV held flat at SAR 5.8bn.\n\n**Q1 2026, outright loss.** The clearest single data"
     },
     {
       "type": "delta",
@@ -505,7 +535,7 @@
     },
     {
       "type": "delta",
-      "text": "\n\n**3. International diversification via Snoonu.** The Qatar acquisition reduces the Group's dependence on the contested KSA market — non"
+      "text": "\n\n**3. International diversification via Snoonu.** The Qatar acquisition reduces the Group's dependence on the contested KSA market, non"
     },
     {
       "type": "delta",
@@ -586,11 +616,11 @@
     },
     {
       "type": "delta",
-      "text": "), suggesting the defence is holding volume — but at the cost of per-order profitability.\n\n**"
+      "text": "), suggesting the defence is holding volume, but at the cost of per-order profitability.\n\n**"
     },
     {
       "type": "delta",
-      "text": "Net assessment:** Exposure is high and ongoing through 2026 — the price war has already erased ~SAR 57m of Group ad"
+      "text": "Net assessment:** Exposure is high and ongoing through 2026, the price war has already erased ~SAR 57m of Group ad"
     },
     {
       "type": "delta",
@@ -614,7 +644,7 @@
     },
     {
       "type": "delta",
-      "text": "alizes — management's own H2-2026 profitability-improvement thesis rests on exactly that."
+      "text": "alizes, management's own H2-2026 profitability-improvement thesis rests on exactly that."
     },
     {
       "type": "done",

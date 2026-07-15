@@ -32,7 +32,7 @@ const ACTION_ICON = {
   "ic-draft": Mail,
 } as const;
 
-/** "Jul 12, 09:41" — no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
+/** "Jul 12, 09:41", no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
 function formatAuditTime(iso: string, lang: Lang): string {
   const numLocale = lang === "ar" ? "ar-u-nu-latn" : "en-US";
   return new Intl.DateTimeFormat(numLocale, {
@@ -174,7 +174,7 @@ function Row({
             {actionLabels[entry.action]}
           </span>
           {detail && (
-            <span className="text-text-secondary truncate"> — {detail}</span>
+            <span className="text-text-secondary truncate">· {detail}</span>
           )}
         </span>
         <span role="cell" className="relative justify-self-end">
@@ -183,7 +183,7 @@ function Row({
               {entry.citationCount}
             </Badge>
           ) : (
-            <span className="text-text-secondary text-[0.8125rem]">—</span>
+            <span className="text-text-secondary text-[0.8125rem]">, </span>
           )}
         </span>
       </div>
@@ -207,7 +207,7 @@ export function AuditTrail({
     let cancelled = false;
     let prior: AuditEntry[] | null = null;
 
-    // Diffing only applies to POLL refreshes — the initial load seeds `prior`
+    // Diffing only applies to POLL refreshes, the initial load seeds `prior`
     // without marking anything "new" (nothing should animate on first paint).
     async function tick(isPoll: boolean) {
       if (isPoll && document.visibilityState !== "visible") return;

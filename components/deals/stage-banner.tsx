@@ -18,7 +18,7 @@ const STAGE_MSG_KEY: Record<Deal["stage"], string> = {
 };
 
 /**
- * Workspace stage banner — the human decision gate made visible. Screening
+ * Workspace stage banner, the human decision gate made visible. Screening
  * shows "Advance to pitch meeting" (flips the stage badge with a 250ms morph +
  * writes an audit entry via the caller); analysis shows "Send to IC" (visual
  * only, morphs to a queued state). The badge is keyed on stage so the flip

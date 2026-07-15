@@ -80,7 +80,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const classes = cn(button({ variant, size }), className);
 
-    // asChild delegates rendering to the single child (e.g. a link) — the
+    // asChild delegates rendering to the single child (e.g. a link), the
     // loading/icon affordances don't apply, so pass children straight through.
     if (asChild) {
       return (

@@ -1,0 +1,155 @@
+{
+  "key": "1d924ffc93e1f16fc6ac5808c41f4c8b17b41a3c",
+  "request": {
+    "question": "Break down Jahez's FY2025 unit economics: GMV, take rate, AOV, and why did net income compress 61%?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "**Jahez's FY2025 unit economics: strong demand, thinning profit.**\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "- **GMV** reached SAR 7,245.2M, up 10.8% YoY[[1]], volume is still compounding.\n"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "GMV 7,245.2 (+10.8% YoY), Group Financial Summary FY2025"
+    },
+    {
+      "type": "delta",
+      "text": "- **Take rate** rose to roughly 15.4%, computed as commission revenue ÷ GMV[[2]]; monetization is the bright spot.\n"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "fy25-er",
+      "page": 11,
+      "quote": "Take Rate = Commission Revenue / GMV (glossary); 1,113.8 / 7,245.2 = 15.4%"
+    },
+    {
+      "type": "delta",
+      "text": "- **AOV** ticked up to SAR 64.9 per order[[3]], a modest +5.2%.\n\n"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "Average Order Value 64.9 (+5.2% YoY)"
+    },
+    {
+      "type": "delta",
+      "text": "So the top of the funnel is healthy. The pressure is all below it:\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "**Net income attributable to shareholders fell 61.2% to SAR 73.0M**[[4]]. "
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "fy25-er",
+      "page": 4,
+      "quote": "Net Profit attributable to shareholders of the parent 73.0 (-61.2% YoY)"
+    },
+    {
+      "type": "delta",
+      "text": "The bulk is one-time, roughly **SAR 55.4M of Q4 one-offs** (Red Color and Marn impairments, an Others-segment ECL charge, and Snoonu deal expenses)[[5]], but adjusted profitability still softened as delivery costs and D&A outran the take-rate gains.\n\n"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "fy25-earnings-call",
+      "page": 6,
+      "quote": "Q4 one-offs: Red Color 12.2m, Marn goodwill 11.8m, Others-segment ECL 23.4m, Snoonu deal expenses ~8m (≈55.4m)"
+    },
+    {
+      "type": "delta",
+      "text": "Bottom line: a compounding franchise absorbing a real but mostly non-recurring margin shock, the number to underwrite is the FY2026 exit take rate, not the FY2025 net income."
+    },
+    {
+      "type": "done",
+      "cached": true
+    }
+  ],
+  "recordedAt": "2026-07-11T10:00:00.000Z"
+}

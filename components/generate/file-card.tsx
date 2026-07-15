@@ -16,7 +16,7 @@ import { cn, formatDate } from "@/lib/utils";
 import type { ArtifactMeta, Lang } from "@/lib/types";
 import type { ArtifactKind } from "@/components/generate/protocol";
 
-/** Same icon/tint-per-kind vocabulary as the Library grid (app/(app)/library) — kept as
+/** Same icon/tint-per-kind vocabulary as the Library grid (app/(app)/library), kept as
  * its own copy since that map is private to library-client.tsx (T3.6's lane). */
 export const KIND_TILE: Record<
   ArtifactKind,
@@ -34,7 +34,7 @@ export function formatFileSize(bytes: number): string {
   return `${(kb / 1024).toFixed(1)} MB`;
 }
 
-/** Landed deliverable — preview in-app (primary), download, jump to the
+/** Landed deliverable, preview in-app (primary), download, jump to the
  * workspace's Artifacts tab. Without `onPreview` the download button stays
  * primary (legacy affordance for mounts with no preview panel). */
 export function FileCard({

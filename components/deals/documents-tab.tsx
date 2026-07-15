@@ -36,7 +36,7 @@ interface PendingUpload {
 }
 
 /**
- * The workspace document room — corpus docs scoped to this company plus the
+ * The workspace document room, corpus docs scoped to this company plus the
  * Lunar mandate docs and the market packs. A quiet dashed drop-zone at the top
  * accepts a judge-supplied PDF into this workspace's sources (same engine, same
  * viewer). "Open" deep-links the PdfPanel to page 1.
@@ -52,7 +52,7 @@ export function DocumentsTab({
   const tu = useTranslations("upload");
   const locale = useLocale() as Lang;
 
-  // The only workspace-scoped docs in a filtered set belong to THIS company —
+  // The only workspace-scoped docs in a filtered set belong to THIS company,
   // so the first doc carrying a workspace names it (no extra prop needed).
   const workspace = docs.find((d) => d.workspace)?.workspace;
 
@@ -121,7 +121,7 @@ export function DocumentsTab({
 
   return (
     <div className="flex flex-col gap-4">
-      {/* quiet drop-zone — click or drag a PDF into this workspace's sources */}
+      {/* quiet drop-zone, click or drag a PDF into this workspace's sources */}
       <button
         type="button"
         onClick={() => inputRef.current?.click()}

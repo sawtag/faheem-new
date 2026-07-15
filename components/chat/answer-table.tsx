@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
  * Renders a parsed markdown table as a real, house-styled `<table>`: uppercase
  * hairline header, numeric columns right-aligned (tabular figures), delta /
  * parenthesised negatives tinted danger, `[[n]]` citation chips rendered inline
- * in cells (via the shared `renderCell` — identical to prose). When the table
+ * in cells (via the shared `renderCell`, identical to prose). When the table
  * is chartable, a quiet table⇄chart toggle appears; chart mode keeps the table
  * in the DOM (visually hidden) so the citation chips stay accessible.
  */

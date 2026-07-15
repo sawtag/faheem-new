@@ -7,26 +7,27 @@ import { useLocale, useTranslations } from "next-intl";
 import { Composer, type ComposerSubmit } from "@/components/chat/composer";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { QuickActions } from "@/components/home/quick-actions";
-import { RecentWorkspaces } from "@/components/home/recent-workspaces";
-import type { Deal, Lang } from "@/lib/types";
+import { AwayBrief } from "@/components/home/away-brief";
+import type { Lang } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
 const PLACEHOLDERS = ["p1", "p2", "p3", "p4"] as const;
 const ROTATE_MS = 3500;
 
 /**
- * The omnibox home — on camera at every demo beat transition. A serif two-tone
+ * The omnibox home, on camera at every demo beat transition. A serif two-tone
  * greeting, the shared Composer in its hero variant (rotating contextual
  * placeholder, full affordances), quick-action pills that prefill it, and the
- * recent-workspace cards. Firm context: submitting hands off to `/chat/new`.
+ * "While you were away" agentic briefing. Firm context: submitting hands off
+ * to `/chat/new`.
  */
-export function HomeHero({ deals }: { deals: Deal[] }) {
+export function HomeHero() {
   const t = useTranslations("home");
   const locale = useLocale() as Lang;
   const router = useRouter();
   const reduce = useReducedMotion();
 
-  // rotating placeholder — pauses while the composer is focused
+  // rotating placeholder, pauses while the composer is focused
   const [phIndex, setPhIndex] = React.useState(0);
   const [focused, setFocused] = React.useState(false);
   React.useEffect(() => {
@@ -87,7 +88,7 @@ export function HomeHero({ deals }: { deals: Deal[] }) {
 
           <QuickActions onPick={pick} />
 
-          <RecentWorkspaces deals={deals} />
+          <AwayBrief />
         </motion.div>
       </div>
     </div>

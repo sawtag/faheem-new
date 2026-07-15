@@ -76,7 +76,7 @@ describe("isPdfBytes (magic bytes)", () => {
   });
 });
 
-describe("uploadFilePath — traversal safety", () => {
+describe("uploadFilePath, traversal safety", () => {
   it("stays under the uploads dir for valid ids, null for unsafe ids", () => {
     const p = uploadFilePath("upload-0011aabb");
     expect(p).toBe(path.join(dir, "upload-0011aabb.pdf"));

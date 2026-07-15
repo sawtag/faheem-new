@@ -1,7 +1,7 @@
 import { expect, test, type Route } from "@playwright/test";
 
 /**
- * P5a acceptance — the two stage-only overlays. Both are invisible until
+ * P5a acceptance, the two stage-only overlays. Both are invisible until
  * their shortcut fires; neither has a visible affordance anywhere in the UI.
  */
 test.beforeEach(async ({ context, baseURL }) => {
@@ -18,7 +18,7 @@ test.describe("⌘K demo palette", () => {
     const box = page.getByRole("textbox");
     await expect(box).toBeVisible();
 
-    // no visible affordance — the palette doesn't exist in the DOM at all yet
+    // no visible affordance, the palette doesn't exist in the DOM at all yet
     await expect(page.getByTestId("palette-item-qa1")).not.toBeVisible();
 
     await page.keyboard.press("Control+k");
@@ -29,12 +29,12 @@ test.describe("⌘K demo palette", () => {
     // palette closes, the exact recorded text lands in the composer verbatim
     await expect(page.getByTestId("palette-item-qa1")).not.toBeVisible();
     await expect(box).toHaveValue(
-      "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+      "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
     );
     // the # doc chip (docIds: ["fy25-er"]) landed alongside the text
     await expect(page.getByText("Q4 2025 Earnings Results")).toBeVisible();
 
-    // intercept the actual POST /api/chat body — the submitted ChatRequest
+    // intercept the actual POST /api/chat body, the submitted ChatRequest
     // must be byte-identical to golden-questions.json's qa1.request.
     let posted: unknown;
     await page.route("**/api/chat", async (route: Route) => {
@@ -51,7 +51,7 @@ test.describe("⌘K demo palette", () => {
       .poll(() => posted, { timeout: 5000 })
       .toEqual({
         question:
-          "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+          "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
         lang: "en",
         context: { kind: "workspace", companyId: "jahez" },
         docIds: ["fy25-er"],
@@ -59,7 +59,7 @@ test.describe("⌘K demo palette", () => {
   });
 });
 
-test.describe("⌘K demo palette — Live Model beat (WS-F)", () => {
+test.describe("⌘K demo palette, Live Model beat (WS-F)", () => {
   test("selecting a Live Model entry from another page navigates to the model and prefills the composer with the exact chip text", async ({
     page,
   }) => {
@@ -78,7 +78,7 @@ test.describe("⌘K demo palette — Live Model beat (WS-F)", () => {
       "Raise FY26 order growth to 20%",
     );
 
-    // not yet applied — prefill only, same as the golden-question palette
+    // not yet applied, prefill only, same as the golden-question palette
     await expect(page.getByTestId("edit-choreography")).toHaveCount(0);
   });
 
@@ -125,7 +125,7 @@ test.describe("⌘. mode overlay", () => {
       .poll(() => page.evaluate(() => document.cookie))
       .toContain("faheem_mode=cached");
 
-    // toggling again hides it — no visible affordance, no residual chrome
+    // toggling again hides it, no visible affordance, no residual chrome
     await page.keyboard.press("Control+.");
     await expect(page.getByTestId("mode-overlay")).not.toBeVisible();
   });

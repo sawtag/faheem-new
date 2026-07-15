@@ -21,13 +21,13 @@ import { recordIcDraft } from "./draft-actions";
 
 /**
  * Draft-to-IC compose modal (WS-E, live-model-provenance plan §3). Everything
- * is prefilled from REAL data — the base-case DCF (lib/model/compute, the
+ * is prefilled from REAL data, the base-case DCF (lib/model/compute, the
  * same engine the Live Model and Office builders share) and the just-landed
- * artifact names — never a live model call (this workstream is deterministic
+ * artifact names, never a live model call (this workstream is deterministic
  * template UI, AGENTS.md rule 10). "Open in Outlook" is a genuine
  * `mailto:` handoff: Faheem never sends anything, the human does.
  */
-/** Lunar's IC alias — a role-based group, not a fabricated named roster (no
+/** Lunar's IC alias, a role-based group, not a fabricated named roster (no
  * individual Lunar IC members exist in the seed data). Kept as data, not a
  * message string: an email address has no bilingual form (see
  * messages/*.json "defaultRecipientName" for the translatable display name;
@@ -50,14 +50,14 @@ function composeBody(
     decimals: 1,
   });
   const hurdle = formatPercent(result.ic.hurdle, locale, { decimals: 0 });
-  const shariah = t(
-    result.shariah.pass ? "body.shariahPass" : "body.shariahFail",
+  const compliance = t(
+    result.compliance.pass ? "body.compliancePass" : "body.complianceFail",
   );
 
   const lines = [
     t("body.greeting"),
     "",
-    t("body.summary", { company, perShare, irr, hurdle, shariah }),
+    t("body.summary", { company, perShare, irr, hurdle, compliance }),
     "",
     t("body.materialsLabel"),
     ...artifactNames.map((name) => `- ${name}`),
@@ -96,7 +96,7 @@ export function DraftToIc({
 
   // Reset the whole form to a fresh, fully-sourced draft every time the
   // dialog opens (render-time state adjustment, same convention as
-  // ShareWorkspace) — edits never leak between opens, and re-opening after
+  // ShareWorkspace), edits never leak between opens, and re-opening after
   // a fresh generate run always reflects the CURRENT numbers/artifacts.
   const [prevOpen, setPrevOpen] = React.useState(open);
   if (open !== prevOpen) {

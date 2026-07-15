@@ -11,7 +11,7 @@ import { reveal } from "@/components/connections/reveal";
 import type { Connector } from "@/lib/connectors";
 import type { useConnectorsState } from "@/components/connections/use-connector-state";
 
-/** Onboarding Step 1 — the Connections catalog in wizard dress (design-briefs §2.4). */
+/** Onboarding Step 1, the Connections catalog in wizard dress (design-briefs §2.4). */
 export function StepConnect({
   connectorsState,
 }: {

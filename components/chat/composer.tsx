@@ -23,9 +23,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Toggle } from "@/components/ui/toggle";
-import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
+import { SourcePicker } from "@/components/chat/source-picker";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
 import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
 import { postUpload, precheckPdf } from "@/lib/upload-client";
@@ -37,18 +36,6 @@ const DOCS = manifest as CorpusDoc[];
 const MODEL_TIERS = ["auto", "max", "light"] as const;
 type ModelTier = (typeof MODEL_TIERS)[number];
 const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
-
-const EXTERNAL_SOURCES = [
-  { key: "tadawul", icon: "building-2" },
-  { key: "argaam", icon: "newspaper" },
-  { key: "news", icon: "rss" },
-  { key: "web", icon: "globe" },
-] as const;
-const INTERNAL_SOURCES = [
-  { key: "dataroom", icon: "folder-lock" },
-  { key: "templates", icon: "layout-template" },
-  { key: "mandate", icon: "scroll-text" },
-] as const;
 
 export interface ComposerSubmit {
   question: string;
@@ -91,7 +78,7 @@ function detectTrigger(
 }
 
 /**
- * The omnibox composer — shared by the chat page and (later) the home hero.
+ * The omnibox composer, shared by the chat page and (later) the home hero.
  * Owns: auto-grow textarea, @-agent / #-doc typeahead → removable chips (which
  * set ChatRequest.agent / docIds), the source-picker flyout, the model-tier
  * selector, the Improve wand (+Undo), and the idle→active→streaming send button.
@@ -125,7 +112,7 @@ export function Composer({
   /** Push text into the composer + focus it (quick-action pills). Bump `nonce`
    *  to re-apply the same text. `agent`/`docIds` (P5a demo palette) also seed
    *  the chips, so a golden-question selection reproduces the exact recorded
-   *  ChatRequest — backward-compatible, both optional. */
+   *  ChatRequest, backward-compatible, both optional. */
   prefill?: { text: string; nonce: number; agent?: AgentId; docIds?: string[] };
   onFocusChange?: (focused: boolean) => void;
 }) {
@@ -213,7 +200,7 @@ export function Composer({
       .slice(0, 6);
   }, [trigger, uploadedDocs]);
 
-  // Never offer Improve on a recorded golden question (⌘K/skills prefill) —
+  // Never offer Improve on a recorded golden question (⌘K/skills prefill),
   // a rewrite desyncs the cache key and kills the beat on stage.
   const isGoldenText = GOLDEN_QUESTIONS.some(
     (g) => g.request.question === text.trim(),
@@ -552,11 +539,7 @@ export function Composer({
           >
             <Paperclip className="size-[18px]" />
           </ToolbarButton>
-          <SourcePicker
-            externalLabel={t("sourcesExternal")}
-            internalLabel={t("sourcesInternal")}
-            sourcesLabel={t("sources")}
-          />
+          <SourcePicker />
 
           <div className="ms-auto flex items-center gap-1">
             <AnimatePresence mode="wait">
@@ -851,7 +834,7 @@ function TypeaheadMenu({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 4 }}
       transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-      className="border-border bg-card shadow-hover rounded-card absolute inset-x-0 bottom-full z-20 mb-2 max-h-64 overflow-y-auto border p-1.5"
+      className="border-border bg-card shadow-hover rounded-card faheem-scrollbar absolute inset-x-0 bottom-full z-20 mb-2 max-h-64 overflow-y-auto border p-1.5"
     >
       <p className="text-text-secondary px-2.5 py-1 text-[0.6875rem] font-bold tracking-[0.04em] uppercase">
         {trigger.kind === "@" ? headerAgents : headerDocs}
@@ -911,114 +894,5 @@ function TypeaheadMenu({
         );
       })}
     </motion.div>
-  );
-}
-
-function SourcePicker({
-  externalLabel,
-  internalLabel,
-  sourcesLabel,
-}: {
-  externalLabel: string;
-  internalLabel: string;
-  sourcesLabel: string;
-}) {
-  const [open, setOpen] = React.useState(false);
-  const [groups, setGroups] = React.useState({
-    external: true,
-    internal: true,
-  });
-  const rootRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (!open) return;
-    const onDown = (e: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [open]);
-
-  return (
-    <div ref={rootRef} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-label={sourcesLabel}
-        aria-expanded={open}
-        className="text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn inline-flex h-8 items-center gap-1.5 px-2 text-[0.8125rem] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-      >
-        <LucideIcon name="sliders-horizontal" className="size-[18px]" />
-        <span className="max-sm:sr-only">{sourcesLabel}</span>
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-            className="border-border bg-card shadow-hover rounded-card absolute start-0 bottom-full z-20 mb-2 w-72 border p-2"
-          >
-            <SourceGroup
-              label={externalLabel}
-              on={groups.external}
-              onToggle={(v) => setGroups((g) => ({ ...g, external: v }))}
-              sources={EXTERNAL_SOURCES}
-            />
-            <div className="bg-border my-1.5 h-px" />
-            <SourceGroup
-              label={internalLabel}
-              on={groups.internal}
-              onToggle={(v) => setGroups((g) => ({ ...g, internal: v }))}
-              sources={INTERNAL_SOURCES}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
-
-function SourceGroup({
-  label,
-  on,
-  onToggle,
-  sources,
-}: {
-  label: string;
-  on: boolean;
-  onToggle: (v: boolean) => void;
-  sources: readonly { key: string; icon: string }[];
-}) {
-  const t = useTranslations("chat.source");
-  return (
-    <div>
-      <div className="flex items-center justify-between px-1.5 py-1">
-        <span className="text-text-secondary text-[0.6875rem] font-bold tracking-[0.04em] uppercase">
-          {label}
-        </span>
-        <Toggle checked={on} onCheckedChange={onToggle} aria-label={label} />
-      </div>
-      {sources.map((s) => (
-        <Tooltip key={s.key} side="right" content={t(`${s.key}.desc`)}>
-          <div
-            className={cn(
-              "rounded-btn flex items-center gap-2.5 px-1.5 py-1.5 transition-opacity",
-              !on && "opacity-45",
-            )}
-          >
-            <span className="bg-navy-50 text-navy-600 rounded-btn grid size-6 shrink-0 place-items-center">
-              <LucideIcon name={s.icon} className="size-3.5" />
-            </span>
-            <span className="text-navy flex-1 text-sm font-medium">
-              {t(`${s.key}.name`)}
-            </span>
-          </div>
-        </Tooltip>
-      ))}
-    </div>
   );
 }

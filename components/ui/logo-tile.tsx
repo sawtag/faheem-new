@@ -37,7 +37,7 @@ export function LogoTile({
   size = 40,
   className,
 }: {
-  /** full entity name — hashed for the auto tint, and the fallback initial source. */
+  /** full entity name, hashed for the auto tint, and the fallback initial source. */
   label: string;
   /** explicit glyph (e.g. an Arabic letter "ت"); defaults to the first letter of `label`. */
   initial?: string;

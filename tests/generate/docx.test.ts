@@ -45,7 +45,7 @@ const SECTION_HEADINGS = [
   "Financial Analysis",
   "Valuation",
   "Quantified Risk Assessment",
-  "Shariah & Compliance Screen",
+  "Compliance Screen",
   "Catalysts & Monitoring KPIs",
   "Appendix: Sources",
 ];

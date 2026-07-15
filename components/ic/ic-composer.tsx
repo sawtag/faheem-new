@@ -5,11 +5,11 @@ import { ArrowUp, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * The Faheem IC advisory input — a focused, controlled composer scoped to the
+ * The Faheem IC advisory input, a focused, controlled composer scoped to the
  * committee room (`context: {kind:"ic"}`). Controlled `value` so the suggested
  * questions can fill it for review before sending. It shares the answer engine
  * (streamChat + the chat render components) but stays deliberately lean: no
- * @/# typeahead or source picker — the committee asks, Faheem advises.
+ * @/# typeahead or source picker, the committee asks, Faheem advises.
  */
 export function IcComposer({
   value,

@@ -1,8 +1,8 @@
 /**
- * Shared generation helpers — Lunar-branded Office artifacts (xlsx / docx / pptx).
+ * Shared generation helpers, Lunar-branded Office artifacts (xlsx / docx / pptx).
  *
  * AGENTS.md rule 4 carve-out: Office file formats have no CSS variables, so the
- * Lunar brand palette lives in ONE place — the `lunarBrand` constant below.
+ * Lunar brand palette lives in ONE place, the `lunarBrand` constant below.
  * Nowhere else in the repo may an Office hex be written.
  *
  * These helpers are the shared floor for the whole `lib/generate/**` family:
@@ -27,17 +27,17 @@ import {
 // `argb()` helper prefixes the 'FF' alpha channel exceljs/office formats expect.
 // This is THE single home for Lunar Office hexes (AGENTS.md rule 4).
 export const lunarBrand = {
-  // charcoal family — header bands, titles, ink
+  // charcoal family, header bands, titles, ink
   charcoal: "2A2620",
   charcoalDeep: "1C1914",
   charcoalMid: "514B40",
   ink: "2A2620",
   inkMuted: "6B6455",
-  // gold family — rules, accents, assumption highlight
+  // gold family, rules, accents, assumption highlight
   gold: "B08D2A",
   goldLight: "C9A94E",
   goldPale: "EFE6CE", // assumption-cell tint (analyst judgment)
-  // warm neutrals — paper, sourced-cell tint, borders, cream text on charcoal
+  // warm neutrals, paper, sourced-cell tint, borders, cream text on charcoal
   cream: "F5F1E6", // text/rule on the charcoal band
   paper: "FBF9F4", // warm section-band background
   sourcedTint: "F3F0E9", // sourced-cell tint (subtle warm grey)
@@ -45,11 +45,11 @@ export const lunarBrand = {
   border: "D8D2C4",
   borderStrong: "B7AF9C",
   white: "FFFFFF",
-  // muted status colours (old-money register — no neon)
+  // muted status colours (old-money register, no neon)
   positive: "3E6B49",
   negative: "9B3A2E",
   warn: "9A7B25",
-  // typography — serif display for the "old-money PE" headings, safe sans for data
+  // typography, serif display for the "old-money PE" headings, safe sans for data
   serif: "Georgia",
   sans: "Arial",
 } as const;
@@ -115,25 +115,25 @@ export function docTitleEn(docId: string): string {
 }
 
 // ───────────────────────── source labelling helpers ────────────────────────
-/** A `{ sourceDoc, page }`-shaped record — a real ModelInput or a market datum. */
+/** A `{ sourceDoc, page }`-shaped record, a real ModelInput or a market datum. */
 export interface Sourced {
   sourceDoc: string;
   page: number;
 }
 
-/** "Source: <doc title EN>, p.<n>" — the load-bearing sourced-cell comment line. */
+/** "Source: <doc title EN>, p.<n>", the load-bearing sourced-cell comment line. */
 export function sourceLabel(input: Sourced): string {
   return `Source: ${docTitleEn(input.sourceDoc)}, p.${input.page}`;
 }
 
-/** "faheem://doc/<id>/<page>" — deep-links into Faheem's in-app PDF viewer. */
+/** "faheem://doc/<id>/<page>", deep-links into Faheem's in-app PDF viewer. */
 export function faheemDeepLink(docId: string, page: number): string {
   return `faheem://doc/${docId}/${page}`;
 }
 
 /** Full sourced-cell note: the source line plus a clickable Faheem deep-link. */
 export function sourceComment(input: Sourced): string {
-  return `${sourceLabel(input)}\nOpen in Faheem — ${faheemDeepLink(
+  return `${sourceLabel(input)}\nOpen in Faheem, ${faheemDeepLink(
     input.sourceDoc,
     input.page,
   )}`;
@@ -141,20 +141,20 @@ export function sourceComment(input: Sourced): string {
 
 /** Assumption-cell note: analyst judgment, no clean source, with the rationale. */
 export function assumptionComment(rationale: string): string {
-  return `Assumption — analyst judgment: ${rationale}`;
+  return `Assumption, analyst judgment: ${rationale}`;
 }
 
-// ═══════════════════ narrative prose — data loading & resolution ═══════════
+// ═══════════════════ narrative prose, data loading & resolution ═══════════
 // docx.ts (IC memo) and pptx.ts (board deck) write analyst-voice prose from
-// `data/narratives.json` with `{placeholder}` tokens — either a raw
-// ModelInput key ("fy25.gmv") or a computed model figure ("calc.wacc") — so
+// `data/narratives.json` with `{placeholder}` tokens, either a raw
+// ModelInput key ("fy25.gmv") or a computed model figure ("calc.wacc"), so
 // no quantitative claim in prose can ever drift from the sourced data /
 // computeModel() output (AGENTS.md rule 5). `buildNarrativeFacts()` resolves
 // every placeholder ONCE per build into a flat string map; `resolveNarrative()`
-// substitutes and throws on any unresolved token — the build fails loudly
+// substitutes and throws on any unresolved token, the build fails loudly
 // rather than shipping an unresolved brace.
 
-/** Loose shape of `data/narratives.json` — prose blocks, EN only, template strings. */
+/** Loose shape of `data/narratives.json`, prose blocks, EN only, template strings. */
 export interface NarrativesDoc {
   memo: Record<string, unknown>;
   deck: Record<string, unknown>;
@@ -204,7 +204,7 @@ export type NarrativeFacts = Record<string, string>;
 
 /**
  * Every raw model-input key (e.g. "fy25.gmv") plus a curated set of computed
- * "calc.*" figures pulled straight off `computeModel()`'s `ModelResult` — the
+ * "calc.*" figures pulled straight off `computeModel()`'s `ModelResult`, the
  * only two sources of truth deliverables are allowed to cite (AGENTS.md rule 5).
  * `model` is typed structurally (not imported from xlsx.ts) to avoid a
  * cross-module type dependency; xlsx.ts's `ModelResult` satisfies it.
@@ -250,10 +250,10 @@ export function buildNarrativeFacts(model: NarrativeModel): NarrativeFacts {
     "calc.weightedPerShare": sar(model.weightedPerShare),
     "calc.hurdle": `${model.ic.hurdle.toFixed(1)}%`,
     "calc.riskScore": model.riskScore.toFixed(1),
-    "calc.shariahStatus": model.shariah.pass ? "PASS" : "REVIEW",
-    "calc.debtRatio": pct2(model.shariah.debtRatio),
-    "calc.cashRatio": pct2(model.shariah.cashRatio),
-    "calc.leaseInclRatio": pct2(model.shariah.leaseInclRatio),
+    "calc.complianceStatus": model.compliance.pass ? "PASS" : "REVIEW",
+    "calc.debtRatio": pct2(model.compliance.debtRatio),
+    "calc.cashRatio": pct2(model.compliance.cashRatio),
+    "calc.leaseInclRatio": pct2(model.compliance.leaseInclRatio),
     "calc.netCash": sarM(model.netCash),
     "calc.sharesOutstanding": `${model.shares.toFixed(1)}m shares`,
     "calc.compsMin": sar(model.comps.field.min),
@@ -289,7 +289,7 @@ export interface NarrativeModel {
   weightedPerShare: number;
   weightedReturn: number;
   comps: { field: { min: number; median: number; max: number } };
-  shariah: {
+  compliance: {
     debtRatio: number;
     cashRatio: number;
     leaseInclRatio: number;
@@ -324,7 +324,7 @@ export function resolveNarrative(
 
 /**
  * Deep-resolves every string leaf of an arbitrarily-nested `narratives.json`
- * value (object / array / string) in one call — so docx.ts/pptx.ts can resolve
+ * value (object / array / string) in one call, so docx.ts/pptx.ts can resolve
  * a whole memo section or slide block without touching each field by hand.
  */
 export function resolveNarrativeTree<T>(value: T, facts: NarrativeFacts): T {

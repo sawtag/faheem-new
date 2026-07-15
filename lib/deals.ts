@@ -1,6 +1,6 @@
 /**
  * Deal pipeline data layer (T3.3). data/deals.json and data/leadership.json
- * are zod-validated once at module load — a malformed data edit fails loudly
+ * are zod-validated once at module load, a malformed data edit fails loudly
  * at build/test time, never as a silently broken board. Pure data + filters,
  * safe to import from server and client components alike (no fs).
  */
@@ -16,7 +16,7 @@ export function parseDeals(raw: unknown): Deal[] {
 
 export const DEALS: Deal[] = parseDeals(dealsData);
 
-/** Pipeline stage order — board sections render in this sequence. */
+/** Pipeline stage order, board sections render in this sequence. */
 export const STAGES = [
   "screening",
   "analysis",
@@ -37,14 +37,14 @@ export function dealsByStage(
   return deals.filter((d) => d.stage === stage);
 }
 
-/** Origin dimension (Inbound (Private) vs Market Screen (Public)) — drives the board's filter pills. */
+/** Origin dimension (Inbound (Private) vs Market Screen (Public)), drives the board's filter pills. */
 export function dealsByOrigin(deals: Deal[], origin: OriginFilter): Deal[] {
   return origin === "all" ? deals : deals.filter((d) => d.origin === origin);
 }
 
 // ─────────────────────────── Jahez leadership pack ───────────────────────────
 
-/** data/leadership.json — authored from data/corpus/leadership-pack.pdf (FY 2024 AR pp.110–122). */
+/** data/leadership.json, authored from data/corpus/leadership-pack.pdf (FY 2024 AR pp.110–122). */
 export const LeaderSchema = z.object({
   name: z.string(),
   role: LocalizedSchema,
@@ -52,7 +52,7 @@ export const LeaderSchema = z.object({
   oneLiner: z.object({ en: z.string(), ar: z.string().optional() }),
   /** annual-report page reference, e.g. "FY 2024 Annual Report, p.110" */
   source: z.string(),
-  /** page inside data/corpus/leadership-pack.pdf — deep-links the PdfPanel */
+  /** page inside data/corpus/leadership-pack.pdf, deep-links the PdfPanel */
   packPage: z.number().int().positive(),
 });
 export type Leader = z.infer<typeof LeaderSchema>;

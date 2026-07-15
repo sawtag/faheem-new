@@ -1,0 +1,619 @@
+{
+  "key": "dc765a6f6816493420cb358fc8ebc86a8701896d",
+  "request": {
+    "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
+    "lang": "ar",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "fy25-earnings-call"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "q1-26-fs",
+        "fy24-ar"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "fy25-er",
+        "fy25-earnings-call",
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "# هل يج"
+    },
+    {
+      "type": "delta",
+      "text": "تاز جاهز فحص الامتثال وفق منهجية AAOIFI؟\n\n**الإجابة المختصرة: نعم،"
+    },
+    {
+      "type": "delta",
+      "text": " يجتاز جاهز الاختبارات الثلاثة لمنهجية أي"
+    },
+    {
+      "type": "delta",
+      "text": "وفي المعتمدة في ميثاق لونار"
+    },
+    {
+      "type": "delta",
+      "text": " بهامش مريح.** فيما يل"
+    },
+    {
+      "type": "delta",
+      "text": "ي الأدلة على كل معيار.\n\n## المعايير الث"
+    },
+    {
+      "type": "delta",
+      "text": "لاثة المطبقة\n\nيحدد ميثاق لونار فحص الامتثال في ثلاثة اختب"
+    },
+    {
+      "type": "delta",
+      "text": "ارات: "
+    },
+    {
+      "type": "delta",
+      "text": "النشاط الأساسي يجب أن يكون مؤهلاً"
+    },
+    {
+      "type": "delta",
+      "text": "اً شرعاً؛ والدين الربوي أ"
+    },
+    {
+      "type": "delta",
+      "text": "قل من 33% من القيمة السوقية؛ والدخل غير المسموح به أقل من 5% من"
+    },
+    {
+      "type": "delta",
+      "text": " إجمالي الإيرادات."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## 1) اختبار النشاط (نجاح)\n\nن"
+    },
+    {
+      "type": "delta",
+      "text": "شاط جاهز الأساسي مؤهل وفق التفويض ولا يقع "
+    },
+    {
+      "type": "delta",
+      "text": "ضمن الأنشطة المستبعَدة (البنوك التقليدية، التأمين، الك"
+    },
+    {
+      "type": "delta",
+      "text": "حول، القمار). "
+    },
+    {
+      "type": "delta",
+      "text": "تشغّل المجموعة عدة عل"
+    },
+    {
+      "type": "delta",
+      "text": "امات وشركات تابعة تقدّم خدمات عند الطلب، والتجارة السريعة، وتوصيل الميل"
+    },
+    {
+      "type": "delta",
+      "text": " الأخير، والحلول الرقمية، والمطابخ السحاب"
+    },
+    {
+      "type": "delta",
+      "text": "ية، وتربط العملاء والتجار وشركاء التوصيل عبر 100 مدينة في الم"
+    },
+    {
+      "type": "delta",
+      "text": "ملكة إضافة إلى قطر والبحرين والكويت."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "fy25-er",
+      "page": 12,
+      "quote": "Box 2065 Riyadh –12444 Saudi Arabia, Commercial Registration 1010895874\r\nAbout Jahez International Company for Information System Technology \r\nThe Group operates several brands and subsidiaries provid"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## 2) نسبة الد"
+    },
+    {
+      "type": "delta",
+      "text": "ين الربوي إلى القيمة السوقية (نجاح، نحو 6%)\n\n**البس"
+    },
+    {
+      "type": "delta",
+      "text": "ط (التمويلات والقروض):** حسب القوائم الأولية للرب"
+    },
+    {
+      "type": "delta",
+      "text": "ع الأول 2026، بلغ إجمالي التسهيلات وال"
+    },
+    {
+      "type": "delta",
+      "text": "قروض الإسلامية "
+    },
+    {
+      "type": "delta",
+      "text": "161,218,836 ريالاً في نهاية الف"
+    },
+    {
+      "type": "delta",
+      "text": "ترة"
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "q1-26-fs",
+      "page": 24,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company) \r\nNOTES TO THE INTERIM CONDENSED \r\nCONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED) \r\nFor the three-month pe"
+    },
+    {
+      "type": "delta",
+      "text": "، موزّعة بين "
+    },
+    {
+      "type": "delta",
+      "text": "التزامات غ"
+    },
+    {
+      "type": "delta",
+      "text": "ير متداولة 141,144,688 ريالاً والتزامات متداولة 20,074,148 ريالاً."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "q1-26-fs",
+      "page": 4,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company)\r\nCONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSTION \r\nAs at 31 March 2026 \r\nSaudi Riyal ) ( \r\n2\r\nNote\r"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nيُلاحَظ أن الج"
+    },
+    {
+      "type": "delta",
+      "text": "زء الأكبر تمويل إسلامي (تورّق)، والبند"
+    },
+    {
+      "type": "delta",
+      "text": " التقليدي الوحيد هو قرض سنونو: "
+    },
+    {
+      "type": "delta",
+      "text": "قرض بنكي بقيمة 16.5 مليون ريال قطري، أ"
+    },
+    {
+      "type": "delta",
+      "text": "ي ما يعادل 16.9 مليون ريال سعودي، من بنك خليجي بأسعار الفائدة الس"
+    },
+    {
+      "type": "delta",
+      "text": "ائدة، يُسدَّد على 36 قسطاً شهرياً متساوياً."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "q1-26-fs",
+      "page": 24,
+      "quote": "(“Snoonu”), has a bank loans of \r\nQAR 16.5 million, equivalent to SAR 16.9 million, from a Gulf bank at the prevailing interest rates. The \r\nfacility is repayable in 36 equal monthly installments."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**المق"
+    },
+    {
+      "type": "delta",
+      "text": "ام (القيمة السوقية):** "
+    },
+    {
+      "type": "delta",
+      "text": "القيمة السوقية 2.60 مليار ريال ("
+    },
+    {
+      "type": "delta",
+      "text": "ستوك أناليسيس،"
+    },
+    {
+      "type": "delta",
+      "text": " 10 يوليو 2026)"
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "A. Jahez Market Snapshot\r\nSHARE PRICE\r\nSAR 12.79\r\nstockanalysis.com, 10 Jul\r\n2026 close\r\nMARKET CAP\r\nSAR 2.60bn\r\nstockanalysis.com, 10 Jul\r\n2026\r\nSHARES OUTSTANDING\r\n203.26m\r\nstockanalysis.com, 10 Jul"
+    },
+    {
+      "type": "delta",
+      "text": "، مع تحقّق مقارن من أ"
+    },
+    {
+      "type": "delta",
+      "text": "رغام عند "
+    },
+    {
+      "type": "delta",
+      "text": "2,698.5 مليون ريال (ن"
+    },
+    {
+      "type": "delta",
+      "text": "حو 28 يونيو 2026)."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "A. Jahez Market Snapshot\r\nSHARE PRICE\r\nSAR 12.79\r\nstockanalysis.com, 10 Jul\r\n2026 close\r\nMARKET CAP\r\nSAR 2.60bn\r\nstockanalysis.com, 10 Jul\r\n2026\r\nSHARES OUTSTANDING\r\n203.26m\r\nstockanalysis.com, 10 Jul"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**النسبة:** 161.2 مليون ÷ ~2,600 مليون ≈ **6."
+    },
+    {
+      "type": "delta",
+      "text": "2%**، وهي أقل بكثير من سقف 33%. حتى مع احتساب كام"
+    },
+    {
+      "type": "delta",
+      "text": "ل التمويل الإسلامي كأنه دين ربوي (وهو افتراض متحفّ"
+    },
+    {
+      "type": "delta",
+      "text": "ظ)، تبقى النسبة دون العُشر، واخت"
+    },
+    {
+      "type": "delta",
+      "text": "بار الدين يُجتاز بيسر.\n\n## 3) نس"
+    },
+    {
+      "type": "delta",
+      "text": "بة الدخل غير المسموح به إلى الإيرادات (نجاح، نحو 2%)\n\nالدخل غير المبا"
+    },
+    {
+      "type": "delta",
+      "text": "ح هنا هو دخل التمويل/الودائع بأسعار عائد"
+    },
+    {
+      "type": "delta",
+      "text": " ثابتة. في السنة المالية 2024، بلغ "
+    },
+    {
+      "type": "delta",
+      "text": "دخل التمويل 48,537,021 ريالاً"
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "fy24-ar",
+      "page": 87,
+      "quote": "01 02 03 04 05 06 Financial statements\r\nNote\r\n31 December\r\n2024\r\n31 December\r\n2023\r\nRevenue 23 2,218,662,735 1,784,755,283\r\nCost of revenue 24 (1,677,500,170) (1,378,877,760)\r\nGross profit 541,162,565"
+    },
+    {
+      "type": "delta",
+      "text": " مقابل "
+    },
+    {
+      "type": "delta",
+      "text": "صافي إيرادات 2,218,662,735 ريالاً"
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "fy24-ar",
+      "page": 87,
+      "quote": "01 02 03 04 05 06 Financial statements\r\nNote\r\n31 December\r\n2024\r\n31 December\r\n2023\r\nRevenue 23 2,218,662,735 1,784,755,283\r\nCost of revenue 24 (1,677,500,170) (1,378,877,760)\r\nGross profit 541,162,565"
+    },
+    {
+      "type": "delta",
+      "text": "، أي نحو **2.2%**، دون سقف 5%.\n\nوتراجعت هذه النسب"
+    },
+    {
+      "type": "delta",
+      "text": "ة أكثر في الربع الأول 2026 مع استخدام السيولة في ص"
+    },
+    {
+      "type": "delta",
+      "text": "فقة سنونو، إذ سجّل "
+    },
+    {
+      "type": "delta",
+      "text": "دخل التمويل 808,230 ريالاً م"
+    },
+    {
+      "type": "delta",
+      "text": "قابل صافي إيرادات 725,112,595 ريالاً"
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "q1-26-fs",
+      "page": 5,
+      "quote": "JAHEZ INTERNATIONAL COMPANY FOR INFORMATION SYSTEMS TECHNOLOGY \r\n(A Saudi Joint Stock Company) \r\nCONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS \r\nAND OTHER COMPREHENSIVE INCOME \r\n (Unaudited)\r\nFor"
+    },
+    {
+      "type": "delta",
+      "text": "، أي نحو 0.11% فقط.\n\n## الخلاصة وال"
+    },
+    {
+      "type": "delta",
+      "text": "تحذير المنهجي\n\nالنتيجة متسقة مع ما "
+    },
+    {
+      "type": "delta",
+      "text": "ورد في التحليل المكتمل، حيث سُجِّل "
+    },
+    {
+      "type": "delta",
+      "text": "ا"
+    },
+    {
+      "type": "delta",
+      "text": "جتياز فحص الامتثال (Pass)"
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": ". وبما أن ج"
+    },
+    {
+      "type": "delta",
+      "text": "اهز يجتاز الاختبارات الكمّية الثلاثة، فلا ينطب"
+    },
+    {
+      "type": "delta",
+      "text": "ق عليه بند الإحالة للجن"
+    },
+    {
+      "type": "delta",
+      "text": "ة: "
+    },
+    {
+      "type": "delta",
+      "text": "الشركة التي تفشل في أحد النِ"
+    },
+    {
+      "type": "delta",
+      "text": "ّسَب الكمّية تُحال إلى اللجنة لم"
+    },
+    {
+      "type": "delta",
+      "text": "ناقشة المعالجة والاستثناء بدلاً من الاستبعاد التلقائي، والشركة التي تفش"
+    },
+    {
+      "type": "delta",
+      "text": "ل في اختبار النشاط تُستبعَد كلياً."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "A company failing either quantitative ratio is flagged and\r\nreferred to the Committee for a purification-and-waiver discussion rather than an automatic exclusion, consistent with\r\nstandard AAOIFI prac"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nملاحظة تنب"
+    },
+    {
+      "type": "delta",
+      "text": "يهية للجنة: تعريف «الدين الربوي» يح"
+    },
+    {
+      "type": "delta",
+      "text": "تمل نقاشاً، فتمويلات التورّق الإسلامية مهيك"
+    },
+    {
+      "type": "delta",
+      "text": "َلة شرعاً وقد لا تُحتسب أصلاً "
+    },
+    {
+      "type": "delta",
+      "text": "ضمن الدين التقليدي، لكن النتيجة لا تتغيّر تحت أي من"
+    },
+    {
+      "type": "delta",
+      "text": " المعالجتين لأن النسبة تبقى قرب 6%. ك"
+    },
+    {
+      "type": "delta",
+      "text": "ذلك يُوصى بتثبيت عدد الأسهم والقيمة السوقية من س"
+    },
+    {
+      "type": "delta",
+      "text": "جل الأسهم المودَع في تداول قبل ال"
+    },
+    {
+      "type": "delta",
+      "text": "استخدام في نموذج حي، إذ توجد فجوة ط"
+    },
+    {
+      "type": "delta",
+      "text": "فيفة بين المصدرين: "
+    },
+    {
+      "type": "delta",
+      "text": "تختلف أرقام عدد الأسهم وال"
+    },
+    {
+      "type": "delta",
+      "text": "قيمة السوقية بشكل طفيف بين ستوك أناليسيس (203.26 مليون سهم) وأرغام (217"
+    },
+    {
+      "type": "delta",
+      "text": ".38 مليون سهم)، غالباً بسبب تمييز الأسهم الحرة ع"
+    },
+    {
+      "type": "delta",
+      "text": "ن المُصدَرة أو فارق تاريخ"
+    },
+    {
+      "type": "delta",
+      "text": " اللقطة بنحو أسبوعين."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "market-data-comps",
+      "page": 2,
+      "quote": "of 10\r\nanalysts)\r\naccessed 12 Jul\r\n2026\r\nShare-count and market-cap figures differ modestly between stockanalysis.com (203.26m shares) and Argaam (217.38m\r\nshares) — likely a free-float vs. total-issu"
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-12T19:36:00.097Z"
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, ExternalLink } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,9 +12,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tooltip } from "@/components/ui/tooltip";
 import { ConnectorAvatar } from "@/components/connections/connector-avatar";
+import { SOURCES } from "@/lib/sources";
 import { cn } from "@/lib/utils";
 import type { Connector } from "@/lib/connectors";
 import type { Lang } from "@/lib/types";
+
+/** Provider site for a connector: the sources taxonomy entry with the same id
+ *  (single source of truth for provider urls, lib/sources.ts). */
+function connectorUrl(id: string): string | undefined {
+  return SOURCES.find((s) => s.id === id)?.url;
+}
 
 /** Connected/Available list row for the standalone Connections page (design-briefs §2.2). */
 export function ConnectorRow({
@@ -31,6 +38,7 @@ export function ConnectorRow({
   const t = useTranslations("connections");
   const locale = useLocale() as Lang;
   const name = connector.name[locale];
+  const url = connectorUrl(connector.id);
 
   return (
     <Tooltip content={connector.tooltip[locale]} side="top">
@@ -84,6 +92,22 @@ export function ConnectorRow({
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
+                {url && (
+                  <DropdownMenuItem asChild>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gap-2"
+                    >
+                      <ExternalLink
+                        className="size-3.5 rtl:-scale-x-100"
+                        aria-hidden="true"
+                      />
+                      {t("visitWebsite")}
+                    </a>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem onSelect={onDisconnect}>
                   {t("disconnect")}
                 </DropdownMenuItem>

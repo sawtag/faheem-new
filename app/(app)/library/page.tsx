@@ -8,7 +8,7 @@ import {
 } from "@/lib/types";
 import { LibraryClient } from "./library-client";
 
-/** data/artifacts.json is written by the (not-yet-built) generate route — absent until then, which is a valid, expected state (renders the empty state). */
+/** data/artifacts.json is written by the (not-yet-built) generate route, absent until then, which is a valid, expected state (renders the empty state). */
 function loadArtifacts(): ArtifactMeta[] {
   const file = path.join(process.cwd(), "data/artifacts.json");
   if (!fs.existsSync(file)) return [];

@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-/** Exported for unit tests — must be `https://` with a non-empty host. */
+/** Exported for unit tests, must be `https://` with a non-empty host. */
 export function isValidMcpUrl(value: string): boolean {
   try {
     const url = new URL(value.trim());
@@ -27,9 +27,9 @@ export function isValidMcpUrl(value: string): boolean {
 /**
  * "Add custom MCP connector" modal (design-briefs §2.3). Name + URL (always
  * `dir="ltr"`, live-validated HTTPS shape) + a collapsed-by-default Advanced
- * accordion (auth header / timeout — visual only). No shared Accordion
+ * accordion (auth header / timeout, visual only). No shared Accordion
  * primitive exists yet, so this uses radix-ui's Collapsible directly,
- * scoped to this one modal — not a new components/ui primitive.
+ * scoped to this one modal, not a new components/ui primitive.
  */
 export function McpModal({
   open,
@@ -46,7 +46,7 @@ export function McpModal({
   const [urlTouched, setUrlTouched] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
 
-  // Reset the form whenever the dialog transitions to open — a render-time
+  // Reset the form whenever the dialog transitions to open, a render-time
   // state adjustment (not an effect) per React's guidance for resetting state
   // when a prop changes: https://react.dev/learn/you-might-not-need-an-effect
   const [prevOpen, setPrevOpen] = React.useState(open);

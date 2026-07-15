@@ -10,20 +10,20 @@ import {
 } from "./helpers";
 
 /**
- * T5.2 RTL/i18n sweep — every route in the inventory (plan §T5.2), checked in
+ * T5.2 RTL/i18n sweep, every route in the inventory (plan §T5.2), checked in
  * `ar`: `dir="rtl"`, no horizontal overflow, no raw `namespace.key` leaking
  * into rendered text, console free of `MISSING_MESSAGE` warnings, plus a
  * per-route screenshot for the visual pass. The same key-leak + console
- * checks are repeated in `en` (no RTL/overflow/screenshot assertions there —
+ * checks are repeated in `en` (no RTL/overflow/screenshot assertions there,
  * `en` is already covered visually by the per-screen specs).
  *
  * `faheem_session` is set on every route (including the public /login and /)
- * so protected routes render instead of redirecting — a stray cookie on
+ * so protected routes render instead of redirecting, a stray cookie on
  * /login is harmless (middleware treats it as a public path regardless).
  */
-test.describe("RTL sweep — ar", () => {
+test.describe("RTL sweep, ar", () => {
   for (const route of ROUTES) {
-    test(`${route} — rtl, no overflow, no leaked keys, clean console`, async ({
+    test(`${route}, rtl, no overflow, no leaked keys, clean console`, async ({
       page,
       context,
       baseURL,
@@ -58,7 +58,7 @@ test.describe("RTL sweep — ar", () => {
         `MISSING_MESSAGE console errors on ${route}`,
       ).toEqual([]);
 
-      // Project name in the filename — desktop-1080 and laptop-768 both write
+      // Project name in the filename, desktop-1080 and laptop-768 both write
       // through this same test, and without it one viewport's screenshot
       // silently clobbers the other's (last one to finish wins the race).
       await page.screenshot({
@@ -69,9 +69,9 @@ test.describe("RTL sweep — ar", () => {
   }
 });
 
-test.describe("i18n sweep — en (key-leak + console only)", () => {
+test.describe("i18n sweep, en (key-leak + console only)", () => {
   for (const route of ROUTES) {
-    test(`${route} — no leaked keys, clean console`, async ({
+    test(`${route}, no leaked keys, clean console`, async ({
       page,
       context,
       baseURL,

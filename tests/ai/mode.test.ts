@@ -8,7 +8,7 @@ import type {
   MessageStreamParams,
   StreamEvent,
 } from "@/lib/ai/client";
-import { replay } from "@/lib/ai/mode";
+import { replay, resolveMode } from "@/lib/ai/mode";
 import { chatEventStream } from "@/lib/ai/sse";
 import type { CacheEntry, ChatRequest, SSEEvent } from "@/lib/types";
 
@@ -20,6 +20,31 @@ async function collect(gen: AsyncGenerator<SSEEvent>): Promise<SSEEvent[]> {
 
 afterEach(() => {
   delete process.env.FAHEEM_CACHE_DIR;
+});
+
+describe("mode resolution", () => {
+  it("smart default honors FAHEEM_ANTHROPIC_KEY as a key alias; cookie still wins", () => {
+    const saved = {
+      mode: process.env.FAHEEM_MODE,
+      key: process.env.ANTHROPIC_API_KEY,
+      alias: process.env.FAHEEM_ANTHROPIC_KEY,
+    };
+    delete process.env.FAHEEM_MODE;
+    delete process.env.ANTHROPIC_API_KEY;
+    delete process.env.FAHEEM_ANTHROPIC_KEY;
+    try {
+      expect(resolveMode(undefined)).toBe("cached");
+      process.env.FAHEEM_ANTHROPIC_KEY = "sk-test";
+      expect(resolveMode(undefined)).toBe("auto");
+      expect(resolveMode("cached")).toBe("cached");
+    } finally {
+      if (saved.mode !== undefined) process.env.FAHEEM_MODE = saved.mode;
+      if (saved.key !== undefined) process.env.ANTHROPIC_API_KEY = saved.key;
+      if (saved.alias !== undefined)
+        process.env.FAHEEM_ANTHROPIC_KEY = saved.alias;
+      else delete process.env.FAHEEM_ANTHROPIC_KEY;
+    }
+  });
 });
 
 describe("cached replay", () => {

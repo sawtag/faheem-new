@@ -1,9 +1,9 @@
 /**
- * POST /api/model-edit — turn a plain-language instruction into a whitelisted
+ * POST /api/model-edit, turn a plain-language instruction into a whitelisted
  * assumption edit (WS-C, live-model-provenance plan §3).
  *
  * Scripted-first: `parseEdit` resolves the demo edit set (EN + AR) locally and
- * OFFLINE — cached mode never calls out. Only when the local parser can't
+ * OFFLINE, cached mode never calls out. Only when the local parser can't
  * resolve AND the mode is live/auto do we make ONE small Claude call (strict
  * JSON, via lib/ai/client.ts), and its output is re-validated against the SAME
  * whitelist before it can return. Editing a sourced actual yields a graceful
@@ -35,7 +35,7 @@ export const dynamic = "force-dynamic";
 const BodySchema = z.object({
   instruction: z.string().min(1),
   lang: LangSchema,
-  /** current Assumptions — used for relative edits + old→new audit detail */
+  /** current Assumptions, used for relative edits + old→new audit detail */
   assumptions: z
     .record(z.string(), z.union([z.number(), z.array(z.number())]))
     .optional(),
@@ -66,18 +66,18 @@ function readCookie(request: Request, name: string): string | undefined {
 function editSummary(lang: Lang, rebalanced: boolean): string {
   if (rebalanced) {
     return lang === "ar"
-      ? "تم فهم التعليمات — أُعيدت موازنة أوزان السيناريوهات ليبقى مجموع الاحتمالات 100٪، ويُعاد احتساب النموذج."
-      : "Instruction understood — scenario weights rebalanced so probabilities still sum to 100%, recomputing the model.";
+      ? "تم فهم التعليمات، أُعيدت موازنة أوزان السيناريوهات ليبقى مجموع الاحتمالات 100٪، ويُعاد احتساب النموذج."
+      : "Instruction understood, scenario weights rebalanced so probabilities still sum to 100%, recomputing the model.";
   }
   return lang === "ar"
-    ? "تم فهم التعليمات — يُعاد احتساب النموذج."
-    : "Instruction understood — recomputing the model.";
+    ? "تم فهم التعليمات، يُعاد احتساب النموذج."
+    : "Instruction understood, recomputing the model.";
 }
 
 function sourceLockedSummary(lang: Lang): string {
   return lang === "ar"
-    ? "هذا الرقم قيمة فعلية موثّقة — مُقفلة من المصدر ولا يمكن تعديلها. القيم الفعلية تأتي من المستندات المصدرية؛ عدّل الافتراضات بدلاً من ذلك."
-    : "That figure is a sourced actual — it's source-locked and can't be edited. Actuals come from the source documents; edit an assumption instead.";
+    ? "هذا الرقم قيمة فعلية موثّقة، مُقفلة من المصدر ولا يمكن تعديلها. القيم الفعلية تأتي من المستندات المصدرية؛ عدّل الافتراضات بدلاً من ذلك."
+    : "That figure is a sourced actual, it's source-locked and can't be edited. Actuals come from the source documents; edit an assumption instead.";
 }
 
 function unparsedSummary(lang: Lang): string {
@@ -96,7 +96,7 @@ function liveParserPrompt(lang: Lang): string {
     `The ONLY editable assumption keys are: ${keys}.`,
     "Array keys are indexed 0..N for forecast years FY26E..FY30E (index 0 = FY26E).",
     "Values are the model's NATIVE units: DECIMALS for rate/percent fields (0.2 = 20%, 0.035 = 3.5%), integer years for holdYears, raw score for riskWeights.",
-    'If the instruction targets a SOURCED ACTUAL (any FY23–FY25 revenue/GMV/EBITDA/net income/AOV/orders figure, or the share price) return {"kind":"source-locked","target":"<name>"} — those are immutable.',
+    'If the instruction targets a SOURCED ACTUAL (any FY23–FY25 revenue/GMV/EBITDA/net income/AOV/orders figure, or the share price) return {"kind":"source-locked","target":"<name>"}, those are immutable.',
     'If you cannot map it to a listed key, return {"kind":"unparsed"}.',
     'Otherwise return {"kind":"edit","assumptionKey":"<one of the listed keys>","value":<number in native units>}.',
     lang === "ar" ? "The instruction may be in Arabic." : "",
@@ -148,7 +148,7 @@ async function liveParse(
       typeof obj.assumptionKey === "string" &&
       typeof obj.value === "number"
     ) {
-      // re-validate against the SAME whitelist — an illegal/hallucinated key is
+      // re-validate against the SAME whitelist, an illegal/hallucinated key is
       // rejected here, never trusted from the model.
       const v = validateEdit(obj.assumptionKey, obj.value);
       return v
@@ -196,7 +196,7 @@ export async function POST(request: Request): Promise<Response> {
     if (mode !== "cached") {
       const live = await liveParse(instruction, lang);
       if (live) result = live;
-      // the live path skips parseEdit's rebalance — apply the same invariant
+      // the live path skips parseEdit's rebalance, apply the same invariant
       if (
         result.kind === "edit" &&
         (PROB_KEYS as readonly string[]).includes(result.assumptionKey)

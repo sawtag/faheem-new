@@ -6,7 +6,7 @@ import { CheckDraw } from "@/components/connections/check-draw";
 import { CountUp } from "@/components/connections/count-up";
 import type { MandateState } from "@/components/connections/onboarding/mandate-state";
 
-/** Onboarding closing card — "this becomes your IC Charter" (design-briefs §2.4). */
+/** Onboarding closing card, "this becomes your IC Charter" (design-briefs §2.4). */
 export function CompletePanel({ mandate }: { mandate: MandateState }) {
   const t = useTranslations("onboarding");
 
@@ -42,13 +42,13 @@ export function CompletePanel({ mandate }: { mandate: MandateState }) {
           </span>
         </div>
         <div className="flex flex-col items-center gap-1 px-4 py-4">
-          {mandate.shariah ? (
+          {mandate.compliance ? (
             <CheckDraw size={20} />
           ) : (
             <Minus className="text-text-secondary size-5" aria-hidden="true" />
           )}
           <span className="text-text-secondary text-xs font-medium">
-            {t("mandate.shariah")}
+            {t("mandate.compliance")}
           </span>
         </div>
       </div>

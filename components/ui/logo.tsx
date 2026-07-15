@@ -9,11 +9,11 @@ import { cn } from "@/lib/utils";
  * (context/branding/logo-src/icon-raw1.jpeg) with potrace, colour-separated into
  * the three navy columns + the emerald swoosh so the columns can rise
  * independently. Fills resolve to theme tokens (`brand`) or to `currentColor`
- * (`mono`, e.g. the login watermark) — the source colours ARE the brand tokens,
+ * (`mono`, e.g. the login watermark), the source colours ARE the brand tokens,
  * so no hex is ever baked in.
  *
  * `animated` staggers the three columns then sweeps the swoosh in (≤400ms,
- * reduced-motion safe) — used on login and as the chat "thinking" affordance.
+ * reduced-motion safe), used on login and as the chat "thinking" affordance.
  *
  * The wordmark ("Faheem" / فهيم) is set in the brand UI fonts, NOT traced: the
  * source wordmark bitmaps are AI-generated with irregular kerning/letterforms,

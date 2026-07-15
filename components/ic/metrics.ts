@@ -1,8 +1,8 @@
 /**
- * Faheem IC — pure comparison logic (React-free so it unit-tests in isolation,
+ * Faheem IC, pure comparison logic (React-free so it unit-tests in isolation,
  * tests/ic/metrics.test.ts). The committee sheet renders straight from
  * `deals.json`; these helpers turn a deal's `icMetrics` into the sign/colour
- * decisions the table cells need. No number is invented here — every input is a
+ * decisions the table cells need. No number is invented here, every input is a
  * verified figure from `data/deals.json` (AGENTS.md rule 5).
  */
 import type { Deal } from "@/lib/types";
@@ -10,7 +10,7 @@ import type { Deal } from "@/lib/types";
 /**
  * Deals that belong on the committee sheet: those that have reached deep
  * analysis or IC review (screening-stage and declined deals are excluded).
- * A column may still be analysis-in-progress (no `icMetrics` yet) — it renders
+ * A column may still be analysis-in-progress (no `icMetrics` yet), it renders
  * a pending state rather than fake numbers.
  */
 export const IC_COLUMN_STAGES: ReadonlySet<Deal["stage"]> = new Set([

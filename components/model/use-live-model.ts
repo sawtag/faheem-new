@@ -5,7 +5,7 @@ import { BASE_ASSUMPTIONS, buildModel } from "@/lib/model/compute";
 import { validateEdit } from "@/lib/model/edit-parser";
 import type { Assumptions, ModelKey, ModelOutputs } from "@/lib/model/types";
 
-/** Immutably set a dotted assumption path — "g" (scalar) or "ordersGrowth.0"
+/** Immutably set a dotted assumption path, "g" (scalar) or "ordersGrowth.0"
  * (array index). The key scheme mirrors provenance `assumptionKey`, so a
  * Methodology chip / a WS-C conversational edit and a grid stepper all drive
  * the same entry point. */
@@ -43,7 +43,7 @@ function changedNodeKeys(
 export interface LiveModelDiff {
   keys: ModelKey[];
   count: number;
-  /** bumps on every recompute that moved ≥1 value — drives the toast + cell wash */
+  /** bumps on every recompute that moved ≥1 value, drives the toast + cell wash */
   nonce: number;
 }
 
@@ -63,8 +63,8 @@ export interface LiveModel {
  * The Live Model state hook (WS-B). Holds `Assumptions`; every edit rebuilds
  * the pure model via `buildModel` (instant, offline) and diffs the flat node
  * values against the previous graph so changed cells can count-up and the
- * "N values updated" chip can surface. The API — `{ assumptions, outputs,
- * setAssumption, reset, lastDiff }` — is the contract WS-C's conversational
+ * "N values updated" chip can surface. The API, `{ assumptions, outputs,
+ * setAssumption, reset, lastDiff }`, is the contract WS-C's conversational
  * edits reuse to drive the same recompute path.
  */
 export function useLiveModel(): LiveModel {

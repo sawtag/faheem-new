@@ -4,14 +4,14 @@
  * Context filtering (per AGENTS.md data policy + T2.1 card):
  *   workspace → that workspace's docs + all Lunar docs + the two firm-wide packs
  *   ic        → thara-analysis + lunar-ic-charter + lunar-portfolio + the packs
- *               (+ workspace docs of any analysis- or ic-review-stage deal — the
+ *               (+ workspace docs of any analysis- or ic-review-stage deal, the
  *               IC room compares analysis-complete deals, so Jahez's filings are
  *               live-rankable even while its deal sits at stage "analysis")
  *   firm      → Lunar docs + the packs
  *   #-refs (docIds) → restrict to the listed ids, but always keep the Lunar IC
  *               Charter available to the screening / IC flavors (they must cite it)
  *
- * Doc ORDER is manifest order — citation `document_index` maps back through this
+ * Doc ORDER is manifest order, citation `document_index` maps back through this
  * exact array, so the ordering here is load-bearing for citation → docId mapping.
  */
 import fs from "node:fs";
@@ -47,7 +47,7 @@ export function loadManifest(): CorpusDoc[] {
 }
 
 /**
- * Workspaces (deal ids) rankable by the IC room — deals at stage "analysis" or
+ * Workspaces (deal ids) rankable by the IC room, deals at stage "analysis" or
  * "ic-review" (data-driven from deals.json). Gate C(a) follow-up: Jahez stays
  * stage "analysis" yet must be live-rankable from its filings.
  */
@@ -137,7 +137,7 @@ export interface DocBlock {
   cache_control?: { type: "ephemeral"; ttl: "1h" };
 }
 
-/** File-reader seam — the default reads from disk; tests inject fake bytes. */
+/** File-reader seam, the default reads from disk; tests inject fake bytes. */
 export type FileReader = (absolutePath: string) => Buffer;
 
 const defaultRead: FileReader = (absolutePath) => fs.readFileSync(absolutePath);
@@ -145,7 +145,7 @@ const defaultRead: FileReader = (absolutePath) => fs.readFileSync(absolutePath);
 /**
  * One document block per doc, in the given order. Files-API `file_id` reference
  * when the manifest has a fileId, else base64. `cache_control` (1h TTL) lands on
- * the LAST block only — that single breakpoint caches the system prompt + all
+ * the LAST block only, that single breakpoint caches the system prompt + all
  * docs; only the trailing question varies.
  */
 export function buildDocBlocks(
@@ -189,7 +189,7 @@ function uploadInScope(context: ChatContext, workspace?: string): boolean {
 
 /**
  * Uploaded docs referenced by this request, as CorpusDocs. Gated strictly on
- * `upload-*` ids present in `req.docIds` (the composer attach flow) — never
+ * `upload-*` ids present in `req.docIds` (the composer attach flow), never
  * auto-pulled from context, so the static corpus path stays deterministic. Only
  * uploads with a Files API `fileId` qualify (a session block needs the file
  * reference). Deterministic order: uploadedAt, then id.
@@ -212,7 +212,7 @@ export function resolveSessionDocs(req: ChatRequest): CorpusDoc[] {
 }
 
 /**
- * Document blocks for uploaded docs — always Files-API `file_id` references,
+ * Document blocks for uploaded docs, always Files-API `file_id` references,
  * citations enabled, and deliberately NO `cache_control`: these land AFTER the
  * static cache breakpoint so the static prefix cache still hits.
  */

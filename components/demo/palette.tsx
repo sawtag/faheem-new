@@ -27,7 +27,7 @@ const GROUP_LABEL_KEY: Record<string, string> = {
   ic: "groupIc",
 };
 
-/** Reads the live URL (not a hook) — avoids a `useSearchParams()` Suspense
+/** Reads the live URL (not a hook), avoids a `useSearchParams()` Suspense
  *  requirement on the global (app) layout for a value only needed at the
  *  instant the palette opens or a selection is made. */
 function currentPageContext(): ChatContext | null {
@@ -52,12 +52,12 @@ function currentDealCompanyId(): string | null {
 }
 
 /**
- * ⌘K stage-only demo palette (P5a) — opens ONLY on ⌘K/Ctrl+K, no visible
+ * ⌘K stage-only demo palette (P5a), opens ONLY on ⌘K/Ctrl+K, no visible
  * affordance. Lists the golden questions (data/golden-questions.json)
  * filtered to the current page's context + language, grouped, bilingual.
  * Selecting one publishes the exact recorded {text, agent, docIds} onto the
  * golden-bus, navigating first only if the current page isn't already the
- * right chat surface — so the submitted ChatRequest is byte-identical to the
+ * right chat surface, so the submitted ChatRequest is byte-identical to the
  * recorded one and always hits the exact-key cache (kills the "typo = cache
  * miss = surprise live call" risk class).
  */

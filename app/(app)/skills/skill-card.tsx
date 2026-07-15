@@ -33,7 +33,7 @@ const CATEGORY_BADGE: Record<
 
 /**
  * One playbook card (design brief: icon tile → name/category/one-liner →
- * bulleted methods → footer). Toggle is cosmetic (agents-page pattern) — it
+ * bulleted methods → footer). Toggle is cosmetic (agents-page pattern), it
  * dims the card, it never gates the Run action. Run either fires the exact
  * golden-bus insert a goldenId-mapped skill was recorded with, or prefills a
  * fresh chat with ad hoc text (see run-skill.ts for why "home" means

@@ -1,10 +1,10 @@
 /**
  * Firm-level dashboard data layer (data/firm.json) + pure derivations for the
  * /dashboard mission-control screen. Every value in firm.json carries its
- * source ({value, sourceDoc, page}) — the governance stats (AUM, mandate caps,
+ * source ({value, sourceDoc, page}), the governance stats (AUM, mandate caps,
  * sector exposure, Saudi macro) resolve to a real corpus page, never invented
  * (AGENTS.md rule 5). Zod-validated once at module load: a malformed edit fails
- * loudly at build/test time. Pure data + filters — safe to import from server
+ * loudly at build/test time. Pure data + filters, safe to import from server
  * and client alike (no fs). Local schemas; lib/types.ts is untouched.
  */
 import { z } from "zod";
@@ -51,7 +51,7 @@ export function sectorHeadroomPp(firm: Firm = FIRM): number {
   return firm.sectorCapPct.value - firm.sectorExposurePct.value;
 }
 
-/** True once exposure reaches ≥85% of the cap — the bar switches to a warn tint. */
+/** True once exposure reaches ≥85% of the cap, the bar switches to a warn tint. */
 export function sectorCapWarn(firm: Firm = FIRM): boolean {
   return sectorCapUtilisation(firm) >= 0.85;
 }
@@ -86,7 +86,7 @@ export interface IcQueue {
   next?: Deal;
 }
 
-/** Deals in Investment-Committee review — count + the next one up. */
+/** Deals in Investment-Committee review, count + the next one up. */
 export function icQueue(deals: Deal[]): IcQueue {
   const queued = deals.filter((d) => d.stage === "ic-review");
   return { count: queued.length, next: queued[0] };

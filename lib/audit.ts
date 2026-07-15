@@ -1,5 +1,5 @@
 /**
- * Append-only audit trail (data/audit-log.json) — feeds the Audit Trail panel.
+ * Append-only audit trail (data/audit-log.json), feeds the Audit Trail panel.
  * FAHEEM_AUDIT_PATH overrides the target (used by tests). Writes are atomic:
  * read → append → write-temp → rename.
  */

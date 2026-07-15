@@ -1,24 +1,24 @@
 #!/usr/bin/env -S npx tsx
 /**
- * Golden-path recorder (P5a task 7) — POSTs every entry in
+ * Golden-path recorder (P5a task 7), POSTs every entry in
  * data/golden-questions.json to a running local server's /api/chat, consumes
  * the SSE stream fully, and reports what landed. The server MUST be started
  * separately with `FAHEEM_MODE=live FAHEEM_RECORD=1 npm run dev` (or
- * `next start` against a production build) — this script is a plain HTTP
+ * `next start` against a production build), this script is a plain HTTP
  * client, it never imports the Anthropic SDK or lib/ai/client.ts directly.
  *
  * Expected cache file per entry is computed with the SAME `cacheKey()`
- * formula the engine and the ⌘K demo palette use (lib/ai/cache.ts) — if a
+ * formula the engine and the ⌘K demo palette use (lib/ai/cache.ts), if a
  * recorded entry's file doesn't land at that exact path, the palette would
  * silently miss the cache on stage, so this is treated as a hard failure.
  *
  * Refuses to run without ANTHROPIC_API_KEY (the target server needs it to
- * record real, billed responses — this is a client-side guard against
+ * record real, billed responses, this is a client-side guard against
  * running the whole set against a misconfigured environment by accident).
  *
  * Usage:
  *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts
- *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts --only qa1,shariah-ar
+ *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts --only qa1,compliance-ar
  *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts --base-url http://localhost:3000
  */
 import {
@@ -52,7 +52,7 @@ function parseArgs(argv: string[]): Args {
 }
 
 /** Mirrors components/chat/stream.ts's frame parsing (that module is a
- *  browser "use client" file — this is the Node-side twin for a CLI script). */
+ *  browser "use client" file, this is the Node-side twin for a CLI script). */
 async function streamChat(
   baseUrl: string,
   entry: GoldenQuestion,
@@ -127,7 +127,7 @@ async function recordOne(
   if (!done) lines.push("  FAIL  stream never reached a `done` event");
   if (!entryFile) {
     lines.push(
-      `  FAIL  no cache file at data/demo-cache/${expectedKey}.json — the ⌘K palette would MISS this on stage`,
+      `  FAIL  no cache file at data/demo-cache/${expectedKey}.json, the ⌘K palette would MISS this on stage`,
     );
   }
 
@@ -142,7 +142,7 @@ async function recordOne(
 async function main(): Promise<void> {
   if (!process.env.ANTHROPIC_API_KEY) {
     console.error(
-      "ANTHROPIC_API_KEY is not set — refusing to run. The target server needs it to record real, billed responses.",
+      "ANTHROPIC_API_KEY is not set, refusing to run. The target server needs it to record real, billed responses.",
     );
     process.exit(1);
   }
@@ -162,12 +162,12 @@ async function main(): Promise<void> {
   console.log(
     `Recording ${entries.length} golden question(s) against ${baseUrl}/api/chat.\n` +
       "This makes REAL, billed Anthropic API calls IF the target server is running\n" +
-      "with FAHEEM_MODE=live FAHEEM_RECORD=1 — cost-aware, not free.\n",
+      "with FAHEEM_MODE=live FAHEEM_RECORD=1, cost-aware, not free.\n",
   );
 
   let failures = 0;
   for (const entry of entries) {
-    console.log(`\n${entry.id} — ${entry.label.en}`);
+    console.log(`\n${entry.id}, ${entry.label.en}`);
     const { ok, lines } = await recordOne(baseUrl, entry);
     for (const line of lines) console.log(line);
     if (!ok) failures += 1;
@@ -178,7 +178,7 @@ async function main(): Promise<void> {
   );
   if (failures > 0) {
     console.error(
-      `${failures} entr${failures === 1 ? "y" : "ies"} FAILED — see above.`,
+      `${failures} entr${failures === 1 ? "y" : "ies"} FAILED, see above.`,
     );
     process.exit(1);
   }

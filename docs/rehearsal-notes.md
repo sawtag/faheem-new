@@ -100,7 +100,7 @@ self-hosted (`.next/static/media/*.woff2`) · `soffice` + the 3 committed fallba
 hand) · the target port is free or already answering `/login` as Faheem · `ANTHROPIC_API_KEY`
 (read from `.env` directly — Next auto-loads it for `npm run start`, but this is a bare script) ·
 `data/audit-log.json` parses (reminder to reseed past ~60 rows) · **Live Model beat (WS-F):**
-`buildModel(BASE_ASSUMPTIONS)` headline numbers byte-identical + Shariah PASS, the provenance
+`buildModel(BASE_ASSUMPTIONS)` headline numbers byte-identical + Compliance PASS, the provenance
 graph carries zero orphans, the edit-parser's scripted set (incl. an Arabic instruction and the
 source-locked demo) still parses, `data/sentiment.json` / `data/social-pack.json` stay schema-valid
 with no sourced-number shape, and every `FormulaDef`'s KaTeX renders — zero network calls.

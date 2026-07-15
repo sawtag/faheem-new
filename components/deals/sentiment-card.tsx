@@ -35,12 +35,12 @@ const SOURCE_TYPE_KEY: Record<SocialPost["sourceType"], string> = {
 
 /**
  * Market Sentiment card (live-model-provenance plan §0): a label + one-line
- * rationale, ALWAYS captioned "signal only — not a valuation input", with a
+ * rationale, ALWAYS captioned "signal only, not a valuation input", with a
  * peek affordance into the illustrative social pack it draws its themes from.
  * Reads data/sentiment.json + data/social-pack.json directly (same pattern as
- * WorkspaceAnalytics reading model-inputs.json — no server-page plumbing).
+ * WorkspaceAnalytics reading model-inputs.json, no server-page plumbing).
  * Renders nothing if the company has no recorded sentiment read (jahez only,
- * today — the pack is Saudi q-commerce-specific, so extending it to other
+ * today, the pack is Saudi q-commerce-specific, so extending it to other
  * workspaces without their own themed pack would not be honest).
  */
 export function SentimentCard({
@@ -48,7 +48,7 @@ export function SentimentCard({
   compact = false,
 }: {
   companyId: string;
-  /** dashboard placement — smaller type, clamped rationale, same disclosure */
+  /** dashboard placement, smaller type, clamped rationale, same disclosure */
   compact?: boolean;
 }) {
   const t = useTranslations("sentiment");

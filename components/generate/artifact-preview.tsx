@@ -18,11 +18,11 @@ const ICON_BTN =
 
 /**
  * In-app artifact preview (the deliverables beat's money moment): a slide-over
- * panel — same slide-in family as the chat PdfPanel aside — that opens the
+ * panel, same slide-in family as the chat PdfPanel aside, that opens the
  * generated deck/memo/model INSIDE Faheem. pptx = thumbnail rail + canvas with
  * a 150ms crossfade and arrow-key navigation; docx = stacked pages; xlsx =
  * Cover sheet + open-in-Excel CTA. Renders the pre-built PNGs from
- * public/artifacts/previews/ (scripts/render-artifact-previews.ts — rendered
+ * public/artifacts/previews/ (scripts/render-artifact-previews.ts, rendered
  * from the same deterministic builders the generate route runs); if an image
  * 404s the body falls back to a file tile + download, never a broken image.
  */
@@ -143,7 +143,7 @@ function PreviewPanel({
         <Fallback meta={meta} />
       ) : spec.layout === "slides" ? (
         <div className="flex min-h-0 flex-1">
-          {/* thumbnail rail — inline-start, all slides, staggered reveal */}
+          {/* thumbnail rail, inline-start, all slides, staggered reveal */}
           <div
             aria-label={t("slides")}
             className="border-border bg-bg w-[104px] shrink-0 overflow-y-auto border-e p-2"
@@ -185,7 +185,7 @@ function PreviewPanel({
             </ol>
           </div>
 
-          {/* canvas — active slide on a shadow-card frame, 150ms crossfade */}
+          {/* canvas, active slide on a shadow-card frame, 150ms crossfade */}
           <div className="bg-navy-50/40 flex min-w-0 flex-1 flex-col">
             <div className="relative min-h-0 flex-1">
               <AnimatePresence initial={false}>
@@ -279,7 +279,7 @@ function PreviewPanel({
   );
 }
 
-/** A preview PNG failed to load — quiet file-tile fallback, never a broken image. */
+/** A preview PNG failed to load, quiet file-tile fallback, never a broken image. */
 function Fallback({ meta }: { meta: ArtifactMeta }) {
   const t = useTranslations("generate");
   const { icon: Icon, tile } = KIND_TILE[meta.kind];

@@ -210,7 +210,7 @@ function IcQueueCard({ icQueue }: { icQueue: DashboardStats["icQueue"] }) {
 }
 
 /**
- * Firm mission-control stats row — four cards, each value carrying its source
+ * Firm mission-control stats row, four cards, each value carrying its source
  * or derivation (AGENTS.md rule 5): the live-pipeline tally (derived from
  * deals.json), AUM (IC Charter p.1), the mandate-headroom governance bar
  * (Portfolio p.1 vs the IC Charter's 10% cap p.4), and the IC review queue.

@@ -7,7 +7,7 @@ const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
 
 /**
  * Accent circle-check with a 300ms stroke-draw morph (design-briefs §2.3/§2.4
- * — the OAuth success state and the onboarding completion card both use this
+ *, the OAuth success state and the onboarding completion card both use this
  * exact "check-draw" wow detail). Reduced-motion: renders fully drawn.
  */
 export function CheckDraw({

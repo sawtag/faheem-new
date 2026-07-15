@@ -1,8 +1,8 @@
 /**
- * Preview path resolver — maps an artifact kind to its pre-rendered PNGs in
+ * Preview path resolver, maps an artifact kind to its pre-rendered PNGs in
  * public/artifacts/previews/ (produced by scripts/render-artifact-previews.ts
  * from the real lib/generate builders; see that script's header for the
- * static-fallback honesty contract). Pure and React-free — unit-tested in
+ * static-fallback honesty contract). Pure and React-free, unit-tested in
  * tests/generate/preview-resolver.test.ts.
  */
 import type { ArtifactKind } from "@/components/generate/protocol";
@@ -14,7 +14,7 @@ export const MEMO_PAGES = 3;
 export interface PreviewSpec {
   /** slides = thumbnail rail + canvas · pages = stacked pages · cover = single sheet + CTA */
   layout: "slides" | "pages" | "cover";
-  /** intrinsic PNG size (px) — the renderer rasterizes at 1280px wide */
+  /** intrinsic PNG size (px), the renderer rasterizes at 1280px wide */
   width: number;
   height: number;
   images: string[];

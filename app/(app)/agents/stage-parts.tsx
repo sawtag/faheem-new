@@ -29,7 +29,7 @@ export function StageHeader({
 
 /**
  * Human-gate marker (design-briefs §3.2): dashed hairline on each side of a
- * centered pill. Purely presentational — appears 3x between stage sections.
+ * centered pill. Purely presentational, appears 3x between stage sections.
  */
 export function GateMarker({ label }: { label: string }) {
   return (

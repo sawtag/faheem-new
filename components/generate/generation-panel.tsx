@@ -27,9 +27,9 @@ const EASE = [0.4, 0, 0.2, 1] as const;
  * The deliverables flow: three artifact rows tick through
  * assembling → building → writing, each morphing into a Lunar-branded
  * FileCard as it lands. Mount-anywhere (chat inline, workspace Artifacts
- * tab) — starts generating on mount by default. When the full run lands,
+ * tab), starts generating on mount by default. When the full run lands,
  * the board deck AUTO-OPENS in the ArtifactPreview slide-over (a fixed
- * overlay, so the host layout — chat thread or tab — is untouched).
+ * overlay, so the host layout, chat thread or tab, is untouched).
  */
 export function GenerationPanel({
   workspace,
@@ -53,7 +53,7 @@ export function GenerationPanel({
     streamGenerate(artifacts, controller.signal, (event) => {
       setEvents((prev) => [...prev, event]);
     }).catch(() => {
-      /* aborted (unmount / StrictMode remount) or network drop — the
+      /* aborted (unmount / StrictMode remount) or network drop, the
          surviving mount re-streams; rows simply stay at their last state */
     });
     return () => {
@@ -246,7 +246,7 @@ function StatusDot({ status }: { status: ArtifactRow["status"] }) {
     );
   }
 
-  // pending — hollow, waiting its turn
+  // pending, hollow, waiting its turn
   return (
     <span
       className="border-border rounded-pill mt-0.5 size-2 shrink-0 border"

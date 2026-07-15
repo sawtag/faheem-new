@@ -61,7 +61,7 @@ Four new cards with real methods and data stories: **Accounting & Quality of Ear
 - In **Jahez chat**, ask ⌘K → "Prepare the IC memo, DCF model, and committee deck." When the deliverables finish generating, a **"Draft email to IC"** button appears on the artifacts panel.
 - Or in the **IC Room** header (appears once Jahez artifacts exist).
 
-**What to try:** the modal opens with the recipients pre-filled (Lunar IC Group), an editable subject, and a Faheem-written body carrying the live model numbers (per-share, weighted IRR vs the 15% hurdle, Shariah status) plus the list of generated materials. Edit anything, then **"Open in Outlook"** — it opens your mail client with everything filled in; _you_ review and send (Faheem never sends). The draft is logged in the Audit Trail as an "IC draft" entry.
+**What to try:** the modal opens with the recipients pre-filled (Lunar IC Group), an editable subject, and a Faheem-written body carrying the live model numbers (per-share, weighted IRR vs the 15% hurdle, compliance status) plus the list of generated materials. Edit anything, then **"Open in Outlook"** — it opens your mail client with everything filled in; _you_ review and send (Faheem never sends). The draft is logged in the Audit Trail as an "IC draft" entry.
 
 ## 8. ⌘K palette — the Live Model demo beat
 

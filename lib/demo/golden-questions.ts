@@ -1,9 +1,9 @@
 /**
- * Golden question registry (P5a) — the single source for the record-goldens
+ * Golden question registry (P5a), the single source for the record-goldens
  * script and the ⌘K demo palette. Every `.request` is a real `ChatRequest`
  * (zod-validated below and in tests/demo/golden-questions.test.ts), so
  * selecting a palette entry reproduces the exact recorded cache key
- * (lib/ai/cache.ts's `cacheKey()` formula) — no on-stage typo can ever cause
+ * (lib/ai/cache.ts's `cacheKey()` formula), no on-stage typo can ever cause
  * a cache miss.
  */
 import { z } from "zod";
@@ -26,14 +26,14 @@ export function goldenQuestionById(id: string): GoldenQuestion | undefined {
 }
 
 /**
- * Palette filtering — pure so it unit-tests without React (tests/demo/golden-questions.test.ts).
+ * Palette filtering, pure so it unit-tests without React (tests/demo/golden-questions.test.ts).
  *
  * Language gate first: an entry only ever appears while the UI is already in
  * its recorded language, so a presenter can never fire a `lang` mismatch that
- * would miss the exact-key cache (the Arabic Shariah beat only shows up once
+ * would miss the exact-key cache (the Arabic compliance beat only shows up once
  * the presenter has switched to `ar`).
  *
- * Context gate: `null` (a page with no chat surface — Home, Deals, Agents…)
+ * Context gate: `null` (a page with no chat surface, Home, Deals, Agents…)
  * shows everything; a workspace page shows that workspace's entries plus firm
  * entries; the IC room shows only `ic` entries; a firm page shows only firm
  * entries.
@@ -59,7 +59,7 @@ export function filterGoldenQuestions(
   return byLang.filter((q) => q.request.context.kind === "firm");
 }
 
-/** Groups already-filtered entries by context, in encounter order — the palette's section headers. */
+/** Groups already-filtered entries by context, in encounter order, the palette's section headers. */
 export function groupGoldenQuestions(
   entries: GoldenQuestion[],
 ): Map<string, GoldenQuestion[]> {

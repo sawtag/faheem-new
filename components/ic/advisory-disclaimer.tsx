@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 /**
  * The governance line of the whole demo, made permanent: Faheem advises, the
  * committee decides. Persistent (never dismissible), sits directly under the
- * page title so it is visible without scrolling — human gate #3.
+ * page title so it is visible without scrolling, human gate #3.
  */
 export function AdvisoryDisclaimer() {
   const t = useTranslations("ic");

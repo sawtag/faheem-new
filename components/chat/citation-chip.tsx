@@ -7,7 +7,7 @@ import { stashCitationHighlight } from "@/components/chat/highlight-bus";
 import { cn } from "@/lib/utils";
 
 /**
- * Inline numbered citation chip (mint) — the marker `[[n]]` rendered as a
+ * Inline numbered citation chip (mint), the marker `[[n]]` rendered as a
  * clickable chip that opens the cited page in the PdfPanel, with the quote
  * stashed on the highlight bus so the panel marks the cited passage. Hover
  * reveals the ≤200-char source quote. When the matching citation event hasn't

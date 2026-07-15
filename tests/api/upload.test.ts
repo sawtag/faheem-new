@@ -1,6 +1,6 @@
 // @vitest-environment node
 // Exercises the server upload route: multipart FormData + File must come from
-// the same (undici) realm the route's `instanceof File` check uses — jsdom's
+// the same (undici) realm the route's `instanceof File` check uses, jsdom's
 // File class differs and would spuriously 400.
 import fs from "node:fs";
 import os from "node:os";
@@ -44,7 +44,7 @@ function uploadRequest(
   });
 }
 
-describe("POST /api/upload — validation", () => {
+describe("POST /api/upload, validation", () => {
   it("rejects a non-PDF (magic bytes) with 415", async () => {
     const res = await POST(
       uploadRequest(Buffer.from("PK\x03\x04 zip"), "x.pdf"),
@@ -88,7 +88,7 @@ describe("POST /api/upload — validation", () => {
   });
 });
 
-describe("POST /api/upload — success paths", () => {
+describe("POST /api/upload, success paths", () => {
   it("uploads to Files API (injected), saves to disk, registers with fileId", async () => {
     const seen: string[] = [];
     setUploaderForTests(async (_bytes, filename) => {

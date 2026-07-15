@@ -1,8 +1,8 @@
 {
   "common": {
     "appName": "Faheem",
-    "tagline": "AI-Powered Investment Analysis — Analyzing the future, empowering decisions.",
-    "description": "Faheem is an agentic AI platform for Saudi investment firms — grounded analysis, citations, and audit trails for Lunar Investments.",
+    "tagline": "AI-Powered Investment Analysis. Analyzing the future, empowering decisions.",
+    "description": "Faheem is an agentic AI platform for Saudi investment firms: grounded analysis, citations, and audit trails for Lunar Investments.",
     "toggleLocale": "العربية"
   },
   "login": {
@@ -20,19 +20,19 @@
   },
   "agents": {
     "title": "Agents",
-    "subtitle": "11 specialist teams · 20+ agents — orchestrated, auditable, human-gated.",
-    "stage1": "Stage 1 — Screening",
-    "stage2": "Stage 2 — Deep Analysis",
+    "subtitle": "11 specialist teams · 20+ agents: orchestrated, auditable, human-gated.",
+    "stage1": "Stage 1: Screening",
+    "stage2": "Stage 2: Deep Analysis",
     "stage2Caption": "11 specialist teams · 20+ agents",
-    "stage3": "Stage 3 — Investment Committee",
-    "gate1": "Human gate — the analyst decides",
-    "gate2": "Human gate — the analyst reviews every deliverable",
-    "gate3": "Human gate — the committee decides",
+    "stage3": "Stage 3: Investment Committee",
+    "gate1": "Human gate: the analyst decides",
+    "gate2": "Human gate: the analyst reviews every deliverable",
+    "gate3": "Human gate: the committee decides",
     "orchestrator": "Orchestrator / Planner",
     "orchestratorDesc": "Routes and sequences tasks across the specialist teams",
     "alwaysOn": "Always on",
     "factChecker": "Fact-checker",
-    "advisoryOnly": "Advisory only — the investment decision rests with the committee.",
+    "advisoryOnly": "Advisory only: the investment decision rests with the committee.",
     "citesCharter": "Cites: Lunar IC Charter",
     "mentionHint": "Mention in any chat",
     "methods": {
@@ -45,9 +45,9 @@
       "valuation": "DCF (FCFF/FCFE, WACC, Gordon TV) · Trading comps · Precedents · LBO-lite · Sensitivity & scenarios",
       "comparables": "Comp-set construction · Multiple regression vs growth/margin",
       "risk": "Quantified risk scorecard (probability × impact) · Scenario-weighted return · Mandate-breach & concentration checks",
-      "sentiment": "Social & forum theme tagging on the illustrative demo pack · Label + one-line rationale, signal only — never a sourced figure",
+      "sentiment": "Social & forum theme tagging on the illustrative demo pack · Label + one-line rationale, signal only: never a sourced figure",
       "writing": "IC memos · Research notes · Pitch decks · Periodic reports",
-      "compliance": "Shariah screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
+      "compliance": "Compliance screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
       "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
     }
@@ -78,8 +78,8 @@
     "actionQuestion": "Question asked",
     "actionArtifact": "Artifact generated",
     "actionScreening": "Advanced past screening",
-    "empty": "No activity yet — Faheem logs every answer, source, and artifact here.",
-    "paused": "Live updates paused — retrying…",
+    "empty": "No activity yet. Faheem logs every answer, source, and artifact here.",
+    "paused": "Live updates paused. Retrying…",
     "filterAll": "All",
     "filterFirm": "Firm",
     "contextFirm": "Lunar",
@@ -89,13 +89,14 @@
   },
   "connections": {
     "title": "Connections",
-    "subtitle": "Faheem's data sources — market data, disclosures, and your internal systems.",
+    "subtitle": "Faheem's data sources: market data, disclosures, and your internal systems.",
     "addMcp": "Add custom MCP",
     "connected": "Connected",
     "available": "Available",
     "configure": "Configure",
     "connect": "Connect",
     "disconnect": "Disconnect",
+    "visitWebsite": "Visit website",
     "moreActions": "More actions",
     "cancel": "Cancel",
     "searchPlaceholder": "Search connectors…",
@@ -105,7 +106,7 @@
     },
     "mcp": {
       "title": "Add custom MCP connector",
-      "caption": "Model Context Protocol — any internal system can speak to Faheem.",
+      "caption": "Model Context Protocol: any internal system can speak to Faheem.",
       "name": "Name",
       "namePlaceholder": "Lunar Portfolio DB",
       "url": "Remote server URL",
@@ -138,9 +139,9 @@
     "back": "Back",
     "continue": "Continue",
     "finish": "Create IC Charter",
-    "stage1": "Stage 1 — Screening",
-    "stage2": "Stage 2 — Deep Analysis",
-    "stage3": "Stage 3 — Investment Committee",
+    "stage1": "Stage 1: Screening",
+    "stage2": "Stage 2: Deep Analysis",
+    "stage3": "Stage 3: Investment Committee",
     "mandate": {
       "irr": "Target IRR hurdle",
       "concentration": "Max single-name concentration",
@@ -152,8 +153,8 @@
       "liquidityQuarterly": "Quarterly",
       "liquiditySemiAnnual": "Semi-annual",
       "liquidityAnnual": "Annual",
-      "shariah": "Shariah screen required",
-      "shariahNote": "Per AAOIFI methodology",
+      "compliance": "Compliance screen required",
+      "complianceNote": "Per AAOIFI methodology",
       "sectors": "Sector appetite",
       "sector": {
         "technology": "Technology",
@@ -175,7 +176,7 @@
   },
   "shell": {
     "newChat": "New Chat",
-    "pinned": "Pinned",
+    "projects": "Projects",
     "settings": "Settings",
     "mvpRoadmap": "On the MVP roadmap",
     "collapse": "Collapse sidebar",
@@ -194,17 +195,12 @@
       "ic": "IC Room",
       "skills": "Skills",
       "dashboard": "Dashboard"
-    },
-    "emailToast": {
-      "title": "Faheem works in your inbox",
-      "body": "Forward any CIM or data-room link to <email>faheem@lunar-inv.sa</email> — your analyst picks it up.",
-      "dismiss": "Dismiss"
     }
   },
   "chat": {
     "empty": {
       "title": "Start a new analysis",
-      "subtitle": "Ask about a company, a filing, or your mandate — every answer is grounded and cited."
+      "subtitle": "Ask about a company, a filing, or your mandate. Every answer is grounded and cited."
     },
     "thinking": "Faheem is analyzing…",
     "composer": {
@@ -222,9 +218,6 @@
       "agentsHeader": "Agents",
       "docsHeader": "Documents",
       "noMatches": "No matches",
-      "sources": "Sources",
-      "sourcesExternal": "External",
-      "sourcesInternal": "Internal",
       "modelLabel": "Model"
     },
     "model": {
@@ -234,42 +227,24 @@
       },
       "max": {
         "name": "Faheem · Max",
-        "desc": "Most capable — full deliverables & deep analysis"
+        "desc": "Most capable: full deliverables & deep analysis"
       },
       "light": {
         "name": "Faheem · Light",
         "desc": "Faster drafting and quick lookups"
       }
     },
-    "source": {
-      "tadawul": {
-        "name": "Tadawul disclosures",
-        "desc": "Official Saudi Exchange filings, disclosures and announcements."
-      },
-      "argaam": {
-        "name": "Argaam",
-        "desc": "Saudi financial news and market data."
-      },
-      "news": {
-        "name": "News",
-        "desc": "Global market news and industry coverage."
-      },
-      "web": {
-        "name": "Web",
-        "desc": "Open web search for context beyond your sources."
-      },
-      "dataroom": {
-        "name": "Lunar Data Room",
-        "desc": "Deal documents and internal files."
-      },
-      "templates": {
-        "name": "Templates",
-        "desc": "Lunar-branded memo, model and deck templates."
-      },
-      "mandate": {
-        "name": "Mandate",
-        "desc": "Your IC Charter — cited back in every decision."
-      }
+    "sourcePicker": {
+      "trigger": "Data sources",
+      "all": "All sources",
+      "count": "{count} sources",
+      "external": "External Sources",
+      "broker": "Broker Research",
+      "internal": "Internal Sources",
+      "search": "Search sources…",
+      "noMatches": "No sources match",
+      "visit": "Visit site",
+      "manage": "Manage connectors"
     },
     "activity": {
       "working": "Analyzing",
@@ -279,7 +254,7 @@
       "show": "Show agent activity",
       "hide": "Collapse agent activity"
     },
-    "verified": "Verified — {count} sources cited",
+    "verified": "Verified · {count} sources cited",
     "sources": {
       "title": "Sources",
       "page": "p.{page}"
@@ -290,6 +265,8 @@
       "zoomIn": "Zoom in",
       "zoomOut": "Zoom out",
       "fit": "Fit width",
+      "expand": "Expand",
+      "exitFull": "Exit full screen",
       "prev": "Previous page",
       "next": "Next page",
       "close": "Close document",
@@ -312,51 +289,47 @@
   "home": {
     "greeting": "What can Faheem do for you today, <name>Ali</name>?",
     "placeholders": {
-      "p1": "Break down Jahez's FY2025 unit economics — GMV, take rate and AOV…",
+      "p1": "Break down Jahez's FY2025 unit economics: GMV, take rate and AOV…",
       "p2": "Compare Jahez to Talabat, Delivery Hero and DoorDash on EV/GMV…",
       "p3": "Draft an IC memo for Jahez against our 15% IRR hurdle…",
-      "p4": "Stress-test Jahez's valuation — WACC against terminal growth…"
+      "p4": "Stress-test Jahez's valuation: WACC against terminal growth…"
     },
     "pills": {
       "label": "Quick actions",
       "dcf": {
         "label": "Run DCF",
-        "prompt": "Build a DCF valuation for Jahez — FCFF with a WACC build-up and a Gordon terminal value — and show the implied equity value per share."
+        "prompt": "Build a DCF valuation for Jahez (FCFF with a WACC build-up and a Gordon terminal value) and show the implied equity value per share."
       },
       "comps": {
         "label": "Comps Analysis",
-        "prompt": "Value Jahez against its quick-commerce peers — Talabat, Delivery Hero, DoorDash and Deliveroo — on EV/Revenue, EV/EBITDA and EV/GMV, and give me the implied valuation range."
+        "prompt": "Value Jahez against its quick-commerce peers (Talabat, Delivery Hero, DoorDash and Deliveroo) on EV/Revenue, EV/EBITDA and EV/GMV, and give me the implied valuation range."
       },
       "icMemo": {
         "label": "IC Memo",
-        "prompt": "Draft an Investment Committee memo for Jahez — thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR hurdle."
+        "prompt": "Draft an Investment Committee memo for Jahez: thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR hurdle."
       },
       "riskScorecard": {
         "label": "Risk Scorecard",
-        "prompt": "Build a quantified risk scorecard for Jahez — probability × impact across market, margin, concentration and regulatory risks — and flag any mandate breaches."
+        "prompt": "Build a quantified risk scorecard for Jahez (probability × impact across market, margin, concentration and regulatory risks) and flag any mandate breaches."
       },
       "sensitivity": {
         "label": "Sensitivity Analysis",
-        "prompt": "Run a two-way sensitivity on Jahez's valuation — WACC against terminal growth, then take rate against GMV growth — and show where the fair value holds."
+        "prompt": "Run a two-way sensitivity on Jahez's valuation (WACC against terminal growth, then take rate against GMV growth) and show where the fair value holds."
       },
-      "shariah": {
-        "label": "Shariah Screen",
-        "prompt": "Run an AAOIFI Shariah screen on Jahez — debt-to-market-cap, non-permissible income and liquidity ratios — with a clear pass or fail on each threshold."
+      "compliance": {
+        "label": "Compliance Screen",
+        "prompt": "Run an AAOIFI compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
       }
     },
-    "recent": {
-      "title": "Recent workspaces"
-    },
-    "stages": {
-      "screening": "Screening",
-      "analysis": "Deep Analysis",
-      "ic-review": "IC Review"
+    "brief": {
+      "title": "While you were away",
+      "audit": "Full audit trail"
     }
   },
   "deals": {
     "board": {
       "title": "Deal pipeline",
-      "subtitle": "From first contact to committee — screening, analysis, and IC review in one governed flow.",
+      "subtitle": "From first contact to committee: screening, analysis, and IC review in one governed flow.",
       "filterLabel": "Filter by origin",
       "filterAll": "All",
       "filterInbound": "Inbound (Private)",
@@ -373,9 +346,9 @@
     },
     "gate": {
       "message": {
-        "screening": "Screening complete — the next step is a human decision.",
-        "analysis": "Deep-dive analysis underway — send to committee when the pack is ready.",
-        "icReview": "With the Investment Committee — the advisory view lives in the IC room.",
+        "screening": "Screening complete. The next step is a human decision.",
+        "analysis": "Deep-dive analysis underway. Send to committee when the pack is ready.",
+        "icReview": "With the Investment Committee (the advisory view lives in the IC room).",
         "declined": "Declined at screening."
       },
       "humanGate": "Human decision gate",
@@ -396,13 +369,13 @@
     },
     "scorecard": {
       "title": "Screening scorecard",
-      "subtitle": "Mandate-fit check against the Lunar IC Charter — every verdict cites its clause.",
+      "subtitle": "Mandate-fit check against the Lunar IC Charter. Every verdict cites its clause.",
       "pass": "Pass",
       "warn": "Flag",
       "fail": "Fail",
       "cite": "IC Charter · p.{page}",
       "citeLabel": "Open the IC Charter at page {page}",
-      "anonymized": "Details anonymized — client confidentiality."
+      "anonymized": "Details anonymized (client confidentiality)."
     },
     "overview": {
       "originTitle": "Origin",
@@ -427,7 +400,7 @@
       "open": "Open"
     },
     "chats": {
-      "empty": "No chats in this workspace yet — ask Faheem above to start one.",
+      "empty": "No chats in this workspace yet. Ask Faheem above to start one.",
       "messages": "{count} messages"
     },
     "artifacts": {
@@ -477,10 +450,10 @@
   "ic": {
     "title": "Investment Committee",
     "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR hurdle",
-    "disclaimer": "Advisory only — the investment decision rests with the committee.",
-    "tableNote": "Every figure is drawn from each deal's completed analysis and cites its source page — open any citation to verify.",
+    "disclaimer": "Advisory only: the investment decision rests with the committee.",
+    "tableNote": "Every figure is drawn from each deal's completed analysis and cites its source page. Open any citation to verify.",
     "table": {
-      "caption": "Deal comparison — analysis-complete pipeline",
+      "caption": "Deal comparison: analysis-complete pipeline",
       "metric": "Metric",
       "irr": "Implied IRR at entry",
       "irrVsHurdle": "vs {hurdle} hurdle",
@@ -488,14 +461,14 @@
       "riskScore": "Risk score",
       "riskOutOf": "{score} / 10",
       "mandateFit": "Mandate fit",
-      "shariah": "Shariah screen",
+      "compliance": "Compliance screen",
       "recommendation": "Analyst recommendation",
       "deltaEqual": "At hurdle",
       "bps": "{bps} bps",
       "pass": "Pass",
       "warn": "Review",
       "fail": "Fail",
-      "pending": "Analysis finalizing — metrics pending model sign-off",
+      "pending": "Analysis finalizing: metrics pending model sign-off",
       "pendingBadge": "In analysis",
       "reviewBadge": "In IC review",
       "source": "Source",
@@ -504,13 +477,13 @@
     "chat": {
       "title": "Ask Faheem IC",
       "scope": "Advisor to the committee",
-      "intro": "Ask for a ranking, a hurdle check, or what would change the call — every answer cites the underlying analysis and the mandate.",
+      "intro": "Ask for a ranking, a hurdle check, or what would change the call, every answer cites the underlying analysis and the mandate.",
       "thinking": "Faheem IC is weighing the cases…",
       "placeholder": "Ask Faheem IC…",
       "send": "Send",
       "stop": "Stop",
       "suggestLabel": "Suggested questions",
-      "suggest1": "Rank these deals — strongest risk-adjusted case?",
+      "suggest1": "Rank these deals: strongest risk-adjusted case?",
       "suggest2": "Does each deal clear our IRR hurdle?",
       "suggest3": "What would change the ranking?"
     }
@@ -543,15 +516,15 @@
       "slideThumb": "Slide {n}",
       "slideOf": "Slide {n} of {total}",
       "pageOf": "Page {n} of {total}",
-      "modelCaption": "Full model: open in Excel — every input cell carries its source.",
+      "modelCaption": "Full model: open in Excel, every input cell carries its source.",
       "openInExcel": "Open in Excel",
       "fallbackTitle": "Preview unavailable",
-      "fallbackCaption": "The file itself is ready — download it below."
+      "fallbackCaption": "The file itself is ready, download it below."
     },
     "draft": {
       "trigger": "Draft email to IC",
       "title": "Draft email to IC",
-      "caption": "This opens your mail client — you review and send.",
+      "caption": "This opens your mail client. You review and send.",
       "toLabel": "To",
       "subjectLabel": "Subject",
       "bodyLabel": "Body",
@@ -560,12 +533,12 @@
       "defaultRecipientName": "Lunar IC Group",
       "cancel": "Cancel",
       "openInOutlook": "Open in Outlook",
-      "subject": "{company} — IC materials & recommendation",
+      "subject": "{company}: IC materials & recommendation",
       "body": {
         "greeting": "Dear Investment Committee,",
-        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {shariah}",
-        "shariahPass": "The Shariah screen passes.",
-        "shariahFail": "The Shariah screen does not pass.",
+        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {compliance}",
+        "compliancePass": "The compliance screen passes.",
+        "complianceFail": "The compliance screen does not pass.",
         "materialsLabel": "Materials:",
         "closing": "Happy to walk through the model or take questions ahead of the meeting.",
         "signOff": "Ali\nLunar Investments"
@@ -602,10 +575,10 @@
     }
   },
   "scheduled": {
-    "subtitle": "Faheem keeps working between sessions — recurring digests, sweeps, and checks that land straight in your inbox or channel.",
+    "subtitle": "Faheem keeps working between sessions: recurring digests, sweeps, and checks that land straight in your inbox or channel.",
     "nextRun": "Next run",
     "toggleLabel": "Enable {name}",
-    "footer": "Scheduled agents run in Faheem Cloud — MVP roadmap."
+    "footer": "Scheduled agents run in Faheem Cloud (MVP roadmap)."
   },
   "upload": {
     "uploading": "Uploading…",
@@ -615,12 +588,12 @@
     "retry": "Retry",
     "dismiss": "Dismiss",
     "badge": "Uploaded",
-    "dropzone": "Drop a PDF or click — it joins this workspace's sources",
+    "dropzone": "Drop a PDF or click, and it joins this workspace's sources",
     "dropzoneHint": "PDF · up to 32 MB"
   },
   "skills": {
     "title": "Skills",
-    "subtitle": "Reusable analyst playbooks — every method sourced, every output audited.",
+    "subtitle": "Reusable analyst playbooks: every method sourced, every output audited.",
     "filterAll": "All",
     "categories": {
       "valuation": "Valuation",
@@ -636,7 +609,7 @@
   },
   "dashboard": {
     "title": "Firm overview",
-    "caption": "Lunar Investments · Riyadh — لونار للاستثمار",
+    "caption": "Lunar Investments · Riyadh · لونار للاستثمار",
     "stats": {
       "pipeline": {
         "label": "Active pipeline",
@@ -663,7 +636,7 @@
     },
     "runs": {
       "title": "Analysis Runs",
-      "subtitle": "Every analysis is a logged, replayable run — stages, sources, and outputs.",
+      "subtitle": "Every analysis is a logged, replayable run: stages, sources, and outputs.",
       "kind": {
         "deepDive": "Deep-dive analysis",
         "screening": "Screening run"
@@ -678,12 +651,12 @@
       "outputsTitle": "Deliverables",
       "citations": "{count} citations · from the recorded analysis run",
       "checks": "{count} checks",
-      "auditFooter": "Logged to the audit trail — every answer and artifact traceable.",
-      "laneComplete": "{name} — complete"
+      "auditFooter": "Logged to the audit trail: every answer and artifact traceable.",
+      "laneComplete": "{name} · complete"
     },
     "macro": {
       "title": "Saudi macro",
-      "subtitle": "GASTAT / SAMA — official sources",
+      "subtitle": "GASTAT / SAMA · official sources",
       "realGdp": "Real GDP · FY2025",
       "cpi": "CPI, average · FY2025",
       "repoRate": "SAMA repo rate",
@@ -708,8 +681,8 @@
       "assumptionBadge": "Analyst assumption",
       "openSource": "Open source",
       "page": "p.{page}",
-      "lockedNote": "Sourced figure — locked, not editable. Only analyst assumptions can be changed in the Live Model.",
-      "editableNote": "Editable in the Live Model — an analyst judgment, not a sourced figure."
+      "lockedNote": "Sourced figure: locked, not editable. Only analyst assumptions can be changed in the Live Model.",
+      "editableNote": "Editable in the Live Model: an analyst judgment, not a sourced figure."
     },
     "units": {
       "years": "{value} yrs"
@@ -718,9 +691,9 @@
       "assumptions": {
         "spread": "Cost-of-debt spread",
         "zakat": "Zakat rate",
-        "g": "Terminal growth — base case",
-        "gBull": "Terminal growth — bull case",
-        "gBear": "Terminal growth — bear case",
+        "g": "Terminal growth · base case",
+        "gBull": "Terminal growth · bull case",
+        "gBear": "Terminal growth · bear case",
         "holdYears": "IRR hold period",
         "dnaRate": "D&A rate",
         "capexRate": "Capex rate",
@@ -740,8 +713,8 @@
       },
       "beta": "Levered beta",
       "ke": "Cost of equity",
-      "kdPre": "Cost of debt — pre-tax",
-      "kdAfter": "Cost of debt — after-tax",
+      "kdPre": "Cost of debt · pre-tax",
+      "kdAfter": "Cost of debt · after-tax",
       "price": "Share price",
       "shares": "Shares outstanding",
       "cash": "Cash",
@@ -760,22 +733,22 @@
       },
       "comps": {
         "field": {
-          "min": "Comps range — low",
-          "median": "Comps range — median",
-          "max": "Comps range — high"
+          "min": "Comps range · low",
+          "median": "Comps range · median",
+          "max": "Comps range · high"
         }
       },
-      "shariah": {
-        "debtRatio": "Shariah debt ratio",
-        "cashRatio": "Shariah cash ratio",
-        "leaseInclRatio": "Shariah lease-inclusive ratio"
+      "compliance": {
+        "debtRatio": "Compliance debt ratio",
+        "cashRatio": "Compliance cash ratio",
+        "leaseInclRatio": "Compliance lease-inclusive ratio"
       },
       "riskScore": "Risk composite score",
       "ic": {
-        "irr": "IC — implied IRR at entry",
-        "hurdle": "IC — hurdle rate",
-        "expectedReturn": "IC — scenario-weighted expected return",
-        "riskScore": "IC — risk score"
+        "irr": "IC · implied IRR at entry",
+        "hurdle": "IC · hurdle rate",
+        "expectedReturn": "IC · scenario-weighted expected return",
+        "riskScore": "IC · risk score"
       },
       "series": {
         "orders": "Orders",
@@ -836,95 +809,95 @@
         "grid2": "FY30E EBITDA sensitivity grid (take rate × GMV growth)"
       },
       "templates": {
-        "series": "{series} — {year}",
-        "scenarioSeries": "{scenario} — {series} — {year}",
-        "scenarioScalar": "{scenario} — {series}",
-        "riskWeight": "Risk register weight — row {n}",
-        "compsImplied": "{comp} — {metric} implied value/share",
-        "compsMultiple": "{comp} — {metric} (market multiple)",
-        "axis": "{axis} — point {n}",
-        "gridCell": "{grid} — row {row}, col {col}"
+        "series": "{series} · {year}",
+        "scenarioSeries": "{scenario} · {series} · {year}",
+        "scenarioScalar": "{scenario} · {series}",
+        "riskWeight": "Risk register weight · row {n}",
+        "compsImplied": "{comp} · {metric} implied value/share",
+        "compsMultiple": "{comp}, {metric} (market multiple)",
+        "axis": "{axis}, point {n}",
+        "gridCell": "{grid}, row {row}, col {col}"
       }
     },
     "formulas": {
-      "capm-ke": "Cost of equity via CAPM: the risk-free rate plus beta times the equity risk premium — the return equity investors demand for holding Jahez, given its risk relative to the broader market.",
+      "capm-ke": "Cost of equity via CAPM: the risk-free rate plus beta times the equity risk premium, the return equity investors demand for holding Jahez, given its risk relative to the broader market.",
       "kd-pre": "Pre-tax cost of debt: the risk-free rate plus a credit spread reflecting Jahez's borrowing risk. No clean market-quoted Jahez credit spread exists, so the spread is analyst judgment (see rationale).",
       "kd-after": "After-tax cost of debt: the pre-tax cost of debt reduced by the zakat tax shield, since financing costs are effectively deductible.",
       "wacc": "Weighted average cost of capital: the blended return the business must generate to satisfy both equity and debt holders, weighted by how much of the capital structure each represents.",
       "beta-comp-set": "Levered beta from the two-peer comp set (the median of the two). Jahez's own listed beta is a thin-trading artifact, so the discount rate borrows risk from close global peers instead.",
-      "market-cap": "Market capitalization: shares outstanding times the current share price — what the market currently pays for all of Jahez's equity.",
-      "capital-total": "Total invested capital: market cap plus interest-bearing debt — the base the WACC weights (equity weight, debt weight) are computed against.",
-      "weight-equity": "Equity's share of total capital — how much of Jahez's capital structure is funded by shareholders rather than lenders.",
-      "weight-debt": "Debt's share of total capital — the lender-funded portion of the capital structure.",
+      "market-cap": "Market capitalization: shares outstanding times the current share price, what the market currently pays for all of Jahez's equity.",
+      "capital-total": "Total invested capital: market cap plus interest-bearing debt, the base the WACC weights (equity weight, debt weight) are computed against.",
+      "weight-equity": "Equity's share of total capital, how much of Jahez's capital structure is funded by shareholders rather than lenders.",
+      "weight-debt": "Debt's share of total capital, the lender-funded portion of the capital structure.",
       "net-cash": "Net cash: cash on hand less interest-bearing debt and lease liabilities. Added back to enterprise value to reach equity value, since it belongs to shareholders, not operations.",
-      "orders-growth": "Each forecast year's order count grows off the prior year at the assumed order-growth rate — the volume driver of GMV.",
-      "aov-growth": "Average order value grows off the prior year at the assumed AOV-growth rate — the price/basket-mix driver of GMV.",
-      "gmv": "Gross merchandise value: total orders times average order value — the top of the revenue funnel, before Jahez's take rate is applied.",
-      "net-revenue": "Net revenue: GMV times the net-revenue rate — the share of order value Jahez recognizes as its own revenue after partner and rider economics.",
-      "commission": "Commission revenue: GMV times the take rate — the delivery-fee/commission line specifically, a component of net revenue.",
-      "take-rate-held": "The commission take rate is held flat at its FY2025 actual level through the forecast — no further take-rate expansion or compression is assumed.",
-      "ebitda": "EBITDA: net revenue times the assumed EBITDA margin — operating profit before depreciation, amortization, interest and tax, the 'core engine' profitability metric.",
-      "dna": "Depreciation & amortization, modeled as a fixed rate of net revenue — the non-cash charge that separates EBITDA from EBIT.",
-      "ebit": "EBIT: EBITDA less D&A — operating profit after non-cash charges, the base for NOPAT.",
-      "nopat": "Net operating profit after tax: EBIT taxed at the zakat rate — the after-tax operating earnings that feed free cash flow, before financing effects.",
-      "capex": "Capital expenditure, modeled as a fixed rate of net revenue — cash reinvested in the business, a build cost of growth.",
-      "dnwc": "Change in net working capital: the NWC rate applied to the year-over-year change in net revenue — cash tied up, or released, as the business scales.",
-      "fcff": "Free cash flow to the firm: NOPAT plus D&A, less capex and the change in working capital — the cash a DCF actually discounts, available to all capital providers.",
-      "rev-growth": "Base-case net-revenue growth, computed directly from the modeled net-revenue path (this year over last) — the scenario's underlying trajectory before bull/bear deltas are layered on.",
-      "scenario-rev-growth": "Bull/bear net-revenue growth: the base case's growth rate plus a scenario-specific delta — the operating case flexed up or down around the same forecast structure.",
-      "scenario-margin": "Bull/bear EBITDA margin: the base case's assumed margin plus a scenario-specific delta — operating leverage running a little better or worse than the central case.",
-      "net-rev-growth": "Net revenue in a forecast year equals the prior year's net revenue grown at that year's rate — the recursive build of the full net-revenue path from the growth assumptions.",
-      "pv-factor": "Present-value factor: one discounted back t years at WACC — converts a future year's cash flow into today's terms.",
+      "orders-growth": "Each forecast year's order count grows off the prior year at the assumed order-growth rate, the volume driver of GMV.",
+      "aov-growth": "Average order value grows off the prior year at the assumed AOV-growth rate, the price/basket-mix driver of GMV.",
+      "gmv": "Gross merchandise value: total orders times average order value, the top of the revenue funnel, before Jahez's take rate is applied.",
+      "net-revenue": "Net revenue: GMV times the net-revenue rate, the share of order value Jahez recognizes as its own revenue after partner and rider economics.",
+      "commission": "Commission revenue: GMV times the take rate, the delivery-fee/commission line specifically, a component of net revenue.",
+      "take-rate-held": "The commission take rate is held flat at its FY2025 actual level through the forecast, no further take-rate expansion or compression is assumed.",
+      "ebitda": "EBITDA: net revenue times the assumed EBITDA margin, operating profit before depreciation, amortization, interest and tax, the 'core engine' profitability metric.",
+      "dna": "Depreciation & amortization, modeled as a fixed rate of net revenue, the non-cash charge that separates EBITDA from EBIT.",
+      "ebit": "EBIT: EBITDA less D&A, operating profit after non-cash charges, the base for NOPAT.",
+      "nopat": "Net operating profit after tax: EBIT taxed at the zakat rate, the after-tax operating earnings that feed free cash flow, before financing effects.",
+      "capex": "Capital expenditure, modeled as a fixed rate of net revenue, cash reinvested in the business, a build cost of growth.",
+      "dnwc": "Change in net working capital: the NWC rate applied to the year-over-year change in net revenue, cash tied up, or released, as the business scales.",
+      "fcff": "Free cash flow to the firm: NOPAT plus D&A, less capex and the change in working capital, the cash a DCF actually discounts, available to all capital providers.",
+      "rev-growth": "Base-case net-revenue growth, computed directly from the modeled net-revenue path (this year over last), the scenario's underlying trajectory before bull/bear deltas are layered on.",
+      "scenario-rev-growth": "Bull/bear net-revenue growth: the base case's growth rate plus a scenario-specific delta, the operating case flexed up or down around the same forecast structure.",
+      "scenario-margin": "Bull/bear EBITDA margin: the base case's assumed margin plus a scenario-specific delta, operating leverage running a little better or worse than the central case.",
+      "net-rev-growth": "Net revenue in a forecast year equals the prior year's net revenue grown at that year's rate, the recursive build of the full net-revenue path from the growth assumptions.",
+      "pv-factor": "Present-value factor: one discounted back t years at WACC, converts a future year's cash flow into today's terms.",
       "pv-fcff": "The present value of one year's FCFF: that year's cash flow times its present-value factor.",
       "sum-pv": "The sum of the present values of all five explicit-period free cash flows, FY26E through FY30E.",
-      "gordon-tv": "Terminal value (Gordon growth): the final forecast year's FCFF, grown one more year at the terminal rate, capitalized at (WACC − g) — the value of every cash flow beyond the explicit forecast, assuming steady growth forever.",
+      "gordon-tv": "Terminal value (Gordon growth): the final forecast year's FCFF, grown one more year at the terminal rate, capitalized at (WACC − g), the value of every cash flow beyond the explicit forecast, assuming steady growth forever.",
       "pv-tv": "The present value of the terminal value, discounted back the same five years as the explicit-period cash flows, at the same WACC.",
-      "dcf-ev": "Enterprise value: the sum of the present values of the explicit-period cash flows plus the present value of the terminal value — everything the DCF says the operating business is worth today.",
+      "dcf-ev": "Enterprise value: the sum of the present values of the explicit-period cash flows plus the present value of the terminal value, everything the DCF says the operating business is worth today.",
       "equity-value": "Equity value: enterprise value plus net cash. EV values the whole capital structure; adding back net cash (owed to no one) reaches what's left for shareholders.",
-      "per-share": "Value per share: equity value divided by shares outstanding — the DCF's headline output, comparable directly to the traded share price.",
+      "per-share": "Value per share: equity value divided by shares outstanding, the DCF's headline output, comparable directly to the traded share price.",
       "upside": "Upside to the current price: the DCF value per share divided by the current share price, minus one.",
-      "exit-irr": "Exit IRR: assumes the share price converges to the DCF's intrinsic value over the hold period, with that value itself compounding at the cost of equity — buying at fair value alone earns Ke; the gap to today's discount is the extra annualized return.",
-      "prob-weighted-per-share": "Probability-weighted value per share: each scenario's per-share value weighted by its assigned probability (25% bull / 50% base / 25% bear) and summed — the single expected fair value across the three cases.",
-      "prob-weighted-return": "Probability-weighted IRR: each scenario's IRR weighted by its assigned probability and summed — the expected return an investor entering today would earn across the three cases.",
-      "wacc-axis": "The WACC sensitivity axis: the base-case WACC shifted by ±0.5pp and ±1.0pp steps — one dimension of the two-way valuation sensitivity grid.",
-      "g-axis": "The terminal-growth sensitivity axis: the base-case terminal growth shifted by ±0.25pp and ±0.5pp steps — the other dimension of the two-way valuation sensitivity grid.",
-      "grid1-per-share": "Each cell of the value/share sensitivity grid re-runs the DCF math — explicit-period PV plus terminal value, net of net cash and shares — at that row/column's WACC and terminal-growth pair, showing how much the valuation moves as those two judgment calls move.",
+      "exit-irr": "Exit IRR: assumes the share price converges to the DCF's intrinsic value over the hold period, with that value itself compounding at the cost of equity, buying at fair value alone earns Ke; the gap to today's discount is the extra annualized return.",
+      "prob-weighted-per-share": "Probability-weighted value per share: each scenario's per-share value weighted by its assigned probability (25% bull / 50% base / 25% bear) and summed, the single expected fair value across the three cases.",
+      "prob-weighted-return": "Probability-weighted IRR: each scenario's IRR weighted by its assigned probability and summed, the expected return an investor entering today would earn across the three cases.",
+      "wacc-axis": "The WACC sensitivity axis: the base-case WACC shifted by ±0.5pp and ±1.0pp steps, one dimension of the two-way valuation sensitivity grid.",
+      "g-axis": "The terminal-growth sensitivity axis: the base-case terminal growth shifted by ±0.25pp and ±0.5pp steps, the other dimension of the two-way valuation sensitivity grid.",
+      "grid1-per-share": "Each cell of the value/share sensitivity grid re-runs the DCF math, explicit-period PV plus terminal value, net of net cash and shares, at that row/column's WACC and terminal-growth pair, showing how much the valuation moves as those two judgment calls move.",
       "take-axis": "The take-rate stress axis for the second sensitivity grid: five monetization-rate points centered on the terminal net-revenue rate.",
       "gmv-growth-axis": "The GMV-growth stress axis for the second sensitivity grid: five growth points bracketing the base case's implied five-year GMV CAGR.",
-      "grid2-ebitda": "Each cell of the FY30E EBITDA sensitivity grid compounds FY2025 GMV forward at that column's growth rate for five years, then applies that row's take rate and the terminal EBITDA margin — stress-testing terminal-year profitability against monetization and volume assumptions.",
-      "comps-ev-rev": "Implied value per share from EV/Revenue: the peer's revenue multiple applied to Jahez's FY2025 net revenue, plus net cash, divided by shares — what Jahez would be worth trading like this peer, on revenue.",
-      "comps-ev-ebitda": "Implied value per share from EV/EBITDA: the peer's EBITDA multiple applied to Jahez's FY2025 EBITDA, plus net cash, divided by shares — the same triangulation, on profitability instead of revenue.",
-      "comps-pe": "Implied value per share from P/E: the peer's price/earnings multiple applied to Jahez's FY2025 net income, divided by shares — a bottom-line-based cross-check.",
-      "comps-min": "The lowest implied value per share across all eight comps triangulations — the bottom of the comps-implied valuation range.",
-      "comps-median": "The median implied value per share across all eight comps triangulations — the comps' central estimate, set beside the DCF value as a sanity check.",
-      "comps-max": "The highest implied value per share across all eight comps triangulations — the top of the comps-implied valuation range.",
-      "shariah-debt-ratio": "AAOIFI-style Shariah screen: interest-bearing debt as a percentage of market capitalization must stay under 33% — a leverage-based permissibility test, not a valuation input.",
-      "shariah-cash-ratio": "AAOIFI-style Shariah screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33% — the second leg of the ratio-based permissibility test.",
-      "shariah-lease-ratio": "A memo ratio including lease liabilities alongside interest-bearing debt against market capitalization. IFRS-16 leases aren't classic interest-bearing debt, so this is shown for reference, not as the pass/fail line.",
+      "grid2-ebitda": "Each cell of the FY30E EBITDA sensitivity grid compounds FY2025 GMV forward at that column's growth rate for five years, then applies that row's take rate and the terminal EBITDA margin, stress-testing terminal-year profitability against monetization and volume assumptions.",
+      "comps-ev-rev": "Implied value per share from EV/Revenue: the peer's revenue multiple applied to Jahez's FY2025 net revenue, plus net cash, divided by shares, what Jahez would be worth trading like this peer, on revenue.",
+      "comps-ev-ebitda": "Implied value per share from EV/EBITDA: the peer's EBITDA multiple applied to Jahez's FY2025 EBITDA, plus net cash, divided by shares, the same triangulation, on profitability instead of revenue.",
+      "comps-pe": "Implied value per share from P/E: the peer's price/earnings multiple applied to Jahez's FY2025 net income, divided by shares, a bottom-line-based cross-check.",
+      "comps-min": "The lowest implied value per share across all eight comps triangulations, the bottom of the comps-implied valuation range.",
+      "comps-median": "The median implied value per share across all eight comps triangulations, the comps' central estimate, set beside the DCF value as a sanity check.",
+      "comps-max": "The highest implied value per share across all eight comps triangulations, the top of the comps-implied valuation range.",
+      "compliance-debt-ratio": "AAOIFI-style compliance screen: interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based eligibility test, not a valuation input.",
+      "compliance-cash-ratio": "AAOIFI-style compliance screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based eligibility test.",
+      "compliance-lease-ratio": "A memo ratio including lease liabilities alongside interest-bearing debt against market capitalization. IFRS-16 leases aren't classic interest-bearing debt, so this is shown for reference, not as the pass/fail line.",
       "risk-composite": "Quantified risk composite: a peak-weighted blend of the register's probability-times-impact scores (60% the single worst risk, 40% the average across all risks), rescaled to a 0–10 score, so one severe risk can't hide inside a good average."
     },
     "rationale": {
-      "beta": "Levered beta = comp-set median of Peer 1 (1.78) and Peer 2 (1.86) — the regional peer is excluded (insufficient trading history). Jahez's own 5Y beta (0.02) is a thin-trading artifact and is NOT used. A bottom-up unlever/relever to Jahez's capital structure is the flagged next step.",
+      "beta": "Levered beta = comp-set median of Peer 1 (1.78) and Peer 2 (1.86), the regional peer is excluded (insufficient trading history). Jahez's own 5Y beta (0.02) is a thin-trading artifact and is NOT used. A bottom-up unlever/relever to Jahez's capital structure is the flagged next step.",
       "spread": "Cost-of-debt spread of +200bps over the risk-free rate. No clean Jahez credit spread is sourceable (the Cbonds Saudi IG index is paywalled; the sovereign USD spread of ~50–100bps is sovereign, not corporate). 200bps reflects an unrated but cash-generative KSA mid-cap.",
       "zakat": "Saudi zakat convention, ~2.5% of the zakat base for Saudi/GCC-owned entities (vs. the 20% CIT that applies to foreign ownership). Q1-26 zakat of SAR 0.12m sat on a pre-zakat loss, so no meaningful effective rate is observable. Applied as the NOPAT tax rate and the debt tax shield.",
-      "g": "Long-run nominal terminal growth ~3.0% — broadly Saudi long-term inflation / nominal GDP, below the explicit-period growth and above zero real. Bull 3.5% / bear 2.5%.",
+      "g": "Long-run nominal terminal growth ~3.0%, broadly Saudi long-term inflation / nominal GDP, below the explicit-period growth and above zero real. Bull 3.5% / bear 2.5%.",
       "hold": "IRR hold period = 4 years, the mid-point of Lunar's 3–5 year mandate window (see the Lunar IC Charter).",
       "dna": "D&A held at 3.5% of net revenue (FY25 actual ~3.85%; normalizes slightly lower as the IFRS-16 right-of-use base matures).",
       "capex": "Capex at 2.5% of net revenue. No capex line is disclosed in the pack; Jahez is an asset-light platform, so this is set modestly above steady-state maintenance capex.",
       "nwc": "ΔNWC drag at 2.0% of the change in net revenue. Delivery platforms run negative-to-near-zero working capital (collect from diners fast, settle restaurants/riders later); a small 2% drag on incremental revenue is deliberately conservative.",
       "ordersGrowth": "Order growth FY26E +18% (Snoonu full-year consolidation from Oct-2025 plus organic; Q1-26 orders +21% YoY), tapering toward +6% single-market maturity by FY30E.",
       "aovGrowth": "AOV growth FY26E +6% (basket-mix + inflation; Q1-26 AOV +15% YoY on Snoonu mix), tapering to +3%.",
-      "netRevRate": "Net-revenue monetization (net revenue / GMV) eases from FY25's 32.1% to 31.0% in FY26E then holds at 30.5% — reflecting continued delivery-fee competition (KSA platform revenue fell 8.6% YoY in FY25) before stabilizing.",
-      "ebitdaMargin": "EBITDA margin path anchored to management's FY2026 guidance of SAR 200–220m adj. EBITDA (~7.5% on forecast revenue), recovering to 12.0% by FY30E as Q4-25 one-offs roll off, Snoonu (FY25 adj. EBITDA +SAR 53.7m, profitable) consolidates for a full year, and operating leverage builds — a terminal margin at roughly the FY24 peak plus modest leverage.",
+      "netRevRate": "Net-revenue monetization (net revenue / GMV) eases from FY25's 32.1% to 31.0% in FY26E then holds at 30.5%, reflecting continued delivery-fee competition (KSA platform revenue fell 8.6% YoY in FY25) before stabilizing.",
+      "ebitdaMargin": "EBITDA margin path anchored to management's FY2026 guidance of SAR 200–220m adj. EBITDA (~7.5% on forecast revenue), recovering to 12.0% by FY30E as Q4-25 one-offs roll off, Snoonu (FY25 adj. EBITDA +SAR 53.7m, profitable) consolidates for a full year, and operating leverage builds, a terminal margin at roughly the FY24 peak plus modest leverage.",
       "scenario": "Bull/bear apply parallel shifts to net-revenue growth (±~3–4pp/yr) and EBITDA margin (±1.5pp), with terminal growth of 3.5%/2.5%. WACC is held constant to isolate the operating case.",
-      "prob": "Scenario probabilities: 25% bull / 50% base / 25% bear — the analyst's central-case weighting.",
-      "exit": "Exit convention: the share price converges to intrinsic value at exit, and intrinsic value compounds at the cost of equity over the hold. IRR = (1+Ke)·(value/entry)^(1/years) − 1 — buying at fair value earns Ke; the discount to value is the additional annualized premium.",
-      "debtFlat": "Interest-bearing debt and lease liabilities held flat at the FY25 audited level across the forecast — no disclosed amortization schedule.",
-      "cashRoll": "Forecast cash rolled forward as prior-year cash plus FCFF (no dividends/financing modeled — Jahez pays negligible dividends and is net-cash).",
+      "prob": "Scenario probabilities: 25% bull / 50% base / 25% bear, the analyst's central-case weighting.",
+      "exit": "Exit convention: the share price converges to intrinsic value at exit, and intrinsic value compounds at the cost of equity over the hold. IRR = (1+Ke)·(value/entry)^(1/years) − 1, buying at fair value earns Ke; the discount to value is the additional annualized premium.",
+      "debtFlat": "Interest-bearing debt and lease liabilities held flat at the FY25 audited level across the forecast, no disclosed amortization schedule.",
+      "cashRoll": "Forecast cash rolled forward as prior-year cash plus FCFF (no dividends/financing modeled, Jahez pays negligible dividends and is net-cash).",
       "netIncome": "Forecast net income simplified to EBIT × (1 − zakat); net finance cost is ~nil given the net-cash balance sheet.",
-      "actualFcff": "Actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT — capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
-      "hurdle": "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate — the committee's minimum acceptable return for new positions.",
-      "riskWeights": "Quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25 — peak-weighted so one severe risk dominates."
+      "actualFcff": "Actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT, capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
+      "hurdle": "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate, the committee's minimum acceptable return for new positions.",
+      "riskWeights": "Quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25, peak-weighted so one severe risk dominates."
     },
     "live": {
       "eyebrow": "Live model",
@@ -942,7 +915,7 @@
         "perShare": "DCF value / share",
         "weightedIrr": "Weighted IRR",
         "vsPrice": "vs SAR {price} share price · {upside} upside",
-        "recomputes": "Recomputes in-browser — the same engine that builds the Excel."
+        "recomputes": "Recomputes in-browser: the same engine that builds the Excel."
       },
       "strip": {
         "title": "Scenario summary",
@@ -952,8 +925,8 @@
       },
       "cell": {
         "locked": "Source-locked",
-        "lockedCaption": "Sourced actual — locked",
-        "editableCaption": "Analyst assumption — editable",
+        "lockedCaption": "Sourced actual · locked",
+        "editableCaption": "Analyst assumption · editable",
         "selectHint": "Select any cell to trace how it is computed."
       },
       "editor": {
@@ -964,7 +937,7 @@
       "panel": {
         "title": "Methodology",
         "close": "Close methodology panel",
-        "empty": "Select any cell and trace it back to its source — every number, sourced or computed."
+        "empty": "Select any cell and trace it back to its source. Every number, sourced or computed."
       },
       "assumptions": {
         "intro": "Only analyst assumptions are editable; sourced actuals stay locked. Edit a cell and the model recomputes instantly.",
@@ -1014,29 +987,29 @@
         },
         "statement": {
           "title": "Forecast statement & FCFF",
-          "caption": "Base case — margin to EBITDA, then to NOPAT and free cash flow to the firm."
+          "caption": "Base case: margin to EBITDA, then to NOPAT and free cash flow to the firm."
         },
         "pv": {
           "title": "Discounting & valuation bridge",
           "caption": "Explicit-period FCFF plus the Gordon terminal value, discounted to enterprise, equity and per-share value."
         },
         "charts": {
-          "fcff": "Free cash flow path — base case",
+          "fcff": "Free cash flow path · base case",
           "perShare": "Value per share by scenario",
           "fcffSeries": "FCFF",
           "perShareSeries": "Value / share"
         }
       },
       "sensitivity": {
-        "intro": "Two-way stress grids — every cell is live and traceable. The base case is ringed.",
+        "intro": "Two-way stress grids: every cell is live and traceable. The base case is ringed.",
         "grid1": {
-          "title": "Value / share — WACC × terminal growth",
+          "title": "Value / share: WACC × terminal growth",
           "caption": "How the DCF value per share moves as the discount rate and long-run growth shift.",
           "colAxis": "WACC →",
           "rowAxis": "Terminal growth ↓"
         },
         "grid2": {
-          "title": "FY30E EBITDA — take rate × GMV growth",
+          "title": "FY30E EBITDA: take rate × GMV growth",
           "caption": "Terminal-year profitability against monetization and volume assumptions.",
           "colAxis": "GMV growth →",
           "rowAxis": "Take rate ↓"
@@ -1050,7 +1023,7 @@
       }
     },
     "edit": {
-      "placeholder": "Ask for a change — “raise FY26 order growth to 20%”",
+      "placeholder": "Ask for a change: “raise FY26 order growth to 20%”",
       "inputLabel": "Model edit instruction",
       "submit": "Apply",
       "working": "The team is on it",
@@ -1063,21 +1036,21 @@
       "stages": {
         "valuation": "Recomputing the DCF with the new assumption",
         "critical-review": "Re-verifying the provenance chain",
-        "critical-review-locked": "Flagged — that figure is a sourced actual",
-        "compliance": "Re-checking the Shariah ratios",
-        "compliance-skip": "No leverage change — no re-check needed",
+        "critical-review-locked": "Flagged: that figure is a sourced actual",
+        "compliance": "Re-checking the compliance ratios",
+        "compliance-skip": "No leverage change, no re-check needed",
         "writing": "Updating the recommendation line"
       },
-      "recommendationAbove": "Updated view: {perShare} fair value / share — weighted IRR {irr} clears the {hurdle} hurdle.",
-      "recommendationBelow": "Updated view: {perShare} fair value / share — weighted IRR {irr} is below the {hurdle} hurdle.",
-      "sourceLocked": "That figure is a sourced actual — source-locked. Actuals come from the source documents; edit an assumption instead.",
+      "recommendationAbove": "Updated view: {perShare} fair value / share. Weighted IRR {irr} clears the {hurdle} hurdle.",
+      "recommendationBelow": "Updated view: {perShare} fair value / share. Weighted IRR {irr} is below the {hurdle} hurdle.",
+      "sourceLocked": "That figure is a sourced actual (source-locked). Actuals come from the source documents; edit an assumption instead.",
       "unparsed": "Couldn’t map that to an editable assumption. Try “raise FY26 order growth to 20%” or “what if terminal growth is 3.5%?”."
     }
   },
   "sentiment": {
     "title": "Market sentiment",
     "caption": "Qualitative read on social & forum chatter",
-    "signalOnly": "Signal only — not a valuation input",
+    "signalOnly": "Signal only, not a valuation input",
     "viewPack": "View the social pack",
     "labels": {
       "constructive": "Constructive",
@@ -1086,7 +1059,7 @@
     },
     "dialog": {
       "title": "Illustrative social & forum pack",
-      "caption": "Synthetic demo content written for this pack — never real scraped posts, never a data source.",
+      "caption": "Synthetic demo content written for this pack, never real scraped posts, never a data source.",
       "illustrativeTag": "Illustrative demo data",
       "sourceTypes": {
         "forum": "Forum",

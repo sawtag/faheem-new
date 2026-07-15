@@ -1,5 +1,5 @@
 /**
- * Analysis-runs data layer (data/runs.json) — the seed behind the /dashboard
+ * Analysis-runs data layer (data/runs.json), the seed behind the /dashboard
  * "Analysis Runs" panel, the screen's differentiator (orchestrated, auditable
  * runs vs. a chat window). Each run records the specialist lanes that executed,
  * the documents each lane consumed (real corpus ids), and the artifacts it
@@ -16,7 +16,7 @@ const LocalizedSchema = z.object({ en: z.string(), ar: z.string() });
 const RunLaneSchema = z.object({
   /** an AgentId from the registry (lib/ai/agents.ts) */
   agent: z.enum(AGENT_IDS),
-  /** corpus doc ids this lane consumed — must resolve in the manifest */
+  /** corpus doc ids this lane consumed, must resolve in the manifest */
   docIds: z.array(z.string()).min(1),
   /** one-line analyst-register summary of what the lane did */
   summary: LocalizedSchema,

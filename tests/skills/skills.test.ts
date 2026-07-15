@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
 import { SKILL_CATEGORIES, SKILLS, SkillSchema } from "@/lib/skills";
 
-describe("SKILLS — data/skills.json", () => {
+describe("SKILLS, data/skills.json", () => {
   it("has 10 entries with unique ids", () => {
     expect(SKILLS).toHaveLength(10);
     const ids = SKILLS.map((s) => s.id);
@@ -43,7 +43,7 @@ describe("SKILLS — data/skills.json", () => {
         !!s.run && "goldenId" in s.run,
     );
     expect(mapped.map((s) => s.id).sort()).toEqual(
-      ["risk-scorecard", "shariah-screen", "ic-memo"].sort(),
+      ["risk-scorecard", "compliance-screen", "ic-memo"].sort(),
     );
     for (const skill of mapped) {
       expect(

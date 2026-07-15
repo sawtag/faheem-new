@@ -7,7 +7,7 @@ const card = cva("rounded-card border border-border bg-card", {
     padding: { none: "", sm: "p-4", md: "p-6", lg: "p-8" },
     elevated: { true: "shadow-card", false: "" },
     hover: {
-      // list rows never lift — only cards (design-briefs §0.4)
+      // list rows never lift, only cards (design-briefs §0.4)
       true: "transition duration-[var(--duration-fast)] ease-[var(--ease)] hover:-translate-y-px hover:shadow-hover",
       false: "",
     },

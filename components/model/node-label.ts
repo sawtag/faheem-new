@@ -1,18 +1,18 @@
 /**
- * components/model/node-label — human labels for ModelKeys.
+ * components/model/node-label, human labels for ModelKeys.
  *
  * `ValueNode.labelKey` is always the literal `model.nodes.<key>` (fixed by
  * lib/model/provenance.ts). Authoring one message per node would mean
- * hundreds of near-duplicate strings ("Net revenue — FY26E" ×8 years ×3
+ * hundreds of near-duplicate strings ("Net revenue, FY26E" ×8 years ×3
  * scenarios ×...), so this resolver takes a two-tier approach:
  *
  *  1. A curated set of ~45 EXACT keys (the WACC build, DCF chain, scenario
- *     scalars, Shariah ratios, comps range, IC summary — the nodes actually
+ *     scalars, Compliance ratios, comps range, IC summary, the nodes actually
  *     surfaced in the demo) get a hand-written `model.nodes.<key>` message,
  *     looked up directly via `t.has()`.
  *  2. Everything else (the FY23A–FY30E revenue-driver/statement series, the
  *     per-scenario per-year arrays, the assumption arrays, comps multiples,
- *     sensitivity axes/grids — the bulk of the 150+ node graph) is pattern-
+ *     sensitivity axes/grids, the bulk of the 150+ node graph) is pattern-
  *     matched against the ModelKey shape and composed from a small library
  *     of reusable part-labels (`model.nodes.series.*`, `.scenarios.*`,
  *     `.comp.*`, `.compMetric.*`, `.axis.*`, `.grid.*`) plus
@@ -21,7 +21,7 @@
  *
  * A final `humanize()` fallback (split on '.', camelCase → spaced, title
  * case) guarantees no key is ever left unresolved or leaks a raw i18n key
- * into the UI — it's a defensive net for any node shape this file doesn't
+ * into the UI, it's a defensive net for any node shape this file doesn't
  * yet know about, not the primary path.
  */
 import type { useTranslations } from "next-intl";
@@ -30,7 +30,7 @@ import type { ModelKey } from "@/lib/model/types";
 
 type T = ReturnType<typeof useTranslations>;
 
-const F0 = 3; // first forecast index (FY26E) — mirrors compute.ts/provenance.ts
+const F0 = 3; // first forecast index (FY26E), mirrors compute.ts/provenance.ts
 
 /** metric name → `model.nodes.series.<key>` part-label, shared by the plain
  * 0..7 arrays, the per-scenario 0..4 arrays, and the assumption arrays. */

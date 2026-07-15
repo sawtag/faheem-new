@@ -1,8 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 /**
- * Enterprise-flourish acceptance: the ambient email toast (home, not /chat,
- * dismiss persists across navigation), the workspace Share modal (chip on
+ * Enterprise-flourish acceptance: the workspace Share modal (chip on
  * Enter, role dropdown, success check then close), and the Scheduled Tasks
  * page (un-dimmed nav entry, 3 bilingual rows, cosmetic toggles).
  */
@@ -10,35 +9,6 @@ test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
     { name: "faheem_session", value: "e2e", url: baseURL },
   ]);
-});
-
-test.describe("Email toast", () => {
-  test("appears on home ~2s after render, dismiss persists across navigation", async ({
-    page,
-  }) => {
-    await page.goto("/");
-
-    const toast = page.getByText("Faheem works in your inbox");
-    await expect(toast).toBeHidden();
-    await expect(toast).toBeVisible({ timeout: 4000 });
-    await expect(page.getByText("faheem@lunar-inv.sa")).toBeVisible();
-    await expect(page.getByText("On the MVP roadmap")).toBeVisible();
-
-    await page.getByRole("button", { name: "Dismiss" }).click();
-    await expect(toast).toBeHidden();
-
-    // sessionStorage dismissal survives an SPA navigation elsewhere.
-    await page.getByRole("link", { name: "Deals" }).click();
-    await expect(page).toHaveURL(/\/deals$/);
-    await page.waitForTimeout(2500);
-    await expect(toast).toBeHidden();
-  });
-
-  test("never appears on a /chat route", async ({ page }) => {
-    await page.goto("/chat/seed-jahez-revenue");
-    await page.waitForTimeout(2500);
-    await expect(page.getByText("Faheem works in your inbox")).toBeHidden();
-  });
 });
 
 test.describe("Workspace share modal", () => {

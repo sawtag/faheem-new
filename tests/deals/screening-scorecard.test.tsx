@@ -29,8 +29,8 @@ const ROWS: ScreeningRow[] = [
 ];
 
 const VERDICT = {
-  en: "Recommend advancing — decision: yours.",
-  ar: "يُوصى بالانتقال — القرار لكم.",
+  en: "Recommend advancing, decision: yours.",
+  ar: "يُوصى بالانتقال، القرار لكم.",
 };
 
 function renderScorecard(onCite = vi.fn()) {
@@ -56,7 +56,7 @@ describe("ScreeningScorecard", () => {
     renderScorecard();
     expect(screen.getByText(VERDICT.en)).toBeInTheDocument();
     expect(
-      screen.getByText("Details anonymized — client confidentiality."),
+      screen.getByText("Details anonymized (client confidentiality)."),
     ).toBeInTheDocument();
   });
 

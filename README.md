@@ -1,13 +1,11 @@
 <p align="center">
-  <img src="docs/screenshots/hero.png" alt="Faheem — omnibox home screen" width="100%">
+  <img src="docs/screenshots/home.png" alt="Faheem: omnibox home screen" width="100%">
 </p>
-
-https://github.com/user-attachments/assets/c040594d-95c6-43b1-922a-92dfd39fee00
 
 <h1 align="center">Faheem</h1>
 
 <p align="center">
-  <b>Agentic AI for the Saudi investment desk</b> — screening → deep analysis → investment committee,<br/>
+  <b>Agentic AI for the Saudi investment desk</b>: screening → deep analysis → investment committee,<br/>
   with a human decision gate at every stage.
 </p>
 
@@ -19,101 +17,97 @@ https://github.com/user-attachments/assets/c040594d-95c6-43b1-922a-92dfd39fee00
   <img src="https://img.shields.io/badge/Amad%202026-Track%201%20%C2%B7%20GenAI%20for%20Fintech-061F52?style=flat-square" alt="Amad 2026, Track 1 GenAI for Fintech">
 </p>
 
-Faheem runs an agentic research desk inside an investment firm's real workflow: a deal clears a **Screening Agent** mandate-fit check, works through an eleven-team **deep-analysis** engine, and lands in front of an advisory-only **Faheem IC** agent that ranks it against the hurdle rate — and never decides for the firm.
+Faheem runs an agentic research desk inside an investment firm's real workflow: a deal clears a **Screening Agent** mandate-fit check, works through an eleven-team **deep-analysis** engine, and lands in front of an advisory-only **Faheem IC** agent that ranks it against the hurdle rate, and never decides for the firm.
 
-🔗 Every number — in a chat answer, a scorecard, or a generated Excel model — resolves to a clickable citation into the source document, at the page, passage highlighted.
+🔗 Every number (in a chat answer, a scorecard, or a generated Excel model) resolves to a clickable citation into the source document, at the page, passage highlighted.
 
 🌐 Bilingual down to the CSS: English and Arabic, full RTL, built around **Jahez** (Tadawul: 6017) as the live case study over a 16-document, page-verified corpus.
 
 ## ⚡ Why Faheem is different
 
-- 🔗 **Every number is a live citation, not a claim.** Click a citation chip on a streamed answer and the source PDF opens at the exact cited page, passage highlighted in the text layer — enforced by the Claude API's citation mechanism, not a prompt instruction.
-- 📈 **The valuation model is alive in your browser.** The Jahez DCF isn't a static export — `lib/model/` is the exact same pure TypeScript engine that builds the Excel, recomputing every dependent cell (WACC, DCF, sensitivity grids) the instant an assumption changes, with the numbers matching the workbook byte for byte.
-- 🔍 **"No orphan numbers" is a tested guarantee, not a slogan.** Click any figure and a Methodology panel opens: plain-language explainer → the real rendered formula → each input as a drillable chip — the chain always bottoms out at a cited source page or a labeled assumption, and a walk-every-rendered-number check enforces it in CI, not just on the happy path.
-- 🗣️ **Tell the model what to change, in plain language.** "Raise FY26 order growth to 20%" recomputes the DCF live while the specialist team works in the open — Valuation re-derives, Critical Review re-verifies the provenance chain, Compliance re-checks the Shariah ratios, Writing updates the recommendation. Sourced actuals stay immutable: try to edit one and Faheem explains why, gracefully, instead of pretending to comply.
-- 🧭 **A deal-pipeline workflow, not a chatbot.** A Screening Agent scores mandate-fit against the firm's own IC Charter, row by row; **Faheem IC** ranks analysis-complete deals against the hurdle rate — always a recommendation, never a decision.
-- 🧮 **A dashboard built for governance.** Mandate headroom tracked live against the IC Charter's 10% concentration cap, firm AUM, and an Analysis Runs panel — every analysis is a logged, auditable run through the specialist teams selected for it, each citing exactly which documents it read.
-- 🌐 **Bilingual to the bone.** Every string routes through `next-intl`; Arabic isn't a translated skin, it's a full RTL layout on logical CSS properties — answered by the same citation-enforced engine over the same corpus.
-- 📊 **Deliverables that read like an analyst wrote them.** "Prepare the IC memo, DCF model, and committee deck" generates a real Excel formula chain (WACC build, DCF, sensitivity tables, trading comps), a Word memo, and a PowerPoint deck — every populated cell sourced, all in the client's own brand.
-- 📧 **Draft the IC email without leaving the workspace.** A compose modal pre-fills recipients and a Faheem-written body citing the live model's headline numbers — fully editable — then opens in Outlook for a human to send; the audit trail grows either way.
-- 📥 **Bring your own document.** Drop a PDF into a workspace and it joins the same citation-enforced retrieval engine that grounds every other answer — no separate ingestion pipeline to trust.
-- 📚 **Playbooks, not a blank prompt box.** A Skills library of analyst methodologies — DCF, comps, risk scorecards, Shariah screens — one click either replays a golden run or prefills the composer. Any table in a streamed answer toggles inline into an animated chart. Scheduled Tasks previews the automation roadmap.
-- 👥 **Fourteen specialist agents, including an adversarial red team.** Accounting & Quality-of-Earnings, Critical Review, News & Market Intelligence, and Market Sentiment join the original ten. Sentiment reads a clearly-labeled illustrative social pack and speaks in a label + one-line rationale, always flagged "signal only — not a valuation input" — it never claims a sourced number.
+- 🔗 **Every number is a live citation, not a claim.** Click a citation chip on a streamed answer and the source PDF opens at the exact cited page, passage highlighted in the text layer, enforced by the Claude API's citation mechanism, not a prompt instruction.
+- 📈 **The valuation model is alive in your browser.** The Jahez DCF isn't a static export, `lib/model/` is the exact same pure TypeScript engine that builds the Excel, recomputing every dependent cell (WACC, DCF, sensitivity grids) the instant an assumption changes, with the numbers matching the workbook byte for byte.
+- 🔍 **"No orphan numbers" is a tested guarantee, not a slogan.** Click any figure and a Methodology panel opens: plain-language explainer → the real rendered formula → each input as a drillable chip, the chain always bottoms out at a cited source page or a labeled assumption, and a walk-every-rendered-number check enforces it in CI, not just on the happy path.
+- 🗣️ **Tell the model what to change, in plain language.** "Raise FY26 order growth to 20%" recomputes the DCF live while the specialist team works in the open, Valuation re-derives, Critical Review re-verifies the provenance chain, Compliance re-checks the compliance ratios, Writing updates the recommendation. Sourced actuals stay immutable: try to edit one and Faheem explains why, gracefully, instead of pretending to comply.
+- 🧭 **A deal-pipeline workflow, not a chatbot.** A Screening Agent scores mandate-fit against the firm's own IC Charter, row by row; **Faheem IC** ranks analysis-complete deals against the hurdle rate, always a recommendation, never a decision.
+- 🧮 **A dashboard built for governance.** Mandate headroom tracked live against the IC Charter's 10% concentration cap, firm AUM, and an Analysis Runs panel, every analysis is a logged, auditable run through the specialist teams selected for it, each citing exactly which documents it read.
+- 🌐 **Bilingual to the bone.** Every string routes through `next-intl`; Arabic isn't a translated skin, it's a full RTL layout on logical CSS properties, answered by the same citation-enforced engine over the same corpus.
+- 📊 **Deliverables that read like an analyst wrote them.** "Prepare the IC memo, DCF model, and committee deck" generates a real Excel formula chain (WACC build, DCF, sensitivity tables, trading comps), a Word memo, and a PowerPoint deck, every populated cell sourced, all in the client's own brand.
+- 📧 **Draft the IC email without leaving the workspace.** A compose modal pre-fills recipients and a Faheem-written body citing the live model's headline numbers, fully editable, then opens in Outlook for a human to send; the audit trail grows either way.
+- 📥 **Bring your own document.** Drop a PDF into a workspace and it joins the same citation-enforced retrieval engine that grounds every other answer, no separate ingestion pipeline to trust.
+- 📚 **Playbooks, not a blank prompt box.** A Skills library of analyst methodologies, DCF, comps, risk scorecards, Compliance screens, one click either replays a golden run or prefills the composer. Any table in a streamed answer toggles inline into an animated chart. Scheduled Tasks previews the automation roadmap.
+- 👥 **Fourteen specialist agents, including an adversarial red team.** Accounting & Quality-of-Earnings, Critical Review, News & Market Intelligence, and Market Sentiment join the original ten. Sentiment reads a clearly-labeled illustrative social pack and speaks in a label + one-line rationale, always flagged "signal only, not a valuation input", it never claims a sourced number.
 - 🛡️ **Governance is the product.** A full audit trail of every question, source, and generated artifact; three human decision gates across the pipeline; an impartial, evidence-first analyst register. Enterprise controls (SSO, formal certifications) stay honestly scoped to the roadmap.
 
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/hero.png" alt="Home — omnibox hero, English" width="100%">
-  <br/><sub>Home — the omnibox hero, English</sub>
+  <img src="docs/screenshots/home.png" alt="Home, omnibox hero, briefing panel, and sidebar, English" width="100%">
+  <br/><sub>Home, the omnibox hero, the "while you were away" briefing panel, and the sidebar, English</sub>
 </p>
+
+|                                                                                                                |                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| ![Data sources picker, GCC-first sources](docs/screenshots/sources-picker.png)                                 | ![Connections catalog](docs/screenshots/connections.png)                                                           |
+| **Data sources picker**, GCC-first sources (Tadawul disclosures, SAHMK, Argaam, Mubasher, SAMA, GASTAT, Wathq) | **Connections catalog**, every connected source behind an analysis, market data, disclosures, and internal systems |
+| ![Deal workspace, Jahez](docs/screenshots/deal-workspace.png)                                                  | ![Cited-source PDF viewer, maximized](docs/screenshots/pdf-viewer.png)                                             |
+| **Deal workspace**, Jahez key figures and financial performance, deep-dive analysis in progress                | **Cited source**, the IC Charter PDF opened at the cited page, maximized                                           |
 
 <p align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Firm dashboard — mandate headroom and the Analysis Runs panel" width="100%">
-  <br/><sub>Dashboard — mandate headroom, AUM, and the Analysis Runs panel: every analysis is a logged, auditable run</sub>
+  <img src="docs/screenshots/home-arabic.png" alt="Home in Arabic, full RTL" width="100%">
+  <br/><sub>Home, Arabic, full RTL flip</sub>
 </p>
-
-|                                                                                                                              |                                                                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| ![Flagship chat with citations and PDF panel](docs/screenshots/chat-citations.png)                                           | ![Deal pipeline board](docs/screenshots/pipeline.png)                                                             |
-| **Flagship chat** — streamed answer, inline citation chips, source PDF opened at the cited page with the passage highlighted | **Deal pipeline** — Screening → Analysis → IC Review → Decided, filterable by inbound vs. market-screen origin    |
-| ![Faheem IC room](docs/screenshots/ic-room.png)                                                                              | ![Agents page](docs/screenshots/agents.png)                                                                       |
-| **Faheem IC room** — two analysis-complete deals compared against the 15% IRR hurdle, advisory-only                          | **Agents** — Screening, the eleven analysis teams, and Faheem IC, grouped by pipeline stage                       |
-| ![Home in Arabic, full RTL](docs/screenshots/home-ar.png)                                                                    | ![Generated deliverables preview](docs/screenshots/artifact-preview.png)                                          |
-| **Home, Arabic** — full RTL flip, live language toggle                                                                       | **Generated deliverables** — Excel model, IC memo, and board deck, previewed inline                               |
-| ![Live Model — the Jahez DCF, interactive](docs/screenshots/live-model.png)                                                  | ![Methodology panel — formula, explainer, drillable inputs](docs/screenshots/methodology.png)                     |
-| **Live Model** — the Jahez DCF recomputing in-browser off a conversational edit, agent choreography visible                  | **Methodology panel** — plain-language explainer → rendered formula → input chain, drilling to a cited source PDF |
 
 ## 🎬 The demo, beat by beat
 
 The in-app walkthrough judges see, ⌘K-driven end to end so nothing gets mistyped on stage. Full run-of-show, including the slides either side of it, lives in `docs/superpowers/specs/2026-07-12-faheem-demo-design.md`.
 
-| ⏱           | Beat                                | What you do                                                                                 | What to ask                                                                                                                                                                                                                                   | What judges see                                                                                                                                                                                                                                        |
-| ----------- | ----------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 0:00–0:30   | 🖥️ Dashboard open                   | Land on `/dashboard`                                                                        | —                                                                                                                                                                                                                                             | Active Pipeline, AUM, Mandate Headroom vs. the 10% concentration cap, and the Jahez Analysis Run — 7 specialist lanes, sources, deliverables                                                                                                           |
-| 0:30–2:00   | 🔌 Onboarding stepper               | Walk Connect & Configure                                                                    | —                                                                                                                                                                                                                                             | Connector catalog, fake OAuth + "Add custom MCP", agent/skill toggles, mandate questionnaire → becomes the IC Charter                                                                                                                                  |
-| 2:00–3:30   | 📋 Pipeline + Darb scorecard        | Deals → Darb workspace → "Advance to pitch meeting"                                         | —                                                                                                                                                                                                                                             | Mandate-fit scorecard citing the IC Charter row by row; **human gate #1**                                                                                                                                                                              |
-| 3:30–6:30   | 💬 Jahez chat — unit economics      | ⌘K → pick the question → send                                                               | "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?" _(press ⌘K — never type)_ | Agent Activity timeline, streamed answer with citation chips → click one → the PDF opens at the cited page, passage highlighted                                                                                                                        |
-| 6:30–8:00   | ⚠️ @Risk follow-up                  | ⌘K → pick the question → send                                                               | "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?" _(press ⌘K — never type)_                                                                               | Quantified risk scorecard citing both the industry pack and the Lunar IC Charter                                                                                                                                                                       |
-| 8:00–9:00   | 🕌 Arabic + Shariah                 | Toggle language → ⌘K → pick the question → send                                             | "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟" _(press ⌘K — never type)_                                                                                                                                                                     | Full RTL flip, live; a Shariah screen card answered in Arabic with citations                                                                                                                                                                           |
-| 9:00–10:30  | 📦 Deliverables                     | ⌘K → pick the question → send → preview → open the Excel                                    | "Prepare the IC memo, DCF model, and committee deck." _(press ⌘K — never type)_                                                                                                                                                               | Generation progress → in-app deck preview → Excel opens on DCF, Sensitivity, Comps — every cell source-commented                                                                                                                                       |
-| 10:30–12:30 | 📈 Live Model — conversational edit | ⌘K → pick a Live Model entry → apply → open a computed cell → Methodology → drill to source | "Raise FY26 order growth to 20%" _(press ⌘K — never type)_                                                                                                                                                                                    | Specialist team recomputes live (Valuation → Critical Review → Compliance → Writing), DCF/IRR move on screen — same engine as the Excel, and it's not a dead file; Methodology drills a computed number to its formula, inputs, and a cited source PDF |
-| 12:30–13:30 | 📎 Upload any PDF                   | Drop `demo-assets/talabat-q1-2026-results.pdf` into a workspace (live mode)                 | —                                                                                                                                                                                                                                             | ⌘. overlay confirms live mode; ~3s upload, cross-document answer in ~16s citing the new PDF                                                                                                                                                            |
-| 13:30–14:30 | ⚖️ IC room ranking                  | IC Room → ⌘K → pick the question → send                                                     | "Rank these deals — strongest risk-adjusted case?" _(press ⌘K — never type)_                                                                                                                                                                  | Jahez vs. Thara Pay vs. the 15% hurdle; **"Advisory only — the committee decides"**; **human gate #3**                                                                                                                                                 |
-| 14:30–15:00 | 🧾 Audit trail close                | Open Audit Trail                                                                            | —                                                                                                                                                                                                                                             | Every question, source, and artifact logged — the governance close                                                                                                                                                                                     |
+| ⏱           | Beat                               | What you do                                                                                 | What to ask                                                                                                                                                                                                                                | What judges see                                                                                                                                                                                                                                       |
+| ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0:00–0:30   | 🖥️ Dashboard open                  | Land on `/dashboard`                                                                        | ,                                                                                                                                                                                                                                          | Active Pipeline, AUM, Mandate Headroom vs. the 10% concentration cap, and the Jahez Analysis Run, 7 specialist lanes, sources, deliverables                                                                                                           |
+| 0:30–2:00   | 🔌 Onboarding stepper              | Walk Connect & Configure                                                                    | ,                                                                                                                                                                                                                                          | Connector catalog, fake OAuth + "Add custom MCP", agent/skill toggles, mandate questionnaire → becomes the IC Charter                                                                                                                                 |
+| 2:00–3:30   | 📋 Pipeline + Darb scorecard       | Deals → Darb workspace → "Advance to pitch meeting"                                         | ,                                                                                                                                                                                                                                          | Mandate-fit scorecard citing the IC Charter row by row; **human gate #1**                                                                                                                                                                             |
+| 3:30–6:30   | 💬 Jahez chat, unit economics      | ⌘K → pick the question → send                                                               | "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?" _(press ⌘K, never type)_ | Agent Activity timeline, streamed answer with citation chips → click one → the PDF opens at the cited page, passage highlighted                                                                                                                       |
+| 6:30–8:00   | ⚠️ @Risk follow-up                 | ⌘K → pick the question → send                                                               | "@Risk & Portfolio Monitoring: run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?" _(press ⌘K, never type)_                                                                              | Quantified risk scorecard citing both the industry pack and the Lunar IC Charter                                                                                                                                                                      |
+| 8:00–9:00   | 🕌 Arabic + Compliance             | Toggle language → ⌘K → pick the question → send                                             | "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟" _(press ⌘K، never type)_                                                                                                                                                                   | Full RTL flip, live; a Compliance screen card answered in Arabic with citations                                                                                                                                                                       |
+| 9:00–10:30  | 📦 Deliverables                    | ⌘K → pick the question → send → preview → open the Excel                                    | "Prepare the IC memo, DCF model, and committee deck." _(press ⌘K, never type)_                                                                                                                                                             | Generation progress → in-app deck preview → Excel opens on DCF, Sensitivity, Comps, every cell source-commented                                                                                                                                       |
+| 10:30–12:30 | 📈 Live Model, conversational edit | ⌘K → pick a Live Model entry → apply → open a computed cell → Methodology → drill to source | "Raise FY26 order growth to 20%" _(press ⌘K, never type)_                                                                                                                                                                                  | Specialist team recomputes live (Valuation → Critical Review → Compliance → Writing), DCF/IRR move on screen, same engine as the Excel, and it's not a dead file; Methodology drills a computed number to its formula, inputs, and a cited source PDF |
+| 12:30–13:30 | 📎 Upload any PDF                  | Drop `demo-assets/talabat-q1-2026-results.pdf` into a workspace (live mode)                 | ,                                                                                                                                                                                                                                          | ⌘. overlay confirms live mode; ~3s upload, cross-document answer in ~16s citing the new PDF                                                                                                                                                           |
+| 13:30–14:30 | ⚖️ IC room ranking                 | IC Room → ⌘K → pick the question → send                                                     | "Rank these deals: strongest risk-adjusted case?" _(press ⌘K, never type)_                                                                                                                                                                 | Jahez vs. Thara Pay vs. the 15% hurdle; **"Advisory only, the committee decides"**; **human gate #3**                                                                                                                                                 |
+| 14:30–15:00 | 🧾 Audit trail close               | Open Audit Trail                                                                            | ,                                                                                                                                                                                                                                          | Every question, source, and artifact logged, the governance close                                                                                                                                                                                     |
 
 ## 📋 Feature status
 
 Where the product stands: everything shipped at `demo-rc2` versus the next wave from `BUILD-BRIEF.md` (detailed in `docs/superpowers/plans/2026-07-13-live-model-provenance-plan.md`).
 
-| Feature                                                                                                                                                                | Wave       | Status         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------------- |
-| Login + onboarding (connector catalog, mandate questionnaire → IC Charter)                                                                                             | `demo-rc2` | ✅ Implemented |
-| Deal pipeline + Darb screening scorecard (human gate #1)                                                                                                               | `demo-rc2` | ✅ Implemented |
-| Jahez chat with citation chips + PDF passage highlighting                                                                                                              | `demo-rc2` | ✅ Implemented |
-| Arabic / Shariah beat — bilingual EN/AR, full RTL                                                                                                                      | `demo-rc2` | ✅ Implemented |
-| Deliverables generation (xlsx / docx / pptx) + in-app preview                                                                                                          | `demo-rc2` | ✅ Implemented |
-| IC room ranking vs. hurdle rate (advisory-only)                                                                                                                        | `demo-rc2` | ✅ Implemented |
-| Dashboard — mandate headroom + Analysis Runs panel                                                                                                                     | `demo-rc2` | ✅ Implemented |
-| Audit trail                                                                                                                                                            | `demo-rc2` | ✅ Implemented |
-| Skills library                                                                                                                                                         | `demo-rc2` | ✅ Implemented |
-| Live PDF upload into the citation engine                                                                                                                               | `demo-rc2` | ✅ Implemented |
-| Stage safety: ⌘K golden palette, ⌘. mode overlay, cached/auto/live modes, preflight script                                                                             | `demo-rc2` | ✅ Implemented |
-| 10-agent roster (Screening, 7 analysis teams, IC, orchestrator)                                                                                                        | `demo-rc2` | ✅ Implemented |
-| Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                                                                                 | WS-A       | ✅ Implemented |
-| Provenance engine — `Provenance` / `ValueNode` types, zero orphan numbers (tested)                                                                                     | WS-A       | ✅ Implemented |
-| Methodology panel — explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                                                                             | WS-A2      | ✅ Implemented |
-| Grid spike + kill-switch decision (gate G1)                                                                                                                            | WS-B0      | ✅ Implemented |
-| Live Model UI — the Jahez DCF as an interactive grid                                                                                                                   | WS-B       | ✅ Implemented |
-| Conversational model edits — editable assumptions, source-locked actuals, agent choreography                                                                           | WS-C       | ✅ Implemented |
-| Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                                                                         | WS-D       | ✅ Implemented |
-| Sentiment card — qualitative signal over a labeled illustrative social pack                                                                                            | WS-D       | ✅ Implemented |
-| Draft-to-IC email (compose modal → `mailto`, human sends)                                                                                                              | WS-E       | ✅ Implemented |
-| Integration: ⌘K Live Model entries, golden-path e2e beat, preflight venue checks, run-of-show + docs updates (offline-deterministic edits — no new API goldens needed) | WS-F       | ✅ Implemented |
+| Feature                                                                                                                                                               | Wave       | Status         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------------- |
+| Login + onboarding (connector catalog, mandate questionnaire → IC Charter)                                                                                            | `demo-rc2` | ✅ Implemented |
+| Deal pipeline + Darb screening scorecard (human gate #1)                                                                                                              | `demo-rc2` | ✅ Implemented |
+| Jahez chat with citation chips + PDF passage highlighting                                                                                                             | `demo-rc2` | ✅ Implemented |
+| Arabic / Compliance beat, bilingual EN/AR, full RTL                                                                                                                   | `demo-rc2` | ✅ Implemented |
+| Deliverables generation (xlsx / docx / pptx) + in-app preview                                                                                                         | `demo-rc2` | ✅ Implemented |
+| IC room ranking vs. hurdle rate (advisory-only)                                                                                                                       | `demo-rc2` | ✅ Implemented |
+| Dashboard, mandate headroom + Analysis Runs panel                                                                                                                     | `demo-rc2` | ✅ Implemented |
+| Audit trail                                                                                                                                                           | `demo-rc2` | ✅ Implemented |
+| Skills library                                                                                                                                                        | `demo-rc2` | ✅ Implemented |
+| Live PDF upload into the citation engine                                                                                                                              | `demo-rc2` | ✅ Implemented |
+| Stage safety: ⌘K golden palette, ⌘. mode overlay, cached/auto/live modes, preflight script                                                                            | `demo-rc2` | ✅ Implemented |
+| 10-agent roster (Screening, 7 analysis teams, IC, orchestrator)                                                                                                       | `demo-rc2` | ✅ Implemented |
+| Extract `computeModel()` to pure `lib/model/` (snapshot-gated, byte-identical outputs)                                                                                | WS-A       | ✅ Implemented |
+| Provenance engine, `Provenance` / `ValueNode` types, zero orphan numbers (tested)                                                                                     | WS-A       | ✅ Implemented |
+| Methodology panel, explainer → formula (KaTeX) → inputs → drill to highlighted source PDF                                                                             | WS-A2      | ✅ Implemented |
+| Grid spike + kill-switch decision (gate G1)                                                                                                                           | WS-B0      | ✅ Implemented |
+| Live Model UI, the Jahez DCF as an interactive grid                                                                                                                   | WS-B       | ✅ Implemented |
+| Conversational model edits, editable assumptions, source-locked actuals, agent choreography                                                                           | WS-C       | ✅ Implemented |
+| Roster expansion to ~14 agents (Accounting/QoE, Critical Review, News Intelligence, Sentiment)                                                                        | WS-D       | ✅ Implemented |
+| Sentiment card, qualitative signal over a labeled illustrative social pack                                                                                            | WS-D       | ✅ Implemented |
+| Draft-to-IC email (compose modal → `mailto`, human sends)                                                                                                             | WS-E       | ✅ Implemented |
+| Integration: ⌘K Live Model entries, golden-path e2e beat, preflight venue checks, run-of-show + docs updates (offline-deterministic edits, no new API goldens needed) | WS-F       | ✅ Implemented |
 
 ## 🚀 Quickstart
 
-**Prerequisites:** Node 26+ and npm. Optional: LibreOffice (artifact open-tests), Ghostscript + Poppler (corpus tooling — `pdfinfo`, `gs`).
+**Prerequisites:** Node 26+ and npm. Optional: LibreOffice (artifact open-tests), Ghostscript + Poppler (corpus tooling, `pdfinfo`, `gs`).
 
 ```bash
 git clone git@github.com:sawtag/faheem-new.git
@@ -123,40 +117,40 @@ cp .env.example .env
 npm run dev
 ```
 
-Open `http://localhost:3000` and sign in with **any username and password** — auth is intentionally mocked for the demo. `ANTHROPIC_API_KEY` is optional: **the app runs fully offline in cached mode, replaying recorded golden answers with realistic streaming — no key needed to see the full product.**
+Open `http://localhost:3000` and sign in with **any username and password**, auth is intentionally mocked for the demo. `ANTHROPIC_API_KEY` is optional: **the app runs fully offline in cached mode, replaying recorded golden answers with realistic streaming, no key needed to see the full product.**
 
 **Three answer modes**, launched explicitly or chosen for you:
 
-- `cached` — replays a recorded, human-reviewed answer with simulated token streaming. Fully offline, deterministic, no API key.
-- `live` — calls the real Claude API with the corpus as cited document blocks.
-- `auto` — tries live, falls back to cached on a timeout (venue-wifi-safe).
+- `cached`, replays a recorded, human-reviewed answer with simulated token streaming. Fully offline, deterministic, no API key.
+- `live`, calls the real Claude API with the corpus as cited document blocks.
+- `auto`, tries live, falls back to cached on a timeout (venue-wifi-safe).
 
-Pick one with a script — `npm run dev:cache | dev:auto | dev:live` (or `start:cache | start:auto | start:live` on a production build). Bare `npm run dev` / `npm start` uses a **smart default**: `auto` when a key is present, `cached` when it isn't — so a keyless clone always runs offline, and a keyed machine gets the live experience by default. The cookie set by the **⌘.** overlay overrides everything at runtime.
+Pick one with a script, `npm run dev:cache | dev:auto | dev:live` (or `start:cache | start:auto | start:live` on a production build). Bare `npm run dev` / `npm start` uses a **smart default**: `auto` when a key is present, `cached` when it isn't, so a keyless clone always runs offline, and a keyed machine gets the live experience by default. The cookie set by the **⌘.** overlay overrides everything at runtime.
 
-Two hidden affordances make the cached demo path reliable: **⌘K** opens a palette of the recorded golden questions — selecting one inserts the exact text the cache was recorded against, so no on-stage typo can cause a miss. **⌘.** opens a small mode-switch overlay showing whether the last answer was served live or from cache.
+Two hidden affordances make the cached demo path reliable: **⌘K** opens a palette of the recorded golden questions, selecting one inserts the exact text the cache was recorded against, so no on-stage typo can cause a miss. **⌘.** opens a small mode-switch overlay showing whether the last answer was served live or from cache.
 
 | Command                              | What it does                                                                      |
 | ------------------------------------ | --------------------------------------------------------------------------------- |
-| `npm install`                        | Install dependencies (npm only, deliberately — no bun anywhere)                   |
+| `npm install`                        | Install dependencies (npm only, deliberately, no bun anywhere)                    |
 | `npm run dev`                        | Dev server (smart default mode); `dev:cache` / `dev:auto` / `dev:live` to pin one |
 | `npm start`                          | Production server; `start:cache` / `start:auto` / `start:live` to pin one         |
 | `npm run check`                      | `tsc --noEmit` + ESLint + Prettier `--check`                                      |
-| `npm run test`                       | Vitest — unit + integration suite                                                 |
-| `npm run test:e2e`                   | Playwright — full suite across two viewports, `FAHEEM_MODE=cached`                |
+| `npm run test`                       | Vitest, unit + integration suite                                                  |
+| `npm run test:e2e`                   | Playwright, full suite across two viewports, `FAHEEM_MODE=cached`                 |
 | `FAHEEM_E2E_PROD=1 npm run test:e2e` | Same suite against a production build (`next build && next start`)                |
 | `npm run validate:data`              | Zod-validates the corpus manifest, `deals.json`, and `model-inputs.json`          |
-| `npm run verify`                     | `check` + `test` + `validate:data` — the pre-commit gate                          |
+| `npm run verify`                     | `check` + `test` + `validate:data`, the pre-commit gate                           |
 
 ## 🏗️ Architecture
 
 ```mermaid
 flowchart LR
-    subgraph Client["Browser — EN / AR, full RTL"]
+    subgraph Client["Browser, EN / AR, full RTL"]
         UI["Omnibox · Dashboard · Chat · Pipeline · IC Room · Agents"]
     end
 
-    subgraph Server["Next.js App Router — single process"]
-        API["/api/chat — SSE stream"]
+    subgraph Server["Next.js App Router, single process"]
+        API["/api/chat, SSE stream"]
         MODE{{"FAHEEM_MODE\nlive · cached · auto"}}
         CACHE[("demo-cache/\ngolden replays")]
         GEN["/api/generate\nxlsx · docx · pptx"]
@@ -164,7 +158,7 @@ flowchart LR
 
     CLAUDE["Claude API\ncitations + prompt caching"]
 
-    subgraph Data["Git-versioned data layer — no database"]
+    subgraph Data["Git-versioned data layer, no database"]
         CORPUS[("data/corpus/\n16 verified source PDFs")]
         INPUTS[("model-inputs.json\nvalue · sourceDoc · page")]
         DEALS[("deals.json · audit-log.json")]
@@ -185,7 +179,7 @@ flowchart LR
 
 ```
 faheem/
-├─ app/              Next.js App Router — routes + API handlers
+├─ app/              Next.js App Router, routes + API handlers
 │  ├─ (app)/         authenticated shell: home, dashboard, deals (+ Live Model), ic, agents, library, skills, scheduled tasks…
 │  ├─ api/           chat (SSE), model-edit, generate, documents, upload, auth
 │  └─ login/         mock-auth screen (any credentials)
@@ -198,32 +192,32 @@ faheem/
 ├─ lib/
 │  ├─ ai/            Claude client, corpus manifest, agent registry, prompts, cache
 │  ├─ generate/      xlsx / docx / pptx builders, Lunar-branded
-│  ├─ model/         pure valuation engine (compute, provenance, formulas) — shared by the xlsx builder and the Live Model UI
+│  ├─ model/         pure valuation engine (compute, provenance, formulas), shared by the xlsx builder and the Live Model UI
 │  ├─ demo/          golden-question + Live Model beat registries, deliverables detector
 │  └─ types.ts       shared contracts (zod schemas)
-├─ data/             git-versioned JSON — deals, model-inputs, audit-log, corpus/
+├─ data/             git-versioned JSON, deals, model-inputs, audit-log, corpus/
 │  └─ corpus/        16 page-verified source PDFs + manifest
 ├─ messages/         en.json / ar.json (next-intl)
-├─ e2e/              Playwright specs — 109 tests × 2 viewports (218 total)
-├─ tests/            Vitest unit/integration — 463 tests
+├─ e2e/              Playwright specs, 109 tests × 2 viewports (218 total)
+├─ tests/            Vitest unit/integration, 463 tests
 └─ scripts/          corpus fetch, cache prewarm, golden recording, data validation
 ```
 
-**Chat pipeline:** a question hits `/api/chat`, which emits SSE "agent stage" events (which specialist agents are "reading" which documents) while the real model call runs — corpus PDFs are passed as Claude document blocks with `citations: {enabled: true}` and a 1-hour prompt cache on the corpus prefix, so citations carry real page numbers by construction, never a hallucinated reference. One chat engine serves three contexts (firm home, a company workspace, the IC room) by swapping system-prompt flavor and document subset — `@agent` mentions pin a specialist, `#doc` references scope the corpus.
+**Chat pipeline:** a question hits `/api/chat`, which emits SSE "agent stage" events (which specialist agents are "reading" which documents) while the real model call runs, corpus PDFs are passed as Claude document blocks with `citations: {enabled: true}` and a 1-hour prompt cache on the corpus prefix, so citations carry real page numbers by construction, never a hallucinated reference. One chat engine serves three contexts (firm home, a company workspace, the IC room) by swapping system-prompt flavor and document subset, `@agent` mentions pin a specialist, `#doc` references scope the corpus.
 
 ## 🔒 Data integrity
 
-Every displayed figure resolves to `data/model-inputs.json` or `data/deals.json`, and every entry carries `{ value, sourceDoc, page }` pointing into the 16-document, page-verified corpus in `data/corpus/` (Jahez's annual report, earnings releases, and interim financials, plus the firm's authored IC Charter and deal-specific data-room packs). `npm run validate:data` runs a zod schema gate over the manifest, `deals.json`, and `model-inputs.json` on every `verify` run — malformed or unsourced data fails the build before it ships. **If a number has no source, it does not ship.**
+Every displayed figure resolves to `data/model-inputs.json` or `data/deals.json`, and every entry carries `{ value, sourceDoc, page }` pointing into the 16-document, page-verified corpus in `data/corpus/` (Jahez's annual report, earnings releases, and interim financials, plus the firm's authored IC Charter and deal-specific data-room packs). `npm run validate:data` runs a zod schema gate over the manifest, `deals.json`, and `model-inputs.json` on every `verify` run, malformed or unsourced data fails the build before it ships. **If a number has no source, it does not ship.**
 
 ## ✅ Testing
 
-- **463 unit and integration tests** (Vitest + Testing Library) across 65 files — chat logic, citation resolution, artifact generation, data validation, zod contracts, the `lib/model/` valuation engine (snapshot-gated), provenance-graph invariants, and the model-edit scripted parser.
-- **218 end-to-end tests** (109 specs × 2 viewports, Playwright), run at both a 1920×1080 desktop viewport and a 1366×768 laptop viewport — the full route inventory, the golden chat path, deliverable generation and download, connections/onboarding flows, and the Live Model beat (conversational edit → recompute → Methodology drill to a cited source PDF).
+- **463 unit and integration tests** (Vitest + Testing Library) across 65 files, chat logic, citation resolution, artifact generation, data validation, zod contracts, the `lib/model/` valuation engine (snapshot-gated), provenance-graph invariants, and the model-edit scripted parser.
+- **218 end-to-end tests** (109 specs × 2 viewports, Playwright), run at both a 1920×1080 desktop viewport and a 1366×768 laptop viewport, the full route inventory, the golden chat path, deliverable generation and download, connections/onboarding flows, and the Live Model beat (conversational edit → recompute → Methodology drill to a cited source PDF).
 - **Cached-mode determinism**: the e2e suite runs entirely against `FAHEEM_MODE=cached`, asserting zero off-host network requests (the pdfjs worker is vendored locally, not CDN-loaded) and byte-identical golden answers on every run.
 - **A dedicated RTL sweep** walks the full route inventory in Arabic, asserting `dir="rtl"`, no leaked i18n keys, and no horizontal overflow from the layout flip.
 
 ## 🏆 About
 
-Built for the **Amad 2026** hackathon (Alinma Bank × Tuwaiq Academy), Track 1 — Generative AI for Fintech. Faheem is a product of **Lunar Technologies**. The demo client, **Lunar Investments**, is a fictional firm; Jahez financial data is drawn from Jahez Group's own public disclosures and used here as a verified, page-cited corpus.
+Built for the **Amad 2026** hackathon (Alinma Bank × Tuwaiq Academy), Track 1, Generative AI for Fintech. Faheem is a product of **Lunar Technologies**. The demo client, **Lunar Investments**, is a fictional firm; Jahez financial data is drawn from Jahez Group's own public disclosures and used here as a verified, page-cited corpus.
 
 All rights reserved.

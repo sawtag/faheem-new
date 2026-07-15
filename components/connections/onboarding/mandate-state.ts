@@ -1,7 +1,7 @@
 /**
- * Step 3 mandate & risk questionnaire state (design-briefs §2.4) — defaults
+ * Step 3 mandate & risk questionnaire state (design-briefs §2.4), defaults
  * prefilled to Lunar's real mandate values (15% IRR hurdle, 10% single-name
- * concentration cap, 3–5y holding, Shariah required) so the demo's closing
+ * concentration cap, 3–5y holding, Compliance required) so the demo's closing
  * card ("this becomes your IC Charter") reflects the actual Lunar IC Charter.
  */
 export const SECTOR_IDS = [
@@ -23,7 +23,7 @@ export interface MandateState {
   concentration: string;
   holding: HoldingPeriod;
   liquidity: Liquidity;
-  shariah: boolean;
+  compliance: boolean;
   sectors: Set<SectorId>;
   drawdown: Drawdown;
 }
@@ -33,7 +33,7 @@ export const DEFAULT_MANDATE: MandateState = {
   concentration: "10",
   holding: "mid",
   liquidity: "semiAnnual",
-  shariah: true,
+  compliance: true,
   sectors: new Set<SectorId>(["technology", "consumer"]),
   drawdown: 20,
 };

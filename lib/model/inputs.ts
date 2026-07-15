@@ -1,14 +1,14 @@
 /**
- * lib/model/inputs — client-safe sourced data.
+ * lib/model/inputs, client-safe sourced data.
  *
  * Client-safety rule (see types.ts): NO node:fs / ExcelJS / server-only imports.
  * The sourced actuals load via a STATIC import of data/model-inputs.json
- * (bundled, browser-safe) — not the fs-based loader in lib/generate/shared.ts.
+ * (bundled, browser-safe), not the fs-based loader in lib/generate/shared.ts.
  *
  * Two sources of sourced numbers live here:
  *   - `getModelInputs()`  zod-validated ModelInput map keyed by `<period>.<metric>`.
  *   - `MKT`               the Market Data & Comparables Snapshot figures
- *                         (docId "market-data-comps") — each carries its page.
+ *                         (docId "market-data-comps"), each carries its page.
  */
 import raw from "@/data/model-inputs.json";
 import { ModelInputSchema, type ModelInput } from "@/lib/types";
@@ -26,10 +26,10 @@ export function getModelInputs(): Map<string, ModelInput> {
 
 // ════════════════════════════ sourced market data ═══════════════════════════
 // Real figures from the Market Data & Comparables Snapshot (market-data-comps).
-// Sourced, not invented — each carries its page. Rates are stored as percent
+// Sourced, not invented, each carries its page. Rates are stored as percent
 // numbers (4.60 = 4.60%) to mirror model-inputs.json's `%` unit convention.
 
-/** corpus doc id for the market-data snapshot — all MKT entries source here. */
+/** corpus doc id for the market-data snapshot, all MKT entries source here. */
 export const MARKET_DATA_DOC = "market-data-comps";
 
 export const MKT = {
@@ -44,7 +44,7 @@ export const MKT = {
     2,
     "Analyst avg 12m price target (10 analysts)",
   ),
-  // trading comps (EV/Revenue, EV/EBITDA, P/E) — p.4
+  // trading comps (EV/Revenue, EV/EBITDA, P/E), p.4
   talabatEvRev: mkt(1.88, "x", 4, "Talabat EV/Revenue"),
   talabatEvEbitda: mkt(12.9, "x", 4, "Talabat EV/EBITDA"),
   talabatPe: mkt(16.7, "x", 4, "Talabat P/E (TTM)"),

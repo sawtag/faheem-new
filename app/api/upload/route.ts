@@ -1,11 +1,11 @@
 /**
- * POST /api/upload — accepts a single PDF (multipart `file` field), validates
+ * POST /api/upload, accepts a single PDF (multipart `file` field), validates
  * it (magic bytes + size), saves it under data/uploads/, uploads it to the
- * Anthropic Files API server-side (via lib/ai/client.ts — AGENTS.md rule 10),
+ * Anthropic Files API server-side (via lib/ai/client.ts, AGENTS.md rule 10),
  * and registers it in the runtime upload registry. Returns the doc descriptor.
  *
  * Live-mode only: an uploaded doc's id makes a chat request uncacheable by
- * design, so uploads never touch the golden cache. No audit entry — the
+ * design, so uploads never touch the golden cache. No audit entry, the
  * AuditEntry contract has no fitting action, so uploads stay out of it.
  *
  * Client-safe, bilingual errors for every rejection (type / size / API).
@@ -37,8 +37,8 @@ const errors = {
   size: (l: Lang) =>
     pick(
       l,
-      "This PDF is too large — 32 MB max.",
-      "حجم ملف PDF كبير جدًا — الحد الأقصى 32 ميجابايت.",
+      "This PDF is too large, 32 MB max.",
+      "حجم ملف PDF كبير جدًا، الحد الأقصى 32 ميجابايت.",
     ),
   api: (l: Lang) =>
     pick(
@@ -92,7 +92,7 @@ export async function POST(request: Request): Promise<Response> {
     Math.round((bytes.byteLength / 1_048_576) * 100) / 100,
   );
 
-  // Persist to disk first — the viewer serves from here even with no fileId.
+  // Persist to disk first, the viewer serves from here even with no fileId.
   saveUploadFile(id, bytes);
 
   // Files API upload (server-only). null → no API key (offline demo): the doc is

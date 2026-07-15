@@ -61,10 +61,10 @@ function artifactSize(file: string): number {
 }
 
 /**
- * /dashboard — the investment firm's mission control (differentiation surface):
+ * /dashboard, the investment firm's mission control (differentiation surface):
  * a governance-first overview of the firm, the orchestrated analysis runs, the
  * Jahez focus + Saudi macro backdrop, and the recent-analyses / activity rows.
- * Purely additive — new route + seeded data (data/firm.json, data/runs.json),
+ * Purely additive, new route + seeded data (data/firm.json, data/runs.json),
  * no chat-engine or golden contact. Every figure resolves to a source
  * (AGENTS.md rule 5); the loaders (lib/firm.ts, lib/runs.ts) zod-validate.
  */

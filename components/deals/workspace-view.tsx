@@ -72,7 +72,7 @@ export interface WorkspaceChat {
  * Company workspace (T3.3): serif display title (serif home #2), scoped
  * composer, stage banner with the human gate, and the five tabs. The PdfPanel
  * slides in as a fixed inline-end panel for scorecard citations, document-room
- * "Open", and leadership source links — one viewer, three entry points.
+ * "Open", and leadership source links, one viewer, three entry points.
  */
 export function WorkspaceView({
   deal,
@@ -163,7 +163,7 @@ export function WorkspaceView({
             {/* Serif display title (serif home #2). The explicit var stack
                 mirrors the --font-serif token: the next/font variables are
                 declared on <body>, so `font-serif`'s :root-level var() chain
-                computes as invalid there (flagged to fable) — referencing the
+                computes as invalid there (flagged to fable), referencing the
                 font vars at this element resolves them correctly either way. */}
             <h1
               className="text-navy font-serif text-4xl leading-tight font-bold"

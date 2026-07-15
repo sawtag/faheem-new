@@ -13,7 +13,7 @@ function entryKey(e: AuditEntry): string {
 }
 
 /**
- * Entries present in `next` but not in `prev` — the rows the live-grow
+ * Entries present in `next` but not in `prev`, the rows the live-grow
  * animation should play for (design-briefs §3.4). Append-only log, so a
  * simple set-difference by full field equality is sufficient and exact.
  */

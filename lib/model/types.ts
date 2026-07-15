@@ -1,11 +1,11 @@
 /**
- * lib/model — the pure valuation model, shared by the Excel builder and the
+ * lib/model, the pure valuation model, shared by the Excel builder and the
  * Live Model UI. CONTRACT FILE (fable-authored): the shapes here are the
  * inter-workstream API. Implementations live in compute.ts / provenance.ts /
  * formulas.ts.
  *
  * Client-safety rule: nothing under lib/model/ may import node:fs, ExcelJS, or
- * any server-only module — the Live Model recomputes in the browser. Sourced
+ * any server-only module, the Live Model recomputes in the browser. Sourced
  * actuals load via a static import of data/model-inputs.json.
  *
  * Two-tier provenance (AGENTS.md rule 5, extended): every number the model
@@ -50,20 +50,20 @@ export interface ValueNode {
 }
 
 /** Dotted node address, e.g. "wacc", "base.perShare", "fy25.gmv",
- * "assumptions.g", "netRev.4", "shariah.debtRatio". */
+ * "assumptions.g", "netRev.4", "compliance.debtRatio". */
 export type ModelKey = string;
 
 // ─────────────────────────────── assumptions ───────────────────────────────
 
 /**
- * The editable inputs — every field here is an analyst judgment with a
+ * The editable inputs, every field here is an analyst judgment with a
  * rationale; nothing here is a sourced actual. Per-year arrays cover the five
  * forecast years FY26E..FY30E (index 0..4). Rates are decimals (0.03 = 3%).
  */
 export interface Assumptions {
   /** cost-of-debt spread over rf */ spread: number;
   /** Saudi zakat rate (NOPAT tax + debt shield) */ zakat: number;
-  /** terminal growth — base */ g: number;
+  /** terminal growth, base */ g: number;
   gBull: number;
   gBear: number;
   /** IRR hold period, years */ holdYears: number;
@@ -167,8 +167,8 @@ export interface ModelResult {
     pe: { talabat: number; doordash: number };
     field: { min: number; median: number; max: number };
   };
-  // shariah
-  shariah: {
+  // compliance
+  compliance: {
     debtRatio: number;
     cashRatio: number;
     leaseInclRatio: number;
@@ -187,7 +187,7 @@ export interface ModelResult {
 }
 
 /**
- * What buildModel returns. `result` is the full numeric result — the exact
+ * What buildModel returns. `result` is the full numeric result, the exact
  * shape the xlsx/docx/pptx builders already consume (byte-identical at base
  * assumptions, snapshot-gated). `nodes` is the provenance-annotated view the
  * Live Model + Methodology panel read: every user-facing number in `result`
@@ -200,11 +200,11 @@ export interface ModelOutputs {
 
 // ─────────────────────────────── formulas ───────────────────────────────
 
-/** Formula content registry entry — id → rendered formula + explainer.
- * `katex` is the display formula (must match what compute.ts actually does —
+/** Formula content registry entry, id → rendered formula + explainer.
+ * `katex` is the display formula (must match what compute.ts actually does,
  * gate G5); `explainerKey` is a next-intl key (messages: model.formulas.<id>)
  * for the plain-language explainer, EN + AR. `external` is an optional
- * "learn more" URL — never load-bearing (offline-safe). */
+ * "learn more" URL, never load-bearing (offline-safe). */
 export interface FormulaDef {
   id: string;
   katex: string;

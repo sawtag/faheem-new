@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildDocBlocks, filterDocs } from "@/lib/ai/corpus";
 import type { CorpusDoc } from "@/lib/types";
 
-describe("filterDocs — context scoping (real manifest)", () => {
+describe("filterDocs, context scoping (real manifest)", () => {
   it("workspace: company docs + Lunar docs + firm packs, in manifest order", () => {
     const ids = filterDocs({ kind: "workspace", companyId: "jahez" }).map(
       (d) => d.id,
@@ -43,7 +43,7 @@ describe("filterDocs — context scoping (real manifest)", () => {
     expect(ids).toContain("lunar-portfolio");
     expect(ids).toContain("industry-news-pack");
     expect(ids).toContain("market-data-comps");
-    // Jahez is stage "analysis" — its filings must be live-rankable in the IC room
+    // Jahez is stage "analysis", its filings must be live-rankable in the IC room
     expect(ids).toContain("fy25-er");
     expect(ids).toContain("fy24-ar");
     expect(ids).toContain("q1-26-fs");
@@ -53,7 +53,7 @@ describe("filterDocs — context scoping (real manifest)", () => {
   });
 });
 
-describe("filterDocs — #-refs narrowing", () => {
+describe("filterDocs, #-refs narrowing", () => {
   it("restricts to exactly the listed docs", () => {
     const ids = filterDocs({ kind: "workspace", companyId: "jahez" }, [
       "fy25-er",
@@ -79,7 +79,7 @@ describe("filterDocs — #-refs narrowing", () => {
   });
 });
 
-describe("buildDocBlocks — fileId vs base64 shapes", () => {
+describe("buildDocBlocks, fileId vs base64 shapes", () => {
   const fakeDocs: CorpusDoc[] = [
     {
       id: "a",

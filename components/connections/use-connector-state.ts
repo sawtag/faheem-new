@@ -5,7 +5,7 @@ import { CONNECTORS, type Connector } from "@/lib/connectors";
 
 /**
  * Cosmetic connector state shared by the Connections page and the onboarding
- * Connect step (AGENTS.md rule 10 — connectors are fake, no persistence
+ * Connect step (AGENTS.md rule 10, connectors are fake, no persistence
  * beyond component state). Handles the fake-OAuth "connect", the symmetric
  * "disconnect" (Connections page row menu), and custom MCP connectors added
  * through the "Add custom MCP" modal.

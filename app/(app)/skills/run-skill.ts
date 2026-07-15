@@ -5,19 +5,19 @@ import type { AgentId, ChatContext, Lang } from "@/lib/types";
 
 /**
  * What a Run click resolves to: the exact payload for
- * `publishGoldenSelection` (lib/demo/golden-bus.ts — the same insert the ⌘K
+ * `publishGoldenSelection` (lib/demo/golden-bus.ts, the same insert the ⌘K
  * palette uses) plus the href to navigate to. Kept pure/router-free so it
  * unit-tests without mounting a component (tests/skills/run-skill.test.ts).
  *
  * - `goldenId` skills reproduce the recorded ChatRequest byte-for-byte and
  *   land on that request's exact context (workspace Jahez today; `ic` is
  *   handled too since a future golden entry could target the IC room).
- * - `prefill` skills are an ad hoc composer prefill in firm context — there
+ * - `prefill` skills are an ad hoc composer prefill in firm context, there
  *   is no cross-page bus wired into the Home hero's local prefill state
  *   (components/home/* is outside this task's file ownership), so these
  *   land on `/chat/new` (firm context), which reads the exact same
  *   `publishGoldenSelection`/`takeGoldenSelection` pair ChatView already
- *   wires up — the composer arrives pre-filled, unsent, ready for the
+ *   wires up, the composer arrives pre-filled, unsent, ready for the
  *   presenter to hit send.
  * - `null` skills have no Run action.
  */
@@ -31,9 +31,9 @@ export interface SkillRunTarget {
   lang: Lang;
   /**
    * True only for a `goldenId` skill: its recorded lang is fixed regardless
-   * of the active UI locale (e.g. shariah-screen always fires its Arabic
+   * of the active UI locale (e.g. compliance-screen always fires its Arabic
    * golden question). A `prefill` skill's `lang` always equals the active
-   * locale by construction, so it is never "fixed" — showing a "Runs in
+   * locale by construction, so it is never "fixed", showing a "Runs in
    * Arabic" hint for one the moment the UI itself switches to Arabic would
    * be a redundant, misleading false positive. Card UI should gate the hint
    * on `fixedLang && lang === "ar"`, not on `lang === "ar"` alone.

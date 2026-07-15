@@ -2,24 +2,24 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * Decorative brand atmosphere — the on-camera echo of the Figma splash cover
+ * Decorative brand atmosphere, the on-camera echo of the Figma splash cover
  * (giant faded glyph bars + a two-layer emerald swoosh sweeping the bottom edge)
  * brought onto the light app surfaces. Server-safe (no hooks, no "use client"):
  * pure SVG/CSS, so it drops straight into the agents server page as readily as
- * the client home/IC/workspace surfaces. Purely ornamental — `aria-hidden`,
+ * the client home/IC/workspace surfaces. Purely ornamental, `aria-hidden`,
  * `pointer-events-none`, layered under the real content, and `overflow-hidden` so
  * the oversized art can never widen the document (the RTL sweep asserts
- * scrollWidth ≤ clientWidth on every route). Static by design — stillness reads
+ * scrollWidth ≤ clientWidth on every route). Static by design, stillness reads
  * expensive; nothing here animates.
  *
  * The glyph geometry is copied verbatim from `components/ui/logo.tsx` (the brand
  * mark's single source of truth). It is duplicated rather than imported because
  * the backdrop needs the navy bars and the emerald swoosh at INDEPENDENT
- * opacities / positions / blur — the Logo primitive fills them as one locked
- * unit — and `logo.tsx` is a shared primitive this task's lane may not edit to
+ * opacities / positions / blur, the Logo primitive fills them as one locked
+ * unit, and `logo.tsx` is a shared primitive this task's lane may not edit to
  * export them. Colours resolve to the same brand tokens, so no hex is baked in.
  *
- * RTL: the COMPOSITION anchors mirror via logical positioning — the navy bars
+ * RTL: the COMPOSITION anchors mirror via logical positioning, the navy bars
  * ride the inline-end edge, so they swap sides with `dir`. The GLYPH ITSELF
  * never mirrors: the bars always ascend left→right and the swoosh's arrowhead
  * always exits toward the top-right, so the swoosh layer is pinned `dir="ltr"`
@@ -89,7 +89,7 @@ export function GlyphBackdrop({
 }) {
   if (variant === "panel") {
     // Page-header watermark: one faded corner glyph on the inline-end edge with
-    // a whisper of emerald glow beneath it — the hero composition distilled to a
+    // a whisper of emerald glow beneath it, the hero composition distilled to a
     // corner so the data surfaces below stay clean. Clipped to the header block.
     return (
       <div
@@ -115,7 +115,7 @@ export function GlyphBackdrop({
     );
   }
 
-  // hero — the full splash-cover composition on the money surface, rendered from
+  // hero, the full splash-cover composition on the money surface, rendered from
   // the design team's finished raster (public/backgrounds/growth-light.png): the
   // same navy-bars + emerald-swoosh brand artwork the SVG panel variant traces,
   // but in the designers' polished, gradient-rich form. Root sits at z-0 (not
@@ -125,8 +125,8 @@ export function GlyphBackdrop({
   // content.
   //
   // The composition is authored LTR (bars + arrowhead climb toward the physical
-  // top-right). Unlike the small logo mark — a fixed brand asset that never
-  // mirrors — this full-bleed environmental art DOES mirror under RTL via
+  // top-right). Unlike the small logo mark, a fixed brand asset that never
+  // mirrors, this full-bleed environmental art DOES mirror under RTL via
   // `rtl:-scale-x-100`: the growth arrow then climbs up-and-LEFT, i.e. "forward"
   // along the Arabic reading flow, and settles into the bottom-left open corner
   // opposite the flipped sidebar. `object-bottom` anchors it to the bottom edge

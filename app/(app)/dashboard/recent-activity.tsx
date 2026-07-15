@@ -24,7 +24,7 @@ const ACTION_ICON = {
   "ic-draft": Mail,
 } as const;
 
-/** "Jul 12, 09:41" — Western digits both locales (mirrors the audit trail). */
+/** "Jul 12, 09:41", Western digits both locales (mirrors the audit trail). */
 function formatActivityTime(iso: string, lang: Lang): string {
   return new Intl.DateTimeFormat(lang === "ar" ? "ar-u-nu-latn" : "en-US", {
     month: "short",

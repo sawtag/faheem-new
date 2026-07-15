@@ -1,14 +1,14 @@
 /**
- * POST /api/generate/[artifact] — artifact ∈ xlsx|docx|pptx|all. Streams
- * choreographed progress (assembling → building → writing, per artifact —
+ * POST /api/generate/[artifact], artifact ∈ xlsx|docx|pptx|all. Streams
+ * choreographed progress (assembling → building → writing, per artifact,
  * loosely modeled on the chat SSE stage/done shapes, protocol in
  * components/generate/protocol.ts), calls the real T4.1/T4.2 builders, writes
  * Lunar-branded files to public/artifacts/, and upserts data/artifacts.json
- * (idempotent — regenerating an artifact replaces its file + entry, keyed
+ * (idempotent, regenerating an artifact replaces its file + entry, keyed
  * `${workspace}-${kind}`, never duplicates). One audit entry per artifact.
  *
  * FAHEEM_ARTIFACTS_DIR / FAHEEM_ARTIFACTS_JSON override the write targets
- * (tests only — never the committed demo fallbacks). FAHEEM_GENERATE_STEP_MS
+ * (tests only, never the committed demo fallbacks). FAHEEM_GENERATE_STEP_MS
  * paces the per-phase choreography (default 600ms; tests set 0).
  */
 import fs from "node:fs";
@@ -42,11 +42,11 @@ const FILE_NAMES: Record<ArtifactKind, string> = {
 };
 
 const ARTIFACT_NAMES: Record<ArtifactKind, Localized> = {
-  xlsx: { en: "Jahez — Valuation Model", ar: "جاهز — نموذج التقييم" },
-  docx: { en: "Jahez — IC Memo", ar: "جاهز — مذكرة لجنة الاستثمار" },
+  xlsx: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
+  docx: { en: "Jahez · IC Memo", ar: "جاهز · مذكرة لجنة الاستثمار" },
   pptx: {
-    en: "Jahez — Board Deck",
-    ar: "جاهز — العرض التقديمي لمجلس الإدارة",
+    en: "Jahez · Board Deck",
+    ar: "جاهز · العرض التقديمي لمجلس الإدارة",
   },
 };
 
@@ -81,7 +81,7 @@ function jsonPath(): string {
   );
 }
 
-/** Distinct cited source docs behind the model — same figure for every artifact
+/** Distinct cited source docs behind the model, same figure for every artifact
  * (all three builders read the same model-inputs.json). */
 function distinctSources(): number {
   const docs = new Set<string>();
@@ -89,7 +89,7 @@ function distinctSources(): number {
   return docs.size;
 }
 
-/** Atomic upsert keyed by id — regenerating replaces the entry, never duplicates. */
+/** Atomic upsert keyed by id, regenerating replaces the entry, never duplicates. */
 function upsertArtifact(meta: ArtifactMeta): void {
   const file = jsonPath();
   let entries: ArtifactMeta[] = [];

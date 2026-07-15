@@ -3,7 +3,7 @@ import { Badge, type BadgeProps } from "@/components/ui/badge";
 import type { Deal } from "@/lib/types";
 
 /**
- * Pipeline-stage status badge — one visual mapping shared by the board cards
+ * Pipeline-stage status badge, one visual mapping shared by the board cards
  * and the workspace stage banner so a stage always reads the same everywhere.
  */
 const STAGE_VARIANT: Record<

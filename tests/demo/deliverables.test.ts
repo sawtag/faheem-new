@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { isDeliverablesQuestion } from "@/lib/demo/deliverables";
 
-describe("isDeliverablesQuestion — deliverables-beat exact-match detector", () => {
+describe("isDeliverablesQuestion, deliverables-beat exact-match detector", () => {
   it("matches the exact recorded golden text", () => {
     expect(
       isDeliverablesQuestion(

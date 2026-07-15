@@ -3,7 +3,7 @@
  * data/social-pack.json is a clearly-labeled ILLUSTRATIVE/synthetic demo pack
  * (never real scraped posts); data/sentiment.json is a label + one-line
  * rationale per company, pointing at social-pack ids. Both zod-validated at
- * module load — SocialPostSchema/SentimentEntrySchema are `.strict()`, so an
+ * module load, SocialPostSchema/SentimentEntrySchema are `.strict()`, so an
  * accidental sourced-number shape ({value, sourceDoc, page}) fails loudly
  * here rather than shipping to the UI.
  */

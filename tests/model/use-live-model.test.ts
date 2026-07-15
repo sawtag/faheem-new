@@ -1,5 +1,5 @@
 /**
- * useLiveModel — client edits pass through the SAME validateEdit gate as
+ * useLiveModel, client edits pass through the SAME validateEdit gate as
  * /api/model-edit (G7 review finding): whitelist + sane-bounds clamp, so the
  * grid stepper can't drive terminal growth past WACC or write illegal keys.
  */
@@ -17,7 +17,7 @@ describe("useLiveModel edit gate", () => {
 
   it("clamps terminal growth to the sane bound (never reaches WACC)", () => {
     const { result } = renderHook(() => useLiveModel());
-    act(() => result.current.setAssumption("g", 0.5)); // 50% — absurd
+    act(() => result.current.setAssumption("g", 0.5)); // 50%, absurd
     expect(result.current.assumptions.g).toBe(0.08); // spec max
     // model stays finite: Gordon denominator (WACC − g) > 0
     expect(result.current.outputs.result.base.tv).toBeGreaterThan(0);

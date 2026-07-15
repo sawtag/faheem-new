@@ -24,7 +24,7 @@ export interface LiveModelContextValue {
   nodes: Record<ModelKey, ValueNode>;
   selectedKey: ModelKey | null;
   changedKeys: ReadonlySet<ModelKey>;
-  /** bumps on every recompute — re-triggers the changed-cell wash */
+  /** bumps on every recompute, re-triggers the changed-cell wash */
   changeNonce: number;
   select: (key: ModelKey) => void;
   setAssumption: (assumptionKey: string, nativeValue: number) => void;
@@ -176,7 +176,7 @@ const KIND_STYLE: Record<ValueNode["provenance"]["kind"], string> = {
 /**
  * One selectable model cell. Renders the node's value (count-up on change),
  * the provenance affordance (lock glyph on sourced, edit glyph on assumption),
- * a selection ring, and — when a sourced cell is selected — the "source-locked"
+ * a selection ring, and, when a sourced cell is selected, the "source-locked"
  * caption. Assumption cells reveal an inline stepper/input while selected. It's
  * a role="button" div (not a <button>) so the stepper controls can nest.
  */
@@ -240,7 +240,7 @@ export function ModelCell({
         )}
         style={style}
       >
-        {/* changed-cell wash — a keyed fade re-fires on every recompute */}
+        {/* changed-cell wash, a keyed fade re-fires on every recompute */}
         {changed && !reduce && (
           <motion.span
             key={changeNonce}
@@ -293,7 +293,7 @@ export function ModelCell({
 
 // ─────────────────────────────── table primitives ───────────────────────────────
 
-/** Numeric grid shell — forced dir="ltr" (finance numeric-LTR convention:
+/** Numeric grid shell, forced dir="ltr" (finance numeric-LTR convention:
  * year columns read FY23A→FY30E left-to-right in both locales; only labels and
  * page chrome flip RTL). */
 export function GridTable({
@@ -315,7 +315,7 @@ export function GridTable({
   );
 }
 
-/** Row-label header cell — the one place row text (possibly Arabic) lives; kept
+/** Row-label header cell, the one place row text (possibly Arabic) lives; kept
  * at the inline-start of an otherwise-LTR numeric row. */
 export function RowLabel({
   nodeKey,

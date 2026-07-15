@@ -25,11 +25,15 @@ test.describe("login", () => {
     page,
   }) => {
     await page.goto("/login");
-    await page.getByRole("button", { name: /sign in/i }).click();
 
-    await expect(
-      page.getByText("Enter your username and password"),
-    ).toBeVisible();
+    // click-until-effect: a click landing before hydration attaches the
+    // form's client-side validation is silently lost under parallel load
+    await expect(async () => {
+      await page.getByRole("button", { name: /sign in/i }).click();
+      await expect(
+        page.getByText("Enter your username and password"),
+      ).toBeVisible({ timeout: 1500 });
+    }).toPass({ timeout: 20_000 });
     await expect(page).toHaveURL(/\/login$/);
   });
 

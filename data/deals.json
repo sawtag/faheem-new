@@ -2,6 +2,7 @@
   {
     "id": "darb",
     "name": { "en": "Darb", "ar": "درب" },
+    "listing": { "en": "Private", "ar": "خاص" },
     "sector": { "en": "Logistics SaaS", "ar": "برمجيات اللوجستيات (SaaS)" },
     "origin": "inbound",
     "stage": "screening",
@@ -10,7 +11,7 @@
       "ar": "40 مليون ريال سعودي - السلسلة B"
     },
     "statusLine": {
-      "en": "Screening scorecard complete — 5 pass, 1 concentration flag.",
+      "en": "Screening scorecard complete: 5 pass, 1 concentration flag.",
       "ar": "اكتمل بطاقة الفرز - 5 معايير مستوفاة وتنبيه تركّز واحد."
     },
     "screening": {
@@ -47,13 +48,13 @@
         },
         {
           "criterion": {
-            "en": "Shariah pre-screen",
-            "ar": "الفحص الشرعي المبدئي"
+            "en": "Compliance pre-screen",
+            "ar": "فحص الامتثال المبدئي"
           },
           "verdict": "pass",
           "note": {
-            "en": "Business activity permissible; no leverage red flags at pre-screen.",
-            "ar": "النشاط التجاري مباح شرعاً؛ لا توجد مؤشرات تحذيرية على الرفع المالي عند الفحص المبدئي."
+            "en": "Business activity eligible; no leverage red flags at pre-screen.",
+            "ar": "النشاط التجاري مؤهل وفق التفويض؛ لا توجد مؤشرات تحذيرية على الرفع المالي عند الفحص المبدئي."
           },
           "cite": { "docId": "lunar-ic-charter", "page": 5 }
         },
@@ -77,7 +78,7 @@
         }
       ],
       "verdict": {
-        "en": "Recommend advancing to pitch meeting — 5 pass, 1 flag. Decision: yours.",
+        "en": "Recommend advancing to pitch meeting: 5 pass, 1 flag. Decision: yours.",
         "ar": "يُوصى بالانتقال إلى اجتماع العرض التقديمي - 5 معايير مستوفاة وتنبيه واحد. القرار لكم."
       }
     }
@@ -85,6 +86,7 @@
   {
     "id": "jahez",
     "name": { "en": "Jahez", "ar": "جاهز" },
+    "listing": { "en": "Public", "ar": "عام" },
     "sector": {
       "en": "Quick-commerce / food delivery",
       "ar": "التجارة السريعة وتوصيل الطعام"
@@ -97,7 +99,7 @@
       "ar": "فرز SAHMK/أرقام · 2026-07-08"
     },
     "statusLine": {
-      "en": "Deep-dive analysis in progress — valuation, unit economics, and scenario modelling underway.",
+      "en": "Deep-dive analysis in progress: valuation, unit economics, and scenario modelling underway.",
       "ar": "التحليل المعمّق قيد التنفيذ - التقييم والاقتصاد التشغيلي ونمذجة السيناريوهات جارية."
     },
     "icMetrics": {
@@ -106,10 +108,10 @@
       "expectedReturn": 16.8,
       "riskScore": 5.5,
       "mandateFit": "pass",
-      "shariah": "pass",
+      "compliance": "pass",
       "recommendation": {
-        "en": "Strongest risk-adjusted case — clears the hurdle in base and bull; bear case falls short. The committee decides.",
-        "ar": "أقوى حالة معدّلة بالمخاطر — يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
+        "en": "Strongest risk-adjusted case: clears the hurdle in base and bull; bear case falls short. The committee decides.",
+        "ar": "أقوى حالة معدّلة بالمخاطر: يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
       },
       "cite": { "docId": "jahez-analysis-summary", "page": 2 }
     }
@@ -117,14 +119,15 @@
   {
     "id": "thara-pay",
     "name": { "en": "Thara Pay", "ar": "ثارا باي" },
+    "listing": { "en": "Pre-IPO", "ar": "قبل الطرح" },
     "sector": {
-      "en": "Fintech — payments infrastructure",
+      "en": "Fintech · payments infrastructure",
       "ar": "التقنية المالية - البنية التحتية للمدفوعات"
     },
     "origin": "inbound",
     "stage": "ic-review",
     "statusLine": {
-      "en": "Analysis complete — in Investment Committee review.",
+      "en": "Analysis complete, now in Investment Committee review.",
       "ar": "اكتمل التحليل - قيد مراجعة لجنة الاستثمار."
     },
     "icMetrics": {
@@ -133,7 +136,7 @@
       "expectedReturn": 16.2,
       "riskScore": 5,
       "mandateFit": "pass",
-      "shariah": "pass",
+      "compliance": "pass",
       "recommendation": {
         "en": "Strongest risk-adjusted case pending final due diligence.",
         "ar": "أقوى حالة استثمارية معدّلة بالمخاطر، رهناً باكتمال العناية الواجبة النهائية."
@@ -144,11 +147,12 @@
   {
     "id": "aqar",
     "name": { "en": "Aqar Development", "ar": "عقار للتطوير" },
+    "listing": { "en": "Private", "ar": "خاص" },
     "sector": { "en": "Real estate development", "ar": "التطوير العقاري" },
     "origin": "inbound",
     "stage": "declined",
     "statusLine": {
-      "en": "Declined at screening — outside sector mandate.",
+      "en": "Declined at screening (outside sector mandate).",
       "ar": "تم الاعتذار عند الفرز - خارج نطاق التفويض القطاعي."
     },
     "declineReason": {

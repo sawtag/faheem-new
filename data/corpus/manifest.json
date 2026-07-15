@@ -72,8 +72,8 @@
   {
     "id": "industry-news-pack",
     "title": {
-      "en": "Industry & News Pack — Saudi Quick-Commerce",
-      "ar": "ملف الصناعة والأخبار — التجارة السريعة السعودية"
+      "en": "Industry & News Pack · Saudi Quick-Commerce",
+      "ar": "ملف الصناعة والأخبار · التجارة السريعة السعودية"
     },
     "path": "data/corpus/industry-news-pack.pdf",
     "pages": 5,
@@ -132,7 +132,7 @@
   {
     "id": "darb-dataroom",
     "title": {
-      "en": "Darb Data Room — Screening Summary",
+      "en": "Darb Data Room · Screening Summary",
       "ar": "غرفة بيانات درب - ملخص الفرز"
     },
     "path": "data/corpus/darb-dataroom.pdf",
@@ -185,8 +185,8 @@
   {
     "id": "gastat-macro-pack",
     "title": {
-      "en": "Saudi Macro & Sector Snapshot — GASTAT/SAMA",
-      "ar": "لمحة الاقتصاد الكلي السعودي — الهيئة العامة للإحصاء وساما"
+      "en": "Saudi Macro & Sector Snapshot · GASTAT/SAMA",
+      "ar": "لمحة الاقتصاد الكلي السعودي · الهيئة العامة للإحصاء وساما"
     },
     "path": "data/corpus/gastat-macro-pack.pdf",
     "pages": 6,

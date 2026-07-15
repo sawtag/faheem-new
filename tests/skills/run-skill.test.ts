@@ -26,9 +26,9 @@ describe("resolveSkillRun", () => {
     expect(target!.fixedLang).toBe(true);
   });
 
-  it("shariah-screen resolves to the Arabic golden entry regardless of the active UI locale", () => {
-    const target = resolveSkillRun(skill("shariah-screen"), "en");
-    const entry = goldenQuestionById("shariah-ar")!;
+  it("compliance-screen resolves to the Arabic golden entry regardless of the active UI locale", () => {
+    const target = resolveSkillRun(skill("compliance-screen"), "en");
+    const entry = goldenQuestionById("compliance-ar")!;
     expect(target!.text).toBe(entry.request.question);
     expect(target!.lang).toBe("ar");
     expect(target!.fixedLang).toBe(true);
@@ -55,7 +55,7 @@ describe("resolveSkillRun", () => {
     expect(ar.lang).toBe("ar");
   });
 
-  it("a prefill skill is never fixedLang, even when the active UI locale is ar — regression guard for the 'Runs in Arabic' hint, which must only ever appear for a goldenId skill with a truly fixed (locale-independent) language, never merely because the UI itself is in Arabic", () => {
+  it("a prefill skill is never fixedLang, even when the active UI locale is ar, regression guard for the 'Runs in Arabic' hint, which must only ever appear for a goldenId skill with a truly fixed (locale-independent) language, never merely because the UI itself is in Arabic", () => {
     for (const s of SKILLS) {
       if (!s.run || "goldenId" in s.run) continue;
       const target = resolveSkillRun(s, "ar")!;

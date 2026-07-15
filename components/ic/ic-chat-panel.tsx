@@ -33,11 +33,11 @@ interface Turn {
 }
 
 /**
- * Faheem IC advisory chat — the committee asks, Faheem answers with citations
+ * Faheem IC advisory chat, the committee asks, Faheem answers with citations
  * into both analyses + the mandate, always advisory. It reuses the exact chat
  * engine (streamChat) and render components (AgentActivity, MessageStream,
  * SourcesAccordion, VerifiedBadge) as `/chat/[id]`, only scoped to
- * `context: {kind:"ic"}` — nothing is forked.
+ * `context: {kind:"ic"}`, nothing is forked.
  */
 export function IcChatPanel({
   onOpenDoc,
@@ -60,7 +60,7 @@ export function IcChatPanel({
 
   const streaming = turns.some((turn) => turn.streaming);
 
-  // ⌘K demo palette hand-off — only an "ic"-context golden selection is ever
+  // ⌘K demo palette hand-off, only an "ic"-context golden selection is ever
   // applied here (the workspace ones target ChatView's Composer instead).
   React.useEffect(() => {
     function apply(sel: GoldenSelection) {
@@ -100,7 +100,7 @@ export function IcChatPanel({
           );
         });
       } catch {
-        /* aborted or network drop — keep the partial turn */
+        /* aborted or network drop, keep the partial turn */
       } finally {
         const elapsedMs = performance.now() - startedAt;
         setTurns((prev) =>

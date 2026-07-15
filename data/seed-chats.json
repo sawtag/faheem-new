@@ -5,7 +5,10 @@
       "en": "FY2025 revenue quality review",
       "ar": "مراجعة جودة إيرادات 2025"
     },
-    "context": { "kind": "workspace", "companyId": "jahez" },
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    },
     "createdAt": "2026-07-09T08:14:00.000Z",
     "messages": [
       {
@@ -14,7 +17,7 @@
       },
       {
         "role": "assistant",
-        "text": "Revenue growth was real but low-quality — the top line held up while gross margin gave way.",
+        "text": "Revenue growth was real but low-quality: the top line held up while gross margin gave way.",
         "events": [
           {
             "type": "stage",
@@ -66,7 +69,7 @@
           },
           {
             "type": "delta",
-            "text": "**Revenue growth was real but low-quality — the top line held up while gross margin gave way.**\n\nNet revenue reached SAR 2,323.6M, up 4.7% YoY[[1]], but the mix is what matters:\n\n- **Commission revenue** grew 16.3% to SAR 1,113.8M[[2]], lifting the implied group take rate to roughly 15.4% (commission ÷ GMV)[[3]] — the monetization engine is working.\n- **GMV** expanded 10.8% to SAR 7,245.2M[[4]], so end demand is intact.\n- But **gross margin compressed to 22.8%**, from 24.4% a year earlier[[5]] — delivery and logistics costs outran the take-rate gains.\n\nNet: healthy monetization, softening unit economics. The quality question is really a margin question — which the P&L answers next."
+            "text": "**Revenue growth was real but low-quality: the top line held up while gross margin gave way.**\n\nNet revenue reached SAR 2,323.6M, up 4.7% YoY[[1]], but the mix is what matters:\n\n- **Commission revenue** grew 16.3% to SAR 1,113.8M[[2]], lifting the implied group take rate to roughly 15.4% (commission ÷ GMV)[[3]], the monetization engine is working.\n- **GMV** expanded 10.8% to SAR 7,245.2M[[4]], so end demand is intact.\n- But **gross margin compressed to 22.8%**, from 24.4% a year earlier[[5]], delivery and logistics costs outran the take-rate gains.\n\nNet: healthy monetization, softening unit economics. The quality question is really a margin question, which the P&L answers next."
           },
           {
             "type": "citation",
@@ -103,7 +106,10 @@
             "page": 4,
             "quote": "Gross Profit % of Net Revenue 22.8% (FY2024: 24.4%)"
           },
-          { "type": "done", "cached": true }
+          {
+            "type": "done",
+            "cached": true
+          }
         ]
       },
       {
@@ -112,7 +118,7 @@
       },
       {
         "role": "assistant",
-        "text": "Net income attributable to shareholders fell 61.2% to SAR 73.0M — but most of the drop is one-time, not structural.",
+        "text": "Net income attributable to shareholders fell 61.2% to SAR 73.0M, but most of the drop is one-time, not structural.",
         "events": [
           {
             "type": "stage",
@@ -164,7 +170,7 @@
           },
           {
             "type": "delta",
-            "text": "**Net income attributable to shareholders fell 61.2% YoY to SAR 73.0M**[[1]] — and most of the drop is one-time, not structural.\n\n- **~SAR 55.4M of Q4 one-offs** account for the bulk: a Red Color impairment (12.2), Marn goodwill impairment (11.8), an Others-segment ECL charge (23.4), and ~8.0 of Snoonu deal expenses[[2]].\n- **Adjusted EBITDA** still fell 22.8% to SAR 193.0M[[3]], so the operating base did soften.\n- **D&A rose 75.4% to SAR 89.4M**[[4]] as the platform capitalised more — a real drag below EBITDA.\n- Loss-making segments compounded it: Others net income −SAR 82.5M and Non-KSA −SAR 33.9M[[5]].\n\nStrip the one-offs and the franchise is closer to flat-to-down than collapsing — but the margin trend is the thing to underwrite."
+            "text": "**Net income attributable to shareholders fell 61.2% YoY to SAR 73.0M**[[1]], and most of the drop is one-time, not structural.\n\n- **~SAR 55.4M of Q4 one-offs** account for the bulk: a Red Color impairment (12.2), Marn goodwill impairment (11.8), an Others-segment ECL charge (23.4), and ~8.0 of Snoonu deal expenses[[2]].\n- **Adjusted EBITDA** still fell 22.8% to SAR 193.0M[[3]], so the operating base did soften.\n- **D&A rose 75.4% to SAR 89.4M**[[4]] as the platform capitalised more, a real drag below EBITDA.\n- Loss-making segments compounded it: Others net income −SAR 82.5M and Non-KSA −SAR 33.9M[[5]].\n\nStrip the one-offs and the franchise is closer to flat-to-down than collapsing, but the margin trend is the thing to underwrite."
           },
           {
             "type": "citation",
@@ -201,7 +207,10 @@
             "page": 9,
             "quote": "Net Income (Shareholders): Others (82.5), Non-KSA (33.9), segment table FY2025"
           },
-          { "type": "done", "cached": true }
+          {
+            "type": "done",
+            "cached": true
+          }
         ]
       }
     ]
@@ -209,10 +218,13 @@
   {
     "id": "seed-darb-screening",
     "title": {
-      "en": "Darb — screening verdict",
-      "ar": "درب — قرار الفرز"
+      "en": "Darb, screening verdict",
+      "ar": "درب، قرار الفرز"
     },
-    "context": { "kind": "workspace", "companyId": "darb" },
+    "context": {
+      "kind": "workspace",
+      "companyId": "darb"
+    },
     "createdAt": "2026-07-08T13:02:00.000Z",
     "messages": [
       {
@@ -221,7 +233,7 @@
       },
       {
         "role": "assistant",
-        "text": "Recommendation: advance to a pitch meeting — five criteria pass, one concentration flag. The call is yours.",
+        "text": "Recommendation: advance to a pitch meeting. Five criteria pass, one concentration flag. The call is yours.",
         "events": [
           {
             "type": "stage",
@@ -249,7 +261,7 @@
           },
           {
             "type": "delta",
-            "text": "**Recommendation: advance to a pitch meeting — five criteria pass, one concentration flag.** The call is yours.\n\n- **Sector mandate — Pass.** Logistics SaaS sits inside the Technology & Consumer mandate[[1]].\n- **Ticket & stage — Pass.** The SAR 40M Series B falls within the SAR 20–60M ticket band and the mandated Series A–C window[[2]].\n- **Shariah pre-screen — Pass.** Business activity is permissible, with no leverage red flags at pre-screen[[3]].\n- **Concentration — Warn.** Technology & Consumer exposure is 8.5% of AUM today; a SAR 40M ticket (2.0% of AUM) would take post-deal sector exposure to 10.5%, just above the 10% cap[[4]].\n\nRed flags, conflicts, and related-party checks are clean. The only open item for the committee is whether to accept a temporary 0.5pt breach of the sector cap or trim the ticket."
+            "text": "**Recommendation: advance to a pitch meeting. Five criteria pass, one concentration flag.** The call is yours.\n\n- **Sector mandate: Pass.** Logistics SaaS sits inside the Technology & Consumer mandate[[1]].\n- **Ticket & stage: Pass.** The SAR 40M Series B falls within the SAR 20–60M ticket band and the mandated Series A–C window[[2]].\n- **Compliance pre-screen: Pass.** Business activity is eligible, with no leverage red flags at pre-screen[[3]].\n- **Concentration: Warn.** Technology & Consumer exposure is 8.5% of AUM today; a SAR 40M ticket (2.0% of AUM) would take post-deal sector exposure to 10.5%, just above the 10% cap[[4]].\n\nRed flags, conflicts, and related-party checks are clean. The only open item for the committee is whether to accept a temporary 0.5pt breach of the sector cap or trim the ticket."
           },
           {
             "type": "citation",
@@ -279,7 +291,10 @@
             "page": 4,
             "quote": "Single-sector concentration cap of 10% of AUM"
           },
-          { "type": "done", "cached": true }
+          {
+            "type": "done",
+            "cached": true
+          }
         ]
       }
     ]
@@ -290,7 +305,9 @@
       "en": "Prep for Monday's Investment Committee",
       "ar": "التحضير لاجتماع لجنة الاستثمار يوم الاثنين"
     },
-    "context": { "kind": "firm" },
+    "context": {
+      "kind": "firm"
+    },
     "createdAt": "2026-07-10T16:41:00.000Z",
     "messages": [
       {
@@ -351,7 +368,7 @@
           },
           {
             "type": "delta",
-            "text": "**Two names are committee-ready, and the Jahez deep-dive is in flight.**\n\n- **Thara Pay** — analysis complete. Implied IRR of 18.5% clears the 15% mandate hurdle, with a mid risk score of 5/10 and a clean Shariah screen[[1]]. It's the strongest risk-adjusted case on the table.\n- **Jahez** — deep-dive underway. The headline the committee will press on is FY2025 net income of SAR 73.0M, down 61.2% YoY[[2]] — largely one-off, but worth pre-empting.\n\nThree Lunar-branded artifacts are drafted from the model and awaiting your review before circulation: the **IC memo**, the **board deck**, and the **valuation workbook**. Every figure traces to a cited source, and each answer is written to the audit trail."
+            "text": "**Two names are committee-ready, and the Jahez deep-dive is in flight.**\n\n- **Thara Pay**, analysis complete. Implied IRR of 18.5% clears the 15% mandate hurdle, with a mid risk score of 5/10 and a clean Compliance screen[[1]]. It's the strongest risk-adjusted case on the table.\n- **Jahez**, deep-dive underway. The headline the committee will press on is FY2025 net income of SAR 73.0M, down 61.2% YoY[[2]], largely one-off, but worth pre-empting.\n\nThree Lunar-branded artifacts are drafted from the model and awaiting your review before circulation: the **IC memo**, the **board deck**, and the **valuation workbook**. Every figure traces to a cited source, and each answer is written to the audit trail."
           },
           {
             "type": "citation",
@@ -367,7 +384,10 @@
             "page": 4,
             "quote": "Net Profit attributable to shareholders 73.0 (-61.2% YoY)"
           },
-          { "type": "done", "cached": true }
+          {
+            "type": "done",
+            "cached": true
+          }
         ]
       }
     ]

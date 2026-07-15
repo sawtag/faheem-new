@@ -1,10 +1,10 @@
 /**
- * components/model/format — ValueNode.value + .unit → display string.
+ * components/model/format, ValueNode.value + .unit → display string.
  *
  * Reuses lib/utils' formatSAR/formatPercent for the "%"/"SAR"/"SAR m" units
  * (house style, tabular-nums-ready). The remaining model-only units ("x"
  * multiples, "m" millions-of-units counts, "years", "score") are formatted
- * locally — "x"/"M" are mathematical/notation suffixes, not language content
+ * locally, "x"/"M" are mathematical/notation suffixes, not language content
  * (same treatment as formatSAR's own hardcoded "SAR"/"M"), so they render
  * identically in both locales; only "years" carries translated text.
  */

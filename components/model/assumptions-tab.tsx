@@ -8,9 +8,9 @@ import { ModelSectionCard } from "@/components/model/model-section-card";
 
 const FORECAST_YEARS = YEARS.slice(3); // FY26E..FY30E
 
-/** Per-year editable driver grid — one row per family, FY26E..FY30E columns.
+/** Per-year editable driver grid, one row per family, FY26E..FY30E columns.
  * Row labels use the family-level series part-label (a row spans every
- * forecast year, so the per-year "— FY26E" suffix would be wrong). */
+ * forecast year, so the per-year ", FY26E" suffix would be wrong). */
 function PerYearGrid({ rows }: { rows: string[] }) {
   const t = useTranslations();
   return (

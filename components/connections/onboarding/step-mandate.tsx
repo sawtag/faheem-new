@@ -168,13 +168,15 @@ export function StepMandate({
       <div>
         <label className="text-navy flex items-center gap-3 text-[0.9375rem] font-medium">
           <Toggle
-            checked={mandate.shariah}
-            onCheckedChange={(shariah) => onChange({ ...mandate, shariah })}
+            checked={mandate.compliance}
+            onCheckedChange={(compliance) =>
+              onChange({ ...mandate, compliance })
+            }
           />
-          {t("mandate.shariah")}
+          {t("mandate.compliance")}
         </label>
         <p className="text-text-secondary mt-1.5 text-xs font-medium">
-          {t("mandate.shariahNote")}
+          {t("mandate.complianceNote")}
         </p>
       </div>
 

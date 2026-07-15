@@ -6,7 +6,7 @@ import type { Lang, Localized } from "@/lib/types";
 
 /**
  * Tasteful bilingual empty state for companies without a live model (only
- * Jahez has one today) — house empty-state pattern: mono glyph, title,
+ * Jahez has one today), house empty-state pattern: mono glyph, title,
  * roadmap caption, back link.
  */
 export async function ModelEmptyState({

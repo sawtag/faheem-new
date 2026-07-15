@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /*
- * Faheem theme — THE single source of visual truth (AGENTS.md rule 4).
+ * Faheem theme, THE single source of visual truth (AGENTS.md rule 4).
  * Fable-owned. Agents: request additions via task summaries; T0.2 may APPEND
  * extension tokens (never modify existing values). No hex/shadow/duration
- * literals anywhere in app/** or components/** — lint-enforced.
+ * literals anywhere in app/** or components/**, lint-enforced.
  *
  * Values from the Faheem UI Kit (spec §7), extended with tint ramps.
  * Light mode ONLY (AGENTS.md rule 1).
@@ -66,6 +66,10 @@
   --radius-pill: 20px;
 
   /* ── elevation (quiet finance-terminal: hairlines first, shadows sparingly) ── */
+  /* rail: symmetric glow so the sidebar reads elevated beside the content;
+   * the start side sits off-canvas, so only the logical end edge shows and
+   * the same token works in both directions */
+  --shadow-rail: 0 0 24px rgba(8, 33, 82, 0.06);
   --shadow-card: 0 10px 24px rgba(8, 33, 82, 0.03);
   --shadow-hover:
     0 12px 32px rgba(8, 33, 82, 0.08), 0 2px 6px rgba(8, 33, 82, 0.05);
@@ -88,10 +92,48 @@
 }
 
 /* Financial figures: digits always Inter + tabular so columns never shift.
- * (Western digits are guaranteed by the codepoints; Inter leads the stack.) */
+ * The explicit family pins Inter first even on Arabic pages (where the
+ * document stack leads with Plex Arabic); Arabic words inside financial
+ * spans still fall through to the Arabic families per glyph. */
 @utility financial {
+  font-family:
+    var(--font-inter), var(--font-plex-arabic), ui-sans-serif, system-ui,
+    sans-serif;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
+}
+
+/* Slim, buttonless scroll rail for in-app panes (sidebar nav, chat thread,
+ * picker submenus). Invisible at rest; a muted rounded navy thumb appears
+ * while the pane is hovered. No arrow buttons, transparent track, so the
+ * rail never reads as a bleeding native control against adjacent chrome.
+ * Lands on the logical outside edge automatically under RTL. */
+@utility faheem-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover {
+    scrollbar-color: var(--color-navy-200) transparent;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: var(--color-navy-200);
+  }
 }
 
 body {
@@ -101,13 +143,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Arabic documents lead with the Arabic families. next/font's metric
+ * fallbacks ("Inter Fallback" = local Arial, "Lora Fallback" = local Times)
+ * carry Arabic glyphs on real machines and have no unicode-range restriction,
+ * so with Inter/Lora first they swallow ALL Arabic text and IBM Plex Sans
+ * Arabic / Amiri are never reached. Reordering per-locale fixes it; Latin
+ * text and digits inside Arabic pages still fall through per glyph. */
+html[lang="ar"] {
+  --font-sans:
+    var(--font-plex-arabic), var(--font-inter), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-serif: var(--font-amiri), var(--font-lora), Georgia, serif;
+}
+
 ::selection {
   background-color: var(--color-accent-100);
   color: var(--color-navy);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
- * T0.2 EXTENSIONS — appended by the theme+primitives task (existing values
+ * T0.2 EXTENSIONS, appended by the theme+primitives task (existing values
  * above are UNTOUCHED, per the ownership note). Everything here is a new token
  * or references one; no literal ever leaks into app/** or components/**.
  * ═══════════════════════════════════════════════════════════════════════════ */
@@ -189,7 +244,7 @@ body {
   }
 }
 
-/* Dialog surfaces (scale .98→1 + fade, 150ms) — Dialog primitive. */
+/* Dialog surfaces (scale .98→1 + fade, 150ms), Dialog primitive. */
 .faheem-overlay {
   animation: faheem-overlay-in var(--duration-fast) var(--ease);
 }
@@ -203,7 +258,7 @@ body {
   animation: faheem-dialog-out var(--duration-fast) var(--ease);
 }
 
-/* Popovers/menus/tooltips — origin-aware pop (scale .98→1 + fade, 150ms). */
+/* Popovers/menus/tooltips, origin-aware pop (scale .98→1 + fade, 150ms). */
 .faheem-pop {
   transform-origin: var(--radix-popper-transform-origin, center);
   animation: faheem-pop-in var(--duration-fast) var(--ease);
@@ -212,7 +267,7 @@ body {
   animation: faheem-pop-out var(--duration-fast) var(--ease);
 }
 
-/* Inline busy spinner — the ONE sanctioned rotation (button/inline loading,
+/* Inline busy spinner, the ONE sanctioned rotation (button/inline loading,
  * explicitly specified in the primitives + login briefs). Everywhere else the
  * system signals "working" with shimmer, the logo bar-rise, or count-up. */
 .faheem-spin {

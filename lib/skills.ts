@@ -1,17 +1,17 @@
 /**
- * Skills registry loader (Skills Library) — zod-lite validation over
+ * Skills registry loader (Skills Library), zod-lite validation over
  * data/skills.json, the analyst-playbook catalog rendered by /skills.
  *
  * A skill's `run` is one of:
- *  - `{ goldenId }` — reproduces a recorded golden question byte-for-byte via
+ *  - `{ goldenId }`, reproduces a recorded golden question byte-for-byte via
  *    the same lib/demo/golden-bus.ts insert the ⌘K palette uses (exact cache
  *    key, see lib/demo/golden-questions.ts).
- *  - `{ prefill: {en, ar} }` — an ad hoc composer prefill, not a recorded
+ *  - `{ prefill: {en, ar} }`, an ad hoc composer prefill, not a recorded
  *    question (no cache guarantee; the live/cached engine handles it either
  *    way).
- *  - `null` — roadmap-only, no Run action.
+ *  - `null`, roadmap-only, no Run action.
  *
- * Every `goldenId` must resolve in the golden registry — checked eagerly here
+ * Every `goldenId` must resolve in the golden registry, checked eagerly here
  * (not just in tests) so a broken mapping fails at import time, not when a
  * judge clicks Run on stage.
  */
@@ -41,10 +41,10 @@ export const SkillSchema = z.object({
   id: z.string(),
   name: LocalizedSchema,
   category: SkillCategorySchema,
-  /** lucide icon name — icon choice is registry data (AGENTS.md asset policy) */
+  /** lucide icon name, icon choice is registry data (AGENTS.md asset policy) */
   icon: z.string(),
   oneLiner: LocalizedSchema,
-  /** 3-5 technical method bullets, rendered in full — never truncated */
+  /** 3-5 technical method bullets, rendered in full, never truncated */
   methods: z.array(LocalizedSchema).min(3).max(5),
   run: SkillRunSchema,
 });

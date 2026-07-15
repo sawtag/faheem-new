@@ -35,7 +35,7 @@ A valuation model **inside Faheem** (tabs: Assumptions / DCF / Sensitivity, mirr
 
 ### Pillar 3 — the visible specialist team
 
-- **Choreographed recompute:** changing an assumption visibly runs the relevant agents — **Valuation** recomputes → **Critical Review** re-verifies the provenance chain → **Compliance** re-checks the Shariah ratios if debt moved → **Financial Writing** updates the recommendation line — in the existing Agent Activity timeline. A team, not a function call.
+- **Choreographed recompute:** changing an assumption visibly runs the relevant agents — **Valuation** recomputes → **Critical Review** re-verifies the provenance chain → **Compliance** re-checks the compliance ratios if debt moved → **Financial Writing** updates the recommendation line — in the existing Agent Activity timeline. A team, not a function call.
 - **Curated roster expansion** (each card substantive, or it's cut — no padding):
   - *Add:* **Accounting & Quality-of-Earnings** (the "is the SAR 55M really one-off?" work), **Critical Review** (adversarial red-team; distinct from Compliance's fact-check; the star of the governance story), **News & Market Intelligence** (cites the industry pack), **Market Sentiment** (qualitative signal per Rule; label + one-line read: meme-stock/bubble/short-squeeze/macro color — "signal only"; reads a cached synthetic social pack).
   - Keep the existing 10 (orchestrator, screening, research, doc-intel, valuation, comparables, risk, writing, compliance, ic).
@@ -68,7 +68,7 @@ export const BASE_ASSUMPTIONS: Assumptions;
 interface FormulaDef { id: string; katex: string; explainer: Localized; external?: string }
 ```
 
-**Invariants (enforced by tests):** every `computed` node's `inputs` resolve to real `ModelKey`s; every `formulaId` has a `FormulaDef`; the provenance graph is acyclic and every path terminates at `sourced` or `assumption`; `buildModel(BASE_ASSUMPTIONS)` reproduces today's numbers exactly (14.36 / 17.1% / 16.8% / Shariah PASS / one-off 55.4 …).
+**Invariants (enforced by tests):** every `computed` node's `inputs` resolve to real `ModelKey`s; every `formulaId` has a `FormulaDef`; the provenance graph is acyclic and every path terminates at `sourced` or `assumption`; `buildModel(BASE_ASSUMPTIONS)` reproduces today's numbers exactly (14.36 / 17.1% / 16.8% / Compliance PASS / one-off 55.4 …).
 
 ---
 
@@ -77,7 +77,7 @@ interface FormulaDef { id: string; katex: string; explainer: Localized; external
 All in worktrees off `dev`. `[C]` = fable-authored contract precedes it.
 
 **WS-A — Provenance engine + model extraction** · **opus · high** · the critical-path spine
-Extract `computeModel` from `lib/generate/xlsx.ts` → pure `lib/model/{compute,provenance,formulas}.ts`; emit a `ValueNode` per output with `formulaId` + input `ModelKey`s; refactor the xlsx builder to consume `.value` (output unchanged). Author the FormulaDef registry (WACC, DCF EV, Gordon TV, IRR, contribution margin, take rate, sensitivity, Shariah ratios).
+Extract `computeModel` from `lib/generate/xlsx.ts` → pure `lib/model/{compute,provenance,formulas}.ts`; emit a `ValueNode` per output with `formulaId` + input `ModelKey`s; refactor the xlsx builder to consume `.value` (output unchanged). Author the FormulaDef registry (WACC, DCF EV, Gordon TV, IRR, contribution margin, take rate, sensitivity, Compliance ratios).
 *Acceptance:* snapshot test — every base-case number byte-identical to today; xlsx/docx/pptx read-back tests still pass; `deals.json` IC metrics unchanged; provenance-graph invariants test green (no orphans, acyclic, terminating). **→ G3, G2.**
 
 **WS-A2 — Methodology panel + glossary content** · **sonnet · medium** (UI) + **haiku · low** (content) · dep: A contract

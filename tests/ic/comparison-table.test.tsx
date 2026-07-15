@@ -18,7 +18,7 @@ const metrics = (over: Partial<IcMetrics> = {}): IcMetrics => ({
   expectedReturn: 16.2,
   riskScore: 5,
   mandateFit: "pass",
-  shariah: "pass",
+  compliance: "pass",
   recommendation: { en: "Strongest risk-adjusted case.", ar: "الأقوى." },
   cite: { docId: "thara-analysis", page: 2 },
   ...over,
@@ -68,7 +68,7 @@ describe("ComparisonTable", () => {
     const pending = screen.getByTestId("ic-pending-jahez");
     expect(pending).toHaveTextContent(/metrics pending model sign-off/i);
 
-    // The populated column still shows its pass badges — no fake numbers leak
+    // The populated column still shows its pass badges, no fake numbers leak
     // into the pending one.
     expect(screen.getAllByText("Pass")).toHaveLength(2);
     expect(screen.getByTestId("ic-irr-delta-thara-pay")).toBeInTheDocument();

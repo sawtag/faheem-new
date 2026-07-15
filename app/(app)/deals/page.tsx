@@ -3,7 +3,7 @@ import { PipelineBoard } from "@/components/deals/pipeline-board";
 import { DEALS } from "@/lib/deals";
 
 /**
- * Deal pipeline board (spec §4 item 4) — origin filter pills over
+ * Deal pipeline board (spec §4 item 4), origin filter pills over
  * stage-grouped deal cards. Carries the private→public pivot on screen.
  */
 export default async function DealsPage() {

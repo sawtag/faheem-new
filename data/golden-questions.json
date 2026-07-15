@@ -6,7 +6,7 @@
       "ar": "اقتصاديات جاهز التشغيلية للسنة المالية 2025"
     },
     "request": {
-      "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release — GMV growth vs take rate, AOV, contribution margin, EBITDA margin — and why did net income compress ~61% despite double-digit GMV growth?",
+      "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
       "lang": "en",
       "context": {
         "kind": "workspace",
@@ -22,7 +22,7 @@
       "ar": "مخاطر حرب الأسعار في التجارة السريعة على جاهز"
     },
     "request": {
-      "question": "@Risk & Portfolio Monitoring — run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
+      "question": "@Risk & Portfolio Monitoring: run a quantified risk assessment of the quick-commerce price war; does the position fit our mandate?",
       "lang": "en",
       "context": {
         "kind": "workspace",
@@ -32,13 +32,13 @@
     }
   },
   {
-    "id": "shariah-ar",
+    "id": "compliance-ar",
     "label": {
-      "en": "Jahez Shariah screen (Arabic)",
-      "ar": "الفحص الشرعي لجاهز"
+      "en": "Jahez Compliance screen (Arabic)",
+      "ar": "فحص الامتثال لجاهز"
     },
     "request": {
-      "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
+      "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
       "lang": "ar",
       "context": {
         "kind": "workspace",
@@ -49,11 +49,11 @@
   {
     "id": "ic-rank",
     "label": {
-      "en": "IC — rank the deals",
-      "ar": "لجنة الاستثمار — ترتيب الصفقات"
+      "en": "IC: rank the deals",
+      "ar": "لجنة الاستثمار: ترتيب الصفقات"
     },
     "request": {
-      "question": "Rank these deals — strongest risk-adjusted case?",
+      "question": "Rank these deals: strongest risk-adjusted case?",
       "lang": "en",
       "context": {
         "kind": "ic"
@@ -108,11 +108,11 @@
   {
     "id": "wacc-build",
     "label": {
-      "en": "Jahez — walk through the WACC build",
-      "ar": "جاهز — تفصيل بناء تكلفة رأس المال"
+      "en": "Jahez: walk through the WACC build",
+      "ar": "جاهز: تفصيل بناء تكلفة رأس المال"
     },
     "request": {
-      "question": "Walk me through the WACC build for the Jahez valuation — where does every input come from?",
+      "question": "Walk me through the WACC build for the Jahez valuation: where does every input come from?",
       "lang": "en",
       "context": {
         "kind": "workspace",
@@ -123,11 +123,11 @@
   {
     "id": "comps-gap",
     "label": {
-      "en": "Jahez — comps vs DCF gap",
-      "ar": "جاهز — الفجوة بين المضاعفات والتدفقات المخصومة"
+      "en": "Jahez: comps vs DCF gap",
+      "ar": "جاهز: الفجوة بين المضاعفات والتدفقات المخصومة"
     },
     "request": {
-      "question": "The trading comps imply a much higher value than your DCF — why the gap, and which should the committee trust?",
+      "question": "The trading comps imply a much higher value than your DCF. Why the gap, and which should the committee trust?",
       "lang": "en",
       "context": {
         "kind": "workspace",
@@ -138,8 +138,8 @@
   {
     "id": "oneoff-check",
     "label": {
-      "en": "Jahez — are the one-offs really one-off?",
-      "ar": "جاهز — هل البنود غير المتكررة فعلاً غير متكررة؟"
+      "en": "Jahez, are the one-offs really one-off?",
+      "ar": "جاهز، هل البنود غير المتكررة فعلاً غير متكررة؟"
     },
     "request": {
       "question": "Is the SAR 55M of Q4 one-offs genuinely non-recurring? Break it down.",
@@ -151,13 +151,13 @@
     }
   },
   {
-    "id": "shariah-en",
+    "id": "compliance-en",
     "label": {
-      "en": "Jahez — AAOIFI Shariah screen (EN)",
-      "ar": "جاهز — الفحص الشرعي (بالإنجليزية)"
+      "en": "Jahez, AAOIFI compliance screen (EN)",
+      "ar": "جاهز، فحص الامتثال (بالإنجليزية)"
     },
     "request": {
-      "question": "Does Jahez pass the AAOIFI Shariah screen?",
+      "question": "Does Jahez pass the AAOIFI compliance screen?",
       "lang": "en",
       "context": {
         "kind": "workspace",

@@ -1,12 +1,12 @@
 #!/usr/bin/env -S npx tsx
 /**
- * Preflight — the single command the founder runs on the venue machine
+ * Preflight, the single command the founder runs on the venue machine
  * before going on stage. Walks the whole demo-readiness checklist from
  * docs/rehearsal-notes.md and prints a green/red/yellow report ending in a
  * PASS / FIX THE ABOVE banner + a 4-line day-of sequence.
  *
  * Zero live API calls unless --live is passed (that flag makes ONE real,
- * billed Anthropic call — see check 11).
+ * billed Anthropic call, see check 11).
  *
  * Usage:
  *   npx tsx scripts/preflight.ts
@@ -35,7 +35,7 @@ import {
 const repoRoot = process.cwd();
 
 /**
- * Minimal .env loader (no new dependency — AGENTS.md locks the dep list).
+ * Minimal .env loader (no new dependency, AGENTS.md locks the dep list).
  * Next.js auto-loads .env for `next dev`/`next start`, but this is a bare
  * tsx script, so without this, checks 9/11 would warn/fail even when the
  * key IS present in .env and `npm run start` would see it fine.
@@ -119,11 +119,11 @@ function checkRuntimeAndBuild(): void {
   const nodeMajor = Number.parseInt(process.versions.node.split(".")[0]!, 10);
   if (nodeMajor >= 26) ok(`Node ${process.version}`);
   else
-    bad(`Node ${process.version} — need >= 26`, "nvm install 26 && nvm use 26");
+    bad(`Node ${process.version}, need >= 26`, "nvm install 26 && nvm use 26");
 
   const buildIdPath = path.join(repoRoot, ".next/BUILD_ID");
   if (!fs.existsSync(buildIdPath)) {
-    bad(".next/BUILD_ID missing — no production build found", "npm run build");
+    bad(".next/BUILD_ID missing, no production build found", "npm run build");
     return;
   }
   ok(".next/BUILD_ID exists");
@@ -139,13 +139,13 @@ function checkRuntimeAndBuild(): void {
   }
 }
 
-/** 2. CRITICAL — every golden question except "deliverables" resolves from cache. */
+/** 2. CRITICAL, every golden question except "deliverables" resolves from cache. */
 function checkGoldenCache(): void {
   section(2, "Golden-questions cache (CRITICAL)");
 
   for (const q of GOLDEN_QUESTIONS) {
     if (q.id === "deliverables") {
-      info(`${q.id} — skipped (artifact-generation flow, not a cached chat)`);
+      info(`${q.id}, skipped (artifact-generation flow, not a cached chat)`);
       continue;
     }
 
@@ -154,29 +154,29 @@ function checkGoldenCache(): void {
     const remedy = `npx tsx scripts/record-goldens.ts --only ${q.id}`;
 
     if (!fs.existsSync(file)) {
-      bad(`${q.id} — no cache file at data/demo-cache/${key}.json`, remedy);
+      bad(`${q.id}, no cache file at data/demo-cache/${key}.json`, remedy);
       continue;
     }
     const entry = readCacheEntry(key);
     if (!entry) {
       bad(
-        `${q.id} — data/demo-cache/${key}.json exists but fails schema validation`,
+        `${q.id}, data/demo-cache/${key}.json exists but fails schema validation`,
         remedy,
       );
       continue;
     }
     const last = entry.events[entry.events.length - 1];
     if (!last || last.type !== "done") {
-      bad(`${q.id} — cache entry does not end with a "done" event`, remedy);
+      bad(`${q.id}, cache entry does not end with a "done" event`, remedy);
       continue;
     }
-    ok(`${q.id} — ${key.slice(0, 10)}… resolves, ends with done`);
+    ok(`${q.id}, ${key.slice(0, 10)}… resolves, ends with done`);
   }
 }
 
-/** 3. Corpus manifest — warn-only (fileIds only matter for --live). */
+/** 3. Corpus manifest, warn-only (fileIds only matter for --live). */
 function checkManifest(): void {
-  section(3, "Corpus manifest (warn-only — live mode needs it)");
+  section(3, "Corpus manifest (warn-only, live mode needs it)");
 
   const manifestPath = path.join(repoRoot, "data/corpus/manifest.json");
   if (!fs.existsSync(manifestPath)) {
@@ -261,7 +261,7 @@ function checkFonts(): void {
     ok(`${woff2.length} .woff2 file(s) in .next/static/media`);
   else
     bad(
-      "no .woff2 files in .next/static/media — fonts not self-hosted",
+      "no .woff2 files in .next/static/media, fonts not self-hosted",
       "npm run build (with network access, once) to vendor fonts",
     );
 }
@@ -275,7 +275,7 @@ function checkArtifactTooling(): void {
   else
     caution(
       "soffice not on PATH",
-      "install LibreOffice — only needed to spot-check artifact opens, not to run the demo",
+      "install LibreOffice, only needed to spot-check artifact opens, not to run the demo",
     );
 
   const artifactsDir = path.join(repoRoot, "public/artifacts");
@@ -314,7 +314,7 @@ function checkArtifactTooling(): void {
     );
 }
 
-/** 7. Upload-beat asset — gitignored, must be copied onto the demo machine by hand. */
+/** 7. Upload-beat asset, gitignored, must be copied onto the demo machine by hand. */
 function checkUploadAsset(): void {
   section(7, "Upload-beat asset (gitignored, local-machine only)");
   const talabatPath = path.join(
@@ -324,7 +324,7 @@ function checkUploadAsset(): void {
   if (!fs.existsSync(talabatPath)) {
     caution(
       "demo-assets/talabat-q1-2026-results.pdf missing",
-      "copy it onto this machine before the upload beat (gitignored — not in git)",
+      "copy it onto this machine before the upload beat (gitignored, not in git)",
     );
     return;
   }
@@ -337,7 +337,7 @@ function checkUploadAsset(): void {
   else
     caution(
       "demo-assets/talabat-q1-2026-results.pdf present but missing %PDF magic",
-      "re-copy the file — it looks corrupt/truncated",
+      "re-copy the file, it looks corrupt/truncated",
     );
 }
 
@@ -374,7 +374,7 @@ async function checkPort(port: number): Promise<void> {
   }
 }
 
-/** 9. ANTHROPIC_API_KEY is set (warn-only — cached demo works without it). */
+/** 9. ANTHROPIC_API_KEY is set (warn-only, cached demo works without it). */
 function checkApiKey(): void {
   section(9, "Anthropic API key");
   if (process.env.ANTHROPIC_API_KEY) ok("ANTHROPIC_API_KEY is set");
@@ -403,10 +403,10 @@ function checkAuditLog(): void {
       );
       return;
     }
-    ok(`data/audit-log.json parses — ${parsed.data.length} entries`);
+    ok(`data/audit-log.json parses, ${parsed.data.length} entries`);
     if (parsed.data.length > 60) {
       caution(
-        `${parsed.data.length} entries — long for a "curated" demo log`,
+        `${parsed.data.length} entries, long for a "curated" demo log`,
         "reseed data/audit-log.json (rehearsal notes: curated to ~35 plausible entries)",
       );
     }
@@ -419,9 +419,9 @@ function checkAuditLog(): void {
 }
 
 /**
- * 11. Live Model beat (WS-F) — the demo-integration venue checks for the new
+ * 11. Live Model beat (WS-F), the demo-integration venue checks for the new
  * ⌘K section: `buildModel(BASE_ASSUMPTIONS)` reproduces today's headline
- * numbers byte-identical (a fable-level decision to change, not a code edit —
+ * numbers byte-identical (a fable-level decision to change, not a code edit,
  * AGENTS.md `lib/model/**`), the provenance graph carries zero orphans
  * (reuses the same `provenanceViolations` walk as tests/model/provenance.test.ts),
  * the edit-parser's scripted set (the four ⌘K/chip instructions, incl. one
@@ -447,14 +447,14 @@ function checkLiveModelBeat(): void {
     const drifted = headline.filter(
       ([, actual, expected]) => actual !== expected,
     );
-    if (drifted.length === 0 && result.shariah.pass === true) {
+    if (drifted.length === 0 && result.compliance.pass === true) {
       ok(
-        "buildModel(BASE_ASSUMPTIONS) headline numbers byte-identical + Shariah PASS",
+        "buildModel(BASE_ASSUMPTIONS) headline numbers byte-identical + Compliance PASS",
       );
     } else {
       bad(
-        `engine drift — ${drifted.map(([k, a, e]) => `${k}=${a} (want ${e})`).join(", ") || `shariah.pass=${result.shariah.pass}`}`,
-        "a base-case number changed — that's a fable-level decision (AGENTS.md lib/model/**), not a code edit",
+        `engine drift, ${drifted.map(([k, a, e]) => `${k}=${a} (want ${e})`).join(", ") || `compliance.pass=${result.compliance.pass}`}`,
+        "a base-case number changed, that's a fable-level decision (AGENTS.md lib/model/**), not a code edit",
       );
     }
 
@@ -476,10 +476,10 @@ function checkLiveModelBeat(): void {
       new Set(Object.keys(RATIONALE)),
     );
     if (violations.length === 0) {
-      ok(`provenance graph — ${Object.keys(nodes).length} nodes, 0 orphans`);
+      ok(`provenance graph, ${Object.keys(nodes).length} nodes, 0 orphans`);
     } else {
       bad(
-        `provenance graph — ${violations.length} violation(s): ${violations.slice(0, 3).join("; ")}`,
+        `provenance graph, ${violations.length} violation(s): ${violations.slice(0, 3).join("; ")}`,
         "npx vitest run tests/model/provenance.test.ts for details",
       );
     }
@@ -503,11 +503,11 @@ function checkLiveModelBeat(): void {
     });
     if (failed.length === 0) {
       ok(
-        `edit-parser — ${spot.length}/${spot.length} scripted instructions parse (incl. 1 Arabic)`,
+        `edit-parser, ${spot.length}/${spot.length} scripted instructions parse (incl. 1 Arabic)`,
       );
     } else {
       bad(
-        `edit-parser — ${failed.length}/${spot.length} scripted instruction(s) failed to parse`,
+        `edit-parser, ${failed.length}/${spot.length} scripted instruction(s) failed to parse`,
         "npx vitest run tests/model/edit-parser.test.ts",
       );
     }
@@ -518,10 +518,10 @@ function checkLiveModelBeat(): void {
       BASE_ASSUMPTIONS,
     );
     if (locked.kind === "source-locked" && locked.target === "revenue") {
-      ok('edit-parser — source-locked demo instruction rejected ("revenue")');
+      ok('edit-parser, source-locked demo instruction rejected ("revenue")');
     } else {
       bad(
-        `edit-parser — source-locked demo instruction returned ${JSON.stringify(locked)}`,
+        `edit-parser, source-locked demo instruction returned ${JSON.stringify(locked)}`,
         "npx vitest run tests/model/edit-parser.test.ts",
       );
     }
@@ -544,10 +544,10 @@ function checkLiveModelBeat(): void {
       ),
     );
     ok(
-      `data/social-pack.json — ${socialPack.length} illustrative post(s), schema valid`,
+      `data/social-pack.json, ${socialPack.length} illustrative post(s), schema valid`,
     );
     ok(
-      `data/sentiment.json — ${sentiment.length} entr(y/ies), schema valid, all signalOnly (strict schema — no sourced-number shape)`,
+      `data/sentiment.json, ${sentiment.length} entr(y/ies), schema valid, all signalOnly (strict schema, no sourced-number shape)`,
     );
   } catch (err) {
     bad(
@@ -588,7 +588,7 @@ async function checkLive(): Promise<void> {
   section(12, "Live API call (--live)");
   if (!process.env.ANTHROPIC_API_KEY) {
     bad(
-      "ANTHROPIC_API_KEY not set — cannot run the --live check",
+      "ANTHROPIC_API_KEY not set, cannot run the --live check",
       "set ANTHROPIC_API_KEY in .env",
     );
     return;
@@ -604,15 +604,15 @@ async function checkLive(): Promise<void> {
     const elapsed = Date.now() - start;
     const text = res.content.find((b) => b.type === "text")?.text ?? "";
     ok(
-      `live call OK in ${elapsed}ms — model ${model}, reply ${JSON.stringify(text.slice(0, 40))}`,
+      `live call OK in ${elapsed}ms, model ${model}, reply ${JSON.stringify(text.slice(0, 40))}`,
     );
     info(
-      "this call does NOT warm the corpus prompt cache — run `npx tsx scripts/prewarm.ts` within 1h of the slot",
+      "this call does NOT warm the corpus prompt cache, run `npx tsx scripts/prewarm.ts` within 1h of the slot",
     );
   } catch (err) {
     bad(
       `live API call failed: ${errMsg(err)}`,
-      "check ANTHROPIC_API_KEY / network — cached mode still works without this",
+      "check ANTHROPIC_API_KEY / network, cached mode still works without this",
     );
   }
 }
@@ -623,7 +623,7 @@ async function main(): Promise<void> {
   loadDotEnv();
   const { live, port } = parseArgs(process.argv.slice(2));
 
-  console.log(bold(`Faheem Preflight — port ${port}${live ? ", --live" : ""}`));
+  console.log(bold(`Faheem Preflight, port ${port}${live ? ", --live" : ""}`));
 
   const syncChecks = [
     checkRuntimeAndBuild,
@@ -678,7 +678,7 @@ async function main(): Promise<void> {
   );
   console.log(`  2. Start: PORT=${port} npm run start:cache`);
   console.log(
-    `  3. Ask questions via ⌘K only (never type them) — ⌘. toggles live for judge Q&A`,
+    `  3. Ask questions via ⌘K only (never type them), ⌘. toggles live for judge Q&A`,
   );
   console.log(
     `  4. Upload beat: copy demo-assets/talabat-q1-2026-results.pdf onto this machine first`,

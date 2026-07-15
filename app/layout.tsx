@@ -23,7 +23,7 @@ const amiri = Amiri({
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("common");
   return {
-    title: "Faheem — Lunar Investments",
+    title: "Faheem · Lunar Investments",
     description: t("description"),
   };
 }

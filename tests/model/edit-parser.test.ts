@@ -11,7 +11,7 @@ import {
 import type { Assumptions } from "@/lib/model/types";
 
 /**
- * WS-C acceptance — the scripted edit parser. Everything here runs pure and
+ * WS-C acceptance, the scripted edit parser. Everything here runs pure and
  * OFFLINE: no SDK, no network, no fs. The whitelist is asserted against
  * BASE_ASSUMPTIONS (its single source of truth) so the two can never drift.
  */
@@ -19,7 +19,7 @@ import type { Assumptions } from "@/lib/model/types";
 // ─────────────────────────── whitelist + bounds ───────────────────────────
 
 describe("whitelist", () => {
-  it("covers exactly the BASE_ASSUMPTIONS shape — every scalar key + every array index", () => {
+  it("covers exactly the BASE_ASSUMPTIONS shape, every scalar key + every array index", () => {
     const expected: string[] = [];
     for (const [key, value] of Object.entries(BASE_ASSUMPTIONS)) {
       if (Array.isArray(value)) {
@@ -257,7 +257,7 @@ const AR_CASES: Case[] = [
   },
 ];
 
-describe("scripted set — EN", () => {
+describe("scripted set, EN", () => {
   it.each(EN_CASES)("$name", ({ instruction, key, value }) => {
     const r = parseEdit(instruction, "en", BASE_ASSUMPTIONS);
     expect(r.kind).toBe("edit");
@@ -267,7 +267,7 @@ describe("scripted set — EN", () => {
   });
 });
 
-describe("scripted set — AR", () => {
+describe("scripted set, AR", () => {
   it.each(AR_CASES)("$name", ({ instruction, key, value }) => {
     const r = parseEdit(instruction, "ar", BASE_ASSUMPTIONS);
     expect(r.kind).toBe("edit");

@@ -13,7 +13,7 @@ import {
 import { GateMarker, StageHeader } from "./stage-parts";
 
 /**
- * The on-product version of pitch-deck slide 9 (design-briefs §3.2) — stage-
+ * The on-product version of pitch-deck slide 9 (design-briefs §3.2), stage-
  * grouped agent cards, orchestrator banner, human-gate markers. Static
  * registry import, server-rendered; only the toggle/dim interaction is
  * client-side (agent-card.tsx).

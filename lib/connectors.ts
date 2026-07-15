@@ -1,23 +1,27 @@
 /**
- * Connector catalog — the single source of truth for the Connections page
+ * Connector catalog, the single source of truth for the Connections page
  * (`/connections`) and the onboarding stepper's Connect step (`/onboarding`).
  * Both surfaces render the SAME array in the SAME order (AGENTS.md asset
  * policy: connector tiles/copy are data, never inline in JSX).
  *
- * `group` distinguishes Lunar's own systems from third-party/market sources —
+ * `group` distinguishes Lunar's own systems from third-party/market sources,
  * unused by this task's screens but kept so the home omnibox source-picker
  * (spec §4 item 2, a different task) can reuse this module rather than
  * redefining the catalog.
  *
  * Tile letters are FIXED per connector regardless of locale (design-briefs
- * §2.7: "monogram letters never flip") — always set explicitly, never derived
+ * §2.7: "monogram letters never flip"), always set explicitly, never derived
  * from the localized name's first character.
  *
- * `simple-icons` (16.26.0) has no glyphs for Bloomberg, PitchBook, Intralinks,
- * Datasite, Capital IQ or marketaux (verified against the package's icon
- * data — these are enterprise/fintech brands outside its consumer-tech-heavy
- * catalog). Those five + marketaux fall back to the monogram tile, same as
- * every Saudi connector without a clean SVG (AGENTS.md assets policy).
+ * Brand logos are vendored under `public/logos/connectors/` (see its
+ * manifest.json for per-file provenance) and referenced as `image` tiles;
+ * brands whose sourced asset is mush at tile size (full lockups, faint seals,
+ * washed crops) or that sourcing failed for (Bloomberg, PitchBook, Intralinks,
+ * Datasite, marketaux, WAMID) fall back to the monogram tile, same as every
+ * Saudi connector without a clean SVG (AGENTS.md assets policy).
+ *
+ * Ordering (standing user rule): within each status section, Saudi/local
+ * connectors sort ABOVE international ones.
  */
 import type { Localized } from "@/lib/types";
 
@@ -27,14 +31,15 @@ export type ConnectorBadge = "beta" | "mvp";
 
 export type ConnectorTile =
   | { kind: "monogram"; initial: string; tint?: "navy" | "accent" }
-  | { kind: "icon"; icon: "layout-template"; tint?: "navy" | "accent" };
+  | { kind: "icon"; icon: "layout-template"; tint?: "navy" | "accent" }
+  | { kind: "image"; src: string };
 
 export interface Connector {
   id: string;
   name: Localized;
   /** row/card one-liner */
   description: Localized;
-  /** hover tooltip — one sentence (design-briefs §2.9 wow detail #1) */
+  /** hover tooltip, one sentence (design-briefs §2.9 wow detail #1) */
   tooltip: Localized;
   group: ConnectorGroup;
   status: ConnectorStatus;
@@ -52,8 +57,8 @@ export const CONNECTORS: Connector[] = [
       ar: "إفصاحات وإعلانات تداول الرسمية",
     },
     tooltip: {
-      en: "Official Tadawul filings, disclosures and announcements — Faheem's primary public-market source.",
-      ar: "إفصاحات تداول الرسمية — مصدر فهيم الأساسي لبيانات السوق العامة.",
+      en: "Official Tadawul filings, disclosures and announcements, Faheem's primary public-market source.",
+      ar: "إفصاحات تداول الرسمية، مصدر فهيم الأساسي لبيانات السوق العامة.",
     },
     group: "external",
     status: "connected",
@@ -75,20 +80,36 @@ export const CONNECTORS: Connector[] = [
     tile: { kind: "monogram", initial: "أ", tint: "accent" },
   },
   {
-    id: "marketaux",
-    name: { en: "marketaux", ar: "marketaux" },
+    id: "sahmk",
+    name: { en: "SAHMK API", ar: "سهمك" },
     description: {
-      en: "Global market news API",
-      ar: "واجهة أخبار الأسواق العالمية",
+      en: "350+ Tadawul companies, fundamentals & prices",
+      ar: "أكثر من 350 شركة مدرجة في تداول، بيانات أساسية وأسعار",
     },
     tooltip: {
-      en: "Global market news API that broadens Faheem's coverage beyond the Saudi market.",
-      ar: "واجهة أخبار عالمية للأسواق توسّع تغطية فهيم إلى ما وراء السوق السعودية.",
+      en: "Fundamentals and live prices for 350+ Tadawul-listed companies.",
+      ar: "بيانات أساسية وأسعار لحظية لأكثر من 350 شركة مدرجة في تداول.",
     },
     group: "external",
     status: "connected",
-    badge: "beta",
-    tile: { kind: "monogram", initial: "M", tint: "navy" },
+    tile: { kind: "image", src: "/logos/connectors/sahmk.png" },
+  },
+  {
+    id: "gastat",
+    name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
+    description: {
+      en: "Official statistics publications, synced to the data room",
+      ar: "إصدارات إحصائية رسمية، مرتبطة بغرفة البيانات",
+    },
+    tooltip: {
+      en: "Official Saudi statistics, the authoritative source for macro and sector indicators.",
+      ar: "الإحصاءات الرسمية السعودية، المصدر المعتمد للمؤشرات الكلية والقطاعية.",
+    },
+    group: "external",
+    status: "connected",
+    // Real GASTAT mark on the 40px tile; the picker keeps the monogram (the
+    // thin linework fails the crisp bar at 20px, lib/sources.ts).
+    tile: { kind: "image", src: "/logos/connectors/gastat.svg" },
   },
   {
     id: "lunar-data-room",
@@ -98,8 +119,8 @@ export const CONNECTORS: Connector[] = [
       ar: "مستندات الصفقات والملفات الداخلية",
     },
     tooltip: {
-      en: "Lunar's own deal documents and internal files — the private corpus behind every workspace.",
-      ar: "مستندات الصفقات والملفات الداخلية الخاصة بلونار — القاعدة الخاصة وراء كل مساحة عمل.",
+      en: "Lunar's own deal documents and internal files, the private corpus behind every workspace.",
+      ar: "مستندات الصفقات والملفات الداخلية الخاصة بلونار، القاعدة الخاصة وراء كل مساحة عمل.",
     },
     group: "internal",
     status: "connected",
@@ -120,23 +141,239 @@ export const CONNECTORS: Connector[] = [
     status: "connected",
     tile: { kind: "icon", icon: "layout-template", tint: "navy" },
   },
-
-  // ── Available ──────────────────────────────────────────────────────────
   {
-    id: "sahmk",
-    name: { en: "SAHMK API", ar: "سهمك" },
+    id: "shared-folder",
+    name: { en: "Windows Shared Folder", ar: "مجلد Windows المشترك" },
     description: {
-      en: "350+ Tadawul companies, fundamentals & prices",
-      ar: "أكثر من 350 شركة مدرجة في تداول — بيانات أساسية وأسعار",
+      en: "Deal files on the firm's network shares",
+      ar: "ملفات الصفقات على مجلدات الشبكة الداخلية للشركة",
     },
     tooltip: {
-      en: "Fundamentals and live prices for 350+ Tadawul-listed companies.",
-      ar: "بيانات أساسية وأسعار لحظية لأكثر من 350 شركة مدرجة في تداول.",
+      en: "Deal files on the firm's Windows network shares, indexed for search.",
+      ar: "ملفات الصفقات على مجلدات شبكة Windows الداخلية، مفهرسة للبحث.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "monogram", initial: "W", tint: "navy" },
+  },
+  // International connected, market feeds + workplace systems (the OAuth
+  // integrations behind the composer's Internal Sources picker group).
+  {
+    id: "marketaux",
+    name: { en: "marketaux", ar: "marketaux" },
+    description: {
+      en: "Global market news API",
+      ar: "واجهة أخبار الأسواق العالمية",
+    },
+    tooltip: {
+      en: "Global market news API that broadens Faheem's coverage beyond the Saudi market.",
+      ar: "واجهة أخبار عالمية للأسواق توسّع تغطية فهيم إلى ما وراء السوق السعودية.",
+    },
+    group: "external",
+    status: "connected",
+    badge: "beta",
+    tile: { kind: "monogram", initial: "M", tint: "navy" },
+  },
+  {
+    id: "sharepoint",
+    name: { en: "SharePoint", ar: "SharePoint" },
+    description: {
+      en: "Team sites, memos, and document libraries",
+      ar: "مواقع الفرق والمذكرات ومكتبات المستندات",
+    },
+    tooltip: {
+      en: "SharePoint team sites, memos and document libraries across the firm.",
+      ar: "مواقع فرق SharePoint والمذكرات ومكتبات المستندات عبر الشركة.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/sharepoint.svg" },
+  },
+  {
+    id: "onedrive",
+    name: { en: "OneDrive", ar: "OneDrive" },
+    description: {
+      en: "Analysts' synced working files",
+      ar: "ملفات العمل المتزامنة للمحللين",
+    },
+    tooltip: {
+      en: "Each analyst's synced OneDrive working files.",
+      ar: "ملفات العمل المتزامنة لكل محلل على OneDrive.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/onedrive.svg" },
+  },
+  {
+    id: "outlook",
+    name: { en: "Outlook", ar: "Outlook" },
+    description: {
+      en: "Deal-team email threads and attachments",
+      ar: "سلاسل بريد فريق الصفقة والمرفقات",
+    },
+    tooltip: {
+      en: "Deal-team Outlook threads and attachments, kept in context.",
+      ar: "سلاسل بريد فريق الصفقة ومرفقاته في Outlook، ضمن السياق.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/outlook.svg" },
+  },
+  {
+    id: "teams",
+    name: { en: "Microsoft Teams", ar: "Microsoft Teams" },
+    description: {
+      en: "Deal-channel messages and shared files",
+      ar: "رسائل قنوات الصفقات والملفات المشتركة",
+    },
+    tooltip: {
+      en: "Microsoft Teams deal-channel messages and shared files.",
+      ar: "رسائل قنوات الصفقات والملفات المشتركة على Microsoft Teams.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/teams.svg" },
+  },
+  {
+    id: "gmail",
+    name: { en: "Gmail", ar: "Gmail" },
+    description: {
+      en: "Deal-related mail and attachments",
+      ar: "البريد المرتبط بالصفقات والمرفقات",
+    },
+    tooltip: {
+      en: "Deal-related Gmail messages and attachments.",
+      ar: "رسائل ومرفقات Gmail المرتبطة بالصفقات.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/gmail.svg" },
+  },
+  {
+    id: "google-calendar",
+    name: { en: "Google Calendar", ar: "تقويم Google" },
+    description: {
+      en: "Meetings, IC dates, and roadshow schedules",
+      ar: "الاجتماعات ومواعيد لجنة الاستثمار وجداول الجولات الترويجية",
+    },
+    tooltip: {
+      en: "Meetings, IC dates and roadshow schedules from Google Calendar.",
+      ar: "الاجتماعات ومواعيد لجنة الاستثمار وجداول الجولات من تقويم Google.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/google-calendar.svg" },
+  },
+  {
+    id: "gdrive",
+    name: { en: "Google Drive", ar: "Google Drive" },
+    description: {
+      en: "Shared drives and working documents",
+      ar: "المجلدات المشتركة ومستندات العمل",
+    },
+    tooltip: {
+      en: "Google Drive shared drives and working documents.",
+      ar: "المجلدات المشتركة ومستندات العمل على Google Drive.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/gdrive.svg" },
+  },
+  {
+    id: "slack",
+    name: { en: "Slack", ar: "Slack" },
+    description: {
+      en: "Deal-desk channels and pinned decisions",
+      ar: "قنوات مكتب الصفقات والقرارات المثبتة",
+    },
+    tooltip: {
+      en: "Slack deal-desk channels and the decisions pinned in them.",
+      ar: "قنوات مكتب الصفقات على Slack والقرارات المثبتة فيها.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/slack.svg" },
+  },
+  {
+    id: "salesforce",
+    name: { en: "Salesforce", ar: "Salesforce" },
+    description: {
+      en: "Relationship and pipeline records",
+      ar: "سجلات العلاقات وخط أنابيب الصفقات",
+    },
+    tooltip: {
+      en: "Salesforce relationship and pipeline records for sourcing context.",
+      ar: "سجلات العلاقات وخط أنابيب الصفقات في Salesforce لسياق التوريد.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/salesforce.svg" },
+  },
+  {
+    id: "granola",
+    name: { en: "Granola", ar: "Granola" },
+    description: {
+      en: "AI meeting notes and call transcripts",
+      ar: "ملاحظات الاجتماعات ونصوص المكالمات بالذكاء الاصطناعي",
+    },
+    tooltip: {
+      en: "AI meeting notes and call transcripts from deal-team calls.",
+      ar: "ملاحظات اجتماعات ونصوص مكالمات فريق الصفقة بالذكاء الاصطناعي.",
+    },
+    group: "internal",
+    status: "connected",
+    tile: { kind: "image", src: "/logos/connectors/granola.png" },
+  },
+
+  // ── Available (Saudi/local first) ──────────────────────────────────────
+  {
+    id: "od-data-gov-sa",
+    name: { en: "od.data.gov.sa", ar: "od.data.gov.sa" },
+    description: {
+      en: "Saudi open government data",
+      ar: "البيانات الحكومية المفتوحة السعودية",
+    },
+    tooltip: {
+      en: "Saudi Arabia's open government data platform, public datasets across sectors.",
+      ar: "منصة البيانات الحكومية المفتوحة في السعودية، بيانات عامة تغطي مختلف القطاعات.",
+    },
+    group: "external",
+    status: "available",
+    tile: { kind: "monogram", initial: "ب", tint: "navy" },
+  },
+  {
+    id: "rega",
+    name: { en: "REGA", ar: "الهيئة العامة للعقار" },
+    description: {
+      en: "Real-estate market indicators",
+      ar: "مؤشرات سوق العقار",
+    },
+    tooltip: {
+      en: "Real-estate market indicators from Saudi Arabia's real estate authority.",
+      ar: "مؤشرات سوق العقار الصادرة عن الهيئة العامة للعقار.",
+    },
+    group: "external",
+    status: "available",
+    tile: { kind: "monogram", initial: "ع", tint: "navy" },
+  },
+  {
+    id: "alinma-open-banking",
+    name: {
+      en: "Alinma Open Banking",
+      ar: "الإنماء، الخدمات المصرفية المفتوحة",
+    },
+    description: {
+      en: "Books & ERP via SAMA open-banking framework",
+      ar: "الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لساما",
+    },
+    tooltip: {
+      en: "Books and ERP data via SAMA's open-banking framework.",
+      ar: "بيانات الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لدى ساما.",
     },
     group: "external",
     status: "available",
     badge: "mvp",
-    tile: { kind: "monogram", initial: "س", tint: "navy" },
+    tile: { kind: "monogram", initial: "ا", tint: "accent" },
   },
   {
     id: "bloomberg",
@@ -158,8 +395,8 @@ export const CONNECTORS: Connector[] = [
     name: { en: "PitchBook", ar: "PitchBook" },
     description: { en: "Private-market data", ar: "بيانات الأسواق الخاصة" },
     tooltip: {
-      en: "Private-market data — deal comps, valuations and investor activity.",
-      ar: "بيانات الأسواق الخاصة — الصفقات المماثلة والتقييمات ونشاط المستثمرين.",
+      en: "Private-market data, deal comps, valuations and investor activity.",
+      ar: "بيانات الأسواق الخاصة، الصفقات المماثلة والتقييمات ونشاط المستثمرين.",
     },
     group: "external",
     status: "available",
@@ -190,70 +427,6 @@ export const CONNECTORS: Connector[] = [
     tile: { kind: "monogram", initial: "D" },
   },
   {
-    id: "od-data-gov-sa",
-    name: { en: "od.data.gov.sa", ar: "od.data.gov.sa" },
-    description: {
-      en: "Saudi open government data",
-      ar: "البيانات الحكومية المفتوحة السعودية",
-    },
-    tooltip: {
-      en: "Saudi Arabia's open government data platform — public datasets across sectors.",
-      ar: "منصة البيانات الحكومية المفتوحة في السعودية — بيانات عامة تغطي مختلف القطاعات.",
-    },
-    group: "external",
-    status: "available",
-    tile: { kind: "monogram", initial: "ب", tint: "navy" },
-  },
-  {
-    id: "rega",
-    name: { en: "REGA", ar: "الهيئة العامة للعقار" },
-    description: {
-      en: "Real-estate market indicators",
-      ar: "مؤشرات سوق العقار",
-    },
-    tooltip: {
-      en: "Real-estate market indicators from Saudi Arabia's real estate authority.",
-      ar: "مؤشرات سوق العقار الصادرة عن الهيئة العامة للعقار.",
-    },
-    group: "external",
-    status: "available",
-    tile: { kind: "monogram", initial: "ع", tint: "navy" },
-  },
-  {
-    id: "gastat",
-    name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
-    description: {
-      en: "Official statistics publications — synced to the data room",
-      ar: "إصدارات إحصائية رسمية — مرتبطة بغرفة البيانات",
-    },
-    tooltip: {
-      en: "Official Saudi statistics — the authoritative source for macro and sector indicators.",
-      ar: "الإحصاءات الرسمية السعودية — المصدر المعتمد للمؤشرات الكلية والقطاعية.",
-    },
-    group: "external",
-    status: "connected",
-    tile: { kind: "monogram", initial: "إ", tint: "navy" },
-  },
-  {
-    id: "alinma-open-banking",
-    name: {
-      en: "Alinma Open Banking",
-      ar: "الإنماء — الخدمات المصرفية المفتوحة",
-    },
-    description: {
-      en: "Books & ERP via SAMA open-banking framework",
-      ar: "الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لساما",
-    },
-    tooltip: {
-      en: "Books and ERP data via SAMA's open-banking framework.",
-      ar: "بيانات الدفاتر وتخطيط الموارد عبر إطار الخدمات المصرفية المفتوحة لدى ساما.",
-    },
-    group: "external",
-    status: "available",
-    badge: "mvp",
-    tile: { kind: "monogram", initial: "ا", tint: "accent" },
-  },
-  {
     id: "capital-iq",
     name: { en: "Capital IQ", ar: "Capital IQ" },
     description: {
@@ -266,7 +439,7 @@ export const CONNECTORS: Connector[] = [
     },
     group: "external",
     status: "available",
-    tile: { kind: "monogram", initial: "C" },
+    tile: { kind: "image", src: "/logos/connectors/capital-iq.svg" },
   },
   {
     id: "social-alt-data",
@@ -275,12 +448,12 @@ export const CONNECTORS: Connector[] = [
       ar: "المحتوى الاجتماعي والبيانات البديلة",
     },
     description: {
-      en: "Real social/forum feeds & alt-data — MVP roadmap",
-      ar: "تغذيات اجتماعية ومنتديات وبيانات بديلة حقيقية — على خارطة طريق الإصدار الأولي",
+      en: "Real social/forum feeds & alt-data, MVP roadmap",
+      ar: "تغذيات اجتماعية ومنتديات وبيانات بديلة حقيقية، على خارطة طريق الإصدار الأولي",
     },
     tooltip: {
-      en: "Live social, forum and alt-data feeds for the Market Sentiment agent. Today the agent reads a clearly-labeled illustrative demo pack — this connector is what would replace it in production.",
-      ar: "تغذيات حية من المحتوى الاجتماعي والمنتديات والبيانات البديلة لوكيل المزاج السوقي. حالياً يقرأ الوكيل حزمة توضيحية تجريبية مُعلَّمة بوضوح — وهذا الموصّل هو ما سيحل محلها في الإنتاج.",
+      en: "Live social, forum and alt-data feeds for the Market Sentiment agent. Today the agent reads a clearly-labeled illustrative demo pack, this connector is what would replace it in production.",
+      ar: "تغذيات حية من المحتوى الاجتماعي والمنتديات والبيانات البديلة لوكيل المزاج السوقي. حالياً يقرأ الوكيل حزمة توضيحية تجريبية مُعلَّمة بوضوح، وهذا الموصّل هو ما سيحل محلها في الإنتاج.",
     },
     group: "external",
     status: "available",

@@ -7,7 +7,7 @@ import { LOCALE_COOKIE } from "@/lib/locale";
 import type { Lang } from "@/lib/types";
 
 /**
- * design-briefs.md §1.2 — top inline-end pill, white 70% opacity on
+ * design-briefs.md §1.2, top inline-end pill, white 70% opacity on
  * transparent, hover white 100%. The "EN | عربي" label is a fixed bilingual
  * toggle glyph (like an @id or the wordmark) rather than per-locale copy, so
  * it is not routed through next-intl; kept `dir="ltr"` so the separator never

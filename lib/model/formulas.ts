@@ -1,9 +1,9 @@
 /**
- * lib/model/formulas — the FormulaDef registry.
+ * lib/model/formulas, the FormulaDef registry.
  *
  * Every `formulaId` the provenance node graph references resolves here. The
  * KaTeX strings are the display formulas and MUST match what compute.ts
- * actually does (gate G5 — finance judges read them). `explainerKey` is the
+ * actually does (gate G5, finance judges read them). `explainerKey` is the
  * next-intl key for the bilingual plain-language explainer (content authored
  * in a later workstream; the key string is the contract).
  */
@@ -167,11 +167,17 @@ export const FORMULAS: Record<string, FormulaDef> = Object.fromEntries(
     f("comps-min", String.raw`\min(\text{implied values})`),
     f("comps-median", String.raw`\operatorname{median}(\text{implied values})`),
     f("comps-max", String.raw`\max(\text{implied values})`),
-    // ── Shariah screen (AAOIFI-style) ──
-    f("shariah-debt-ratio", String.raw`\text{debt} / \text{market cap} < 33\%`),
-    f("shariah-cash-ratio", String.raw`\text{cash} / \text{market cap} < 33\%`),
+    // ── Compliance screen (AAOIFI-style) ──
     f(
-      "shariah-lease-ratio",
+      "compliance-debt-ratio",
+      String.raw`\text{debt} / \text{market cap} < 33\%`,
+    ),
+    f(
+      "compliance-cash-ratio",
+      String.raw`\text{cash} / \text{market cap} < 33\%`,
+    ),
+    f(
+      "compliance-lease-ratio",
       String.raw`(\text{debt} + \text{leases}) / \text{market cap}`,
     ),
     // ── risk composite ──

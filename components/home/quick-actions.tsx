@@ -13,12 +13,12 @@ const PILLS = [
   { id: "icMemo", icon: "file-text" },
   { id: "riskScorecard", icon: "shield-alert" },
   { id: "sensitivity", icon: "table-2" },
-  { id: "shariah", icon: "badge-check" },
+  { id: "compliance", icon: "badge-check" },
 ] as const;
 
 /**
  * Quick-action pills. Each click prefills the omnibox with a full, Jahez-flavored
- * analyst prompt and focuses it — the presenter fires a real analysis in one tap.
+ * analyst prompt and focuses it, the presenter fires a real analysis in one tap.
  */
 export function QuickActions({ onPick }: { onPick: (prompt: string) => void }) {
   const t = useTranslations("home.pills");

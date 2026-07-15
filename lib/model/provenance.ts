@@ -1,5 +1,5 @@
 /**
- * lib/model/provenance — the "no orphan numbers" node graph.
+ * lib/model/provenance, the "no orphan numbers" node graph.
  *
  * `buildNodes()` annotates every real, renderable number in a ModelResult with
  * provenance that terminates at a sourced actual (PDF page) or a labeled
@@ -8,7 +8,7 @@
  * terminating, real formula ids / assumption keys / doc ids).
  *
  * Value convention (types.ts): percent quantities carry unit "%" and
- * percent-number values (wacc node = 13.31, not 0.1331) — the conversion
+ * percent-number values (wacc node = 13.31, not 0.1331), the conversion
  * happens HERE only; the underlying ModelResult stays decimal.
  */
 import { MARKET_DATA_DOC, MKT, getModelInputs } from "@/lib/model/inputs";
@@ -651,24 +651,24 @@ export function buildNodes(
     computed("comps-max", impliedKeys),
   );
 
-  // ── Shariah screen (booleans skipped — nodes are numbers only) ──
+  // ── Compliance screen (booleans skipped, nodes are numbers only) ──
   put(
-    "shariah.debtRatio",
-    pct(result.shariah.debtRatio),
+    "compliance.debtRatio",
+    pct(result.compliance.debtRatio),
     "%",
-    computed("shariah-debt-ratio", ["debt", "E"]),
+    computed("compliance-debt-ratio", ["debt", "E"]),
   );
   put(
-    "shariah.cashRatio",
-    pct(result.shariah.cashRatio),
+    "compliance.cashRatio",
+    pct(result.compliance.cashRatio),
     "%",
-    computed("shariah-cash-ratio", ["cash", "E"]),
+    computed("compliance-cash-ratio", ["cash", "E"]),
   );
   put(
-    "shariah.leaseInclRatio",
-    pct(result.shariah.leaseInclRatio),
+    "compliance.leaseInclRatio",
+    pct(result.compliance.leaseInclRatio),
     "%",
-    computed("shariah-lease-ratio", ["debt", "lease", "E"]),
+    computed("compliance-lease-ratio", ["debt", "lease", "E"]),
   );
 
   // ── risk composite + IC summary ──
@@ -692,7 +692,7 @@ export function buildNodes(
       "assumptions.holdYears",
     ]),
   );
-  // IC hurdle: 15% gross IRR per the Lunar IC Charter — "Hurdle rate: no
+  // IC hurdle: 15% gross IRR per the Lunar IC Charter, "Hurdle rate: no
   // private growth-equity commitment may be underwritten below a 15% base-case
   // IRR", p.4 (verified via pdftotext). Already a percent-number in
   // ModelResult (15), so no conversion.
@@ -735,7 +735,7 @@ function resolvesToNumber(a: Assumptions, key: string): boolean {
  *  (a) every computed input resolves to an existing node key;
  *  (b) the graph is acyclic;
  *  (c) every path terminates at sourced | assumption (computed nodes must
- *      have ≥1 input — no constant "orphan" numbers);
+ *      have ≥1 input, no constant "orphan" numbers);
  *  (d) every formulaId exists in `formulas`;
  *  (e) every assumptionKey resolves to a number in `assumptions`;
  *  (f) every sourced docId exists in `manifestDocIds`.
@@ -785,7 +785,7 @@ export function provenanceViolations(
     }
   }
 
-  // acyclicity (b) — iterative DFS with colors; with (a) and non-empty inputs
+  // acyclicity (b), iterative DFS with colors; with (a) and non-empty inputs
   // this also proves every path terminates at sourced | assumption (c).
   const state = new Map<string, "visiting" | "done">();
   const visit = (start: string): void => {
