@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -84,34 +85,33 @@ export function LoginScreen() {
 
   return (
     <main className="bg-navy relative isolate flex min-h-svh items-center justify-center overflow-hidden p-4">
-      {/* backdrop — deepened navy radial (navy-800 core -> navy -> navy-950
-         edges, edges reached sooner for depth) with a soft emerald swoosh
-         rising off the bottom edge per the splash-cover reference. Tokens only:
-         the glow tint is a color-mix of the accent token, no raw hex. */}
+      {/* backdrop — the design team's finished dark splash cover
+         (public/backgrounds/growth-dark.png): deep-navy field with the emerald
+         growth-swoosh and glass bars climbing off the bottom-right, the raster
+         twin of the app's light hero art. `object-cover` fills the viewport at
+         any aspect; pinned `dir="ltr"` so the composition never mirrors in
+         Arabic. The whole splash is the one genuinely dark surface in an
+         otherwise light-mode app, so the dark asset earns its place here. */}
       <motion.div
         aria-hidden="true"
+        dir="ltr"
         className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(80% 55% at 50% 112%, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 62%), " +
-            "radial-gradient(circle at 50% 32%, var(--color-navy-800), var(--color-navy) 46%, var(--color-navy-950) 90%)",
-        }}
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
           duration: reduceMotion ? 0 : CARD_ENTER_DURATION_S,
           ease: EASE,
         }}
-      />
-
-      {/* watermark — traced Logo glyph, ~6% opacity, bottom inline-start overflow */}
-      <Logo
-        variant="icon"
-        tone="mono"
-        decorative
-        size={480}
-        className="text-card pointer-events-none absolute -start-[120px] -bottom-[120px] z-0 opacity-[0.06]"
-      />
+      >
+        <Image
+          src="/backgrounds/growth-dark.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </motion.div>
 
       <div
         className="relative z-10 w-[400px] max-w-full"

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
@@ -114,44 +115,38 @@ export function GlyphBackdrop({
     );
   }
 
-  // hero — the full splash-cover composition on the money surface. Root sits at
-  // z-0 (not -z-10 like the panel): the hero's mounting wrapper is an `isolate`
-  // flex context whose sibling content carries an explicit `z-10`, so z-0 keeps
-  // the art painting above the wrapper's own (transparent) base and below that
-  // content. The panel variant instead tucks under STATIC header content, which
-  // a z-0 positioned layer would paint over — hence -z-10 there.
+  // hero — the full splash-cover composition on the money surface, rendered from
+  // the design team's finished raster (public/backgrounds/growth-light.png): the
+  // same navy-bars + emerald-swoosh brand artwork the SVG panel variant traces,
+  // but in the designers' polished, gradient-rich form. Root sits at z-0 (not
+  // -z-10 like the panel): the hero's mounting wrapper is an `isolate` flex
+  // context whose sibling content carries an explicit `z-10`, so z-0 keeps the
+  // art painting above the wrapper's own (transparent) base and below that
+  // content.
+  //
+  // The composition is authored LTR (bars + arrowhead climb toward the physical
+  // top-right); the whole layer is pinned `dir="ltr"` so it never mirrors, and
+  // `object-bottom` anchors the artwork to the bottom edge under the centred
+  // hero content, whose surrounding whitespace is the image's own pale field.
   return (
     <div
       aria-hidden="true"
+      dir="ltr"
       className={cn(
         "pointer-events-none absolute inset-0 z-0 overflow-hidden",
         className,
       )}
     >
-      {/* giant navy bars: inline-end edge, ascending from ~mid-height to the top */}
-      <Bars
-        opacity={0.055}
-        className="absolute -end-[1%] bottom-[24%] h-[66%] w-auto"
+      <Image
+        src="/backgrounds/growth-light.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-bottom"
       />
-
-      {/* two-layer emerald swoosh sweeping the bottom band. Direction pinned LTR
-         so the arrowhead always exits toward the top-right, in both locales. */}
-      <div dir="ltr" className="absolute inset-0">
-        {/* under-layer: wide, soft, pale — fills the bottom band edge-to-edge */}
-        <Swoosh
-          opacity={0.07}
-          blur={34}
-          preserve="xMidYMax slice"
-          className="absolute inset-x-0 -bottom-[6%] h-[46%] w-full"
-        />
-        {/* over-layer: crisper, deeper arc ending in the clean arrowhead that
-           climbs toward the top-inline-end corner */}
-        <Swoosh
-          opacity={0.1}
-          preserve="xMaxYMax meet"
-          className="absolute end-0 bottom-0 h-[58%] w-[116%]"
-        />
-      </div>
+      {/* soft top fade so the serif greeting stays crisp over the palest band */}
+      <div className="from-bg absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b to-transparent" />
     </div>
   );
 }
