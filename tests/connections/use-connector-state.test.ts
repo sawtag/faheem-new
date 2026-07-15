@@ -1,6 +1,10 @@
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { useConnectorsState } from "@/components/connections/use-connector-state";
+import {
+  freshOverrides,
+  useConnectorsState,
+} from "@/components/connections/use-connector-state";
+import { CONNECTORS, PROVISIONED_IDS } from "@/lib/connectors";
 
 describe("useConnectorsState", () => {
   it("connect() moves a connector to 'connected' and flashes it", () => {
@@ -45,5 +49,39 @@ describe("useConnectorsState", () => {
     expect(added.status).toBe("connected");
     expect(added.name.en).toBe("Lunar Portfolio DB");
     expect(added.name.ar).toBe("Lunar Portfolio DB");
+  });
+
+  describe("fresh mode", () => {
+    it("freshOverrides() marks exactly the provisioned ids connected", () => {
+      const overrides = freshOverrides();
+      for (const c of CONNECTORS) {
+        const expected = (PROVISIONED_IDS as readonly string[]).includes(c.id)
+          ? "connected"
+          : "available";
+        expect(overrides[c.id], c.id).toBe(expected);
+      }
+    });
+
+    it("useConnectorsState({ fresh: true }) starts every connector available except the provisioned ones", () => {
+      const { result } = renderHook(() => useConnectorsState({ fresh: true }));
+
+      for (const c of result.current.connectors) {
+        const expected = (PROVISIONED_IDS as readonly string[]).includes(c.id)
+          ? "connected"
+          : "available";
+        expect(c.status, c.id).toBe(expected);
+      }
+    });
+
+    it("useConnectorsState() with no args keeps the Connections page's real-world defaults", () => {
+      const { result } = renderHook(() => useConnectorsState());
+
+      expect(
+        result.current.connectors.find((c) => c.id === "argaam")?.status,
+      ).toBe("connected");
+      expect(
+        result.current.connectors.find((c) => c.id === "snb-capital")?.status,
+      ).toBe("available");
+    });
   });
 });
