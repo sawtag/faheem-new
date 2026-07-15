@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { CircleAlert } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Skeleton } from "@/components/ui/skeleton";
+import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { Composer, type ComposerSubmit } from "@/components/chat/composer";
 import { AgentActivity } from "@/components/chat/agent-activity";
 import { MessageStream } from "@/components/chat/message-stream";
@@ -308,7 +309,15 @@ export function ChatView({ id }: { id: string }) {
 
   return (
     <div className="flex h-screen">
-      <section className="flex min-w-0 flex-1 flex-col">
+      {/* Chat canvas: an ultra-subtle white → navy-50 wash (flat white read
+          unfinished next to the tinted sidebar); on the EMPTY state only, the
+          hero growth artwork whispers in at 5% opacity, anchored bottom and
+          unmounted the moment the thread has any content so dense cited text
+          always sits on a quiet surface. */}
+      <section className="from-card to-navy-50 relative isolate flex min-w-0 flex-1 flex-col bg-gradient-to-b">
+        {isEmpty && chat && (
+          <GlyphBackdrop variant="hero" className="-z-10 opacity-5" />
+        )}
         <header className="border-border flex h-16 shrink-0 items-center border-b px-6">
           <h1 className="text-navy truncate text-[0.9375rem] font-bold">
             {chat ? title : t("empty.title")}

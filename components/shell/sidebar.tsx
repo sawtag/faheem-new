@@ -37,7 +37,10 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "border-border bg-card sticky top-0 flex h-screen shrink-0 flex-col border-e transition-[width] duration-[var(--duration)] ease-[var(--ease)]",
+        // Quiet terminal rail: a near-white navy wash (tokens in globals.css)
+        // that deepens toward the foot, separating the rail from the content
+        // canvas without shouting. Hairline end border stays the divider.
+        "border-border from-sidebar-top to-sidebar-bottom sticky top-0 flex h-screen shrink-0 flex-col border-e bg-gradient-to-b transition-[width] duration-[var(--duration)] ease-[var(--ease)]",
         collapsed ? "w-16" : "w-[260px]",
       )}
     >
@@ -134,8 +137,8 @@ export function Sidebar({
         )}
       </nav>
 
-      {/* footer: Ali + firm + language */}
-      <div className="border-border border-t p-3">
+      {/* footer: Ali + firm + language (a touch more tint grounds the rail) */}
+      <div className="border-border bg-navy-100/40 border-t p-3">
         <div
           className={cn(
             "flex items-center gap-2.5",
