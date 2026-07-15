@@ -89,12 +89,12 @@ export function LoginScreen() {
          (public/backgrounds/growth-dark.png): deep-navy field with the emerald
          growth-swoosh and glass bars climbing off the bottom-right, the raster
          twin of the app's light hero art. `object-cover` fills the viewport at
-         any aspect; pinned `dir="ltr"` so the composition never mirrors in
-         Arabic. The whole splash is the one genuinely dark surface in an
+         any aspect; `rtl:-scale-x-100` mirrors the composition in Arabic so the
+         growth arrow climbs "forward" along the RTL reading flow (matching the
+         home hero). The whole splash is the one genuinely dark surface in an
          otherwise light-mode app, so the dark asset earns its place here. */}
       <motion.div
         aria-hidden="true"
-        dir="ltr"
         className="absolute inset-0"
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -109,7 +109,7 @@ export function LoginScreen() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover rtl:-scale-x-100"
         />
       </motion.div>
 
