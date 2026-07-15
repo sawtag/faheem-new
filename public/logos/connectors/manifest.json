@@ -271,5 +271,12 @@
     "format": "png",
     "source_url": "iTunes App Store artwork for 'iMarkaz' app, publisher Kuwait Financial Centre (itunes.apple.com)",
     "note": "Quality warning: markaz.com blocked by Cloudflare bot-check on all direct attempts; used official App Store icon (512x512, sunflower mark + Arabic المركز / MARKAZ wordmark) as fallback - has a photographic background, not a flat tile"
+  },
+  {
+    "id": "alinma-invest",
+    "file": "alinma-invest.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'alinma capital' app, publisher Alinma Investmnet (itunes.apple.com/sa/app/id1550503215)",
+    "note": "Quality warning: alinmacapital.com apple-touch-icon fetch failed TLS verification; used official App Store icon (512x512, purple gradient tile with white folded-page/'I' mark) as fallback. Entity renamed from Alinma Investment Company to Alinma Capital (الإنماء المالية) per CMA notice, Feb 2025"
   }
 ]

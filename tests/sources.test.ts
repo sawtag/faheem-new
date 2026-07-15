@@ -62,8 +62,8 @@ describe("SOURCES taxonomy", () => {
       "alrajhi-capital",
       "jadwa",
       "riyad-capital",
+      "alinma-capital",
       "aljazira-capital",
-      "albilad-capital",
       "gib-capital",
     ]);
     expect(ids.slice(7)).toEqual([

@@ -90,7 +90,7 @@ export const SOURCES: Source[] = [
   },
   {
     id: "argaam-plus",
-    url: "https://www.argaamplus.com",
+    url: "https://www.argaam.com",
     name: { en: "Argaam Plus", ar: "أرقام بلس" },
     description: {
       en: "Full Tadawul financials, analyst estimates, and market analytics.",
@@ -101,7 +101,7 @@ export const SOURCES: Source[] = [
   },
   {
     id: "mubasher",
-    url: "https://estore.directfn.sa",
+    url: "https://www.directfn.com",
     name: { en: "Mubasher (DirectFN)", ar: "مباشر" },
     description: {
       en: "Real-time and end-of-day price feeds plus news for 80+ markets including Tadawul.",
@@ -112,7 +112,7 @@ export const SOURCES: Source[] = [
   },
   {
     id: "sama-open-data",
-    url: "https://www.sama.gov.sa/en-US/EconomicReports/pages/database.aspx",
+    url: "https://www.sama.gov.sa",
     name: { en: "SAMA Open Data", ar: "ساما، البيانات المفتوحة" },
     description: {
       en: "Official Saudi Central Bank statistics, rates, FX, and banking-sector data.",
@@ -286,7 +286,7 @@ export const SOURCES: Source[] = [
   },
   {
     id: "jadwa",
-    url: "https://www.jadwa.com/en/section/research",
+    url: "https://www.jadwa.com/en",
     name: { en: "Jadwa Investment", ar: "جدوى للاستثمار" },
     description: {
       en: "Macro research and sector reports on the Saudi economy.",
@@ -307,6 +307,17 @@ export const SOURCES: Source[] = [
     icon: { kind: "image", src: "/logos/connectors/riyad-capital.png" },
   },
   {
+    id: "alinma-capital",
+    url: "https://www.alinmacapital.com/en/Market-Research",
+    name: { en: "Alinma Capital", ar: "الإنماء المالية" },
+    description: {
+      en: "Equity research, sector reports, and macro commentary on Saudi markets.",
+      ar: "أبحاث الأسهم وتقارير القطاعات والتعليق الاقتصادي على الأسواق السعودية.",
+    },
+    group: "broker",
+    icon: { kind: "image", src: "/logos/connectors/alinma-invest.png" },
+  },
+  {
     id: "aljazira-capital",
     url: "https://www.aljaziracapital.com.sa/en/insights/research-reports/",
     name: { en: "Aljazira Capital", ar: "الجزيرة كابيتال" },
@@ -316,17 +327,6 @@ export const SOURCES: Source[] = [
     },
     group: "broker",
     icon: { kind: "image", src: "/logos/connectors/aljazira-capital.png" },
-  },
-  {
-    id: "albilad-capital",
-    url: "https://www.albilad-capital.com/en/Research",
-    name: { en: "Albilad Capital", ar: "البلاد المالية" },
-    description: {
-      en: "Research on Saudi equities, sectors, and economic trends.",
-      ar: "أبحاث وتحليلات للأسهم السعودية والقطاعات والاتجاهات الاقتصادية.",
-    },
-    group: "broker",
-    icon: { kind: "image", src: "/logos/connectors/albilad-capital.png" },
   },
   {
     id: "gib-capital",
