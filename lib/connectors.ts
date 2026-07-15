@@ -20,12 +20,15 @@
  * Datasite, marketaux, WAMID) fall back to the monogram tile, same as every
  * Saudi connector without a clean SVG (AGENTS.md assets policy).
  *
- * Ordering (standing user rule): within each status section, Saudi/local
- * connectors sort ABOVE international ones.
+ * Ordering (standing user rule): Saudi/local connectors sort ABOVE
+ * international ones within every rendered group, the status sections on the
+ * Connections page and the group sections in the onboarding Connect step.
+ * marketaux (international, connected) therefore sits after the Saudi/local
+ * external connectors, keeping its connected status.
  */
 import type { Localized } from "@/lib/types";
 
-export type ConnectorGroup = "internal" | "external";
+export type ConnectorGroup = "external" | "research" | "internal";
 export type ConnectorStatus = "connected" | "available";
 export type ConnectorBadge = "beta" | "mvp";
 
@@ -156,24 +159,8 @@ export const CONNECTORS: Connector[] = [
     status: "connected",
     tile: { kind: "monogram", initial: "W", tint: "navy" },
   },
-  // International connected, market feeds + workplace systems (the OAuth
-  // integrations behind the composer's Internal Sources picker group).
-  {
-    id: "marketaux",
-    name: { en: "marketaux", ar: "marketaux" },
-    description: {
-      en: "Global market news API",
-      ar: "واجهة أخبار الأسواق العالمية",
-    },
-    tooltip: {
-      en: "Global market news API that broadens Faheem's coverage beyond the Saudi market.",
-      ar: "واجهة أخبار عالمية للأسواق توسّع تغطية فهيم إلى ما وراء السوق السعودية.",
-    },
-    group: "external",
-    status: "connected",
-    badge: "beta",
-    tile: { kind: "monogram", initial: "M", tint: "navy" },
-  },
+  // International connected workplace systems (the OAuth integrations behind
+  // the composer's Internal Sources picker group).
   {
     id: "sharepoint",
     name: { en: "SharePoint", ar: "SharePoint" },
@@ -375,6 +362,24 @@ export const CONNECTORS: Connector[] = [
     badge: "mvp",
     tile: { kind: "monogram", initial: "ا", tint: "accent" },
   },
+  // marketaux is connected, but the GCC-first rule (see the ordering note at
+  // the top of this file) places it after the Saudi/local external connectors.
+  {
+    id: "marketaux",
+    name: { en: "marketaux", ar: "marketaux" },
+    description: {
+      en: "Global market news API",
+      ar: "واجهة أخبار الأسواق العالمية",
+    },
+    tooltip: {
+      en: "Global market news API that broadens Faheem's coverage beyond the Saudi market.",
+      ar: "واجهة أخبار عالمية للأسواق توسّع تغطية فهيم إلى ما وراء السوق السعودية.",
+    },
+    group: "external",
+    status: "connected",
+    badge: "beta",
+    tile: { kind: "monogram", initial: "M", tint: "navy" },
+  },
   {
     id: "bloomberg",
     name: { en: "Bloomberg", ar: "Bloomberg" },
@@ -410,7 +415,8 @@ export const CONNECTORS: Connector[] = [
       en: "Secure virtual data rooms for due-diligence document exchange.",
       ar: "غرف بيانات افتراضية آمنة لتبادل مستندات الفحص النافي للجهالة.",
     },
-    group: "external",
+    // Deal room, not a market-data provider (AGENTS.md asset/group audit).
+    group: "internal",
     status: "available",
     tile: { kind: "monogram", initial: "I" },
   },
@@ -422,7 +428,8 @@ export const CONNECTORS: Connector[] = [
       en: "Secure virtual data rooms for due-diligence document exchange.",
       ar: "غرف بيانات افتراضية آمنة لتبادل مستندات الفحص النافي للجهالة.",
     },
-    group: "external",
+    // Deal room, not a market-data provider (AGENTS.md asset/group audit).
+    group: "internal",
     status: "available",
     tile: { kind: "monogram", initial: "D" },
   },
@@ -460,4 +467,193 @@ export const CONNECTORS: Connector[] = [
     badge: "mvp",
     tile: { kind: "monogram", initial: "S" },
   },
+
+  // ── Broker research (Saudi/GCC first, ingestion framing per onboarding
+  // Connect step, never "API"/"feed" for these twelve) ────────────────────
+  {
+    id: "snb-capital",
+    name: { en: "SNB Capital", ar: "الأهلي المالية" },
+    description: {
+      en: "Equity research ingested from your SNB Capital entitlement",
+      ar: "أبحاث الأسهم مستوردة من اشتراككم لدى الأهلي المالية",
+    },
+    tooltip: {
+      en: "Published equity research and sector coverage ingested from your SNB Capital entitlement.",
+      ar: "أبحاث أسهم وتغطية قطاعات منشورة، مستوردة من اشتراككم لدى الأهلي المالية.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/snb-capital.png" },
+  },
+  {
+    id: "alrajhi-capital",
+    name: { en: "Al Rajhi Capital", ar: "الراجحي المالية" },
+    description: {
+      en: "Research ingested from your Al Rajhi Capital entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى الراجحي المالية",
+    },
+    tooltip: {
+      en: "Published sell-side research and market strategy ingested from your Al Rajhi Capital entitlement.",
+      ar: "أبحاث جانب البيع واستراتيجية السوق المنشورة، مستوردة من اشتراككم لدى الراجحي المالية.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/alrajhi-capital.png" },
+  },
+  {
+    id: "jadwa",
+    name: { en: "Jadwa Investment", ar: "جدوى للاستثمار" },
+    description: {
+      en: "Research ingested from your Jadwa Investment entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى جدوى للاستثمار",
+    },
+    tooltip: {
+      en: "Published macro research and sector reports ingested from your Jadwa Investment entitlement.",
+      ar: "أبحاث اقتصاد كلي وتقارير قطاعات منشورة، مستوردة من اشتراككم لدى جدوى للاستثمار.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "monogram", initial: "J", tint: "navy" },
+  },
+  {
+    id: "riyad-capital",
+    name: { en: "Riyad Capital", ar: "الرياض المالية" },
+    description: {
+      en: "Research ingested from your Riyad Capital entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى الرياض المالية",
+    },
+    tooltip: {
+      en: "Published equity research and TASI initiations ingested from your Riyad Capital entitlement.",
+      ar: "أبحاث أسهم وتغطيات جديدة في تاسي منشورة، مستوردة من اشتراككم لدى الرياض المالية.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/riyad-capital.png" },
+  },
+  {
+    id: "alinma-capital",
+    name: { en: "Alinma Capital", ar: "الإنماء المالية" },
+    description: {
+      en: "Equity research ingested from your Alinma Capital entitlement",
+      ar: "أبحاث الأسهم مستوردة من اشتراككم لدى الإنماء المالية",
+    },
+    tooltip: {
+      en: "Published equity research, sector reports and macro commentary ingested from your Alinma Capital entitlement.",
+      ar: "أبحاث أسهم وتقارير قطاعات وتعليق اقتصادي منشورة، مستوردة من اشتراككم لدى الإنماء المالية.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/alinma-invest.png" },
+  },
+  {
+    id: "aljazira-capital",
+    name: { en: "Aljazira Capital", ar: "الجزيرة كابيتال" },
+    description: {
+      en: "Research ingested from your Aljazira Capital entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى الجزيرة كابيتال",
+    },
+    tooltip: {
+      en: "Published sell-side equity and sector research ingested from your Aljazira Capital entitlement.",
+      ar: "أبحاث أسهم وقطاعات من جانب البيع منشورة، مستوردة من اشتراككم لدى الجزيرة كابيتال.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/aljazira-capital.png" },
+  },
+  {
+    id: "gib-capital",
+    name: { en: "GIB Capital", ar: "جي آي بي كابيتال" },
+    description: {
+      en: "Research ingested from your GIB Capital entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى جي آي بي كابيتال",
+    },
+    tooltip: {
+      en: "Published equity initiations and daily Tadawul reports ingested from your GIB Capital entitlement.",
+      ar: "تغطيات جديدة وتقارير يومية لسوق تداول منشورة، مستوردة من اشتراككم لدى جي آي بي كابيتال.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/gib-capital.png" },
+  },
+  {
+    id: "efg-hermes",
+    name: { en: "EFG Hermes", ar: "إي إف جي هيرميس" },
+    description: {
+      en: "Research ingested from your EFG Hermes entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى إي إف جي هيرميس",
+    },
+    tooltip: {
+      en: "Published MENA-wide sell-side research and strategy ingested from your EFG Hermes entitlement.",
+      ar: "أبحاث واستراتيجية على مستوى الشرق الأوسط وشمال أفريقيا منشورة، مستوردة من اشتراككم لدى إي إف جي هيرميس.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/efg-hermes.png" },
+  },
+  {
+    id: "arqaam-capital",
+    name: { en: "Arqaam Capital", ar: "Arqaam Capital" },
+    description: {
+      en: "Research ingested from your Arqaam Capital entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى Arqaam Capital",
+    },
+    tooltip: {
+      en: "Published sell-side equity and macro research ingested from your Arqaam Capital entitlement.",
+      ar: "أبحاث أسهم واقتصاد كلي منشورة، مستوردة من اشتراككم لدى Arqaam Capital.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "monogram", initial: "A", tint: "accent" },
+  },
+  {
+    id: "sico",
+    name: { en: "SICO", ar: "سيكو" },
+    description: {
+      en: "Research ingested from your SICO entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى سيكو",
+    },
+    tooltip: {
+      en: "Published GCC equity, macro and strategy research ingested from your SICO entitlement.",
+      ar: "أبحاث أسهم واقتصاد كلي واستراتيجية في الخليج منشورة، مستوردة من اشتراككم لدى سيكو.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "image", src: "/logos/connectors/sico.png" },
+  },
+  {
+    id: "kamco-invest",
+    name: { en: "Kamco Invest", ar: "كامكو للاستثمار" },
+    description: {
+      en: "Research ingested from your Kamco Invest entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى كامكو للاستثمار",
+    },
+    tooltip: {
+      en: "Published Kuwait and GCC equity and sector research ingested from your Kamco Invest entitlement.",
+      ar: "أبحاث أسهم وقطاعات في الكويت والخليج منشورة، مستوردة من اشتراككم لدى كامكو للاستثمار.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "monogram", initial: "K", tint: "navy" },
+  },
+  {
+    id: "markaz",
+    name: { en: "Markaz", ar: "المركز" },
+    description: {
+      en: "Research ingested from your Markaz entitlement",
+      ar: "أبحاث مستوردة من اشتراككم لدى المركز",
+    },
+    tooltip: {
+      en: "Published GCC equity and IPO research ingested from your Markaz entitlement.",
+      ar: "أبحاث أسهم وطروحات في الخليج منشورة، مستوردة من اشتراككم لدى المركز.",
+    },
+    group: "research",
+    status: "available",
+    tile: { kind: "monogram", initial: "M", tint: "accent" },
+  },
 ];
+
+/**
+ * Provisioned with the Faheem workspace: pre-connected in the fresh
+ * onboarding state (Task A §4), never part of the Connect step's cascade.
+ */
+export const PROVISIONED_IDS = ["lunar-data-room", "templates"] as const;

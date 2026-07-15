@@ -1,40 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "motion/react";
-import {
-  Calculator,
-  FileSearch,
-  Filter,
-  GitCompare,
-  PenLine,
-  Scale,
-  ShieldAlert,
-  ShieldCheck,
-  Telescope,
-} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Toggle } from "@/components/ui/toggle";
+import { LucideIcon } from "@/components/shell/lucide-icon";
 import { reveal } from "@/components/connections/reveal";
 import { cn } from "@/lib/utils";
 import { AGENTS } from "@/lib/ai/agents";
 import type { AgentId, AgentInfo, Lang } from "@/lib/types";
-
-/** Resolves the fixed set of lucide icon names the agent registry emits (AGENTS.md icon policy). */
-const AGENT_ICONS: Record<
-  string,
-  React.ComponentType<{ className?: string }>
-> = {
-  filter: Filter,
-  telescope: Telescope,
-  "file-search": FileSearch,
-  calculator: Calculator,
-  "git-compare": GitCompare,
-  "shield-alert": ShieldAlert,
-  "pen-line": PenLine,
-  "shield-check": ShieldCheck,
-  scale: Scale,
-};
 
 const STAGE1 = AGENTS.filter((a) => a.stage === 1);
 // orchestrator routes automatically, it gets a banner on the Agents page
@@ -54,7 +27,6 @@ function AgentCard({
   index: number;
 }) {
   const locale = useLocale() as Lang;
-  const Icon = AGENT_ICONS[agent.icon];
   const secondaryName = locale === "ar" ? agent.name.en : agent.name.ar;
 
   return (
@@ -70,7 +42,7 @@ function AgentCard({
           className="bg-accent-50 text-accent-700 rounded-btn grid size-9 shrink-0 place-items-center"
           aria-hidden="true"
         >
-          {Icon && <Icon className="size-4.5" />}
+          <LucideIcon name={agent.icon} className="size-4.5" />
         </span>
         <div className="min-w-0 flex-1">
           <p className="text-navy truncate text-sm font-semibold">
