@@ -1,11 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 
 /**
- * T3.5 acceptance (plan §T3.5): the onboarding stepper completes end-to-end,
- * the "Add custom MCP" modal opens/validates/accepts a URL, and the fake
- * OAuth modal flow ends with the connector shown as Connected. Auth
- * middleware may or may not exist yet (parallel task), setting the session
- * cookie up front makes this spec pass either way.
+ * T3.5 acceptance (plan §T3.5): the "Add custom MCP" modal opens/validates/
+ * accepts a URL, and the fake OAuth modal flow ends with the connector shown
+ * as Connected. Auth middleware may or may not exist yet (parallel task),
+ * setting the session cookie up front makes this spec pass either way.
+ *
+ * The onboarding takeover itself (welcome -> steps -> assemble -> complete,
+ * ONBOARDING_BRIEF.md) is covered end-to-end in e2e/onboarding.spec.ts; the
+ * immediate-stepper coverage that used to live here was superseded when
+ * /onboarding became a welcome-first full-screen takeover.
  */
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
@@ -127,72 +131,5 @@ test.describe("Connections page", () => {
     await expect(
       bloombergRow.getByText("Connected", { exact: true }),
     ).toBeVisible();
-  });
-});
-
-test.describe("Onboarding stepper", () => {
-  test("completes end-to-end: Connect -> Agents & skills -> Mandate -> IC Charter", async ({
-    page,
-  }) => {
-    const errors = assertNoConsoleErrors(page);
-    await page.goto("/onboarding");
-
-    await expect(
-      page.getByRole("heading", { name: "Connect & Configure" }),
-    ).toBeVisible();
-    await expect(page.getByText("Step 1 of 3")).toBeVisible();
-
-    // Step 1, Connect: pre-connected rows show a check, others show Connect,
-    // and the dashed "Add custom MCP" card is the last grid cell.
-    await expect(page.getByText("Lunar Data Room")).toBeVisible();
-    await expect(
-      page.getByRole("button", { name: "Add custom MCP" }),
-    ).toBeVisible();
-    await page.getByRole("button", { name: "Continue" }).click();
-
-    // Step 2, Agents & skills: registry-driven toggle grid, default ON.
-    await expect(page.getByText("Step 2 of 3")).toBeVisible();
-    await expect(page.getByText("Screening Agent")).toBeVisible();
-    await expect(page.getByText("@screening")).toBeVisible();
-    const firstToggle = page.getByRole("switch").first();
-    await expect(firstToggle).toHaveAttribute("aria-checked", "true");
-    await page.getByRole("button", { name: "Continue" }).click();
-
-    // Step 3, Mandate & risk: prefilled to Lunar's real mandate values.
-    await expect(page.getByText("Step 3 of 3")).toBeVisible();
-    await expect(page.getByLabel("Target IRR hurdle")).toHaveValue("15");
-    await expect(page.getByLabel("Max single-name concentration")).toHaveValue(
-      "10",
-    );
-    await page.getByRole("button", { name: "Create IC Charter" }).click();
-
-    // Completion card, the closing "this becomes your IC Charter" beat.
-    await expect(
-      page.getByRole("heading", { name: "Your IC Charter is ready" }),
-    ).toBeVisible();
-    const charterLink = page.getByRole("link", {
-      name: "Open IC Charter (PDF)",
-    });
-    await expect(charterLink).toHaveAttribute(
-      "href",
-      "/api/documents/lunar-ic-charter",
-    );
-    await expect(
-      page.getByRole("link", { name: "Go to Home" }),
-    ).toHaveAttribute("href", "/");
-
-    expect(errors).toEqual([]);
-  });
-
-  test("Back navigates to the previous step without losing Connect state", async ({
-    page,
-  }) => {
-    await page.goto("/onboarding");
-    await page.getByRole("button", { name: "Continue" }).click();
-    await expect(page.getByText("Step 2 of 3")).toBeVisible();
-
-    await page.getByRole("button", { name: "Back" }).click();
-    await expect(page.getByText("Step 1 of 3")).toBeVisible();
-    await expect(page.getByText("Lunar Data Room")).toBeVisible();
   });
 });
