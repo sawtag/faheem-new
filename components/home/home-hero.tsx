@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { CheckCircle } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { Composer, type ComposerSubmit } from "@/components/chat/composer";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { QuickActions } from "@/components/home/quick-actions";
-import { AwayBrief } from "@/components/home/away-brief";
 import type { Lang } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
@@ -17,9 +18,9 @@ const ROTATE_MS = 3500;
 /**
  * The omnibox home, on camera at every demo beat transition. A serif two-tone
  * greeting, the shared Composer in its hero variant (rotating contextual
- * placeholder, full affordances), quick-action pills that prefill it, and the
- * "While you were away" agentic briefing. Firm context: submitting hands off
- * to `/chat/new`.
+ * placeholder, full affordances), quick-action pills that prefill it, and a
+ * quiet overnight-activity line under them. Firm context: submitting hands
+ * off to `/chat/new`.
  */
 export function HomeHero() {
   const t = useTranslations("home");
@@ -88,7 +89,16 @@ export function HomeHero() {
 
           <QuickActions onPick={pick} />
 
-          <AwayBrief />
+          <p className="text-text-secondary mt-10 flex items-center justify-center gap-1.5 text-center text-sm">
+            <CheckCircle className="size-3.5 shrink-0" aria-hidden="true" />
+            <span>{t("activity.summary")}</span>
+            <Link
+              href="/audit"
+              className="text-text-secondary hover:text-navy focus-visible:ring-accent rounded-btn font-medium underline-offset-2 outline-none hover:underline focus-visible:ring-2"
+            >
+              {t("activity.link")}
+            </Link>
+          </p>
         </motion.div>
       </div>
     </div>
