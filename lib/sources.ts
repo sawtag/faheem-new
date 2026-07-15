@@ -307,6 +307,39 @@ export const SOURCES: Source[] = [
     icon: { kind: "image", src: "/logos/connectors/riyad-capital.png" },
   },
   {
+    id: "aljazira-capital",
+    url: "https://www.aljaziracapital.com.sa/en/insights/research-reports/",
+    name: { en: "Aljazira Capital", ar: "الجزيرة كابيتال" },
+    description: {
+      en: "Sell-side equity and sector research covering 60+ TASI stocks.",
+      ar: "أبحاث الأسهم والقطاعات وتغطية لأكثر من 60 سهماً في تاسي.",
+    },
+    group: "broker",
+    icon: { kind: "image", src: "/logos/connectors/aljazira-capital.png" },
+  },
+  {
+    id: "albilad-capital",
+    url: "https://www.albilad-capital.com/en/Research",
+    name: { en: "Albilad Capital", ar: "البلاد المالية" },
+    description: {
+      en: "Research on Saudi equities, sectors, and economic trends.",
+      ar: "أبحاث وتحليلات للأسهم السعودية والقطاعات والاتجاهات الاقتصادية.",
+    },
+    group: "broker",
+    icon: { kind: "image", src: "/logos/connectors/albilad-capital.png" },
+  },
+  {
+    id: "gib-capital",
+    url: "https://www.gibcapital.com/research-reports/",
+    name: { en: "GIB Capital", ar: "جي آي بي كابيتال" },
+    description: {
+      en: "Equity initiations, earnings updates, and daily Tadawul reports.",
+      ar: "تغطيات جديدة وتحديثات النتائج وتقارير يومية لسوق تداول.",
+    },
+    group: "broker",
+    icon: { kind: "image", src: "/logos/connectors/gib-capital.png" },
+  },
+  {
     id: "efg-hermes",
     url: "https://www.efg-hermes.com/en/our-services/research",
     name: { en: "EFG Hermes", ar: "إي إف جي هيرميس" },
@@ -316,6 +349,50 @@ export const SOURCES: Source[] = [
     },
     group: "broker",
     icon: { kind: "image", src: "/logos/connectors/efg-hermes.png" },
+  },
+  {
+    id: "arqaam-capital",
+    url: "https://www.arqaamcapital.com/en/research",
+    name: { en: "Arqaam Capital", ar: "Arqaam Capital" },
+    description: {
+      en: "Sell-side equity and macro research across MENA and Africa.",
+      ar: "أبحاث الأسهم والاقتصاد الكلي في الشرق الأوسط وأفريقيا.",
+    },
+    group: "broker",
+    icon: { kind: "monogram", initial: "A", tint: "accent" },
+  },
+  {
+    id: "sico",
+    url: "https://sicobank.com/en/research",
+    name: { en: "SICO", ar: "سيكو" },
+    description: {
+      en: "GCC equity, macro, and strategy research since 1995.",
+      ar: "أبحاث الأسهم والاقتصاد الكلي والاستراتيجية في الخليج منذ 1995.",
+    },
+    group: "broker",
+    icon: { kind: "image", src: "/logos/connectors/sico.png" },
+  },
+  {
+    id: "kamco-invest",
+    url: "https://www.kamcoinvest.com/research/type/458",
+    name: { en: "Kamco Invest", ar: "كامكو للاستثمار" },
+    description: {
+      en: "Kuwait and GCC equity, macro, and sector research.",
+      ar: "أبحاث الأسهم والاقتصاد والقطاعات في الكويت والخليج.",
+    },
+    group: "broker",
+    icon: { kind: "monogram", initial: "K", tint: "navy" },
+  },
+  {
+    id: "markaz",
+    url: "https://www.markaz.com/en/what-we-do/research/",
+    name: { en: "Markaz", ar: "المركز" },
+    description: {
+      en: "GCC equity, IPO, and sector research.",
+      ar: "أبحاث الأسهم والطروحات والقطاعات في الخليج.",
+    },
+    group: "broker",
+    icon: { kind: "monogram", initial: "M", tint: "accent" },
   },
 
   // ── Internal · the firm's own systems (native corpus first) ─────────────

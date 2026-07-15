@@ -222,5 +222,54 @@
     "format": "png",
     "source_url": "https://www.granola.ai/favicon/apple-touch-icon.png",
     "note": "180x180 apple-touch icon; the site's favicon.svg was a raster PNG wrapped in an SVG container (RealFaviconGenerator output, not a true vector), so the equivalent clean PNG was used instead"
+  },
+  {
+    "id": "aljazira-capital",
+    "file": "aljazira-capital.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'Aljazira Capital' app (itunes.apple.com)",
+    "note": "Quality warning: official site favicon was only 79x63px (below threshold); used official App Store icon (512x512, 'ajb' mark with Arabic wordmark) as fallback"
+  },
+  {
+    "id": "albilad-capital",
+    "file": "albilad-capital.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'Albilad-Capital' app (itunes.apple.com)",
+    "note": "Quality warning: official site favicon was only 58x58px (below threshold); used official App Store icon (512x512, gold 'R'-arc mark) as fallback"
+  },
+  {
+    "id": "gib-capital",
+    "file": "gib-capital.png",
+    "format": "png",
+    "source_url": "https://www.gibcapital.com/media/xn3enmmc/group571.ico",
+    "note": "Site's own favicon link (despite .ico extension, file is actually a clean 1000x1000 PNG icon mark), direct from official site"
+  },
+  {
+    "id": "arqaam-capital",
+    "file": "arqaam-capital.png",
+    "format": "png",
+    "source_url": "https://www.arqaamcapital.com/wp-content/uploads/2023/10/logobluearqaamsmall-1.png",
+    "note": "Quality warning: full lockup (geometric mark + 'arqaam CAPITAL' wordmark, 200x103 transparent PNG), not a standalone square icon - no icon-only mark found on official site; distinct Dubai investment bank, not the Argaam news portal (see argaam-plus entry)"
+  },
+  {
+    "id": "sico",
+    "file": "sico.png",
+    "format": "png",
+    "source_url": "https://sicobank.com/Themes/Default/img/favicons/apple-touch-icon.png",
+    "note": "180x180 apple-touch icon, official Bahrain site (sicobank.com / SICO BSC(c), Est. 1995), 'S/CO' mark with Arabic سيكو wordmark"
+  },
+  {
+    "id": "kamco-invest",
+    "file": "kamco-invest.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'Kamco Invest' app, publisher KAMCO (itunes.apple.com)",
+    "note": "Quality warning: official site favicon.ico maxed out at 48x48 (below threshold); used official App Store icon (512x512, 'KAMCO INVEST' wordmark) as fallback"
+  },
+  {
+    "id": "markaz",
+    "file": "markaz.png",
+    "format": "png",
+    "source_url": "iTunes App Store artwork for 'iMarkaz' app, publisher Kuwait Financial Centre (itunes.apple.com)",
+    "note": "Quality warning: markaz.com blocked by Cloudflare bot-check on all direct attempts; used official App Store icon (512x512, sunflower mark + Arabic المركز / MARKAZ wordmark) as fallback - has a photographic background, not a flat tile"
   }
 ]
