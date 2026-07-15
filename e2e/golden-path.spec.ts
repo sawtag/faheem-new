@@ -90,8 +90,11 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
   });
 
   await test.step("open Darb -> scorecard visible (6 rows, warn row)", async () => {
+    // navigation check gets a wide inner window: a re-click while the dev
+    // server is still compiling/streaming the darb route CANCELS the pending
+    // navigation, so tight retries can livelock the step under full load
     await clickUntil(page.locator('[data-deal="darb"]').getByRole("link"), () =>
-      expect(page).toHaveURL(/\/deals\/darb$/, { timeout: 2500 }),
+      expect(page).toHaveURL(/\/deals\/darb$/, { timeout: 8000 }),
     );
 
     await expect(page.getByTestId("scorecard-row")).toHaveCount(6);

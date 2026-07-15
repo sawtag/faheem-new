@@ -2,8 +2,8 @@ import { expect, test } from "@playwright/test";
 
 /**
  * T3.2 acceptance (plan §T3.2): the omnibox home. A quick-action pill prefills
- * the composer, submitting hands off to `/chat/new?q=…`, a recent-workspace card
- * routes into its deal, and the Arabic hero renders RTL with the name in emerald.
+ * the composer, submitting hands off to `/chat/new?q=…`, a briefing row routes
+ * to its surface, and the Arabic hero renders RTL with the name in emerald.
  * The session cookie is set up front so the auth middleware lets `/` through.
  */
 test.beforeEach(async ({ context, baseURL }) => {
@@ -20,10 +20,13 @@ test("quick-action pill prefills the composer and focuses it", async ({
   const box = page.getByRole("textbox");
   await expect(box).toHaveValue("");
 
-  await page.getByRole("button", { name: "Run DCF" }).click();
-
-  // the full analyst prompt lands in the composer…
-  await expect(box).toHaveValue(/Gordon terminal value/);
+  // click-until-effect: a click landing before hydration attaches the pill's
+  // handler is silently lost under parallel dev-compile load
+  await expect(async () => {
+    await page.getByRole("button", { name: "Run DCF" }).click();
+    // the full analyst prompt lands in the composer…
+    await expect(box).toHaveValue(/Gordon terminal value/, { timeout: 1500 });
+  }).toPass({ timeout: 20_000 });
   // …and it is focused, ready to send
   await expect(box).toBeFocused();
 });
@@ -45,15 +48,17 @@ test("submitting the composer hands off to /chat/new?q=…", async ({ page }) =>
   expect(seen.some((u) => /\/chat\/new\?q=/.test(u))).toBe(true);
 });
 
-test("recent-workspace card routes into the deal", async ({ page }) => {
+test("a briefing row routes to its surface", async ({ page }) => {
   await page.goto("/");
 
-  const recent = page
-    .locator("section")
-    .filter({ has: page.getByRole("heading", { name: "Recent workspaces" }) });
-  await recent.getByRole("link", { name: /Jahez/ }).click();
+  const brief = page.locator("section").filter({
+    has: page.getByRole("heading", { name: "While you were away" }),
+  });
+  await brief
+    .getByRole("link", { name: /Screening complete for Darb/ })
+    .click();
 
-  await expect(page).toHaveURL(/\/deals\/jahez$/);
+  await expect(page).toHaveURL(/\/deals\/darb$/);
 });
 
 test("ar locale renders the RTL hero with the name in emerald", async ({

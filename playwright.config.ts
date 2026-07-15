@@ -1,8 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 // PORT override lets parallel worktrees run e2e without racing the main
-// tree's dev server on :3000 (reuseExistingServer would silently test the
-// WRONG build). Default unchanged.
+// tree's dev server on :3000. Default unchanged.
 const PORT = Number(process.env.PORT ?? 3000);
 
 export default defineConfig({
@@ -38,7 +37,12 @@ export default defineConfig({
       ? "npm run build && npm run start"
       : "npm run dev",
     url: `http://localhost:${PORT}`,
-    reuseExistingServer: !process.env.CI,
+    // NEVER reuse a running server: the suite must own its FAHEEM_MODE=cached
+    // process. Reusing a dev server (smart/live mode) silently tests the wrong
+    // app and poisons golden-path, timing, and audit-count assertions. If the
+    // port is busy, failing loudly here is the correct outcome (stop the dev
+    // server, or run with PORT=<other> per the note above).
+    reuseExistingServer: false,
     timeout: process.env.FAHEEM_E2E_PROD ? 300_000 : 120_000,
     env: { FAHEEM_MODE: "cached", PORT: String(PORT) },
   },

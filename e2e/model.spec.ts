@@ -38,13 +38,25 @@ test.describe("Live Model, Jahez", () => {
       page.locator('[data-node-key="base.perShare"]').first(),
     ).toContainText("14.36");
 
-    // DCF tab: WACC build shows 13.3%
-    await page.getByRole("tab", { name: "DCF" }).click();
-    await expect(page.locator('[data-node-key="wacc"]')).toContainText("13.3%");
+    // DCF tab: WACC build shows 13.3% (clickUntil: each tab's chunk compiles
+    // on demand in the dev webServer, which can outlast a single click's
+    // 5s expect under full-parallel load)
+    await clickUntil(page.getByRole("tab", { name: "DCF" }), async () => {
+      await expect(page.locator('[data-node-key="wacc"]')).toContainText(
+        "13.3%",
+        { timeout: 3000 },
+      );
+    });
 
     // Sensitivity tab: the 5×5 grids render live cells
-    await page.getByRole("tab", { name: "Sensitivity" }).click();
-    await expect(page.locator('[data-node-key="grid1.2.2"]')).toBeVisible();
+    await clickUntil(
+      page.getByRole("tab", { name: "Sensitivity" }),
+      async () => {
+        await expect(page.locator('[data-node-key="grid1.2.2"]')).toBeVisible({
+          timeout: 3000,
+        });
+      },
+    );
   });
 
   test("editing an assumption recomputes outputs and shows the diff chip", async ({

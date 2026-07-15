@@ -62,13 +62,18 @@ test.describe("Faheem IC room", () => {
     const composer = page.getByRole("textbox", { name: "Ask Faheem IC…" });
     await expect(composer).toHaveValue("");
 
-    const pill = page.getByRole("button", {
-      name: "Rank these deals: strongest risk-adjusted case?",
-    });
-    await pill.click();
-
-    await expect(composer).toHaveValue(
-      "Rank these deals: strongest risk-adjusted case?",
-    );
+    // click-until-effect: a click landing before hydration attaches the
+    // pill's handler is silently lost under parallel dev-compile load
+    await expect(async () => {
+      await page
+        .getByRole("button", {
+          name: "Rank these deals: strongest risk-adjusted case?",
+        })
+        .click();
+      await expect(composer).toHaveValue(
+        "Rank these deals: strongest risk-adjusted case?",
+        { timeout: 1500 },
+      );
+    }).toPass({ timeout: 20_000 });
   });
 });

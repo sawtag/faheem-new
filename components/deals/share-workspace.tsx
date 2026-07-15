@@ -28,8 +28,9 @@ const ROLES: Role[] = ["view", "comment", "edit"];
 const SUCCESS_MS = 400;
 
 /**
- * Share-workspace dialog (enterprise-flourish #2), reference:
- * context/rogo-screens/swappy-20260709_182820.png (ideas, not layout law).
+ * Share-workspace dialog (enterprise-flourish #2), reference: the design
+ * screenshot pack under context/, swappy-20260709_182820.png (ideas, not
+ * layout law).
  * Cosmetic/no-persistence: chips, role, and "shared" state all reset the
  * next time the dialog opens. Mirrors the connections OAuth modal's
  * authorize -> success -> auto-close shape (same CheckDraw wow-detail).

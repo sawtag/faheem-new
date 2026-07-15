@@ -62,11 +62,13 @@ export function loadDemoCacheFixture(): {
   lang: "en" | "ar";
   context: { kind: string; companyId?: string };
 } {
-  // Pick the T2.2 chat fixture EXPLICITLY, demo-cache now holds all six
-  // recorded goldens, so "first file" grabs the wrong request (regression:
-  // it selected the ic-rank golden and filled it into the Jahez workspace →
-  // guaranteed cache miss). This fixture is the only jahez-workspace entry
-  // with no docIds/agent and the plain ", GMV, take rate, AOV" phrasing.
+  // Pick the T2.2 chat fixture EXPLICITLY, demo-cache holds all the recorded
+  // goldens, so "first file" grabs the wrong request (regression: it selected
+  // the ic-rank golden and filled it into the Jahez workspace → guaranteed
+  // cache miss). This fixture is the only jahez-workspace unit-economics
+  // entry with no docIds/agent (the docIds-scoped variant references
+  // #FY2025-Earnings-Release in its text). Matching on the stable stem, not
+  // the punctuation after it, survives copy-editing of the question.
   const dir = path.join(process.cwd(), "data/demo-cache");
   for (const file of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
     const req = JSON.parse(
@@ -77,7 +79,7 @@ export function loadDemoCacheFixture(): {
       req.context?.companyId === "jahez" &&
       !req.docIds &&
       !req.agent &&
-      req.question.startsWith("Break down Jahez's FY2025 unit economics, GMV")
+      req.question.startsWith("Break down Jahez's FY2025 unit economics")
     ) {
       return req;
     }

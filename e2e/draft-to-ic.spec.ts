@@ -84,14 +84,20 @@ test.describe("Draft to IC", () => {
     await openInOutlook.click();
     expect(page.url()).toBe(urlBefore);
 
+    // Poll only entries appended AFTER this click: the two viewport projects
+    // run this test in parallel against one shared audit file, so matching
+    // the whole log can false-pass on the sibling project's append and then
+    // read the length before our own write lands.
     await expect
       .poll(
         () =>
-          readAudit().some(
-            (e) =>
-              e.action === "ic-draft" &&
-              (e.question ?? "").includes("Jahez: IC materials"),
-          ),
+          readAudit()
+            .slice(before)
+            .some(
+              (e) =>
+                e.action === "ic-draft" &&
+                (e.question ?? "").includes("Jahez: IC materials"),
+            ),
         { timeout: 10_000 },
       )
       .toBe(true);
