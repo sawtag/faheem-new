@@ -5,7 +5,6 @@
  */
 import { z } from "zod";
 import { getClient, getImproveModel } from "@/lib/ai/client";
-import { resolveMode } from "@/lib/ai/mode";
 import { improveSystemPrompt } from "@/lib/ai/prompts";
 import { LangSchema } from "@/lib/types";
 
@@ -31,42 +30,37 @@ export async function POST(request: Request): Promise<Response> {
   }
   const { question, lang } = parsed.data;
 
-  // Cached mode is the bulletproof stage mode: never fire a live improver
-  // call there — echo the question back unchanged (the wand is also hidden
-  // client-side for golden text; this is defense in depth).
-  const cookieHeader = request.headers.get("cookie") ?? "";
-  const modeCookie = /(?:^|;\s*)faheem_mode=([^;]+)/.exec(cookieHeader)?.[1];
-  if (resolveMode(modeCookie) === "cached") {
-    return Response.json({ improved: question });
-  }
-
-  const response = await getClient().messages.create({
-    model: getImproveModel(),
-    max_tokens: 1024,
-    system: improveSystemPrompt(lang),
-    messages: [{ role: "user", content: question }],
-    output_config: {
-      format: {
-        type: "json_schema",
-        schema: {
-          type: "object",
-          properties: { improved: { type: "string" } },
-          required: ["improved"],
-          additionalProperties: false,
-        },
-      },
-    },
-  });
-
-  const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
+  // The prompt improver always calls the real Haiku model, in every mode
+  // (cached/auto/live) — it's a cheap, fast call and the demo ships a working
+  // key. A failure (no key, network, malformed output) falls back to the
+  // original question rather than breaking the composer.
   let improved = question;
   try {
+    const response = await getClient().messages.create({
+      model: getImproveModel(),
+      max_tokens: 1024,
+      system: improveSystemPrompt(lang),
+      messages: [{ role: "user", content: question }],
+      output_config: {
+        format: {
+          type: "json_schema",
+          schema: {
+            type: "object",
+            properties: { improved: { type: "string" } },
+            required: ["improved"],
+            additionalProperties: false,
+          },
+        },
+      },
+    });
+
+    const text = response.content.find((b) => b.type === "text")?.text ?? "{}";
     const obj = JSON.parse(text) as { improved?: unknown };
     if (typeof obj.improved === "string" && obj.improved.trim()) {
       improved = obj.improved;
     }
-  } catch {
-    // malformed model output → fall back to the original question
+  } catch (err) {
+    console.error("[faheem] prompt improver failed:", err);
   }
 
   return Response.json({ improved });
