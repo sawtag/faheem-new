@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="docs/screenshots/hero.png" alt="Faheem: omnibox home screen" width="100%">
+  <img src="docs/screenshots/home.png" alt="Faheem: omnibox home screen" width="100%">
 </p>
-
-https://github.com/user-attachments/assets/c040594d-95c6-43b1-922a-92dfd39fee00
 
 <h1 align="center">Faheem</h1>
 
@@ -44,25 +42,21 @@ Faheem runs an agentic research desk inside an investment firm's real workflow: 
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/hero.png" alt="Home, omnibox hero, English" width="100%">
-  <br/><sub>Home, the omnibox hero, English</sub>
+  <img src="docs/screenshots/home.png" alt="Home, omnibox hero, briefing panel, and sidebar, English" width="100%">
+  <br/><sub>Home, the omnibox hero, the "while you were away" briefing panel, and the sidebar, English</sub>
 </p>
+
+|                                                                                                                |                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| ![Data sources picker, GCC-first sources](docs/screenshots/sources-picker.png)                                 | ![Connections catalog](docs/screenshots/connections.png)                                                           |
+| **Data sources picker**, GCC-first sources (Tadawul disclosures, SAHMK, Argaam, Mubasher, SAMA, GASTAT, Wathq) | **Connections catalog**, every connected source behind an analysis, market data, disclosures, and internal systems |
+| ![Deal workspace, Jahez](docs/screenshots/deal-workspace.png)                                                  | ![Cited-source PDF viewer, maximized](docs/screenshots/pdf-viewer.png)                                             |
+| **Deal workspace**, Jahez key figures and financial performance, deep-dive analysis in progress                | **Cited source**, the IC Charter PDF opened at the cited page, maximized                                           |
 
 <p align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Firm dashboard, mandate headroom and the Analysis Runs panel" width="100%">
-  <br/><sub>Dashboard, mandate headroom, AUM, and the Analysis Runs panel: every analysis is a logged, auditable run</sub>
+  <img src="docs/screenshots/home-arabic.png" alt="Home in Arabic, full RTL" width="100%">
+  <br/><sub>Home, Arabic, full RTL flip</sub>
 </p>
-
-|                                                                                                                             |                                                                                                                  |
-| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| ![Flagship chat with citations and PDF panel](docs/screenshots/chat-citations.png)                                          | ![Deal pipeline board](docs/screenshots/pipeline.png)                                                            |
-| **Flagship chat**, streamed answer, inline citation chips, source PDF opened at the cited page with the passage highlighted | **Deal pipeline**, Screening → Analysis → IC Review → Decided, filterable by inbound vs. market-screen origin    |
-| ![Faheem IC room](docs/screenshots/ic-room.png)                                                                             | ![Agents page](docs/screenshots/agents.png)                                                                      |
-| **Faheem IC room**, two analysis-complete deals compared against the 15% IRR hurdle, advisory-only                          | **Agents**, Screening, the eleven analysis teams, and Faheem IC, grouped by pipeline stage                       |
-| ![Home in Arabic, full RTL](docs/screenshots/home-ar.png)                                                                   | ![Generated deliverables preview](docs/screenshots/artifact-preview.png)                                         |
-| **Home, Arabic**, full RTL flip, live language toggle                                                                       | **Generated deliverables**, Excel model, IC memo, and board deck, previewed inline                               |
-| ![Live Model, the Jahez DCF, interactive](docs/screenshots/live-model.png)                                                  | ![Methodology panel, formula, explainer, drillable inputs](docs/screenshots/methodology.png)                     |
-| **Live Model**, the Jahez DCF recomputing in-browser off a conversational edit, agent choreography visible                  | **Methodology panel**, plain-language explainer → rendered formula → input chain, drilling to a cited source PDF |
 
 ## 🎬 The demo, beat by beat
 
