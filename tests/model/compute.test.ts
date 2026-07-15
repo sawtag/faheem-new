@@ -32,7 +32,7 @@ describe("buildModel(BASE_ASSUMPTIONS)", () => {
     expect(result.base.perShare).toBe(14.3638147029964);
     expect(result.base.irr).toBe(0.17065733106145453);
     expect(result.weightedReturn).toBe(0.16768822193164545);
-    expect(result.shariah.pass).toBe(true);
+    expect(result.compliance.pass).toBe(true);
   });
 
   it("is deterministic (two calls give equal results)", () => {

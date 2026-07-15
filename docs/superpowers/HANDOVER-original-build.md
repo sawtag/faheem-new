@@ -48,7 +48,7 @@ Escalate one notch only after two failed acceptance rounds. Review every diff; r
 
 ## Definition of done
 
-All plan checkboxes done; `npm run verify` + both e2e viewports green twice; goldens recorded for every scripted beat (EN + the Arabic Shariah beat) and fable-reviewed word-by-word; artifacts open in LibreOffice with source comments intact; audit trail grows during the golden path; full cached run survives a wifi kill; dress rehearsal (production build) timed against spec §3 with notes in `docs/rehearsal-notes.md`; tag `demo-rc1`.
+All plan checkboxes done; `npm run verify` + both e2e viewports green twice; goldens recorded for every scripted beat (EN + the Arabic compliance beat) and fable-reviewed word-by-word; artifacts open in LibreOffice with source comments intact; audit trail grows during the golden path; full cached run survives a wifi kill; dress rehearsal (production build) timed against spec §3 with notes in `docs/rehearsal-notes.md`; tag `demo-rc1`.
 
 ## Open items owned by the user (do not block on them silently — remind when relevant)
 

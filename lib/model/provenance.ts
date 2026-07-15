@@ -651,24 +651,24 @@ export function buildNodes(
     computed("comps-max", impliedKeys),
   );
 
-  // ── Shariah screen (booleans skipped, nodes are numbers only) ──
+  // ── Compliance screen (booleans skipped, nodes are numbers only) ──
   put(
-    "shariah.debtRatio",
-    pct(result.shariah.debtRatio),
+    "compliance.debtRatio",
+    pct(result.compliance.debtRatio),
     "%",
-    computed("shariah-debt-ratio", ["debt", "E"]),
+    computed("compliance-debt-ratio", ["debt", "E"]),
   );
   put(
-    "shariah.cashRatio",
-    pct(result.shariah.cashRatio),
+    "compliance.cashRatio",
+    pct(result.compliance.cashRatio),
     "%",
-    computed("shariah-cash-ratio", ["cash", "E"]),
+    computed("compliance-cash-ratio", ["cash", "E"]),
   );
   put(
-    "shariah.leaseInclRatio",
-    pct(result.shariah.leaseInclRatio),
+    "compliance.leaseInclRatio",
+    pct(result.compliance.leaseInclRatio),
     "%",
-    computed("shariah-lease-ratio", ["debt", "lease", "E"]),
+    computed("compliance-lease-ratio", ["debt", "lease", "E"]),
   );
 
   // ── risk composite + IC summary ──

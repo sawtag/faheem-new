@@ -18,7 +18,7 @@
  *
  * Usage:
  *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts
- *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts --only qa1,shariah-ar
+ *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts --only qa1,compliance-ar
  *   ANTHROPIC_API_KEY=... npx tsx scripts/record-goldens.ts --base-url http://localhost:3000
  */
 import {

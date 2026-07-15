@@ -18,7 +18,7 @@ const metrics = (over: Partial<IcMetrics> = {}): IcMetrics => ({
   expectedReturn: 16.2,
   riskScore: 5,
   mandateFit: "pass",
-  shariah: "pass",
+  compliance: "pass",
   recommendation: { en: "Strongest risk-adjusted case.", ar: "الأقوى." },
   cite: { docId: "thara-analysis", page: 2 },
   ...over,

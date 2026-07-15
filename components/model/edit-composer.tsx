@@ -25,7 +25,7 @@ const MODEL_EDIT_TIMEOUT_MS = 10_000;
 const STEP_MS = 340;
 
 /** Assumption fields whose edit moves debt-cost / zakat inputs, the only
- * edits where the Compliance agent has anything to re-check (the Shariah
+ * edits where the Compliance agent has anything to re-check (the Compliance
  * ratios themselves derive purely from sourced balance-sheet actuals). */
 const COMPLIANCE_RELEVANT = new Set(["spread", "zakat"]);
 
@@ -95,7 +95,7 @@ function lockedStages(): Stage[] {
  * Model. The instruction goes to /api/model-edit (scripted-first, offline in
  * cached mode); an admitted edit plays as the specialist team working,
  * Valuation recomputes (the numbers move when its stage completes) → Critical
- * Review re-verifies provenance → Compliance re-checks Shariah ratios only for
+ * Review re-verifies provenance → Compliance re-checks Compliance ratios only for
  * debt/zakat-relevant edits (otherwise visibly "no re-check needed") → Writing
  * refreshes the one-line recommendation, computed from the NEW outputs via the
  * house formatters (no invented numbers). A source-locked attempt is

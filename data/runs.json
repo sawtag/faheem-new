@@ -68,8 +68,8 @@
         "agent": "compliance",
         "docIds": ["q1-26-fs", "fy25-er"],
         "summary": {
-          "en": "Ran the AAOIFI Shariah screen and fact-checked every figure against its cited source.",
-          "ar": "إجراء الفحص الشرعي وفق منهجية أيوفي والتحقق من كل رقم مقابل مصدره المستشهد به."
+          "en": "Ran the AAOIFI compliance screen and fact-checked every figure against its cited source.",
+          "ar": "إجراء فحص الامتثال وفق منهجية أيوفي والتحقق من كل رقم مقابل مصدره المستشهد به."
         }
       }
     ],

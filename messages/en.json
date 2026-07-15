@@ -47,7 +47,7 @@
       "risk": "Quantified risk scorecard (probability × impact) · Scenario-weighted return · Mandate-breach & concentration checks",
       "sentiment": "Social & forum theme tagging on the illustrative demo pack · Label + one-line rationale, signal only: never a sourced figure",
       "writing": "IC memos · Research notes · Pitch decks · Periodic reports",
-      "compliance": "Shariah screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
+      "compliance": "Compliance screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
       "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
     }
@@ -153,8 +153,8 @@
       "liquidityQuarterly": "Quarterly",
       "liquiditySemiAnnual": "Semi-annual",
       "liquidityAnnual": "Annual",
-      "shariah": "Shariah screen required",
-      "shariahNote": "Per AAOIFI methodology",
+      "compliance": "Compliance screen required",
+      "complianceNote": "Per AAOIFI methodology",
       "sectors": "Sector appetite",
       "sector": {
         "technology": "Technology",
@@ -319,9 +319,9 @@
         "label": "Sensitivity Analysis",
         "prompt": "Run a two-way sensitivity on Jahez's valuation (WACC against terminal growth, then take rate against GMV growth) and show where the fair value holds."
       },
-      "shariah": {
-        "label": "Shariah Screen",
-        "prompt": "Run an AAOIFI Shariah screen on Jahez: debt-to-market-cap, non-permissible income and liquidity ratios, with a clear pass or fail on each threshold."
+      "compliance": {
+        "label": "Compliance Screen",
+        "prompt": "Run an AAOIFI compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
       }
     },
     "brief": {
@@ -464,7 +464,7 @@
       "riskScore": "Risk score",
       "riskOutOf": "{score} / 10",
       "mandateFit": "Mandate fit",
-      "shariah": "Shariah screen",
+      "compliance": "Compliance screen",
       "recommendation": "Analyst recommendation",
       "deltaEqual": "At hurdle",
       "bps": "{bps} bps",
@@ -539,9 +539,9 @@
       "subject": "{company}: IC materials & recommendation",
       "body": {
         "greeting": "Dear Investment Committee,",
-        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {shariah}",
-        "shariahPass": "The Shariah screen passes.",
-        "shariahFail": "The Shariah screen does not pass.",
+        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {compliance}",
+        "compliancePass": "The compliance screen passes.",
+        "complianceFail": "The compliance screen does not pass.",
         "materialsLabel": "Materials:",
         "closing": "Happy to walk through the model or take questions ahead of the meeting.",
         "signOff": "Ali\nLunar Investments"
@@ -741,10 +741,10 @@
           "max": "Comps range · high"
         }
       },
-      "shariah": {
-        "debtRatio": "Shariah debt ratio",
-        "cashRatio": "Shariah cash ratio",
-        "leaseInclRatio": "Shariah lease-inclusive ratio"
+      "compliance": {
+        "debtRatio": "Compliance debt ratio",
+        "cashRatio": "Compliance cash ratio",
+        "leaseInclRatio": "Compliance lease-inclusive ratio"
       },
       "riskScore": "Risk composite score",
       "ic": {
@@ -874,9 +874,9 @@
       "comps-min": "The lowest implied value per share across all eight comps triangulations, the bottom of the comps-implied valuation range.",
       "comps-median": "The median implied value per share across all eight comps triangulations, the comps' central estimate, set beside the DCF value as a sanity check.",
       "comps-max": "The highest implied value per share across all eight comps triangulations, the top of the comps-implied valuation range.",
-      "shariah-debt-ratio": "AAOIFI-style Shariah screen: interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based permissibility test, not a valuation input.",
-      "shariah-cash-ratio": "AAOIFI-style Shariah screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based permissibility test.",
-      "shariah-lease-ratio": "A memo ratio including lease liabilities alongside interest-bearing debt against market capitalization. IFRS-16 leases aren't classic interest-bearing debt, so this is shown for reference, not as the pass/fail line.",
+      "compliance-debt-ratio": "AAOIFI-style compliance screen: interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based eligibility test, not a valuation input.",
+      "compliance-cash-ratio": "AAOIFI-style compliance screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based eligibility test.",
+      "compliance-lease-ratio": "A memo ratio including lease liabilities alongside interest-bearing debt against market capitalization. IFRS-16 leases aren't classic interest-bearing debt, so this is shown for reference, not as the pass/fail line.",
       "risk-composite": "Quantified risk composite: a peak-weighted blend of the register's probability-times-impact scores (60% the single worst risk, 40% the average across all risks), rescaled to a 0–10 score, so one severe risk can't hide inside a good average."
     },
     "rationale": {
@@ -1040,7 +1040,7 @@
         "valuation": "Recomputing the DCF with the new assumption",
         "critical-review": "Re-verifying the provenance chain",
         "critical-review-locked": "Flagged: that figure is a sourced actual",
-        "compliance": "Re-checking the Shariah ratios",
+        "compliance": "Re-checking the compliance ratios",
         "compliance-skip": "No leverage change, no re-check needed",
         "writing": "Updating the recommendation line"
       },

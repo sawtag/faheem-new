@@ -7,7 +7,7 @@
  * scenarios ×...), so this resolver takes a two-tier approach:
  *
  *  1. A curated set of ~45 EXACT keys (the WACC build, DCF chain, scenario
- *     scalars, Shariah ratios, comps range, IC summary, the nodes actually
+ *     scalars, Compliance ratios, comps range, IC summary, the nodes actually
  *     surfaced in the demo) get a hand-written `model.nodes.<key>` message,
  *     looked up directly via `t.has()`.
  *  2. Everything else (the FY23A–FY30E revenue-driver/statement series, the

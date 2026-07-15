@@ -26,9 +26,9 @@ describe("resolveSkillRun", () => {
     expect(target!.fixedLang).toBe(true);
   });
 
-  it("shariah-screen resolves to the Arabic golden entry regardless of the active UI locale", () => {
-    const target = resolveSkillRun(skill("shariah-screen"), "en");
-    const entry = goldenQuestionById("shariah-ar")!;
+  it("compliance-screen resolves to the Arabic golden entry regardless of the active UI locale", () => {
+    const target = resolveSkillRun(skill("compliance-screen"), "en");
+    const entry = goldenQuestionById("compliance-ar")!;
     expect(target!.text).toBe(entry.request.question);
     expect(target!.lang).toBe("ar");
     expect(target!.fixedLang).toBe(true);

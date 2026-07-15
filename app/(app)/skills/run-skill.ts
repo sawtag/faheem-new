@@ -31,7 +31,7 @@ export interface SkillRunTarget {
   lang: Lang;
   /**
    * True only for a `goldenId` skill: its recorded lang is fixed regardless
-   * of the active UI locale (e.g. shariah-screen always fires its Arabic
+   * of the active UI locale (e.g. compliance-screen always fires its Arabic
    * golden question). A `prefill` skill's `lang` always equals the active
    * locale by construction, so it is never "fixed", showing a "Runs in
    * Arabic" hint for one the moment the UI itself switches to Arabic would

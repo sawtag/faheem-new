@@ -50,9 +50,9 @@ describe("GOLDEN_QUESTIONS, data/golden-questions.json", () => {
     expect(qa2?.request.question).toContain("@Risk & Portfolio Monitoring");
   });
 
-  it("shariah-ar is the only ar-language entry", () => {
+  it("compliance-ar is the only ar-language entry", () => {
     const arEntries = GOLDEN_QUESTIONS.filter((q) => q.request.lang === "ar");
-    expect(arEntries.map((q) => q.id)).toEqual(["shariah-ar"]);
+    expect(arEntries.map((q) => q.id)).toEqual(["compliance-ar"]);
   });
 });
 
@@ -78,7 +78,7 @@ describe("filterGoldenQuestions, palette filter logic", () => {
         "wacc-build",
         "comps-gap",
         "oneoff-check",
-        "shariah-en",
+        "compliance-en",
       ].sort(),
     );
 
@@ -90,13 +90,13 @@ describe("filterGoldenQuestions, palette filter logic", () => {
     expect(darbEn).toEqual([]); // no darb or firm-scoped entries in the set
   });
 
-  it("the jahez workspace page shows the Arabic Shariah entry only once the UI is already in ar", () => {
+  it("the jahez workspace page shows the Arabic compliance entry only once the UI is already in ar", () => {
     const jahezAr = filterGoldenQuestions(
       GOLDEN_QUESTIONS,
       { kind: "workspace", companyId: "jahez" },
       "ar",
     );
-    expect(jahezAr.map((q) => q.id)).toEqual(["shariah-ar"]);
+    expect(jahezAr.map((q) => q.id)).toEqual(["compliance-ar"]);
   });
 
   it("the IC room shows only ic-context entries", () => {

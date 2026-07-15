@@ -274,7 +274,7 @@ export async function buildJahezWorkbook(): Promise<Buffer> {
     sens: "Sensitivity",
     comps: "Comps",
     scen: "Scenarios & Risk",
-    shariah: "Shariah Screen",
+    compliance: "Compliance Screen",
   };
 
   // registry of key cell {c,r} for cross-sheet formulas
@@ -285,7 +285,7 @@ export async function buildJahezWorkbook(): Promise<Buffer> {
     dcf: {},
     scen: {},
     comps: {},
-    shariah: {},
+    compliance: {},
   };
 
   // Cover is created first so it is tab 1; its content is populated last, once
@@ -303,7 +303,12 @@ export async function buildJahezWorkbook(): Promise<Buffer> {
   );
   buildComps(wb.addWorksheet(SHEETS.comps, tabColor()), model, reg, SHEETS);
   buildScenarios(wb.addWorksheet(SHEETS.scen, tabColor()), model, reg, SHEETS);
-  buildShariah(wb.addWorksheet(SHEETS.shariah, tabColor()), model, reg, SHEETS);
+  buildCompliance(
+    wb.addWorksheet(SHEETS.compliance, tabColor()),
+    model,
+    reg,
+    SHEETS,
+  );
   buildCover(cover, model, reg, SHEETS);
 
   // print setup, fit each sheet to one page wide for clean PDF/print output
@@ -343,7 +348,7 @@ interface Reg {
   dcf: RefMap;
   scen: RefMap;
   comps: RefMap;
-  shariah: RefMap;
+  compliance: RefMap;
 }
 interface Sheets {
   cover: string;
@@ -354,7 +359,7 @@ interface Sheets {
   sens: string;
   comps: string;
   scen: string;
-  shariah: string;
+  compliance: string;
 }
 
 // ─────────────────────────────── Assumptions ────────────────────────────────
@@ -2585,8 +2590,8 @@ function buildScenarios(
   );
 }
 
-// ──────────────────────────────── Shariah ───────────────────────────────────
-function buildShariah(
+// ──────────────────────────────── Compliance ───────────────────────────────────
+function buildCompliance(
   ws: ExcelJS.Worksheet,
   model: ModelResult,
   reg: Reg,
@@ -2603,7 +2608,7 @@ function buildShariah(
   let r = headerBand(
     ws,
     6,
-    "Jahez Group, Shariah Screen (AAOIFI-style)",
+    "Jahez Group, Compliance Screen (AAOIFI-style)",
     "Financial-ratio screens by formula from the balance sheet · pass/fail flags",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
@@ -2672,17 +2677,17 @@ function buildShariah(
   screen(
     "Interest-bearing debt / market cap",
     `${debtRef}/${mcapRef}`,
-    model.shariah.debtRatio,
+    model.compliance.debtRatio,
     0.33,
-    model.shariah.debtPass,
+    model.compliance.debtPass,
     "Islamic facilities & loans over market value of equity (AAOIFI leverage screen, <33%)",
   );
   screen(
     "Cash & interest-bearing securities / market cap",
     `${cashRef}/${mcapRef}`,
-    model.shariah.cashRatio,
+    model.compliance.cashRatio,
     0.33,
-    model.shariah.cashPass,
+    model.compliance.cashPass,
     "Cash only, interest-bearing securities not separately disclosed; screened on cash (<33%)",
   );
   // memo: debt incl leases
@@ -2694,7 +2699,7 @@ function buildShariah(
     ws,
     3,
     r,
-    num(`(${debtRef}+${leaseRef})/${mcapRef}`, model.shariah.leaseInclRatio),
+    num(`(${debtRef}+${leaseRef})/${mcapRef}`, model.compliance.leaseInclRatio),
     { numFmt: FMT.rate2, kind: "derived", size: 9 },
   );
   put(ws, 4, r, 0.33, {
@@ -2705,14 +2710,16 @@ function buildShariah(
   });
   ws.getCell(r, 5).value = num(
     `IF(${A1(3, r)}<${A1(4, r)},"PASS","FAIL")`,
-    model.shariah.leaseInclRatio < 0.33 ? "PASS" : "FAIL",
+    model.compliance.leaseInclRatio < 0.33 ? "PASS" : "FAIL",
   );
   ws.getCell(r, 5).font = {
     name: B.sans,
     size: 9,
     bold: true,
     color: {
-      argb: argb(model.shariah.leaseInclRatio < 0.33 ? B.positive : B.negative),
+      argb: argb(
+        model.compliance.leaseInclRatio < 0.33 ? B.positive : B.negative,
+      ),
     },
   };
   ws.getCell(r, 5).alignment = { horizontal: "center" };
@@ -2721,8 +2728,8 @@ function buildShariah(
     color: B.inkMuted,
   });
   r++;
-  // non-permissible income, not disclosed
-  label(ws, 2, r, "Non-permissible income / total revenue");
+  // non-eligible income, not disclosed
+  label(ws, 2, r, "Non-eligible income / total revenue");
   const npi = ws.getCell(r, 3);
   npi.value = "n/d";
   npi.font = {
@@ -2750,7 +2757,7 @@ function buildShariah(
     ws,
     6,
     r,
-    "Not separately disclosed, screened via business-activity test (permissible food delivery/logistics; Islamic financing)",
+    "Not separately disclosed, screened via business-activity test (eligible food delivery/logistics; Islamic financing)",
     { size: 9, color: B.inkMuted },
   );
   ws.getRow(r).height = 30;
@@ -2758,22 +2765,22 @@ function buildShariah(
 
   // Overall
   r++;
-  label(ws, 2, r, "Overall Shariah screen", { bold: true });
+  label(ws, 2, r, "Overall Compliance screen", { bold: true });
   const overall = ws.getCell(r, 5);
   overall.value = num(
     `IF(AND(${A1(5, debtRow)}="PASS",${A1(5, debtRow + 1)}="PASS"),"PASS","REVIEW")`,
-    model.shariah.pass ? "PASS" : "REVIEW",
+    model.compliance.pass ? "PASS" : "REVIEW",
   );
   overall.font = {
     name: B.serif,
     size: 13,
     bold: true,
-    color: { argb: argb(model.shariah.pass ? B.positive : B.negative) },
+    color: { argb: argb(model.compliance.pass ? B.positive : B.negative) },
   };
   overall.alignment = { horizontal: "center" };
   overall.fill = fillOf(B.goldPale);
   overall.border = boxBorder(B.gold);
-  reg.shariah.overall = { c: 5, r };
+  reg.compliance.overall = { c: 5, r };
   ws.getRow(r).height = 26;
   r++;
 
@@ -2782,7 +2789,7 @@ function buildShariah(
     2,
     6,
     r + 1,
-    "* Non-permissible income is not separately disclosed in the filings; per AAOIFI practice the position is screened via the business-activity test rather than a fabricated percentage. Leverage and liquidity screens both pass with wide headroom; the business is permissible and financed through Islamic facilities.",
+    "* Non-eligible income is not separately disclosed in the filings; per AAOIFI practice the position is screened via the business-activity test rather than a fabricated percentage. Leverage and liquidity screens both pass with wide headroom; the business is eligible and financed through Islamic facilities.",
   );
 }
 
@@ -2972,11 +2979,11 @@ function buildCover(
   tile(
     r,
     2,
-    "Shariah screen",
-    `${X(sheets.shariah, RR(reg.shariah.overall).c, RR(reg.shariah.overall).r)}`,
-    model.shariah.pass ? "PASS" : "REVIEW",
+    "Compliance screen",
+    `${X(sheets.compliance, RR(reg.compliance.overall).c, RR(reg.compliance.overall).r)}`,
+    model.compliance.pass ? "PASS" : "REVIEW",
     "General",
-    model.shariah.pass ? B.positive : B.negative,
+    model.compliance.pass ? B.positive : B.negative,
   );
   tile(
     r,
@@ -3004,7 +3011,7 @@ function buildCover(
     2,
     5,
     r + 1,
-    "All figures are live formulas referencing the model tabs, target price = DCF!Value per share, upside = DCF, IRR & weighted return = Scenarios & Risk, Shariah = Shariah Screen. Advisory only: the Investment Committee decides. Prepared by Faheem for Lunar Investments, 12 Jul 2026. Not investment advice.",
+    "All figures are live formulas referencing the model tabs, target price = DCF!Value per share, upside = DCF, IRR & weighted return = Scenarios & Risk, Compliance = Compliance Screen. Advisory only: the Investment Committee decides. Prepared by Faheem for Lunar Investments, 12 Jul 2026. Not investment advice.",
   );
 
   ws.getColumn(1).width = 3;

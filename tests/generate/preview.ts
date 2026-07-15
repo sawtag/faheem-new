@@ -70,17 +70,17 @@ async function main() {
     `${m.comps.field.min.toFixed(2)} / ${m.comps.field.median.toFixed(2)} / ${m.comps.field.max.toFixed(2)}`,
   );
 
-  console.log("\n=== Shariah ===");
+  console.log("\n=== Compliance ===");
   line(
     "Debt/mktcap",
-    `${pct(m.shariah.debtRatio)} (${m.shariah.debtPass ? "PASS" : "FAIL"})`,
+    `${pct(m.compliance.debtRatio)} (${m.compliance.debtPass ? "PASS" : "FAIL"})`,
   );
   line(
     "Cash/mktcap",
-    `${pct(m.shariah.cashRatio)} (${m.shariah.cashPass ? "PASS" : "FAIL"})`,
+    `${pct(m.compliance.cashRatio)} (${m.compliance.cashPass ? "PASS" : "FAIL"})`,
   );
-  line("(Debt+lease)/mktcap", pct(m.shariah.leaseInclRatio));
-  line("Overall", m.shariah.pass ? "PASS" : "REVIEW");
+  line("(Debt+lease)/mktcap", pct(m.compliance.leaseInclRatio));
+  line("Overall", m.compliance.pass ? "PASS" : "REVIEW");
 
   console.log("\n=== IC / risk ===");
   line("Composite risk score", m.riskScore.toFixed(2));

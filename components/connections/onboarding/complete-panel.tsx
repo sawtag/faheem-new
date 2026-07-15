@@ -42,13 +42,13 @@ export function CompletePanel({ mandate }: { mandate: MandateState }) {
           </span>
         </div>
         <div className="flex flex-col items-center gap-1 px-4 py-4">
-          {mandate.shariah ? (
+          {mandate.compliance ? (
             <CheckDraw size={20} />
           ) : (
             <Minus className="text-text-secondary size-5" aria-hidden="true" />
           )}
           <span className="text-text-secondary text-xs font-medium">
-            {t("mandate.shariah")}
+            {t("mandate.compliance")}
           </span>
         </div>
       </div>

@@ -447,13 +447,13 @@ function checkLiveModelBeat(): void {
     const drifted = headline.filter(
       ([, actual, expected]) => actual !== expected,
     );
-    if (drifted.length === 0 && result.shariah.pass === true) {
+    if (drifted.length === 0 && result.compliance.pass === true) {
       ok(
-        "buildModel(BASE_ASSUMPTIONS) headline numbers byte-identical + Shariah PASS",
+        "buildModel(BASE_ASSUMPTIONS) headline numbers byte-identical + Compliance PASS",
       );
     } else {
       bad(
-        `engine drift, ${drifted.map(([k, a, e]) => `${k}=${a} (want ${e})`).join(", ") || `shariah.pass=${result.shariah.pass}`}`,
+        `engine drift, ${drifted.map(([k, a, e]) => `${k}=${a} (want ${e})`).join(", ") || `compliance.pass=${result.compliance.pass}`}`,
         "a base-case number changed, that's a fable-level decision (AGENTS.md lib/model/**), not a code edit",
       );
     }

@@ -41,7 +41,7 @@ test.describe("Faheem IC room", () => {
     await expect(jahezDelta).toHaveAttribute("data-tone", "above");
     await expect(jahezDelta).toContainText("210");
 
-    // Both columns clear mandate fit + Shariah → 4 "Pass" badges total.
+    // Both columns clear mandate fit + Compliance → 4 "Pass" badges total.
     await expect(page.getByText("Pass")).toHaveCount(4);
 
     // No pending column left, never fake numbers, but nothing pending either.

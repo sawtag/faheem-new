@@ -48,13 +48,13 @@
         },
         {
           "criterion": {
-            "en": "Shariah pre-screen",
-            "ar": "الفحص الشرعي المبدئي"
+            "en": "Compliance pre-screen",
+            "ar": "فحص الامتثال المبدئي"
           },
           "verdict": "pass",
           "note": {
-            "en": "Business activity permissible; no leverage red flags at pre-screen.",
-            "ar": "النشاط التجاري مباح شرعاً؛ لا توجد مؤشرات تحذيرية على الرفع المالي عند الفحص المبدئي."
+            "en": "Business activity eligible; no leverage red flags at pre-screen.",
+            "ar": "النشاط التجاري مؤهل وفق التفويض؛ لا توجد مؤشرات تحذيرية على الرفع المالي عند الفحص المبدئي."
           },
           "cite": { "docId": "lunar-ic-charter", "page": 5 }
         },
@@ -108,7 +108,7 @@
       "expectedReturn": 16.8,
       "riskScore": 5.5,
       "mandateFit": "pass",
-      "shariah": "pass",
+      "compliance": "pass",
       "recommendation": {
         "en": "Strongest risk-adjusted case: clears the hurdle in base and bull; bear case falls short. The committee decides.",
         "ar": "أقوى حالة معدّلة بالمخاطر: يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
@@ -136,7 +136,7 @@
       "expectedReturn": 16.2,
       "riskScore": 5,
       "mandateFit": "pass",
-      "shariah": "pass",
+      "compliance": "pass",
       "recommendation": {
         "en": "Strongest risk-adjusted case pending final due diligence.",
         "ar": "أقوى حالة استثمارية معدّلة بالمخاطر، رهناً باكتمال العناية الواجبة النهائية."

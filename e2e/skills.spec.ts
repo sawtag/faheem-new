@@ -41,7 +41,7 @@ test.describe("Skills page", () => {
     ]);
     await page.reload();
     await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
-    await expect(page.getByText("الفحص الشرعي", { exact: true })).toBeVisible();
+    await expect(page.getByText("فحص الامتثال", { exact: true })).toBeVisible();
     await expect(
       page.getByText("ملاءمة التفويض", { exact: true }),
     ).toBeVisible();
@@ -104,12 +104,14 @@ test.describe("Skills page", () => {
     await expect(box).toHaveValue(qa2.request.question);
   });
 
-  test("shariah-screen's Run button carries a bilingual 'runs in Arabic' hint", async ({
+  test("compliance-screen's Run button carries a bilingual 'runs in Arabic' hint", async ({
     page,
   }) => {
     await page.goto("/skills");
     await expect(
-      page.getByTestId("skill-card-shariah-screen").getByText("Runs in Arabic"),
+      page
+        .getByTestId("skill-card-compliance-screen")
+        .getByText("Runs in Arabic"),
     ).toBeVisible();
   });
 

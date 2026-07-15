@@ -128,8 +128,8 @@ describe("spot checks", () => {
     }
   });
 
-  it("skips booleans (shariah.pass has no node)", () => {
-    expect(nodes["shariah.pass"]).toBeUndefined();
-    expect(nodes["shariah.debtPass"]).toBeUndefined();
+  it("skips booleans (compliance.pass has no node)", () => {
+    expect(nodes["compliance.pass"]).toBeUndefined();
+    expect(nodes["compliance.debtPass"]).toBeUndefined();
   });
 });

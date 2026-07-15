@@ -87,7 +87,9 @@ describe("DraftToIc", () => {
     expect(body.value).toContain(irr);
     expect(body.value).toContain(hurdle);
     expect(body.value).toContain(
-      result.shariah.pass ? "The Shariah screen passes." : "does not pass",
+      result.compliance.pass
+        ? "The compliance screen passes."
+        : "does not pass",
     );
     // artifact names, real ones passed in, bulleted
     expect(body.value).toContain("- Jahez · Valuation Model");

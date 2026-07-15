@@ -3,14 +3,14 @@
  *
  * Nine sections exactly per spec: Executive summary & recommendation ·
  * Investment thesis (3 pillars) · Company & industry · Financial analysis ·
- * Valuation · Quantified risk assessment · Shariah & compliance screen ·
+ * Valuation · Quantified risk assessment · Compliance screen ·
  * Catalysts & monitoring KPIs · Appendix: sources.
  *
  * All prose comes from `data/narratives.json` template strings, resolved via
  * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())`, every
  * quantitative claim traces to a `ModelInput` or a `computeModel()` output, never
  * a hand-typed number (AGENTS.md rule 5). Tables (actuals, scenarios, risk
- * register, Shariah ratios, mandate-fit, sources appendix) are built directly
+ * register, Compliance ratios, mandate-fit, sources appendix) are built directly
  * from the same data, so the numbers in prose and in tables can never drift
  * apart. Lunar brand (charcoal + gold, serif headings) comes from
  * `lib/generate/shared.ts`'s `lunarBrand`, the one legal home for Office hexes.
@@ -66,7 +66,7 @@ interface MemoNarratives {
   valuation: string;
   riskIntro: string;
   mandateFit: string;
-  shariah: string;
+  compliance: string;
   catalysts: string;
   monitoringKpis: string[];
 }
@@ -509,7 +509,7 @@ export async function buildIcMemo(): Promise<Buffer> {
         "Wtd. return",
         "Hurdle",
         "Risk score",
-        "Shariah",
+        "Compliance",
       ],
       [
         [
@@ -521,13 +521,13 @@ export async function buildIcMemo(): Promise<Buffer> {
           fact(facts, "calc.weightedReturn"),
           fact(facts, "calc.hurdle"),
           `${fact(facts, "calc.riskScore")} / 10`,
-          fact(facts, "calc.shariahStatus"),
+          fact(facts, "calc.complianceStatus"),
         ],
       ],
       [9, 12, 12, 9, 12, 11, 9, 11, 15],
     ),
     caption(
-      "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Shariah Screen tabs), see the workbook for the full formula chain.",
+      "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Compliance Screen tabs), see the workbook for the full formula chain.",
     ),
     body(memo.execSummary),
   ];
@@ -676,10 +676,10 @@ export async function buildIcMemo(): Promise<Buffer> {
     caption("Source: Lunar IC Charter & Investment Mandate, p.3-4."),
   ];
 
-  // ── Section 7: Shariah & compliance screen ──
+  // ── Section 7: Compliance screen ──
   const section7 = [
-    h1("Shariah & Compliance Screen"),
-    body(memo.shariah),
+    h1("Compliance Screen"),
+    body(memo.compliance),
     dataTable(
       ["Screen", "Value", "Threshold", "Flag"],
       [
@@ -687,19 +687,19 @@ export async function buildIcMemo(): Promise<Buffer> {
           "Interest-bearing debt / market cap",
           fact(facts, "calc.debtRatio"),
           "33.00%",
-          model.shariah.debtPass ? "PASS" : "FAIL",
+          model.compliance.debtPass ? "PASS" : "FAIL",
         ],
         [
           "Cash & securities / market cap",
           fact(facts, "calc.cashRatio"),
           "33.00%",
-          model.shariah.cashPass ? "PASS" : "FAIL",
+          model.compliance.cashPass ? "PASS" : "FAIL",
         ],
         [
           "Memo: (debt + leases) / market cap",
           fact(facts, "calc.leaseInclRatio"),
           "33.00%",
-          model.shariah.leaseInclRatio < 0.33 ? "PASS" : "FAIL",
+          model.compliance.leaseInclRatio < 0.33 ? "PASS" : "FAIL",
         ],
       ],
       [40, 20, 20, 20],

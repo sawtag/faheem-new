@@ -32,13 +32,13 @@
     }
   },
   {
-    "id": "shariah-ar",
+    "id": "compliance-ar",
     "label": {
-      "en": "Jahez Shariah screen (Arabic)",
-      "ar": "الفحص الشرعي لجاهز"
+      "en": "Jahez Compliance screen (Arabic)",
+      "ar": "فحص الامتثال لجاهز"
     },
     "request": {
-      "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
+      "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
       "lang": "ar",
       "context": {
         "kind": "workspace",
@@ -151,13 +151,13 @@
     }
   },
   {
-    "id": "shariah-en",
+    "id": "compliance-en",
     "label": {
-      "en": "Jahez, AAOIFI Shariah screen (EN)",
-      "ar": "جاهز، الفحص الشرعي (بالإنجليزية)"
+      "en": "Jahez, AAOIFI compliance screen (EN)",
+      "ar": "جاهز، فحص الامتثال (بالإنجليزية)"
     },
     "request": {
-      "question": "Does Jahez pass the AAOIFI Shariah screen?",
+      "question": "Does Jahez pass the AAOIFI compliance screen?",
       "lang": "en",
       "context": {
         "kind": "workspace",

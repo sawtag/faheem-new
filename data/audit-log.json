@@ -28,7 +28,7 @@
     "user": "Ali",
     "context": "firm",
     "action": "question",
-    "question": "Explain the AAOIFI methodology Faheem uses for Shariah pre-screening.",
+    "question": "Explain the AAOIFI methodology Faheem uses for Compliance pre-screening.",
     "citationCount": 5
   },
   {
@@ -92,7 +92,7 @@
     "user": "Ali",
     "context": "workspace:thara-pay",
     "action": "question",
-    "question": "What is Thara Pay's Shariah screening status and basis?",
+    "question": "What is Thara Pay's compliance screening status and basis?",
     "citationCount": 5
   },
   {
@@ -218,7 +218,7 @@
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "هل يجتاز جاهز الفحص الشرعي وفق منهجية AAOIFI؟",
+    "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
     "citationCount": 0
   },
   {

@@ -50,14 +50,14 @@ function composeBody(
     decimals: 1,
   });
   const hurdle = formatPercent(result.ic.hurdle, locale, { decimals: 0 });
-  const shariah = t(
-    result.shariah.pass ? "body.shariahPass" : "body.shariahFail",
+  const compliance = t(
+    result.compliance.pass ? "body.compliancePass" : "body.complianceFail",
   );
 
   const lines = [
     t("body.greeting"),
     "",
-    t("body.summary", { company, perShare, irr, hurdle, shariah }),
+    t("body.summary", { company, perShare, irr, hurdle, compliance }),
     "",
     t("body.materialsLabel"),
     ...artifactNames.map((name) => `- ${name}`),

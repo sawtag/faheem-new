@@ -7,7 +7,11 @@ import { Toggle } from "@/components/ui/toggle";
 function Controlled() {
   const [on, setOn] = React.useState(false);
   return (
-    <Toggle checked={on} onCheckedChange={setOn} aria-label="Shariah screen" />
+    <Toggle
+      checked={on}
+      onCheckedChange={setOn}
+      aria-label="Compliance screen"
+    />
   );
 }
 

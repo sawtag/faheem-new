@@ -13,7 +13,7 @@ const PILLS = [
   { id: "icMemo", icon: "file-text" },
   { id: "riskScorecard", icon: "shield-alert" },
   { id: "sensitivity", icon: "table-2" },
-  { id: "shariah", icon: "badge-check" },
+  { id: "compliance", icon: "badge-check" },
 ] as const;
 
 /**

@@ -1,5 +1,5 @@
 /**
- * lib/model/compute, the pure valuation engine (Jahez DCF + comps + Shariah +
+ * lib/model/compute, the pure valuation engine (Jahez DCF + comps + Compliance +
  * risk composite), extracted from lib/generate/xlsx.ts so the Excel builder and
  * the Live Model UI share one implementation.
  *
@@ -394,12 +394,12 @@ export function buildModel(a: Assumptions): ModelOutputs {
     max: Math.max(...allImplied),
   };
 
-  // ── Shariah screen (AAOIFI-style) ──
+  // ── Compliance screen (AAOIFI-style) ──
   const mktCap = E;
   const debtRatio = debt / mktCap;
   const cashRatio = cash / mktCap;
   const leaseInclRatio = (debt + lease) / mktCap;
-  const shariah = {
+  const compliance = {
     debtRatio,
     cashRatio,
     leaseInclRatio,
@@ -460,7 +460,7 @@ export function buildModel(a: Assumptions): ModelOutputs {
     gmvGrowthAxis,
     grid2,
     comps: { dcfPerShare: base.perShare, evRev, evEbitda, pe, field },
-    shariah,
+    compliance,
     riskScore,
     ic: {
       irr: base.irr,

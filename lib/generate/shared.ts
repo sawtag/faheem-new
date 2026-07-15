@@ -250,10 +250,10 @@ export function buildNarrativeFacts(model: NarrativeModel): NarrativeFacts {
     "calc.weightedPerShare": sar(model.weightedPerShare),
     "calc.hurdle": `${model.ic.hurdle.toFixed(1)}%`,
     "calc.riskScore": model.riskScore.toFixed(1),
-    "calc.shariahStatus": model.shariah.pass ? "PASS" : "REVIEW",
-    "calc.debtRatio": pct2(model.shariah.debtRatio),
-    "calc.cashRatio": pct2(model.shariah.cashRatio),
-    "calc.leaseInclRatio": pct2(model.shariah.leaseInclRatio),
+    "calc.complianceStatus": model.compliance.pass ? "PASS" : "REVIEW",
+    "calc.debtRatio": pct2(model.compliance.debtRatio),
+    "calc.cashRatio": pct2(model.compliance.cashRatio),
+    "calc.leaseInclRatio": pct2(model.compliance.leaseInclRatio),
     "calc.netCash": sarM(model.netCash),
     "calc.sharesOutstanding": `${model.shares.toFixed(1)}m shares`,
     "calc.compsMin": sar(model.comps.field.min),
@@ -289,7 +289,7 @@ export interface NarrativeModel {
   weightedPerShare: number;
   weightedReturn: number;
   comps: { field: { min: number; median: number; max: number } };
-  shariah: {
+  compliance: {
     debtRatio: number;
     cashRatio: number;
     leaseInclRatio: number;

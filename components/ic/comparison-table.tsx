@@ -31,7 +31,7 @@ const ROWS = [
   "expectedReturn",
   "riskScore",
   "mandateFit",
-  "shariah",
+  "compliance",
   "recommendation",
 ] as const;
 type RowKey = (typeof ROWS)[number];
@@ -201,10 +201,10 @@ function MetricCell({
           {m.mandateFit === "pass" ? t("pass") : t("warn")}
         </Badge>
       );
-    case "shariah":
+    case "compliance":
       return (
-        <Badge variant={m.shariah === "pass" ? "mint" : "danger"}>
-          {m.shariah === "pass" ? t("pass") : t("fail")}
+        <Badge variant={m.compliance === "pass" ? "mint" : "danger"}>
+          {m.compliance === "pass" ? t("pass") : t("fail")}
         </Badge>
       );
     case "recommendation":

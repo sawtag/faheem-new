@@ -1,7 +1,7 @@
 {
-  "key": "1304583862f6ffe0b2aaa41d59be52ce5903bf2f",
+  "key": "6c85df701e2ae512693b56080285ff501e651413",
   "request": {
-    "question": "Does Jahez pass the AAOIFI Shariah screen?",
+    "question": "Does Jahez pass the AAOIFI compliance screen?",
     "lang": "en",
     "context": {
       "kind": "workspace",
@@ -121,7 +121,7 @@
     },
     {
       "type": "delta",
-      "text": "Shariah screen: Pass"
+      "text": "Compliance screen: Pass"
     },
     {
       "type": "delta",
@@ -140,7 +140,7 @@
     },
     {
       "type": "delta",
-      "text": " tests\n\n**1. Business-activity test, Pass (qualitative)**\nThe Charter requires the core activity to be Shariah-permissible and "
+      "text": " tests\n\n**1. Business-activity test, Pass (qualitative)**\nThe Charter requires the core activity to be mandate-permissible and "
     },
     {
       "type": "delta",
@@ -294,7 +294,7 @@
     },
     {
       "type": "delta",
-      "text": ", still a clear pass.\n\n**3. Non-permissible income ratio, Pass (on the cleanest fully-disclosed year)**\nTest"
+      "text": ", still a clear pass.\n\n**3. Non-eligible income ratio, Pass (on the cleanest fully-disclosed year)**\nTest"
     },
     {
       "type": "delta",
@@ -302,7 +302,7 @@
     },
     {
       "type": "delta",
-      "text": "Income from non-permissible sources < 5% of total revenue."
+      "text": "Income from non-eligible sources < 5% of total revenue."
     },
     {
       "type": "delta",
@@ -317,7 +317,7 @@
     },
     {
       "type": "delta",
-      "text": " The relevant non-permissible line is interest/finance income on"
+      "text": " The relevant non-eligible line is interest/finance income on"
     },
     {
       "type": "delta",
@@ -367,7 +367,7 @@
     },
     {
       "type": "delta",
-      "text": "ainty:**\n  1. *FY2025 non-permissible income ratio not independently computed.* The FY2025 fin"
+      "text": "ainty:**\n  1. *FY2025 non-eligible income ratio not independently computed.* The FY2025 fin"
     },
     {
       "type": "delta",
@@ -406,7 +406,7 @@
     },
     {
       "type": "delta",
-      "text": "ure.\n  2. *\"Interest-bearing\" classification.* Jahez's main facility is a Shariah-compliant Tawarruq struct"
+      "text": "ure.\n  2. *\"Interest-bearing\" classification.* Jahez's main facility is a Compliance-compliant Tawarruq struct"
     },
     {
       "type": "delta",
@@ -449,7 +449,7 @@
     },
     {
       "type": "delta",
-      "text": "ee for a purification-and-waiver discussion rather than an automatic exclusion."
+      "text": "ee for a remediation-and-waiver discussion rather than an automatic exclusion."
     },
     {
       "type": "delta",

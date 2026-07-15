@@ -10,7 +10,7 @@
  * Two contexts are warmed:
  *  - workspace:jahez, `filterDocs()` returns the identical doc set for every
  *    jahez golden that doesn't narrow via `docIds` (qa2, deliverables,
- *    followups, wacc-build, comps-gap, oneoff-check, shariah-en). qa1
+ *    followups, wacc-build, comps-gap, oneoff-check, compliance-en). qa1
  *    (`docIds: ["fy25-er"]`) narrows to a smaller block set and is not
  *    covered, inherent to doc-scoped questions, not a gap here.
  *  - ic, the IC room has a DIFFERENT doc-block sequence (its own cache

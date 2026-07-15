@@ -138,7 +138,7 @@ Deal        = { id, name: {en, ar}, sector, origin: "inbound"|"market-screen",
                 screening?: { rows: { criterion: {en,ar}, verdict: "pass"|"warn"|"fail",
                               note: {en,ar}, cite: {docId, page} }[], verdict: {en,ar} },
                 icMetrics?: { irr: number, hurdle: number, riskScore: number,
-                              mandateFit: "pass"|"warn", shariah: "pass"|"fail",
+                              mandateFit: "pass"|"warn", compliance: "pass"|"fail",
                               recommendation: {en,ar}, cite: {docId, page} },
                 declineReason?: {en,ar} }
 CacheEntry  = { key /* sha1(question|lang|context|agent|docIds) */, request: ChatRequest,
@@ -198,7 +198,7 @@ Run as one Workflow: 5 concurrent `agent()` calls; validation task pipelined aft
 - **Acceptance:** every number in both packs carries an inline source+date; added to manifest; WACC inputs complete (rf, ERP, beta, cost of debt path); fable sanity-reviews the comps table.
 
 #### T1.4 Lunar + fictional-deal docs + `deals.json` — **sonnet/medium**
-- [ ] Author (HTML→PDF, Lunar-branded per spec §7): IC Charter & Mandate (firm profile, tech+consumer appetite, 15% hurdle, 10% concentration, 3–5y hold, Shariah screen required — page numbers stable, the screening scorecard cites them), Risk Appetite Statement, Portfolio snapshot, **Darb mini data-room** (profile+ask SAR 40M Series B, financial summary, founder bios), **Thara Pay analysis summary** (metrics for IC).
+- [ ] Author (HTML→PDF, Lunar-branded per spec §7): IC Charter & Mandate (firm profile, tech+consumer appetite, 15% hurdle, 10% concentration, 3–5y hold, Compliance screen required — page numbers stable, the screening scorecard cites them), Risk Appetite Statement, Portfolio snapshot, **Darb mini data-room** (profile+ask SAR 40M Series B, financial summary, founder bios), **Thara Pay analysis summary** (metrics for IC).
 - [ ] `data/deals.json` per schema: Darb (screening rows per spec §11 incl. the concentration ⚠), Jahez (analysis, market-screen origin badge data), Thara Pay (ic-review + icMetrics), Aqar (declined + reason). `lib/deals.ts` loader.
 - **Acceptance:** `validate-data` green; every scorecard `cite` resolves to a real page in the IC Charter PDF; numbers internally consistent (ask vs fund size vs concentration math) — fable reviews Darb pack + deals.json line-by-line (fictional ≠ sloppy).
 
@@ -244,7 +244,7 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 
 #### T3.2 Home / omnibox — **opus/high** (on-camera in every beat transition)
 - Files: `app/(app)/page.tsx`, `e2e/home.spec.ts`, reuses `Composer`.
-- [ ] Serif hero ("What can Faheem do for you today?" / "كيف يخدمك فهيم اليوم؟"), centered Composer (full affordances), rotating contextual placeholder, quick-action pills (Run DCF · Comps · IC Memo · Risk Scorecard · Sensitivity · Shariah Screen) that prefill the composer, recent-workspace cards row.
+- [ ] Serif hero ("What can Faheem do for you today?" / "كيف يخدمك فهيم اليوم؟"), centered Composer (full affordances), rotating contextual placeholder, quick-action pills (Run DCF · Comps · IC Memo · Risk Scorecard · Sensitivity · Compliance Screen) that prefill the composer, recent-workspace cards row.
 - **Acceptance:** e2e — pill click prefills composer; submit navigates to chat with question.
 
 #### T3.3 Pipeline board + workspaces — **opus/high** (carries the private→public story on screen)
@@ -254,12 +254,12 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 
 #### T3.4 Faheem IC room — **opus/high** (the closing beat)
 - Files: `app/(app)/ic/page.tsx`, `components/ic/*`, `e2e/ic.spec.ts`.
-- [ ] Comparison table (Jahez vs Thara Pay: implied IRR vs 15% hurdle w/ delta coloring, scenario-weighted return, risk score, mandate fit, Shariah, recommendation) from `deals.json` `icMetrics`; persistent `AdvisoryDisclaimer` banner; IC-context chat panel (same engine, `context: {kind:"ic"}`).
+- [ ] Comparison table (Jahez vs Thara Pay: implied IRR vs 15% hurdle w/ delta coloring, scenario-weighted return, risk score, mandate fit, Compliance, recommendation) from `deals.json` `icMetrics`; persistent `AdvisoryDisclaimer` banner; IC-context chat panel (same engine, `context: {kind:"ic"}`).
 - **Acceptance:** component test — hurdle delta renders correct sign/color from fixture; e2e — table renders both deals; disclaimer visible; scripted IC question (cached) streams with citations.
 
 #### T3.5 Connections + onboarding stepper — **sonnet/medium** (build from T0.3 brief)
 - [ ] Connections per CATALOG §2D: Connected list (Saudi Exchange, Argaam, marketaux, Lunar Data Room, Templates) w/ Configure pills; Available (SAHMK, Bloomberg, PitchBook, Intralinks, Datasite, od.data.gov.sa, REGA, GASTAT, Alinma Open Banking [SAMA], Capital IQ) w/ Connect; "Add custom MCP" modal (name, URL, advanced accordion); one fake OAuth modal flow.
-- [ ] Onboarding `/onboarding`: 3-step Stepper — ① Connect (embeds connector grid) ② Agents & skills (registry toggle grid, @hints) ③ Mandate questionnaire (IRR 15%, concentration 10%, hold 3–5y, liquidity, Shariah toggle, sector chips, drawdown) → closing card "This becomes your IC Charter" with link that opens the actual PDF.
+- [ ] Onboarding `/onboarding`: 3-step Stepper — ① Connect (embeds connector grid) ② Agents & skills (registry toggle grid, @hints) ③ Mandate questionnaire (IRR 15%, concentration 10%, hold 3–5y, liquidity, Compliance toggle, sector chips, drawdown) → closing card "This becomes your IC Charter" with link that opens the actual PDF.
 - **Acceptance:** e2e — stepper completes end-to-end, MCP modal opens/validates URL shape, OAuth modal flow closes as "Connected".
 
 #### T3.6 Agents page + Library + Audit Trail — **sonnet/medium** (build from T0.3 brief)
@@ -286,7 +286,7 @@ Common acceptance for every P3 card: bilingual messages (own namespace), RTL-cle
 ### P5 — Integration, golden path, hardening (fable-led)
 
 #### T5.1 Wiring + recording — **fable + haiku helpers**
-- [ ] Fable: cross-screen integration pass; seed demo state (Jahez chats list, artifacts); run `upload-files-api` (**requires billing upgrade**); `scripts/prewarm.ts` (max_tokens:0 cache warm); `scripts/record-goldens.ts` — record every scripted beat: Q&A 1 (with #), Q&A 2 (with @), Arabic Shariah question, IC ranking question, 2 likely judge follow-ups, in en (+ar where scripted), `FAHEEM_RECORD=1`.
+- [ ] Fable: cross-screen integration pass; seed demo state (Jahez chats list, artifacts); run `upload-files-api` (**requires billing upgrade**); `scripts/prewarm.ts` (max_tokens:0 cache warm); `scripts/record-goldens.ts` — record every scripted beat: Q&A 1 (with #), Q&A 2 (with @), Arabic Compliance question, IC ranking question, 2 likely judge follow-ups, in en (+ar where scripted), `FAHEEM_RECORD=1`.
 - [ ] Fable reviews every golden answer word-by-word (numbers vs model-inputs.json; citation pages correct; analyst vocabulary; IC answer never decides).
 - [ ] **Demo palette** (`⌘K`, stage-only like the mode overlay): lists the scripted golden questions per context; selecting one inserts the EXACT recorded text into the composer — guarantees cache-key hits and zero on-stage typos. (A typo'd question = cache miss = surprise live call; this kills that risk class.)
 - **Acceptance:** demo-cache contains all beats; `FAHEEM_MODE=cached` full run works offline (wifi kill test); every palette entry replays from cache.

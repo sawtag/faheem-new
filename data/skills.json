@@ -201,10 +201,10 @@
     "run": { "goldenId": "qa2" }
   },
   {
-    "id": "shariah-screen",
+    "id": "compliance-screen",
     "name": {
-      "en": "Shariah Screen",
-      "ar": "الفحص الشرعي"
+      "en": "Compliance Screen",
+      "ar": "فحص الامتثال"
     },
     "category": "risk-compliance",
     "icon": "moon-star",
@@ -218,19 +218,19 @@
         "ar": "الدين الذي يحمل فائدة أقل من 33% من القيمة السوقية"
       },
       {
-        "en": "Non-permissible income < 5% of total revenue",
-        "ar": "الإيراد غير المباح أقل من 5% من إجمالي الإيرادات"
+        "en": "Non-eligible income < 5% of total revenue",
+        "ar": "الإيراد غير المؤهل أقل من 5% من إجمالي الإيرادات"
       },
       {
-        "en": "Business-activity permissibility test",
-        "ar": "اختبار إباحة النشاط التجاري"
+        "en": "Business-activity eligibility test",
+        "ar": "اختبار أهلية النشاط التجاري"
       },
       {
-        "en": "Purification note for any residual non-permissible income",
-        "ar": "مذكّرة تطهير لأي إيراد غير مباح متبقٍّ"
+        "en": "Remediation note for any residual non-eligible income",
+        "ar": "مذكّرة معالجة لأي إيراد غير مؤهل متبقٍّ"
       }
     ],
-    "run": { "goldenId": "shariah-ar" }
+    "run": { "goldenId": "compliance-ar" }
   },
   {
     "id": "mandate-fit",
@@ -279,8 +279,8 @@
     },
     "methods": [
       {
-        "en": "Section architecture, exec summary → thesis → valuation → risk → Shariah → catalysts",
-        "ar": "بنية الأقسام، ملخص تنفيذي ← أطروحة استثمارية ← تقييم ← مخاطر ← فحص شرعي ← محفّزات"
+        "en": "Section architecture, exec summary → thesis → valuation → risk → Compliance → catalysts",
+        "ar": "بنية الأقسام، ملخص تنفيذي ← أطروحة استثمارية ← تقييم ← مخاطر ← فحص امتثال ← محفّزات"
       },
       {
         "en": "Sources appendix discipline, every cited figure traces to doc + page",

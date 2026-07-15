@@ -892,10 +892,10 @@ function buildSlide7(
       bodyCell("p.4"),
     ],
     [
-      bodyCell("Shariah screen"),
-      bodyCell(fact(facts, "calc.shariahStatus"), {
+      bodyCell("Compliance screen"),
+      bodyCell(fact(facts, "calc.complianceStatus"), {
         bold: true,
-        color: model.shariah.pass ? B.positive : B.negative,
+        color: model.compliance.pass ? B.positive : B.negative,
       }),
       bodyCell(
         `Debt ${fact(facts, "calc.debtRatio")}, cash ${fact(facts, "calc.cashRatio")} of market cap (both <33%)`,

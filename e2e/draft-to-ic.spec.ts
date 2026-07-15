@@ -58,7 +58,7 @@ test.describe("Draft to IC", () => {
     await expect(body).toHaveValue(/SAR 14\.36/);
     await expect(body).toHaveValue(/16\.8%/);
     await expect(body).toHaveValue(/15%/);
-    await expect(body).toHaveValue(/The Shariah screen passes\./);
+    await expect(body).toHaveValue(/The compliance screen passes\./);
     await expect(body).toHaveValue(/- Jahez · Valuation Model/);
     await expect(body).toHaveValue(/- Jahez · IC Memo/);
     await expect(body).toHaveValue(/- Jahez · Board Deck/);

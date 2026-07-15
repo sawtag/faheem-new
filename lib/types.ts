@@ -149,7 +149,7 @@ export const IcMetricsSchema = z.object({
   /** quantified risk score 1–10 (higher = riskier) */
   riskScore: z.number(),
   mandateFit: z.enum(["pass", "warn"]),
-  shariah: z.enum(["pass", "fail"]),
+  compliance: z.enum(["pass", "fail"]),
   recommendation: LocalizedSchema,
   cite: CiteSchema,
 });

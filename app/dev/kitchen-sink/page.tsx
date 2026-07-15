@@ -79,7 +79,7 @@ const en = {
   documentsBody: "Filings, disclosures and the data room.",
   chatsBody: "Prior conversations in this workspace.",
   toggle: "Toggle",
-  shariah: "Shariah screen required",
+  compliance: "Compliance screen required",
   dialog: "Dialog",
   openDialog: "Open dialog",
   dialogTitle: "Connect Saudi Exchange",
@@ -139,7 +139,7 @@ const ar: Record<keyof typeof en, string> = {
   documentsBody: "الإفصاحات والملفات وغرفة البيانات.",
   chatsBody: "المحادثات السابقة في مساحة العمل.",
   toggle: "المفتاح",
-  shariah: "الفحص الشرعي إلزامي",
+  compliance: "فحص الامتثال إلزامي",
   dialog: "النافذة",
   openDialog: "فتح النافذة",
   dialogTitle: "ربط السوق المالية السعودية",
@@ -390,7 +390,7 @@ function Kit({ copy }: { copy: Copy }) {
       <Section title={copy.toggle}>
         <label className="text-navy flex items-center gap-3 text-[0.9375rem] font-medium">
           <Toggle checked={on} onCheckedChange={setOn} />
-          {copy.shariah}
+          {copy.compliance}
         </label>
       </Section>
 

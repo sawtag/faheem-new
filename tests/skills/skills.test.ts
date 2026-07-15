@@ -43,7 +43,7 @@ describe("SKILLS, data/skills.json", () => {
         !!s.run && "goldenId" in s.run,
     );
     expect(mapped.map((s) => s.id).sort()).toEqual(
-      ["risk-scorecard", "shariah-screen", "ic-memo"].sort(),
+      ["risk-scorecard", "compliance-screen", "ic-memo"].sort(),
     );
     for (const skill of mapped) {
       expect(

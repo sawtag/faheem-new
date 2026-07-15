@@ -46,7 +46,14 @@
     "file": "gastat.svg",
     "format": "svg",
     "source_url": "https://www.stats.gov.sa (site favicon asset)",
-    "note": "Official abstract GASTAT icon mark"
+    "note": "Official abstract GASTAT icon mark. Quality warning: thin dashed linework with ~50% horizontal padding in the viewBox; reads faint at 20-40px tile sizes - prefer gastat-bold.png for small tiles"
+  },
+  {
+    "id": "gastat-bold",
+    "file": "gastat-bold.png",
+    "format": "png",
+    "source_url": "https://www.stats.gov.sa (official emblem vector, tight-crop 512px render)",
+    "note": "Tile-optimized variant: same official emblem, rendered at 512x512 with padding trimmed so the mark fills the frame (~2x larger at equal tile size). NOTE: no bolder official variant exists - GASTAT's identity (per stats.gov.sa/en/logo-and-identity-user-guide, Dec 2025 guidelines) is intrinsically thin dashed linework; all official lockups, favicons, and social avatars use the same weight. The artwork itself was not modified, only cropped/rasterized"
   },
   {
     "id": "lean",

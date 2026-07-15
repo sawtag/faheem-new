@@ -50,7 +50,7 @@ export interface ValueNode {
 }
 
 /** Dotted node address, e.g. "wacc", "base.perShare", "fy25.gmv",
- * "assumptions.g", "netRev.4", "shariah.debtRatio". */
+ * "assumptions.g", "netRev.4", "compliance.debtRatio". */
 export type ModelKey = string;
 
 // ─────────────────────────────── assumptions ───────────────────────────────
@@ -167,8 +167,8 @@ export interface ModelResult {
     pe: { talabat: number; doordash: number };
     field: { min: number; median: number; max: number };
   };
-  // shariah
-  shariah: {
+  // compliance
+  compliance: {
     debtRatio: number;
     cashRatio: number;
     leaseInclRatio: number;

@@ -30,7 +30,7 @@ export function goldenQuestionById(id: string): GoldenQuestion | undefined {
  *
  * Language gate first: an entry only ever appears while the UI is already in
  * its recorded language, so a presenter can never fire a `lang` mismatch that
- * would miss the exact-key cache (the Arabic Shariah beat only shows up once
+ * would miss the exact-key cache (the Arabic compliance beat only shows up once
  * the presenter has switched to `ar`).
  *
  * Context gate: `null` (a page with no chat surface, Home, Deals, Agents…)

@@ -111,8 +111,8 @@
 ## Bucket 3 — BUSINESS
 
 ### B1. "There are well-funded companies doing exactly this in the US. What's your moat?"
-**A:** The category leaders emerging in the US and UK sell great answers — **we sell the Saudi process they can't localize: native Arabic and full right-to-left, Tadawul and local data rails, AAOIFI Shariah screening built in, and the whole screening-to-committee governance workflow.** That's not a translation layer bolted on; it's the product. A global tool can't cite a Saudi firm's own mandate back to it in Arabic.
-**Point at:** the live Arabic toggle → full RTL flip → Shariah screen card.
+**A:** The category leaders emerging in the US and UK sell great answers — **we sell the Saudi process they can't localize: native Arabic and full right-to-left, Tadawul and local data rails, AAOIFI compliance screening built in, and the whole screening-to-committee governance workflow.** That's not a translation layer bolted on; it's the product. A global tool can't cite a Saudi firm's own mandate back to it in Arabic.
+**Point at:** the live Arabic toggle → full RTL flip → Compliance screen card.
 **If pressed:** They optimize for answers; we optimize for an auditable process a Saudi committee can actually adopt.
 
 ### B2. "Who's your first customer, and how do you sell this?"
@@ -167,7 +167,7 @@
 ## Never say (on stage, ever)
 
 - **A competitor's name.** Not Rogo, Hebbia, or AlphaSense. Say *"the category leaders emerging in the US and UK."*
-- **A certification you don't hold.** No "SOC 2 certified," "ISO," "CMA-licensed," "Shariah-certified." Say *"built to enterprise-grade practices; formal certifications are on our roadmap."*
+- **A certification you don't hold.** No "SOC 2 certified," "ISO," "CMA-licensed," "Compliance-certified." Say *"built to enterprise-grade practices; formal certifications are on our roadmap."*
 - **"The AI decides"** / "Faheem recommends you invest." Always *"advisory — the committee decides."*
 - **"It never hallucinates"** / "our data can't be wrong." Say *"every claim is checkable to its source — that's the safety property."*
 - **A claimed customer or signed deal.** Alinma Capital is a *design-partner framing*; the PIF is *aspiration, not a customer.*
