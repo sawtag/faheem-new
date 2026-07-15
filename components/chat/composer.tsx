@@ -136,7 +136,7 @@ export function Composer({
   const [text, setText] = React.useState("");
   const [agentChip, setAgentChip] = React.useState<AgentId | null>(null);
   const [docChips, setDocChips] = React.useState<string[]>([]);
-  const [model, setModel] = React.useState<ModelTier>("max");
+  const [model, setModel] = React.useState<ModelTier>("auto");
   const [trigger, setTrigger] = React.useState<TriggerState | null>(null);
 
   // Paperclip attach: uploaded docs become # chips + join the # typeahead for
