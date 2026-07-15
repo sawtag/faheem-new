@@ -212,7 +212,6 @@ export function Composer({
       .slice(0, 6);
   }, [trigger, uploadedDocs]);
 
-  const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   // Never offer Improve on a recorded golden question (⌘K/skills prefill) —
   // a rewrite desyncs the cache key and kills the beat on stage.
   const isGoldenText = GOLDEN_QUESTIONS.some(
@@ -223,8 +222,7 @@ export function Composer({
     !improved &&
     !improving &&
     !isGoldenText &&
-    wordCount >= 2 &&
-    wordCount <= 8;
+    text.trim().length > 0;
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
