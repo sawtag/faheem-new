@@ -68,7 +68,7 @@ describe("GenerationPanel", () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async (url: string) => {
-        expect(url).toBe("/api/generate/all");
+        expect(url).toBe("/api/generate/all?workspace=jahez");
         return { body: fake.stream } as unknown as Response;
       }),
     );

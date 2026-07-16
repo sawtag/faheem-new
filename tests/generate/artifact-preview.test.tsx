@@ -99,13 +99,11 @@ describe("ArtifactPreview", () => {
     expect(screen.getByText("Page 3 of 3")).toBeInTheDocument();
   });
 
-  it("xlsx: cover sheet + open-in-Excel CTA with the sourcing caption", () => {
+  it("xlsx: named sheet rail (Cover, DCF, Scenarios & Risk, Sensitivity) + open-in-Excel CTA", () => {
     renderPreview(meta("xlsx"));
-    expect(
-      screen.getByText(
-        "Full model: open in Excel, every input cell carries its source.",
-      ),
-    ).toBeInTheDocument();
+    for (const sheet of ["Cover", "DCF", "Scenarios & Risk", "Sensitivity"]) {
+      expect(screen.getByRole("button", { name: sheet })).toBeInTheDocument();
+    }
     expect(screen.getByRole("link", { name: /Open in Excel/ })).toHaveAttribute(
       "href",
       "/artifacts/jahez-valuation-model.xlsx",

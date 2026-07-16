@@ -8,8 +8,8 @@ import {
 } from "@/lib/demo/golden-questions";
 
 describe("GOLDEN_QUESTIONS, data/golden-questions.json", () => {
-  it("has 11 entries with unique ids", () => {
-    expect(GOLDEN_QUESTIONS).toHaveLength(11);
+  it("has 16 entries with unique ids", () => {
+    expect(GOLDEN_QUESTIONS).toHaveLength(16);
     const ids = GOLDEN_QUESTIONS.map((q) => q.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
@@ -79,6 +79,9 @@ describe("filterGoldenQuestions, palette filter logic", () => {
         "comps-gap",
         "oneoff-check",
         "compliance-en",
+        "dcf-scenarios",
+        "committee-deck",
+        "portfolio-top3", // firm-context entries surface on workspace pages too
       ].sort(),
     );
 
@@ -87,7 +90,9 @@ describe("filterGoldenQuestions, palette filter logic", () => {
       { kind: "workspace", companyId: "darb" },
       "en",
     );
-    expect(darbEn).toEqual([]); // no darb or firm-scoped entries in the set
+    expect(darbEn.map((q) => q.id).sort()).toEqual(
+      ["darb-memo", "portfolio-top3"].sort(),
+    );
   });
 
   it("the jahez workspace page shows the Arabic compliance entry only once the UI is already in ar", () => {
@@ -101,12 +106,12 @@ describe("filterGoldenQuestions, palette filter logic", () => {
 
   it("the IC room shows only ic-context entries", () => {
     const ic = filterGoldenQuestions(GOLDEN_QUESTIONS, { kind: "ic" }, "en");
-    expect(ic.map((q) => q.id)).toEqual(["ic-rank"]);
+    expect(ic.map((q) => q.id)).toEqual(["ic-rank", "ic-macro-thara"]);
   });
 
   it("a null context (no chat surface on screen, Home, Deals, Agents…) shows every entry in that language", () => {
     const all = filterGoldenQuestions(GOLDEN_QUESTIONS, null, "en");
-    expect(all).toHaveLength(10); // every en entry
+    expect(all).toHaveLength(15); // every en entry
   });
 });
 
@@ -115,8 +120,15 @@ describe("groupGoldenQuestions", () => {
     const groups = groupGoldenQuestions(
       filterGoldenQuestions(GOLDEN_QUESTIONS, null, "en"),
     );
-    expect([...groups.keys()]).toEqual(["workspace:jahez", "ic"]);
-    expect(groups.get("workspace:jahez")).toHaveLength(9);
-    expect(groups.get("ic")).toHaveLength(1);
+    expect([...groups.keys()]).toEqual([
+      "workspace:jahez",
+      "ic",
+      "firm",
+      "workspace:darb",
+    ]);
+    expect(groups.get("workspace:jahez")).toHaveLength(11);
+    expect(groups.get("ic")).toHaveLength(2);
+    expect(groups.get("firm")).toHaveLength(1);
+    expect(groups.get("workspace:darb")).toHaveLength(1);
   });
 });

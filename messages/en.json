@@ -523,10 +523,16 @@
       "slideThumb": "Slide {n}",
       "slideOf": "Slide {n} of {total}",
       "pageOf": "Page {n} of {total}",
-      "modelCaption": "Full model: open in Excel, every input cell carries its source.",
       "openInExcel": "Open in Excel",
       "fallbackTitle": "Preview unavailable",
-      "fallbackCaption": "The file itself is ready, download it below."
+      "fallbackCaption": "The file itself is ready, download it below.",
+      "sheets": {
+        "cover": "Cover",
+        "dcf": "DCF",
+        "scenarios": "Scenarios & Risk",
+        "sensitivity": "Sensitivity"
+      },
+      "sheetOf": "Sheet {n} of {total}"
     },
     "draft": {
       "trigger": "Draft email to IC",
@@ -550,6 +556,20 @@
         "closing": "Happy to walk through the model or take questions ahead of the meeting.",
         "signOff": "Ali\nLunar Investments"
       }
+    },
+    "scenarios": {
+      "title": "Scenario summary: value per share",
+      "openModel": "Open the Live Model",
+      "bear": "Bear",
+      "base": "Base",
+      "bull": "Bull",
+      "prob": "P {p}",
+      "irrUpside": "IRR {irr} · {upside} vs close",
+      "weighted": "Probability-weighted: {value}",
+      "vsClose": "vs {close} close ({upside})",
+      "waccG": "WACC {wacc} · terminal growth {g}",
+      "horizonNote": "Explicit FCFF forecast FY26E to FY30E; terminal value built on the FY2031 flow.",
+      "engineNote": "Same engine as the workbook: every input is sourced or a labeled assumption."
     }
   },
   "demo": {
