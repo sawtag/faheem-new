@@ -5,7 +5,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { CircleAlert, LockKeyhole, User } from "lucide-react";
+import {
+  ArrowRight,
+  CircleAlert,
+  LockKeyhole,
+  Sparkles,
+  User,
+} from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,6 +40,7 @@ export function LoginScreen() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [dayOne, setDayOne] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [fieldErrors, setFieldErrors] = React.useState<FieldErrors>(NO_ERRORS);
   const [playLogo, setPlayLogo] = React.useState(reduceMotion);
@@ -80,6 +87,28 @@ export function LoginScreen() {
     } catch {
       setFieldErrors({ username: true, password: true });
       setLoading(false);
+    }
+  }
+
+  // Day-one entry: sign in silently (mock auth, AGENTS.md rule 10) and land
+  // on the /onboarding takeover, so a first-time viewer reaches the setup
+  // journey in one click without inventing credentials.
+  async function startDayOne() {
+    setDayOne(true);
+    try {
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: "ali", password: "day-one" }),
+      });
+      if (!response.ok) throw new Error("auth failed");
+      setSuccess(true);
+      window.setTimeout(
+        () => router.push("/onboarding"),
+        reduceMotion ? 0 : CARD_EXIT_DURATION_S * 1000,
+      );
+    } catch {
+      setDayOne(false);
     }
   }
 
@@ -221,11 +250,38 @@ export function LoginScreen() {
               type="submit"
               className="mt-4 w-full"
               loading={loading}
-              disabled={loading}
+              disabled={loading || dayOne}
             >
               {loading ? t("loading") : t("cta")}
             </Button>
           </form>
+
+          <div className="mt-5 flex items-center gap-3">
+            <span aria-hidden="true" className="bg-border h-px flex-1" />
+            <span className="text-text-secondary text-xs font-medium">
+              {t("dayOneHint")}
+            </span>
+            <span aria-hidden="true" className="bg-border h-px flex-1" />
+          </div>
+
+          <Button
+            variant="outline"
+            className="group mt-4 w-full"
+            loading={dayOne}
+            disabled={loading || dayOne}
+            onClick={startDayOne}
+            startIcon={
+              <Sparkles className="text-accent size-4" aria-hidden="true" />
+            }
+            endIcon={
+              <ArrowRight
+                className="size-4 transition-transform duration-[var(--duration-fast)] ease-[var(--ease)] group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
+                aria-hidden="true"
+              />
+            }
+          >
+            {dayOne ? t("dayOneLoading") : t("dayOneCta")}
+          </Button>
 
           <div className="border-border mt-5 border-t pt-3">
             <p className="text-text-secondary text-center text-xs font-medium">
