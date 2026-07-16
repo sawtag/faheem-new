@@ -80,6 +80,7 @@ Toggle **العربية** (bottom-left) and revisit any of the above: full RTL c
 
 - Flip the toggle on any specialist card; the card dims (icon grayscales, copy fades) but nothing else changes.
 - Reload the page: the toggle state survives (localStorage, per browser profile).
+- Every flip is logged: check the **Audit Trail** page for "Agent toggled" entries carrying "&lt;agent&gt; · enabled|disabled".
 - The orchestrator banner has no toggle; it is not optional.
 - There is no add, edit, or delete on agents anywhere.
 
@@ -97,7 +98,7 @@ Toggle **العربية** (bottom-left) and revisit any of the above: full RTL c
 - Click the copy icon on ANY card, built-in included: the dialog opens seeded with "&lt;name&gt; (copy)" and the source's category, one-liner, and run prompt, ready to adapt. Copying is how you make an immutable Faheem playbook your own.
 - Flip the toggle on a store-backed card: it dims exactly like a registry card, and the state persists (server-side) across reloads.
 - Click the trash icon to delete a store-backed card; it disappears immediately.
-- Everything is logged: check the **Audit Trail** page for "Skill created" / "Skill updated" / "Skill deleted" entries, each carrying "&lt;name&gt; · &lt;category&gt;".
+- Everything is logged: check the **Audit Trail** page for "Skill created" / "Skill updated" / "Skill deleted" entries carrying "&lt;name&gt; · &lt;category&gt;", and "Skill toggled" entries carrying "&lt;name&gt; · enabled|disabled".
 - Built-in Faheem skills are immutable: copy is the only affordance they ever show, never edit or delete.
 
 ---

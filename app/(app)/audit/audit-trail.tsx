@@ -8,6 +8,7 @@ import {
   FileOutput,
   Mail,
   Pencil,
+  ToggleLeft,
   MessageSquareText,
   SlidersHorizontal,
   Trash2,
@@ -35,7 +36,9 @@ const ACTION_ICON = {
   "ic-draft": Mail,
   "skill-created": Wrench,
   "skill-updated": Pencil,
+  "skill-toggled": ToggleLeft,
   "skill-deleted": Trash2,
+  "agent-toggled": ToggleLeft,
 } as const;
 
 /** "Jul 12, 09:41", no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
@@ -250,7 +253,9 @@ export function AuditTrail({
     "ic-draft": t("actionIcDraft"),
     "skill-created": t("actionSkillCreated"),
     "skill-updated": t("actionSkillUpdated"),
+    "skill-toggled": t("actionSkillToggled"),
     "skill-deleted": t("actionSkillDeleted"),
+    "agent-toggled": t("actionAgentToggled"),
   };
 
   const filters: { value: ContextFilter; label: string }[] = [

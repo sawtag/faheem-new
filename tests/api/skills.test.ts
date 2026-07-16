@@ -183,7 +183,7 @@ describe("PATCH /api/skills", () => {
     expect(audit.at(-1)?.question).toBe("Renamed Skill · valuation");
   });
 
-  it("flips enabled alone (the toggle path)", async () => {
+  it("flips enabled alone (the toggle path) and audits skill-toggled", async () => {
     useTempStores();
     const created = await createOne();
     const res = await PATCH(patchRequest({ id: created.id, enabled: false }));
@@ -191,6 +191,10 @@ describe("PATCH /api/skills", () => {
     const { skill } = (await res.json()) as { skill: CustomSkill };
     expect(skill.enabled).toBe(false);
     expect(skill.name).toBe(created.name);
+
+    const audit = readAudit();
+    expect(audit.at(-1)?.action).toBe("skill-toggled");
+    expect(audit.at(-1)?.question).toBe("Editable Skill · disabled");
   });
 
   it("rejects an id that doesn't start with custom-", async () => {

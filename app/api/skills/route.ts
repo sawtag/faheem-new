@@ -5,7 +5,8 @@
  * Body (POST): { name, category, description, prefill } → { skill } 201.
  * Body (PATCH): { id, name?, category?, description?, prefill?, enabled? } → { skill }.
  * Body (DELETE): { id } → { ok: true }.
- * All append an audit entry ("skill-created" / "skill-updated" / "skill-deleted"),
+ * All append an audit entry ("skill-created" / "skill-updated" /
+ * "skill-toggled" for an enabled-only patch / "skill-deleted"),
  * reusing the `question` field to carry "<name> · <category>" (agent-created
  * / model-edit / ic-draft precedent).
  */
@@ -104,12 +105,15 @@ export async function PATCH(request: Request): Promise<Response> {
     return Response.json({ error: "Skill not found" }, { status: 404 });
   }
 
+  const toggleOnly = Object.keys(fields).length === 1 && "enabled" in fields;
   appendAudit({
     ts: new Date().toISOString(),
     user: "Ali",
     context: "firm",
-    action: "skill-updated",
-    question: `${skill.name} · ${skill.category}`,
+    action: toggleOnly ? "skill-toggled" : "skill-updated",
+    question: toggleOnly
+      ? `${skill.name} · ${skill.enabled ? "enabled" : "disabled"}`
+      : `${skill.name} · ${skill.category}`,
   });
 
   return Response.json({ skill });

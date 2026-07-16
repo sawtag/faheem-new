@@ -91,7 +91,9 @@
     "actionIcDraft": "صياغة بريد للجنة",
     "actionSkillCreated": "إنشاء مهارة",
     "actionSkillDeleted": "حذف مهارة",
-    "actionSkillUpdated": "تحديث مهارة"
+    "actionSkillUpdated": "تحديث مهارة",
+    "actionSkillToggled": "تبديل مهارة",
+    "actionAgentToggled": "تبديل وكيل"
   },
   "connections": {
     "title": "الاتصالات",

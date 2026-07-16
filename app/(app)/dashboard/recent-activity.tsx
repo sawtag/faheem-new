@@ -9,6 +9,7 @@ import {
   FileOutput,
   Mail,
   Pencil,
+  ToggleLeft,
   MessageSquareText,
   SlidersHorizontal,
   Trash2,
@@ -27,7 +28,9 @@ const ACTION_ICON = {
   "ic-draft": Mail,
   "skill-created": Wrench,
   "skill-updated": Pencil,
+  "skill-toggled": ToggleLeft,
   "skill-deleted": Trash2,
+  "agent-toggled": ToggleLeft,
 } as const;
 
 /** "Jul 12, 09:41", Western digits both locales (mirrors the audit trail). */
@@ -175,7 +178,9 @@ function ActivityFeed({
     "ic-draft": tAudit("actionIcDraft"),
     "skill-created": tAudit("actionSkillCreated"),
     "skill-updated": tAudit("actionSkillUpdated"),
+    "skill-toggled": tAudit("actionSkillToggled"),
     "skill-deleted": tAudit("actionSkillDeleted"),
+    "agent-toggled": tAudit("actionAgentToggled"),
   };
 
   return (

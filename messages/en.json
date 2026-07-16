@@ -91,7 +91,9 @@
     "actionIcDraft": "IC email drafted",
     "actionSkillCreated": "Skill created",
     "actionSkillDeleted": "Skill deleted",
-    "actionSkillUpdated": "Skill updated"
+    "actionSkillUpdated": "Skill updated",
+    "actionSkillToggled": "Skill toggled",
+    "actionAgentToggled": "Agent toggled"
   },
   "connections": {
     "title": "Connections",

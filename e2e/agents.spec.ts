@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { readAudit } from "./helpers";
 
 /**
  * Agent roster toggles: the only interaction the Agents page offers (the
@@ -24,6 +25,19 @@ test("a specialist toggle dims the card and persists across reload", async ({
   await toggle.click();
   await expect(card).toHaveAttribute("data-dimmed", "true");
 
+  // every roster change lands in the audit trail
+  await expect
+    .poll(
+      () =>
+        readAudit().some(
+          (e) =>
+            e.action === "agent-toggled" &&
+            (e.question ?? "").includes("Valuation & Modeling · disabled"),
+        ),
+      { timeout: 10_000 },
+    )
+    .toBe(true);
+
   await page.reload();
   await expect(page.getByTestId("agent-card-valuation")).toHaveAttribute(
     "data-dimmed",
@@ -35,6 +49,17 @@ test("a specialist toggle dims the card and persists across reload", async ({
     "data-dimmed",
     "false",
   );
+  await expect
+    .poll(
+      () =>
+        readAudit().some(
+          (e) =>
+            e.action === "agent-toggled" &&
+            (e.question ?? "").includes("Valuation & Modeling · enabled"),
+        ),
+      { timeout: 10_000 },
+    )
+    .toBe(true);
 
   await page.reload();
   await expect(page.getByTestId("agent-card-valuation")).toHaveAttribute(

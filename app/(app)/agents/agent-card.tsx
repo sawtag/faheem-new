@@ -48,6 +48,12 @@ function usePersistedToggle(id: string): [boolean, (v: boolean) => void] {
       } catch {
         /* storage unavailable: session-only toggle */
       }
+      // fire-and-forget audit log; the toggle never blocks on the network
+      void fetch("/api/agents/toggle", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id, enabled: v }),
+      }).catch(() => undefined);
     },
     [id],
   );

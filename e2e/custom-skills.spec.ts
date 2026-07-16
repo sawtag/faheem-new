@@ -172,6 +172,17 @@ test.describe("Skills: custom skill creation", () => {
     const skillCard = page.getByTestId(`skill-card-${createdId}`);
     await page.getByTestId(`custom-skill-toggle-${createdId}`).click();
     await expect(skillCard).toHaveAttribute("data-dimmed", "true");
+    await expect
+      .poll(
+        () =>
+          readAudit().some(
+            (e) =>
+              e.action === "skill-toggled" &&
+              (e.question ?? "").includes(`${skillName} · disabled`),
+          ),
+        { timeout: 10_000 },
+      )
+      .toBe(true);
     await page.reload();
     await expect(page.getByTestId(`skill-card-${createdId}`)).toHaveAttribute(
       "data-dimmed",
