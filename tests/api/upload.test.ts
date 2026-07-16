@@ -13,20 +13,29 @@ import { makeSamplePdf } from "@/tests/fixtures/make-pdf";
 import type { CorpusDoc } from "@/lib/types";
 
 let dir: string;
-let hadKey: string | undefined;
+// Both key names must be stripped: managed sandboxes set FAHEEM_ANTHROPIC_KEY
+// (the alias lib/ai/client.ts falls back to), and leaving it in place turns
+// the "offline" cases into real, billed Files API calls.
+const KEY_NAMES = ["ANTHROPIC_API_KEY", "FAHEEM_ANTHROPIC_KEY"] as const;
+let hadKeys: Record<string, string | undefined>;
 
 beforeEach(() => {
   dir = fs.mkdtempSync(path.join(os.tmpdir(), "faheem-upload-route-"));
   process.env.FAHEEM_UPLOAD_DIR = dir;
-  hadKey = process.env.ANTHROPIC_API_KEY;
-  delete process.env.ANTHROPIC_API_KEY;
+  hadKeys = {};
+  for (const name of KEY_NAMES) {
+    hadKeys[name] = process.env[name];
+    delete process.env[name];
+  }
 });
 
 afterEach(() => {
   setUploaderForTests(null);
   delete process.env.FAHEEM_UPLOAD_DIR;
-  if (hadKey === undefined) delete process.env.ANTHROPIC_API_KEY;
-  else process.env.ANTHROPIC_API_KEY = hadKey;
+  for (const name of KEY_NAMES) {
+    if (hadKeys[name] === undefined) delete process.env[name];
+    else process.env[name] = hadKeys[name];
+  }
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
