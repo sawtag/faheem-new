@@ -4,6 +4,16 @@ import { defineConfig, devices } from "@playwright/test";
 // tree's dev server on :3000. Default unchanged.
 const PORT = Number(process.env.PORT ?? 3000);
 
+// The suite must never append to the git-tracked audit seed
+// (data/audit-log.json): the web server copies the seed to this per-port
+// temp file and the app writes there (the FAHEEM_AUDIT_PATH override
+// lib/audit.ts and /api/audit already honor). Set on process.env so
+// e2e/helpers.ts resolves the same file in test workers, which load this
+// config too. The specs' "audit grows" assertions are relative, so they
+// hold against the copy.
+const AUDIT_PATH =
+  (process.env.FAHEEM_AUDIT_PATH ??= `/tmp/faheem-e2e-audit-${PORT}.json`);
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -33,9 +43,11 @@ export default defineConfig({
   webServer: {
     // FAHEEM_E2E_PROD=1 runs the suite against the production build — the
     // demo-faithful mode used for the final gates and the dress rehearsal.
-    command: process.env.FAHEEM_E2E_PROD
-      ? "npm run build && npm run start"
-      : "npm run dev",
+    command: `cp data/audit-log.json "$FAHEEM_AUDIT_PATH" && ${
+      process.env.FAHEEM_E2E_PROD
+        ? "npm run build && npm run start"
+        : "npm run dev"
+    }`,
     url: `http://localhost:${PORT}`,
     // NEVER reuse a running server: the suite must own its FAHEEM_MODE=cached
     // process. Reusing a dev server (smart/live mode) silently tests the wrong
@@ -44,6 +56,10 @@ export default defineConfig({
     // server, or run with PORT=<other> per the note above).
     reuseExistingServer: false,
     timeout: process.env.FAHEEM_E2E_PROD ? 300_000 : 120_000,
-    env: { FAHEEM_MODE: "cached", PORT: String(PORT) },
+    env: {
+      FAHEEM_MODE: "cached",
+      PORT: String(PORT),
+      FAHEEM_AUDIT_PATH: AUDIT_PATH,
+    },
   },
 });

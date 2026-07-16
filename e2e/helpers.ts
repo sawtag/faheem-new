@@ -10,7 +10,12 @@ import { expect } from "@playwright/test";
  */
 export const SESSION_COOKIE = "faheem_session";
 export const LOCALE_COOKIE = "faheem_locale";
-export const AUDIT_LOG = path.join(process.cwd(), "data/audit-log.json");
+// The suite's web server writes to the FAHEEM_AUDIT_PATH temp copy
+// (playwright.config.ts sets it on process.env, and workers load the config
+// too), never to the git-tracked seed; read the same file the server writes.
+export const AUDIT_LOG =
+  process.env.FAHEEM_AUDIT_PATH ||
+  path.join(process.cwd(), "data/audit-log.json");
 
 export function readAudit(): Array<{
   action?: string;
