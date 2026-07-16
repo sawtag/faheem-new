@@ -20,7 +20,7 @@ import { FileCard } from "@/components/generate/file-card";
 import { ArtifactPreview } from "@/components/generate/artifact-preview";
 import { cn } from "@/lib/utils";
 import type { ArtifactMeta, Lang, Localized } from "@/lib/types";
-import { useCountUp } from "./use-count-up";
+import { useCountUp } from "@/lib/use-count-up";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
 

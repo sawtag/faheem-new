@@ -336,7 +336,14 @@
       "filterMarket": "فرز السوق (عام)",
       "originInbound": "وارد · خاص",
       "originMarket": "فرز السوق · عام",
-      "empty": "لا توجد صفقات تطابق هذه التصفية."
+      "emptyStage": "لا توجد صفقات في هذه المرحلة.",
+      "screenSource": "وفق ميثاق اللجنة",
+      "irrLabel": "العائد الداخلي الضمني",
+      "hurdleLabel": "عتبة التفويض",
+      "bps": "{bps} نقطة أساس",
+      "atHurdle": "عند العتبة",
+      "risk": "المخاطر {score} / 10",
+      "metricsSource": "ملخص التحليل · ص.{page}"
     },
     "stage": {
       "screening": "الفرز",

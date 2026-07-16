@@ -35,6 +35,13 @@ export function formatSAR(
   return unit === "m" ? `SAR ${n}M` : `SAR ${n}`;
 }
 
+/** Plain number, Western digits both locales: counts, bps gaps, `/10` scores. */
+export function westernNumber(value: number, lang: Lang, maxFrac = 0): string {
+  return new Intl.NumberFormat(numLocale(lang), {
+    maximumFractionDigits: maxFrac,
+  }).format(value);
+}
+
 /** Percentage in house style: `17.2%` (or `+2.2%` with `{ signed: true }`). */
 export function formatPercent(
   value: number,

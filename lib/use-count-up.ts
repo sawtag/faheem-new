@@ -9,7 +9,7 @@ const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
  * Float count-up over 400ms on first reveal (the motion law's stat count-up).
  * Returns the animated value; the caller formats it (formatSAR / formatPercent
  * with tabular-nums so nothing shifts). Reduced-motion lands on the target
- * immediately. Shared by the dashboard stats row and the macro strip.
+ * immediately. Shared by the dashboard stat cards and the pipeline deal cards.
  */
 export function useCountUp(target: number): number {
   const reduced = useReducedMotion();

@@ -336,7 +336,14 @@
       "filterMarket": "Market Screen (Public)",
       "originInbound": "Inbound · Private",
       "originMarket": "Market screen · Public",
-      "empty": "No deals match this filter."
+      "emptyStage": "No deals at this stage.",
+      "screenSource": "vs the IC Charter",
+      "irrLabel": "Implied IRR",
+      "hurdleLabel": "Mandate hurdle",
+      "bps": "{bps} bps",
+      "atHurdle": "At hurdle",
+      "risk": "Risk {score} / 10",
+      "metricsSource": "Analysis summary · p.{page}"
     },
     "stage": {
       "screening": "Screening",

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { DealCard } from "@/components/deals/deal-card";
@@ -18,10 +19,20 @@ const STAGE_KEY: Record<Deal["stage"], string> = {
   declined: "declined",
 };
 
+/** Stage accents: header dot + the hairline rule under each column header. */
+const STAGE_STYLE: Record<Deal["stage"], { dot: string; rule: string }> = {
+  screening: { dot: "bg-navy-400", rule: "bg-navy-200" },
+  analysis: { dot: "bg-accent", rule: "bg-accent-200" },
+  "ic-review": { dot: "bg-navy", rule: "bg-navy-300" },
+  declined: { dot: "bg-danger", rule: "bg-danger-50" },
+};
+
 /**
- * The pipeline board: origin filter pills (the private→public pivot) over
- * stage-grouped sections of deal cards. Filtering hides cards; empty stage
- * sections collapse away entirely.
+ * The pipeline board: origin filter pills (the private→public pivot) over a
+ * four-column governed flow, Screening → Analysis → IC Review → Declined.
+ * Columns never collapse (the flow IS the story); a filtered-out stage shows
+ * a quiet dashed slot instead. Human-gate markers bridge the column gaps,
+ * echoing the "human decides at every gate" narrative.
  */
 export function PipelineBoard({ deals }: { deals: Deal[] }) {
   const t = useTranslations("deals");
@@ -34,10 +45,10 @@ export function PipelineBoard({ deals }: { deals: Deal[] }) {
   ] as const;
 
   const visible = dealsByOrigin(deals, origin);
-  const sections = STAGES.map((stage) => ({
+  const columns = STAGES.map((stage) => ({
     stage,
     deals: dealsByStage(stage, visible),
-  })).filter((s) => s.deals.length > 0);
+  }));
 
   // stagger index across the whole board (cap 8 per motion law)
   let revealIndex = 0;
@@ -67,45 +78,85 @@ export function PipelineBoard({ deals }: { deals: Deal[] }) {
         ))}
       </div>
 
-      {sections.length === 0 ? (
-        <p className="text-text-secondary py-16 text-center text-[0.9375rem]">
-          {t("board.empty")}
-        </p>
-      ) : (
-        <div className="flex flex-col gap-10">
-          {sections.map(({ stage, deals: stageDeals }) => (
-            <section key={stage} aria-label={t(`stage.${STAGE_KEY[stage]}`)}>
-              <div className="mb-4 flex items-center gap-2">
-                <h2 className="text-text-secondary text-[0.8125rem] font-bold tracking-[0.04em] uppercase">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {columns.map(({ stage, deals: stageDeals }, col) => {
+          const style = STAGE_STYLE[stage];
+          const declined = stage === "declined";
+          return (
+            <section
+              key={stage}
+              aria-label={t(`stage.${STAGE_KEY[stage]}`)}
+              className="relative flex flex-col"
+            >
+              <div className="flex h-6 items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className={cn("rounded-pill size-2 shrink-0", style.dot)}
+                />
+                <h2
+                  className={cn(
+                    "truncate text-[0.8125rem] font-bold tracking-[0.04em] uppercase",
+                    declined ? "text-text-secondary/70" : "text-text-secondary",
+                  )}
+                >
                   {t(`stage.${STAGE_KEY[stage]}`)}
                 </h2>
                 <Badge variant="neutral" size="sm" className="financial">
                   {stageDeals.length}
                 </Badge>
               </div>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {stageDeals.map((deal) => {
-                  const i = Math.min(revealIndex++, 8);
-                  return (
-                    <motion.div
-                      key={`${origin}-${deal.id}`}
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.25,
-                        ease: EASE,
-                        delay: i * 0.035,
-                      }}
-                    >
-                      <DealCard deal={deal} />
-                    </motion.div>
-                  );
-                })}
+
+              {/* human-gate marker bridging this column to the next (xl only) */}
+              {col < columns.length - 1 && (
+                <span
+                  data-testid="human-gate"
+                  title={t("gate.humanGate")}
+                  className="border-border bg-card text-navy-400 rounded-pill absolute -end-6 top-0 z-10 hidden size-6 place-items-center border shadow-[var(--shadow-card)] xl:grid"
+                >
+                  <ArrowRight
+                    className="size-3 rtl:-scale-x-100"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">{t("gate.humanGate")}</span>
+                </span>
+              )}
+
+              <div
+                aria-hidden="true"
+                className={cn("rounded-pill mt-3 h-0.5", style.rule)}
+              />
+
+              <div className="mt-4 flex flex-1 flex-col gap-4">
+                {stageDeals.length === 0 ? (
+                  <div className="border-border rounded-card grid min-h-28 flex-1 place-items-center border border-dashed p-6">
+                    <p className="text-text-secondary/70 text-[0.8125rem]">
+                      {t("board.emptyStage")}
+                    </p>
+                  </div>
+                ) : (
+                  stageDeals.map((deal) => {
+                    const i = Math.min(revealIndex++, 8);
+                    return (
+                      <motion.div
+                        key={`${origin}-${deal.id}`}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.25,
+                          ease: EASE,
+                          delay: i * 0.035,
+                        }}
+                      >
+                        <DealCard deal={deal} />
+                      </motion.div>
+                    );
+                  })
+                )}
               </div>
             </section>
-          ))}
-        </div>
-      )}
+          );
+        })}
+      </div>
     </>
   );
 }
