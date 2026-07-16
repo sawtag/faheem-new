@@ -68,7 +68,10 @@ export function Sidebar({
             aria-label="Faheem"
             className="focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           >
-            <Logo variant="horizontal" size={26} />
+            <Logo
+              variant={locale === "ar" ? "horizontal-ar" : "horizontal"}
+              size={26}
+            />
           </Link>
         )}
         <Tooltip
