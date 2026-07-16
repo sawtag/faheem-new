@@ -2,10 +2,16 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "motion/react";
-import { Folder, PanelLeftClose, PanelLeftOpen, SquarePen } from "lucide-react";
+import {
+  Folder,
+  LogOut,
+  PanelLeftClose,
+  PanelLeftOpen,
+  SquarePen,
+} from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { Logo } from "@/components/ui/logo";
@@ -171,9 +177,48 @@ export function Sidebar({
             </div>
           )}
           <LocaleToggle collapsed={collapsed} />
+          <SignOutButton label={t("signOut")} side={tipSide} />
         </div>
       </div>
     </aside>
+  );
+}
+
+/** Expires the session cookie via DELETE /api/auth; the proxy gate then owns /login. */
+function SignOutButton({
+  label,
+  side,
+}: {
+  label: string;
+  side: "left" | "right";
+}) {
+  const router = useRouter();
+  const [leaving, setLeaving] = React.useState(false);
+
+  async function signOut() {
+    if (leaving) return;
+    setLeaving(true);
+    try {
+      await fetch("/api/auth", { method: "DELETE" });
+      router.push("/login");
+      router.refresh();
+    } finally {
+      setLeaving(false);
+    }
+  }
+
+  return (
+    <Tooltip side={side} content={label}>
+      <button
+        type="button"
+        onClick={signOut}
+        aria-label={label}
+        disabled={leaving}
+        className="text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn grid size-8 shrink-0 place-items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50"
+      >
+        <LogOut className="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </button>
+    </Tooltip>
   );
 }
 

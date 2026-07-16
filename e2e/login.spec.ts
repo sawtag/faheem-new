@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { clickUntil } from "./helpers";
 
 test.describe("login", () => {
   test("unauthenticated visit to / redirects to /login", async ({ page }) => {
@@ -34,6 +35,49 @@ test.describe("login", () => {
         page.getByText("Enter your username and password"),
       ).toBeVisible({ timeout: 1500 });
     }).toPass({ timeout: 20_000 });
+    await expect(page).toHaveURL(/\/login$/);
+  });
+
+  test("day-one button signs in silently and lands on the onboarding welcome", async ({
+    page,
+    context,
+  }) => {
+    await page.goto("/login");
+
+    // click-until-effect: a click landing before hydration attaches the
+    // handler is silently lost under parallel load
+    await clickUntil(
+      page.getByRole("button", { name: "Begin day-one setup" }),
+      () => expect(page).toHaveURL("/onboarding", { timeout: 3000 }),
+    );
+
+    // the silent mock sign-in really happened, and the takeover opens on
+    // its welcome phase
+    const cookies = await context.cookies();
+    expect(cookies.some((c) => c.name === "faheem_session")).toBe(true);
+    await expect(page.getByText("Welcome to Faheem")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Begin setup" }),
+    ).toBeVisible();
+  });
+
+  test("sign out clears the session and the gate returns to /login", async ({
+    page,
+    context,
+    baseURL,
+  }) => {
+    await context.addCookies([
+      { name: "faheem_session", value: "e2e", url: baseURL },
+    ]);
+    await page.goto("/");
+
+    await page.getByRole("button", { name: /sign out/i }).click();
+    await expect(page).toHaveURL(/\/login$/);
+    const cookies = await context.cookies();
+    expect(cookies.some((c) => c.name === "faheem_session")).toBe(false);
+
+    // the gate holds: revisiting / without the cookie lands on /login again
+    await page.goto("/");
     await expect(page).toHaveURL(/\/login$/);
   });
 

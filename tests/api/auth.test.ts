@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { POST } from "@/app/api/auth/route";
+import { DELETE, POST } from "@/app/api/auth/route";
 
 function authRequest(body: unknown): Request {
   return new Request("http://localhost/api/auth", {
@@ -40,5 +40,18 @@ describe("POST /api/auth", () => {
       }),
     );
     expect(res.status).toBe(400);
+  });
+});
+
+describe("DELETE /api/auth", () => {
+  it("expires the session cookie", async () => {
+    const res = await DELETE();
+    expect(res.status).toBe(200);
+
+    const cookie = res.headers.get("set-cookie") ?? "";
+    expect(cookie).toContain("faheem_session=;");
+    expect(cookie).toContain("Max-Age=0");
+    expect(cookie).toContain("HttpOnly");
+    expect(cookie).toContain("Path=/");
   });
 });

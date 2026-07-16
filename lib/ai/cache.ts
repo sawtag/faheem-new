@@ -40,6 +40,15 @@ export function cacheKey(req: ChatRequest): string {
   return createHash("sha1").update(parts.join("|")).digest("hex");
 }
 
+/** How many recorded answers exist (the /settings environment tile). */
+export function recordedAnswerCount(): number {
+  try {
+    return fs.readdirSync(cacheDir()).filter((f) => f.endsWith(".json")).length;
+  } catch {
+    return 0;
+  }
+}
+
 /** Reads + validates a cached entry, or null if absent/corrupt. */
 export function readCacheEntry(key: string): CacheEntry | null {
   const file = path.join(cacheDir(), `${key}.json`);

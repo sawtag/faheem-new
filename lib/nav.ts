@@ -29,8 +29,9 @@ export const PRIMARY_NAV: NavItem[] = [
   { key: "scheduled", href: "/scheduled", icon: "calendar-clock" },
 ];
 
-/** Settings group, governance + integrations. */
+/** Settings group, general + governance + integrations. */
 export const SETTINGS_NAV: NavItem[] = [
+  { key: "general", href: "/settings", icon: "settings-2" },
   { key: "connections", href: "/connections", icon: "link-2" },
   { key: "audit", href: "/audit", icon: "scroll-text" },
 ];

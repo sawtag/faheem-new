@@ -197,6 +197,7 @@ async function* runLive(
   cached: CacheEntry | null,
   client: FaheemClient,
   readFileBytes?: FileReader,
+  reassureOnSlowStart = false,
 ): AsyncGenerator<SSEEvent> {
   const recorded: SSEEvent[] = [];
   const keep = (event: SSEEvent): SSEEvent => {
@@ -217,79 +218,30 @@ async function* runLive(
     return;
   }
 
-  try {
-    for await (const stage of stages(req, config, ctx.docs)) yield keep(stage);
-    let cur = await iter.next();
-    while (!cur.done) {
-      emittedAnswer = true;
-      yield keep(cur.value);
-      cur = await iter.next();
-    }
-    yield keep({ type: "done", cached: false });
-  } catch (err) {
-    logLiveFailure(err);
-    if (emittedAnswer) {
-      yield { type: "error", message: midStreamError(req.lang) };
+  // Auto's slow-start reassurance: race the first token against the timeout;
+  // if it loses, emit the orchestrator "still working" stage and keep waiting.
+  // Auto is cache-first, so reaching here means no recording exists.
+  let first: IteratorResult<SSEEvent> | null = null;
+  if (reassureOnSlowStart) {
+    const firstPromise = iter.next();
+    try {
+      const raced = await raceTimeout(firstPromise, config.timeoutMs);
+      if (raced === TIMEOUT) {
+        yield keep({ type: "stage", agent: "orchestrator", status: "start" });
+        first = await firstPromise;
+      } else {
+        first = raced;
+      }
+    } catch (err) {
+      logLiveFailure(err);
+      yield* fallback(cached, config, req.lang);
       return;
     }
-    yield* fallback(cached, config, req.lang);
-    return;
-  }
-  if (config.record) persist(req, recorded);
-}
-
-async function* runAuto(
-  req: ChatRequest,
-  config: ModeConfig,
-  cached: CacheEntry | null,
-  client: FaheemClient,
-  readFileBytes?: FileReader,
-): AsyncGenerator<SSEEvent> {
-  const recorded: SSEEvent[] = [];
-  const keep = (event: SSEEvent): SSEEvent => {
-    recorded.push(event);
-    return event;
-  };
-  let emittedAnswer = false;
-  let ctx: CorpusContext;
-  let iter: AsyncIterator<SSEEvent>;
-  try {
-    ctx = buildCorpusContext(req, readFileBytes);
-    iter = transform(startModel(req, ctx, client), ctx.docs)[
-      Symbol.asyncIterator
-    ]();
-  } catch (err) {
-    logLiveFailure(err);
-    yield* fallback(cached, config, req.lang);
-    return;
-  }
-
-  // Race the model's first event against the auto-mode first-token timeout.
-  const firstPromise = iter.next();
-  let firstResult: IteratorResult<SSEEvent>;
-  try {
-    const raced = await raceTimeout(firstPromise, config.timeoutMs);
-    if (raced === TIMEOUT) {
-      if (cached) {
-        void iter.return?.(); // stop the abandoned live stream
-        yield* replay(cached, config.replayDelayMs);
-        return;
-      }
-      // No cache: reassure and keep waiting for the (still pending) first token.
-      yield keep({ type: "stage", agent: "orchestrator", status: "start" });
-      firstResult = await firstPromise;
-    } else {
-      firstResult = raced;
-    }
-  } catch (err) {
-    logLiveFailure(err);
-    yield* fallback(cached, config, req.lang);
-    return;
   }
 
   try {
     for await (const stage of stages(req, config, ctx.docs)) yield keep(stage);
-    let cur = firstResult;
+    let cur = first ?? (await iter.next());
     while (!cur.done) {
       emittedAnswer = true;
       yield keep(cur.value);
@@ -342,5 +294,13 @@ export async function* chatEventStream(
     yield* runLive(req, config, cached, client, opts.readFileBytes);
     return;
   }
-  yield* runAuto(req, config, cached, client, opts.readFileBytes);
+  // Auto is cache-first (settings spec 2026-07-16): a recorded question
+  // replays immediately and deterministically; only unrecorded questions go
+  // live, with the slow-start reassurance. Consequence: in auto a recorded
+  // question never produces a fresh live answer, that is live mode's job.
+  if (cached) {
+    yield* replay(cached, config.replayDelayMs);
+    return;
+  }
+  yield* runLive(req, config, null, client, opts.readFileBytes, true);
 }

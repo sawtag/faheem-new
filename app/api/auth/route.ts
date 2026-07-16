@@ -3,6 +3,8 @@
  * password succeeds; there is no real credential check). Sets the
  * `faheem_session` cookie the middleware gate looks for; empty/whitespace-only
  * fields get a 400 so the login screen can render its inline error.
+ * DELETE /api/auth is sign-out: expires the cookie so the proxy gate sends
+ * the next navigation back to /login.
  */
 import { z } from "zod";
 
@@ -40,6 +42,15 @@ export async function POST(request: Request): Promise<Response> {
   response.headers.set(
     "Set-Cookie",
     `${SESSION_COOKIE}=1; Path=/; HttpOnly; SameSite=Lax; Max-Age=${SESSION_MAX_AGE_S}`,
+  );
+  return response;
+}
+
+export async function DELETE(): Promise<Response> {
+  const response = Response.json({ ok: true });
+  response.headers.set(
+    "Set-Cookie",
+    `${SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`,
   );
   return response;
 }
