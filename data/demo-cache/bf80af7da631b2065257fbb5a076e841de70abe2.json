@@ -1,0 +1,1080 @@
+{
+  "key": "bf80af7da631b2065257fbb5a076e841de70abe2",
+  "request": {
+    "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "darb"
+    },
+    "docIds": [
+      "darb-dataroom",
+      "lunar-ic-charter"
+    ]
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "# INVESTMENT COMMITTEE MEMORANDUM\n\n**Target:** Darb Logistics Technology (\"Darb\")\n**"
+    },
+    {
+      "type": "delta",
+      "text": "Round:** Series B · **Ask:** SAR 40,000,000\n**Prepared by:** Faheem, Equ"
+    },
+    {
+      "type": "delta",
+      "text": "ity Research · Lunar Investments\n**Stage:** Analysis-stage memo (Gate 2), compiled from screening-level data"
+    },
+    {
+      "type": "delta",
+      "text": " room materials\n**Status:** Full underlying materials remain under NDA p"
+    },
+    {
+      "type": "delta",
+      "text": "ending advance past screening\n\n---\n\n## 1. Recommendation Summary (analyst judgment)\n\n**Jud"
+    },
+    {
+      "type": "delta",
+      "text": "gment: Advance to full analysis, conditional on receipt of the NDA data room.** The op"
+    },
+    {
+      "type": "delta",
+      "text": "portunity is mandate-compliant on the objective criteria I can verify (sector, ticket, stage, dom"
+    },
+    {
+      "type": "delta",
+      "text": "icile) and shows a growth and retention profile consistent with the firm's underwriting foc"
+    },
+    {
+      "type": "delta",
+      "text": "us. However, the screening pack **omits the post-money valuation, the cap table, and the debt structure**, which means the"
+    },
+    {
+      "type": "delta",
+      "text": " two decision-critical tests, the 15% base-case IRR hurdle and the Shariah qu"
+    },
+    {
+      "type": "delta",
+      "text": "antitative ratios, **cannot yet be evaluated.** This memo should not proceed to a"
+    },
+    {
+      "type": "delta",
+      "text": " Gate 3 vote until those items are closed.\n\n*What would change this view:* a post-money valuation implying an entry multiple that f"
+    },
+    {
+      "type": "delta",
+      "text": "ails the 15% IRR hurdle, or an interest-bearing debt position above the Shariah threshold, would move the recommendation to"
+    },
+    {
+      "type": "delta",
+      "text": " defer or reject.\n\n---\n\n## 2. Company Overview"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "Darb builds f"
+    },
+    {
+      "type": "delta",
+      "text": "leet- and route-optimization software for last-mile and middle-mile logistics operators in the Kingdom. The platform sits between shippers and carrier fleets, providing"
+    },
+    {
+      "type": "delta",
+      "text": " route planning, real-time tracking, proof-of-delivery, and carrier-performance analytics through a single dashboard and API layer."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "darb-dataroom",
+      "page": 2,
+      "quote": "COMPANY PROFILE\r\nDarb builds fleet- and route-optimization software for last-mile and middle-mile logistics operators in the Kingdom. The\r\nplatform sits between shippers and carrier fleets, providing "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "The product is deployed as a subscription SaaS layered on top of the customer's existing fleet, avoiding the asset-heavy econom"
+    },
+    {
+      "type": "delta",
+      "text": "ics of an owned-fleet delivery business."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "darb-dataroom",
+      "page": 2,
+      "quote": "The product is deployed as a subscription SaaS layered on top of the customer's existing fleet,\r\navoiding the asset-heavy economics of an owned-fleet delivery business."
+    },
+    {
+      "type": "delta",
+      "text": " The company was "
+    },
+    {
+      "type": "delta",
+      "text": "founded in 2022, is headquartered in Riy"
+    },
+    {
+      "type": "delta",
+      "text": "adh, and the introduction was inbound via founder outreach to Lunar's private growth-equity desk."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "darb-dataroom",
+      "page": 1,
+      "quote": "AT A GLANCE\r\nCompany Darb Logistics Technology (\"Darb\")\r\nSector Logistics SaaS\r\nHeadquarters Riyadh, Kingdom of Saudi Arabia\r\nFounded 2022\r\nRound Series B\r\nAsk SAR 40,000,000\r\nSource of introduction I"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## 3. Mand"
+    },
+    {
+      "type": "delta",
+      "text": "ate Fit\n\n| Criterion | Mandate requirement | Darb | Status |\n|---|---|---|---|\n| Sector | "
+    },
+    {
+      "type": "delta",
+      "text": "\"Technology\" covers software, marketplaces, fintech infrastructure, and logistics/supply-chain technology"
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Criterion Mandate\r\nSector Technology & Consumer only\r\nTicket size SAR 20,000,000 – SAR 60,000,000 per investment\r\nFinancing stage Series A through Series C\r\nTarget holding period 3 – 5 years\r\nDomicile"
+    },
+    {
+      "type": "delta",
+      "text": " | Logistics SaaS | Pass |"
+    },
+    {
+      "type": "delta",
+      "text": "\n| Ticket size | "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 20,000,000 – SAR 60,000,000 per investment"
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Criterion Mandate\r\nSector Technology & Consumer only\r\nTicket size SAR 20,000,000 – SAR 60,000,000 per investment\r\nFinancing stage Series A through Series C\r\nTarget holding period 3 – 5 years\r\nDomicile"
+    },
+    {
+      "type": "delta",
+      "text": " | SAR 40"
+    },
+    {
+      "type": "delta",
+      "text": "M ask | Pass |\n| Financing stage | "
+    },
+    {
+      "type": "delta",
+      "text": "Series A through Series C"
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Criterion Mandate\r\nSector Technology & Consumer only\r\nTicket size SAR 20,000,000 – SAR 60,000,000 per investment\r\nFinancing stage Series A through Series C\r\nTarget holding period 3 – 5 years\r\nDomicile"
+    },
+    {
+      "type": "delta",
+      "text": " | Series B | Pass |\n| Domicile | "
+    },
+    {
+      "type": "delta",
+      "text": "Kingdom of Saudi Arabia, or GCC operations with a Saudi nexus"
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Criterion Mandate\r\nSector Technology & Consumer only\r\nTicket size SAR 20,000,000 – SAR 60,000,000 per investment\r\nFinancing stage Series A through Series C\r\nTarget holding period 3 – 5 years\r\nDomicile"
+    },
+    {
+      "type": "delta",
+      "text": " | Riyadh,"
+    },
+    {
+      "type": "delta",
+      "text": " KSA | Pass |\n| Screening requirement | "
+    },
+    {
+      "type": "delta",
+      "text": "Shariah pre-screen mandatory before any ticket is issued"
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Criterion Mandate\r\nSector Technology & Consumer only\r\nTicket size SAR 20,000,000 – SAR 60,000,000 per investment\r\nFinancing stage Series A through Series C\r\nTarget holding period 3 – 5 years\r\nDomicile"
+    },
+    {
+      "type": "delta",
+      "text": " | Incomplete (see §6) | Open |\n\nOn the objective mandate criteria, Darb sits squarely within sc"
+    },
+    {
+      "type": "delta",
+      "text": "ope: logistics/supply-chain technology is explicitly named within the Technology definition, and the SAR 40M ask falls m"
+    },
+    {
+      "type": "delta",
+      "text": "id-band in the ticket range.\n\n---\n\n## 4. Financial Profile & Unit Economics\n\nAll figures are "
+    },
+    {
+      "type": "delta",
+      "text": "Darb's own"
+    },
+    {
+      "type": "delta",
+      "text": " reporting, unaudited, as shared at the screening stage."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "darb-dataroom",
+      "page": 3,
+      "quote": "Figures below are Darb's own reporting, unaudited, as shared at the screening stage."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Growth and margin trajectory:"
+    },
+    {
+      "type": "delta",
+      "text": "**\n- "
+    },
+    {
+      "type": "delta",
+      "text": "ARR of SAR 18.2M (FY2025A) rising to a"
+    },
+    {
+      "type": "delta",
+      "text": " forecast SAR 29.5M (FY2026E), a projected 62% YoY growth rate; gross margin of 68% (FY2025A) improving to a"
+    },
+    {
+      "type": "delta",
+      "text": " forecast 71%; net revenue retention of 118% rising to a forecast 124%; and active logo count of 34 grow"
+    },
+    {
+      "type": "delta",
+      "text": "ing to 52."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "darb-dataroom",
+      "page": 3,
+      "quote": "Metric FY2025A FY2026E\r\nAnnual Recurring Revenue (ARR) SAR 18.2M SAR 29.5M\r\nYoY ARR growth — 62%\r\nGross margin 68% 71%\r\nNet revenue retention (NRR) 118% 124%\r\nLogo count (active customers) 34 52\r\nMont"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Retention quality:** The NRR above 118% indicates net expansion within"
+    },
+    {
+      "type": "delta",
+      "text": " the installed base. "
+    },
+    {
+      "type": "delta",
+      "text": "Management reports a blended gross-dollar-retention figure above 90%, with expansion"
+    },
+    {
+      "type": "delta",
+      "text": " driven primarily by additional fleet seats and API call-volume tiers as customers scale delivery volumes on the platform."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "darb-dataroom",
+      "page": 5,
+      "quote": "contract value\r\nQuick-commerce networks 46% SAR 620K/yr\r\nEnterprise shippers 33% SAR 540K/yr\r\nRegional carriers 21% SAR 310K/yr\r\nManagement reports a blended gross-dollar-retention figure above 90%, w"
+    },
+    {
+      "type": "delta",
+      "text": " The combination of GDR above 90% and NRR above 118% is consistent with a low-churn, expansion-led SaaS model,"
+    },
+    {
+      "type": "delta",
+      "text": " though cohort-level data to validate this sits in the NDA room.\n\n**Segment conc"
+    },
+    {
+      "type": "delta",
+      "text": "entration:** "
+    },
+    {
+      "type": "delta",
+      "text": "Quick-commerce networks represent 46% of FY2025A ARR at an average contract value of SAR 620K"
+    },
+    {
+      "type": "delta",
+      "text": "/yr, enterprise shippers 33% at SAR 540K/yr, and regional carriers 21% at SAR 310K/yr."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "darb-dataroom",
+      "page": 5,
+      "quote": "Segment Share of FY2025A ARR Avg. contract value\r\nQuick-commerce networks 46% SAR 620K/yr\r\nEnterprise shippers 33% SAR 540K/yr\r\nRegional carriers 21% SAR 310K/yr\r\nManagement reports a blended gross-do"
+    },
+    {
+      "type": "delta",
+      "text": " *"
+    },
+    {
+      "type": "delta",
+      "text": "Analyst note:* revenue concentration in the quick-commerce segment (46%) warrants scrutiny of customer-"
+    },
+    {
+      "type": "delta",
+      "text": "level concentration in diligence, particularly given that "
+    },
+    {
+      "type": "delta",
+      "text": "quick-commerce d"
+    },
+    {
+      "type": "delta",
+      "text": "ark-store networks are the largest and fastest-growing segment by revenue."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "darb-dataroom",
+      "page": 5,
+      "quote": "CUSTOMERS & UNIT ECONOMICS\r\nDarb's customer base spans three segments: quick-commerce dark-store networks (the largest and fastest-growing segment by\r\nrevenue), enterprise shippers with outsourced las"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Cash and burn:** "
+    },
+    {
+      "type": "delta",
+      "text": "Average monthly cash burn was SAR 1.4M (FY2025A) rising to a forecast SAR 1.9M (FY2026E), with an est"
+    },
+    {
+      "type": "delta",
+      "text": "imated cash runway of approximately 24 months post-round."
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "darb-dataroom",
+      "page": 3,
+      "quote": "Metric FY2025A FY2026E\r\nAnnual Recurring Revenue (ARR) SAR 18.2M SAR 29.5M\r\nYoY ARR growth — 62%\r\nGross margin 68% 71%\r\nNet revenue retention (NRR) 118% 124%\r\nLogo count (active customers) 34 52\r\nMont"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Use of proceeds:** "
+    },
+    {
+      "type": "delta",
+      "text": "Management indicates the SAR 40M Series B is earmarked roughly 55% for go-to-market expansion (enterprise sales, quick-commerce partn"
+    },
+    {
+      "type": "delta",
+      "text": "erships), 30% for product and engineering headcount, and 15% for working capital and runway extension."
+    },
+    {
+      "type": "delta",
+      "text": "[[15]]"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "darb-dataroom",
+      "page": 3,
+      "quote": "SAR 1.4M SAR 1.9M\r\nCash runway at close (post-round) — ~24 months\r\nUse of proceeds\r\nManagement indicates the SAR 40M Series B is earmarked roughly 55% for go-to-market expansion (enterprise sales, qui"
+    },
+    {
+      "type": "delta",
+      "text": " The GTM-"
+    },
+    {
+      "type": "delta",
+      "text": "weighted allocation is consistent with an expansion-stage deployment rather than a runway-preservation ra"
+    },
+    {
+      "type": "delta",
+      "text": "ise.\n\n---\n\n## 5. Valuation\n\n**Cannot be completed at this stage.** The screening pack states the SAR 40M ask but **"
+    },
+    {
+      "type": "delta",
+      "text": "does not disclose a pre- or post-money valuation.** As a result:\n\n- The implied **entry ownership stake cannot be comput"
+    },
+    {
+      "type": "delta",
+      "text": "ed**, so I cannot confirm the deal against the firm's "
+    },
+    {
+      "type": "delta",
+      "text": "target ownership stake of typically 8–"
+    },
+    {
+      "type": "delta",
+      "text": "15% at entry."
+    },
+    {
+      "type": "delta",
+      "text": "[[16]]"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Ticket sizing rationale\r\nThe SAR 20–60M ticket band reflects the firm's target ownership stake (typically 8–15% at entry) at Series A–C valuations\r\nobserved in the Saudi and broader GCC growth-equity "
+    },
+    {
+      "type": "delta",
+      "text": "\n- The **entry ARR multiple cannot be derived** without a valuation.\n- The **15% base-case IRR h"
+    },
+    {
+      "type": "delta",
+      "text": "urdle cannot be underwritten.** The mandate is unambiguous: "
+    },
+    {
+      "type": "delta",
+      "text": "no private growth-equity comm"
+    },
+    {
+      "type": "delta",
+      "text": "itment may be underwritten below a 15% base-case IRR at entry."
+    },
+    {
+      "type": "delta",
+      "text": "[[17]]"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "lunar-ic-charter",
+      "page": 4,
+      "quote": "Limit Threshold\r\nMinimum underwritten IRR (hurdle\r\nrate)\r\n15% at entry, base case\r\nSingle-name concentration cap 10% of AUM, at cost, per portfolio company\r\nSector concentration cap\r\n10% of AUM, at co"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe valuation, entry multiple, and IRR scenario mod"
+    },
+    {
+      "type": "delta",
+      "text": "elling are precisely the work of the analysis stage, which "
+    },
+    {
+      "type": "delta",
+      "text": "produces deep-dive valuation, un"
+    },
+    {
+      "type": "delta",
+      "text": "it economics, scenario modelling, and quantified risk assessment in the analyst's investment memorandum."
+    },
+    {
+      "type": "delta",
+      "text": "[[18]]"
+    },
+    {
+      "type": "citation",
+      "n": 18,
+      "docId": "lunar-ic-charter",
+      "page": 2,
+      "quote": "Analysis\r\nDeep-dive valuation, unit economics, scenario\r\nmodelling, and quantified risk assessment. Produces\r\nthe analyst's investment memorandum."
+    },
+    {
+      "type": "delta",
+      "text": " These require the cap table and pr"
+    },
+    {
+      "type": "delta",
+      "text": "ior-round documentation, which "
+    },
+    {
+      "type": "delta",
+      "text": "are available in the data room under NDA."
+    },
+    {
+      "type": "delta",
+      "text": "[[19]]"
+    },
+    {
+      "type": "citation",
+      "n": 19,
+      "docId": "darb-dataroom",
+      "page": 6,
+      "quote": "Data-room contents (available under NDA)\r\nFull audited/reviewed financial statements FY2023–FY2025\r\nCustomer contracts and cohort-level retention data\r\nCap table and prior round documentation\r\nTechnic"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## 6. Risk Assessment\n\n###"
+    },
+    {
+      "type": "delta",
+      "text": " 6.1 Concentration limits\n- **Single-name:** The SAR 40M ticket against ~SAR "
+    },
+    {
+      "type": "delta",
+      "text": "2.0B AUM represents approximately 2.0% of AUM at cost, well inside the "
+    },
+    {
+      "type": "delta",
+      "text": "single-name concentration cap of 10% of AUM, at cost, per portfolio company."
+    },
+    {
+      "type": "delta",
+      "text": "[[20]]"
+    },
+    {
+      "type": "citation",
+      "n": 20,
+      "docId": "lunar-ic-charter",
+      "page": 4,
+      "quote": "Limit Threshold\r\nMinimum underwritten IRR (hurdle\r\nrate)\r\n15% at entry, base case\r\nSingle-name concentration cap 10% of AUM, at cost, per portfolio company\r\nSector concentration cap\r\n10% of AUM, at co"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Sector:**"
+    },
+    {
+      "type": "delta",
+      "text": " Darb sits in the Technology & Consumer combined bucket. The "
+    },
+    {
+      "type": "delta",
+      "text": "sector concentration cap is 10% of AUM,"
+    },
+    {
+      "type": "delta",
+      "text": " at cost."
+    },
+    {
+      "type": "delta",
+      "text": "[[21]]"
+    },
+    {
+      "type": "citation",
+      "n": 21,
+      "docId": "lunar-ic-charter",
+      "page": 4,
+      "quote": "Limit Threshold\r\nMinimum underwritten IRR (hurdle\r\nrate)\r\n15% at entry, base case\r\nSingle-name concentration cap 10% of AUM, at cost, per portfolio company\r\nSector concentration cap\r\n10% of AUM, at co"
+    },
+    {
+      "type": "delta",
+      "text": " This ticket alone is immaterial to the cap, but the"
+    },
+    {
+      "type": "delta",
+      "text": " test is calculated "
+    },
+    {
+      "type": "delta",
+      "text": "post-deal, inclusive of the"
+    },
+    {
+      "type": "delta",
+      "text": " proposed new ticket, against total firm AUM at the time of the screening decision."
+    },
+    {
+      "type": "delta",
+      "text": "[[22]]"
+    },
+    {
+      "type": "citation",
+      "n": 22,
+      "docId": "lunar-ic-charter",
+      "page": 4,
+      "quote": "Concentration limits\r\nThe 10% single-name and 10% sector caps are calculated post-deal, i.e. inclusive of the proposed new ticket, against total\r\nfirm AUM at the time of the screening decision."
+    },
+    {
+      "type": "delta",
+      "text": " *Open item:* confirm current a"
+    },
+    {
+      "type": "delta",
+      "text": "ggregate private-book sector exposure to verify headroom.\n\n### 6.2 Shariah pre-screen (incomplete)\nThe "
+    },
+    {
+      "type": "delta",
+      "text": "pre-screen"
+    },
+    {
+      "type": "delta",
+      "text": " is required before capital may be committed"
+    },
+    {
+      "type": "delta",
+      "text": "[[23]]"
+    },
+    {
+      "type": "citation",
+      "n": 23,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "SHARIAH SCREENING POLICY & EXCLUSION CHECKS\r\nShariah pre-screen (AAOIFI-style methodology)\r\nEvery opportunity — public or private — is subject to a rules-based Shariah pre-screen before capital may be"
+    },
+    {
+      "type": "delta",
+      "text": " and rests on three tests:\n- **Business activity:** Logistics SaaS is a permissible"
+    },
+    {
+      "type": "delta",
+      "text": " core activity; it does not fall within the "
+    },
+    {
+      "type": "delta",
+      "text": "excluded activities of conventional banking/insurance, alcohol, gambling,"
+    },
+    {
+      "type": "delta",
+      "text": " or conventional financial services."
+    },
+    {
+      "type": "delta",
+      "text": "[[24]]"
+    },
+    {
+      "type": "citation",
+      "n": 24,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": " Provisional pass.\n- **Interest-bearing debt ratio:** "
+    },
+    {
+      "type": "delta",
+      "text": "Interest-bear"
+    },
+    {
+      "type": "delta",
+      "text": "ing debt must be below 33% of the post-money valuation used at screening."
+    },
+    {
+      "type": "delta",
+      "text": "[[25]]"
+    },
+    {
+      "type": "citation",
+      "n": 25,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": " **Cannot be assessed** without the"
+    },
+    {
+      "type": "delta",
+      "text": " debt position and post-money valuation.\n- **Non-permissible income ratio:** "
+    },
+    {
+      "type": "delta",
+      "text": "Income from non-permissible sources must be below 5%"
+    },
+    {
+      "type": "delta",
+      "text": " of total revenue."
+    },
+    {
+      "type": "delta",
+      "text": "[[26]]"
+    },
+    {
+      "type": "citation",
+      "n": 26,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Test Threshold\r\nBusiness activity\r\nCore activity must be Shariah-permissible (excludes conventional banking/insurance, alcohol,\r\ngambling, conventional financial services, and similarly excluded activ"
+    },
+    {
+      "type": "delta",
+      "text": " **Cannot be assessed** without a revenue-source breakdown.\n\n*Note:* a failure on either quantitative ratio does"
+    },
+    {
+      "type": "delta",
+      "text": " not force exclusion; "
+    },
+    {
+      "type": "delta",
+      "text": "a company failing either quantitative ratio is flagged and referred to the"
+    },
+    {
+      "type": "delta",
+      "text": " Committee for a purification-and-waiver discussion rather than an automatic exclusion."
+    },
+    {
+      "type": "delta",
+      "text": "[[27]]"
+    },
+    {
+      "type": "citation",
+      "n": 27,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "A company failing either quantitative ratio is flagged and\r\nreferred to the Committee for a purification-and-waiver discussion rather than an automatic exclusion, consistent with\r\nstandard AAOIFI prac"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n### 6.3 Red"
+    },
+    {
+      "type": "delta",
+      "text": "-flag checks\nThe "
+    },
+    {
+      "type": "delta",
+      "text": "standard set of red-flag checks (sanctions screening, conflicts of interest, related"
+    },
+    {
+      "type": "delta",
+      "text": "-party exposure, and litigation/regulatory history)"
+    },
+    {
+      "type": "delta",
+      "text": "[[28]]"
+    },
+    {
+      "type": "citation",
+      "n": 28,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "Red-flag & exclusion checks\r\nAlongside the Shariah pre-screen, every opportunity is run through a standard set of red-flag checks before it may advance\r\npast screening:\r\nSanctions screening — founders"
+    },
+    {
+      "type": "delta",
+      "text": " must be cleared, and "
+    },
+    {
+      "type": "delta",
+      "text": "a clean pass on all four is required before an"
+    },
+    {
+      "type": "delta",
+      "text": " opportunity may advance to the analysis stage."
+    },
+    {
+      "type": "delta",
+      "text": "[[29]]"
+    },
+    {
+      "type": "citation",
+      "n": 29,
+      "docId": "lunar-ic-charter",
+      "page": 5,
+      "quote": "A clean pass on all four checks is required before an opportunity may advance to the analysis stage; any flag is escalated to\r\nthe Head of Risk for a documented decision."
+    },
+    {
+      "type": "delta",
+      "text": " These are not evidenced in the screening pack and must be docum"
+    },
+    {
+      "type": "delta",
+      "text": "ented.\n\n### 6.4 Business-model risks (analyst observations)\n- **Competitive mo"
+    },
+    {
+      "type": "delta",
+      "text": "at:** "
+    },
+    {
+      "type": "delta",
+      "text": "Darb's most direct competition is in-house tooling built by large logistics operators and quick-commerce platfor"
+    },
+    {
+      "type": "delta",
+      "text": "ms themselves, rather than a single dominant third-party vendor; management's stated wedge is faster time-to-deploy than an in-house build,"
+    },
+    {
+      "type": "delta",
+      "text": " plus a routing engine tuned for Saudi urban delivery density."
+    },
+    {
+      "type": "delta",
+      "text": "[[30]]"
+    },
+    {
+      "type": "citation",
+      "n": 30,
+      "docId": "darb-dataroom",
+      "page": 6,
+      "quote": "COMPETITIVE LANDSCAPE\r\nDarb's most direct competition is in-house tooling built by large logistics operators and quick-commerce platforms themselves,\r\nrather than a single dominant third-party vendor."
+    },
+    {
+      "type": "delta",
+      "text": " The build-versus-buy dynamic with the same"
+    },
+    {
+      "type": "delta",
+      "text": " customers who are the largest revenue segment is a structural risk to defensibility."
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Institutional readiness:** "
+    },
+    {
+      "type": "delta",
+      "text": "The company has not previously raised from institutional growth-equity investors"
+    },
+    {
+      "type": "delta",
+      "text": "[[31]]"
+    },
+    {
+      "type": "citation",
+      "n": 31,
+      "docId": "darb-dataroom",
+      "page": 3,
+      "quote": "Existing investors\r\nDarb's Series A was led by a regional seed/early-stage fund with participation from two Saudi angel investors; the company has\r\nnot previously raised from institutional growth-equi"
+    },
+    {
+      "type": "delta",
+      "text": ", so governance, reporting cadence, and diligence maturity should be pressure-tested.\n- **Financials un"
+    },
+    {
+      "type": "delta",
+      "text": "audited:** all screening figures are unaudited; "
+    },
+    {
+      "type": "delta",
+      "text": "full audited/reviewed financial statements for FY2023"
+    },
+    {
+      "type": "delta",
+      "text": "–FY2025 are in the NDA data room"
+    },
+    {
+      "type": "delta",
+      "text": "[[32]]"
+    },
+    {
+      "type": "citation",
+      "n": 32,
+      "docId": "darb-dataroom",
+      "page": 6,
+      "quote": "Data-room contents (available under NDA)\r\nFull audited/reviewed financial statements FY2023–FY2025\r\nCustomer contracts and cohort-level retention data\r\nCap table and prior round documentation\r\nTechnic"
+    },
+    {
+      "type": "delta",
+      "text": " and must be reconciled before any IC vote.\n\n---\n\n## 7. Open Diligence Items (must"
+    },
+    {
+      "type": "delta",
+      "text": " close before Gate 3)\n\n1. Post-money valuation and cap table → to compute ownership stake, entry multiple, and the"
+    },
+    {
+      "type": "delta",
+      "text": " **15% IRR** hurdle test.\n2. Interest-bearing debt position → to complete the **Shariah debt rat"
+    },
+    {
+      "type": "delta",
+      "text": "io** test.\n3. Revenue-source breakdown → to complete the **non-permissible income** test.\n4. Documented clearance of all four **red-flag checks**."
+    },
+    {
+      "type": "delta",
+      "text": "\n5. Customer-level concentration within the quick-commerce segment.\n6. Reconciliation of unaudited figures against the **FY2023–FY2"
+    },
+    {
+      "type": "delta",
+      "text": "025 audited statements**.\n\n---\n\n## 8. Process Note\n\nThis memo is advisory and non-decisional. Consistent with the Charter, "
+    },
+    {
+      "type": "delta",
+      "text": "any advisory tooling used in preparation is explicitly non-decisional; it may rank, compare, and flag s"
+    },
+    {
+      "type": "delta",
+      "text": "ensitivities, but the Committee alone decides."
+    },
+    {
+      "type": "delta",
+      "text": "[[33]]"
+    },
+    {
+      "type": "citation",
+      "n": 33,
+      "docId": "lunar-ic-charter",
+      "page": 2,
+      "quote": "Any advisory tooling used in preparation is explicitly non-decisional — it may rank, compare, and\r\nflag sensitivities, but the Committee alone decides."
+    },
+    {
+      "type": "delta",
+      "text": " The final decision rests with "
+    },
+    {
+      "type": "delta",
+      "text": "the Investment Committee, humans only, which votes to"
+    },
+    {
+      "type": "delta",
+      "text": " approve, defer, or reject."
+    },
+    {
+      "type": "delta",
+      "text": "[[34]]"
+    },
+    {
+      "type": "citation",
+      "n": 34,
+      "docId": "lunar-ic-charter",
+      "page": 2,
+      "quote": "Gate 3: the Investment Committee — humans only — votes to approve, defer, or reject."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n*Note on availability:* certain items required"
+    },
+    {
+      "type": "delta",
+      "text": " to complete valuation and the Shariah quantitative tests (post-money valuation, cap table, debt schedule, rev"
+    },
+    {
+      "type": "delta",
+      "text": "enue-source detail) are not in the connected screening pack and reside in the NDA data room. Any"
+    },
+    {
+      "type": "delta",
+      "text": " external comparables or market-sizing validation is not in my connected sources. In the M"
+    },
+    {
+      "type": "delta",
+      "text": "VP this routes to web, Bloomberg, or PitchBook connectors."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-16T04:17:47.295Z"
+}

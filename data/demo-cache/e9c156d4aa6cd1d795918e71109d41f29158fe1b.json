@@ -1,0 +1,467 @@
+{
+  "key": "e9c156d4aa6cd1d795918e71109d41f29158fe1b",
+  "request": {
+    "question": "What are our top 3 positions in the public equities book? Show the sell-side analyst ratings on each, and how much I can add or trim per name before we hit our strategy bands on sector and geography.",
+    "lang": "en",
+    "context": {
+      "kind": "firm"
+    },
+    "docIds": [
+      "lunar-public-book",
+      "lunar-ic-charter"
+    ]
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "orchestrator",
+      "status": "start",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "orchestrator",
+      "status": "done",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "## Top 3 Positions, Public Equities Book (by market value, 30 June 2026"
+    },
+    {
+      "type": "delta",
+      "text": ")\n\n| Rank | Name | Sector | Market value | % of book |\n|------|------|--------|-------------|-----------|\n| 1 | Al Rajhi Bank | Financials"
+    },
+    {
+      "type": "delta",
+      "text": " | SAR 588.0M | 31.9% |\n| 2 | Saudi Aramco | Energy | SAR 278.9M | 15.1% |\n| 3 | SABIC | Materials"
+    },
+    {
+      "type": "delta",
+      "text": " | SAR 249.0M | 13.5% |"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "Al Rajhi Bank holds 6,000,000 shares"
+    },
+    {
+      "type": "delta",
+      "text": " at a SAR 98.00 close for SAR 588.00M (31.9% of book); Saudi Aramco holds 11,200,000 shares at SAR"
+    },
+    {
+      "type": "delta",
+      "text": " 24.90 for SAR 278.88M (15.1%); SABIC holds 3,750,000 shares at SAR 66.40 for SAR 249.00M (13.5%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "lunar-public-book",
+      "page": 1,
+      "quote": "MARKET VALUE\r\nSAR 1,842.9M\r\nCOST\r\nSAR 1,780.0M\r\nUNREALIZED\r\n+SAR 62.9M\r\n(+3.5%)\r\nPOSITIONS\r\n14\r\nAS OF\r\n30 Jun 2026\r\nCompany Ticker Sector Shares\r\nClose\r\n(SAR)\r\nMarket value\r\n(SAR M)\r\n% of\r\nbook\r\nCost "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## Sell-Side Consensus (compiled 13 July 2026)\n\n**1. Al Rajhi Bank (1120"
+    },
+    {
+      "type": "delta",
+      "text": ")** "
+    },
+    {
+      "type": "delta",
+      "text": "9 houses covering: 5 Overweight, 2 Buy, 2 Hold, 0 Underweight; consensus TP SAR"
+    },
+    {
+      "type": "delta",
+      "text": " 104.50, implied upside +6.6%."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "Company\r\nHouses\r\ncovering\r\nOverweight Buy Hold Underweight\r\nConsensus TP\r\n(SAR)\r\nImplied\r\nupside\r\nAl Rajhi Bank 9 5 2 2 0 104.50 +6.6%\r\nSaudi Aramco 8 2 1 5 0 27.20 +9.2%\r\nSABIC 8 0 3 3 2 69.50 +4.7%\r"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "Overweight: Aljaz"
+    },
+    {
+      "type": "delta",
+      "text": "ira Capital, GIB Capital, Arqaam Capital, Kamco Invest, Riyad"
+    },
+    {
+      "type": "delta",
+      "text": " Capital; Buy: Albilad Capital, EFG Hermes; Hold: SICO"
+    },
+    {
+      "type": "delta",
+      "text": ", Markaz."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "Company\r\nHouses\r\ncovering\r\nOverweight Buy Hold Underweight\r\nConsensus TP\r\n(SAR)\r\nImplied\r\nupside\r\nAl Rajhi Bank 9 5 2 2 0 104.50 +6.6%\r\nSaudi Aramco 8 2 1 5 0 27.20 +9.2%\r\nSABIC 8 0 3 3 2 69.50 +4.7%\r"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**2. Saudi Aramco (2222)** "
+    },
+    {
+      "type": "delta",
+      "text": "8 houses covering: 2 Overweight, 1"
+    },
+    {
+      "type": "delta",
+      "text": " Buy, 5 Hold, 0 Underweight; consensus TP SAR 27.20, implied upside +9.2%."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "Company\r\nHouses\r\ncovering\r\nOverweight Buy Hold Underweight\r\nConsensus TP\r\n(SAR)\r\nImplied\r\nupside\r\nAl Rajhi Bank 9 5 2 2 0 104.50 +6.6%\r\nSaudi Aramco 8 2 1 5 0 27.20 +9.2%\r\nSABIC 8 0 3 3 2 69.50 +4.7%\r"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "Over"
+    },
+    {
+      "type": "delta",
+      "text": "weight: Aljazira Capital, Riyad Capital; Buy: EFG Hermes; Hold: Albilad Capital, GIB Capital, Arqaam Capital, S"
+    },
+    {
+      "type": "delta",
+      "text": "ICO, Kamco Invest."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "Saudi Aramco Overweight: Aljazira Capital, Riyad Capital · Buy: EFG Hermes · Hold: Albilad Capital, GIB\r\nCapital, Arqaam Capital, SICO, Kamco Invest."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**3. SABIC (2010)** "
+    },
+    {
+      "type": "delta",
+      "text": "8 houses covering: 0 Overweight, 3"
+    },
+    {
+      "type": "delta",
+      "text": " Buy, 3 Hold, 2 Underweight; consensus TP SAR 69.50, implied upside +4.7%."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "Company\r\nHouses\r\ncovering\r\nOverweight Buy Hold Underweight\r\nConsensus TP\r\n(SAR)\r\nImplied\r\nupside\r\nAl Rajhi Bank 9 5 2 2 0 104.50 +6.6%\r\nSaudi Aramco 8 2 1 5 0 27.20 +9.2%\r\nSABIC 8 0 3 3 2 69.50 +4.7%\r"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "Bu"
+    },
+    {
+      "type": "delta",
+      "text": "y: GIB Capital, Kamco Invest, Albilad Capital; Hold: Aljazira Capital, SICO, EFG Hermes; Underweight: Arqaam Capital"
+    },
+    {
+      "type": "delta",
+      "text": ", Markaz."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "SABIC Buy: GIB Capital, Kamco Invest, Albilad Capital · Hold: Aljazira Capital, SICO, EFG Hermes ·\r\nUnderweight: Arqaam Capital, Markaz."
+    },
+    {
+      "type": "delta",
+      "text": "\n\nNote on methodology: "
+    },
+    {
+      "type": "delta",
+      "text": "consensus TP is the arithmetic mean of the"
+    },
+    {
+      "type": "delta",
+      "text": " covering houses' 12-month targets, with upside measured vs the 30 June 2026 close."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "lunar-public-book",
+      "page": 2,
+      "quote": "House ratings as published on each broker research portal; consensus TP is the arithmetic mean of the covering houses' 12-month targets;\r\nupside vs the 30 June 2026 close."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n## Add / Trim Headroom to Strategy Bands"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nHeadroom is enforced at the sector-band level; each name below inherits its sector's status.\n\n**Al Raj"
+    },
+    {
+      "type": "delta",
+      "text": "hi Bank (Financials): TRIM at least SAR 35.1M.** "
+    },
+    {
+      "type": "delta",
+      "text": "Financials sits at 31.9%"
+    },
+    {
+      "type": "delta",
+      "text": " vs a 22-30% band, above band."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "lunar-public-book",
+      "page": 3,
+      "quote": "Sector Market value (SAR M) Weight Band Status Headroom (SAR M)\r\nFinancials 588.00 31.9% 22-30% Above band Trim at least 35.1\r\nMaterials 374.65 20.3% 15-22% In band Add up to 30.8\r\nEnergy 278.88 15.1%"
+    },
+    {
+      "type": "delta",
+      "text": " This name is also the single binding constraint: "
+    },
+    {
+      "type": "delta",
+      "text": "no issuer may exceed 30% of the public book, and Al Rajhi Bank stands at 31.9%, above both the cap and the Financials band"
+    },
+    {
+      "type": "delta",
+      "text": " top; a trim of at least SAR 35.1M restores both (to 30.0%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "lunar-public-book",
+      "page": 3,
+      "quote": "Al Rajhi Bank stands at 31.9%, above both the\r\ncap and the Financials band top; a trim of at least SAR 35.1M restores both (to 30.0%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Saudi Aramco (Energy): ADD up to SAR 52."
+    },
+    {
+      "type": "delta",
+      "text": "8M.** "
+    },
+    {
+      "type": "delta",
+      "text": "Energy sits at 15.1% vs a 10-18% band, in band, with headroom to add up to SAR 52.8M."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "lunar-public-book",
+      "page": 3,
+      "quote": "Sector Market value (SAR M) Weight Band Status Headroom (SAR M)\r\nFinancials 588.00 31.9% 22-30% Above band Trim at least 35.1\r\nMaterials 374.65 20.3% 15-22% In band Add up to 30.8\r\nEnergy 278.88 15.1%"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**SABIC (Materials): ADD up to SAR 30.8M.** "
+    },
+    {
+      "type": "delta",
+      "text": "Materials sits at 20.3% vs a 15-22% band, in band"
+    },
+    {
+      "type": "delta",
+      "text": ", with headroom to add up to SAR 30.8M."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "lunar-public-book",
+      "page": 3,
+      "quote": "Sector Market value (SAR M) Weight Band Status Headroom (SAR M)\r\nFinancials 588.00 31.9% 22-30% Above band Trim at least 35.1\r\nMaterials 374.65 20.3% 15-22% In band Add up to 30.8\r\nEnergy 278.88 15.1%"
+    },
+    {
+      "type": "delta",
+      "text": " Note: this SAR 30.8M is the Materials-sector head"
+    },
+    {
+      "type": "delta",
+      "text": "room shared across SABIC, SIPCHEM and Yansab combined, not ex"
+    },
+    {
+      "type": "delta",
+      "text": "clusive to SABIC. Any single-name add would also need to respect the 30%-of-book issuer c"
+    },
+    {
+      "type": "delta",
+      "text": "ap, though SABIC at 13.5% is well clear of that.\n\n## Geography\n\nThere is no geographic add/trim room"
+    },
+    {
+      "type": "delta",
+      "text": " to work with: "
+    },
+    {
+      "type": "delta",
+      "text": "the book is 100.0% Saudi Arabia, and"
+    },
+    {
+      "type": "delta",
+      "text": " the IC Charter mandates Tadawul-listed instruments only for the public book, so there is no non-KSA capacity under the current mandate; MENA"
+    },
+    {
+      "type": "delta",
+      "text": " ex-KSA exposure would require a Charter amendment."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "lunar-public-book",
+      "page": 3,
+      "quote": "·\r\nGeography: the book is 100.0% Saudi Arabia. The IC Charter mandates Tadawul-listed instruments only for the\r\npublic book, so there is no non-KSA capacity under the current mandate; MENA ex-KSA expo"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nA methodology flag wor"
+    },
+    {
+      "type": "delta",
+      "text": "th noting for how these numbers should be actioned: "
+    },
+    {
+      "type": "delta",
+      "text": "trim and add amounts are comput"
+    },
+    {
+      "type": "delta",
+      "text": "ed holding total book value constant (trims redeployed within the book, additions funded from the liquidity sleeve)."
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "lunar-public-book",
+      "page": 3,
+      "quote": "·\r\nMethodology: trim and add amounts are computed holding total book value constant (trims redeployed within the\r\nbook, additions funded from the liquidity sleeve)."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-16T04:16:39.291Z"
+}
