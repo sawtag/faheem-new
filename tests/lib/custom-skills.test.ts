@@ -7,6 +7,7 @@ import {
   CustomSkillSchema,
   listCustomSkills,
   removeCustomSkill,
+  updateCustomSkill,
 } from "@/lib/custom-skills";
 
 let storeFile: string;
@@ -117,6 +118,54 @@ describe("lib/custom-skills", () => {
 
     fs.writeFileSync(storeFile, JSON.stringify([{ nope: true }]));
     expect(listCustomSkills()).toEqual([]);
+  });
+
+  it("a legacy entry without author/enabled parses with defaults (user, true)", () => {
+    useTempStore();
+    fs.mkdirSync(path.dirname(storeFile), { recursive: true });
+    fs.writeFileSync(
+      storeFile,
+      JSON.stringify([
+        {
+          id: "custom-legacy",
+          name: "Legacy Skill",
+          category: "valuation",
+          description: "Written before author/enabled existed on the schema.",
+          prefill: "A prefill that is definitely long enough to pass here.",
+          createdAt: "2026-07-15T00:00:00.000Z",
+        },
+      ]),
+    );
+    const listed = listCustomSkills();
+    expect(listed).toHaveLength(1);
+    expect(listed[0]?.author).toBe("user");
+    expect(listed[0]?.enabled).toBe(true);
+  });
+
+  it("updateCustomSkill patches fields in place and preserves the rest", () => {
+    useTempStore();
+    const skill = addCustomSkill({
+      name: "Patch Target",
+      category: "valuation",
+      description: "A skill created to be edited by this unit test.",
+      prefill: "A prefill that is definitely long enough to pass here.",
+    });
+    const updated = updateCustomSkill(skill.id, {
+      description: "A freshly edited description of sufficient length.",
+      enabled: false,
+    });
+    expect(updated?.description).toBe(
+      "A freshly edited description of sufficient length.",
+    );
+    expect(updated?.enabled).toBe(false);
+    expect(updated?.name).toBe("Patch Target");
+    expect(updated?.author).toBe("user");
+    expect(listCustomSkills()[0]).toEqual(updated);
+  });
+
+  it("updateCustomSkill returns null for an unknown id", () => {
+    useTempStore();
+    expect(updateCustomSkill("custom-nope", { enabled: false })).toBeNull();
   });
 
   it("schema rejects a bad category", () => {

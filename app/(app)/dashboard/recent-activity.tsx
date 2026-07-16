@@ -5,10 +5,10 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowRight,
-  Bot,
   CheckCheck,
   FileOutput,
   Mail,
+  Pencil,
   MessageSquareText,
   SlidersHorizontal,
   Trash2,
@@ -25,9 +25,8 @@ const ACTION_ICON = {
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
   "ic-draft": Mail,
-  "agent-created": Bot,
-  "agent-deleted": Trash2,
   "skill-created": Wrench,
+  "skill-updated": Pencil,
   "skill-deleted": Trash2,
 } as const;
 
@@ -174,9 +173,8 @@ function ActivityFeed({
     "stage-advance": tAudit("actionScreening"),
     "model-edit": tAudit("actionModelEdit"),
     "ic-draft": tAudit("actionIcDraft"),
-    "agent-created": tAudit("actionAgentCreated"),
-    "agent-deleted": tAudit("actionAgentDeleted"),
     "skill-created": tAudit("actionSkillCreated"),
+    "skill-updated": tAudit("actionSkillUpdated"),
     "skill-deleted": tAudit("actionSkillDeleted"),
   };
 

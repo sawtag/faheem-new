@@ -4,7 +4,15 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "motion/react";
-import { CircleAlert, Plus, Sparkles, Trash2, Wrench } from "lucide-react";
+import {
+  CircleAlert,
+  Copy,
+  Pencil,
+  Plus,
+  Sparkles,
+  Trash2,
+  Wrench,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,6 +23,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { publishGoldenSelection } from "@/lib/demo/golden-bus";
 import { cn } from "@/lib/utils";
@@ -23,33 +32,60 @@ import type { CustomSkill } from "@/lib/custom-skills";
 import type { Lang } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
+const DIM =
+  "opacity-55 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease)]";
 
 const NAME_MIN = 2;
-const NAME_MAX = 60;
+export const NAME_MAX = 60;
 const DESC_MIN = 10;
-const DESC_MAX = 200;
+export const DESC_MAX = 200;
 const PREFILL_MIN = 10;
 const PREFILL_MAX = 2000;
 
+/** The four user-editable fields, used to seed the dialog in copy mode. */
+export interface SkillDraft {
+  name: string;
+  category: SkillCategory;
+  description: string;
+  prefill: string;
+}
+
+/** What the skill dialog is doing: creating blank, creating from a copy, or editing in place. */
+export type SkillDialogMode =
+  | { kind: "add" }
+  | { kind: "copy"; initial: SkillDraft }
+  | { kind: "edit"; skill: CustomSkill };
+
+const ICON_BUTTON =
+  "text-text-secondary focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn grid size-8 shrink-0 place-items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-55";
+
 /**
- * One user-created skill card: same Card visual family as SkillCard, a
- * Wrench icon tile in place of the registry's per-skill lucide icon, a
- * Custom badge, and a Run button that fires the exact prefill mechanism a
+ * One store-backed skill card (Lunar-authored seed or the analyst's own):
+ * same Card visual family as SkillCard, a Wrench icon tile in place of the
+ * registry's per-skill lucide icon, an author badge (Lunar vs Custom), and
+ * the full lifecycle the built-in registry deliberately lacks: toggle
+ * (persisted via PATCH, dims like the registry toggle without gating Run),
+ * edit, copy, delete. Run fires the exact prefill mechanism a
  * `prefill`-mapped registry skill uses (see run-skill.ts's prefill branch):
  * publish onto the golden-bus, then navigate to a fresh firm-context chat.
- * `fixedLang` hints don't apply here; this is the user's own typed text,
- * run as-is.
  */
 export function CustomSkillCard({
   skill,
   onDeleted,
+  onEdit,
+  onCopy,
+  onToggled,
 }: {
   skill: CustomSkill;
   onDeleted: () => void;
+  onEdit: () => void;
+  onCopy: () => void;
+  onToggled: (skill: CustomSkill) => void;
 }) {
   const t = useTranslations("skills");
   const router = useRouter();
   const [deleting, setDeleting] = React.useState(false);
+  const on = skill.enabled;
 
   function onRun() {
     publishGoldenSelection({
@@ -57,6 +93,22 @@ export function CustomSkillCard({
       text: skill.prefill,
     });
     router.push("/chat/new?context=firm");
+  }
+
+  async function handleToggle(next: boolean) {
+    onToggled({ ...skill, enabled: next }); // optimistic; server confirms below
+    try {
+      const res = await fetch("/api/skills", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: skill.id, enabled: next }),
+      });
+      if (!res.ok) throw new Error();
+      const data = (await res.json()) as { skill: CustomSkill };
+      onToggled(data.skill);
+    } catch {
+      onToggled(skill); // revert on failure
+    }
   }
 
   async function handleDelete() {
@@ -79,29 +131,33 @@ export function CustomSkillCard({
   }
 
   return (
-    <Card hover data-testid={`skill-card-${skill.id}`}>
+    <Card hover data-testid={`skill-card-${skill.id}`} data-dimmed={!on}>
       <div className="flex items-start justify-between gap-3">
-        <span className="bg-accent-50 text-accent-700 rounded-btn grid size-10 shrink-0 place-items-center">
+        <span
+          className={cn(
+            "bg-accent-50 text-accent-700 rounded-btn grid size-10 shrink-0 place-items-center",
+            !on && "grayscale",
+          )}
+        >
           <Wrench className="size-5" aria-hidden="true" />
         </span>
-        <Tooltip content={t("deleteSkill")}>
-          <button
-            type="button"
-            onClick={handleDelete}
-            disabled={deleting}
-            aria-label={t("deleteSkill")}
-            data-testid={`custom-skill-delete-${skill.id}`}
-            className="text-text-secondary hover:bg-danger-50 hover:text-danger focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn grid size-8 shrink-0 place-items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-55"
-          >
-            <Trash2 className="size-4" aria-hidden="true" />
-          </button>
-        </Tooltip>
+        <Toggle
+          checked={on}
+          onCheckedChange={handleToggle}
+          aria-label={skill.name}
+          data-testid={`custom-skill-toggle-${skill.id}`}
+        />
       </div>
 
-      <div className="mt-4 flex flex-col gap-3">
+      <div className={cn("mt-4 flex flex-col gap-3", !on && DIM)}>
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="text-navy text-base font-bold">{skill.name}</h3>
-          <Badge size="sm">{t("customBadge")}</Badge>
+          <Badge
+            size="sm"
+            variant={skill.author === "lunar" ? "navy" : "neutral"}
+          >
+            {skill.author === "lunar" ? t("lunarBadge") : t("customBadge")}
+          </Badge>
         </div>
         <span className="text-text-secondary text-xs font-medium">
           {t(`categories.${skill.category}`)}
@@ -109,10 +165,50 @@ export function CustomSkillCard({
         <p className="text-text-secondary text-sm">{skill.description}</p>
       </div>
 
-      <div className="border-border mt-5 flex items-center justify-end border-t pt-4">
+      <div className="border-border mt-5 flex items-center justify-between gap-3 border-t pt-4">
+        <div className="flex items-center gap-1">
+          <Tooltip content={t("edit")}>
+            <button
+              type="button"
+              onClick={onEdit}
+              aria-label={t("edit")}
+              data-testid={`custom-skill-edit-${skill.id}`}
+              className={cn(ICON_BUTTON, "hover:bg-navy-50 hover:text-navy")}
+            >
+              <Pencil className="size-4" aria-hidden="true" />
+            </button>
+          </Tooltip>
+          <Tooltip content={t("copy")}>
+            <button
+              type="button"
+              onClick={onCopy}
+              aria-label={t("copy")}
+              data-testid={`custom-skill-copy-${skill.id}`}
+              className={cn(ICON_BUTTON, "hover:bg-navy-50 hover:text-navy")}
+            >
+              <Copy className="size-4" aria-hidden="true" />
+            </button>
+          </Tooltip>
+          <Tooltip content={t("deleteSkill")}>
+            <button
+              type="button"
+              onClick={handleDelete}
+              disabled={deleting}
+              aria-label={t("deleteSkill")}
+              data-testid={`custom-skill-delete-${skill.id}`}
+              className={cn(
+                ICON_BUTTON,
+                "hover:bg-danger-50 hover:text-danger",
+              )}
+            >
+              <Trash2 className="size-4" aria-hidden="true" />
+            </button>
+          </Tooltip>
+        </div>
         <Button
           size="sm"
           onClick={onRun}
+          className={cn(!on && DIM)}
           data-testid={`custom-skill-run-${skill.id}`}
         >
           {t("run")}
@@ -142,17 +238,33 @@ export function AddSkillTile({
   );
 }
 
-export function AddSkillDialog({
-  open,
-  onOpenChange,
-  onCreated,
+function draftFor(mode: SkillDialogMode): SkillDraft {
+  if (mode.kind === "add")
+    return { name: "", category: "valuation", description: "", prefill: "" };
+  if (mode.kind === "copy") return mode.initial;
+  const { name, category, description, prefill } = mode.skill;
+  return { name, category, description, prefill };
+}
+
+/**
+ * The one skill form, in three modes: add (blank), copy (seeded from any
+ * skill, built-in or store-backed, saved as a new custom skill via POST),
+ * edit (seeded from a store-backed skill, saved in place via PATCH). The
+ * Enhance wand reuses `/api/improve` (the composer's Improve route) on the
+ * Run prefill in every mode.
+ */
+export function SkillDialog({
+  mode,
+  onClose,
+  onSaved,
 }: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onCreated: (skill: CustomSkill) => void;
+  mode: SkillDialogMode | null;
+  onClose: () => void;
+  onSaved: (skill: CustomSkill, kind: "created" | "updated") => void;
 }) {
   const t = useTranslations("skills");
   const locale = useLocale() as Lang;
+  const editing = mode?.kind === "edit";
 
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState<SkillCategory>("valuation");
@@ -161,23 +273,24 @@ export function AddSkillDialog({
   const [enhancing, setEnhancing] = React.useState(false);
   const [enhanced, setEnhanced] = React.useState(false);
   const prevPrefill = React.useRef("");
-  const [creating, setCreating] = React.useState(false);
+  const [saving, setSaving] = React.useState(false);
   const [error, setError] = React.useState(false);
 
-  // Reset the form every time the dialog opens (render-time state
-  // adjustment, same convention as AddAgentDialog); edits never leak
-  // between opens.
-  const [prevOpen, setPrevOpen] = React.useState(open);
-  if (open !== prevOpen) {
-    setPrevOpen(open);
-    if (open) {
-      setName("");
-      setCategory("valuation");
-      setDescription("");
-      setPrefill("");
+  // Seed the form every time the dialog opens (render-time state
+  // adjustment, same convention as DraftToIc / ShareWorkspace); edits never
+  // leak between opens.
+  const [prevMode, setPrevMode] = React.useState(mode);
+  if (mode !== prevMode) {
+    setPrevMode(mode);
+    if (mode) {
+      const draft = draftFor(mode);
+      setName(draft.name);
+      setCategory(draft.category);
+      setDescription(draft.description);
+      setPrefill(draft.prefill);
       setEnhancing(false);
       setEnhanced(false);
-      setCreating(false);
+      setSaving(false);
       setError(false);
     }
   }
@@ -190,7 +303,7 @@ export function AddSkillDialog({
   const prefillValid =
     prefill.trim().length >= PREFILL_MIN &&
     prefill.trim().length <= PREFILL_MAX;
-  const canCreate = nameValid && descValid && prefillValid && !creating;
+  const canSave = nameValid && descValid && prefillValid && !saving;
   const hasPrefill = prefill.trim().length > 0;
 
   async function enhance() {
@@ -221,38 +334,43 @@ export function AddSkillDialog({
     setEnhanced(false);
   }
 
-  async function create() {
-    if (!canCreate) return;
-    setCreating(true);
+  async function save() {
+    if (!canSave || !mode) return;
+    setSaving(true);
     setError(false);
+    const fields = {
+      name: name.trim(),
+      category,
+      description: description.trim(),
+      prefill: prefill.trim(),
+    };
     try {
       const res = await fetch("/api/skills", {
-        method: "POST",
+        method: editing ? "PATCH" : "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          category,
-          description: description.trim(),
-          prefill: prefill.trim(),
-        }),
+        body: JSON.stringify(
+          editing && mode.kind === "edit"
+            ? { id: mode.skill.id, ...fields }
+            : fields,
+        ),
       });
       if (!res.ok) {
         setError(true);
         return;
       }
       const data = (await res.json()) as { skill: CustomSkill };
-      onCreated(data.skill);
+      onSaved(data.skill, editing ? "updated" : "created");
     } catch {
       setError(true);
     } finally {
-      setCreating(false);
+      setSaving(false);
     }
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={mode !== null} onOpenChange={(open) => !open && onClose()}>
       <DialogContent data-testid="add-skill-dialog" className="max-w-[520px]">
-        <DialogTitle>{t("dialogTitle")}</DialogTitle>
+        <DialogTitle>{editing ? t("editTitle") : t("dialogTitle")}</DialogTitle>
         <DialogDescription>{t("dialogHint")}</DialogDescription>
 
         <div className="mt-5 flex flex-col gap-4">
@@ -378,23 +496,29 @@ export function AddSkillDialog({
               className="text-danger flex items-center gap-1.5 text-[0.8125rem] font-medium"
             >
               <CircleAlert className="size-4 shrink-0" aria-hidden="true" />
-              {t("createError")}
+              {editing ? t("updateError") : t("createError")}
             </p>
           )}
         </div>
 
         <div className="mt-6 flex justify-end gap-2">
-          <Button variant="ghost" size="sm" onClick={() => onOpenChange(false)}>
+          <Button variant="ghost" size="sm" onClick={onClose}>
             {t("cancel")}
           </Button>
           <Button
             size="sm"
-            onClick={create}
-            disabled={!canCreate}
-            loading={creating}
+            onClick={save}
+            disabled={!canSave}
+            loading={saving}
             data-testid="skill-create-button"
           >
-            {creating ? t("creating") : t("create")}
+            {saving
+              ? editing
+                ? t("saving")
+                : t("creating")
+              : editing
+                ? t("save")
+                : t("create")}
           </Button>
         </div>
       </DialogContent>

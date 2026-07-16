@@ -4,10 +4,10 @@ import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 import {
-  Bot,
   CheckCheck,
   FileOutput,
   Mail,
+  Pencil,
   MessageSquareText,
   SlidersHorizontal,
   Trash2,
@@ -33,9 +33,8 @@ const ACTION_ICON = {
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
   "ic-draft": Mail,
-  "agent-created": Bot,
-  "agent-deleted": Trash2,
   "skill-created": Wrench,
+  "skill-updated": Pencil,
   "skill-deleted": Trash2,
 } as const;
 
@@ -249,9 +248,8 @@ export function AuditTrail({
     "stage-advance": t("actionScreening"),
     "model-edit": t("actionModelEdit"),
     "ic-draft": t("actionIcDraft"),
-    "agent-created": t("actionAgentCreated"),
-    "agent-deleted": t("actionAgentDeleted"),
     "skill-created": t("actionSkillCreated"),
+    "skill-updated": t("actionSkillUpdated"),
     "skill-deleted": t("actionSkillDeleted"),
   };
 

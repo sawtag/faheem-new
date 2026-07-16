@@ -14,6 +14,46 @@ import { AGENT_ICONS } from "./agent-icons";
 const DIM =
   "opacity-55 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease)]";
 
+const TOGGLES_KEY = "faheem_agent_toggles";
+
+/**
+ * Per-agent enabled flag persisted in localStorage (the repo's client
+ * runtime-state convention). Cosmetic: the orchestrator picks agents per
+ * prompt, so the toggle is a roster preference, never a routing switch. SSR
+ * renders every card on; the effect restores saved off-states after mount.
+ */
+function usePersistedToggle(id: string): [boolean, (v: boolean) => void] {
+  const [on, setOn] = React.useState(true);
+  React.useEffect(() => {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem(TOGGLES_KEY) ?? "{}",
+      ) as Record<string, boolean>;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- post-mount localStorage restore, same convention as SetupCard
+      if (saved[id] === false) setOn(false);
+    } catch {
+      /* corrupt storage behaves as all-on */
+    }
+  }, [id]);
+  const set = React.useCallback(
+    (v: boolean) => {
+      setOn(v);
+      try {
+        const saved = JSON.parse(
+          localStorage.getItem(TOGGLES_KEY) ?? "{}",
+        ) as Record<string, boolean>;
+        if (v) delete saved[id];
+        else saved[id] = false;
+        localStorage.setItem(TOGGLES_KEY, JSON.stringify(saved));
+      } catch {
+        /* storage unavailable: session-only toggle */
+      }
+    },
+    [id],
+  );
+  return [on, set];
+}
+
 /** In AR the AR name leads (bigger) and EN becomes the secondary line, same boxes, swapped content (design-briefs §3.7). */
 function useLeadName(nameEn: string, nameAr: string) {
   const locale = useLocale() as Lang;
@@ -50,7 +90,7 @@ export function FullWidthAgentCard({
   data: AgentCardData;
   footer: React.ReactNode;
 }) {
-  const [on, setOn] = React.useState(true);
+  const [on, setOn] = usePersistedToggle(data.id);
   const { lead, secondary } = useLeadName(data.nameEn, data.nameAr);
   const Icon = AGENT_ICONS[data.icon];
 
@@ -107,7 +147,7 @@ export function SpecialistAgentCard({
   danger?: boolean;
   factCheckerLabel?: string;
 }) {
-  const [on, setOn] = React.useState(true);
+  const [on, setOn] = usePersistedToggle(data.id);
   const { lead, secondary } = useLeadName(data.nameEn, data.nameAr);
   const Icon = AGENT_ICONS[data.icon];
 

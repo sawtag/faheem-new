@@ -206,9 +206,8 @@ export const AuditEntrySchema = z.object({
     "stage-advance",
     "model-edit",
     "ic-draft",
-    "agent-created",
-    "agent-deleted",
     "skill-created",
+    "skill-updated",
     "skill-deleted",
   ]),
   question: z.string().optional(),
@@ -249,23 +248,6 @@ export const SeedChatSchema = z.object({
   ),
 });
 export type SeedChat = z.infer<typeof SeedChatSchema>;
-
-/**
- * data/custom-agents.json = CustomAgent[], user-created agents (lib/custom-
- * agents.ts). Deliberately outside AGENT_IDS/the chat @-mention protocol: they
- * are a standalone roster on the Agents page, not wired into orchestration.
- */
-export const CustomAgentSchema = z
-  .object({
-    id: z.string().regex(/^custom-[a-z0-9-]{1,40}$/),
-    name: z.string().min(2).max(60),
-    role: z.string().min(2).max(80),
-    /** free-text working brief; acts as the agent's prompt */
-    description: z.string().min(10).max(2000),
-    createdAt: z.string(),
-  })
-  .strict();
-export type CustomAgent = z.infer<typeof CustomAgentSchema>;
 
 // ───────────────────────── market sentiment (WS-D) ──────────────────────────
 // Live-model-provenance plan §0: sentiment is a qualitative SIGNAL, never a

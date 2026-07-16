@@ -1,9 +1,14 @@
 /**
  * User-created custom skills (Skills Library). Schema lives HERE, not in
  * lib/types.ts, because it needs SkillCategorySchema from lib/skills.ts and
- * lib/types.ts must not import lib/skills (mirrors lib/custom-agents.ts's
- * store pattern exactly: atomic writes, FAHEEM_CUSTOM_SKILLS_PATH override,
- * custom- slug ids with collision suffixes).
+ * lib/types.ts must not import lib/skills (atomic writes,
+ * FAHEEM_CUSTOM_SKILLS_PATH override, custom- slug ids with collision
+ * suffixes).
+ *
+ * Two authors share this store: `user` (created in-app by the analyst) and
+ * `lunar` (the firm-authored showcase seeds committed in
+ * data/custom-skills.json). Both are mutable through the same API; only the
+ * built-in Faheem registry (lib/skills.ts) is immutable.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -19,6 +24,10 @@ export const CustomSkillSchema = z
     description: z.string().min(10).max(200),
     /** what Run drops into the chat composer */
     prefill: z.string().min(10).max(2000),
+    /** who authored it; drives the card badge (Lunar vs Custom) */
+    author: z.enum(["lunar", "user"]).default("user"),
+    /** toggled off = dimmed on the grid (cosmetic, Run stays available) */
+    enabled: z.boolean().default(true),
     createdAt: z.string(),
   })
   .strict();
@@ -90,10 +99,31 @@ export function addCustomSkill(input: {
     category: input.category,
     description: input.description,
     prefill: input.prefill,
+    author: "user",
+    enabled: true,
     createdAt: new Date().toISOString(),
   };
   writeAll([...skills, skill]);
   return skill;
+}
+
+/** Patchable fields; id/author/createdAt are fixed for a skill's lifetime. */
+export type CustomSkillPatch = Partial<
+  Pick<CustomSkill, "name" | "category" | "description" | "prefill" | "enabled">
+>;
+
+/** Applies a partial edit (or an enabled toggle) by id; null when the id doesn't exist. */
+export function updateCustomSkill(
+  id: string,
+  patch: CustomSkillPatch,
+): CustomSkill | null {
+  const skills = readAll();
+  const index = skills.findIndex((s) => s.id === id);
+  if (index < 0) return null;
+  const next = { ...skills[index]!, ...patch };
+  skills[index] = next;
+  writeAll(skills);
+  return next;
 }
 
 /** Removes a custom skill by id; returns false when the id doesn't exist. */

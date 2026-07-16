@@ -4,6 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
+import { Copy } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -33,13 +34,24 @@ const CATEGORY_BADGE: Record<
 
 /**
  * One playbook card (design brief: icon tile → name/category/one-liner →
- * bulleted methods → footer). Toggle is cosmetic (agents-page pattern), it
- * dims the card, it never gates the Run action. Run either fires the exact
+ * bulleted methods → footer). Registry skills are immutable: no edit or
+ * delete ever appears here; Copy (when the skill has a runnable prompt)
+ * duplicates it into an editable custom skill. Toggle is cosmetic
+ * (agents-page pattern), it dims the card, it never gates the Run action. Run either fires the exact
  * golden-bus insert a goldenId-mapped skill was recorded with, or prefills a
  * fresh chat with ad hoc text (see run-skill.ts for why "home" means
  * `/chat/new` here, not the omnibox hero).
  */
-export function SkillCard({ skill, index }: { skill: Skill; index: number }) {
+export function SkillCard({
+  skill,
+  index,
+  onCopy,
+}: {
+  skill: Skill;
+  index: number;
+  /** duplicates this playbook into an editable custom skill; absent on roadmap-only cards */
+  onCopy?: () => void;
+}) {
   const t = useTranslations("skills");
   const locale = useLocale() as Lang;
   const router = useRouter();
@@ -109,6 +121,19 @@ export function SkillCard({ skill, index }: { skill: Skill; index: number }) {
             {t("byline")}
           </span>
           <div className="flex items-center gap-3">
+            {onCopy && (
+              <Tooltip content={t("copy")}>
+                <button
+                  type="button"
+                  onClick={onCopy}
+                  aria-label={t("copy")}
+                  data-testid={`skill-copy-${skill.id}`}
+                  className="text-text-secondary hover:bg-navy-50 hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-card rounded-btn grid size-8 shrink-0 place-items-center transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                >
+                  <Copy className="size-4" aria-hidden="true" />
+                </button>
+              </Tooltip>
+            )}
             <Toggle
               checked={on}
               onCheckedChange={setOn}

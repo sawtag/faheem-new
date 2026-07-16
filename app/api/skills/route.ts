@@ -1,9 +1,11 @@
 /**
  * POST /api/skills: create a user-defined custom skill.
+ * PATCH /api/skills: edit fields or flip `enabled`, by id (must be "custom-").
  * DELETE /api/skills: remove one, by id (must be a "custom-" id).
  * Body (POST): { name, category, description, prefill } → { skill } 201.
+ * Body (PATCH): { id, name?, category?, description?, prefill?, enabled? } → { skill }.
  * Body (DELETE): { id } → { ok: true }.
- * Both append an audit entry (action "skill-created" / "skill-deleted"),
+ * All append an audit entry ("skill-created" / "skill-updated" / "skill-deleted"),
  * reusing the `question` field to carry "<name> · <category>" (agent-created
  * / model-edit / ic-draft precedent).
  */
@@ -13,6 +15,7 @@ import {
   CustomSkillSchema,
   listCustomSkills,
   removeCustomSkill,
+  updateCustomSkill,
 } from "@/lib/custom-skills";
 import { appendAudit } from "@/lib/audit";
 
@@ -28,6 +31,27 @@ const CreateSchema = z.object({
 
 const DeleteSchema = z.object({ id: z.string().min(1) });
 
+const PatchSchema = z
+  .object({
+    id: z.string().min(1),
+    name: CustomSkillSchema.shape.name.optional(),
+    category: CustomSkillSchema.shape.category.optional(),
+    description: CustomSkillSchema.shape.description.optional(),
+    prefill: CustomSkillSchema.shape.prefill.optional(),
+    enabled: z.boolean().optional(),
+  })
+  .strict();
+
+/** Trims every string field the client may send (POST and PATCH bodies alike). */
+function trimStrings(raw: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(raw).map(([k, v]) => [
+      k,
+      typeof v === "string" && k !== "id" ? v.trim() : v,
+    ]),
+  );
+}
+
 export async function POST(request: Request): Promise<Response> {
   let body: unknown;
   try {
@@ -37,16 +61,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const raw = (body ?? {}) as Record<string, unknown>;
-  const trimmed = {
-    name: typeof raw.name === "string" ? raw.name.trim() : raw.name,
-    category: raw.category,
-    description:
-      typeof raw.description === "string"
-        ? raw.description.trim()
-        : raw.description,
-    prefill: typeof raw.prefill === "string" ? raw.prefill.trim() : raw.prefill,
-  };
-  const parsed = CreateSchema.safeParse(trimmed);
+  const parsed = CreateSchema.safeParse(trimStrings(raw));
   if (!parsed.success) {
     return Response.json({ error: "Invalid skill request" }, { status: 400 });
   }
@@ -61,6 +76,43 @@ export async function POST(request: Request): Promise<Response> {
   });
 
   return Response.json({ skill }, { status: 201 });
+}
+
+export async function PATCH(request: Request): Promise<Response> {
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  const raw = (body ?? {}) as Record<string, unknown>;
+  const parsed = PatchSchema.safeParse(trimStrings(raw));
+  if (!parsed.success || !parsed.data.id.startsWith("custom-")) {
+    return Response.json({ error: "Invalid skill request" }, { status: 400 });
+  }
+  const { id, ...patch } = parsed.data;
+  const fields = Object.fromEntries(
+    Object.entries(patch).filter(([, v]) => v !== undefined),
+  );
+  if (Object.keys(fields).length === 0) {
+    return Response.json({ error: "Empty patch" }, { status: 400 });
+  }
+
+  const skill = updateCustomSkill(id, fields);
+  if (!skill) {
+    return Response.json({ error: "Skill not found" }, { status: 404 });
+  }
+
+  appendAudit({
+    ts: new Date().toISOString(),
+    user: "Ali",
+    context: "firm",
+    action: "skill-updated",
+    question: `${skill.name} · ${skill.category}`,
+  });
+
+  return Response.json({ skill });
 }
 
 export async function DELETE(request: Request): Promise<Response> {

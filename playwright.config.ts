@@ -14,12 +14,11 @@ const PORT = Number(process.env.PORT ?? 3000);
 const AUDIT_PATH =
   (process.env.FAHEEM_AUDIT_PATH ??= `/tmp/faheem-e2e-audit-${PORT}.json`);
 
-// Same isolation for the user-created custom agent/skill stores: the specs
-// create and delete through the API, and the app must never mutate the
-// git-tracked seeds (data/custom-agents.json, data/custom-skills.json)
-// mid-suite. Seeded from the committed empty stores so a crashed prior run
-// never leaks state into the next one.
-const CUSTOM_AGENTS_PATH = `/tmp/faheem-e2e-custom-agents-${PORT}.json`;
+// Same isolation for the custom-skills store: the specs create, edit, and
+// delete through the API, and the app must never mutate the git-tracked
+// seed (data/custom-skills.json, which ships the Lunar showcase skills)
+// mid-suite. Seeded from the committed file so a crashed prior run never
+// leaks state into the next one.
 const CUSTOM_SKILLS_PATH = `/tmp/faheem-e2e-custom-skills-${PORT}.json`;
 
 export default defineConfig({
@@ -51,7 +50,7 @@ export default defineConfig({
   webServer: {
     // FAHEEM_E2E_PROD=1 runs the suite against the production build — the
     // demo-faithful mode used for the final gates and the dress rehearsal.
-    command: `cp data/audit-log.json "$FAHEEM_AUDIT_PATH" && cp data/custom-agents.json "$FAHEEM_CUSTOM_AGENTS_PATH" && cp data/custom-skills.json "$FAHEEM_CUSTOM_SKILLS_PATH" && ${
+    command: `cp data/audit-log.json "$FAHEEM_AUDIT_PATH" && cp data/custom-skills.json "$FAHEEM_CUSTOM_SKILLS_PATH" && ${
       process.env.FAHEEM_E2E_PROD
         ? "npm run build && npm run start"
         : "npm run dev"
@@ -68,7 +67,6 @@ export default defineConfig({
       FAHEEM_MODE: "cached",
       PORT: String(PORT),
       FAHEEM_AUDIT_PATH: AUDIT_PATH,
-      FAHEEM_CUSTOM_AGENTS_PATH: CUSTOM_AGENTS_PATH,
       FAHEEM_CUSTOM_SKILLS_PATH: CUSTOM_SKILLS_PATH,
     },
   },

@@ -74,17 +74,14 @@ Four new cards with real methods and data stories: **Accounting & Quality of Ear
 
 Toggle **العربية** (bottom-left) and revisit any of the above: full RTL chrome, while model grids stay numeric-LTR (Western digits) per finance convention.
 
-## 10. Custom agents: build your own specialist
+## 10. Agent toggles
 
-**Where:** **Agents** page, bottom section ("Your agents"), below the 14-agent registry and the last human-gate marker.
+**Where:** **Agents** page. Toggling is the only roster interaction, deliberately: the orchestrator already picks the right specialists per prompt, so a toggle is the analyst's persisted roster preference, never a routing switch.
 
-- Click the dashed **"Add agent"** tile: a dialog opens asking for a **Name**, a **Role**, and a free-text **Description**. The description _is_ the agent's working brief; there's no separate prompt field.
-- Type a rough draft in the description box (e.g. "watches competitor pricing moves and flags anything unusual"), then click the **✨ Enhance** wand inside the textarea: it calls the same Haiku prompt-improver infrastructure as the composer's Improve wand and rewrites the draft into a fuller brief (mission, scope, output style, guardrails), in whichever language you typed in. The box washes with the accent tint while the enhanced version sits in the field.
-- Not happy with it? **Undo** restores exactly what you typed before; re-run Enhance as many times as you like.
-- **Create agent** is disabled until all three fields clear the minimum length; on success the dialog closes and a new card appears in the grid with a **Custom** badge, the icon tile, and your name/role/description (all rendered as plain typed text, no translation).
-- Click the trash icon on a custom card to delete it; the card disappears immediately.
-- Both actions are logged: check the **Audit Trail** page for "Agent created" / "Agent deleted" entries, each carrying "&lt;name&gt; · &lt;role&gt;".
-- Custom agents are deliberately **not** @-mentionable in chat; they're a standalone roster, not wired into the orchestration protocol.
+- Flip the toggle on any specialist card; the card dims (icon grayscales, copy fades) but nothing else changes.
+- Reload the page: the toggle state survives (localStorage, per browser profile).
+- The orchestrator banner has no toggle; it is not optional.
+- There is no add, edit, or delete on agents anywhere.
 
 ## 11. Custom skills: build your own playbook
 
@@ -95,9 +92,13 @@ Toggle **العربية** (bottom-left) and revisit any of the above: full RTL c
 - **Create skill** is disabled until the name/description/prefill all clear their minimum lengths. On success the dialog closes and a new card appears in the grid: Wrench icon tile, your name, category, description, and a **Custom** badge.
 - The category filter pills narrow custom cards exactly like built-in ones; the **"Add skill"** tile itself always stays visible regardless of which pill is active.
 - Click **Run** on a custom card: it lands you on a fresh chat (`/chat/new?context=firm`) with your prefill text sitting in the composer, unsent; same mechanism a built-in prefill skill (e.g. DCF, FCFF Build) uses.
-- Click the trash icon to delete a custom card; it disappears immediately.
-- Both actions are logged: check the **Audit Trail** page for "Skill created" / "Skill deleted" entries, each carrying "&lt;name&gt; · &lt;category&gt;".
-- Built-in skills are untouched: no edit or delete affordance ever appears on them.
+- Three **Lunar** skills ship pre-seeded (IC Charter Quick Screen, Saudi Consumer Pulse, Weekly Portfolio Brief), each with a navy **Lunar** badge: the firm's own playbooks living beside Faheem's, and the showcase for this whole feature.
+- Click the pencil icon on any store-backed card (Lunar or Custom): the same dialog opens pre-filled, **Save changes** edits in place.
+- Click the copy icon on ANY card, built-in included: the dialog opens seeded with "&lt;name&gt; (copy)" and the source's category, one-liner, and run prompt, ready to adapt. Copying is how you make an immutable Faheem playbook your own.
+- Flip the toggle on a store-backed card: it dims exactly like a registry card, and the state persists (server-side) across reloads.
+- Click the trash icon to delete a store-backed card; it disappears immediately.
+- Everything is logged: check the **Audit Trail** page for "Skill created" / "Skill updated" / "Skill deleted" entries, each carrying "&lt;name&gt; · &lt;category&gt;".
+- Built-in Faheem skills are immutable: copy is the only affordance they ever show, never edit or delete.
 
 ---
 

@@ -37,8 +37,7 @@ Faheem runs an agentic research desk inside an investment firm's real workflow: 
 - 📥 **Bring your own document.** Drop a PDF into a workspace and it joins the same citation-enforced retrieval engine that grounds every other answer, no separate ingestion pipeline to trust.
 - 📚 **Playbooks, not a blank prompt box.** A Skills library of analyst methodologies, DCF, comps, risk scorecards, Compliance screens, one click either replays a golden run or prefills the composer. Any table in a streamed answer toggles inline into an animated chart. Scheduled Tasks previews the automation roadmap.
 - 👥 **Fourteen specialist agents, including an adversarial red team.** Accounting & Quality-of-Earnings, Critical Review, News & Market Intelligence, and Market Sentiment join the original ten. Sentiment reads a clearly-labeled illustrative social pack and speaks in a label + one-line rationale, always flagged "signal only, not a valuation input", it never claims a sourced number.
-- 🧩 **Build your own specialist.** Add a custom agent with a name, role, and a free-text working brief (the description _is_ the agent's prompt), and let the Enhance wand turn a rough draft into a crisp, richer brief with one click, the same Haiku-powered rewrite that improves your chat questions.
-- 🧰 **Build your own playbook, too.** The Skills library isn't fixed either: add a custom skill with a name, category, one-line description, and a Run prefill, with the same Enhance wand rewriting the prefill into a sharper analyst prompt. Built-in skills stay immutable; yours run, filter, and delete right alongside them.
+- 🧰 **Build your own playbook.** The Skills library isn't fixed: add a custom skill (name, category, one-liner, Run prefill), copy any existing playbook into an editable one, edit it later, toggle it off without losing it, and let the Enhance wand rewrite the prefill into a sharper analyst prompt. The built-in Faheem skills stay immutable, and three Lunar-authored skills ship as a worked example of a firm codifying its own process. Agents follow the same philosophy in reverse: the roster is curated, so agent cards toggle (persisted per analyst) and the orchestrator picks the right specialists per prompt.
 - 🛡️ **Governance is the product.** A full audit trail of every question, source, and generated artifact; three human decision gates across the pipeline; an impartial, evidence-first analyst register. Enterprise controls (SSO, formal certifications) stay honestly scoped to the roadmap.
 
 ## 📸 Screenshots
@@ -106,8 +105,8 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Sentiment card, qualitative signal over a labeled illustrative social pack                                                                                            | WS-D       | ✅ Implemented |
 | Draft-to-IC email (compose modal → `mailto`, human sends)                                                                                                             | WS-E       | ✅ Implemented |
 | Integration: ⌘K Live Model entries, golden-path e2e beat, preflight venue checks, run-of-show + docs updates (offline-deterministic edits, no new API goldens needed) | WS-F       | ✅ Implemented |
-| Custom agents, a user-created roster (name/role/brief) with an AI Enhance wand for the working brief                                                                  | extra      | ✅ Implemented |
-| Custom skills, user-created playbooks (name/category/description/prefill) with an AI Enhance wand for the Run prefill                                                 | extra      | ✅ Implemented |
+| Custom skills lifecycle: add / copy / edit / toggle / delete, Lunar-authored showcase seeds, Enhance wand on the Run prefill                                          | extra      | ✅ Implemented |
+| Agent roster toggles, persisted per analyst (orchestrator still picks agents per prompt)                                                                              | extra      | ✅ Implemented |
 
 ## 🚀 Quickstart
 

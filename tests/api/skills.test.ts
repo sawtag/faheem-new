@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { DELETE, POST } from "@/app/api/skills/route";
+import { DELETE, PATCH, POST } from "@/app/api/skills/route";
 import type { AuditEntry } from "@/lib/types";
 import type { CustomSkill } from "@/lib/custom-skills";
 
@@ -130,6 +130,96 @@ describe("POST /api/skills", () => {
         body: "{ not json",
       }),
     );
+    expect(res.status).toBe(400);
+  });
+});
+
+function patchRequest(body: unknown): Request {
+  return new Request("http://localhost/api/skills", {
+    method: "PATCH",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
+describe("PATCH /api/skills", () => {
+  async function createOne(): Promise<CustomSkill> {
+    const res = await POST(
+      postRequest({
+        name: "Editable Skill",
+        category: "valuation",
+        description: "A skill created to be patched by these tests.",
+        prefill: "A prefill that is definitely long enough to pass here.",
+      }),
+    );
+    return ((await res.json()) as { skill: CustomSkill }).skill;
+  }
+
+  it("edits fields, persists them, and audits skill-updated", async () => {
+    useTempStores();
+    const created = await createOne();
+    const res = await PATCH(
+      patchRequest({
+        id: created.id,
+        name: "  Renamed Skill  ",
+        description: "An edited description of clearly sufficient length.",
+      }),
+    );
+    expect(res.status).toBe(200);
+    const { skill } = (await res.json()) as { skill: CustomSkill };
+    expect(skill.name).toBe("Renamed Skill");
+    expect(skill.description).toBe(
+      "An edited description of clearly sufficient length.",
+    );
+    expect(skill.prefill).toBe(created.prefill);
+
+    const stored = JSON.parse(
+      fs.readFileSync(skillsFile, "utf-8"),
+    ) as CustomSkill[];
+    expect(stored[0]?.name).toBe("Renamed Skill");
+
+    const audit = readAudit();
+    expect(audit.at(-1)?.action).toBe("skill-updated");
+    expect(audit.at(-1)?.question).toBe("Renamed Skill · valuation");
+  });
+
+  it("flips enabled alone (the toggle path)", async () => {
+    useTempStores();
+    const created = await createOne();
+    const res = await PATCH(patchRequest({ id: created.id, enabled: false }));
+    expect(res.status).toBe(200);
+    const { skill } = (await res.json()) as { skill: CustomSkill };
+    expect(skill.enabled).toBe(false);
+    expect(skill.name).toBe(created.name);
+  });
+
+  it("rejects an id that doesn't start with custom-", async () => {
+    useTempStores();
+    const res = await PATCH(patchRequest({ id: "dcf-fcff", enabled: false }));
+    expect(res.status).toBe(400);
+  });
+
+  it("404s for an unknown (but well-formed) custom- id", async () => {
+    useTempStores();
+    const res = await PATCH(
+      patchRequest({ id: "custom-does-not-exist", enabled: false }),
+    );
+    expect(res.status).toBe(404);
+  });
+
+  it("rejects an empty patch with 400 and writes no audit entry", async () => {
+    useTempStores();
+    const created = await createOne();
+    const before = readAudit().length;
+    const res = await PATCH(patchRequest({ id: created.id }));
+    expect(res.status).toBe(400);
+    expect(readAudit().length).toBe(before);
+  });
+
+  it("rejects an invalid field value (too-short name) with 400", async () => {
+    useTempStores();
+    const created = await createOne();
+    const res = await PATCH(patchRequest({ id: created.id, name: "A" }));
     expect(res.status).toBe(400);
   });
 });

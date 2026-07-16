@@ -53,28 +53,7 @@
       "compliance": "Compliance screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
       "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
-    },
-    "customTitle": "Your agents",
-    "customCaption": "Your own specialists: the description acts as the agent's brief.",
-    "addAgent": "Add agent",
-    "dialogTitle": "New agent",
-    "dialogHint": "Give it a name, a role, and a working brief. The description IS the agent's prompt.",
-    "nameLabel": "Name",
-    "namePlaceholder": "e.g. Sector Screener",
-    "roleLabel": "Role",
-    "rolePlaceholder": "e.g. Retail & e-commerce specialist",
-    "descLabel": "Description",
-    "descPlaceholder": "What should this agent focus on, and how should it work?",
-    "descHint": "This is the agent's working brief. Write it like a prompt.",
-    "enhance": "Enhance",
-    "enhancing": "Enhancing…",
-    "undo": "Undo",
-    "cancel": "Cancel",
-    "create": "Create agent",
-    "creating": "Creating…",
-    "createError": "Couldn't create the agent. Try again.",
-    "customBadge": "Custom",
-    "deleteAgent": "Delete agent"
+    }
   },
   "library": {
     "title": "Library",
@@ -110,10 +89,9 @@
     "userAli": "Ali",
     "actionModelEdit": "Model edit",
     "actionIcDraft": "IC email drafted",
-    "actionAgentCreated": "Agent created",
-    "actionAgentDeleted": "Agent deleted",
     "actionSkillCreated": "Skill created",
-    "actionSkillDeleted": "Skill deleted"
+    "actionSkillDeleted": "Skill deleted",
+    "actionSkillUpdated": "Skill updated"
   },
   "connections": {
     "title": "Connections",
@@ -776,7 +754,15 @@
     "create": "Create skill",
     "creating": "Creating…",
     "createError": "Couldn't create the skill. Try again.",
-    "deleteSkill": "Delete skill"
+    "deleteSkill": "Delete skill",
+    "lunarBadge": "Lunar",
+    "edit": "Edit skill",
+    "copy": "Copy skill",
+    "copyName": "{name} (copy)",
+    "editTitle": "Edit skill",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "updateError": "Couldn't save the skill. Try again."
   },
   "dashboard": {
     "title": "Firm overview",

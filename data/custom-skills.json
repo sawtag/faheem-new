@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "custom-lunar-ic-charter-screen",
+    "name": "IC Charter Quick Screen",
+    "category": "risk-compliance",
+    "description": "Checks a deal against the Lunar IC Charter gates before deeper work begins.",
+    "prefill": "Screen this deal against the Lunar IC Charter: sector mandate, ticket band, stage window, concentration caps, and red flags. Present each gate as pass, warn, or fail with the Charter page cited, and close with an advance or decline recommendation.",
+    "author": "lunar",
+    "enabled": true,
+    "createdAt": "2026-07-14T09:00:00.000Z"
+  },
+  {
+    "id": "custom-lunar-saudi-consumer-pulse",
+    "name": "Saudi Consumer Pulse",
+    "category": "diligence",
+    "description": "Reads the macro pack for consumer-demand signals relevant to a deal thesis.",
+    "prefill": "Summarize the consumer-spending and demographic signals in the GASTAT macro pack that matter for this deal's demand thesis. Cite the page for every signal, then flag which signals are strongest, which are weakest, and what would change the read.",
+    "author": "lunar",
+    "enabled": true,
+    "createdAt": "2026-07-14T09:05:00.000Z"
+  },
+  {
+    "id": "custom-lunar-weekly-portfolio-brief",
+    "name": "Weekly Portfolio Brief",
+    "category": "output",
+    "description": "Drafts the Monday portfolio one-pager the committee reads first thing.",
+    "prefill": "Draft Lunar's weekly portfolio brief: current pipeline stages, screening or analysis runs completed this week, open diligence questions, and the decisions the committee owns next. Ground every claim in the audit trail and workspace documents, with citations.",
+    "author": "lunar",
+    "enabled": true,
+    "createdAt": "2026-07-14T09:10:00.000Z"
+  }
+]

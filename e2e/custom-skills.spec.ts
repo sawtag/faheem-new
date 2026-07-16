@@ -50,7 +50,7 @@ test.afterEach(async ({ page }, testInfo) => {
 });
 
 test.describe("Skills: custom skill creation", () => {
-  test("add → enhance → undo → create → filter → run → delete, with audit entries", async ({
+  test("add → enhance → create → edit → toggle → filter → run → delete, with audit entries", async ({
     page,
   }, testInfo) => {
     const { name: skillName, id: createdId } = skillIdentity(
@@ -131,6 +131,58 @@ test.describe("Skills: custom skill creation", () => {
     await page.goto("/audit");
     await expect(page.getByText("Skill created").first()).toBeVisible();
 
+    // edit in place: new description saves via PATCH and lands on the card
+    await page.goto("/skills");
+    const editedDescription = `Edited description for ${testInfo.project.name}.`;
+    await clickUntil(
+      page.getByTestId(`custom-skill-edit-${createdId}`),
+      async () => {
+        await expect(page.getByTestId("add-skill-dialog")).toBeVisible();
+      },
+    );
+    const editDialog = page.getByTestId("add-skill-dialog");
+    await expect(editDialog.getByTestId("skill-name-input")).toHaveValue(
+      skillName,
+    );
+    await editDialog
+      .getByTestId("skill-description-input")
+      .fill(editedDescription);
+    await clickUntil(
+      editDialog.getByTestId("skill-create-button"),
+      async () => {
+        await expect(page.getByTestId("add-skill-dialog")).toBeHidden();
+      },
+    );
+    await expect(page.getByTestId(`skill-card-${createdId}`)).toContainText(
+      editedDescription,
+    );
+    await expect
+      .poll(
+        () =>
+          readAudit().some(
+            (e) =>
+              e.action === "skill-updated" &&
+              (e.question ?? "").includes(skillName),
+          ),
+        { timeout: 10_000 },
+      )
+      .toBe(true);
+
+    // toggle off: card dims, and the enabled flag persists across a reload
+    const skillCard = page.getByTestId(`skill-card-${createdId}`);
+    await page.getByTestId(`custom-skill-toggle-${createdId}`).click();
+    await expect(skillCard).toHaveAttribute("data-dimmed", "true");
+    await page.reload();
+    await expect(page.getByTestId(`skill-card-${createdId}`)).toHaveAttribute(
+      "data-dimmed",
+      "true",
+    );
+    await page.getByTestId(`custom-skill-toggle-${createdId}`).click();
+    await expect(page.getByTestId(`skill-card-${createdId}`)).toHaveAttribute(
+      "data-dimmed",
+      "false",
+    );
+
     // category filter: "diligence" keeps the card, another category hides
     // it (add tile stays visible either way), back to All restores it
     await page.goto("/skills");
@@ -169,5 +221,37 @@ test.describe("Skills: custom skill creation", () => {
         { timeout: 10_000 },
       )
       .toBe(true);
+  });
+
+  test("Lunar seeds carry their badge, and Copy seeds the dialog without mutating", async ({
+    page,
+  }) => {
+    await page.goto("/skills");
+    const seed = page.getByTestId("skill-card-custom-lunar-ic-charter-screen");
+    await expect(seed).toBeVisible();
+    await expect(seed).toContainText("Lunar");
+
+    // copy a Lunar seed: dialog opens pre-seeded as "<name> (copy)", cancel
+    // leaves the store untouched (read-only beat, safe across viewports)
+    await clickUntil(
+      page.getByTestId("custom-skill-copy-custom-lunar-ic-charter-screen"),
+      async () => {
+        await expect(page.getByTestId("add-skill-dialog")).toBeVisible();
+      },
+    );
+    const dialog = page.getByTestId("add-skill-dialog");
+    await expect(dialog.getByTestId("skill-name-input")).toHaveValue(
+      "IC Charter Quick Screen (copy)",
+    );
+    await dialog.getByRole("button", { name: "Cancel" }).click();
+    await expect(dialog).toBeHidden();
+
+    // built-in registry cards stay immutable: copy only, never edit/delete
+    const builtIn = page.getByTestId("skill-card-dcf-fcff");
+    await expect(builtIn).toBeVisible();
+    await expect(page.getByTestId("skill-copy-dcf-fcff")).toBeVisible();
+    await expect(builtIn.locator('[data-testid^="custom-skill-"]')).toHaveCount(
+      0,
+    );
   });
 });
