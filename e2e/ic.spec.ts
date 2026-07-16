@@ -26,15 +26,15 @@ test.describe("Faheem IC room", () => {
     await expect(page.getByTestId("ic-col-jahez")).toBeVisible();
     await expect(page.getByTestId("ic-col-thara-pay")).toBeVisible();
 
-    // Thara Pay: 18.5% implied IRR vs the 15% hurdle, positive delta, pass
+    // Thara Pay: 18.5% implied IRR vs the 15% benchmark, positive delta, pass
     // badges, all from deals.json.
     await expect(page.getByText("18.5%")).toBeVisible();
-    await expect(page.getByText("vs 15% hurdle")).toBeVisible();
+    await expect(page.getByText("vs 15% benchmark")).toBeVisible();
     const tharaDelta = page.getByTestId("ic-irr-delta-thara-pay");
     await expect(tharaDelta).toHaveAttribute("data-tone", "above");
     await expect(tharaDelta).toContainText("350");
 
-    // Jahez: 17.1% implied IRR vs the 15% hurdle, +210bps, pass badges, the
+    // Jahez: 17.1% implied IRR vs the 15% benchmark, +210bps, pass badges, the
     // model signed off at P5a (jahez-analysis-summary.pdf).
     await expect(page.getByText("17.1%")).toBeVisible();
     const jahezDelta = page.getByTestId("ic-irr-delta-jahez");

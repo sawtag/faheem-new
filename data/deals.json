@@ -110,8 +110,8 @@
       "mandateFit": "pass",
       "compliance": "pass",
       "recommendation": {
-        "en": "Strongest risk-adjusted case: clears the hurdle in base and bull; bear case falls short. The committee decides.",
-        "ar": "أقوى حالة معدّلة بالمخاطر: يتجاوز عائدها المرجّح معدل العائد المطلوب في السيناريوهين الأساسي والمتفائل. القرار للجنة."
+        "en": "Strongest risk-adjusted case: clears the benchmark in base and bull; bear case falls short. The committee decides.",
+        "ar": "أقوى حالة معدّلة بالمخاطر: يتجاوز عائدها المرجّح العائد المرجعي في السيناريوهين الأساسي والمتفائل. القرار للجنة."
       },
       "cite": { "docId": "jahez-analysis-summary", "page": 2 }
     }

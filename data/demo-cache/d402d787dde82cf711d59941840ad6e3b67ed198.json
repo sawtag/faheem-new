@@ -74,11 +74,11 @@
     },
     {
       "type": "delta",
-      "text": "ee decides). "
+      "text": "ee decides)."
     },
     {
       "type": "delta",
-      "text": "The recommendation is strongest when the weighted return clears the mandate hurdle."
+      "text": " The recommendation is strongest when the weighted return clears the benchmark."
     },
     {
       "type": "delta",
@@ -116,15 +116,15 @@
     },
     {
       "type": "delta",
-      "text": " |\n| Mandate hurdle rate | "
+      "text": " |\n| Benchmark | 15."
     },
     {
       "type": "delta",
-      "text": "15.0%"
+      "text": "0%["
     },
     {
       "type": "delta",
-      "text": "[[3]]"
+      "text": "[3]]"
     },
     {
       "type": "citation",
@@ -196,11 +196,11 @@
     },
     {
       "type": "delta",
-      "text": " |\n| Compliance screen | Pass |\n\n**One-line thesis:** "
+      "text": " |\n| Compliance screen | Pass |\n\n**One-line thesis:** I"
     },
     {
       "type": "delta",
-      "text": "Implied IRR of 17.1% clears the 15.0% hurdle by 210 basis points at entry."
+      "text": "mplied IRR of 17.1% clears the 15.0% benchmark by 210 basis points at entry."
     },
     {
       "type": "delta",
@@ -219,11 +219,11 @@
     },
     {
       "type": "delta",
-      "text": "The scenario-weighted expected return of 16.8%, which blends bull, base, and bear cases, remains above the hurdle even after we"
+      "text": "The scenario-weighted expected return of 16.8%, which blends bull, base, and bear cases, remains above the benchmark even after w"
     },
     {
       "type": "delta",
-      "text": "ighting for downside scenarios, indicating the base-case return is not solely dependent on the bull case materializing."
+      "text": "eighting for downside scenarios, indicating the base-case return is not solely dependent on the bull case materializing."
     },
     {
       "type": "delta",
@@ -621,19 +621,19 @@
     },
     {
       "type": "delta",
-      "text": "\n\n---\n\n## Slide 8: IC Decision Points\n\n- IRR clears the h"
+      "text": "\n\n---\n\n## Slide 8: IC Decision Points\n\n- IRR clears the ben"
     },
     {
       "type": "delta",
-      "text": "urdle by 210bp at entry, and the scenario-weighted return holds above the hurdle. "
+      "text": "chmark by 210bp at entry, and the scenario-weighted return holds above the benchmark."
     },
     {
       "type": "delta",
-      "text": "Implied IRR of 17.1% clears the 15.0% hurdle by 210 basis points at entry, and the 16.8% scenario-"
+      "text": " Implied IRR of 17.1% clears the 15.0% benchmark by 210 basis points at entry, and the 16.8% scenario"
     },
     {
       "type": "delta",
-      "text": "weighted expected return remains above the hurdle even after weighting for downside scenarios."
+      "text": "-weighted expected return remains above the benchmark even after weighting for downside scenarios."
     },
     {
       "type": "delta",

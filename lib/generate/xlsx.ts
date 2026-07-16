@@ -2050,7 +2050,7 @@ function buildScenarios(
     ws,
     8,
     "Jahez Group, Scenarios & Risk",
-    "Bull / base / bear DCFs · IRR at entry vs 15% hurdle · scenario-weighted return · quantified risk register",
+    "Bull / base / bear DCFs · IRR at entry vs 15% benchmark · scenario-weighted return · quantified risk register",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
 
@@ -2966,15 +2966,7 @@ function buildCover(
     "0.0%",
     model.weightedReturn >= 0.15 ? B.positive : B.warn,
   );
-  tile(
-    r,
-    4,
-    "Hurdle rate (Lunar mandate)",
-    `0.15`,
-    0.15,
-    "0.0%",
-    B.charcoalMid,
-  );
+  tile(r, 4, "Benchmark (Lunar mandate)", `0.15`, 0.15, "0.0%", B.charcoalMid);
   r += 3;
   tile(
     r,

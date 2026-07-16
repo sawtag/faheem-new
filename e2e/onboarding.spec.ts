@@ -107,7 +107,7 @@ test("full day-one takeover: home -> welcome -> connect -> agents -> mandate -> 
 
   await test.step("step 3, Mandate: defaults are valid", async () => {
     await expect(page.getByText("Step 3 of 3")).toBeVisible();
-    await expect(page.getByLabel("Target IRR hurdle")).toHaveValue("15");
+    await expect(page.getByLabel("Target IRR benchmark")).toHaveValue("15");
     await page.getByRole("button", { name: "Create IC Charter" }).click();
   });
 

@@ -52,7 +52,7 @@
       "writing": "IC memos · Research notes · Pitch decks · Periodic reports",
       "compliance": "Compliance screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
-      "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
+      "ic": "Committee Q&A · Deal ranking vs the 15% benchmark · Scenario sensitivity"
     }
   },
   "library": {
@@ -91,12 +91,39 @@
     "actionIcDraft": "IC email drafted"
   },
   "connections": {
-    "title": "Connections",
+    "title": "Data Sources",
     "subtitle": "Faheem's data sources: market data, disclosures, and your internal systems.",
-    "addMcp": "Add custom MCP",
+    "addMcp": "Add source",
     "runSetup": "Run setup",
     "connected": "Connected",
     "available": "Available",
+    "activated": "Activated",
+    "availableToConnect": "Available to connect",
+    "sections": {
+      "internal": {
+        "title": "Internal",
+        "caption": "The firm's own systems, documents and workplace tools"
+      },
+      "external": {
+        "title": "External",
+        "caption": "Market data and public disclosures from the exchange and providers"
+      },
+      "research": {
+        "title": "Broker Research",
+        "caption": "Sell-side research ingested from your broker entitlements"
+      }
+    },
+    "sourceType": {
+      "mcp": "MCP",
+      "api": "API",
+      "files": "Files",
+      "app": "App",
+      "feed": "Feed"
+    },
+    "addSource": {
+      "type": "Source type",
+      "roadmap": "This source type is on the MVP roadmap. For now, connect any internal system through MCP."
+    },
     "configure": "Configure",
     "connect": "Connect",
     "disconnect": "Disconnect",
@@ -106,11 +133,11 @@
     "searchPlaceholder": "Search connectors…",
     "searchEmpty": {
       "title": "No connectors match ''{q}''",
-      "caption": "Try a different name, or add it as a custom MCP."
+      "caption": "Try a different name, or add it as a new source."
     },
     "mcp": {
-      "title": "Add custom MCP connector",
-      "caption": "Model Context Protocol: any internal system can speak to Faheem.",
+      "title": "Add a data source",
+      "caption": "Connect a data source to Faheem. Pick a type to begin.",
       "name": "Name",
       "namePlaceholder": "Lunar Portfolio DB",
       "url": "Remote server URL",
@@ -172,7 +199,7 @@
     "connectRecommended": "Connect recommended",
     "provisioned": "Provisioned",
     "mandate": {
-      "irr": "Target IRR hurdle",
+      "irr": "Target IRR benchmark",
       "concentration": "Max single-name concentration",
       "holding": "Holding period",
       "holdingShort": "1–3y",
@@ -234,7 +261,7 @@
       "library": "Library",
       "agents": "Agents",
       "scheduled": "Scheduled Tasks",
-      "connections": "Connections",
+      "connections": "Data Sources",
       "audit": "Audit Trail",
       "ic": "IC Room",
       "skills": "Skills",
@@ -322,7 +349,7 @@
       "showChart": "Show as chart",
       "omitted": "Charting {shown} of {total} rows",
       "sourcesInTable": "Sources shown in table view",
-      "hurdle": "Hurdle {value}%",
+      "hurdle": "Benchmark {value}%",
       "chartAria": "Bar chart: {series} across {categories}",
       "axis": {
         "percent": "%",
@@ -335,7 +362,7 @@
     "placeholders": {
       "p1": "Break down Jahez's FY2025 unit economics: GMV, take rate and AOV…",
       "p2": "Compare Jahez to Talabat, Delivery Hero and DoorDash on EV/GMV…",
-      "p3": "Draft an IC memo for Jahez against our 15% IRR hurdle…",
+      "p3": "Draft an IC memo for Jahez against our 15% IRR benchmark…",
       "p4": "Stress-test Jahez's valuation: WACC against terminal growth…"
     },
     "pills": {
@@ -350,7 +377,7 @@
       },
       "icMemo": {
         "label": "IC Memo",
-        "prompt": "Draft an Investment Committee memo for Jahez: thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR hurdle."
+        "prompt": "Draft an Investment Committee memo for Jahez: thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR benchmark."
       },
       "riskScorecard": {
         "label": "Risk Scorecard",
@@ -389,11 +416,45 @@
       "emptyStage": "No deals at this stage.",
       "screenSource": "vs the IC Charter",
       "irrLabel": "Implied IRR",
-      "hurdleLabel": "Mandate hurdle",
+      "hurdleLabel": "Benchmark",
       "bps": "{bps} bps",
-      "atHurdle": "At hurdle",
+      "atHurdle": "At benchmark",
       "risk": "Risk {score} / 10",
       "metricsSource": "Analysis summary · p.{page}"
+    },
+    "riskBreakdown": {
+      "triggerAria": "Explain the risk score, {score} out of 10",
+      "computedTitle": "How this score is calculated",
+      "sourcedTitle": "Quantified risk score",
+      "outOf": "{score} / 10",
+      "scaleNote": "Lunar's 1 to 10 scale; a higher score means more risk.",
+      "bands": {
+        "low": "Low risk",
+        "moderate": "Moderate risk",
+        "high": "High risk"
+      },
+      "registerHeader": {
+        "risk": "Risk",
+        "p": "P",
+        "i": "I",
+        "weight": "P × I"
+      },
+      "worst": "Worst risk",
+      "average": "Average",
+      "formulaLabel": "Peak-weighted composite",
+      "result": "= {score} / 10",
+      "assumptionsNote": "The six weights are Lunar analyst judgments, editable in the Live Model.",
+      "firmSpecificNote": "Lunar's internal scale; risk scores are firm-specific, not comparable across firms.",
+      "framing": "Scored against Lunar's risk appetite (moderate, return-disciplined). {doc}, p.{page}.",
+      "numberSource": "Score stated in {doc} · p.{page}",
+      "rows": {
+        "priceWar": "Price-war margin compression",
+        "newEntrants": "Well-capitalised new entrants",
+        "earningsVolatility": "Earnings volatility and one-offs",
+        "snoonuIntegration": "Snoonu integration and margin dilution",
+        "valuationData": "Valuation-data ambiguity",
+        "waccSensitivity": "WACC and terminal-value sensitivity"
+      }
     },
     "stage": {
       "screening": "Screening",
@@ -409,7 +470,7 @@
         "declined": "Declined at screening."
       },
       "humanGate": "Human decision gate",
-      "advance": "Advance to pitch meeting",
+      "advance": "Advance to Analyst Stage",
       "sendToIc": "Send to IC",
       "queued": "Queued for IC review"
     },
@@ -506,21 +567,21 @@
   },
   "ic": {
     "title": "Investment Committee",
-    "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR hurdle",
+    "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR benchmark",
     "disclaimer": "Advisory only: the investment decision rests with the committee.",
     "tableNote": "Every figure is drawn from each deal's completed analysis and cites its source page. Open any citation to verify.",
     "table": {
       "caption": "Deal comparison: analysis-complete pipeline",
       "metric": "Metric",
       "irr": "Implied IRR at entry",
-      "irrVsHurdle": "vs {hurdle} hurdle",
+      "irrVsHurdle": "vs {hurdle} benchmark",
       "expectedReturn": "Scenario-weighted expected return",
       "riskScore": "Risk score",
       "riskOutOf": "{score} / 10",
       "mandateFit": "Mandate fit",
       "compliance": "Compliance screen",
       "recommendation": "Analyst recommendation",
-      "deltaEqual": "At hurdle",
+      "deltaEqual": "At benchmark",
       "bps": "{bps} bps",
       "pass": "Pass",
       "warn": "Review",
@@ -534,14 +595,14 @@
     "chat": {
       "title": "Ask Faheem IC",
       "scope": "Advisor to the committee",
-      "intro": "Ask for a ranking, a hurdle check, or what would change the call, every answer cites the underlying analysis and the mandate.",
+      "intro": "Ask for a ranking, a benchmark check, or what would change the call, every answer cites the underlying analysis and the mandate.",
       "thinking": "Faheem IC is weighing the cases…",
       "placeholder": "Ask Faheem IC…",
       "send": "Send",
       "stop": "Stop",
       "suggestLabel": "Suggested questions",
       "suggest1": "Rank these deals: strongest risk-adjusted case?",
-      "suggest2": "Does each deal clear our IRR hurdle?",
+      "suggest2": "Does each deal clear our IRR benchmark?",
       "suggest3": "What would change the ranking?"
     }
   },
@@ -599,7 +660,7 @@
       "subject": "{company}: IC materials & recommendation",
       "body": {
         "greeting": "Dear Investment Committee,",
-        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {compliance}",
+        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} benchmark. {compliance}",
         "compliancePass": "The compliance screen passes.",
         "complianceFail": "The compliance screen does not pass.",
         "materialsLabel": "Materials:",
@@ -698,7 +759,7 @@
       "label": "Governance",
       "copy": "Client data is never used for model training. Every workspace is isolated, and every answer, model edit, and generated artifact lands in the audit trail. Enterprise controls are on the MVP roadmap.",
       "auditLink": "View audit trail",
-      "connectionsLink": "Manage connections"
+      "connectionsLink": "Manage data sources"
     }
   },
   "scheduled": {
@@ -873,7 +934,7 @@
       "riskScore": "Risk composite score",
       "ic": {
         "irr": "IC · implied IRR at entry",
-        "hurdle": "IC · hurdle rate",
+        "hurdle": "IC · benchmark",
         "expectedReturn": "IC · scenario-weighted expected return",
         "riskScore": "IC · risk score"
       },
@@ -1023,7 +1084,7 @@
       "cashRoll": "Forecast cash rolled forward as prior-year cash plus FCFF (no dividends/financing modeled, Jahez pays negligible dividends and is net-cash).",
       "netIncome": "Forecast net income simplified to EBIT × (1 − zakat); net finance cost is ~nil given the net-cash balance sheet.",
       "actualFcff": "Actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT, capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
-      "hurdle": "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate, the committee's minimum acceptable return for new positions.",
+      "hurdle": "IC benchmark of 15% gross IRR per the Lunar IC Charter & Investment Mandate (the charter's 'hurdle rate'), the committee's minimum acceptable return for new positions.",
       "riskWeights": "Quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25, peak-weighted so one severe risk dominates."
     },
     "live": {
@@ -1168,8 +1229,8 @@
         "compliance-skip": "No leverage change, no re-check needed",
         "writing": "Updating the recommendation line"
       },
-      "recommendationAbove": "Updated view: {perShare} fair value / share. Weighted IRR {irr} clears the {hurdle} hurdle.",
-      "recommendationBelow": "Updated view: {perShare} fair value / share. Weighted IRR {irr} is below the {hurdle} hurdle.",
+      "recommendationAbove": "Updated view: {perShare} fair value / share. Weighted IRR {irr} clears the {hurdle} benchmark.",
+      "recommendationBelow": "Updated view: {perShare} fair value / share. Weighted IRR {irr} is below the {hurdle} benchmark.",
       "sourceLocked": "That figure is a sourced actual (source-locked). Actuals come from the source documents; edit an assumption instead.",
       "unparsed": "Couldn’t map that to an editable assumption. Try “raise FY26 order growth to 20%” or “what if terminal growth is 3.5%?”."
     }

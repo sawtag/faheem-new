@@ -92,7 +92,7 @@
 **If pressed:** That self-flag is the point: the tool tells the analyst where the work isn't done, instead of dressing an estimate up as fact.
 
 ### F4. "Your committee ranks Thara Pay above Jahez — but Jahez has the higher expected return. Explain."
-**A:** Right, and that's the interesting call. **Jahez edges it on the blended return, 16.8 versus 16.2 — but Thara wins where it matters: it clears the hurdle by a wider margin, scores lower on risk, and its numbers rest on solid inputs, while Jahez's return leans on that unfinished WACC.** So it's reliability and cushion over a razor-thin return edge. And notice — Faheem argues that out loud, then hands the vote to the committee.
+**A:** Right, and that's the interesting call. **Jahez edges it on the blended return, 16.8 versus 16.2 — but Thara wins where it matters: it clears the benchmark by a wider margin, scores lower on risk, and its numbers rest on solid inputs, while Jahez's return leans on that unfinished WACC.** So it's reliability and cushion over a razor-thin return edge. And notice — Faheem argues that out loud, then hands the vote to the committee.
 **Point at:** IC room → the comparison table + the ranking answer's rationale; the "Advisory only" disclaimer.
 **If pressed:** Jahez also just printed a quarterly loss — a marginally higher model output on shakier ground isn't worth more than a cushioned, well-supported one.
 
@@ -102,9 +102,14 @@
 **If pressed:** The one-offs explain the headline; the take-rate pressure is the real story — and it's why we're cautious, not bullish.
 
 ### F6. "What would actually flip your recommendation?"
-**A:** **Two specific triggers, and we show them, not just say them.** One: nudge the WACC up about a point and Jahez's return drops toward the 15% hurdle — that's the whole margin gone. Two: if the price war compresses take-rates harder in the bear case, the story weakens further. We put both on a sensitivity grid so the committee sees the edges of the case, not just the base number.
+**A:** **Two specific triggers, and we show them, not just say them.** One: nudge the WACC up about a point and Jahez's return drops toward the 15% benchmark — that's the whole margin gone. Two: if the price war compresses take-rates harder in the bear case, the story weakens further. We put both on a sensitivity grid so the committee sees the edges of the case, not just the base number.
 **Point at:** Excel → Sensitivity tab (WACC × growth grid; take-rate × GMV grid).
-**If pressed:** The base case sits only about 210 basis points above the hurdle — thin enough that we treat it as flagged, not cleared.
+**If pressed:** The base case sits only about 210 basis points above the benchmark — thin enough that we treat it as flagged, not cleared.
+
+### F7. "Risk 5.5 out of 10 — says who? Every firm scores risk differently."
+**A:** **Exactly right, and that's why the score is Lunar's own scale, not a market standard, and why it's clickable.** Click any risk score and Faheem shows the derivation: six named risks, each weighted by probability times impact, rolled up with extra weight on the single worst risk. The register weights are labeled analyst assumptions you can edit live, and the whole thing is scored against Lunar's Risk Appetite Statement, which is right there in the document set. That's the regulated posture too: SAMA requires each institution to define its own risk appetite framework, so a firm-specific score with a visible methodology is the correct design, not a compromise.
+**Point at:** any "Risk 5.5 / 10" chip → click → the breakdown (band, register, formula, sources); then the Lunar Risk Appetite Statement in Sources.
+**If pressed:** A universal cross-firm risk number doesn't exist in this industry; pretending one does would be the red flag. What matters is that every number explains itself when you click it.
 
 ---
 

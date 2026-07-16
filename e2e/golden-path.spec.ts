@@ -125,7 +125,7 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
     await expect(banner.getByText("Screening", { exact: true })).toBeVisible();
 
     await clickUntil(
-      page.getByRole("button", { name: "Advance to pitch meeting" }),
+      page.getByRole("button", { name: "Advance to Analyst Stage" }),
       () =>
         expect(banner.getByText("Analysis", { exact: true })).toBeVisible({
           timeout: 2500,

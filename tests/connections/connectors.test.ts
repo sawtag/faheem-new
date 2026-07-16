@@ -21,10 +21,10 @@ describe("CONNECTORS", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it("has 18 connected and 21 available", () => {
+  it("has 19 connected and 20 available (Alinma Capital Research now activated)", () => {
     const statuses = CONNECTORS.map((c) => c.status);
-    expect(statuses.filter((s) => s === "connected")).toHaveLength(18);
-    expect(statuses.filter((s) => s === "available")).toHaveLength(21);
+    expect(statuses.filter((s) => s === "connected")).toHaveLength(19);
+    expect(statuses.filter((s) => s === "available")).toHaveLength(20);
   });
 
   it("has a research group with the 12 broker connectors, Saudi-first, GCC/regional last", () => {
@@ -49,7 +49,6 @@ describe("CONNECTORS", () => {
 
   it("gives every research connector the ingestion framing, never API/feed", () => {
     for (const c of CONNECTORS.filter((c) => c.group === "research")) {
-      expect(c.status, c.id).toBe("available");
       for (const s of [
         c.description.en,
         c.description.ar,
@@ -59,6 +58,26 @@ describe("CONNECTORS", () => {
         expect(s, `${c.id}: ${s}`).not.toMatch(/\bAPI\b/i);
         expect(s.toLowerCase(), `${c.id}: ${s}`).not.toContain("feed");
       }
+    }
+  });
+
+  it("activates only Alinma Capital in Broker Research (sponsor synergy, judge-qa-pack B2)", () => {
+    const connectedResearch = CONNECTORS.filter(
+      (c) => c.group === "research" && c.status === "connected",
+    ).map((c) => c.id);
+    expect(connectedResearch).toEqual(["alinma-capital"]);
+  });
+
+  it("gives every connector an honest sourceType from the taxonomy", () => {
+    const allowed = new Set(["mcp", "api", "files", "app", "feed"]);
+    for (const c of CONNECTORS) {
+      expect(allowed.has(c.sourceType), `${c.id}: ${c.sourceType}`).toBe(true);
+    }
+  });
+
+  it("types every broker-research connector as a file/document store", () => {
+    for (const c of CONNECTORS.filter((c) => c.group === "research")) {
+      expect(c.sourceType, c.id).toBe("files");
     }
   });
 

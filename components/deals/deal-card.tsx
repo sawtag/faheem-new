@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { LogoTile } from "@/components/ui/logo-tile";
+import { RiskBreakdown } from "@/components/deals/risk-breakdown";
 import { hurdleDelta } from "@/components/ic/metrics";
 import { useCountUp } from "@/lib/use-count-up";
 import { cn, formatPercent, westernNumber } from "@/lib/utils";
@@ -88,7 +89,7 @@ function StatValue({
  * the mandate hurdle, the hurdle itself, and the risk score, all straight from
  * deals.json `icMetrics` with the analysis-summary source caption (rule 5).
  */
-function MetricsStrip({ m }: { m: IcMetrics }) {
+function MetricsStrip({ m, dealId }: { m: IcMetrics; dealId: string }) {
   const t = useTranslations("deals.board");
   const locale = useLocale() as Lang;
 
@@ -138,9 +139,14 @@ function MetricsStrip({ m }: { m: IcMetrics }) {
             format={(n) => formatPercent(n, locale, { decimals: 0 })}
             className="text-navy-700 mt-0.5 block text-lg leading-tight font-bold"
           />
-          <p className="text-text-secondary financial mt-0.5 text-[0.6875rem]">
+          <RiskBreakdown
+            score={m.riskScore}
+            companyId={dealId}
+            cite={m.cite}
+            triggerClassName="text-text-secondary financial mt-0.5 text-[0.6875rem]"
+          >
             {t("risk", { score: westernNumber(m.riskScore, locale, 1) })}
-          </p>
+          </RiskBreakdown>
         </div>
       </div>
       <p className="text-text-secondary/80 financial mt-2 text-[0.6875rem]">
@@ -176,10 +182,12 @@ export function DealCard({ deal }: { deal: Deal }) {
       data-testid="deal-card"
       data-deal={deal.id}
     >
-      <Link
-        href={`/deals/${deal.id}`}
-        className="focus-visible:ring-accent focus-visible:ring-offset-bg rounded-card block p-5 outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-      >
+      {/* Stretched-link card: the name is the single navigating anchor, its
+          ::after overlay extends the hit-target to the whole card, and any
+          interactive child (the risk breakdown) lifts above it with z-10. This
+          keeps a lone <a> per card while letting the risk score open its own
+          popover without an interactive-in-anchor nesting. */}
+      <div className="p-5">
         <div className="flex items-start gap-3">
           {deal.logo ? (
             <span
@@ -206,14 +214,16 @@ export function DealCard({ deal }: { deal: Deal }) {
             />
           )}
           <div className="min-w-0 flex-1">
-            <p
+            <Link
+              href={`/deals/${deal.id}`}
               className={cn(
-                "truncate text-base font-bold",
+                "rounded-btn block truncate text-base font-bold outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-inset",
+                "after:rounded-card focus-visible:after:ring-accent",
                 declined ? "text-text-secondary" : "text-navy",
               )}
             >
               {deal.name[locale]}
-            </p>
+            </Link>
             <p className="text-text-secondary truncate text-[0.8125rem]">
               {deal.sector[locale]}
             </p>
@@ -251,8 +261,8 @@ export function DealCard({ deal }: { deal: Deal }) {
         )}
 
         {deal.screening && <ScreeningStrip rows={deal.screening.rows} />}
-        {deal.icMetrics && <MetricsStrip m={deal.icMetrics} />}
-      </Link>
+        {deal.icMetrics && <MetricsStrip m={deal.icMetrics} dealId={deal.id} />}
+      </div>
     </Card>
   );
 }

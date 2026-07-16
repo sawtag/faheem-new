@@ -3,7 +3,7 @@
  * (PPTX) ~8 slides").
  *
  * ① thesis-on-a-page ② market map ③ unit-economics bridge ④ valuation football
- * field ⑤ scenario IRRs vs the 15% hurdle ⑥ risk matrix ⑦ mandate fit
+ * field ⑤ scenario IRRs vs the 15% benchmark ⑥ risk matrix ⑦ mandate fit
  * ⑧ recommendation. 16:9, one Lunar-branded slide master (charcoal band, gold
  * rule, serif titles, "Prepared by Faheem for Lunar Investments" footer +
  * page number on every slide).
@@ -611,7 +611,7 @@ function buildSlide5(
     h: 0,
     line: { color: B.gold, width: 1.75, dashType: "dash" },
   });
-  slide.addText(`Lunar hurdle, ${model.ic.hurdle.toFixed(1)}%`, {
+  slide.addText(`Lunar benchmark, ${model.ic.hurdle.toFixed(1)}%`, {
     x: chartX + chartW - 2.7,
     y: hurdleY - 0.34,
     w: 2.7,
@@ -869,13 +869,13 @@ function buildSlide7(
       bodyCell("p.3"),
     ],
     [
-      bodyCell("IRR hurdle (15%)"),
+      bodyCell("IRR benchmark (15%)"),
       bodyCell(irrPass ? "PASS" : "REVIEW", {
         bold: true,
         color: irrPass ? B.positive : B.warn,
       }),
       bodyCell(
-        `Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} hurdle`,
+        `Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} benchmark`,
       ),
       bodyCell("p.3"),
     ],

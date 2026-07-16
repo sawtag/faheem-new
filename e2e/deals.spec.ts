@@ -100,7 +100,7 @@ test.describe("Darb workspace (screening)", () => {
     await expect(banner.getByText("Screening", { exact: true })).toBeVisible();
 
     await page
-      .getByRole("button", { name: "Advance to pitch meeting" })
+      .getByRole("button", { name: "Advance to Analyst Stage" })
       .click();
 
     await expect(banner.getByText("Analysis", { exact: true })).toBeVisible();

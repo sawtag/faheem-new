@@ -161,14 +161,14 @@
         "ar": "اصطلاح معدل العائد الداخلي لفترة الاحتفاظ، مضاعف خروج مركّب بتكلفة حقوق الملكية Ke"
       },
       {
-        "en": "Scenario-weighted expected return vs the fund's hurdle rate",
-        "ar": "العائد المتوقع المرجّح بالسيناريوهات مقابل عتبة العائد الخاصة بالصندوق"
+        "en": "Scenario-weighted expected return vs the fund's benchmark",
+        "ar": "العائد المتوقع المرجّح بالسيناريوهات مقابل العائد المرجعي الخاص بالصندوق"
       }
     ],
     "run": {
       "prefill": {
-        "en": "Build a scenario-weighted IRR for Jahez, bull, base, and bear cases with explicit probability weights, hold-period IRR on a Ke-compounded exit multiple, and the scenario-weighted expected return against our 15% hurdle.",
-        "ar": "ابنِ معدل عائد داخلي مرجّحاً بالسيناريوهات لجاهز، حالات متفائلة وأساسية ومتشائمة بأوزان احتمالية صريحة، ومعدل عائد داخلي لفترة الاحتفاظ على مضاعف خروج مركّب بتكلفة حقوق الملكية Ke، والعائد المتوقع المرجّح بالسيناريوهات مقابل عتبة العائد 15%."
+        "en": "Build a scenario-weighted IRR for Jahez, bull, base, and bear cases with explicit probability weights, hold-period IRR on a Ke-compounded exit multiple, and the scenario-weighted expected return against our 15% benchmark.",
+        "ar": "ابنِ معدل عائد داخلي مرجّحاً بالسيناريوهات لجاهز، حالات متفائلة وأساسية ومتشائمة بأوزان احتمالية صريحة، ومعدل عائد داخلي لفترة الاحتفاظ على مضاعف خروج مركّب بتكلفة حقوق الملكية Ke، والعائد المتوقع المرجّح بالسيناريوهات مقابل العائد المرجعي البالغ 15%."
       }
     }
   },

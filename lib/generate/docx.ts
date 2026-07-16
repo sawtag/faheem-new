@@ -511,7 +511,7 @@ export async function buildIcMemo(): Promise<Buffer> {
       ["Base-case IRR (4-year hold)", fact(facts, "calc.irrBase")],
       [
         "Scenario-weighted return",
-        `${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} mandate hurdle`,
+        `${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} benchmark`,
       ],
       ["Quantified risk score", `${fact(facts, "calc.riskScore")} / 10`],
       ["Compliance screen", fact(facts, "calc.complianceStatus")],
@@ -569,7 +569,7 @@ export async function buildIcMemo(): Promise<Buffer> {
         "Upside",
         "Base IRR (4y)",
         "Wtd. return",
-        "Hurdle",
+        "Benchmark",
         "Risk score",
         "Compliance",
       ],
@@ -718,9 +718,9 @@ export async function buildIcMemo(): Promise<Buffer> {
       ["Criterion", "Status", "Detail"],
       [
         [
-          "IRR hurdle (15%)",
+          "IRR benchmark (15%)",
           model.weightedReturn >= 0.15 ? "PASS" : "REVIEW",
-          `Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} hurdle`,
+          `Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} benchmark`,
         ],
         [
           "Single-name concentration (10% cap)",

@@ -274,7 +274,7 @@ describe("base-case model sanity", () => {
     expect(model.compliance.pass).toBe(true);
     expect(model.compliance.debtRatio).toBeLessThan(0.33);
   });
-  it("weighted expected return clears the 15% hurdle", () => {
+  it("weighted expected return clears the 15% benchmark", () => {
     expect(model.weightedReturn).toBeGreaterThan(0.15);
   });
 });

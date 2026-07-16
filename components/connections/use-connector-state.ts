@@ -79,6 +79,7 @@ export function useConnectorsState({
         tooltip: localized,
         group: "internal",
         status: "connected",
+        sourceType: "mcp",
         tile: { kind: "monogram", initial: name.trim().charAt(0) || "?" },
       };
       setCustom((prev) => [...prev, entry]);
