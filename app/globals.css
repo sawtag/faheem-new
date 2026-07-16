@@ -250,6 +250,12 @@ html[lang="ar"] {
 }
 .faheem-overlay[data-state="closed"] {
   animation: faheem-overlay-out var(--duration-fast) var(--ease);
+  /* terminal state, not just animation frames: if animationend never fires
+     (backgrounded/throttled renderer, route transition mid-exit), Radix keeps
+     the overlay mounted with an INLINE pointer-events:auto, so the closed
+     state must win with !important or the ghost backdrop eats every click. */
+  opacity: 0;
+  pointer-events: none !important;
 }
 .faheem-dialog {
   animation: faheem-dialog-in var(--duration-fast) var(--ease);
