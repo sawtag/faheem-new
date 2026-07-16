@@ -27,7 +27,11 @@ import {
 import { isUploadId, listUploads, uploadToCorpusDoc } from "@/lib/uploads";
 
 const repoRoot = process.cwd();
-const FIRM_PACKS = ["industry-news-pack", "market-data-comps"];
+const FIRM_PACKS = [
+  "industry-news-pack",
+  "market-data-comps",
+  "gastat-macro-pack",
+];
 const IC_CHARTER = "lunar-ic-charter";
 
 let manifestCache: CorpusDoc[] | null = null;

@@ -183,8 +183,8 @@ describe("live path", () => {
     });
 
     const docBlocks = content.slice(0, -1) as Record<string, unknown>[];
-    // firm context = 5 docs (lunar + packs)
-    expect(docBlocks).toHaveLength(5);
+    // firm context = 7 docs (lunar incl. public book + packs incl. macro)
+    expect(docBlocks).toHaveLength(7);
     docBlocks.forEach((block, i) => {
       expect(block.type).toBe("document");
       expect(block.citations).toEqual({ enabled: true });

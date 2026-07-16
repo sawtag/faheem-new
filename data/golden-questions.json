@@ -164,5 +164,82 @@
         "companyId": "jahez"
       }
     }
+  },
+  {
+    "id": "portfolio-top3",
+    "label": {
+      "en": "Top 3 positions & strategy headroom",
+      "ar": "أكبر ثلاثة مراكز في المحفظة وهامش الاستراتيجية"
+    },
+    "request": {
+      "question": "What are our top 3 positions in the public equities book? Show the sell-side analyst ratings on each, and how much I can add or trim per name before we hit our strategy bands on sector and geography.",
+      "lang": "en",
+      "context": {
+        "kind": "firm"
+      },
+      "docIds": ["lunar-public-book", "lunar-ic-charter"]
+    }
+  },
+  {
+    "id": "darb-memo",
+    "label": {
+      "en": "Darb IC memo from the data room",
+      "ar": "مذكرة لجنة الاستثمار عن درب من غرفة البيانات"
+    },
+    "request": {
+      "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "darb"
+      },
+      "docIds": ["darb-dataroom", "lunar-ic-charter"]
+    }
+  },
+  {
+    "id": "dcf-scenarios",
+    "label": {
+      "en": "Jahez DCF to 2031: bull / base / bear",
+      "ar": "التدفقات المخصومة لجاهز حتى 2031: صعودي وأساسي وهبوطي"
+    },
+    "request": {
+      "question": "Run the DCF on Jahez out to 2031 and build the bull and bear cases against base.",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      },
+      "docIds": ["jahez-analysis-summary", "market-data-comps"]
+    }
+  },
+  {
+    "id": "committee-deck",
+    "label": {
+      "en": "Jahez committee deck",
+      "ar": "عرض لجنة الاستثمار عن جاهز"
+    },
+    "request": {
+      "question": "Build the committee deck for Monday's IC on Jahez.",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      },
+      "docIds": ["jahez-analysis-summary"]
+    }
+  },
+  {
+    "id": "ic-macro-thara",
+    "label": {
+      "en": "Macro check before the Thara Pay vote",
+      "ar": "مراجعة الاقتصاد الكلي قبل التصويت على ثارا باي"
+    },
+    "request": {
+      "question": "Before we vote on Thara Pay: what does the latest macro data say about Saudi consumer spending and digital payments (GDP, inflation, household spending, the policy rate), and does anything in it challenge the growth assumptions in the analysis?",
+      "lang": "en",
+      "context": {
+        "kind": "ic"
+      }
+    }
   }
 ]

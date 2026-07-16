@@ -130,6 +130,18 @@
     "fileId": "file_011CcxfKMk2BmcH78MawkPBy"
   },
   {
+    "id": "lunar-public-book",
+    "title": {
+      "en": "Public Equities Book Review, June 2026",
+      "ar": "مراجعة محفظة الأسهم العامة، يونيو 2026"
+    },
+    "path": "data/corpus/lunar-public-book.pdf",
+    "pages": 4,
+    "sizeMB": 0.0449,
+    "type": "lunar",
+    "fileId": "file_011Cd5611gTq3yWuAERsKguw"
+  },
+  {
     "id": "darb-dataroom",
     "title": {
       "en": "Darb Data Room · Screening Summary",

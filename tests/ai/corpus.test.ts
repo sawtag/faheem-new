@@ -33,6 +33,8 @@ describe("filterDocs, context scoping (real manifest)", () => {
       "lunar-ic-charter",
       "lunar-risk-appetite",
       "lunar-portfolio",
+      "lunar-public-book",
+      "gastat-macro-pack",
     ]);
   });
 
