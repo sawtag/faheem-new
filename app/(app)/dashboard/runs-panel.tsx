@@ -165,8 +165,10 @@ function Lane({
   docsLabel: string;
 }) {
   const reduce = useReducedMotion();
+  // In EN the lane name stands alone; in AR the EN name stays as the
+  // secondary label (the agents-directory pattern, design-briefs §3.7).
   const lead = locale === "ar" ? lane.nameAr : lane.nameEn;
-  const secondary = locale === "ar" ? lane.nameEn : lane.nameAr;
+  const secondary = locale === "ar" ? lane.nameEn : null;
 
   return (
     <motion.li
@@ -186,9 +188,11 @@ function Lane({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
           <span className="text-navy text-[0.9375rem] font-bold">{lead}</span>
-          <span className="text-text-secondary text-xs font-medium">
-            {secondary}
-          </span>
+          {secondary && (
+            <span className="text-text-secondary text-xs font-medium">
+              {secondary}
+            </span>
+          )}
         </div>
         <p className="text-text-secondary mt-0.5 text-[0.8125rem]">
           {lane.summary[locale]}
