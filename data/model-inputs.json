@@ -732,5 +732,125 @@
     "sourceDoc": "q1-26-fs",
     "page": 31,
     "note": "Segment note 19, Others net segment loss 15,379,528"
+  },
+  {
+    "key": "darb.ask",
+    "value": 40,
+    "unit": "SAR m",
+    "sourceDoc": "darb-dataroom",
+    "page": 1,
+    "note": "At a glance: Ask, SAR 40,000,000"
+  },
+  {
+    "key": "darb.arr_fy25",
+    "value": 18.2,
+    "unit": "SAR m",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Annual Recurring Revenue (ARR), FY2025A"
+  },
+  {
+    "key": "darb.arr_fy26e",
+    "value": 29.5,
+    "unit": "SAR m",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Annual Recurring Revenue (ARR), FY2026E"
+  },
+  {
+    "key": "darb.arr_growth",
+    "value": 62,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: YoY ARR growth, FY2026E column"
+  },
+  {
+    "key": "darb.gross_margin_fy25",
+    "value": 68,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Gross margin, FY2025A"
+  },
+  {
+    "key": "darb.gross_margin_fy26e",
+    "value": 71,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Gross margin, FY2026E"
+  },
+  {
+    "key": "darb.nrr_fy25",
+    "value": 118,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Net revenue retention (NRR), FY2025A"
+  },
+  {
+    "key": "darb.nrr_fy26e",
+    "value": 124,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Net revenue retention (NRR), FY2026E"
+  },
+  {
+    "key": "darb.logos_fy25",
+    "value": 34,
+    "unit": "count",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Logo count (active customers), FY2025A"
+  },
+  {
+    "key": "darb.logos_fy26e",
+    "value": 52,
+    "unit": "count",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Logo count (active customers), FY2026E"
+  },
+  {
+    "key": "darb.burn_monthly",
+    "value": 1.4,
+    "unit": "SAR m",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Monthly cash burn (avg.), FY2025A"
+  },
+  {
+    "key": "darb.runway_months",
+    "value": 24,
+    "unit": "months",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Financial summary: Cash runway at close (post-round), approximate"
+  },
+  {
+    "key": "darb.proceeds_gtm",
+    "value": 55,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Use of proceeds: go-to-market expansion (enterprise sales, quick-commerce partnerships)"
+  },
+  {
+    "key": "darb.proceeds_product",
+    "value": 30,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Use of proceeds: product and engineering headcount"
+  },
+  {
+    "key": "darb.proceeds_working_capital",
+    "value": 15,
+    "unit": "%",
+    "sourceDoc": "darb-dataroom",
+    "page": 3,
+    "note": "Use of proceeds: working capital and runway extension"
   }
 ]

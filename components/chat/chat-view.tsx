@@ -16,7 +16,10 @@ import { VerifiedBadge } from "@/components/chat/verified-badge";
 import { reduceEvents, type AnswerView } from "@/components/chat/reduce";
 import { streamChat } from "@/components/chat/stream";
 import { GenerationPanel } from "@/components/generate/generation-panel";
-import { isDeliverablesQuestion } from "@/lib/demo/deliverables";
+import {
+  matchGenerationTrigger,
+  type GenerationTrigger,
+} from "@/lib/demo/generation-triggers";
 import {
   subscribeGoldenSelection,
   takeGoldenSelection,
@@ -53,16 +56,28 @@ const DEAL_NAMES = new Map<string, Localized>(
   dealsData.map((d) => [d.id, d.name]),
 );
 
+// Carries the full submit payload (incl. agent/docIds, not part of the
+// persisted SeedChat message schema) across the `/chat/new` → `/chat/[id]`
+// hand-off. MODULE scope, not a ref: the route param change remounts
+// ChatView, and a ref dies with the instance, silently stripping agent/doc
+// scoping off the first turn of a fresh chat (a cache-key miss on stage).
+// Same single-consumer stash pattern as lib/demo/golden-bus.ts.
+const pendingNewPayloadStash: { current: ComposerSubmit | null } = {
+  current: null,
+};
+
 interface LiveTurn {
   id: string;
   question: string;
   events: SSEEvent[];
   streaming: boolean;
   elapsedMs?: number;
-  /** P5a deliverables beat: an exact match on the "deliverables" golden
-   *  question renders GenerationPanel inline instead of streaming an answer
-   *, no /api/chat call for this turn. */
+  /** P5a generation beat: an exact match on a generation-trigger golden
+   *  question renders GenerationPanel inline instead of streaming an answer,
+   *  no /api/chat call for this turn. `trigger` carries the {workspace,
+   *  artifact} the panel should build. */
   kind?: "generation";
+  trigger?: GenerationTrigger;
 }
 interface OpenDoc {
   docId: string;
@@ -87,11 +102,7 @@ export function ChatView({ id }: { id: string }) {
   const startedFor = React.useRef<string | null>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const stick = React.useRef(true);
-  // Carries the full submit payload (incl. agent/docIds, not part of the
-  // persisted SeedChat message schema) across the `/chat/new` → `/chat/[id]`
-  // hand-off, so a golden-question palette selection with a chip reproduces
-  // the exact recorded ChatRequest on the very first turn of a fresh chat.
-  const pendingNewPayload = React.useRef<ComposerSubmit | null>(null);
+  const pendingNewPayload = pendingNewPayloadStash;
 
   const docTitle = React.useCallback(
     (docId: string) => DOC_TITLES.get(docId)?.[locale] ?? docId,
@@ -164,7 +175,12 @@ export function ChatView({ id }: { id: string }) {
   // artifact via /api/generate/[artifact]), so there is nothing further to
   // persist here beyond the user's turn.
   const runGeneration = React.useCallback(
-    (payload: ComposerSubmit, target: SeedChat, persistUser: boolean) => {
+    (
+      payload: ComposerSubmit,
+      target: SeedChat,
+      persistUser: boolean,
+      trigger: GenerationTrigger,
+    ) => {
       if (persistUser) {
         appendUserTurn(target.id, payload.question);
       }
@@ -177,6 +193,7 @@ export function ChatView({ id }: { id: string }) {
           events: [],
           streaming: false,
           kind: "generation",
+          trigger,
         },
       ]);
     },
@@ -255,11 +272,16 @@ export function ChatView({ id }: { id: string }) {
     startedFor.current = chat.id;
     const payload = pendingNewPayload.current ?? { question: pendingUser.text };
     pendingNewPayload.current = null;
-    if (isDeliverablesQuestion(payload.question)) {
-      runGeneration(payload, chat, false);
-    } else {
-      void runStream(payload, chat, false);
-    }
+    const trigger = matchGenerationTrigger(payload.question);
+    // Deferred a tick: the auto-start mutates turn state, and doing that
+    // synchronously inside the effect cascades a re-render mid-commit.
+    queueMicrotask(() => {
+      if (trigger) {
+        runGeneration(payload, chat, false, trigger);
+      } else {
+        void runStream(payload, chat, false);
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chat]);
 
@@ -286,8 +308,9 @@ export function ChatView({ id }: { id: string }) {
       router.push(`/chat/${created.id}`);
       return;
     }
-    if (isDeliverablesQuestion(payload.question)) {
-      runGeneration(payload, chat, true);
+    const trigger = matchGenerationTrigger(payload.question);
+    if (trigger) {
+      runGeneration(payload, chat, true, trigger);
       return;
     }
     void runStream(payload, chat, true);
@@ -357,10 +380,13 @@ export function ChatView({ id }: { id: string }) {
             )}
 
             {liveTurns.map((turn) =>
-              turn.kind === "generation" ? (
+              turn.kind === "generation" && turn.trigger ? (
                 <React.Fragment key={turn.id}>
                   <UserBubble text={turn.question} />
-                  <GenerationPanel workspace="jahez" />
+                  <GenerationPanel
+                    workspace={turn.trigger.workspace}
+                    artifacts={turn.trigger.artifact}
+                  />
                 </React.Fragment>
               ) : (
                 <React.Fragment key={turn.id}>

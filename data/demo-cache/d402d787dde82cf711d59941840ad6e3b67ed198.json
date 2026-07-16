@@ -1,0 +1,706 @@
+{
+  "key": "d402d787dde82cf711d59941840ad6e3b67ed198",
+  "request": {
+    "question": "Build the committee deck for Monday's IC on Jahez.",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    },
+    "docIds": [
+      "jahez-analysis-summary"
+    ]
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "ee decides). "
+    },
+    {
+      "type": "delta",
+      "text": "The recommendation is strongest when the weighted return clears the mandate hurdle."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "Recommendation: BUY — strongest when weighted return clears the mandate hurdle; committee\r\ndecides."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n|"
+    },
+    {
+      "type": "delta",
+      "text": " Gate | Reading |\n|---|---|\n| Implied IRR at entry | "
+    },
+    {
+      "type": "delta",
+      "text": "17.1%"
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Mandate hurdle rate | "
+    },
+    {
+      "type": "delta",
+      "text": "15.0%"
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Scenario-weighted expected return | "
+    },
+    {
+      "type": "delta",
+      "text": "16.8%"
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Quantified risk score | "
+    },
+    {
+      "type": "delta",
+      "text": "5.5 / 10"
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Mandate f"
+    },
+    {
+      "type": "delta",
+      "text": "it | "
+    },
+    {
+      "type": "delta",
+      "text": "Pass"
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Compliance screen | Pass |\n\n**One-line thesis:** "
+    },
+    {
+      "type": "delta",
+      "text": "Implied IRR of 17.1% clears the 15.0% hurdle by 210 basis points at entry."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "The scenario-weighted expected return of 16.8%, which blends bull, base, and bear cases, remains above the hurdle even after we"
+    },
+    {
+      "type": "delta",
+      "text": "ighting for downside scenarios, indicating the base-case return is not solely dependent on the bull case materializing."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "The scenario-weighted\r\nexpected return of 16.8% — which blends bull, base, and bear cases — remains above the hurdle even\r\nafter weighting for downside scenarios, indicating the base-case return is no"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## Slide 2: Company &"
+    },
+    {
+      "type": "delta",
+      "text": " Positioning"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "Jahez Group (Tadawul: 6017) operates in quick-commerce / food"
+    },
+    {
+      "type": "delta",
+      "text": " delivery."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " The name surfaced via a "
+    },
+    {
+      "type": "delta",
+      "text": "market screen (SAHMK"
+    },
+    {
+      "type": "delta",
+      "text": "/Argaam screen dated 2026-07-08)"
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " and is currently in"
+    },
+    {
+      "type": "delta",
+      "text": " Investment Committee review.\n\n---\n\n## Slide 3: Unit Economics (FY2025A)\n\nThe core marketplace engine is int"
+    },
+    {
+      "type": "delta",
+      "text": "act at the top line, but per-order economics are compressing:\n\n- **GMV:** "
+    },
+    {
+      "type": "delta",
+      "text": "FY2025 GMV reached SAR 7,245.2m (+10.8% YoY) on a take rate of 15"
+    },
+    {
+      "type": "delta",
+      "text": ".4% and an average order value of SAR 64.90."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Contribution proxy:** "
+    },
+    {
+      "type": "delta",
+      "text": "Gross"
+    },
+    {
+      "type": "delta",
+      "text": " margin, the closest disclosed proxy for contribution margin per order, fell to 22.8% (FY2024A: 24.4%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Operating leverage:** "
+    },
+    {
+      "type": "delta",
+      "text": "Adjusted EBITDA margin contracted to 8.3% (FY2024A: 11"
+    },
+    {
+      "type": "delta",
+      "text": ".3%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Read:** Top-line GMV growth of ~11% is being offset by a ~160bp"
+    },
+    {
+      "type": "delta",
+      "text": " gross-margin erosion and a ~300bp adjusted-EBITDA contraction, consistent with take-rate pressure r"
+    },
+    {
+      "type": "delta",
+      "text": "ather than volume loss.\n\n---\n\n## Slide 4: Profitability & the One-Offs\n\n- **Net income:** "
+    },
+    {
+      "type": "delta",
+      "text": "Net income compressed 61.2% YoY to SAR 73.0m, driven by SAR 55.4m of Q4-2025 one-off items (Red Color impairment,"
+    },
+    {
+      "type": "delta",
+      "text": " Marn goodwill impairment, Others-segment ECL, Snoonu deal costs) layered on take"
+    },
+    {
+      "type": "delta",
+      "text": "-rate pressure from the Keeta-led price war."
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Recent trend:** "
+    },
+    {
+      "type": "delta",
+      "text": "Q"
+    },
+    {
+      "type": "delta",
+      "text": "1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "[[15]]"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Judgment (analyst):** The S"
+    },
+    {
+      "type": "delta",
+      "text": "AR 55.4m of Q4 items are flagged as non-recurring, but the Q1-2026 loss indicates the margin p"
+    },
+    {
+      "type": "delta",
+      "text": "ressure is ongoing and not fully one-off. What would change this flag: two consecutive quarters of take-rate st"
+    },
+    {
+      "type": "delta",
+      "text": "abilization at or above 15.4% and a return to positive net income.\n\n---\n\n## Slide 5: Balance Sheet"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "The balance sheet carries SAR 16.6m of net cash: SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and"
+    },
+    {
+      "type": "delta",
+      "text": " SAR 332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "[[16]]"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Read:** Net cash position is thin at SAR 16.6m;"
+    },
+    {
+      "type": "delta",
+      "text": " the SAR 510.7m gross cash cushion is largely absorbed once debt and l"
+    },
+    {
+      "type": "delta",
+      "text": "ease liabilities are netted. Liquidity is adequate but does not provide a large buffer for a sustained price war.\n\n---\n\n## Slide 6: Val"
+    },
+    {
+      "type": "delta",
+      "text": "uation Methodology"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n"
+    },
+    {
+      "type": "delta",
+      "text": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived WAC"
+    },
+    {
+      "type": "delta",
+      "text": "C of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a "
+    },
+    {
+      "type": "delta",
+      "text": "13.7% cost of equity) with a 3.0% Gordon terminal growth rate, cross-checked against trading-comps tri"
+    },
+    {
+      "type": "delta",
+      "text": "angulation (EV/Revenue, EV/EBITDA and P/E across Talabat, DoorDash and Del"
+    },
+    {
+      "type": "delta",
+      "text": "ivery Hero)."
+    },
+    {
+      "type": "delta",
+      "text": "[[17]]"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Read:** A 13.31% WACC against a 3.0% terminal growth gives a ~10"
+    },
+    {
+      "type": "delta",
+      "text": ".3-point spread, a conservative terminal setup. The 1.82x beta reflects the cyclic"
+    },
+    {
+      "type": "delta",
+      "text": "ality and competitive intensity of the quick-commerce comp set.\n\n---\n\n## Slide 7: Key Risks\n\n1"
+    },
+    {
+      "type": "delta",
+      "text": ". **Competitive / take-rate risk:** "
+    },
+    {
+      "type": "delta",
+      "text": "Take-rate pressure from the Keeta-led price war."
+    },
+    {
+      "type": "delta",
+      "text": "[[18]]"
+    },
+    {
+      "type": "citation",
+      "n": 18,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " This"
+    },
+    {
+      "type": "delta",
+      "text": " is the primary earnings-compression driver.\n2. **Earnings quality:** "
+    },
+    {
+      "type": "delta",
+      "text": "S"
+    },
+    {
+      "type": "delta",
+      "text": "AR 55.4m of Q4-2025 impairments and deal costs,"
+    },
+    {
+      "type": "delta",
+      "text": "[[19]]"
+    },
+    {
+      "type": "citation",
+      "n": 19,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " plus a "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 9."
+    },
+    {
+      "type": "delta",
+      "text": "2m Q1-2026 net loss."
+    },
+    {
+      "type": "delta",
+      "text": "[[20]]"
+    },
+    {
+      "type": "citation",
+      "n": 20,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "\n3. **Aggregate risk rating:** "
+    },
+    {
+      "type": "delta",
+      "text": "Quantified risk score of "
+    },
+    {
+      "type": "delta",
+      "text": "5.5 / 10."
+    },
+    {
+      "type": "delta",
+      "text": "[[21]]"
+    },
+    {
+      "type": "citation",
+      "n": 21,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## Slide 8: IC Decision Points\n\n- IRR clears the h"
+    },
+    {
+      "type": "delta",
+      "text": "urdle by 210bp at entry, and the scenario-weighted return holds above the hurdle. "
+    },
+    {
+      "type": "delta",
+      "text": "Implied IRR of 17.1% clears the 15.0% hurdle by 210 basis points at entry, and the 16.8% scenario-"
+    },
+    {
+      "type": "delta",
+      "text": "weighted expected return remains above the hurdle even after weighting for downside scenarios."
+    },
+    {
+      "type": "delta",
+      "text": "[[22]]"
+    },
+    {
+      "type": "citation",
+      "n": 22,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n- Both mandate fit and the compliance screen pass."
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "Mandate fit: Pass; compliance screen: Pass."
+    },
+    {
+      "type": "delta",
+      "text": "[[23]]"
+    },
+    {
+      "type": "citation",
+      "n": 23,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Open question for the"
+    },
+    {
+      "type": "delta",
+      "text": " Committee:** Does the Q1-2026 loss and ongoing Keeta price war warrant a heavier downside weighting than the current"
+    },
+    {
+      "type": "delta",
+      "text": " 16.8% scenario blend implies?\n\n---\n\n*Note: Slides above are built entirely from the completed anal"
+    },
+    {
+      "type": "delta",
+      "text": "ysis summary. Sensitivity tables (per-scenario IRRs, DCF output value, com"
+    },
+    {
+      "type": "delta",
+      "text": "ps-implied EV range) and the entry price are not itemized in the connected source"
+    },
+    {
+      "type": "delta",
+      "text": ". That isn't in my connected sources. In the MVP this routes to web, Bloomberg, or PitchBook connectors.*\n\nWould you like"
+    },
+    {
+      "type": "delta",
+      "text": " me to expand any slide, or draft speaker notes for the presenter?"
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-16T04:18:59.636Z"
+}

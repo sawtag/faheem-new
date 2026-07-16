@@ -91,6 +91,7 @@
     "title": "Connections",
     "subtitle": "Faheem's data sources: market data, disclosures, and your internal systems.",
     "addMcp": "Add custom MCP",
+    "runSetup": "Run setup",
     "connected": "Connected",
     "available": "Available",
     "configure": "Configure",
@@ -132,6 +133,19 @@
   "onboarding": {
     "title": "Connect & Configure",
     "subtitle": "Three steps to make Faheem yours.",
+    "welcome": {
+      "eyebrow": "Welcome to Faheem",
+      "title": "Let's set up <name>Lunar Investments</name>",
+      "subtitle": "Three steps to a workspace that knows your firm: connect your systems, activate your specialist agents, and codify your investment mandate.",
+      "begin": "Begin setup",
+      "skip": "Skip for now",
+      "cardConnect": "Connect",
+      "cardConnectDesc": "Market data, research and internal systems",
+      "cardAgents": "Agents",
+      "cardAgentsDesc": "Specialist teams working your coverage",
+      "cardMandate": "Mandate",
+      "cardMandateDesc": "Your risk framework becomes the IC Charter"
+    },
     "step1": "Connect",
     "step2": "Agents & skills",
     "step3": "Mandate & risk",
@@ -139,9 +153,21 @@
     "back": "Back",
     "continue": "Continue",
     "finish": "Create IC Charter",
+    "exit": "Exit setup",
     "stage1": "Stage 1: Screening",
     "stage2": "Stage 2: Deep Analysis",
     "stage3": "Stage 3: Investment Committee",
+    "groups": {
+      "external": "External market data",
+      "externalCaption": "Prices, filings and disclosures from the exchange and market data providers",
+      "research": "Broker research",
+      "researchCaption": "Published reports ingested from your broker entitlements",
+      "internal": "Internal systems",
+      "internalCaption": "Your firm's documents, deal rooms and workplace tools"
+    },
+    "connectedCount": "{connected} of {total} systems connected",
+    "connectRecommended": "Connect recommended",
+    "provisioned": "Provisioned",
     "mandate": {
       "irr": "Target IRR hurdle",
       "concentration": "Max single-name concentration",
@@ -167,11 +193,24 @@
       "drawdown": "Max drawdown tolerance",
       "percentError": "Enter a percentage"
     },
+    "assemble": {
+      "title": "Assembling your workspace",
+      "indexing": "Indexing {docs} documents ({pages} pages) from your connected sources",
+      "agents": "Activating {agents} specialist agents",
+      "charter": "Codifying your mandate into the IC Charter",
+      "ready": "Workspace ready"
+    },
+    "stats": {
+      "systems": "Systems connected",
+      "docs": "Documents indexed",
+      "pages": "Pages indexed",
+      "agents": "Agents active"
+    },
     "done": {
       "title": "Your IC Charter is ready",
       "caption": "Faheem will cite it back to you in every screening decision.",
       "open": "Open IC Charter (PDF)",
-      "home": "Go to Home"
+      "enter": "Enter workspace"
     }
   },
   "shell": {
@@ -324,6 +363,12 @@
     "activity": {
       "summary": "4 agent tasks completed overnight",
       "link": "View activity"
+    },
+    "setup": {
+      "title": "Set up your workspace",
+      "caption": "Connect market data, broker research and your internal systems. Faheem takes it from there.",
+      "cta": "Start setup",
+      "dismiss": "Dismiss setup"
     }
   },
   "deals": {
@@ -336,7 +381,14 @@
       "filterMarket": "Market Screen (Public)",
       "originInbound": "Inbound · Private",
       "originMarket": "Market screen · Public",
-      "empty": "No deals match this filter."
+      "emptyStage": "No deals at this stage.",
+      "screenSource": "vs the IC Charter",
+      "irrLabel": "Implied IRR",
+      "hurdleLabel": "Mandate hurdle",
+      "bps": "{bps} bps",
+      "atHurdle": "At hurdle",
+      "risk": "Risk {score} / 10",
+      "metricsSource": "Analysis summary · p.{page}"
     },
     "stage": {
       "screening": "Screening",
@@ -516,10 +568,16 @@
       "slideThumb": "Slide {n}",
       "slideOf": "Slide {n} of {total}",
       "pageOf": "Page {n} of {total}",
-      "modelCaption": "Full model: open in Excel, every input cell carries its source.",
       "openInExcel": "Open in Excel",
       "fallbackTitle": "Preview unavailable",
-      "fallbackCaption": "The file itself is ready, download it below."
+      "fallbackCaption": "The file itself is ready, download it below.",
+      "sheets": {
+        "cover": "Cover",
+        "dcf": "DCF",
+        "scenarios": "Scenarios & Risk",
+        "sensitivity": "Sensitivity"
+      },
+      "sheetOf": "Sheet {n} of {total}"
     },
     "draft": {
       "trigger": "Draft email to IC",
@@ -543,6 +601,20 @@
         "closing": "Happy to walk through the model or take questions ahead of the meeting.",
         "signOff": "Ali\nLunar Investments"
       }
+    },
+    "scenarios": {
+      "title": "Scenario summary: value per share",
+      "openModel": "Open the Live Model",
+      "bear": "Bear",
+      "base": "Base",
+      "bull": "Bull",
+      "prob": "P {p}",
+      "irrUpside": "IRR {irr} · {upside} vs close",
+      "weighted": "Probability-weighted: {value}",
+      "vsClose": "vs {close} close ({upside})",
+      "waccG": "WACC {wacc} · terminal growth {g}",
+      "horizonNote": "Explicit FCFF forecast FY26E to FY30E; terminal value built on the FY2031 flow.",
+      "engineNote": "Same engine as the workbook: every input is sourced or a labeled assumption."
     }
   },
   "demo": {

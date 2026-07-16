@@ -138,16 +138,24 @@ describe("demo-cache corpus tables", () => {
   });
 
   it.each(CORPUS_TABLES.map((t, i) => [i, t] as const))(
-    "corpus table #%i parses + classifies as chartable",
+    "corpus table #%i parses cleanly",
     (_i, { block }) => {
       const parsed = parseMarkdownTable(block);
       expect(parsed).not.toBeNull();
       expect(parsed!.malformed).toBe(false);
-      const spec = classifyTable(parsed!);
-      expect(spec).not.toBeNull();
-      expect(spec!.bars.length).toBeGreaterThanOrEqual(2);
     },
   );
+
+  // Not every recorded table is chartable (the 2026-07-16 wave added rank and
+  // gate tables that render as plain tables, classifyTable → null is correct
+  // for those), but the numeric goldens must keep their chart affordance.
+  it("at least two corpus tables classify as chartable", () => {
+    const chartable = CORPUS_TABLES.filter(({ block }) => {
+      const parsed = parseMarkdownTable(block);
+      return parsed && !parsed.malformed && classifyTable(parsed) !== null;
+    });
+    expect(chartable.length).toBeGreaterThanOrEqual(2);
+  });
 });
 
 // ─── classification: exact shape for the two goldens ─────────────────────────

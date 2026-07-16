@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
 import { AGENT_ICONS } from "@/app/(app)/agents/agent-icons";
+import { LucideIcon } from "@/components/shell/lucide-icon";
 import en from "@/messages/en.json";
 import ar from "@/messages/ar.json";
 import { AGENT_IDS } from "@/lib/types";
@@ -42,6 +43,15 @@ describe("agent registry", () => {
         AGENT_ICONS[agent.icon],
         `${agent.id} icon "${agent.icon}"`,
       ).toBeDefined();
+    }
+  });
+
+  it("every agent icon resolves through the shared LucideIcon resolver (guards the onboarding step-agents tiles from empty icons)", () => {
+    for (const agent of AGENTS) {
+      expect(
+        LucideIcon({ name: agent.icon }),
+        `${agent.id} icon "${agent.icon}" did not resolve to a component`,
+      ).not.toBeNull();
     }
   });
 

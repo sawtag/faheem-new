@@ -44,3 +44,4 @@ presentation/
 
 # demo-day local assets (upload-beat PDFs etc.) — never commit
 demo-assets/
+e2e-screens/

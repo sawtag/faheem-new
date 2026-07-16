@@ -10,13 +10,14 @@ import type {
 
 export async function streamGenerate(
   artifact: ArtifactKind | "all",
+  workspace: string,
   signal: AbortSignal,
   onEvent: (event: GenerateEvent) => void,
 ): Promise<void> {
-  const res = await fetch(`/api/generate/${artifact}`, {
-    method: "POST",
-    signal,
-  });
+  const res = await fetch(
+    `/api/generate/${artifact}?workspace=${encodeURIComponent(workspace)}`,
+    { method: "POST", signal },
+  );
   if (!res.body) return;
 
   const reader = res.body.getReader();

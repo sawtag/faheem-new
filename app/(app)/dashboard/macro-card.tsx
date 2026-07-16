@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { cn, formatPercent } from "@/lib/utils";
 import type { Lang } from "@/lib/types";
-import { useCountUp } from "./use-count-up";
+import { useCountUp } from "@/lib/use-count-up";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
 

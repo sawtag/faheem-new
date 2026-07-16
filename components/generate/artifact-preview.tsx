@@ -19,9 +19,10 @@ const ICON_BTN =
 /**
  * In-app artifact preview (the deliverables beat's money moment): a slide-over
  * panel, same slide-in family as the chat PdfPanel aside, that opens the
- * generated deck/memo/model INSIDE Faheem. pptx = thumbnail rail + canvas with
- * a 150ms crossfade and arrow-key navigation; docx = stacked pages; xlsx =
- * Cover sheet + open-in-Excel CTA. Renders the pre-built PNGs from
+ * generated deck/memo/model INSIDE Faheem. pptx and xlsx = thumbnail rail +
+ * canvas with a 150ms crossfade and arrow-key navigation (the workbook rail
+ * is its named sheets: Cover, DCF, Scenarios & Risk, Sensitivity, plus an
+ * open-in-Excel CTA); docx = stacked pages. Renders the pre-built PNGs from
  * public/artifacts/previews/ (scripts/render-artifact-previews.ts, rendered
  * from the same deterministic builders the generate route runs); if an image
  * 404s the body falls back to a file tile + download, never a broken image.
@@ -50,7 +51,7 @@ function PreviewPanel({
   const t = useTranslations("generate.preview");
   const locale = useLocale() as Lang;
   const reduce = useReducedMotion();
-  const spec = previewSpec(meta.kind);
+  const spec = previewSpec(meta);
   const { icon: Icon, tile } = KIND_TILE[meta.kind];
 
   const [active, setActive] = React.useState(0);
@@ -161,7 +162,11 @@ function PreviewPanel({
                     }}
                     type="button"
                     onClick={() => setActive(i)}
-                    aria-label={t("slideThumb", { n: i + 1 })}
+                    aria-label={
+                      spec.sheetKeys
+                        ? t(`sheets.${spec.sheetKeys[i]}`)
+                        : t("slideThumb", { n: i + 1 })
+                    }
                     aria-current={i === active ? "true" : undefined}
                     className={cn(
                       "focus-visible:ring-accent block w-full cursor-pointer overflow-hidden rounded-[6px] border transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2",
@@ -210,14 +215,26 @@ function PreviewPanel({
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div className="flex h-10 shrink-0 items-center justify-center">
+            <div className="flex h-10 shrink-0 items-center justify-center gap-3">
               <span className="text-text-secondary financial text-xs font-semibold">
-                {t("slideOf", { n: active + 1, total: last + 1 })}
+                {spec.sheetKeys
+                  ? `${t(`sheets.${spec.sheetKeys[active]}`)} · ${t("sheetOf", { n: active + 1, total: last + 1 })}`
+                  : t("slideOf", { n: active + 1, total: last + 1 })}
               </span>
+              {spec.sheetKeys && (
+                <a
+                  href={meta.file}
+                  download
+                  className="text-accent-700 hover:text-accent-800 focus-visible:ring-accent rounded-btn inline-flex items-center gap-1 text-xs font-semibold underline-offset-2 outline-none hover:underline focus-visible:ring-2"
+                >
+                  <Download className="size-3.5" aria-hidden="true" />
+                  {t("openInExcel")}
+                </a>
+              )}
             </div>
           </div>
         </div>
-      ) : spec.layout === "pages" ? (
+      ) : (
         <div className="bg-navy-50/40 min-h-0 flex-1 overflow-y-auto">
           <div className="mx-auto flex max-w-[720px] flex-col gap-6 p-6">
             {spec.images.map((src, i) => (
@@ -245,33 +262,6 @@ function PreviewPanel({
                 </figcaption>
               </motion.figure>
             ))}
-          </div>
-        </div>
-      ) : (
-        <div className="bg-navy-50/40 min-h-0 flex-1 overflow-y-auto">
-          <div className="mx-auto flex max-w-[720px] flex-col items-center gap-5 p-6">
-            <Image
-              src={spec.images[0]!}
-              alt={meta.name[locale]}
-              width={spec.width}
-              height={spec.height}
-              unoptimized
-              onError={fail}
-              className="shadow-card block h-auto w-full rounded-[4px]"
-            />
-            <p className="text-text-secondary max-w-[420px] text-center text-[0.8125rem]">
-              {t("modelCaption")}
-            </p>
-            <Button
-              asChild
-              size="sm"
-              variant="outline"
-              startIcon={<Download className="size-4" aria-hidden="true" />}
-            >
-              <a href={meta.file} download>
-                {t("openInExcel")}
-              </a>
-            </Button>
           </div>
         </div>
       )}

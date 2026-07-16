@@ -103,10 +103,11 @@ export function DemoPalette() {
 
   function selectModelEdit(beat: ModelEditBeat) {
     publishModelEditPrefill(tChip(beat.chipKey));
+    // Same ordering rule as select(): close before any navigation.
+    setOpen(false);
     if (window.location.pathname !== MODEL_EDIT_PATH) {
       router.push(MODEL_EDIT_PATH);
     }
-    setOpen(false);
   }
 
   function select(entry: GoldenQuestion) {
@@ -120,6 +121,9 @@ export function DemoPalette() {
     const same =
       here &&
       serializeContext(here) === serializeContext(entry.request.context);
+    // Close BEFORE navigating: a push mid-exit can swallow the animationend
+    // Radix waits on, leaving the overlay mounted and eating every click.
+    setOpen(false);
     if (!same) {
       const href =
         entry.request.context.kind === "ic"
@@ -127,7 +131,6 @@ export function DemoPalette() {
           : `/chat/new?context=${encodeURIComponent(serializeContext(entry.request.context))}`;
       router.push(href);
     }
-    setOpen(false);
   }
 
   return (

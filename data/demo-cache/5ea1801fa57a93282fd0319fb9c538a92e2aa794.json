@@ -1,0 +1,434 @@
+{
+  "key": "5ea1801fa57a93282fd0319fb9c538a92e2aa794",
+  "request": {
+    "question": "Run the DCF on Jahez out to 2031 and build the bull and bear cases against base.",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    },
+    "docIds": [
+      "jahez-analysis-summary",
+      "market-data-comps"
+    ]
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": [
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": [
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": [
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": [
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "market-data-comps"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "## Bottom line\n\nI can't responsibly \"run\" a fresh year-by-year FCFF projection to 2031 or"
+    },
+    {
+      "type": "delta",
+      "text": " generate distinct bull/base/bear outputs, because the underlying forward assumptions (per-year GMV grow"
+    },
+    {
+      "type": "delta",
+      "text": "th, take-rate path, margin trajectory, capex, working-capital, tax rate, and the specific scenario parameters) are not in my connected s"
+    },
+    {
+      "type": "delta",
+      "text": "ources. What I have is the **output** of a completed DCF plus its **methodology anchors** and the **"
+    },
+    {
+      "type": "delta",
+      "text": "FY2025 starting point**. Fabricating the intervening line items would violate the no-estimation"
+    },
+    {
+      "type": "delta",
+      "text": " rule this workspace runs on. "
+    },
+    {
+      "type": "delta",
+      "text": "Computing fig"
+    },
+    {
+      "type": "delta",
+      "text": "ures that require estimation is something this pack is deliberately designed to avoid."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "C. Trading Comparables\r\nEV/GMV is marked n/a across the board — none of the free sources below reliably expose EV alongside a matched-period,\r\nmatched-currency GMV figure; computing it would require e"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nHere is what is actually sourced,"
+    },
+    {
+      "type": "delta",
+      "text": " and precisely what is missing.\n\n## Inputs that are anchored\n\n**Discount rate and terminal assumption"
+    },
+    {
+      "type": "delta",
+      "text": ".** "
+    },
+    {
+      "type": "delta",
+      "text": "The completed model is a discounted cash flow (FCFF) discounted at a CAPM-derived WACC of 13.31% ("
+    },
+    {
+      "type": "delta",
+      "text": "4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13"
+    },
+    {
+      "type": "delta",
+      "text": ".7% cost of equity) with a 3.0% Gordon terminal growth rate, cross-checked against trading-comps triangulation (EV/"
+    },
+    {
+      "type": "delta",
+      "text": "Revenue, EV/EBITDA and P/E across Talabat, DoorDash and Deliv"
+    },
+    {
+      "type": "delta",
+      "text": "ery Hero)."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**FY2025 starting base (the launch point for any projection).**\n- "
+    },
+    {
+      "type": "delta",
+      "text": "FY2025 GMV reached SAR 7,245.2m (+10.8% YoY) on a take rate of 15"
+    },
+    {
+      "type": "delta",
+      "text": ".4% and an average order value of SAR 64.90, while net income compressed 61.2% YoY to SAR 73.0m, driven by S"
+    },
+    {
+      "type": "delta",
+      "text": "AR 55.4m of Q4-2025 one-off items (Red Color impairment, Marn goodwill impairment,"
+    },
+    {
+      "type": "delta",
+      "text": " Others-segment ECL, Snoonu deal costs) layered on take-rate pressure from the Keeta-led price war."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- "
+    },
+    {
+      "type": "delta",
+      "text": "Gross margin, the closest disclosed proxy for contribution margin per order, fell to 22.8% (FY2024A"
+    },
+    {
+      "type": "delta",
+      "text": ": 24.4%), and adjusted EBITDA margin contracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n- "
+    },
+    {
+      "type": "delta",
+      "text": "Q1-2026 printed a SAR 9.2m net loss. The balance sheet carries S"
+    },
+    {
+      "type": "delta",
+      "text": "AR 16.6m of net cash: SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR 332"
+    },
+    {
+      "type": "delta",
+      "text": ".9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss. The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe net-cash figure is the bridge from enterprise value to equity value"
+    },
+    {
+      "type": "delta",
+      "text": "; the FY2025 GMV, take rate, and EBITDA margin are the drivers a"
+    },
+    {
+      "type": "delta",
+      "text": " projection would ramp forward.\n\n## Scenario framework that already exists\n\nThe completed analysis does contain sc"
+    },
+    {
+      "type": "delta",
+      "text": "enario-weighted results, but only in blended, summarized form, not as separate bull/"
+    },
+    {
+      "type": "delta",
+      "text": "bear paths:\n- "
+    },
+    {
+      "type": "delta",
+      "text": "Implied IRR at entry is 17.1% against a 15.0% mandate h"
+    },
+    {
+      "type": "delta",
+      "text": "urdle; the scenario-weighted expected return of 16.8% blends bull, base, and bear cases and remains above the hurdle even after we"
+    },
+    {
+      "type": "delta",
+      "text": "ighting for downside scenarios, indicating the base-case return is not solely dependent on the bull case materializing."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nSo the"
+    },
+    {
+      "type": "delta",
+      "text": " model clears the hurdle by roughly 210bps at entry, and"
+    },
+    {
+      "type": "delta",
+      "text": " the probability-weighted return sits ~20bps below the entry IRR, implying the downside c"
+    },
+    {
+      "type": "delta",
+      "text": "ases pull the blend down only modestly. But the individual bull and bear return figures, and their"
+    },
+    {
+      "type": "delta",
+      "text": " probability weights, are not disclosed in the summary.\n\n## What is missing to actually build the 2031 DCF\n\nTo"
+    },
+    {
+      "type": "delta",
+      "text": " produce a defensible five-year build and discrete scenarios, I would need:\n1. **Per-year GMV growth** "
+    },
+    {
+      "type": "delta",
+      "text": "2026-2031 (only the single FY2025 +10.8% print is sourced).\n2. **"
+    },
+    {
+      "type": "delta",
+      "text": "Take-rate path** under Keeta price-war pressure (FY2025 is 15.4%; forward trajectory not s"
+    },
+    {
+      "type": "delta",
+      "text": "ourced).\n3. **EBITDA-to-FCFF walk**: capex, D&A, working capital, cash tax, and IFR"
+    },
+    {
+      "type": "delta",
+      "text": "S-16 lease treatment (none projected in sources).\n4. **The discrete bull/base/bear assumption sets and their weights"
+    },
+    {
+      "type": "delta",
+      "text": "** (only the blended 16.8% is given).\n5. **A finalized WACC**,"
+    },
+    {
+      "type": "delta",
+      "text": " which the comps pack itself flags as not yet closed: "
+    },
+    {
+      "type": "delta",
+      "text": "Jahez's own"
+    },
+    {
+      "type": "delta",
+      "text": " reported 5Y beta of 0.02 is a data artifact of thin trading, not a real volatility read, and the standard bottom-up fix requires each comp's deb"
+    },
+    {
+      "type": "delta",
+      "text": "t/equity and marginal tax rate, which were not cleanly available from free sources and are flagged as a modeling next step rather than est"
+    },
+    {
+      "type": "delta",
+      "text": "imated."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "attempted\r\n12 Jul\r\n2026\r\nSaudi\r\nsovereign\r\nUSD bond\r\nspread over\r\nUST (context\r\nonly, not a\r\nWACC input)\r\n~50–100 bps S&P Global Ratings commentary, via WebSearch\r\nsynthesis — verify against a primary"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThere is also a caution worth carrying into any DCF cross-check: "
+    },
+    {
+      "type": "delta",
+      "text": "given the incomplete beta/cost-of-debt inputs, the comps table should be treated as a sense-check on a"
+    },
+    {
+      "type": "delta",
+      "text": " primary DCF, not a standalone valuation, and the WACC build needs the outstanding items closed out before the DCF is final"
+    },
+    {
+      "type": "delta",
+      "text": "."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "Given the incomplete beta/cost-of-debt\r\ninputs in §B, this comps table should be treated as a sense-check on a primary DCF, not a standalone valuation —\r\nflag to IC that neither approach alone resolve"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Analyst judgment:** the completed model evidently used a 13.31% WACC and 3.0% terminal growth, so"
+    },
+    {
+      "type": "delta",
+      "text": " a rebuild should hold those to stay consistent unless the out"
+    },
+    {
+      "type": "delta",
+      "text": "standing bottom-up beta work changes them. What would change my approach: obtaining the analyst's actual dri"
+    },
+    {
+      "type": "delta",
+      "text": "ver schedule (GMV/take-rate/margin path and FCFF bridge) or the finalized WACC mem"
+    },
+    {
+      "type": "delta",
+      "text": "o.\n\nThe detailed year-by-year projection and the discrete bull/bear scenario tables are not in my"
+    },
+    {
+      "type": "delta",
+      "text": " connected sources. That isn't in my connected sources. In the MVP this routes to web, Bloomberg, or P"
+    },
+    {
+      "type": "delta",
+      "text": "itchBook connectors."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-16T04:18:28.519Z"
+}

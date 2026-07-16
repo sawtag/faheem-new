@@ -8,15 +8,154 @@ import { useLocale, useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { LogoTile } from "@/components/ui/logo-tile";
-import { StageBadge } from "@/components/deals/stage-badge";
-import { cn } from "@/lib/utils";
-import type { Deal, Lang } from "@/lib/types";
+import { hurdleDelta } from "@/components/ic/metrics";
+import { useCountUp } from "@/lib/use-count-up";
+import { cn, formatPercent, westernNumber } from "@/lib/utils";
+import type { Deal, IcMetrics, Lang, ScreeningRow } from "@/lib/types";
+
+const SEGMENT: Record<ScreeningRow["verdict"], string> = {
+  pass: "bg-accent-400",
+  warn: "bg-warning",
+  fail: "bg-danger",
+};
+
+/**
+ * Screening evidence strip: one tinted segment per scorecard criterion
+ * (pass/warn/fail), with the verdict tally and the charter it was checked
+ * against. Pure render of deals.json `screening.rows`; the workspace holds
+ * the full cited scorecard.
+ */
+function ScreeningStrip({ rows }: { rows: ScreeningRow[] }) {
+  const t = useTranslations("deals");
+  const locale = useLocale() as Lang;
+
+  const tally = { pass: 0, warn: 0, fail: 0 };
+  for (const row of rows) tally[row.verdict] += 1;
+  const parts = (
+    [
+      ["pass", "text-accent-700"],
+      ["warn", "text-warning-700"],
+      ["fail", "text-danger-700"],
+    ] as const
+  ).filter(([verdict]) => tally[verdict] > 0);
+
+  return (
+    <div className="border-border mt-4 border-t pt-3">
+      <div className="flex items-center gap-1">
+        {rows.map((row) => (
+          <span
+            key={row.criterion.en}
+            data-testid="screen-segment"
+            data-verdict={row.verdict}
+            title={`${row.criterion[locale]}: ${t(`scorecard.${row.verdict}`)}`}
+            className={cn("rounded-pill h-1.5 flex-1", SEGMENT[row.verdict])}
+          />
+        ))}
+      </div>
+      <div className="financial mt-2 flex items-baseline justify-between gap-2 text-[0.6875rem]">
+        <p className="flex flex-wrap gap-x-1.5">
+          {parts.map(([verdict, tone]) => (
+            <span key={verdict} className={cn("font-semibold", tone)}>
+              {westernNumber(tally[verdict], locale)}{" "}
+              {t(`scorecard.${verdict}`)}
+            </span>
+          ))}
+        </p>
+        <p className="text-text-secondary/80 shrink-0">
+          {t("board.screenSource")}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/** Count-up stat figure (motion law: 400ms, tabular-nums via `financial`). */
+function StatValue({
+  value,
+  format,
+  className,
+}: {
+  value: number;
+  format: (n: number) => string;
+  className?: string;
+}) {
+  const n = useCountUp(value);
+  return <span className={cn("financial", className)}>{format(n)}</span>;
+}
+
+/**
+ * Analysis / IC-review evidence strip: implied IRR with its signed bps gap to
+ * the mandate hurdle, the hurdle itself, and the risk score, all straight from
+ * deals.json `icMetrics` with the analysis-summary source caption (rule 5).
+ */
+function MetricsStrip({ m }: { m: IcMetrics }) {
+  const t = useTranslations("deals.board");
+  const locale = useLocale() as Lang;
+
+  const delta = hurdleDelta(m.irr, m.hurdle);
+  const tone =
+    delta.tone === "above"
+      ? "text-accent-700"
+      : delta.tone === "below"
+        ? "text-danger-700"
+        : "text-text-secondary";
+  const mark =
+    delta.tone === "above" ? "▲" : delta.tone === "below" ? "▼" : "–";
+  const deltaLabel =
+    delta.tone === "equal"
+      ? t("atHurdle")
+      : t("bps", { bps: westernNumber(Math.abs(delta.bps), locale) });
+
+  return (
+    <div className="border-border mt-4 border-t pt-3">
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <p className="text-text-secondary text-[0.6875rem] font-semibold tracking-[0.04em] uppercase">
+            {t("irrLabel")}
+          </p>
+          <StatValue
+            value={m.irr}
+            format={(n) => formatPercent(n, locale)}
+            className="text-navy mt-0.5 block text-lg leading-tight font-extrabold"
+          />
+          <p
+            data-testid="card-irr-delta"
+            data-tone={delta.tone}
+            className={cn(
+              "financial mt-0.5 text-[0.6875rem] font-semibold",
+              tone,
+            )}
+          >
+            {mark} {deltaLabel}
+          </p>
+        </div>
+        <div>
+          <p className="text-text-secondary text-[0.6875rem] font-semibold tracking-[0.04em] uppercase">
+            {t("hurdleLabel")}
+          </p>
+          <StatValue
+            value={m.hurdle}
+            format={(n) => formatPercent(n, locale, { decimals: 0 })}
+            className="text-navy-700 mt-0.5 block text-lg leading-tight font-bold"
+          />
+          <p className="text-text-secondary financial mt-0.5 text-[0.6875rem]">
+            {t("risk", { score: westernNumber(m.riskScore, locale, 1) })}
+          </p>
+        </div>
+      </div>
+      <p className="text-text-secondary/80 financial mt-2 text-[0.6875rem]">
+        {t("metricsSource", { page: m.cite.page })}
+      </p>
+    </div>
+  );
+}
 
 /**
  * One pipeline card. Real logos come from deals.json (`logo` path, Jahez's is
  * vendored); fictional companies fall back to the monogram tile (assets
- * policy). Declined deals render muted with the decline reason in place of the
- * status line.
+ * policy). Below the status line each card carries its stage evidence:
+ * screening deals show the scorecard verdict strip, analysis/IC deals show
+ * IRR vs the mandate hurdle, declined deals show the decline reason.
  */
 export function DealCard({ deal }: { deal: Deal }) {
   const t = useTranslations("deals.board");
@@ -79,7 +218,6 @@ export function DealCard({ deal }: { deal: Deal }) {
               {deal.sector[locale]}
             </p>
           </div>
-          <StageBadge stage={deal.stage} size="sm" />
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-1.5">
@@ -111,6 +249,9 @@ export function DealCard({ deal }: { deal: Deal }) {
             {deal.statusLine[locale]}
           </p>
         )}
+
+        {deal.screening && <ScreeningStrip rows={deal.screening.rows} />}
+        {deal.icMetrics && <MetricsStrip m={deal.icMetrics} />}
       </Link>
     </Card>
   );

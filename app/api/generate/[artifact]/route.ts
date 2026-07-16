@@ -16,6 +16,7 @@ import path from "node:path";
 import { buildJahezWorkbook } from "@/lib/generate/xlsx";
 import { buildIcMemo } from "@/lib/generate/docx";
 import { buildBoardDeck } from "@/lib/generate/pptx";
+import { buildDarbMemo, darbSourceCount } from "@/lib/generate/darb-memo";
 import { loadModelInputs } from "@/lib/generate/shared";
 import { appendAudit } from "@/lib/audit";
 import {
@@ -33,27 +34,49 @@ import {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const WORKSPACE = "jahez"; // the demo's single deliverables workspace
+const DEFAULT_WORKSPACE = "jahez"; // ?workspace= default, keeps existing jahez behavior byte-for-byte
 
-const FILE_NAMES: Record<ArtifactKind, string> = {
-  xlsx: "jahez-valuation-model.xlsx",
-  docx: "jahez-ic-memo.docx",
-  pptx: "jahez-board-deck.pptx",
-};
+/** Per-workspace builder/meta registry. A workspace only supports the kinds it lists. */
+interface WorkspaceRegistry {
+  builders: Partial<Record<ArtifactKind, () => Promise<Buffer>>>;
+  fileNames: Partial<Record<ArtifactKind, string>>;
+  names: Partial<Record<ArtifactKind, Localized>>;
+  /** distinct cited source docs for this workspace's artifacts; defaults to the Jahez model-inputs count. */
+  sourceCount?: () => number;
+}
 
-const ARTIFACT_NAMES: Record<ArtifactKind, Localized> = {
-  xlsx: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
-  docx: { en: "Jahez · IC Memo", ar: "جاهز · مذكرة لجنة الاستثمار" },
-  pptx: {
-    en: "Jahez · Board Deck",
-    ar: "جاهز · العرض التقديمي لمجلس الإدارة",
+const WORKSPACES: Record<string, WorkspaceRegistry> = {
+  jahez: {
+    builders: {
+      xlsx: buildJahezWorkbook,
+      docx: buildIcMemo,
+      pptx: buildBoardDeck,
+    },
+    fileNames: {
+      xlsx: "jahez-valuation-model.xlsx",
+      docx: "jahez-ic-memo.docx",
+      pptx: "jahez-board-deck.pptx",
+    },
+    names: {
+      xlsx: { en: "Jahez · Valuation Model", ar: "جاهز · نموذج التقييم" },
+      docx: { en: "Jahez · IC Memo", ar: "جاهز · مذكرة لجنة الاستثمار" },
+      pptx: {
+        en: "Jahez · Board Deck",
+        ar: "جاهز · العرض التقديمي لمجلس الإدارة",
+      },
+    },
   },
-};
-
-const BUILDERS: Record<ArtifactKind, () => Promise<Buffer>> = {
-  xlsx: buildJahezWorkbook,
-  docx: buildIcMemo,
-  pptx: buildBoardDeck,
+  darb: {
+    builders: { docx: buildDarbMemo },
+    fileNames: { docx: "darb-screening-memo.docx" },
+    names: {
+      docx: {
+        en: "Darb Screening Memo",
+        ar: "مذكرة فرز درب للجنة الاستثمار",
+      },
+    },
+    sourceCount: darbSourceCount,
+  },
 };
 
 const sleep = (ms: number): Promise<void> =>
@@ -81,11 +104,17 @@ function jsonPath(): string {
   );
 }
 
-/** Distinct cited source docs behind the model, same figure for every artifact
- * (all three builders read the same model-inputs.json). */
+/** Distinct cited source docs behind the model, same figure for every Jahez
+ * artifact (all three builders read the same model-inputs.json); other
+ * workspaces supply their own `sourceCount()` in the registry. */
 function distinctSources(): number {
   const docs = new Set<string>();
-  for (const input of loadModelInputs().values()) docs.add(input.sourceDoc);
+  // Jahez inputs only: model-inputs.json also carries the darb.* screening
+  // figures, whose data-room source must not inflate the Jahez artifacts'
+  // "Verified · N sources" caption.
+  for (const [key, input] of loadModelInputs()) {
+    if (!key.startsWith("darb.")) docs.add(input.sourceDoc);
+  }
   return docs.size;
 }
 
@@ -108,6 +137,8 @@ function upsertArtifact(meta: ArtifactMeta): void {
 }
 
 async function generateOne(
+  workspace: string,
+  registry: WorkspaceRegistry,
   kind: ArtifactKind,
   emit: (event: GenerateEvent) => void,
   ms: number,
@@ -128,32 +159,32 @@ async function generateOne(
     });
 
     emit({ type: "stage", artifact: kind, phase: "building", status: "start" });
-    const buf = await BUILDERS[kind]();
+    const buf = await registry.builders[kind]!();
     if (ms > 0) await sleep(ms);
     emit({ type: "stage", artifact: kind, phase: "building", status: "done" });
 
     emit({ type: "stage", artifact: kind, phase: "writing", status: "start" });
     const dir = publicDir();
     fs.mkdirSync(dir, { recursive: true });
-    const fileName = FILE_NAMES[kind];
+    const fileName = registry.fileNames[kind]!;
     fs.writeFileSync(path.join(dir, fileName), buf);
     if (ms > 0) await sleep(ms);
     emit({ type: "stage", artifact: kind, phase: "writing", status: "done" });
 
     const meta: ArtifactMeta = {
-      id: `${WORKSPACE}-${kind}`,
+      id: `${workspace}-${kind}`,
       kind,
-      name: ARTIFACT_NAMES[kind],
-      workspace: WORKSPACE,
+      name: registry.names[kind]!,
+      workspace,
       file: `/artifacts/${fileName}`,
       createdAt: new Date().toISOString(),
-      sources: distinctSources(),
+      sources: (registry.sourceCount ?? distinctSources)(),
     };
     upsertArtifact(meta);
     appendAudit({
       ts: meta.createdAt,
       user: "Ali",
-      context: `workspace:${WORKSPACE}`,
+      context: `workspace:${workspace}`,
       action: "artifact",
       artifact: fileName,
     });
@@ -167,20 +198,33 @@ async function generateOne(
   }
 }
 
-function parseArtifact(param: string): ArtifactKind[] | null {
-  if (param === "all") return [...ARTIFACT_KINDS];
-  return (ARTIFACT_KINDS as readonly string[]).includes(param)
-    ? [param as ArtifactKind]
-    : null;
+/** Kinds to generate for a workspace/artifact-param pair, "all" = every kind that workspace registers. */
+function parseKinds(
+  registry: WorkspaceRegistry,
+  param: string,
+): ArtifactKind[] | null {
+  if (param === "all") {
+    return ARTIFACT_KINDS.filter((k) => registry.builders[k]);
+  }
+  if (
+    (ARTIFACT_KINDS as readonly string[]).includes(param) &&
+    registry.builders[param as ArtifactKind]
+  ) {
+    return [param as ArtifactKind];
+  }
+  return null;
 }
 
 export async function POST(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ artifact: string }> },
 ): Promise<Response> {
   const { artifact } = await params;
-  const kinds = parseArtifact(artifact);
-  if (!kinds) {
+  const workspace =
+    new URL(request.url).searchParams.get("workspace") || DEFAULT_WORKSPACE;
+  const registry = WORKSPACES[workspace];
+  const kinds = registry ? parseKinds(registry, artifact) : null;
+  if (!registry || !kinds) {
     return Response.json({ error: "Unknown artifact" }, { status: 400 });
   }
 
@@ -192,7 +236,7 @@ export async function POST(
         controller.enqueue(encoder.encode(serializeGenerateEvent(event)));
       };
       for (const kind of kinds) {
-        await generateOne(kind, emit, ms);
+        await generateOne(workspace, registry, kind, emit, ms);
       }
       emit({ type: "done" });
       controller.close();

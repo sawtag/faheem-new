@@ -267,6 +267,30 @@ function dataTable(
   });
 }
 
+/** Cover at-a-glance: label/value rows, no header band (IC-memo house style). */
+function kvTable(rows: [string, string][]): Table {
+  return new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: thin(B.borderStrong),
+      bottom: thin(B.borderStrong),
+      left: thin(B.borderStrong),
+      right: thin(B.borderStrong),
+      insideHorizontal: thin(),
+      insideVertical: thin(),
+    },
+    rows: rows.map(
+      ([label, value]) =>
+        new TableRow({
+          children: [
+            cell(label, { width: 42, fill: B.paper, bold: true }),
+            cell(value, { width: 58 }),
+          ],
+        }),
+    ),
+  });
+}
+
 // ═════════════════════════════ appendix (sources) ═══════════════════════════
 // Every ModelInput key actually cited (by placeholder) anywhere in the memo
 // prose, plus the handful of policy/industry-pack pages cited inline as plain
@@ -422,7 +446,7 @@ export async function buildIcMemo(): Promise<Buffer> {
   });
 
   // ── Cover page ──
-  const coverChildren: Paragraph[] = [
+  const coverChildren: (Paragraph | Table)[] = [
     new Paragraph({ spacing: { after: 0 }, children: [] }),
     coverBand("LUNAR INVESTMENTS", {
       size: 30,
@@ -441,10 +465,22 @@ export async function buildIcMemo(): Promise<Buffer> {
       bold: false,
       spaceAfter: 220,
     }),
-    new Paragraph({ spacing: { after: 500 }, children: [] }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { after: 100 },
+      spacing: { before: 160, after: 260 },
+      children: [
+        new TextRun({
+          text: "PRIVILEGED & CONFIDENTIAL · PREPARED FOR THE INVESTMENT COMMITTEE",
+          font: B.sans,
+          size: half(8.5),
+          bold: true,
+          color: B.inkMuted,
+        }),
+      ],
+    }),
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      spacing: { after: 80 },
       children: [
         new TextRun({
           text: fact(facts, "calc.rating"),
@@ -457,13 +493,39 @@ export async function buildIcMemo(): Promise<Buffer> {
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { after: 360 },
+      spacing: { after: 240 },
       children: [
         new TextRun({
-          text: `Target price ${fact(facts, "calc.targetPrice")}  ·  ${fact(facts, "calc.upside")} vs ${fact(facts, "calc.currentPrice")} close  ·  Base IRR ${fact(facts, "calc.irrBase")}  ·  Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} hurdle`,
+          text: `Target price ${fact(facts, "calc.targetPrice")}  ·  ${fact(facts, "calc.upside")} vs ${fact(facts, "calc.currentPrice")} close`,
           font: B.sans,
           size: half(11.5),
           color: B.charcoalMid,
+        }),
+      ],
+    }),
+    kvTable([
+      [
+        "Target price (12m, DCF-anchored)",
+        `${fact(facts, "calc.targetPrice")} (${fact(facts, "calc.upside")} vs ${fact(facts, "calc.currentPrice")} close)`,
+      ],
+      ["Base-case IRR (4-year hold)", fact(facts, "calc.irrBase")],
+      [
+        "Scenario-weighted return",
+        `${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} mandate hurdle`,
+      ],
+      ["Quantified risk score", `${fact(facts, "calc.riskScore")} / 10`],
+      ["Compliance screen", fact(facts, "calc.complianceStatus")],
+      ["Valuation basis", "FCFF DCF, cross-checked against trading comps"],
+    ]),
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      spacing: { before: 260, after: 200 },
+      children: [
+        new TextRun({
+          text: "Contents: Executive Summary & Recommendation · Investment Thesis · Company & Industry · Financial Analysis · Valuation · Quantified Risk Assessment · Compliance Screen · Catalysts & Monitoring KPIs · Sources",
+          font: B.sans,
+          size: half(8.5),
+          color: B.inkMuted,
         }),
       ],
     }),
@@ -524,7 +586,7 @@ export async function buildIcMemo(): Promise<Buffer> {
           fact(facts, "calc.complianceStatus"),
         ],
       ],
-      [9, 12, 12, 9, 12, 11, 9, 11, 15],
+      [9, 12, 12, 8, 12, 11, 9, 11, 16],
     ),
     caption(
       "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Compliance Screen tabs), see the workbook for the full formula chain.",

@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import {
   ARTIFACT_KINDS,
+  type ArtifactKind,
   type GenerateEvent,
 } from "@/components/generate/protocol";
 import { streamGenerate } from "@/components/generate/stream";
@@ -18,18 +19,21 @@ import {
 } from "@/components/generate/reduce";
 import { FileCard, KIND_TILE } from "@/components/generate/file-card";
 import { ArtifactPreview } from "@/components/generate/artifact-preview";
+import { ScenarioSummary } from "@/components/generate/scenario-summary";
 import { DraftToIc } from "@/components/ic/draft-to-ic";
 import type { ArtifactMeta } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
 
 /**
- * The deliverables flow: three artifact rows tick through
+ * The generation flow: one artifact row per kind ticks through
  * assembling → building → writing, each morphing into a Lunar-branded
  * FileCard as it lands. Mount-anywhere (chat inline, workspace Artifacts
- * tab), starts generating on mount by default. When the full run lands,
- * the board deck AUTO-OPENS in the ArtifactPreview slide-over (a fixed
- * overlay, so the host layout, chat thread or tab, is untouched).
+ * tab), starts generating on mount by default. `artifacts` is "all" (the
+ * three Jahez deliverables) or a single kind (e.g. the Darb memo, the Jahez
+ * scenario workbook). When the run lands, one artifact AUTO-OPENS in the
+ * ArtifactPreview slide-over (the board deck for "all", or the single kind
+ * for a one-artifact run), a fixed overlay so the host layout is untouched.
  */
 export function GenerationPanel({
   workspace,
@@ -37,7 +41,7 @@ export function GenerationPanel({
   autoStart = true,
 }: {
   workspace: string;
-  artifacts?: "all";
+  artifacts?: "all" | ArtifactKind;
   autoStart?: boolean;
 }) {
   const [events, setEvents] = React.useState<GenerateEvent[]>([]);
@@ -46,11 +50,15 @@ export function GenerationPanel({
   const autoOpened = React.useRef(false);
   const reduce = useReducedMotion();
 
+  // Rows in play: every kind for "all", otherwise just the single requested one.
+  const kinds: readonly ArtifactKind[] =
+    artifacts === "all" ? ARTIFACT_KINDS : [artifacts];
+
   React.useEffect(() => {
     if (!autoStart || started.current) return;
     started.current = true;
     const controller = new AbortController();
-    streamGenerate(artifacts, controller.signal, (event) => {
+    streamGenerate(artifacts, workspace, controller.signal, (event) => {
       setEvents((prev) => [...prev, event]);
     }).catch(() => {
       /* aborted (unmount / StrictMode remount) or network drop, the
@@ -63,22 +71,25 @@ export function GenerationPanel({
       started.current = false;
       controller.abort();
     };
-  }, [autoStart, artifacts]);
+  }, [autoStart, artifacts, workspace]);
 
-  const { rows, done } = reduceGenerateEvents(ARTIFACT_KINDS, events);
+  const { rows, done } = reduceGenerateEvents(kinds, events);
   const landedArtifacts = rows
     .map((row) => row.meta)
     .filter((meta): meta is ArtifactMeta => meta !== null);
 
-  // The money moment: the run completes → progress ticks settle → the board
-  // deck slides open on its own, one beat after the last card's morph.
-  const deckMeta = rows.find((row) => row.kind === "pptx")?.meta ?? null;
+  // The money moment: the run completes → progress ticks settle → an artifact
+  // slides open on its own, one beat after the last card's morph. "all" opens
+  // the board deck; a single-kind run opens that kind.
+  const autoOpenKind: ArtifactKind = artifacts === "all" ? "pptx" : artifacts;
+  const autoOpenMeta =
+    rows.find((row) => row.kind === autoOpenKind)?.meta ?? null;
   React.useEffect(() => {
-    if (!done || !deckMeta || autoOpened.current) return;
+    if (!done || !autoOpenMeta || autoOpened.current) return;
     autoOpened.current = true;
-    const id = window.setTimeout(() => setPreview(deckMeta), 400);
+    const id = window.setTimeout(() => setPreview(autoOpenMeta), 400);
     return () => window.clearTimeout(id);
-  }, [done, deckMeta]);
+  }, [done, autoOpenMeta]);
 
   return (
     <>
@@ -96,16 +107,29 @@ export function GenerationPanel({
           );
         })}
       </div>
-      {done && landedArtifacts.length > 0 && (
+      {done && workspace === "jahez" && artifacts === "xlsx" && (
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.22, ease: EASE, delay: 0.28 }}
           className="mt-3"
         >
-          <DraftToIc workspace={workspace} artifacts={landedArtifacts} />
+          <ScenarioSummary />
         </motion.div>
       )}
+      {done &&
+        workspace === "jahez" &&
+        artifacts === "all" &&
+        landedArtifacts.length > 0 && (
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22, ease: EASE, delay: 0.28 }}
+            className="mt-3"
+          >
+            <DraftToIc workspace={workspace} artifacts={landedArtifacts} />
+          </motion.div>
+        )}
       <ArtifactPreview meta={preview} onClose={() => setPreview(null)} />
     </>
   );

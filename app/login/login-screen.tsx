@@ -136,9 +136,7 @@ export function LoginScreen() {
           <div className="flex h-9 items-center justify-center">
             {playLogo && (
               <Logo
-                variant={
-                  locale === "ar" ? "horizontal-bilingual" : "horizontal"
-                }
+                variant={locale === "ar" ? "horizontal-ar" : "horizontal"}
                 size={30}
                 animated={!reduceMotion}
               />

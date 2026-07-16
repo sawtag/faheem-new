@@ -199,6 +199,7 @@ function Kit({ copy }: { copy: Copy }) {
         <Row>
           <Logo variant="icon" size={40} />
           <Logo variant="horizontal" size={30} />
+          <Logo variant="horizontal-ar" size={30} />
           <Logo variant="horizontal-bilingual" size={34} />
           <Logo variant="vertical" size={40} />
         </Row>

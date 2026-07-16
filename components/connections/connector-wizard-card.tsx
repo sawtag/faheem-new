@@ -16,12 +16,16 @@ export function ConnectorWizardCard({
   connector,
   justConnected,
   onConnect,
+  provisioned = false,
 }: {
   connector: Connector;
   justConnected: boolean;
   onConnect: () => void;
+  /** provisioned with the workspace (not user-connected): shows the "Provisioned" label rather than the bare connected check. */
+  provisioned?: boolean;
 }) {
   const t = useTranslations("connections");
+  const tOnb = useTranslations("onboarding");
   const locale = useLocale() as Lang;
   const name = connector.name[locale];
   const connected = connector.status === "connected";
@@ -52,10 +56,17 @@ export function ConnectorWizardCard({
           </p>
         </div>
         {connected ? (
-          <CircleCheck
-            className="text-accent size-5 shrink-0"
-            aria-hidden="true"
-          />
+          provisioned ? (
+            <span className="bg-accent-50 text-accent-700 rounded-pill inline-flex shrink-0 items-center gap-1 px-2 py-0.5 text-xs font-bold whitespace-nowrap">
+              <CircleCheck className="size-3.5" aria-hidden="true" />
+              {tOnb("provisioned")}
+            </span>
+          ) : (
+            <CircleCheck
+              className="text-accent size-5 shrink-0"
+              aria-hidden="true"
+            />
+          )
         ) : (
           <Button
             variant="secondary"
