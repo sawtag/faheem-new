@@ -2,9 +2,10 @@
  * Runtime mode resolution + cached-replay pacing.
  *
  * Precedence: cookie `faheem_mode` > FAHEEM_MODE env > smart default. The
- * smart default is `auto` when an API key is present (live-first, with the
- * recorded cache as the safety net) and `cached` when it's absent (a keyless
- * fresh clone / backup laptop still runs fully offline, no live-call error).
+ * smart default is `auto` when an API key is present and `cached` when it's
+ * absent (a keyless fresh clone / backup laptop still runs fully offline, no
+ * live-call error). Auto is cache-first: a recorded question replays
+ * instantly and deterministically; only unrecorded questions stream live.
  * The cookie is the on-stage panic switch and always wins. Replay pacing
  * spreads text deltas by FAHEEM_REPLAY_DELAY_MS (tests set 0); the full
  * orchestration (live / auto / fallback) lives in sse.ts.

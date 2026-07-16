@@ -223,8 +223,10 @@
     "firm": "Lunar Investments",
     "analyst": "Ali",
     "switchLanguage": "Switch language",
+    "signOut": "Sign out",
     "nav": {
       "home": "Home",
+      "general": "General",
       "deals": "Deals",
       "library": "Library",
       "agents": "Agents",
@@ -644,6 +646,56 @@
       "lastResponseNone": "none yet",
       "lastResponseCached": "cached",
       "lastResponseLive": "live"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "How Faheem answers, and the environment behind it.",
+    "engine": {
+      "label": "Answer engine",
+      "caption": "Choose how Faheem serves answers in this session. The switch takes effect on the next question, no reload needed.",
+      "modes": {
+        "cached": {
+          "tagline": "Demo pack",
+          "description": "Replays the verified, pre-recorded answer set. Fully offline, deterministic, every figure cited."
+        },
+        "auto": {
+          "tagline": "Hybrid",
+          "description": "Verified recordings when available, live analysis for anything new."
+        },
+        "live": {
+          "tagline": "Real time",
+          "description": "Every question streams from the analysis engine in real time."
+        }
+      },
+      "recommended": "Recommended",
+      "keyHint": "Live analysis requires an API key",
+      "effective": "Effective mode: {mode}",
+      "sourceOverride": "your override",
+      "sourceEnv": "environment default",
+      "reset": "Reset to environment default"
+    },
+    "environment": {
+      "label": "Environment",
+      "recorded": "Recorded answers",
+      "recordedCaption": "Verified golden questions in the demo pack",
+      "corpus": "Corpus documents",
+      "corpusCaption": "Source documents grounding every answer",
+      "apiKey": "API key",
+      "configured": "Configured",
+      "notConfigured": "Not configured",
+      "apiKeyCaption": "Powers live analysis; the key never leaves the server"
+    },
+    "preferences": {
+      "label": "Preferences",
+      "language": "Language",
+      "languageCaption": "Faheem is fully bilingual; the interface renders right-to-left in Arabic."
+    },
+    "governance": {
+      "label": "Governance",
+      "copy": "Client data is never used for model training. Every workspace is isolated, and every answer, model edit, and generated artifact lands in the audit trail. Enterprise controls are on the MVP roadmap.",
+      "auditLink": "View audit trail",
+      "connectionsLink": "Manage connections"
     }
   },
   "scheduled": {

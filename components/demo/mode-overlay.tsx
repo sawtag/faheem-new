@@ -6,16 +6,14 @@ import { useTranslations } from "next-intl";
 import type { FaheemMode } from "@/lib/types";
 import {
   currentLastResponseCached,
+  publishMode,
+  setModeCookie,
   subscribeLastResponseCached,
+  subscribeMode,
 } from "@/lib/demo/mode-bus";
 import { cn } from "@/lib/utils";
 
 const MODES: FaheemMode[] = ["live", "auto", "cached"];
-const COOKIE_NAME = "faheem_mode";
-
-function setModeCookie(mode: FaheemMode): void {
-  document.cookie = `${COOKIE_NAME}=${mode}; path=/; max-age=${60 * 60 * 24}; samesite=lax`;
-}
 
 /**
  * Stage-only mode overlay (P5a §3.4/T2.1's cookie `faheem_mode` panic switch,
@@ -36,6 +34,8 @@ export function ModeOverlay({ initialMode }: { initialMode: FaheemMode }) {
   );
 
   React.useEffect(() => subscribeLastResponseCached(setLastCached), []);
+  // stay in sync with /settings (and any other publisher) within the session
+  React.useEffect(() => subscribeMode(setMode), []);
 
   React.useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -51,6 +51,7 @@ export function ModeOverlay({ initialMode }: { initialMode: FaheemMode }) {
   function pick(next: FaheemMode) {
     setMode(next);
     setModeCookie(next);
+    publishMode(next);
   }
 
   return (

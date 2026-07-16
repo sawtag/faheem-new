@@ -71,13 +71,13 @@ describe("cached replay", () => {
   });
 });
 
-describe("auto mode", () => {
-  it("falls back to cache on a first-token timeout", async () => {
+describe("auto mode (cache-first)", () => {
+  it("replays a recording immediately without calling the model", async () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "faheem-cache-"));
     process.env.FAHEEM_CACHE_DIR = dir;
     try {
       const req: ChatRequest = {
-        question: "slow one",
+        question: "recorded one",
         lang: "en",
         context: { kind: "firm" },
       };
@@ -95,17 +95,14 @@ describe("auto mode", () => {
         JSON.stringify(entry),
       );
 
-      const neverStream: FaheemClient = {
+      let modelCalled = false;
+      const tattling: FaheemClient = {
         beta: {
           messages: {
-            stream: () => ({
-              [Symbol.asyncIterator](): AsyncIterator<StreamEvent> {
-                return {
-                  next: () =>
-                    new Promise<IteratorResult<StreamEvent>>(() => {}),
-                };
-              },
-            }),
+            stream: () => {
+              modelCalled = true;
+              return { async *[Symbol.asyncIterator]() {} };
+            },
           },
         },
         messages: { create: async () => ({ content: [] }) },
@@ -113,7 +110,7 @@ describe("auto mode", () => {
 
       const out = await collect(
         chatEventStream(req, {
-          client: neverStream,
+          client: tattling,
           configOverride: {
             mode: "auto",
             timeoutMs: 20,
@@ -124,6 +121,101 @@ describe("auto mode", () => {
         }),
       );
       expect(out).toEqual(entry.events);
+      expect(modelCalled).toBe(false);
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("without a recording, reassures on a slow first token and keeps waiting", async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "faheem-cache-"));
+    process.env.FAHEEM_CACHE_DIR = dir; // empty: nothing recorded
+    try {
+      const req: ChatRequest = {
+        question: "slow unrecorded one",
+        lang: "en",
+        context: { kind: "firm" },
+      };
+      // First token arrives well after the 20ms timeout.
+      const slowStream = (): AsyncIterable<StreamEvent> => ({
+        async *[Symbol.asyncIterator]() {
+          await new Promise((r) => setTimeout(r, 60));
+          yield { type: "content_block_start", index: 0 };
+          yield {
+            type: "content_block_delta",
+            index: 0,
+            delta: { type: "text_delta", text: "live answer" },
+          };
+          yield { type: "content_block_stop", index: 0 };
+          yield { type: "message_stop" };
+        },
+      });
+      const client: FaheemClient = {
+        beta: { messages: { stream: () => slowStream() } },
+        messages: { create: async () => ({ content: [] }) },
+      };
+
+      const out = await collect(
+        chatEventStream(req, {
+          client,
+          configOverride: {
+            mode: "auto",
+            timeoutMs: 20,
+            replayDelayMs: 0,
+            stageStepMs: 0,
+          },
+          readFileBytes: () => Buffer.from("x"),
+        }),
+      );
+      // reassurance stage first, then the live answer completes uncached
+      expect(out[0]).toEqual({
+        type: "stage",
+        agent: "orchestrator",
+        status: "start",
+      });
+      expect(out).toContainEqual({ type: "delta", text: "live answer" });
+      expect(out.at(-1)).toEqual({ type: "done", cached: false });
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("live failure without a recording yields the graceful error", async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "faheem-cache-"));
+    process.env.FAHEEM_CACHE_DIR = dir; // empty: nothing recorded
+    try {
+      const req: ChatRequest = {
+        question: "failing unrecorded one",
+        lang: "en",
+        context: { kind: "firm" },
+      };
+      const failing: FaheemClient = {
+        beta: {
+          messages: {
+            stream: () => ({
+              async *[Symbol.asyncIterator](): AsyncGenerator<StreamEvent> {
+                throw new Error("boom");
+              },
+            }),
+          },
+        },
+        messages: { create: async () => ({ content: [] }) },
+      };
+
+      const out = await collect(
+        chatEventStream(req, {
+          client: failing,
+          configOverride: {
+            mode: "auto",
+            timeoutMs: 20,
+            replayDelayMs: 0,
+            stageStepMs: 0,
+          },
+          readFileBytes: () => Buffer.from("x"),
+        }),
+      );
+      expect(out).toHaveLength(1);
+      expect(out[0]?.type).toBe("error");
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }

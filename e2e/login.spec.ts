@@ -37,6 +37,26 @@ test.describe("login", () => {
     await expect(page).toHaveURL(/\/login$/);
   });
 
+  test("sign out clears the session and the gate returns to /login", async ({
+    page,
+    context,
+    baseURL,
+  }) => {
+    await context.addCookies([
+      { name: "faheem_session", value: "e2e", url: baseURL },
+    ]);
+    await page.goto("/");
+
+    await page.getByRole("button", { name: /sign out/i }).click();
+    await expect(page).toHaveURL(/\/login$/);
+    const cookies = await context.cookies();
+    expect(cookies.some((c) => c.name === "faheem_session")).toBe(false);
+
+    // the gate holds: revisiting / without the cookie lands on /login again
+    await page.goto("/");
+    await expect(page).toHaveURL(/\/login$/);
+  });
+
   test("ar locale renders rtl with the Arabic heading", async ({
     page,
     context,

@@ -38,13 +38,15 @@ export function SetupCard() {
   }
 
   return (
+    // height animates from 0 so the centered hero re-flows smoothly instead
+    // of jumping when the card mounts after the localStorage read
     <motion.div
-      initial={reduce ? false : { opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={reduce ? false : { opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: "auto" }}
       transition={{ duration: 0.25, ease: EASE, delay: 0.1 }}
-      className="mx-auto mt-5 w-full max-w-[640px]"
+      className="mx-auto w-full max-w-[640px] overflow-hidden"
     >
-      <Card padding="sm" className="flex items-center gap-3">
+      <Card padding="sm" className="mt-5 flex items-center gap-3">
         <div className="bg-accent-50 text-accent rounded-btn grid size-9 shrink-0 place-items-center">
           <Link2 className="size-4.5" aria-hidden="true" />
         </div>

@@ -54,6 +54,11 @@ test("the overnight-activity line renders and links to /audit", async ({
 }) => {
   await page.goto("/");
 
+  // the setup card mounts after a client-side localStorage read and shifts
+  // the layout; on a fresh e2e context it always appears, so wait for it
+  // before clicking anything below it
+  await expect(page.getByRole("link", { name: "Start setup" })).toBeVisible();
+
   await expect(
     page.getByText("4 agent tasks completed overnight"),
   ).toBeVisible();
