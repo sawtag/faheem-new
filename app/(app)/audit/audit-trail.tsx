@@ -4,11 +4,14 @@ import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 import {
+  Bot,
   CheckCheck,
   FileOutput,
   Mail,
   MessageSquareText,
   SlidersHorizontal,
+  Trash2,
+  Wrench,
 } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -30,6 +33,10 @@ const ACTION_ICON = {
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
   "ic-draft": Mail,
+  "agent-created": Bot,
+  "agent-deleted": Trash2,
+  "skill-created": Wrench,
+  "skill-deleted": Trash2,
 } as const;
 
 /** "Jul 12, 09:41", no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
@@ -242,6 +249,10 @@ export function AuditTrail({
     "stage-advance": t("actionScreening"),
     "model-edit": t("actionModelEdit"),
     "ic-draft": t("actionIcDraft"),
+    "agent-created": t("actionAgentCreated"),
+    "agent-deleted": t("actionAgentDeleted"),
+    "skill-created": t("actionSkillCreated"),
+    "skill-deleted": t("actionSkillDeleted"),
   };
 
   const filters: { value: ContextFilter; label: string }[] = [

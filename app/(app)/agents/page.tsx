@@ -2,6 +2,7 @@ import { FileText, ShieldCheck } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
+import { listCustomAgents } from "@/lib/custom-agents";
 import type { AgentInfo } from "@/lib/types";
 import {
   AgentCardFooter,
@@ -10,13 +11,20 @@ import {
   SpecialistAgentCard,
   type AgentCardData,
 } from "./agent-card";
+import { CustomAgentsSection } from "./custom-agents-section";
 import { GateMarker, StageHeader } from "./stage-parts";
+
+// data/custom-agents.json is mutable at runtime (create/delete via
+// /api/agents), force-dynamic so a prod build never freezes the custom
+// roster at build time (mirrors the API routes' convention).
+export const dynamic = "force-dynamic";
 
 /**
  * The on-product version of pitch-deck slide 9 (design-briefs §3.2), stage-
- * grouped agent cards, orchestrator banner, human-gate markers. Static
- * registry import, server-rendered; only the toggle/dim interaction is
- * client-side (agent-card.tsx).
+ * grouped agent cards, orchestrator banner, human-gate markers, plus the
+ * user-created custom agents section. Static registry import, server-
+ * rendered; only the toggle/dim interaction and the custom-agents section are
+ * client-side (agent-card.tsx / custom-agents-section.tsx).
  */
 export default async function AgentsPage() {
   const t = await getTranslations("agents");
@@ -109,6 +117,8 @@ export default async function AgentsPage() {
       </section>
 
       <GateMarker label={t("gate3")} />
+
+      <CustomAgentsSection initialAgents={listCustomAgents()} />
     </main>
   );
 }

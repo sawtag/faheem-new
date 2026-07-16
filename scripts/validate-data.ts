@@ -19,6 +19,7 @@ import {
   ArtifactMetaSchema,
   AuditEntrySchema,
   CorpusDocSchema,
+  CustomAgentSchema,
   DealSchema,
   ModelInputSchema,
   SeedChatSchema,
@@ -30,6 +31,7 @@ import {
   type SentimentEntry,
   type SocialPost,
 } from "../lib/types";
+import { CustomSkillSchema } from "../lib/custom-skills";
 
 const repoRoot = path.resolve(import.meta.dirname, "..");
 
@@ -123,6 +125,8 @@ const modelInputs = loadAndValidate(
 loadAndValidate("data/audit-log.json", AuditEntrySchema.array());
 loadAndValidate("data/artifacts.json", ArtifactMetaSchema.array());
 loadAndValidate("data/seed-chats.json", SeedChatSchema.array());
+loadAndValidate("data/custom-agents.json", CustomAgentSchema.array());
+loadAndValidate("data/custom-skills.json", CustomSkillSchema.array());
 const socialPack = loadAndValidate(
   "data/social-pack.json",
   SocialPostSchema.array(),
