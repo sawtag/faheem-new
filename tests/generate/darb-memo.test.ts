@@ -73,6 +73,14 @@ describe("financial figures", () => {
     expect(text).toContain("SAR 29.5m");
   });
 
+  it("carries the screening-stage strengths & concerns register", () => {
+    const text = unescapeXml(documentXml);
+    expect(text).toContain("Screening Assessment: Strengths & Concerns");
+    expect(text).toContain("Key strengths (screening-stage view)");
+    expect(text).toContain("Key concerns (screening-stage view)");
+    expect(text).toContain("Unaudited financials");
+  });
+
   it("shows the use-of-proceeds split", () => {
     const text = unescapeXml(documentXml);
     expect(text).toContain("55%");

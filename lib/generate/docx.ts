@@ -1,10 +1,14 @@
 /**
  * Jahez IC memo, the Lunar-branded Word deliverable (§11 "IC memo (Word) sections").
  *
- * Nine sections exactly per spec: Executive summary & recommendation ·
- * Investment thesis (3 pillars) · Company & industry · Financial analysis ·
- * Valuation · Quantified risk assessment · Compliance screen ·
- * Catalysts & monitoring KPIs · Appendix: sources.
+ * Ten sections, the spec's nine plus the institutional-house "Key Strengths &
+ * Key Concerns" register (2026-07-16 artifact upgrade, modeled on the
+ * reference Series C memo structure): Executive summary & recommendation
+ * (bullet-led) · Investment thesis (3 pillars) · Key strengths & key concerns ·
+ * Company & industry · Financial analysis (incl. historical & projected
+ * financials, FY23A-FY30E) · Valuation (incl. named-peer comps table) ·
+ * Quantified risk assessment · Compliance screen · Catalysts & monitoring
+ * KPIs · Appendix: sources.
  *
  * All prose comes from `data/narratives.json` template strings, resolved via
  * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())`, every
@@ -47,7 +51,8 @@ import {
   riskRegister,
   type NarrativeFacts,
 } from "@/lib/generate/shared";
-import { computeModel } from "@/lib/model/compute";
+import { MKT } from "@/lib/model/inputs";
+import { YEARS, computeModel } from "@/lib/model/compute";
 
 // ════════════════════════════ narrative shapes ══════════════════════════════
 interface Pillar {
@@ -55,8 +60,10 @@ interface Pillar {
   body: string;
 }
 interface MemoNarratives {
-  execSummary: string;
+  execSummaryBullets: string[];
   thesisPillars: Pillar[];
+  strengths: Pillar[];
+  concerns: Pillar[];
   companyIndustry: string;
   financialAnalysis: {
     unitEconomics: string;
@@ -171,6 +178,29 @@ function bullet(text: string): Paragraph {
   });
 }
 
+/** "Title: body" bullet, bolded lead-in, the strengths/concerns register style. */
+function bulletTitled(title: string, bodyText: string): Paragraph {
+  return new Paragraph({
+    bullet: { level: 0 },
+    spacing: { after: 100, line: 250 },
+    children: [
+      new TextRun({
+        text: `${title}: `,
+        font: B.sans,
+        size: half(10.5),
+        bold: true,
+        color: B.charcoal,
+      }),
+      new TextRun({
+        text: bodyText,
+        font: B.sans,
+        size: half(10.5),
+        color: B.ink,
+      }),
+    ],
+  });
+}
+
 function caption(text: string): Paragraph {
   return new Paragraph({
     spacing: { before: 40, after: 200 },
@@ -255,6 +285,10 @@ function dataTable(
   );
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
+    // explicit per-column twips (A4 usable width = 6.27in): Word respects the
+    // per-cell percentage widths alone, LibreOffice does not and re-flows the
+    // columns evenly, wrapping headers mid-word without this.
+    columnWidths: w.map((p) => Math.round((p / 100) * 6.27 * 1440)),
     borders: {
       top: thin(B.borderStrong),
       bottom: thin(B.borderStrong),
@@ -331,8 +365,13 @@ const CITED_MODEL_INPUT_KEYS = [
   "fy25.snoonu_gross_revenue",
   "fy25.snoonu_adj_ebitda",
   "fy25.snoonu_gmv_contribution",
+  "fy25.commission_revenue_growth",
+  "fy25.segment_nonksa_adj_ebitda",
+  "fy25.segment_others_adj_ebitda",
   "q1_26.adj_ebitda",
   "q1_26.cash",
+  "q1_26.gmv",
+  "q1_26.orders",
   "q1_26.islamic_facilities_loans",
   "q1_26.lease_liabilities",
   "q1_26.net_loss",
@@ -522,7 +561,7 @@ export async function buildIcMemo(): Promise<Buffer> {
       spacing: { before: 260, after: 200 },
       children: [
         new TextRun({
-          text: "Contents: Executive Summary & Recommendation · Investment Thesis · Company & Industry · Financial Analysis · Valuation · Quantified Risk Assessment · Compliance Screen · Catalysts & Monitoring KPIs · Sources",
+          text: "Contents: Executive Summary & Recommendation · Investment Thesis · Key Strengths & Key Concerns · Company & Industry · Financial Analysis · Valuation · Quantified Risk Assessment · Compliance Screen · Catalysts & Monitoring KPIs · Sources",
           font: B.sans,
           size: half(8.5),
           color: B.inkMuted,
@@ -586,12 +625,12 @@ export async function buildIcMemo(): Promise<Buffer> {
           fact(facts, "calc.complianceStatus"),
         ],
       ],
-      [9, 12, 12, 8, 12, 11, 9, 11, 16],
+      [9, 12, 12, 10, 10, 11, 10, 11, 15],
     ),
     caption(
       "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Compliance Screen tabs), see the workbook for the full formula chain.",
     ),
-    body(memo.execSummary),
+    ...memo.execSummaryBullets.map((b: string) => bullet(b)),
   ];
 
   // ── Section 2: Investment thesis ──
@@ -600,6 +639,18 @@ export async function buildIcMemo(): Promise<Buffer> {
     section2.push(h2(`${i + 1}. ${p.title}`));
     section2.push(body(p.body));
   });
+
+  // ── Section 2b: Key strengths & key concerns ──
+  const section2b = [
+    h1("Key Strengths & Key Concerns"),
+    h2("Key strengths"),
+    ...memo.strengths.map((p: Pillar) => bulletTitled(p.title, p.body)),
+    h2("Key concerns"),
+    ...memo.concerns.map((p: Pillar) => bulletTitled(p.title, p.body)),
+    caption(
+      "Every figure above resolves to the sources in the Appendix; qualitative judgments are the analyst's and are labeled as such.",
+    ),
+  ];
 
   // ── Section 3: Company & industry ──
   const section3 = [h1("Company & Industry"), body(memo.companyIndustry)];
@@ -650,6 +701,32 @@ export async function buildIcMemo(): Promise<Buffer> {
     body(memo.financialAnalysis.operatingLeverage),
     h2("Free cash flow profile"),
     body(memo.financialAnalysis.fcfProfile),
+    h2("Historical & projected financials"),
+    dataTable(
+      ["SAR m unless noted", ...YEARS],
+      [
+        stmtRow("Net revenue", model.netRev, m1),
+        [
+          "Net revenue growth",
+          "n/a",
+          ...model.netRev
+            .slice(1)
+            .map((nr, i) => pctCell(nr / model.netRev[i]! - 1)),
+        ],
+        stmtRow("Adj. EBITDA", model.ebitda, m1),
+        [
+          "Adj. EBITDA margin",
+          ...model.ebitda.map((eb, i) => pctCell(eb / model.netRev[i]!)),
+        ],
+        stmtRow("D&A", model.dna, m1),
+        stmtRow("EBIT", model.ebit, m1),
+        stmtRow("FCFF", model.fcff, m1),
+      ],
+      [16, 10.5, 10.5, 10.5, 10.5, 10.5, 10.5, 10.5, 10.5],
+    ),
+    caption(
+      "Source: FY23A-FY25A net revenue and adjusted EBITDA per Annual Report 2024, p.5 and Q4 2025 Earnings Results, p.4, p.8; FY26E-FY30E per the Faheem Valuation Model base case (Assumptions tab carries each driver's rationale). Actual-year D&A per the same filings; actual-year EBIT and FCFF apply the model's capex and working-capital assumptions to reported figures, are estimates shown for continuity, and do not feed the DCF.",
+    ),
   ];
 
   // ── Section 5: Valuation ──
@@ -663,9 +740,57 @@ export async function buildIcMemo(): Promise<Buffer> {
     `${s.upside >= 0 ? "+" : ""}${(s.upside * 100).toFixed(1)}%`,
     `${(s.irr * 100).toFixed(1)}%`,
   ];
+  const perSh = (x: number): string => `SAR ${x.toFixed(2)}`;
+  const mult = (x: number): string => `${x.toFixed(2)}x`;
   const section5 = [
     h1("Valuation"),
     body(memo.valuation),
+    h2("Trading comparables"),
+    dataTable(
+      [
+        "Company",
+        "EV/Revenue",
+        "Implied /sh",
+        "EV/EBITDA",
+        "Implied /sh",
+        "P/E",
+        "Implied /sh",
+      ],
+      [
+        [
+          "Talabat",
+          mult(MKT.talabatEvRev.value),
+          perSh(model.comps.evRev.talabat),
+          mult(MKT.talabatEvEbitda.value),
+          perSh(model.comps.evEbitda.talabat),
+          mult(MKT.talabatPe.value),
+          perSh(model.comps.pe.talabat),
+        ],
+        [
+          "DoorDash",
+          mult(MKT.doordashEvRev.value),
+          perSh(model.comps.evRev.doordash),
+          mult(MKT.doordashEvEbitda.value),
+          perSh(model.comps.evEbitda.doordash),
+          mult(MKT.doordashPe.value),
+          perSh(model.comps.pe.doordash),
+        ],
+        [
+          "Delivery Hero",
+          mult(MKT.dheroEvRev.value),
+          perSh(model.comps.evRev.dhero),
+          mult(MKT.dheroEvEbitda.value),
+          perSh(model.comps.evEbitda.dhero),
+          "n/a",
+          "n/a",
+        ],
+      ],
+      [22, 13, 13, 13, 13, 13, 13],
+    ),
+    caption(
+      `Implied-value field: ${perSh(model.comps.field.min)} min / ${perSh(model.comps.field.median)} median / ${perSh(model.comps.field.max)} max. Source: peer multiples per Market Data & Comparables Snapshot, p.4 (Delivery Hero P/E not meaningful on negative trailing earnings); implied values per share apply each multiple to Jahez FY2025A net revenue, adjusted EBITDA, or net income per the Faheem Valuation Model, Comps tab.`,
+    ),
+    h2("Scenario analysis"),
     dataTable(
       [
         "Scenario",
@@ -707,7 +832,7 @@ export async function buildIcMemo(): Promise<Buffer> {
         r.mitigation,
         r.cite,
       ]),
-      [26, 6, 6, 8, 34, 20],
+      [26, 6, 6, 9, 33, 20],
     ),
     caption(
       `Composite risk score (peak-weighted, 0-10): ${fact(facts, "calc.riskScore")}.`,
@@ -816,6 +941,7 @@ export async function buildIcMemo(): Promise<Buffer> {
           new Paragraph({ pageBreakBefore: true, children: [] }),
           ...section1,
           ...section2,
+          ...section2b,
           ...section3,
           ...section4,
           ...section5,
@@ -829,6 +955,28 @@ export async function buildIcMemo(): Promise<Buffer> {
   });
 
   return Packer.toBuffer(doc);
+}
+
+// ─────────────── statement/comps table cell formatters ───────────────
+/** SAR m to one decimal, negatives in parentheses (banker convention). */
+const m1 = (x: number): string =>
+  x < 0
+    ? `(${Math.abs(x).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })})`
+    : x.toLocaleString("en-US", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+
+const pctCell = (x: number): string =>
+  x < 0 ? `(${Math.abs(x * 100).toFixed(1)}%)` : `${(x * 100).toFixed(1)}%`;
+
+/** One statement row; an exact 0 marks a year with no disclosed/estimated figure. */
+function stmtRow(
+  label: string,
+  values: number[],
+  format: (x: number) => string,
+): string[] {
+  return [label, ...values.map((v) => (v === 0 ? "n/a" : format(v)))];
 }
 
 /** Bare value (no unit suffix) for a compact FY23A-FY25A actuals table cell. */

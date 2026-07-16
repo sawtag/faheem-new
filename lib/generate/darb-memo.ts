@@ -5,8 +5,9 @@
  * not an IC recommendation, so the register stays deliberately more cautious
  * than the Jahez IC memo, figures are flagged company-reported/unaudited.
  *
- * Nine sections: Purpose & recommendation, Company at a glance, Product &
- * market, Financial summary, Use of proceeds, Founding team, Mandate
+ * Ten sections: Purpose & recommendation (bullet-led screening summary),
+ * Company at a glance, Product & market, Financial summary, Use of proceeds,
+ * Founding team, Screening assessment: strengths & concerns, Mandate
  * screening vs the IC Charter, Risks & open diligence, Appendix: sources.
  *
  * Layout helpers mirror lib/generate/docx.ts (same Lunar brand, same table
@@ -144,6 +145,29 @@ function bullet(text: string): Paragraph {
   });
 }
 
+/** "Title: body" bullet, bolded lead-in, the strengths/concerns register style. */
+function bulletTitled(title: string, bodyText: string): Paragraph {
+  return new Paragraph({
+    bullet: { level: 0 },
+    spacing: { after: 100, line: 250 },
+    children: [
+      new TextRun({
+        text: `${title}: `,
+        font: B.sans,
+        size: half(10.5),
+        bold: true,
+        color: B.charcoal,
+      }),
+      new TextRun({
+        text: bodyText,
+        font: B.sans,
+        size: half(10.5),
+        color: B.ink,
+      }),
+    ],
+  });
+}
+
 function caption(text: string): Paragraph {
   return new Paragraph({
     spacing: { before: 40, after: 200 },
@@ -227,6 +251,10 @@ function dataTable(
   );
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
+    // explicit per-column twips (A4 usable width = 6.27in): Word respects the
+    // per-cell percentage widths alone, LibreOffice does not and re-flows the
+    // columns evenly, wrapping headers mid-word without this.
+    columnWidths: w.map((p) => Math.round((p / 100) * 6.27 * 1440)),
     borders: {
       top: thin(B.borderStrong),
       bottom: thin(B.borderStrong),
@@ -473,7 +501,7 @@ export async function buildDarbMemo(): Promise<Buffer> {
       spacing: { before: 260, after: 200 },
       children: [
         new TextRun({
-          text: "Contents: Purpose and Recommendation · Company at a Glance · Product and Market · Financial Summary · Use of Proceeds · Founding Team · Mandate Screening vs the IC Charter · Risks and Open Diligence Items · Sources",
+          text: "Contents: Purpose and Recommendation · Company at a Glance · Product and Market · Financial Summary · Use of Proceeds · Founding Team · Screening Assessment: Strengths and Concerns · Mandate Screening vs the IC Charter · Risks and Open Diligence Items · Sources",
           font: B.sans,
           size: half(8.5),
           color: B.inkMuted,
@@ -516,6 +544,28 @@ export async function buildDarbMemo(): Promise<Buffer> {
     ),
     body(
       "Screening recommendation: advance Darb to a pitch meeting. Five of six criteria pass outright; the sixth, sector concentration, is flagged rather than failed. The Charter treats a post-deal concentration breach as requiring explicit Investment Committee acknowledgement before the deal may advance further, not as an automatic decline, this acknowledgement is a required step, not a formality to be assumed.",
+    ),
+    h2("Screening summary"),
+    bullet(
+      `Darb Logistics Technology is a Riyadh-based logistics SaaS company founded in 2022, raising a ${fmt("ask")} Series B. The opportunity arrived inbound via founder outreach to Lunar's private growth-equity desk.`,
+    ),
+    bullet(
+      `Company-reported ARR of ${fmt("arr_fy25")} in FY2025A, with ${fmt("arr_fy26e")} guided for FY2026E (+${fmt("arr_growth")} YoY). All figures are unaudited at the screening stage.`,
+    ),
+    bullet(
+      `Net revenue retention of ${fmt("nrr_fy25")} (FY2025A) against a guided ${fmt("nrr_fy26e")} (FY2026E); gross margin of ${fmt("gross_margin_fy25")} rising to a guided ${fmt("gross_margin_fy26e")}; ${fmt("logos_fy25")} active logos growing to a guided ${fmt("logos_fy26e")}.`,
+    ),
+    bullet(
+      `Average monthly cash burn of ${fmt("burn_monthly")}; management projects ${fmt("runway_months")} of runway post-round.`,
+    ),
+    bullet(
+      `Indicated use of proceeds: ${fmt("proceeds_gtm")} go-to-market expansion, ${fmt("proceeds_product")} product and engineering, ${fmt("proceeds_working_capital")} working capital and runway.`,
+    ),
+    bullet(
+      "Mandate screening result: five of six Charter criteria pass; sector concentration is flagged and requires explicit Investment Committee acknowledgement before the deal advances.",
+    ),
+    caption(
+      `${sourceLabel(dataroomCite(1))}; ${sourceLabel(dataroomCite(3))}. Company-reported and unaudited at screening stage.`,
     ),
   ];
 
@@ -618,6 +668,52 @@ export async function buildDarbMemo(): Promise<Buffer> {
     caption(sourceLabel(dataroomCite(4))),
   ];
 
+  // ── Section 6b: Screening assessment, strengths & concerns ──
+  const section6b = [
+    h1("Screening Assessment: Strengths & Concerns"),
+    h2("Key strengths (screening-stage view)"),
+    bulletTitled(
+      "Growth with retention",
+      `guided ARR growth of ${fmt("arr_growth")} arrives alongside net revenue retention of ${fmt("nrr_fy25")} to ${fmt("nrr_fy26e")}, indicating expansion within the existing customer base rather than purely new-logo acquisition. Company-reported, to be verified against cohort data.`,
+    ),
+    bulletTitled(
+      "Software margin profile",
+      `gross margin of ${fmt("gross_margin_fy25")} rising to a guided ${fmt("gross_margin_fy26e")} is consistent with subscription software economics rather than asset-heavy logistics operation.`,
+    ),
+    bulletTitled(
+      "Asset-light model in a policy-backed sector",
+      "the platform layers on the customer's existing fleet, avoiding owned-fleet capital intensity, and management frames demand against logistics-sector digitization under Vision 2030's transport pillar. The framing is management's and is a diligence item, not an independently verified market estimate.",
+    ),
+    bulletTitled(
+      "Domain-matched founding team",
+      "the three co-founders cover last-mile dispatch operations, logistics platform engineering, and GCC enterprise SaaS sales respectively, the three functions this business model depends on.",
+    ),
+    h2("Key concerns (screening-stage view)"),
+    bulletTitled(
+      "Unaudited financials",
+      "every figure in this memo is company-reported; audited or reviewed FY2023-FY2025 statements are a required diligence item before any ticket is issued.",
+    ),
+    bulletTitled(
+      "Sector concentration breach",
+      "a SAR 40M ticket takes post-deal Technology & Consumer exposure to 10.5% of firm AUM, above the Charter's 10% cap; the Charter requires explicit IC acknowledgement, recorded in the minutes, before the deal advances.",
+    ),
+    bulletTitled(
+      "Unknown customer concentration",
+      "the revenue split shared at screening is anonymized; concentration cannot be assessed until customer contracts and cohort-level retention are reviewed in the full data room.",
+    ),
+    bulletTitled(
+      "Retention durability untested",
+      `net revenue retention of ${fmt("nrr_fy25")} to ${fmt("nrr_fy26e")} has not been independently tested against cohort-level churn.`,
+    ),
+    bulletTitled(
+      "Competitive response",
+      "in-house dispatch tooling built by large logistics operators and quick-commerce platforms is management's stated primary competitive risk and has not yet been independently assessed.",
+    ),
+    caption(
+      `${sourceLabel(dataroomCite(3))}; ${sourceLabel({ sourceDoc: "lunar-portfolio", page: 1 })}; ${sourceLabel(charterCite(4))}. Qualitative judgments are the analyst's and are labeled as such.`,
+    ),
+  ];
+
   // ── Section 7: Mandate screening vs the IC Charter ──
   const screeningRows = deal.screening.rows.map((row) => [
     row.criterion.en,
@@ -707,6 +803,7 @@ export async function buildDarbMemo(): Promise<Buffer> {
           ...section4,
           ...section5,
           ...section6,
+          ...section6b,
           ...section7,
           ...section8,
           ...section9,

@@ -41,6 +41,7 @@ function unescapeXml(s: string): string {
 const SECTION_HEADINGS = [
   "Executive Summary & Recommendation",
   "Investment Thesis",
+  "Key Strengths & Key Concerns",
   "Company & Industry",
   "Financial Analysis",
   "Valuation",
@@ -62,6 +63,24 @@ describe("IC memo structure", () => {
   it("shows the cover-page recommendation (rating word appears)", () => {
     const text = unescapeXml(documentXml);
     expect(/BUY|HOLD|REDUCE/.test(text)).toBe(true);
+  });
+
+  it("carries the historical & projected statement table (FY23A through FY30E)", () => {
+    const text = unescapeXml(documentXml);
+    for (const year of ["FY23A", "FY25A", "FY26E", "FY30E"]) {
+      expect(text).toContain(year);
+    }
+    expect(text).toContain("Historical & projected financials");
+    expect(text).toContain("FCFF");
+  });
+
+  it("carries the named-peer trading-comps table", () => {
+    const text = unescapeXml(documentXml);
+    for (const peer of ["Talabat", "DoorDash", "Delivery Hero"]) {
+      expect(text).toContain(peer);
+    }
+    expect(text).toContain("EV/Revenue");
+    expect(text).toContain("EV/EBITDA");
   });
 });
 
