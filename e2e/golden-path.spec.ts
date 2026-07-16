@@ -47,13 +47,17 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
 
-  await test.step("/onboarding: complete the 3 steps", async () => {
+  await test.step("/onboarding: welcome -> 3 steps -> assemble -> complete", async () => {
     await page.goto("/onboarding");
 
-    await expect(
-      page.getByRole("heading", { name: "Connect & Configure" }),
-    ).toBeVisible();
-    await expect(page.getByText("Step 1 of 3")).toBeVisible();
+    // Full acceptance for this welcome-first takeover lives in
+    // e2e/onboarding.spec.ts; the golden path just walks it as one beat of
+    // the demo run-of-show.
+    await expect(page.getByText("Welcome to Faheem")).toBeVisible();
+    await clickUntil(page.getByRole("button", { name: "Begin setup" }), () =>
+      expect(page.getByText("Step 1 of 3")).toBeVisible({ timeout: 2500 }),
+    );
+
     await clickUntil(page.getByRole("button", { name: "Continue" }), () =>
       expect(page.getByText("Step 2 of 3")).toBeVisible({ timeout: 2500 }),
     );
@@ -65,9 +69,21 @@ test("golden path: login through IC room, fully cached", async ({ page }) => {
     await clickUntil(
       page.getByRole("button", { name: "Create IC Charter" }),
       () =>
-        expect(
-          page.getByRole("heading", { name: "Your IC Charter is ready" }),
-        ).toBeVisible({ timeout: 2500 }),
+        expect(page.getByText("Assembling your workspace")).toBeVisible({
+          timeout: 2500,
+        }),
+    );
+
+    // The assemble choreography auto-advances (~3.5s, assemble-panel.tsx) to
+    // the completion card, no further user action.
+    await expect(
+      page.getByRole("heading", { name: "Your IC Charter is ready" }),
+    ).toBeVisible({ timeout: 8000 });
+  });
+
+  await test.step("/onboarding: Enter workspace lands on home", async () => {
+    await clickUntil(page.getByRole("link", { name: "Enter workspace" }), () =>
+      expect(page).toHaveURL("/", { timeout: 3000 }),
     );
   });
 

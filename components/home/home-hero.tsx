@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Composer, type ComposerSubmit } from "@/components/chat/composer";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import { QuickActions } from "@/components/home/quick-actions";
+import { SetupCard } from "@/components/home/setup-card";
 import type { Lang } from "@/lib/types";
 
 const EASE = [0.4, 0, 0.2, 1] as const; // mirrors --ease
@@ -88,6 +89,7 @@ export function HomeHero() {
           </div>
 
           <QuickActions onPick={pick} />
+          <SetupCard />
 
           <p className="text-text-secondary mt-10 flex items-center justify-center gap-1.5 text-center text-sm">
             <CheckCircle className="size-3.5 shrink-0" aria-hidden="true" />

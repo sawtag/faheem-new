@@ -1,19 +1,38 @@
 "use client";
 
 import * as React from "react";
-import { CONNECTORS, type Connector } from "@/lib/connectors";
+import { CONNECTORS, PROVISIONED_IDS, type Connector } from "@/lib/connectors";
+
+/**
+ * Fresh-onboarding overrides: every connector starts "available" except the
+ * ones provisioned with the Faheem workspace, which start "connected". Pure
+ * so it is unit-testable without mounting the hook.
+ */
+export function freshOverrides(): Record<string, "connected" | "available"> {
+  const provisioned = new Set<string>(PROVISIONED_IDS);
+  return Object.fromEntries(
+    CONNECTORS.map((c) => [
+      c.id,
+      provisioned.has(c.id) ? "connected" : "available",
+    ]),
+  );
+}
 
 /**
  * Cosmetic connector state shared by the Connections page and the onboarding
  * Connect step (AGENTS.md rule 10, connectors are fake, no persistence
  * beyond component state). Handles the fake-OAuth "connect", the symmetric
  * "disconnect" (Connections page row menu), and custom MCP connectors added
- * through the "Add custom MCP" modal.
+ * through the "Add custom MCP" modal. Pass `{ fresh: true }` for the
+ * onboarding flow, whose Connect step starts from a clean slate rather than
+ * the Connections page's real-world defaults.
  */
-export function useConnectorsState() {
+export function useConnectorsState({
+  fresh = false,
+}: { fresh?: boolean } = {}) {
   const [overrides, setOverrides] = React.useState<
     Record<string, "connected" | "available">
-  >({});
+  >(() => (fresh ? freshOverrides() : {}));
   const [custom, setCustom] = React.useState<Connector[]>([]);
   const [justConnectedId, setJustConnectedId] = React.useState<string | null>(
     null,
