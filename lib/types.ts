@@ -206,6 +206,8 @@ export const AuditEntrySchema = z.object({
     "agent-deleted",
     "skill-created",
     "skill-deleted",
+    "template-uploaded",
+    "template-removed",
   ]),
   question: z.string().optional(),
   citationCount: z.number().int().nonnegative().optional(),
@@ -226,6 +228,8 @@ export const ArtifactMetaSchema = z.object({
   createdAt: z.string(),
   /** distinct cited source docs feeding the artifact — drives the "Verified · N sources" caption */
   sources: z.number().int().nonnegative().optional(),
+  /** true when the docx was filled from the firm's uploaded company template — the static preview PNGs show the built-in layout, so the preview panel must say so instead of showing them */
+  companyTemplate: z.boolean().optional(),
 });
 export type ArtifactMeta = z.infer<typeof ArtifactMetaSchema>;
 

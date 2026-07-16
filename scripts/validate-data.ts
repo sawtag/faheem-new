@@ -32,6 +32,7 @@ import {
   type SocialPost,
 } from "../lib/types";
 import { CustomSkillSchema } from "../lib/custom-skills";
+import { CompanyTemplateMetaSchema } from "../lib/company-template";
 
 const repoRoot = path.resolve(import.meta.dirname, "..");
 
@@ -127,6 +128,37 @@ loadAndValidate("data/artifacts.json", ArtifactMetaSchema.array());
 loadAndValidate("data/seed-chats.json", SeedChatSchema.array());
 loadAndValidate("data/custom-agents.json", CustomAgentSchema.array());
 loadAndValidate("data/custom-skills.json", CustomSkillSchema.array());
+
+// data/company-template.json is a single nullable object (not an array — the
+// template store is a single slot), so it can't go through loadAndValidate's
+// array-shaped loader; validate it inline instead.
+{
+  const relativePath = "data/company-template.json";
+  const absolutePath = path.join(repoRoot, relativePath);
+  if (!existsSync(absolutePath)) {
+    console.log(`- ${relativePath}: skipped (not yet authored)`);
+  } else {
+    try {
+      const raw = JSON.parse(readFileSync(absolutePath, "utf-8"));
+      const result = CompanyTemplateMetaSchema.safeParse(raw);
+      if (result.success) {
+        console.log(`✓ ${relativePath}: valid`);
+      } else {
+        failed = true;
+        console.error(`✗ ${relativePath}: schema validation failed`);
+        for (const issue of result.error.issues) {
+          console.error(
+            `  - ${issue.path.join(".") || "(root)"}: ${issue.message}`,
+          );
+        }
+      }
+    } catch (error) {
+      failed = true;
+      console.error(`✗ ${relativePath}: invalid JSON`);
+      console.error(`  ${(error as Error).message}`);
+    }
+  }
+}
 const socialPack = loadAndValidate(
   "data/social-pack.json",
   SocialPostSchema.array(),

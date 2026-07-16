@@ -1,8 +1,11 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { Document, Packer, Paragraph, TextRun } from "docx";
+import PizZip from "pizzip";
 import { afterEach, describe, expect, it } from "vitest";
 import { POST } from "@/app/api/generate/[artifact]/route";
+import { buildTemplateTags } from "@/lib/generate/template";
 import { ArtifactMetaSchema, type ArtifactMeta } from "@/lib/types";
 import type { GenerateEvent } from "@/components/generate/protocol";
 
@@ -147,3 +150,80 @@ describe("POST /api/generate/[artifact]", () => {
     expect(res.status).toBe(400);
   });
 });
+
+describe("POST /api/generate/docx — company template integration", () => {
+  let templateDir: string;
+
+  afterEach(() => {
+    delete process.env.FAHEEM_COMPANY_TEMPLATE_DIR;
+    if (templateDir) fs.rmSync(templateDir, { recursive: true, force: true });
+  });
+
+  it("no template uploaded: the built-in memo path is unchanged (byte-identical behavior)", async () => {
+    setEnv();
+    // An explicitly EMPTY template dir — hermetic "no template uploaded"
+    // state. (Leaving the env unset would read the repo's real
+    // data/company-template/, which exists whenever the developer has a
+    // template uploaded locally.)
+    templateDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), "faheem-generate-no-template-"),
+    );
+    process.env.FAHEEM_COMPANY_TEMPLATE_DIR = templateDir;
+    const body = await (await post("docx")).text();
+    const xml = readDocumentXml(
+      fs.readFileSync(path.join(artifactsDir, "jahez-ic-memo.docx")),
+    );
+    // A built-in-memo-only marker: the §11-spec section heading.
+    expect(xml).toContain("Investment Thesis");
+    // built-in memo → meta carries no companyTemplate flag (preview shows the real PNGs)
+    expect(body).not.toContain('"companyTemplate"');
+  });
+
+  it("a template in the single-slot store fills instead, with resolved tag values", async () => {
+    setEnv();
+    templateDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), "faheem-generate-template-"),
+    );
+    process.env.FAHEEM_COMPANY_TEMPLATE_DIR = templateDir;
+
+    const template = await Packer.toBuffer(
+      new Document({
+        sections: [
+          {
+            children: [
+              new Paragraph({
+                children: [
+                  new TextRun(
+                    "Template-resolved marker: {{recommendation}} at {{perShare}}",
+                  ),
+                ],
+              }),
+            ],
+          },
+        ],
+      }),
+    );
+    fs.writeFileSync(path.join(templateDir, "ic-memo.docx"), template);
+
+    const body = await (await post("docx")).text();
+    const xml = readDocumentXml(
+      fs.readFileSync(path.join(artifactsDir, "jahez-ic-memo.docx")),
+    );
+    const tags = buildTemplateTags();
+    expect(xml).toContain("Template-resolved marker");
+    expect(xml).toContain(tags.recommendation);
+    expect(xml).toContain(tags.perShare);
+    // proves this is the filled COMPANY template, not the built-in memo
+    expect(xml).not.toContain("Investment Thesis");
+    // meta flags the template so the preview panel shows the honest notice
+    // instead of the static built-in-layout PNGs
+    expect(body).toContain('"companyTemplate":true');
+  }, 30000);
+});
+
+function readDocumentXml(buf: Buffer): string {
+  const zip = new PizZip(buf);
+  const file = zip.file("word/document.xml");
+  if (!file) throw new Error("word/document.xml missing");
+  return file.asText();
+}

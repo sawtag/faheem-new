@@ -41,3 +41,6 @@ presentation/
 
 # demo-day local assets (upload-beat PDFs etc.) — never commit
 demo-assets/
+
+# uploaded company-template binary (user content — meta ships as null)
+data/company-template/

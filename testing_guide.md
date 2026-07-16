@@ -99,6 +99,18 @@ Toggle **العربية** (bottom-left) and revisit any of the above: full RTL c
 - Both actions are logged: check the **Audit Trail** page for "Skill created" / "Skill deleted" entries, each carrying "&lt;name&gt; — &lt;category&gt;".
 - Built-in skills are untouched — no edit or delete affordance ever appears on them.
 
+## 12. Company Word template for the IC memo
+
+**Where:** **Library** page, below the artifacts grid — the "Company template" section.
+
+- Click **"View available tags"** — a dialog lists every `{{tag}}` the memo generator understands (mono, left-to-right even in Arabic), each next to its current live value straight off the Jahez model (e.g. `{{perShare}}` → `SAR 14.36`, `{{wacc}}` → `13.3%`). Close it.
+- Click **"Download sample template"** — a small, real `.docx` (built from `docx`, not hand-edited) with a title, a few neutral section headings, and body text that's nothing but `{{tag}}` placeholders. Open it in Word: it's a legitimate memo skeleton with no numbers baked in.
+- Click the dashed upload tile and pick that same sample file (or any `.docx` containing `{{tag}}`s) — a card appears with the filename, upload time, and a **"N tags matched"** badge. If the file also contains a tag that isn't in the catalog, it shows up as an honest amber warning (`{{tag}}` stays literal in the generated file too — never silently dropped).
+- Go to the Jahez workspace chat and ask (or pick the golden chip) **"Prepare the deliverables"** — the docx that comes back is now the company template, filled with live numbers, not the built-in Lunar-branded memo. Remove the template on Library and regenerate: you're back to the built-in memo, byte-identical to before this feature existed.
+- **Important — judge the result by the *downloaded file*, not the preview.** The in-app preview pane shows pre-rendered images of the standard memo layout; when a company template is active it can't render your custom design, so it shows an honest "Generated from your company template — download the file" notice instead of misleading pages.
+- **Replace** re-opens the file picker (single slot — the new upload replaces the old one); **Remove** clears it. Both actions are logged: check the **Audit Trail** page for "Template uploaded" / "Template removed" entries, each carrying the filename.
+- Upload errors are inline and bilingual: a non-`.docx` file, a file over 10 MB, or a `.docx` docxtemplater can't parse each show their own message right under the tile.
+
 ---
 
 **Still in progress:** the final code review of the whole wave, the full production e2e run (needs the dev server stopped briefly), and the `demo-rc3` tag.

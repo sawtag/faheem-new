@@ -17,6 +17,8 @@ import { buildJahezWorkbook } from "@/lib/generate/xlsx";
 import { buildIcMemo } from "@/lib/generate/docx";
 import { buildBoardDeck } from "@/lib/generate/pptx";
 import { loadModelInputs } from "@/lib/generate/shared";
+import { fillCompanyTemplate } from "@/lib/generate/template";
+import { getCompanyTemplateBytes } from "@/lib/company-template";
 import { appendAudit } from "@/lib/audit";
 import {
   ArtifactMetaSchema,
@@ -50,9 +52,15 @@ const ARTIFACT_NAMES: Record<ArtifactKind, Localized> = {
   },
 };
 
+/** The company's uploaded template (if any) fills instead of the built-in memo — byte-identical to today when none is uploaded. */
+async function buildDocx(): Promise<Buffer> {
+  const templateBytes = getCompanyTemplateBytes();
+  return templateBytes ? fillCompanyTemplate(templateBytes) : buildIcMemo();
+}
+
 const BUILDERS: Record<ArtifactKind, () => Promise<Buffer>> = {
   xlsx: buildJahezWorkbook,
-  docx: buildIcMemo,
+  docx: buildDocx,
   pptx: buildBoardDeck,
 };
 
@@ -148,6 +156,9 @@ async function generateOne(
       file: `/artifacts/${fileName}`,
       createdAt: new Date().toISOString(),
       sources: distinctSources(),
+      ...(kind === "docx" && getCompanyTemplateBytes() !== null
+        ? { companyTemplate: true }
+        : {}),
     };
     upsertArtifact(meta);
     appendAudit({

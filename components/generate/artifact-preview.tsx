@@ -139,7 +139,11 @@ function PreviewPanel({
         </div>
       </div>
 
-      {failed ? (
+      {meta.companyTemplate ? (
+        // The static preview PNGs render the BUILT-IN memo layout; a company-
+        // template memo would be misrepresented by them — say so honestly.
+        <Fallback meta={meta} template />
+      ) : failed ? (
         <Fallback meta={meta} />
       ) : spec.layout === "slides" ? (
         <div className="flex min-h-0 flex-1">
@@ -280,12 +284,22 @@ function PreviewPanel({
 }
 
 /** A preview PNG failed to load — quiet file-tile fallback, never a broken image. */
-function Fallback({ meta }: { meta: ArtifactMeta }) {
+function Fallback({
+  meta,
+  template,
+}: {
+  meta: ArtifactMeta;
+  /** company-template memo: the download is right, the static preview would not be */
+  template?: boolean;
+}) {
   const t = useTranslations("generate");
   const { icon: Icon, tile } = KIND_TILE[meta.kind];
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center">
+    <div
+      data-testid={template ? "preview-company-template" : undefined}
+      className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center"
+    >
       <span
         className={cn("rounded-card grid size-14 place-items-center", tile)}
       >
@@ -293,10 +307,10 @@ function Fallback({ meta }: { meta: ArtifactMeta }) {
       </span>
       <div>
         <p className="text-navy text-sm font-semibold">
-          {t("preview.fallbackTitle")}
+          {t(template ? "preview.templateTitle" : "preview.fallbackTitle")}
         </p>
         <p className="text-text-secondary mt-1 text-xs">
-          {t("preview.fallbackCaption")}
+          {t(template ? "preview.templateCaption" : "preview.fallbackCaption")}
         </p>
       </div>
       <Button

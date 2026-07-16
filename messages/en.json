@@ -85,7 +85,30 @@
     "emptyTitle": "No artifacts yet",
     "emptyCaption": "Generated memos, models, and board decks will land here.",
     "emptyCta": "Ask Faheem to prepare an IC memo",
-    "emptyFilteredTitle": "No {type} yet"
+    "emptyFilteredTitle": "No {type} yet",
+    "template": {
+      "title": "Company template",
+      "caption": "The IC memo generator fills this template's '{{tags}}' with live model values.",
+      "uploadTile": "Upload company template",
+      "upload": "Upload template",
+      "replace": "Replace",
+      "remove": "Remove",
+      "uploading": "Uploading…",
+      "sampleLink": "Download sample template",
+      "tagsLink": "View available tags",
+      "dialogTitle": "Available tags",
+      "dialogHint": "Every tag resolves to a live value from the Jahez model — drop any of these into your Word template as a '{{tag}}' placeholder.",
+      "tagColumn": "Tag",
+      "valueColumn": "Example value",
+      "matched": "{n} tags matched",
+      "unknownTags": "Not in the tag catalog — will render literally: {tags}",
+      "uploadedAt": "Uploaded {date}",
+      "errors": {
+        "type": "Only .docx Word files are supported.",
+        "size": "This template is too large — 10 MB max.",
+        "unreadable": "Couldn't read this file as a Word template. Confirm it opens in Word and try again."
+      }
+    }
   },
   "audit": {
     "title": "Audit trail",
@@ -110,7 +133,9 @@
     "actionAgentCreated": "Agent created",
     "actionAgentDeleted": "Agent deleted",
     "actionSkillCreated": "Skill created",
-    "actionSkillDeleted": "Skill deleted"
+    "actionSkillDeleted": "Skill deleted",
+    "actionTemplateUploaded": "Template uploaded",
+    "actionTemplateRemoved": "Template removed"
   },
   "connections": {
     "title": "Connections",
@@ -571,7 +596,9 @@
       "modelCaption": "Full model: open in Excel — every input cell carries its source.",
       "openInExcel": "Open in Excel",
       "fallbackTitle": "Preview unavailable",
-      "fallbackCaption": "The file itself is ready — download it below."
+      "fallbackCaption": "The file itself is ready — download it below.",
+      "templateTitle": "Generated from your company template",
+      "templateCaption": "The in-app preview shows the standard memo layout, not custom templates — download the file to see it in your company's format."
     },
     "draft": {
       "trigger": "Draft email to IC",

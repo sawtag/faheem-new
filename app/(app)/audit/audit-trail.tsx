@@ -7,6 +7,7 @@ import {
   Bot,
   CheckCheck,
   FileOutput,
+  FileUp,
   Mail,
   MessageSquareText,
   SlidersHorizontal,
@@ -37,6 +38,8 @@ const ACTION_ICON = {
   "agent-deleted": Trash2,
   "skill-created": Wrench,
   "skill-deleted": Trash2,
+  "template-uploaded": FileUp,
+  "template-removed": Trash2,
 } as const;
 
 /** "Jul 12, 09:41" — no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
@@ -253,6 +256,8 @@ export function AuditTrail({
     "agent-deleted": t("actionAgentDeleted"),
     "skill-created": t("actionSkillCreated"),
     "skill-deleted": t("actionSkillDeleted"),
+    "template-uploaded": t("actionTemplateUploaded"),
+    "template-removed": t("actionTemplateRemoved"),
   };
 
   const filters: { value: ContextFilter; label: string }[] = [

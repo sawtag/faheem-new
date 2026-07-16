@@ -8,6 +8,7 @@ import {
   Bot,
   CheckCheck,
   FileOutput,
+  FileUp,
   Mail,
   MessageSquareText,
   SlidersHorizontal,
@@ -29,6 +30,8 @@ const ACTION_ICON = {
   "agent-deleted": Trash2,
   "skill-created": Wrench,
   "skill-deleted": Trash2,
+  "template-uploaded": FileUp,
+  "template-removed": Trash2,
 } as const;
 
 /** "Jul 12, 09:41" — Western digits both locales (mirrors the audit trail). */
@@ -178,6 +181,8 @@ function ActivityFeed({
     "agent-deleted": tAudit("actionAgentDeleted"),
     "skill-created": tAudit("actionSkillCreated"),
     "skill-deleted": tAudit("actionSkillDeleted"),
+    "template-uploaded": tAudit("actionTemplateUploaded"),
+    "template-removed": tAudit("actionTemplateRemoved"),
   };
 
   return (

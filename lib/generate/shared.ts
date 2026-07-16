@@ -172,7 +172,8 @@ export function loadNarratives(): NarrativesDoc {
   return narrativesCache;
 }
 
-const pct = (x: number): string => `${(x * 100).toFixed(1)}%`;
+/** `0.1481` -> `"14.8%"` — one-decimal percent, the shared narrative/tag-catalog convention. */
+export const pct = (x: number): string => `${(x * 100).toFixed(1)}%`;
 const pct2 = (x: number): string => `${(x * 100).toFixed(2)}%`;
 const sar = (x: number): string => `SAR ${x.toFixed(2)}`;
 const sarM = (x: number): string =>

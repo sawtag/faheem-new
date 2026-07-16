@@ -85,7 +85,30 @@
     "emptyTitle": "لا توجد مستندات بعد",
     "emptyCaption": "ستظهر هنا المذكرات والنماذج المالية والعروض التي يولّدها فهيم.",
     "emptyCta": "اطلب من فهيم إعداد مذكرة لجنة الاستثمار",
-    "emptyFilteredTitle": "لا توجد {type} بعد"
+    "emptyFilteredTitle": "لا توجد {type} بعد",
+    "template": {
+      "title": "قالب الشركة",
+      "caption": "يملأ مولّد مذكرة اللجنة وسوم '{{tags}}' في هذا القالب بقيم النموذج الحية.",
+      "uploadTile": "رفع قالب الشركة",
+      "upload": "رفع القالب",
+      "replace": "استبدال",
+      "remove": "إزالة",
+      "uploading": "جارٍ الرفع…",
+      "sampleLink": "تنزيل نموذج قالب",
+      "tagsLink": "عرض الوسوم المتاحة",
+      "dialogTitle": "الوسوم المتاحة",
+      "dialogHint": "كل وسم يُترجم إلى قيمة حية من نموذج جاهز — أضيفوا أياً منها إلى قالب Word الخاص بكم كوسم '{{tag}}'.",
+      "tagColumn": "الوسم",
+      "valueColumn": "قيمة توضيحية",
+      "matched": "تطابق {n} وسماً",
+      "unknownTags": "خارج كتالوج الوسوم — ستظهر كما هي: {tags}",
+      "uploadedAt": "رُفع بتاريخ {date}",
+      "errors": {
+        "type": "يُدعم رفع ملفات Word بصيغة docx. فقط.",
+        "size": "حجم القالب كبير جدًا — الحد الأقصى 10 ميجابايت.",
+        "unreadable": "تعذّرت قراءة هذا الملف كقالب Word. تأكدوا من أنه يُفتح في Word وحاولوا مرة أخرى."
+      }
+    }
   },
   "audit": {
     "title": "سجل التدقيق",
@@ -110,7 +133,9 @@
     "actionAgentCreated": "إنشاء وكيل",
     "actionAgentDeleted": "حذف وكيل",
     "actionSkillCreated": "إنشاء مهارة",
-    "actionSkillDeleted": "حذف مهارة"
+    "actionSkillDeleted": "حذف مهارة",
+    "actionTemplateUploaded": "رفع قالب",
+    "actionTemplateRemoved": "إزالة قالب"
   },
   "connections": {
     "title": "الاتصالات",
@@ -571,7 +596,9 @@
       "modelCaption": "النموذج الكامل: افتحه في Excel — كل خلية إدخال تحمل مصدرها.",
       "openInExcel": "فتح في Excel",
       "fallbackTitle": "المعاينة غير متاحة",
-      "fallbackCaption": "الملف جاهز — يمكنك تنزيله أدناه."
+      "fallbackCaption": "الملف جاهز — يمكنك تنزيله أدناه.",
+      "templateTitle": "أُنشئ من قالب شركتك",
+      "templateCaption": "تعرض المعاينة داخل التطبيق تنسيق المذكرة القياسي لا القوالب المخصّصة — نزّل الملف لرؤيته بتنسيق شركتك."
     },
     "draft": {
       "trigger": "صياغة بريد للجنة الاستثمار",
