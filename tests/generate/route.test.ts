@@ -13,15 +13,12 @@ function parseSSE(text: string): GenerateEvent[] {
     .map((chunk) => JSON.parse(chunk.replace(/^data: /, "")) as GenerateEvent);
 }
 
-function post(artifact: string): Promise<Response> {
-  return POST(
-    new Request(`http://localhost/api/generate/${artifact}`, {
-      method: "POST",
-    }),
-    {
-      params: Promise.resolve({ artifact }),
-    },
-  );
+function post(artifact: string, workspace?: string): Promise<Response> {
+  const url = new URL(`http://localhost/api/generate/${artifact}`);
+  if (workspace) url.searchParams.set("workspace", workspace);
+  return POST(new Request(url, { method: "POST" }), {
+    params: Promise.resolve({ artifact }),
+  });
 }
 
 let dir: string;
@@ -144,6 +141,45 @@ describe("POST /api/generate/[artifact]", () => {
   it("rejects an unknown artifact kind with 400", async () => {
     setEnv();
     const res = await post("csv");
+    expect(res.status).toBe(400);
+  });
+
+  it("?workspace=darb docx: streams, writes the file, registers metadata under the darb workspace", async () => {
+    setEnv();
+    const res = await post("docx", "darb");
+    expect(res.headers.get("content-type")).toContain("text/event-stream");
+
+    const events = parseSSE(await res.text());
+    const artifactEvent = events.find((e) => e.type === "artifact");
+    expect(artifactEvent).toBeDefined();
+    if (artifactEvent?.type !== "artifact") throw new Error("unreachable");
+    expect(artifactEvent.artifact).toBe("docx");
+    expect(artifactEvent.meta.id).toBe("darb-docx");
+    expect(artifactEvent.meta.workspace).toBe("darb");
+    expect(artifactEvent.meta.file).toBe("/artifacts/darb-screening-memo.docx");
+    expect(artifactEvent.meta.sources).toBeGreaterThan(0);
+
+    const written = fs.readFileSync(
+      path.join(artifactsDir, "darb-screening-memo.docx"),
+    );
+    expect(written.length).toBe(artifactEvent.sizeBytes);
+
+    const entries = ArtifactMetaSchema.array().parse(
+      JSON.parse(fs.readFileSync(artifactsJson, "utf-8")),
+    );
+    expect(entries).toHaveLength(1);
+    expect(entries[0]!.id).toBe("darb-docx");
+  }, 30000);
+
+  it("rejects a kind not registered for the darb workspace with 400 (xlsx)", async () => {
+    setEnv();
+    const res = await post("xlsx", "darb");
+    expect(res.status).toBe(400);
+  });
+
+  it("rejects an unknown workspace with 400", async () => {
+    setEnv();
+    const res = await post("docx", "unknown-workspace");
     expect(res.status).toBe(400);
   });
 });
