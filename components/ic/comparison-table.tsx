@@ -9,7 +9,7 @@ import { LogoTile } from "@/components/ui/logo-tile";
 import { Skeleton } from "@/components/ui/skeleton";
 import manifest from "@/data/corpus/manifest.json";
 import type { CorpusDoc, Deal, IcMetrics, Lang } from "@/lib/types";
-import { formatPercent } from "@/lib/utils";
+import { formatPercent, westernNumber } from "@/lib/utils";
 import { hurdleDelta, riskBand, riskSegments } from "@/components/ic/metrics";
 
 const DOC_TITLES = new Map(
@@ -17,13 +17,6 @@ const DOC_TITLES = new Map(
 );
 
 const EASE = [0.4, 0, 0.2, 1] as const;
-
-/** Plain number, Western digits in both locales (AGENTS.md rule 2). */
-function westernNumber(value: number, locale: Lang, maxFrac = 0): string {
-  return new Intl.NumberFormat(locale === "ar" ? "ar-u-nu-latn" : "en-US", {
-    maximumFractionDigits: maxFrac,
-  }).format(value);
-}
 
 /** The six committee metrics, in sheet order (spec §11). */
 const ROWS = [
@@ -304,7 +297,8 @@ function RiskCell({ m, locale }: { m: IcMetrics; locale: Lang }) {
   );
 }
 
-function CiteChip({
+/** Source pill: doc title + page, opens the shared PdfPanel (also used by the decision cards). */
+export function CiteChip({
   docId,
   page,
   locale,

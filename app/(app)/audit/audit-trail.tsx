@@ -8,6 +8,7 @@ import {
   FileOutput,
   Mail,
   MessageSquareText,
+  Scale,
   SlidersHorizontal,
 } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
@@ -30,6 +31,7 @@ const ACTION_ICON = {
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
   "ic-draft": Mail,
+  "ic-decision": Scale,
 } as const;
 
 /** "Jul 12, 09:41", no year, Western digits both locales (design-briefs §3.4); distinct from lib/utils.ts's formatDate, which always includes the year. */
@@ -78,16 +80,20 @@ function ContextChip({
   context,
   workspaceNames,
   firmLabel,
+  icLabel,
   locale,
 }: {
   context: string;
   workspaceNames: Record<string, Localized>;
   firmLabel: string;
+  icLabel: string;
   locale: Lang;
 }) {
   const label = context.startsWith("workspace:")
     ? (workspaceNames[context.slice("workspace:".length)]?.[locale] ?? context)
-    : firmLabel;
+    : context === "ic"
+      ? icLabel
+      : firmLabel;
 
   return (
     <span className="bg-navy-50 rounded-pill inline-flex max-w-full items-center gap-1.5 px-2 py-1">
@@ -104,6 +110,7 @@ function Row({
   isNew,
   workspaceNames,
   firmLabel,
+  icLabel,
   aliLabel,
   actionLabels,
   locale,
@@ -112,6 +119,7 @@ function Row({
   isNew: boolean;
   workspaceNames: Record<string, Localized>;
   firmLabel: string;
+  icLabel: string;
   aliLabel: string;
   actionLabels: Record<AuditEntry["action"], string>;
   locale: Lang;
@@ -159,6 +167,7 @@ function Row({
             context={entry.context}
             workspaceNames={workspaceNames}
             firmLabel={firmLabel}
+            icLabel={icLabel}
             locale={locale}
           />
         </span>
@@ -242,6 +251,7 @@ export function AuditTrail({
     "stage-advance": t("actionScreening"),
     "model-edit": t("actionModelEdit"),
     "ic-draft": t("actionIcDraft"),
+    "ic-decision": t("actionIcDecision"),
   };
 
   const filters: { value: ContextFilter; label: string }[] = [
@@ -346,6 +356,7 @@ export function AuditTrail({
                 isNew={freshKeys.has(entry.ts + entry.action)}
                 workspaceNames={workspaceNames}
                 firmLabel={t("contextFirm")}
+                icLabel={t("contextIc")}
                 aliLabel={t("userAli")}
                 actionLabels={actionLabels}
                 locale={locale}

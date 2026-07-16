@@ -85,7 +85,9 @@
     "contextFirm": "Lunar",
     "userAli": "Ali",
     "actionModelEdit": "Model edit",
-    "actionIcDraft": "IC email drafted"
+    "actionIcDraft": "IC email drafted",
+    "actionIcDecision": "Committee decision recorded",
+    "contextIc": "Investment Committee"
   },
   "connections": {
     "title": "Connections",
@@ -486,6 +488,41 @@
       "suggest1": "Rank these deals: strongest risk-adjusted case?",
       "suggest2": "Does each deal clear our IRR hurdle?",
       "suggest3": "What would change the ranking?"
+    },
+    "decision": {
+      "title": "Committee decision",
+      "subtitle": "The final human gate. Faheem compiles the verified brief and answers questions about the materials; the committee decides, and every decision is recorded to the audit trail.",
+      "awaiting": "Awaiting decision",
+      "onTable": "On the table",
+      "analysisDoc": "Analysis summary",
+      "ask": "Ask",
+      "askAbout": "Ask Faheem IC about {name}",
+      "askAnalysis": "Summarize the {company} analysis: valuation conclusion, key risks, and what would change the recommendation.",
+      "askXlsx": "Walk me through the key assumptions behind the {company} valuation model: WACC, terminal growth, and scenario weights.",
+      "askDocx": "What does the {company} IC memo recommend, and what evidence supports it?",
+      "askPptx": "What are the key takeaways the {company} board deck puts in front of the committee?",
+      "advance": "Advance",
+      "defer": "Defer",
+      "decline": "Decline",
+      "confirmTitle": "Record the committee's decision",
+      "confirmSummary": "{decision} · {deal}",
+      "briefLabel": "Faheem's pre-decision brief",
+      "hurdlePass": "Clears the {hurdle} IRR hurdle by {bps} bps",
+      "hurdleFail": "Misses the {hurdle} IRR hurdle by {bps} bps",
+      "hurdleEqual": "Sits exactly at the {hurdle} IRR hurdle",
+      "compliancePass": "Compliance screen: pass",
+      "complianceFail": "Compliance screen: fail",
+      "mandatePass": "Within the Lunar mandate",
+      "mandateWarn": "Mandate fit flagged for review",
+      "riskLow": "Risk score {score} / 10: low",
+      "riskModerate": "Risk score {score} / 10: moderate",
+      "riskHigh": "Risk score {score} / 10: high",
+      "confirmNote": "Recording appends the decision to the audit trail. Faheem advised; the committee decided.",
+      "cancel": "Cancel",
+      "record": "Record decision",
+      "recordedLine": "Recorded {time} · logged to the audit trail",
+      "revise": "Revise",
+      "pending": "Analysis finalizing: the decision opens once the model signs off."
     }
   },
   "generate": {

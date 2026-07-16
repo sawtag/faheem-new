@@ -50,6 +50,13 @@ export function formatPercent(
   return `${n}%`;
 }
 
+/** Plain number, Western digits in both locales (AGENTS.md rule 2). */
+export function westernNumber(value: number, lang: Lang, maxFrac = 0): string {
+  return new Intl.NumberFormat(numLocale(lang), {
+    maximumFractionDigits: maxFrac,
+  }).format(value);
+}
+
 /** Localized date, Western digits both locales: `Jul 12, 2026` (`withTime` adds `09:41`). */
 export function formatDate(
   iso: string,

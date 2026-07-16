@@ -9,6 +9,7 @@ import {
   FileOutput,
   Mail,
   MessageSquareText,
+  Scale,
   SlidersHorizontal,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -22,6 +23,7 @@ const ACTION_ICON = {
   "stage-advance": CheckCheck,
   "model-edit": SlidersHorizontal,
   "ic-draft": Mail,
+  "ic-decision": Scale,
 } as const;
 
 /** "Jul 12, 09:41", Western digits both locales (mirrors the audit trail). */
@@ -129,17 +131,21 @@ function ContextChip({
   context,
   workspaceNames,
   firmLabel,
+  icLabel,
   locale,
 }: {
   context: string;
   workspaceNames: Record<string, Localized>;
   firmLabel: string;
+  icLabel: string;
   locale: Lang;
 }) {
   const label = context.startsWith("workspace:")
     ? (workspaceNames[context.slice("workspace:".length)]?.[locale] ??
       firmLabel)
-    : firmLabel;
+    : context === "ic"
+      ? icLabel
+      : firmLabel;
   return (
     <span className="bg-navy-50 rounded-pill inline-flex max-w-full items-center gap-1 px-2 py-0.5">
       <LogoTile label={label} size={16} />
@@ -167,6 +173,7 @@ function ActivityFeed({
     "stage-advance": tAudit("actionScreening"),
     "model-edit": tAudit("actionModelEdit"),
     "ic-draft": tAudit("actionIcDraft"),
+    "ic-decision": tAudit("actionIcDecision"),
   };
 
   return (
@@ -205,6 +212,7 @@ function ActivityFeed({
                     context={entry.context}
                     workspaceNames={workspaceNames}
                     firmLabel={tAudit("contextFirm")}
+                    icLabel={tAudit("contextIc")}
                     locale={locale}
                   />
                   <span className="text-text-secondary financial text-[0.6875rem]">

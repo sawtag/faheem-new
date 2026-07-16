@@ -206,6 +206,7 @@ export const AuditEntrySchema = z.object({
     "stage-advance",
     "model-edit",
     "ic-draft",
+    "ic-decision",
   ]),
   question: z.string().optional(),
   citationCount: z.number().int().nonnegative().optional(),

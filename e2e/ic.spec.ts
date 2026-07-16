@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { clickUntil, readAudit } from "./helpers";
 
 /**
  * T3.4 acceptance, the Faheem IC room (the closing beat). Session cookie is set
@@ -41,8 +42,11 @@ test.describe("Faheem IC room", () => {
     await expect(jahezDelta).toHaveAttribute("data-tone", "above");
     await expect(jahezDelta).toContainText("210");
 
-    // Both columns clear mandate fit + Compliance → 4 "Pass" badges total.
-    await expect(page.getByText("Pass")).toHaveCount(4);
+    // Both columns clear mandate fit + Compliance → 4 "Pass" badges total
+    // (scoped to the sheet: the decision cards below repeat the pass lines).
+    await expect(
+      page.getByTestId("ic-comparison-table").getByText("Pass"),
+    ).toHaveCount(4);
 
     // No pending column left, never fake numbers, but nothing pending either.
     await expect(page.getByTestId("ic-pending-jahez")).not.toBeVisible();
@@ -55,6 +59,102 @@ test.describe("Faheem IC room", () => {
     await expect(banner).toHaveText(
       "Advisory only: the investment decision rests with the committee.",
     );
+  });
+
+  test("decision phase: cards carry the verified brief and the materials on the table", async ({
+    page,
+  }) => {
+    await page.goto("/ic");
+
+    await expect(page.getByText("Committee decision")).toBeVisible();
+    const jahez = page.getByTestId("ic-decision-card-jahez");
+    const thara = page.getByTestId("ic-decision-card-thara-pay");
+
+    // Faheem's pre-decision brief, every line derived from deals.json.
+    await expect(jahez).toContainText("Clears the 15% IRR hurdle by 210 bps");
+    await expect(jahez).toContainText("Risk score 5.5 / 10: moderate");
+    await expect(thara).toContainText("Clears the 15% IRR hurdle by 350 bps");
+
+    // Jahez's landed deliverables sit on the table; Thara has its analysis.
+    await expect(jahez).toContainText("Jahez · Valuation Model");
+    await expect(jahez).toContainText("Jahez · IC Memo");
+    await expect(thara).toContainText("Analysis summary");
+  });
+
+  test("decision phase: the artifact sparkle seeds an artifact question into the advisory chat", async ({
+    page,
+  }) => {
+    await page.goto("/ic");
+    const composer = page.getByRole("textbox", { name: "Ask Faheem IC…" });
+
+    await clickUntil(
+      page.getByRole("button", {
+        name: "Ask Faheem IC about Jahez · IC Memo",
+      }),
+      async () => {
+        await expect(composer).toHaveValue(
+          "What does the Jahez IC memo recommend, and what evidence supports it?",
+          { timeout: 1500 },
+        );
+      },
+    );
+  });
+
+  test("decision phase: recording Advance logs the human gate to the audit trail and survives reload", async ({
+    page,
+  }) => {
+    await page.goto("/ic");
+
+    // Choose Advance on Thara Pay → confirm dialog with Faheem's brief.
+    const dialog = page.getByTestId("ic-decision-dialog");
+    await clickUntil(
+      page.getByTestId("ic-decide-advance-thara-pay"),
+      async () => {
+        await expect(dialog).toBeVisible({ timeout: 1500 });
+      },
+    );
+    await expect(dialog).toContainText("Advance · Thara Pay");
+    await expect(dialog).toContainText("Faheem's pre-decision brief");
+
+    const before = readAudit().length;
+    await dialog.getByTestId("ic-decision-record").click();
+    await expect(dialog).toBeHidden();
+
+    // The card flips to its recorded state…
+    const recorded = page.getByTestId("ic-decision-recorded-thara-pay");
+    await expect(recorded).toHaveText("Advance");
+    await expect(page.getByTestId("ic-decision-card-thara-pay")).toContainText(
+      "logged to the audit trail",
+    );
+
+    // …the audit trail grows with one committee-decision entry (poll only the
+    // slice appended after our click, parallel projects share the log)…
+    await expect
+      .poll(
+        () =>
+          readAudit()
+            .slice(before)
+            .some(
+              (e) =>
+                e.action === "ic-decision" &&
+                (e.question ?? "").includes("Advance · Thara Pay") &&
+                e.context === "ic",
+            ),
+        { timeout: 10_000 },
+      )
+      .toBe(true);
+
+    // …and the decision persists across a reload (localStorage), then Revise
+    // reopens the vote so the demo stays re-runnable.
+    await page.reload();
+    await expect(page.getByTestId("ic-decision-recorded-thara-pay")).toHaveText(
+      "Advance",
+    );
+    await clickUntil(page.getByRole("button", { name: "Revise" }), async () => {
+      await expect(page.getByTestId("ic-decide-advance-thara-pay")).toBeVisible(
+        { timeout: 1500 },
+      );
+    });
   });
 
   test("a suggested-question pill fills the composer", async ({ page }) => {

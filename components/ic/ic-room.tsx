@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { ComparisonTable } from "@/components/ic/comparison-table";
 import { AdvisoryDisclaimer } from "@/components/ic/advisory-disclaimer";
 import { IcChatPanel } from "@/components/ic/ic-chat-panel";
+import { DecisionPanel } from "@/components/ic/decision-panel";
 import { DraftToIc } from "@/components/ic/draft-to-ic";
 import { GlyphBackdrop } from "@/components/ui/glyph-backdrop";
 import manifest from "@/data/corpus/manifest.json";
@@ -112,6 +113,11 @@ export function IcRoom({
             <p className="text-text-secondary mt-4 text-xs leading-relaxed">
               {t("tableNote")}
             </p>
+            <DecisionPanel
+              columns={columns}
+              artifacts={jahezArtifacts}
+              onOpenDoc={onOpenDoc}
+            />
           </div>
         </section>
         <aside className="border-border w-[23rem] shrink-0 border-s xl:w-[26rem]">
