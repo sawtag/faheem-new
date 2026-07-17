@@ -85,7 +85,10 @@ const sleep = (ms: number): Promise<void> =>
 function stepMs(): number {
   const raw = process.env.FAHEEM_GENERATE_STEP_MS;
   const n = raw !== undefined ? Number.parseInt(raw, 10) : NaN;
-  return Number.isFinite(n) ? n : 600;
+  // 400ms per phase: the three-stage choreography reads as real work per
+  // artifact (~1.3s each, ~4s for the three-file package on a warm server)
+  // without stalling the stage. Override with FAHEEM_GENERATE_STEP_MS.
+  return Number.isFinite(n) ? n : 400;
 }
 
 /** public/artifacts by default; FAHEEM_ARTIFACTS_DIR overrides (tests only). */
