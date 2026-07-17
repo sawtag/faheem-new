@@ -9,7 +9,7 @@ import type { CustomSkill } from "@/lib/custom-skills";
 import type { Lang } from "@/lib/types";
 import { filterSkills } from "./filter-skills";
 import { SkillCard } from "./skill-card";
-import { resolveSkillRun } from "./run-skill";
+import { resolveSkillRun } from "@/lib/skills-run";
 import {
   AddSkillTile,
   CustomSkillCard,
