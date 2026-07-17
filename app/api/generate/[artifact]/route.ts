@@ -85,10 +85,10 @@ const sleep = (ms: number): Promise<void> =>
 function stepMs(): number {
   const raw = process.env.FAHEEM_GENERATE_STEP_MS;
   const n = raw !== undefined ? Number.parseInt(raw, 10) : NaN;
-  // 400ms per phase: the three-stage choreography reads as real work per
-  // artifact (~1.3s each, ~4s for the three-file package on a warm server)
-  // without stalling the stage. Override with FAHEEM_GENERATE_STEP_MS.
-  return Number.isFinite(n) ? n : 400;
+  // 700ms per phase (building takes a double beat): each artifact reads as
+  // ~3s of real document work, the three-file package lands in ~8-9s on a
+  // warm server. Override with FAHEEM_GENERATE_STEP_MS.
+  return Number.isFinite(n) ? n : 700;
 }
 
 /** public/artifacts by default; FAHEEM_ARTIFACTS_DIR overrides (tests only). */
@@ -163,7 +163,8 @@ async function generateOne(
 
     emit({ type: "stage", artifact: kind, phase: "building", status: "start" });
     const buf = await registry.builders[kind]!();
-    if (ms > 0) await sleep(ms);
+    // building is the heavy step of the story, give it a double beat
+    if (ms > 0) await sleep(ms * 2);
     emit({ type: "stage", artifact: kind, phase: "building", status: "done" });
 
     emit({ type: "stage", artifact: kind, phase: "writing", status: "start" });
