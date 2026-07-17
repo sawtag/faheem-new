@@ -81,8 +81,8 @@ describe("live SSE transform", () => {
       true,
     );
 
-    // Firm choreography: orchestrator → research → doc-intel → compliance,
-    // each start then done.
+    // Firm choreography: orchestrator → research → doc-intel →
+    // critical-review (the visible guardrail) → compliance, start then done.
     const stages = out.filter((e): e is StageEvent => e.type === "stage");
     expect(stages.map((s) => `${s.agent}:${s.status}`)).toEqual([
       "orchestrator:start",
@@ -91,6 +91,8 @@ describe("live SSE transform", () => {
       "research:done",
       "doc-intel:start",
       "doc-intel:done",
+      "critical-review:start",
+      "critical-review:done",
       "compliance:start",
       "compliance:done",
     ]);

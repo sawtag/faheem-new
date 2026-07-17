@@ -56,6 +56,18 @@
     },
     {
       "type": "stage",
+      "agent": "critical-review",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "critical-review",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
       "agent": "compliance",
       "status": "start",
       "docIds": []

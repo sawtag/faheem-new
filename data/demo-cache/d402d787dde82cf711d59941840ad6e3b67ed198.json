@@ -1,1 +1,1069 @@
-{"key": "d402d787dde82cf711d59941840ad6e3b67ed198", "request": {"question": "Build the committee deck for Monday's IC on Jahez.", "lang": "en", "context": {"kind": "workspace", "companyId": "jahez"}, "docIds": ["jahez-analysis-summary"]}, "events": [{"type": "stage", "agent": "research", "status": "start", "docIds": []}, {"type": "stage", "agent": "research", "status": "done", "docIds": []}, {"type": "stage", "agent": "doc-intel", "status": "start", "docIds": []}, {"type": "stage", "agent": "doc-intel", "status": "done", "docIds": []}, {"type": "stage", "agent": "valuation", "status": "start", "docIds": []}, {"type": "stage", "agent": "valuation", "status": "done", "docIds": []}, {"type": "stage", "agent": "risk", "status": "start", "docIds": []}, {"type": "stage", "agent": "risk", "status": "done", "docIds": []}, {"type": "stage", "agent": "compliance", "status": "start", "docIds": []}, {"type": "stage", "agent": "compliance", "status": "done", "docIds": []}, {"type": "delta", "text": "# Jahez Group (Tadawul: 6017) – Investment Committee Deck\n### For"}, {"type": "delta", "text": " Monday IC · Prepared by Faheem, Lunar Invest"}, {"type": "delta", "text": "ments · Confidential\n\nBelow is a ~10-slide committee deck built to the Lunar template. Where source"}, {"type": "delta", "text": " data is thin (notably forward projections), I flag the gap rather than fill it.\n\n---\n\n## Slide 1 – C"}, {"type": "delta", "text": "over\n\n**Jahez Group | Tadawul: 6017**\nQuick-commerce / food delivery\nStage: "}, {"type": "delta", "text": "Analysis complete, in Investment Committee review."}, {"type": "delta", "text": "[[1]]"}, {"type": "citation", "n": 1, "docId": "jahez-analysis-summary", "page": 1, "quote": "J A H E Z\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXE C U T IVE S U M M A RY\r\nFaheem’s completed analysis of Jahez Group (Tadawul: 6017) is summariz"}, {"type": "delta", "text": "\nOrigin: "}, {"type": "delta", "text": "Market screen ("}, {"type": "delta", "text": "SAHMK/Argaam), 2026-07-08."}, {"type": "delta", "text": "[[2]]"}, {"type": "citation", "n": 2, "docId": "jahez-analysis-summary", "page": 1, "quote": "J A H E Z\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXE C U T IVE S U M M A RY\r\nFaheem’s completed analysis of Jahez Group (Tadawul: 6017) is summariz"}, {"type": "delta", "text": "\nPrepared for the Lunar"}, {"type": "delta", "text": " Investments Committee.\n\n---\n\n## Slide 2 – Executive Summary\n\n- **Revenue engine:** "}, {"type": "delta", "text": "FY2025 GM"}, {"type": "delta", "text": "V reached SAR 7,245.2m (+10.8% YoY) on a take rate of 15.4% and an average order value of SAR 64.90."}, {"type": "delta", "text": "[[3]]"}, {"type": "citation", "n": 3, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Earnings compression:** "}, {"type": "delta", "text": "Net income compressed 61.2% YoY to SAR 73.0m, driven by SAR 55"}, {"type": "delta", "text": ".4m of Q4-2025 one-off items (Red Color impairment, Marn goodwill impairment, Others-segment ECL, Sn"}, {"type": "delta", "text": "oonu deal costs) layered on take-rate pressure from the Keeta-led price war."}, {"type": "delta", "text": "[[4]]"}, {"type": "citation", "n": 4, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Margin traj"}, {"type": "delta", "text": "ectory:** "}, {"type": "delta", "text": "Gross margin, the closest disclosed proxy for contribution margin per order, fell to 22.8% (F"}, {"type": "delta", "text": "Y2024A: 24.4%), and adjusted EBITDA margin contracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": "[[5]]"}, {"type": "citation", "n": 5, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": "\n- **Recent print:** "}, {"type": "delta", "text": "Q1-2026 printed a SAR 9.2m net loss."}, {"type": "delta", "text": "[[6]]"}, {"type": "citation", "n": 6, "docId": "jahez-analysis-summary", "page": 1, "quote": "Q1-2026 printed a SAR 9.2m net loss."}, {"type": "delta", "text": "\n-"}, {"type": "delta", "text": " **Balance sheet:** "}, {"type": "delta", "text": "Net cash of SAR 16.6m (SAR 510.7m cash and equivalents, less SAR 161.2"}, {"type": "delta", "text": "m of debt and SAR 332.9m of IFRS-16 lease liabilities)."}, {"type": "delta", "text": "[[7]]"}, {"type": "citation", "n": 7, "docId": "jahez-analysis-summary", "page": 1, "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."}, {"type": "delta", "text": "\n- **Return vs benchmark:** "}, {"type": "delta", "text": "Implied IRR at entry of 17.1% versus a 15.0% benchmark; scenario-weighted expected return of 16.8%."}, {"type": "delta", "text": "[[8]]"}, {"type": "citation", "n": 8, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": "\n\n---\n\n## Slide 3 – Company and Market Overview\n\n- **Business:** "}, {"type": "delta", "text": "Jahez Group operates in qu"}, {"type": "delta", "text": "ick-commerce / food delivery."}, {"type": "delta", "text": "[[9]]"}, {"type": "citation", "n": 9, "docId": "jahez-analysis-summary", "page": 1, "quote": "J A H E Z\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXE C U T IVE S U M M A RY\r\nFaheem’s completed analysis of Jahez Group (Tadawul: 6017) is summariz"}, {"type": "delta", "text": "\n- **Competitive backdrop:** margin pressure is being driven externally, "}, {"type": "delta", "text": "take-rate pressure from the Keeta-led price war weighed on FY2025 profitability."}, {"type": "delta", "text": "[[10]]"}, {"type": "citation", "n": 10, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Compar"}, {"type": "delta", "text": "able set used in analysis:** "}, {"type": "delta", "text": "Talabat, DoorDash and Delivery Hero."}, {"type": "delta", "text": "[[11]]"}, {"type": "citation", "n": 11, "docId": "jahez-analysis-summary", "page": 1, "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "}, {"type": "delta", "text": "\n\n*"}, {"type": "delta", "text": "Judgment:* the deck lacks TAM, market-"}, {"type": "delta", "text": "share and order-volume disclosures. Adding these would sharpen the market-"}, {"type": "delta", "text": "position view; absent them, the overview is confined to what the filing summary sup"}, {"type": "delta", "text": "ports.\n\n---\n\n## Slide 4 – Unit Economics\n\n- **AOV:** "}, {"type": "delta", "text": "SAR 64.90 average order value in"}, {"type": "delta", "text": " FY2025."}, {"type": "delta", "text": "[[12]]"}, {"type": "citation", "n": 12, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Take rate:** "}, {"type": "delta", "text": "15.4% on FY2025 GMV of SAR 7,245."}, {"type": "delta", "text": "2m."}, {"type": "delta", "text": "[[13]]"}, {"type": "citation", "n": 13, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Contribution proxy:** "}, {"type": "delta", "text": "Gross margin, the closest disclosed proxy for contribution margin"}, {"type": "delta", "text": " per order, fell to 22.8% (FY2024A: 24.4%)."}, {"type": "delta", "text": "[[14]]"}, {"type": "citation", "n": 14, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": "\n\n*Judgment:* the sources do not disclose per-order delivery cost, CA"}, {"type": "delta", "text": "C, cohort retention or a clean contribution margin. Gross margin is being used as a proxy."}, {"type": "delta", "text": " Order-level cost data would materially change confidence in the unit-economics view.\n\n---\n\n## Slide 5 – Historical and Projected Financials\n\n**Historical (dis"}, {"type": "delta", "text": "closed):**\n| Metric | FY2024A | FY2025A |\n|---|---|---|\n| GMV | – | "}, {"type": "delta", "text": "SAR 7,245.2m ("}, {"type": "delta", "text": "+10.8% YoY)"}, {"type": "delta", "text": "[[15]]"}, {"type": "citation", "n": 15, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": " |\n| Gross margin | "}, {"type": "delta", "text": "24.4%"}, {"type": "delta", "text": "[[16]]"}, {"type": "citation", "n": 16, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": " | "}, {"type": "delta", "text": "22.8"}, {"type": "delta", "text": "%"}, {"type": "delta", "text": "[[17]]"}, {"type": "citation", "n": 17, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": " |\n| Adj. EBITDA margin | "}, {"type": "delta", "text": "11.3%"}, {"type": "delta", "text": "[[18]]"}, {"type": "citation", "n": 18, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": " | "}, {"type": "delta", "text": "8.3%"}, {"type": "delta", "text": "[[19]]"}, {"type": "citation", "n": 19, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": " |\n| Net income | – | "}, {"type": "delta", "text": "SAR 73.0m (-61.2% YoY)"}, {"type": "delta", "text": "[[20]]"}, {"type": "citation", "n": 20, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": " |"}, {"type": "delta", "text": "\n\nLatest quarter: "}, {"type": "delta", "text": "Q1-2026 net loss of SAR 9.2m."}, {"type": "delta", "text": "[[21]]"}, {"type": "citation", "n": 21, "docId": "jahez-analysis-summary", "page": 1, "quote": "Q1-2026 printed a SAR 9.2m net loss."}, {"type": "delta", "text": "\n\n*Gap flag:* the connected"}, {"type": "delta", "text": " summary does not contain the explicit forward revenue, EBITDA or FCFF projection schedule that fe"}, {"type": "delta", "text": "eds the DCF. That isn't in my connected sources. In the MVP this routes to web, Bloomberg, or PitchBook connect"}, {"type": "delta", "text": "ors.\n\n---\n\n## Slide 6 – Valuation Summary\n\n- **Primary method:** "}, {"type": "delta", "text": "Discounted cash flow (FCFF), discounted at a CAPM"}, {"type": "delta", "text": "-derived WACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for"}, {"type": "delta", "text": " a 13.7% cost of equity), with a 3.0% Gordon terminal growth rate."}, {"type": "delta", "text": "[[22]]"}, {"type": "citation", "n": 22, "docId": "jahez-analysis-summary", "page": 1, "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "}, {"type": "delta", "text": "\n- **Cross-check:** "}, {"type": "delta", "text": "Trading-comps triangulation on EV/Revenue, EV/EBITDA and P/E across Talabat, DoorDash and Del"}, {"type": "delta", "text": "ivery Hero."}, {"type": "delta", "text": "[[23]]"}, {"type": "citation", "n": 23, "docId": "jahez-analysis-summary", "page": 1, "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "}, {"type": "delta", "text": "\n\n*Gap flag:* the summary reports the resulting IRR but not the implied enterprise value, equ"}, {"type": "delta", "text": "ity value or per-share target. Those outputs are not in my connected sources.\n\n---\n\n## Slide 7 – Scenario Analysis vs the Benchmark\n\n- **Ent"}, {"type": "delta", "text": "ry IRR:** "}, {"type": "delta", "text": "17.1%, clearing the 15.0% benchmark by 210 basis points at entry."}, {"type": "delta", "text": "[[24]]"}, {"type": "citation", "n": 24, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": "\n- **Scenario-weighted return:** "}, {"type": "delta", "text": "16.8%, blending bull, base and bear cases, remains above the benchmark even"}, {"type": "delta", "text": " after weighting for downside scenarios, indicating the base-case return is not solely dependent on the bull case materializing."}, {"type": "delta", "text": "[[25]]"}, {"type": "citation", "n": 25, "docId": "jahez-analysis-summary", "page": 2, "quote": "The scenario-weighted\r\nexpected return of 16.8% — which blends bull, base, and bear cases — remains above the hurdle even\r\nafter weighting for downside scenarios, indicating the base-case return is no"}, {"type": "delta", "text": "\n\n*Gap flag:* the individual bull/base/bear I"}, {"type": "delta", "text": "RR points and their probability weights are not itemized in the source; only the blended output is disclosed.\n\n---\n\n## Slide 8 –"}, {"type": "delta", "text": " Quantified Risk Assessment\n\n- **Composite risk score:** "}, {"type": "delta", "text": "5.5 / 10 (1 = lowest, 10 = highest)."}, {"type": "delta", "text": "[[26]]"}, {"type": "citation", "n": 26, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": "\n- **Earnings-quality risk:** "}, {"type": "delta", "text": "SAR 55.4m of Q4-2025 one-off items (Red Color impairment,"}, {"type": "delta", "text": " Marn goodwill impairment, Others-segment ECL, Snoonu deal costs)."}, {"type": "delta", "text": "[[27]]"}, {"type": "citation", "n": 27, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Competitive / pricing risk:** "}, {"type": "delta", "text": "Take-rate pressure from the Keeta-led price war."}, {"type": "delta", "text": "[[28]]"}, {"type": "citation", "n": 28, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- **Margin trend risk:** "}, {"type": "delta", "text": "Adjusted EBITDA margin contraction to 8.3% from 11.3%."}, {"type": "delta", "text": "[[29]]"}, {"type": "citation", "n": 29, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": "\n- **Run-rate risk:** "}, {"type": "delta", "text": "Q1-2026 net loss of SAR 9.2m."}, {"type": "delta", "text": "[[30]]"}, {"type": "citation", "n": 30, "docId": "jahez-analysis-summary", "page": 1, "quote": "Q1-2026 printed a SAR 9.2m net loss."}, {"type": "delta", "text": "\n\n---\n\n## Slide 9 – Benchmark and Mandate Check\n\n|"}, {"type": "delta", "text": " Check | Result |\n|---|---|\n| Implied IRR vs 15.0% benchmark | "}, {"type": "delta", "text": "17.1% (Pass)"}, {"type": "delta", "text": "[[31]]"}, {"type": "citation", "n": 31, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": " |\n| Scenario-weighted return | "}, {"type": "delta", "text": "16.8%, above benchmark"}, {"type": "delta", "text": "[[32]]"}, {"type": "citation", "n": 32, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": " |\n|"}, {"type": "delta", "text": " Mandate fit | "}, {"type": "delta", "text": "Pass"}, {"type": "delta", "text": "[[33]]"}, {"type": "citation", "n": 33, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": " |\n| Compliance screen | "}, {"type": "delta", "text": "Pass"}, {"type": "delta", "text": "[[34]]"}, {"type": "citation", "n": 34, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": " |"}, {"type": "delta", "text": "\n\nNet-cash position supports mandate resilience: "}, {"type": "delta", "text": "SAR 16.6m net"}, {"type": "delta", "text": " cash."}, {"type": "delta", "text": "[[35]]"}, {"type": "citation", "n": 35, "docId": "jahez-analysis-summary", "page": 1, "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."}, {"type": "delta", "text": "\n\n---\n\n## Slide 10 – For Investment Committee Decision\n\n**Return case:** "}, {"type": "delta", "text": "Entry IRR of 17.1% and scenario-weighted return of 16.8% both clear the 15.0% benchmark; mandate fit and compliance screen both Pass;"}, {"type": "delta", "text": " risk scored 5.5/10."}, {"type": "delta", "text": "[[36]]"}, {"type": "citation", "n": 36, "docId": "jahez-analysis-summary", "page": 2, "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"}, {"type": "delta", "text": "\n\n**Monitoring triggers (judgment):**\n- Take-rate st"}, {"type": "delta", "text": "abilization vs continued Keeta-led price competition "}, {"type": "delta", "text": "(F"}, {"type": "delta", "text": "Y2025 take rate 15.4%)."}, {"type": "delta", "text": "[[37]]"}, {"type": "citation", "n": 37, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n- EBITDA-margin recovery off the "}, {"type": "delta", "text": "8.3% F"}, {"type": "delta", "text": "Y2025 base."}, {"type": "delta", "text": "[[38]]"}, {"type": "citation", "n": 38, "docId": "jahez-analysis-summary", "page": 1, "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."}, {"type": "delta", "text": "\n- Whether Q1-2026 losses reverse after the "}, {"type": "delta", "text": "SAR "}, {"type": "delta", "text": "9.2m net loss."}, {"type": "delta", "text": "[[39]]"}, {"type": "citation", "n": 39, "docId": "jahez-analysis-summary", "page": 1, "quote": "Q1-2026 printed a SAR 9.2m net loss."}, {"type": "delta", "text": "\n- Recurrence of impairment / ECL items beyond the "}, {"type": "delta", "text": "S"}, {"type": "delta", "text": "AR 55.4m Q4-2025 one-offs."}, {"type": "delta", "text": "[[40]]"}, {"type": "citation", "n": 40, "docId": "jahez-analysis-summary", "page": 1, "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"}, {"type": "delta", "text": "\n\nThe analysis is presented for deliberation; the investment decision rests with the Invest"}, {"type": "delta", "text": "ment Committee.\n\n---\n\n**Two items I could not source and would strengthen the deck:"}, {"type": "delta", "text": "** the forward financial projection schedule and the DCF's implied EV / target price. Neither is in my connected sources. In the MVP this rout"}, {"type": "delta", "text": "es to web, Bloomberg, or PitchBook connectors."}, {"type": "done", "cached": false}], "recordedAt": "2026-07-17T06:57:31.500Z"}
+{
+  "key": "d402d787dde82cf711d59941840ad6e3b67ed198",
+  "request": {
+    "question": "Build the committee deck for Monday's IC on Jahez.",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "jahez"
+    },
+    "docIds": [
+      "jahez-analysis-summary"
+    ]
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "critical-review",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "critical-review",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "# Jahez Group (Tadawul: 6017) – Investment Committee Deck\n### For"
+    },
+    {
+      "type": "delta",
+      "text": " Monday IC · Prepared by Faheem, Lunar Invest"
+    },
+    {
+      "type": "delta",
+      "text": "ments · Confidential\n\nBelow is a ~10-slide committee deck built to the Lunar template. Where source"
+    },
+    {
+      "type": "delta",
+      "text": " data is thin (notably forward projections), I flag the gap rather than fill it.\n\n---\n\n## Slide 1 – C"
+    },
+    {
+      "type": "delta",
+      "text": "over\n\n**Jahez Group | Tadawul: 6017**\nQuick-commerce / food delivery\nStage: "
+    },
+    {
+      "type": "delta",
+      "text": "Analysis complete, in Investment Committee review."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "J A H E Z\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXE C U T IVE S U M M A RY\r\nFaheem’s completed analysis of Jahez Group (Tadawul: 6017) is summariz"
+    },
+    {
+      "type": "delta",
+      "text": "\nOrigin: "
+    },
+    {
+      "type": "delta",
+      "text": "Market screen ("
+    },
+    {
+      "type": "delta",
+      "text": "SAHMK/Argaam), 2026-07-08."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "J A H E Z\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXE C U T IVE S U M M A RY\r\nFaheem’s completed analysis of Jahez Group (Tadawul: 6017) is summariz"
+    },
+    {
+      "type": "delta",
+      "text": "\nPrepared for the Lunar"
+    },
+    {
+      "type": "delta",
+      "text": " Investments Committee.\n\n---\n\n## Slide 2 – Executive Summary\n\n- **Revenue engine:** "
+    },
+    {
+      "type": "delta",
+      "text": "FY2025 GM"
+    },
+    {
+      "type": "delta",
+      "text": "V reached SAR 7,245.2m (+10.8% YoY) on a take rate of 15.4% and an average order value of SAR 64.90."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Earnings compression:** "
+    },
+    {
+      "type": "delta",
+      "text": "Net income compressed 61.2% YoY to SAR 73.0m, driven by SAR 55"
+    },
+    {
+      "type": "delta",
+      "text": ".4m of Q4-2025 one-off items (Red Color impairment, Marn goodwill impairment, Others-segment ECL, Sn"
+    },
+    {
+      "type": "delta",
+      "text": "oonu deal costs) layered on take-rate pressure from the Keeta-led price war."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Margin traj"
+    },
+    {
+      "type": "delta",
+      "text": "ectory:** "
+    },
+    {
+      "type": "delta",
+      "text": "Gross margin, the closest disclosed proxy for contribution margin per order, fell to 22.8% (F"
+    },
+    {
+      "type": "delta",
+      "text": "Y2024A: 24.4%), and adjusted EBITDA margin contracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Recent print:** "
+    },
+    {
+      "type": "delta",
+      "text": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "\n-"
+    },
+    {
+      "type": "delta",
+      "text": " **Balance sheet:** "
+    },
+    {
+      "type": "delta",
+      "text": "Net cash of SAR 16.6m (SAR 510.7m cash and equivalents, less SAR 161.2"
+    },
+    {
+      "type": "delta",
+      "text": "m of debt and SAR 332.9m of IFRS-16 lease liabilities)."
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Return vs benchmark:** "
+    },
+    {
+      "type": "delta",
+      "text": "Implied IRR at entry of 17.1% versus a 15.0% benchmark; scenario-weighted expected return of 16.8%."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## Slide 3 – Company and Market Overview\n\n- **Business:** "
+    },
+    {
+      "type": "delta",
+      "text": "Jahez Group operates in qu"
+    },
+    {
+      "type": "delta",
+      "text": "ick-commerce / food delivery."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "J A H E Z\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXE C U T IVE S U M M A RY\r\nFaheem’s completed analysis of Jahez Group (Tadawul: 6017) is summariz"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Competitive backdrop:** margin pressure is being driven externally, "
+    },
+    {
+      "type": "delta",
+      "text": "take-rate pressure from the Keeta-led price war weighed on FY2025 profitability."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Compar"
+    },
+    {
+      "type": "delta",
+      "text": "able set used in analysis:** "
+    },
+    {
+      "type": "delta",
+      "text": "Talabat, DoorDash and Delivery Hero."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n*"
+    },
+    {
+      "type": "delta",
+      "text": "Judgment:* the deck lacks TAM, market-"
+    },
+    {
+      "type": "delta",
+      "text": "share and order-volume disclosures. Adding these would sharpen the market-"
+    },
+    {
+      "type": "delta",
+      "text": "position view; absent them, the overview is confined to what the filing summary sup"
+    },
+    {
+      "type": "delta",
+      "text": "ports.\n\n---\n\n## Slide 4 – Unit Economics\n\n- **AOV:** "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 64.90 average order value in"
+    },
+    {
+      "type": "delta",
+      "text": " FY2025."
+    },
+    {
+      "type": "delta",
+      "text": "[[12]]"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Take rate:** "
+    },
+    {
+      "type": "delta",
+      "text": "15.4% on FY2025 GMV of SAR 7,245."
+    },
+    {
+      "type": "delta",
+      "text": "2m."
+    },
+    {
+      "type": "delta",
+      "text": "[[13]]"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Contribution proxy:** "
+    },
+    {
+      "type": "delta",
+      "text": "Gross margin, the closest disclosed proxy for contribution margin"
+    },
+    {
+      "type": "delta",
+      "text": " per order, fell to 22.8% (FY2024A: 24.4%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[14]]"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n*Judgment:* the sources do not disclose per-order delivery cost, CA"
+    },
+    {
+      "type": "delta",
+      "text": "C, cohort retention or a clean contribution margin. Gross margin is being used as a proxy."
+    },
+    {
+      "type": "delta",
+      "text": " Order-level cost data would materially change confidence in the unit-economics view.\n\n---\n\n## Slide 5 – Historical and Projected Financials\n\n**Historical (dis"
+    },
+    {
+      "type": "delta",
+      "text": "closed):**\n| Metric | FY2024A | FY2025A |\n|---|---|---|\n| GMV | – | "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 7,245.2m ("
+    },
+    {
+      "type": "delta",
+      "text": "+10.8% YoY)"
+    },
+    {
+      "type": "delta",
+      "text": "[[15]]"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Gross margin | "
+    },
+    {
+      "type": "delta",
+      "text": "24.4%"
+    },
+    {
+      "type": "delta",
+      "text": "[[16]]"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": " | "
+    },
+    {
+      "type": "delta",
+      "text": "22.8"
+    },
+    {
+      "type": "delta",
+      "text": "%"
+    },
+    {
+      "type": "delta",
+      "text": "[[17]]"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Adj. EBITDA margin | "
+    },
+    {
+      "type": "delta",
+      "text": "11.3%"
+    },
+    {
+      "type": "delta",
+      "text": "[[18]]"
+    },
+    {
+      "type": "citation",
+      "n": 18,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": " | "
+    },
+    {
+      "type": "delta",
+      "text": "8.3%"
+    },
+    {
+      "type": "delta",
+      "text": "[[19]]"
+    },
+    {
+      "type": "citation",
+      "n": 19,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Net income | – | "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 73.0m (-61.2% YoY)"
+    },
+    {
+      "type": "delta",
+      "text": "[[20]]"
+    },
+    {
+      "type": "citation",
+      "n": 20,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": " |"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nLatest quarter: "
+    },
+    {
+      "type": "delta",
+      "text": "Q1-2026 net loss of SAR 9.2m."
+    },
+    {
+      "type": "delta",
+      "text": "[[21]]"
+    },
+    {
+      "type": "citation",
+      "n": 21,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n*Gap flag:* the connected"
+    },
+    {
+      "type": "delta",
+      "text": " summary does not contain the explicit forward revenue, EBITDA or FCFF projection schedule that fe"
+    },
+    {
+      "type": "delta",
+      "text": "eds the DCF. That isn't in my connected sources. In the MVP this routes to web, Bloomberg, or PitchBook connect"
+    },
+    {
+      "type": "delta",
+      "text": "ors.\n\n---\n\n## Slide 6 – Valuation Summary\n\n- **Primary method:** "
+    },
+    {
+      "type": "delta",
+      "text": "Discounted cash flow (FCFF), discounted at a CAPM"
+    },
+    {
+      "type": "delta",
+      "text": "-derived WACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for"
+    },
+    {
+      "type": "delta",
+      "text": " a 13.7% cost of equity), with a 3.0% Gordon terminal growth rate."
+    },
+    {
+      "type": "delta",
+      "text": "[[22]]"
+    },
+    {
+      "type": "citation",
+      "n": 22,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Cross-check:** "
+    },
+    {
+      "type": "delta",
+      "text": "Trading-comps triangulation on EV/Revenue, EV/EBITDA and P/E across Talabat, DoorDash and Del"
+    },
+    {
+      "type": "delta",
+      "text": "ivery Hero."
+    },
+    {
+      "type": "delta",
+      "text": "[[23]]"
+    },
+    {
+      "type": "citation",
+      "n": 23,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": "\n\n*Gap flag:* the summary reports the resulting IRR but not the implied enterprise value, equ"
+    },
+    {
+      "type": "delta",
+      "text": "ity value or per-share target. Those outputs are not in my connected sources.\n\n---\n\n## Slide 7 – Scenario Analysis vs the Benchmark\n\n- **Ent"
+    },
+    {
+      "type": "delta",
+      "text": "ry IRR:** "
+    },
+    {
+      "type": "delta",
+      "text": "17.1%, clearing the 15.0% benchmark by 210 basis points at entry."
+    },
+    {
+      "type": "delta",
+      "text": "[[24]]"
+    },
+    {
+      "type": "citation",
+      "n": 24,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Scenario-weighted return:** "
+    },
+    {
+      "type": "delta",
+      "text": "16.8%, blending bull, base and bear cases, remains above the benchmark even"
+    },
+    {
+      "type": "delta",
+      "text": " after weighting for downside scenarios, indicating the base-case return is not solely dependent on the bull case materializing."
+    },
+    {
+      "type": "delta",
+      "text": "[[25]]"
+    },
+    {
+      "type": "citation",
+      "n": 25,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "The scenario-weighted\r\nexpected return of 16.8% — which blends bull, base, and bear cases — remains above the hurdle even\r\nafter weighting for downside scenarios, indicating the base-case return is no"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n*Gap flag:* the individual bull/base/bear I"
+    },
+    {
+      "type": "delta",
+      "text": "RR points and their probability weights are not itemized in the source; only the blended output is disclosed.\n\n---\n\n## Slide 8 –"
+    },
+    {
+      "type": "delta",
+      "text": " Quantified Risk Assessment\n\n- **Composite risk score:** "
+    },
+    {
+      "type": "delta",
+      "text": "5.5 / 10 (1 = lowest, 10 = highest)."
+    },
+    {
+      "type": "delta",
+      "text": "[[26]]"
+    },
+    {
+      "type": "citation",
+      "n": 26,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Earnings-quality risk:** "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 55.4m of Q4-2025 one-off items (Red Color impairment,"
+    },
+    {
+      "type": "delta",
+      "text": " Marn goodwill impairment, Others-segment ECL, Snoonu deal costs)."
+    },
+    {
+      "type": "delta",
+      "text": "[[27]]"
+    },
+    {
+      "type": "citation",
+      "n": 27,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Competitive / pricing risk:** "
+    },
+    {
+      "type": "delta",
+      "text": "Take-rate pressure from the Keeta-led price war."
+    },
+    {
+      "type": "delta",
+      "text": "[[28]]"
+    },
+    {
+      "type": "citation",
+      "n": 28,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Margin trend risk:** "
+    },
+    {
+      "type": "delta",
+      "text": "Adjusted EBITDA margin contraction to 8.3% from 11.3%."
+    },
+    {
+      "type": "delta",
+      "text": "[[29]]"
+    },
+    {
+      "type": "citation",
+      "n": 29,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n- **Run-rate risk:** "
+    },
+    {
+      "type": "delta",
+      "text": "Q1-2026 net loss of SAR 9.2m."
+    },
+    {
+      "type": "delta",
+      "text": "[[30]]"
+    },
+    {
+      "type": "citation",
+      "n": 30,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## Slide 9 – Benchmark and Mandate Check\n\n|"
+    },
+    {
+      "type": "delta",
+      "text": " Check | Result |\n|---|---|\n| Implied IRR vs 15.0% benchmark | "
+    },
+    {
+      "type": "delta",
+      "text": "17.1% (Pass)"
+    },
+    {
+      "type": "delta",
+      "text": "[[31]]"
+    },
+    {
+      "type": "citation",
+      "n": 31,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Scenario-weighted return | "
+    },
+    {
+      "type": "delta",
+      "text": "16.8%, above benchmark"
+    },
+    {
+      "type": "delta",
+      "text": "[[32]]"
+    },
+    {
+      "type": "citation",
+      "n": 32,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n|"
+    },
+    {
+      "type": "delta",
+      "text": " Mandate fit | "
+    },
+    {
+      "type": "delta",
+      "text": "Pass"
+    },
+    {
+      "type": "delta",
+      "text": "[[33]]"
+    },
+    {
+      "type": "citation",
+      "n": 33,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |\n| Compliance screen | "
+    },
+    {
+      "type": "delta",
+      "text": "Pass"
+    },
+    {
+      "type": "delta",
+      "text": "[[34]]"
+    },
+    {
+      "type": "citation",
+      "n": 34,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": " |"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nNet-cash position supports mandate resilience: "
+    },
+    {
+      "type": "delta",
+      "text": "SAR 16.6m net"
+    },
+    {
+      "type": "delta",
+      "text": " cash."
+    },
+    {
+      "type": "delta",
+      "text": "[[35]]"
+    },
+    {
+      "type": "citation",
+      "n": 35,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## Slide 10 – For Investment Committee Decision\n\n**Return case:** "
+    },
+    {
+      "type": "delta",
+      "text": "Entry IRR of 17.1% and scenario-weighted return of 16.8% both clear the 15.0% benchmark; mandate fit and compliance screen both Pass;"
+    },
+    {
+      "type": "delta",
+      "text": " risk scored 5.5/10."
+    },
+    {
+      "type": "delta",
+      "text": "[[36]]"
+    },
+    {
+      "type": "citation",
+      "n": 36,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Monitoring triggers (judgment):**\n- Take-rate st"
+    },
+    {
+      "type": "delta",
+      "text": "abilization vs continued Keeta-led price competition "
+    },
+    {
+      "type": "delta",
+      "text": "(F"
+    },
+    {
+      "type": "delta",
+      "text": "Y2025 take rate 15.4%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[37]]"
+    },
+    {
+      "type": "citation",
+      "n": 37,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n- EBITDA-margin recovery off the "
+    },
+    {
+      "type": "delta",
+      "text": "8.3% F"
+    },
+    {
+      "type": "delta",
+      "text": "Y2025 base."
+    },
+    {
+      "type": "delta",
+      "text": "[[38]]"
+    },
+    {
+      "type": "citation",
+      "n": 38,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Gross margin — the closest disclosed\r\nproxy for contribution margin per order — fell to 22.8% (FY2024A: 24.4%), and adjusted EBITDA margin\r\ncontracted to 8.3% (FY2024A: 11.3%)."
+    },
+    {
+      "type": "delta",
+      "text": "\n- Whether Q1-2026 losses reverse after the "
+    },
+    {
+      "type": "delta",
+      "text": "SAR "
+    },
+    {
+      "type": "delta",
+      "text": "9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "[[39]]"
+    },
+    {
+      "type": "citation",
+      "n": 39,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Q1-2026 printed a SAR 9.2m net loss."
+    },
+    {
+      "type": "delta",
+      "text": "\n- Recurrence of impairment / ECL items beyond the "
+    },
+    {
+      "type": "delta",
+      "text": "S"
+    },
+    {
+      "type": "delta",
+      "text": "AR 55.4m Q4-2025 one-offs."
+    },
+    {
+      "type": "delta",
+      "text": "[[40]]"
+    },
+    {
+      "type": "citation",
+      "n": 40,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Company Jahez\r\nSector Quick-commerce / food delivery\r\nStage Analysis complete (in Investment Committee review)\r\nOrigin Market screen — SAHMK/Argaam screen · 2026-07-08\r\nAnalyst Ali\r\nFY2025 GMV reached"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe analysis is presented for deliberation; the investment decision rests with the Invest"
+    },
+    {
+      "type": "delta",
+      "text": "ment Committee.\n\n---\n\n**Two items I could not source and would strengthen the deck:"
+    },
+    {
+      "type": "delta",
+      "text": "** the forward financial projection schedule and the DCF's implied EV / target price. Neither is in my connected sources. In the MVP this rout"
+    },
+    {
+      "type": "delta",
+      "text": "es to web, Bloomberg, or PitchBook connectors."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-17T06:57:31.500Z"
+}

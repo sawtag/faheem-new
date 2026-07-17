@@ -95,15 +95,36 @@ export function improveSystemPrompt(lang: Lang): string {
  */
 export function choreographyPlan(req: ChatRequest): AgentId[] {
   if (req.agent === "screening") return ["screening", "compliance"];
+  // critical-review runs before compliance in every flow: the adversarial
+  // guardrail visibly re-checks the draft before the answer ships.
   if (req.agent)
-    return dedupe([req.agent, "research", "doc-intel", "compliance"]);
+    return dedupe([
+      req.agent,
+      "research",
+      "doc-intel",
+      "critical-review",
+      "compliance",
+    ]);
   switch (req.context.kind) {
     case "ic":
-      return ["comparables", "risk", "ic", "compliance"];
+      return ["comparables", "risk", "critical-review", "ic", "compliance"];
     case "firm":
-      return ["orchestrator", "research", "doc-intel", "compliance"];
+      return [
+        "orchestrator",
+        "research",
+        "doc-intel",
+        "critical-review",
+        "compliance",
+      ];
     default:
-      return ["research", "doc-intel", "valuation", "risk", "compliance"];
+      return [
+        "research",
+        "doc-intel",
+        "valuation",
+        "risk",
+        "critical-review",
+        "compliance",
+      ];
   }
 }
 
