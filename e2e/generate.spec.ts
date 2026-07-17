@@ -128,7 +128,9 @@ test("deliverables chat: run completes → deck preview auto-opens with the 10-s
   const workbook = page.getByTestId("workbook-panel");
   await expect(workbook).toBeVisible();
   await expect(workbook.getByText("Jahez · Valuation Model")).toBeVisible();
-  await expect(workbook.getByRole("tab", { name: "Assumptions" })).toBeVisible();
+  await expect(
+    workbook.getByRole("tab", { name: "Assumptions" }),
+  ).toBeVisible();
   await expect(
     workbook.getByRole("link", { name: "Download file" }),
   ).toBeVisible();
