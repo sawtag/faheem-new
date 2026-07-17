@@ -10,29 +10,23 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ConnectorRow } from "@/components/connections/connector-row";
-import { McpModal } from "@/components/connections/mcp-modal";
+import { AddSourceModal } from "@/components/connections/add-source-modal";
 import { OAuthModal } from "@/components/connections/oauth-modal";
 import { reveal } from "@/components/connections/reveal";
 import { useConnectorsState } from "@/components/connections/use-connector-state";
-import type { Connector } from "@/lib/connectors";
+import type { Connector, ConnectorGroup } from "@/lib/connectors";
 import type { Lang } from "@/lib/types";
 
-function SectionLabel({
-  children,
-  count,
-}: {
-  children: React.ReactNode;
-  count: number;
-}) {
+// Sections render in this order: the firm's own systems first, market data
+// next, sell-side research last (mirrors the composer picker's group concept).
+const GROUP_ORDER: ConnectorGroup[] = ["internal", "external", "research"];
+
+/** Small uppercase divider inside a section (Activated / Available to connect). */
+function SubsectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-2">
-      <h2 className="text-text-secondary text-[0.8125rem] font-bold tracking-[0.04em] uppercase">
-        {children}
-      </h2>
-      <Badge variant="neutral" size="sm" className="financial">
-        {count}
-      </Badge>
-    </div>
+    <h3 className="text-text-secondary text-[0.75rem] font-bold tracking-[0.06em] uppercase">
+      {children}
+    </h3>
   );
 }
 
@@ -46,22 +40,52 @@ export default function ConnectionsPage() {
   const { connectors, connect, disconnect, addCustom, justConnectedId } =
     useConnectorsState();
 
-  const connectedAll = connectors.filter((c) => c.status === "connected");
-  const availableAll = connectors.filter((c) => c.status === "available");
-
   const q = query.trim().toLowerCase();
   const matches = (c: Connector) =>
     q.length === 0 ||
     c.name[locale].toLowerCase().includes(q) ||
     c.description[locale].toLowerCase().includes(q);
-  const connected = connectedAll.filter(matches);
-  const available = availableAll.filter(matches);
+
+  const sections = GROUP_ORDER.map((group) => {
+    const inGroup = connectors.filter((c) => c.group === group);
+    const activated = inGroup.filter(
+      (c) => c.status === "connected" && matches(c),
+    );
+    const available = inGroup.filter(
+      (c) => c.status === "available" && matches(c),
+    );
+    return { group, activated, available };
+  });
+
   const noMatches =
-    q.length > 0 && connected.length === 0 && available.length === 0;
+    q.length > 0 &&
+    sections.every((s) => s.activated.length + s.available.length === 0);
 
   function handleConnect(id: string) {
     const target = connectors.find((c) => c.id === id) ?? null;
     setOauthTarget(target);
+  }
+
+  /** One Activated/Available list: a labeled card of rows, staggered on reveal. */
+  function subsection(label: string, items: Connector[]) {
+    if (items.length === 0) return null;
+    return (
+      <div className="flex flex-col gap-3">
+        <SubsectionLabel>{label}</SubsectionLabel>
+        <Card padding="none" className="divide-border divide-y overflow-hidden">
+          {items.map((c, i) => (
+            <motion.div key={c.id} {...reveal(i)}>
+              <ConnectorRow
+                connector={c}
+                justConnected={justConnectedId === c.id}
+                onConnect={() => handleConnect(c.id)}
+                onDisconnect={() => disconnect(c.id)}
+              />
+            </motion.div>
+          ))}
+        </Card>
+      </div>
+    );
   }
 
   return (
@@ -119,56 +143,38 @@ export default function ConnectionsPage() {
           </Button>
         </div>
       ) : (
-        <>
-          {connected.length > 0 && (
-            <div className="mt-8 flex flex-col gap-3">
-              <SectionLabel count={connectedAll.length}>
-                {t("connected")}
-              </SectionLabel>
-              <Card
-                padding="none"
-                className="divide-border divide-y overflow-hidden"
-              >
-                {connected.map((c, i) => (
-                  <motion.div key={c.id} {...reveal(i)}>
-                    <ConnectorRow
-                      connector={c}
-                      justConnected={justConnectedId === c.id}
-                      onConnect={() => handleConnect(c.id)}
-                      onDisconnect={() => disconnect(c.id)}
-                    />
-                  </motion.div>
-                ))}
-              </Card>
-            </div>
-          )}
-
-          {available.length > 0 && (
-            <div className="mt-12 flex flex-col gap-3">
-              <SectionLabel count={availableAll.length}>
-                {t("available")}
-              </SectionLabel>
-              <Card
-                padding="none"
-                className="divide-border divide-y overflow-hidden"
-              >
-                {available.map((c, i) => (
-                  <motion.div key={c.id} {...reveal(i)}>
-                    <ConnectorRow
-                      connector={c}
-                      justConnected={justConnectedId === c.id}
-                      onConnect={() => handleConnect(c.id)}
-                      onDisconnect={() => disconnect(c.id)}
-                    />
-                  </motion.div>
-                ))}
-              </Card>
-            </div>
-          )}
-        </>
+        <div className="mt-10 flex flex-col gap-12">
+          {sections.map(({ group, activated, available }) => {
+            const count = activated.length + available.length;
+            if (count === 0) return null;
+            return (
+              <section key={group} className="flex flex-col gap-5">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-navy text-[1.0625rem] font-bold">
+                      {t(`sections.${group}.title`)}
+                    </h2>
+                    <Badge variant="neutral" size="sm" className="financial">
+                      {count}
+                    </Badge>
+                  </div>
+                  <p className="text-text-secondary mt-1 text-[0.8125rem]">
+                    {t(`sections.${group}.caption`)}
+                  </p>
+                </div>
+                {subsection(t("activated"), activated)}
+                {subsection(t("availableToConnect"), available)}
+              </section>
+            );
+          })}
+        </div>
       )}
 
-      <McpModal open={mcpOpen} onOpenChange={setMcpOpen} onAdd={addCustom} />
+      <AddSourceModal
+        open={mcpOpen}
+        onOpenChange={setMcpOpen}
+        onAdd={addCustom}
+      />
       <OAuthModal
         connector={oauthTarget}
         open={oauthTarget !== null}
@@ -176,6 +182,7 @@ export default function ConnectionsPage() {
           if (!open) setOauthTarget(null);
         }}
         onConnected={connect}
+        onCustom={() => setMcpOpen(true)}
       />
     </motion.div>
   );

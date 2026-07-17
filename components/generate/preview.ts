@@ -10,7 +10,7 @@
 import type { ArtifactKind } from "@/components/generate/protocol";
 
 export const PREVIEW_BASE = "/artifacts/previews";
-export const DECK_SLIDES = 8;
+export const DECK_SLIDES = 10;
 export const MEMO_PAGES = 3;
 /** Rendered by scripts/render-artifact-previews.ts; keep in sync with its output. */
 export const DARB_MEMO_PAGES = 5;

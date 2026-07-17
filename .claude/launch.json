@@ -6,6 +6,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "faheem-cache",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:cache"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

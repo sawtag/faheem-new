@@ -1,7 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { CONNECTORS, PROVISIONED_IDS, type Connector } from "@/lib/connectors";
+import {
+  CONNECTORS,
+  PROVISIONED_IDS,
+  type Connector,
+  type ConnectorGroup,
+  type ConnectorSourceType,
+} from "@/lib/connectors";
+import type { Localized } from "@/lib/types";
 
 /**
  * Fresh-onboarding overrides: every connector starts "available" except the
@@ -19,17 +26,58 @@ export function freshOverrides(): Record<string, "connected" | "available"> {
 }
 
 /**
+ * Display metadata for user-created connectors, keyed by the add-source
+ * modal's type. Descriptions are data-shaped Localized pairs, the same
+ * pattern as the static catalog in lib/connectors.ts. A custom feed is
+ * market data, so it lands in the external group; everything else is a
+ * firm-internal system.
+ */
+const CUSTOM_META: Record<
+  ConnectorSourceType,
+  { description: Localized; group: ConnectorGroup }
+> = {
+  mcp: {
+    description: { en: "Custom MCP connector", ar: "موصل MCP مخصص" },
+    group: "internal",
+  },
+  api: {
+    description: { en: "Custom data API", ar: "واجهة بيانات مخصصة" },
+    group: "internal",
+  },
+  files: {
+    description: {
+      en: "Documents & folders indexed for search",
+      ar: "مستندات ومجلدات مفهرسة للبحث",
+    },
+    group: "internal",
+  },
+  app: {
+    description: { en: "Connected workplace app", ar: "تطبيق عمل مرتبط" },
+    group: "internal",
+  },
+  feed: {
+    description: {
+      en: "Custom news & data feed",
+      ar: "تغذية أخبار وبيانات مخصصة",
+    },
+    group: "external",
+  },
+};
+
+/**
  * Cosmetic connector state shared by the Connections page and the onboarding
  * Connect step (AGENTS.md rule 10, connectors are fake, no persistence
  * beyond component state). Handles the fake-OAuth "connect", the symmetric
- * "disconnect" (Connections page row menu), and custom MCP connectors added
- * through the "Add custom MCP" modal. Pass `{ fresh: true }` for the
- * onboarding flow, whose Connect step starts from a clean slate rather than
- * the Connections page's real-world defaults.
+ * "disconnect" (Connections page row menu), and custom connectors added
+ * through the add-source modal (typed: MCP, API, Files, App, Feed). Pass
+ * `{ fresh: true }` for the onboarding flow, whose Connect step starts from
+ * a clean slate rather than the Connections page's real-world defaults.
  */
 export function useConnectorsState({
   fresh = false,
-}: { fresh?: boolean } = {}) {
+}: {
+  fresh?: boolean;
+} = {}) {
   const [overrides, setOverrides] = React.useState<
     Record<string, "connected" | "available">
   >(() => (fresh ? freshOverrides() : {}));
@@ -66,19 +114,17 @@ export function useConnectorsState({
   }, []);
 
   const addCustom = React.useCallback(
-    (name: string) => {
+    (name: string, sourceType: ConnectorSourceType = "mcp") => {
       const id = `custom-${Date.now()}`;
       const localized = { en: name, ar: name };
       const entry: Connector = {
         id,
         name: localized,
-        description: {
-          en: "Custom MCP connector",
-          ar: "موصل MCP مخصص",
-        },
+        description: CUSTOM_META[sourceType].description,
         tooltip: localized,
-        group: "internal",
+        group: CUSTOM_META[sourceType].group,
         status: "connected",
+        sourceType,
         tile: { kind: "monogram", initial: name.trim().charAt(0) || "?" },
       };
       setCustom((prev) => [...prev, entry]);

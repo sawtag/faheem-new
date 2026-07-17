@@ -157,7 +157,7 @@ async function* fallback(
 ): AsyncGenerator<SSEEvent> {
   if (cached) {
     yield { type: "stage", agent: "orchestrator", status: "start" };
-    yield* replay(cached, config.replayDelayMs);
+    yield* replay(cached, config.pace);
   } else {
     yield { type: "error", message: liveFailNoCache(lang) };
   }
@@ -282,7 +282,7 @@ export async function* chatEventStream(
 
   if (config.mode === "cached") {
     if (cached) {
-      yield* replay(cached, config.replayDelayMs);
+      yield* replay(cached, config.pace);
     } else {
       yield { type: "error", message: gracefulCachedError(req.lang) };
     }
@@ -299,7 +299,7 @@ export async function* chatEventStream(
   // live, with the slow-start reassurance. Consequence: in auto a recorded
   // question never produces a fresh live answer, that is live mode's job.
   if (cached) {
-    yield* replay(cached, config.replayDelayMs);
+    yield* replay(cached, config.pace);
     return;
   }
   yield* runLive(req, config, null, client, opts.readFileBytes, true);

@@ -1,30 +1,71 @@
 {
   "memo": {
-    "execSummary": "Lunar Investments' Faheem valuation model rates Jahez International Company (Tadawul: 6017) {calc.rating} with a DCF-anchored target price of {calc.targetPrice} per share against a {calc.currentPrice} close, {calc.upside} implied upside, for a base-case 4-year IRR of {calc.irrBase}, comfortably inside the scenario-weighted expected return of {calc.weightedReturn} against Lunar's {calc.hurdle} mandate hurdle. The thesis rests on Jahez's transition from a single-platform KSA delivery app into a diversified quick-commerce and logistics group: FY2025 GMV of {fy25.gmv} (+{calc.gmvGrowthFy25} YoY) and net revenue of {fy25.net_revenue} (+{calc.netRevGrowthFy25} YoY) were delivered against a headline profit contraction, net income compressed {calc.netIncomeDeclineFy25Magnitude} YoY to {fy25.net_income}, driven by {fy25.one_off} of Q4-2025 one-off items (Red Color impairment, Marn goodwill impairment, Others-segment ECL, Snoonu deal costs) layered on take-rate pressure from the Keeta-led price war, and Q1-2026 printed a {calc.q1LossMagnitude} net loss. Adjusted EBITDA margin contracted ~{calc.ebitdaMarginContractionBps} bps to {fy25.adj_ebitda_margin} (FY2024A: {fy24.adj_ebitda_margin}), and gross margin, the closest disclosed proxy for contribution margin per order, fell to {fy25.gross_margin} from {fy24.gross_margin}, both consistent with a business absorbing competitive intensity rather than one in structural decline. The compliance screen passes ({calc.debtRatio} debt/market-cap, {calc.cashRatio} cash/market-cap, both under the 33% AAOIFI threshold) and the balance sheet carries {calc.netCash} of net cash. This memo is advisory: the Investment Committee decides.",
-    "thesisPillars": [
+    "execSummary": [
+      "Jahez International Company (Tadawul: 6017) is a Saudi-listed quick-commerce and food-delivery group; the Q4-2025 consolidation of Snoonu extends the group beyond single-vertical food delivery into broader last-mile logistics.",
+      "FY2025A GMV of {fy25.gmv} grew +{calc.gmvGrowthFy25} YoY on {fy25.orders} orders (+{calc.ordersGrowthFy25} YoY) at an average order value of {fy25.aov}; net revenue reached {fy25.net_revenue} (+{calc.netRevGrowthFy25} YoY) at a {fy25.take_rate} take rate ({fy24.take_rate} FY2024A).",
+      "Net income compressed {calc.netIncomeDeclineFy25Magnitude} YoY to {fy25.net_income}, carrying {fy25.one_off} of Q4-2025 one-off items (Red Color impairment, Marn goodwill impairment, Others-segment ECL, Snoonu deal costs); Q1-2026A printed a {calc.q1LossMagnitude} net loss while adjusted EBITDA remained positive at {q1_26.adj_ebitda}.",
+      "Adjusted EBITDA margin contracted ~{calc.ebitdaMarginContractionBps} bps to {fy25.adj_ebitda_margin} (FY2024A: {fy24.adj_ebitda_margin}), and gross margin moved to {fy25.gross_margin} from {fy24.gross_margin}, consistent with a market absorbing delivery-fee competition.",
+      "Snoonu contributed {fy25.snoonu_gmv_contribution} of Group GMV ({fy25.snoonu_gmv}) from an October consolidation start and {fy25.snoonu_adj_ebitda} of positive adjusted EBITDA; the Logistics segment posted {fy25.segment_logistics_net_revenue} of FY2025A net revenue.",
+      "Faheem's DCF (WACC {calc.wacc}, terminal growth {calc.terminalGrowth}) indicates a base-case value of {calc.targetPrice} per share against the {calc.currentPrice} close, {calc.upside} implied upside; the trading-comps cross-check spans {calc.compsMin} to {calc.compsMax} (median {calc.compsMedian}).",
+      "Scenario analysis weights bull, base and bear cases at 25% / 50% / 25%, giving a probability-weighted value of {calc.weightedPerShare} per share and a weighted expected return of {calc.weightedReturn} against Lunar's {calc.hurdle} Benchmark; the bear case in isolation returns {calc.irrBear}, below the Benchmark.",
+      "The balance sheet carries {calc.netCash} of net cash, and the compliance screen passes both IC Charter ratio tests ({calc.debtRatio} debt / market cap and {calc.cashRatio} cash / market cap, against 33% thresholds).",
+      "The quantified risk register rolls up to a composite score of {calc.riskScore} / 10, with price-war margin compression scored as the dominant risk.",
+      "This memorandum presents the analysis without an investment recommendation: the investment decision rests with the Investment Committee."
+    ],
+    "returnAnalysis": {
+      "approach": "Faheem applied two valuation approaches to the position: a discounted cash flow on free cash flow to the firm as the primary methodology, and a trading-comparables cross-check. The DCF builds the discount rate bottom-up from a {calc.riskFreeRate} Saudi risk-free rate, a {calc.beta} comp-set beta and a {calc.equityRiskPremium} equity risk premium, giving a {calc.costOfEquity} cost of equity and a {calc.wacc} WACC. Discounting the explicit FY2026E-FY2030E forecast plus a Gordon terminal value at {calc.terminalGrowth} terminal growth, and adding {calc.netCash} of net cash, indicates {calc.targetPrice} per share, {calc.upside} against the {calc.currentPrice} close.",
+      "compsNote": "The comparables cross-check applies EV/Revenue, EV/EBITDA and P/E multiples from Talabat, DoorDash and Delivery Hero to Jahez's FY2025A figures. The implied-value field is wide, {calc.compsMin} to {calc.compsMax} with a median of {calc.compsMedian}, reflecting the gap between regional-scale multiples and richly priced US growth comps. The DCF result sits toward the lower half of that field and is anchored to Jahez's own projected cash flows rather than borrowed multiples; it is the methodology this memorandum relies on.",
+      "scenarios": "Bull, base and bear cases apply parallel shifts to net-revenue growth and EBITDA margin at probability weights of 25% / 50% / 25%, an analyst judgment documented in the workbook's Assumptions tab. The probability-weighted value per share is {calc.weightedPerShare} and the weighted expected return over the 4-year hold is {calc.weightedReturn}. The bear case ({calc.perShareBear} per share, {calc.irrBear} IRR) falls below the {calc.hurdle} Benchmark in isolation; the weighted case clears it.",
+      "benchmarkCheck": "Against the Lunar Investment Mandate: the scenario-weighted expected return of {calc.weightedReturn} clears the {calc.hurdle} gross-IRR Benchmark (Lunar IC Charter, p.3), with the base case at {calc.irrBase}. A position would be sized within the mandate's 10% single-name concentration cap (Lunar IC Charter, p.4), subject to ticket sizing at the Investment Committee's discretion, and the Tadawul listing (6017) with active daily trading satisfies the liquidity requirement for public-equity allocations (Lunar IC Charter, p.4). Because the bear case in isolation ({calc.irrBear}) sits below the Benchmark, the mandate-fit case rests on the probability-weighted return, and the Committee should weigh that sensitivity explicitly."
+    },
+    "strengths": [
       {
-        "title": "Logistics diversification de-risks the single-platform delivery model",
-        "body": "The Snoonu acquisition (Q4-2025 consolidation) is the strategic pivot: FY2025 Snoonu GMV of {fy25.snoonu_gmv} contributed {fy25.snoonu_gmv_contribution} to Group GMV from October, and delivered {fy25.snoonu_adj_ebitda} of profitable adjusted EBITDA in its own right, the Logistics segment reached {fy25.segment_logistics_net_revenue} of FY2025 net revenue. Group orders grew {calc.ordersGrowthFy25} YoY to {fy25.orders}, and GMV {calc.gmvGrowthFy25} to {fy25.gmv}, the platform is still winning volume even as the KSA delivery wars compress unit economics. Diversification beyond single-app KSA food delivery is the structural offset to the price-war risk quantified below."
+        "title": "Diversification beyond single-vertical delivery",
+        "body": "The Q4-2025 Snoonu consolidation contributed {fy25.snoonu_gmv_contribution} of Group GMV ({fy25.snoonu_gmv}) from an October start and {fy25.snoonu_adj_ebitda} of positive adjusted EBITDA, and the Logistics segment reached {fy25.segment_logistics_net_revenue} of FY2025A net revenue. The revenue base is measurably less dependent on the single KSA food-delivery vertical than a year earlier."
       },
       {
-        "title": "Margin recovery is underway, not derailed, despite a headline loss-making quarter",
-        "body": "FY2025 adjusted EBITDA of {fy25.adj_ebitda} ({fy25.adj_ebitda_margin} margin) stepped down from FY2024A's {fy24.adj_ebitda} ({fy24.adj_ebitda_margin}) almost entirely on the {fy25.one_off} of identified Q4 one-offs, impairments and deal costs, not operating deterioration, and Q1-2026 adjusted EBITDA of {q1_26.adj_ebitda} shows the operating engine still generating positive cash profit through the net-loss quarter. The scenario-weighted return of {calc.weightedReturn} already prices in the risk that margin recovery slips, and it still clears the {calc.hurdle} hurdle."
+        "title": "Volume growth sustained through a competitive market",
+        "body": "Orders grew +{calc.ordersGrowthFy25} YoY to {fy25.orders} and GMV +{calc.gmvGrowthFy25} to {fy25.gmv} in FY2025A, while group take rate held at {fy25.take_rate} ({fy24.take_rate} FY2024A): commission monetisation was maintained through a period of delivery-fee discounting across the market."
       },
       {
-        "title": "A Compliance-compliant, asset-light, net-cash balance sheet fits the mandate cleanly",
-        "body": "Jahez screens {calc.complianceStatus} on both AAOIFI-style ratios, interest-bearing debt at {calc.debtRatio} of market cap and cash at {calc.cashRatio}, both inside the 33% threshold, while carrying {calc.netCash} of net cash against {q1_26.islamic_facilities_loans} of Islamic facilities and loans (Q1 2026 Financial Statements). The business model requires minimal fixed capital, and the Tadawul-listed public equity satisfies Lunar's liquidity requirement for the position (Lunar IC Charter, p.4)."
+        "title": "Positive operating cash profit through a loss-making quarter",
+        "body": "FY2025A adjusted EBITDA of {fy25.adj_ebitda} and Q1-2026A adjusted EBITDA of {q1_26.adj_ebitda} remained positive through the {calc.q1LossMagnitude} Q1-2026A net loss; the identified Q4-2025 one-off items ({fy25.one_off}) are itemised in the filings and sit outside the adjusted-EBITDA line."
+      },
+      {
+        "title": "Net-cash, asset-light balance sheet",
+        "body": "The balance sheet carries {calc.netCash} of net cash against {q1_26.islamic_facilities_loans} of Islamic facilities and loans (Q1 2026 Financial Statements). The platform model requires minimal fixed capital, and both IC Charter compliance ratios sit inside the 33% threshold ({calc.debtRatio} debt / market cap, {calc.cashRatio} cash / market cap)."
       }
     ],
-    "companyIndustry": "Jahez operates in Saudi Arabia's quick-commerce and food-delivery market against HungerStation, the well-funded new entrant Keeta, and a wave of further well-capitalised players, Rabbit, the Ninja unicorn, and Dingdong, competing primarily on delivery-fee discounting rather than product differentiation (Industry & News Pack · Saudi Quick-Commerce, p.2). The competitive response has been consolidation and diversification: Jahez's Q4-2025 acquisition of logistics platform Snoonu extends the group beyond single-vertical food delivery into broader last-mile logistics, a segment that posted {fy25.segment_logistics_net_revenue} of FY2025 net revenue. Group take rate rose to {fy25.take_rate} in FY2025 from {fy24.take_rate} in FY2024 even as GOV grew to {fy25.gov}, commission monetisation is holding up under pressure, though the price war (Industry & News Pack, p.4) remains the dominant near-term swing factor for sector margins. This memo does not assert a specific market-share position for any player absent a disclosed source.",
-    "financialAnalysis": {
-      "unitEconomics": "Orders grew from {fy23.orders} (FY2023A) to {fy24.orders} (FY2024A) to {fy25.orders} (FY2025A, +{calc.ordersGrowthFy25} YoY), against average order value of {fy23.aov}, {fy24.aov} and {fy25.aov} respectively, GMV compounded from {fy23.gmv} to {fy24.gmv} to {fy25.gmv}. Take rate (commission revenue / GMV) rose from {fy23.take_rate} to {fy24.take_rate} to {fy25.take_rate}, lifting commission revenue to {fy25.commission_revenue} even as net revenue growth decelerated to +{calc.netRevGrowthFy25}, the gap between a rising take rate and slowing net-revenue growth is the price-war signature: Jahez is monetising a larger share of a GMV base that is itself growing more slowly.",
-      "operatingLeverage": "Operating leverage cuts both ways in this print. FY2024A's adjusted EBITDA margin of {fy24.adj_ebitda_margin} on {fy24.net_revenue} of net revenue gave way to {fy25.adj_ebitda_margin} on {fy25.net_revenue} in FY2025A, a ~{calc.ebitdaMarginContractionBps} bps contraction, as depreciation & amortisation grew faster than revenue ({fy24.dna} to {fy25.dna}, reflecting the expanding IFRS-16 right-of-use base) and the {fy25.one_off} of one-offs hit the P&L below the EBITDA line. Segment detail shows the KSA delivery platform still carrying the group: KSA adjusted EBITDA of {fy25.segment_ksa_adj_ebitda} on {fy25.segment_ksa_net_revenue} of net revenue, while Non-KSA, Logistics and Others remain sub-scale or loss-making. The operating-leverage thesis is that fixed platform and logistics costs, once absorbed, let incremental GMV drop through at a materially higher margin than the FY2025A print, which is why the forecast rebuilds margin toward the FY2024A level by the terminal year rather than assuming a permanent step-down.",
-      "fcfProfile": "Free cash flow to the firm is forecast-only in this model, FY2023A-FY2025A capex is not separately disclosed, so no actual-year FCFF feeds the DCF (capex and ΔNWC are documented analyst assumptions; see workbook Assumptions tab). On the explicit forecast, FCFF builds from a depressed FY2026E base as EBITDA margin recovers on the path described above, discounted at a WACC of {calc.wacc} with a {calc.terminalGrowth} terminal growth rate. The DCF sums the explicit-period present value plus a Gordon terminal value into an enterprise value that, net of {calc.netCash} of net cash, implies {calc.targetPrice} per share; full year-by-year FCFF detail is in the workbook's DCF tab."
+    "concerns": [
+      {
+        "title": "Price-war margin compression",
+        "body": "Delivery-fee discounting led by the well-funded Keeta entry is the dominant modelled risk: adjusted EBITDA margin contracted ~{calc.ebitdaMarginContractionBps} bps to {fy25.adj_ebitda_margin} in FY2025A and Q1-2026A printed a {calc.q1LossMagnitude} net loss. The bear case prices a deeper and longer compression ({calc.perShareBear} per share, {calc.irrBear} IRR)."
+      },
+      {
+        "title": "Further well-capitalised entrants",
+        "body": "Beyond the incumbent field, Rabbit, the Ninja unicorn and Dingdong are identified in the industry pack as funded entrants competing primarily on price (Industry & News Pack, p.2, p.4). Sustained entry would extend the discounting cycle the FY2025A margins already reflect."
+      },
+      {
+        "title": "One-off items and impairment recurrence",
+        "body": "FY2025A carried {fy25.one_off} of Q4 one-off items across the Red Color impairment, Marn goodwill impairment, Others-segment ECL and Snoonu deal costs. A further impairment cycle would indicate the items are not fully one-time; the monitoring plan treats any recurrence as a trigger to re-run the scenario weights."
+      },
+      {
+        "title": "Bear case falls below the Benchmark",
+        "body": "The mandate-fit case rests on the {calc.weightedReturn} probability-weighted return rather than any single scenario: the bear case in isolation returns {calc.irrBear}, below the {calc.hurdle} Benchmark. The 25% / 50% / 25% weighting is an analyst judgment and is documented as such."
+      },
+      {
+        "title": "Forecast dependence on margin recovery",
+        "body": "The valuation assumes adjusted EBITDA margin recovers from {fy25.adj_ebitda_margin} toward the FY2024A level ({fy24.adj_ebitda_margin}) by the terminal year, anchored to management's FY2026 guidance and Snoonu's full consolidated year. The recovery path is an assumption chain documented in the workbook, not a disclosed company plan."
+      }
+    ],
+    "riskIntro": "The quantified risk register below scores each identified risk on a 1-5 probability x 1-5 impact basis, rolling up to a composite, peak-weighted score of {calc.riskScore} out of 10. The highest-scored risk is price-war margin compression from well-funded discounting, the dynamic visible in the ~{calc.ebitdaMarginContractionBps} bps FY2025A EBITDA-margin contraction and the {calc.q1LossMagnitude} Q1-2026A net loss, followed by the arrival of further well-capitalised entrants. Both are sector-wide pressures rather than company-specific execution failures, and both are reflected in the bear-case scenario ({calc.irrBear} IRR, {calc.perShareBear} per share) rather than assumed away.",
+    "companyOverview": "Jahez operates a quick-commerce and food-delivery platform in Saudi Arabia, listed on the Tadawul Main Market (6017). The FY2025A revenue base spans the core KSA delivery platform ({fy25.segment_ksa_net_revenue} of net revenue, {fy25.segment_ksa_adj_ebitda} of adjusted EBITDA), a Logistics segment ({fy25.segment_logistics_net_revenue}), and Non-KSA and Others segments that remain sub-scale or loss-making. The Q4-2025 acquisition of Snoonu extends the group beyond single-vertical food delivery into broader last-mile logistics: Snoonu contributed {fy25.snoonu_gmv} of GMV ({fy25.snoonu_gmv_contribution} of Group GMV from an October consolidation start) with {fy25.snoonu_gross_revenue} of gross revenue and {fy25.snoonu_adj_ebitda} of adjusted EBITDA.",
+    "marketOverview": "The Saudi quick-commerce and food-delivery market is contested by HungerStation, the well-funded entrant Keeta, and a wave of further capitalised players, Rabbit, the Ninja unicorn, and Dingdong, competing primarily on delivery-fee discounting rather than product differentiation (Industry & News Pack · Saudi Quick-Commerce, p.2). Group take rate rose to {fy25.take_rate} in FY2025A from {fy24.take_rate} in FY2024A even as GOV grew to {fy25.gov}: commission monetisation held through the discounting cycle, though the price war (Industry & News Pack, p.4) remains the dominant near-term swing factor for sector margins. This memorandum does not assert a specific market-share position for any player absent a disclosed source.",
+    "financials": {
+      "historical": "Orders grew from {fy23.orders} (FY2023A) to {fy24.orders} (FY2024A) to {fy25.orders} (FY2025A), against average order values of {fy23.aov}, {fy24.aov} and {fy25.aov}; GMV compounded from {fy23.gmv} to {fy24.gmv} to {fy25.gmv}. Take rate rose from {fy23.take_rate} to {fy24.take_rate} to {fy25.take_rate}, lifting commission revenue to {fy25.commission_revenue}, while net revenue growth decelerated to +{calc.netRevGrowthFy25} YoY: the gap between a rising take rate and slowing net-revenue growth is the price-war signature, a larger monetised share of a GMV base that is itself growing more slowly. Adjusted EBITDA moved from {fy23.adj_ebitda} to {fy24.adj_ebitda} to {fy25.adj_ebitda}, and depreciation and amortisation grew from {fy24.dna} to {fy25.dna}, reflecting the expanding IFRS-16 right-of-use base.",
+      "forecast": "The forecast rebuilds adjusted EBITDA margin from a depressed FY2026E base toward the FY2024A level by FY2030E, anchored to management's FY2026 guidance, the roll-off of the identified Q4-2025 one-offs, and Snoonu's first full consolidated year; each driver (order growth, AOV, monetisation rate, margin path, capex, working capital) is a documented assumption in the workbook's Assumptions tab with its rationale stated. Free cash flow to the firm is forecast-only: FY2023A-FY2025A capex is not separately disclosed, so the actual-year FCFF shown in the table is an estimate for continuity and does not feed the DCF. The explicit-period FCFF is discounted at a {calc.wacc} WACC with a {calc.terminalGrowth} Gordon terminal growth rate; the resulting enterprise value, net of {calc.netCash} of net cash, implies {calc.targetPrice} per share."
     },
-    "valuation": "The DCF (FCFF, WACC built bottom-up from a {calc.riskFreeRate} Saudi risk-free rate plus a {calc.beta} comp-set beta at a {calc.equityRiskPremium} equity risk premium, giving a {calc.costOfEquity} cost of equity and a {calc.wacc} WACC) anchors the base case at {calc.targetPrice} per share against Gordon terminal growth of {calc.terminalGrowth}, {calc.upside} above the {calc.currentPrice} close. Trading-comps triangulation (EV/Revenue, EV/EBITDA and P/E across Talabat, DoorDash and Delivery Hero, Market Data & Comparables Snapshot, p.4) spans a wide {calc.compsMin} to {calc.compsMax} implied-value field (median {calc.compsMedian}), reflecting the gap between Jahez's KSA-scale multiples and the richly-priced US growth comps; the DCF sits toward the lower half of that range, anchored to Jahez's own projected cash flows rather than borrowed US multiples, and is the primary valuation methodology this memo relies on. Scenario-weighted value per share of {calc.weightedPerShare} (25% bull at {calc.perShareBull}, 50% base, 25% bear at {calc.perShareBear}) confirms the base case is not a knife-edge result, the {calc.weightedReturn} probability-weighted expected return clears Lunar's {calc.hurdle} hurdle with room.",
-    "riskIntro": "The quantified risk register below scores each identified risk on a 1-5 probability x 1-5 impact basis, rolling up to a composite, peak-weighted score of {calc.riskScore} out of 10. The dominant risk is price-war margin compression from Keeta's well-funded discounting, the same dynamic already visible in the {calc.ebitdaMarginContractionBps} bps FY2025A EBITDA-margin contraction and the {calc.q1LossMagnitude} Q1-2026A net loss, followed by the arrival of further well-capitalised entrants. Both are structural, sector-wide pressures rather than Jahez-specific execution failures, and both are explicitly reflected in the bear-case scenario ({calc.irrBear} IRR, {calc.perShareBear} per share) rather than assumed away.",
-    "mandateFit": "Against the Lunar Investment Mandate: the scenario-weighted expected return of {calc.weightedReturn} clears the {calc.hurdle} IRR hurdle (Lunar IC Charter, p.3) with the base case alone at {calc.irrBase}; a new Jahez position would be sized within the mandate's 10% single-name concentration cap (Lunar IC Charter, p.4), subject to final ticket sizing at the Investment Committee's discretion; and the position is publicly listed on Tadawul (6017) with active daily trading, satisfying the liquidity requirement for public-equity allocations (Lunar IC Charter, p.4). The bear case ({calc.irrBear} IRR) would breach the {calc.hurdle} hurdle in isolation, the mandate-fit case rests on the {calc.weightedReturn} probability-weighted return, not the base case alone, and the Investment Committee should weigh that sensitivity explicitly.",
-    "compliance": "Jahez passes Lunar's AAOIFI/Tadawul-methodology compliance screen on both financial-ratio tests: interest-bearing debt, {q1_26.islamic_facilities_loans} of Islamic facilities and loans (Q1 2026 Financial Statements), sits at {calc.debtRatio} of market capitalisation, and cash & interest-bearing securities, {q1_26.cash} of cash (Q1 2026 Financial Statements; interest-bearing securities are not separately disclosed, so the screen is run on cash alone), sits at {calc.cashRatio}, both comfortably inside the 33% AAOIFI leverage/liquidity threshold. Including IFRS-16 lease liabilities ({q1_26.lease_liabilities}) in the stricter memo view still passes at {calc.leaseInclRatio}. Non-eligible income is not separately disclosed in the filings; per AAOIFI practice the position is screened via the business-activity test instead, food delivery and logistics is an eligible business activity, financed via Islamic facilities, rather than a fabricated income percentage. Overall Compliance screen: {calc.complianceStatus}.",
+    "compliance": "Jahez passes Lunar's IC Charter compliance screen (Tadawul-aligned, on IFRS figures as endorsed by SOCPA) on both financial-ratio tests: interest-bearing debt, {q1_26.islamic_facilities_loans} of Islamic facilities and loans (Q1 2026 Financial Statements), sits at {calc.debtRatio} of market capitalisation, and cash & interest-bearing securities, {q1_26.cash} of cash (Q1 2026 Financial Statements; interest-bearing securities are not separately disclosed, so the screen is run on cash alone), sits at {calc.cashRatio}, both comfortably inside the Charter's 33% leverage/liquidity threshold. Including IFRS-16 lease liabilities ({q1_26.lease_liabilities}) in the stricter memo view still passes at {calc.leaseInclRatio}. Non-eligible income is not separately disclosed in the filings; per the Charter's methodology the position is screened via the business-activity test instead, food delivery and logistics is an eligible business activity, financed via Islamic facilities, rather than a fabricated income percentage. Overall Compliance screen: {calc.complianceStatus}.",
     "catalysts": "Near-term catalysts: Snoonu's first full financial year of consolidation (the FY2025 contribution was {fy25.snoonu_gmv_contribution} of Group GMV from an October start; a full FY2026 should show materially more), the path back to positive net income after the {calc.q1LossMagnitude} Q1-2026A loss, and the trajectory of take rate ({fy25.take_rate} in FY2025A) as a read on how much of the Keeta-led price war Jahez can pass through versus absorb. The Investment Committee should treat any further one-off impairment (Q4-2025A already carried {fy25.one_off} across Red Color, Marn goodwill, Others-segment ECL and Snoonu deal costs) as a trigger to re-run the scenario weights, not as one-time noise to dismiss.",
     "monitoringKpis": [
       "GMV growth, {fy25.gmv} FY2025A (+{calc.gmvGrowthFy25} YoY); watch for deceleration below the FY2026E-FY2030E forecast path",
@@ -36,28 +77,26 @@
     ]
   },
   "deck": {
-    "slide1": {
-      "title": "Investment Thesis, Jahez International (Tadawul: 6017)",
-      "subtitle": "Prepared by Faheem for Lunar Investments",
-      "recommendationLine": "{calc.rating}  ·  Target price {calc.targetPrice}  ·  {calc.upside} upside vs {calc.currentPrice} close  ·  Base IRR {calc.irrBase}  ·  Weighted return {calc.weightedReturn} vs {calc.hurdle} hurdle",
-      "pillars": [
-        {
-          "title": "Diversification",
-          "body": "Snoonu logistics consolidation ({fy25.snoonu_gmv_contribution} of FY25 GMV) de-risks the single-platform delivery model"
-        },
-        {
-          "title": "Margin recovery",
-          "body": "FY25 EBITDA margin of {fy25.adj_ebitda_margin} is one-off-depressed, not structurally broken, Q1-26 adj. EBITDA of {q1_26.adj_ebitda} stayed positive through a net-loss quarter"
-        },
-        {
-          "title": "Mandate fit",
-          "body": "Compliance {calc.complianceStatus}, {calc.netCash} net cash, Tadawul-listed liquidity, clears Lunar's {calc.hurdle} hurdle at a {calc.weightedReturn} weighted return"
-        }
-      ],
-      "footnote": "Source: Faheem Valuation Model, see IC memo and workbook for the full source trail. Advisory only, the Investment Committee decides."
+    "cover": {
+      "series": "Equity Research · Investment Committee Briefing",
+      "company": "Jahez International Company (Tadawul: 6017)",
+      "confidential": "PRIVILEGED & CONFIDENTIAL · FOR INVESTMENT COMMITTEE DECISION",
+      "date": "Prepared by Faheem for Lunar Investments · 12 July 2026"
     },
-    "slide2": {
-      "title": "Saudi Quick-Commerce Market Map",
+    "execSummary": {
+      "title": "Executive Summary",
+      "subtitle": "Modeled outputs and key observations; full source trail in the IC memo and valuation workbook",
+      "bullets": [
+        "FY2025A GMV of {fy25.gmv} (+{calc.gmvGrowthFy25} YoY) on {fy25.orders} orders; net revenue {fy25.net_revenue} (+{calc.netRevGrowthFy25} YoY) at a {fy25.take_rate} take rate",
+        "Net income compressed {calc.netIncomeDeclineFy25Magnitude} YoY to {fy25.net_income} on {fy25.one_off} of Q4-2025 one-off items; Q1-2026A printed a {calc.q1LossMagnitude} net loss with adjusted EBITDA positive at {q1_26.adj_ebitda}",
+        "Snoonu consolidated from October 2025: {fy25.snoonu_gmv_contribution} of Group GMV and {fy25.snoonu_adj_ebitda} of adjusted EBITDA; the Logistics segment reached {fy25.segment_logistics_net_revenue} of net revenue",
+        "DCF base case of {calc.targetPrice} vs the {calc.currentPrice} close ({calc.upside}); scenario-weighted return {calc.weightedReturn} vs the {calc.hurdle} Benchmark; the bear case in isolation returns {calc.irrBear}",
+        "Compliance screen {calc.complianceStatus}; {calc.netCash} net cash; composite quantified risk score {calc.riskScore} / 10"
+      ],
+      "footnote": "Source: Faheem Valuation Model; FY2025 Earnings Results; Q1 2026 Financial Statements. Advisory only, the Investment Committee decides."
+    },
+    "market": {
+      "title": "Company and Market Overview",
       "subtitle": "Competitive dynamics, qualitative positioning only, no invented market-share figures",
       "players": [
         {
@@ -79,35 +118,47 @@
       ],
       "footnote": "Source: Industry & News Pack · Saudi Quick-Commerce, p.2, p.4"
     },
-    "slide3": {
-      "title": "FY2025 Unit-Economics Bridge",
-      "subtitle": "Orders x AOV = GMV -> take rate -> net revenue -> adjusted EBITDA (FY2025A, real figures)",
+    "unitEconomics": {
+      "title": "FY2025A Unit Economics",
+      "subtitle": "Orders x AOV = GMV -> take rate -> net revenue -> adjusted EBITDA (FY2025A, sourced figures)",
       "footnote": "Source: Q4 2025 Earnings Results, p.4, p.8"
     },
-    "slide4": {
-      "title": "Valuation, DCF vs Trading Comps",
-      "subtitle": "Football field: implied value per share, DCF vs EV/Revenue, EV/EBITDA, P/E triangulation",
+    "financials": {
+      "title": "Historical and Projected Financials",
+      "subtitle": "FY2023A-FY2025A actuals; FY2026E-FY2030E model forecast on documented assumptions",
+      "footnote": "Actuals: Annual Report 2024, p.5, p.24; Q4 2025 Earnings Results, p.4. Forecast and actual-year FCFF: Faheem Valuation Model (workbook Assumptions tab). E = estimate."
+    },
+    "valuation": {
+      "title": "Valuation Summary",
+      "subtitle": "Implied value per share: DCF base case vs EV/Revenue, EV/EBITDA and P/E triangulation",
       "footnote": "Source: Market Data & Comparables Snapshot, p.3-4; Faheem DCF (WACC {calc.wacc})"
     },
-    "slide5": {
-      "title": "Scenario IRRs vs the 15% Hurdle",
-      "subtitle": "Bear / base / bull 4-year IRR, probability-weighted 25% / 50% / 25%",
+    "scenarios": {
+      "title": "Scenario Analysis vs the Benchmark",
+      "subtitle": "Bear / base / bull 4-year IRR at 25% / 50% / 25% probability weights; weighted return {calc.weightedReturn}",
       "footnote": "Source: Faheem Valuation Model, Scenarios & Risk tab"
     },
-    "slide6": {
+    "risk": {
       "title": "Quantified Risk Assessment",
       "subtitle": "Probability x impact, 1-5 scale, composite score {calc.riskScore} / 10",
       "footnote": "Source: Industry & News Pack, Market Data & Comparables Snapshot, Q4 2025 Earnings Results, FY2025 Earnings Call, see register for exact pages"
     },
-    "slide7": {
-      "title": "Mandate Fit, Lunar IC Charter",
-      "subtitle": "Screened against Lunar's investment mandate and risk limits",
+    "mandate": {
+      "title": "Benchmark and Mandate Check",
+      "subtitle": "Screened against the Lunar IC Charter's mandate and risk limits",
       "footnote": "Source: Lunar IC Charter & Investment Mandate, p.3-5"
     },
-    "slide8": {
-      "title": "Recommendation",
-      "recommendationLine": "{calc.rating}  ·  Target price {calc.targetPrice} ({calc.upside} upside)  ·  Weighted return {calc.weightedReturn} vs {calc.hurdle} hurdle  ·  Risk score {calc.riskScore}/10  ·  Compliance {calc.complianceStatus}",
-      "adviceLine": "Advisory only: the investment decision rests with the committee.",
+    "decision": {
+      "title": "For Investment Committee Decision",
+      "banner": "Scenario-weighted return {calc.weightedReturn} vs the {calc.hurdle} Benchmark · Risk score {calc.riskScore} / 10 · Compliance {calc.complianceStatus}",
+      "monitoringTitle": "Monitoring triggers ahead of the decision",
+      "monitoring": [
+        "Take rate ({fy25.take_rate} FY2025A): the primary lever on net revenue in a discounting market",
+        "Adjusted EBITDA margin ({fy25.adj_ebitda_margin} FY2025A vs {fy24.adj_ebitda_margin} FY2024A): the recovery path is the largest swing factor in the valuation",
+        "Any further one-off impairment beyond the {fy25.one_off} identified in Q4-2025A: a trigger to re-run the scenario weights, not one-time noise to dismiss",
+        "Snoonu's first full consolidated year: the key diversification proof point in FY2026"
+      ],
+      "advisoryLine": "Advisory only: the investment decision rests with the Investment Committee.",
       "footnote": "Full source trail: IC memo and Excel valuation workbook, every figure traces to a corpus document page."
     }
   }

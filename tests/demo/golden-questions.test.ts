@@ -8,8 +8,8 @@ import {
 } from "@/lib/demo/golden-questions";
 
 describe("GOLDEN_QUESTIONS, data/golden-questions.json", () => {
-  it("has 16 entries with unique ids", () => {
-    expect(GOLDEN_QUESTIONS).toHaveLength(16);
+  it("has 21 entries with unique ids", () => {
+    expect(GOLDEN_QUESTIONS).toHaveLength(21);
     const ids = GOLDEN_QUESTIONS.map((q) => q.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
@@ -81,6 +81,8 @@ describe("filterGoldenQuestions, palette filter logic", () => {
         "compliance-en",
         "dcf-scenarios",
         "committee-deck",
+        "jahez-memo",
+        "jahez-deck-convert",
         "portfolio-top3", // firm-context entries surface on workspace pages too
       ].sort(),
     );
@@ -92,6 +94,15 @@ describe("filterGoldenQuestions, palette filter logic", () => {
     );
     expect(darbEn.map((q) => q.id).sort()).toEqual(
       ["darb-memo", "portfolio-top3"].sort(),
+    );
+
+    const tharaEn = filterGoldenQuestions(
+      GOLDEN_QUESTIONS,
+      { kind: "workspace", companyId: "thara-pay" },
+      "en",
+    );
+    expect(tharaEn.map((q) => q.id).sort()).toEqual(
+      ["thara-case", "portfolio-top3"].sort(),
     );
   });
 
@@ -106,12 +117,17 @@ describe("filterGoldenQuestions, palette filter logic", () => {
 
   it("the IC room shows only ic-context entries", () => {
     const ic = filterGoldenQuestions(GOLDEN_QUESTIONS, { kind: "ic" }, "en");
-    expect(ic.map((q) => q.id)).toEqual(["ic-rank", "ic-macro-thara"]);
+    expect(ic.map((q) => q.id)).toEqual([
+      "ic-rank",
+      "ic-macro-thara",
+      "ic-challenge",
+      "aqar-decline",
+    ]);
   });
 
   it("a null context (no chat surface on screen, Home, Deals, Agents…) shows every entry in that language", () => {
     const all = filterGoldenQuestions(GOLDEN_QUESTIONS, null, "en");
-    expect(all).toHaveLength(15); // every en entry
+    expect(all).toHaveLength(20); // every en entry
   });
 });
 
@@ -125,10 +141,12 @@ describe("groupGoldenQuestions", () => {
       "ic",
       "firm",
       "workspace:darb",
+      "workspace:thara-pay",
     ]);
-    expect(groups.get("workspace:jahez")).toHaveLength(11);
-    expect(groups.get("ic")).toHaveLength(2);
+    expect(groups.get("workspace:jahez")).toHaveLength(13);
+    expect(groups.get("ic")).toHaveLength(4);
     expect(groups.get("firm")).toHaveLength(1);
     expect(groups.get("workspace:darb")).toHaveLength(1);
+    expect(groups.get("workspace:thara-pay")).toHaveLength(1);
   });
 });

@@ -1,0 +1,590 @@
+{
+  "key": "b009a2f1322b912f424b43950cbb3f4c6e46ba64",
+  "request": {
+    "question": "Give me the investment case on Thara Pay ahead of the vote: expected return against our Benchmark, the quantified risk score, and how solid are the inputs behind both?",
+    "lang": "en",
+    "context": {
+      "kind": "workspace",
+      "companyId": "thara-pay"
+    },
+    "docIds": [
+      "thara-analysis",
+      "lunar-ic-charter",
+      "lunar-risk-appetite"
+    ]
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "research",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "doc-intel",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "valuation",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "# Thara Pay:"
+    },
+    {
+      "type": "delta",
+      "text": " Investment Case Ahead of IC Vote\n\n## At a Glance\nThara Pay is a Saudi payments-infrastructure"
+    },
+    {
+      "type": "delta",
+      "text": " company. "
+    },
+    {
+      "type": "delta",
+      "text": "It provides checkout, payouts, and reconciliation tooling for mid-market e"
+    },
+    {
+      "type": "delta",
+      "text": "-commerce and marketplace merchants."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "thara-analysis",
+      "page": 1,
+      "quote": "T H A R A PAY\r\nCompleted Analysis — Summary\r\nPrepared for the Lunar Investments Committee · Confidential\r\nEXECUTIVE SUMMARY\r\nThara Pay is a Saudi payments-infrastructure company providing checkout, pa"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "Analysis is complete and the opportunity is in Investment Committee review following"
+    },
+    {
+      "type": "delta",
+      "text": " an inbound introduction. This summary consolidates the analyst's financial model outputs, quantified risk assessment, and mandate-fit determination."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "thara-analysis",
+      "page": 1,
+      "quote": "Analysis is complete; the opportunity is currently in Investment Committee\r\nreview following an inbound introduction. This summary consolidates the analyst's financial model outputs, quantified risk\r\n"
+    },
+    {
+      "type": "delta",
+      "text": "\n\n---\n\n## Return vs the Benchmark\n\nThe deal clears the 15% gross-IRR benchmark on both measures the"
+    },
+    {
+      "type": "delta",
+      "text": " Charter uses:\n\n- **Implied IRR at entry: 18.5%.** "
+    },
+    {
+      "type": "delta",
+      "text": "Implied IRR of 18.5% clears the 15% Benchmark with 3.5 points of margin at ent"
+    },
+    {
+      "type": "delta",
+      "text": "ry.[["
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "thara-analysis",
+      "page": 2,
+      "quote": "Metric Value\r\nImplied IRR at entry 18.5%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.2%\r\nQuantified risk score (1 = lowest, 10 = highest) 5 / 10\r\nMandate fit Pass\r\nShariah screen "
+    },
+    {
+      "type": "delta",
+      "text": "3]]\n- **Scenario-weighted "
+    },
+    {
+      "type": "delta",
+      "text": "expected return: 16.2%."
+    },
+    {
+      "type": "delta",
+      "text": "** The scenario-weighted expected return of 16.2%, which blends bull, base, and bear cases, "
+    },
+    {
+      "type": "delta",
+      "text": "remains comfortably above the Benchmark even after weighting for downside scenarios, indicating the base-case return is not solely dependent on"
+    },
+    {
+      "type": "delta",
+      "text": " the bull case material"
+    },
+    {
+      "type": "delta",
+      "text": "izing"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "thara-analysis",
+      "page": 2,
+      "quote": "The scenario-weighted expected return of\r\n16.2% — which blends bull, base, and bear cases — remains comfortably above the hurdle even after weighting for downside\r\nscenarios, indicating the base-case "
+    },
+    {
+      "type": "delta",
+      "text": ".[[4]]\n\nJudgment note: the 120bp cushion"
+    },
+    {
+      "type": "delta",
+      "text": " above benchmark on the scenario-weighted figure (16.2% vs 15.0%) is thinner than the 350bp "
+    },
+    {
+      "type": "delta",
+      "text": "entry-IRR margin. Under the Charter, a deal that clears the benchmark by a narrow margin is expected to carry tighter risk controls, "
+    },
+    {
+      "type": "delta",
+      "text": "so the Committee may wish to weight the bear-case sensitivity explic"
+    },
+    {
+      "type": "delta",
+      "text": "it"
+    },
+    {
+      "type": "delta",
+      "text": "ly. No private growth-equity commitment may be underwritten below a 15% base-case IRR; it is not a targe"
+    },
+    {
+      "type": "delta",
+      "text": "t, and deals that only clear the Benchmark by a narrow margin are expected to carry commensurately tighter risk "
+    },
+    {
+      "type": "delta",
+      "text": "contr"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "lunar-ic-charter",
+      "page": 4,
+      "quote": "Limit Threshold\r\nMinimum underwritten IRR (hurdle\r\nrate)\r\n15% at entry, base case\r\nSingle-name concentration cap 10% of AUM, at cost, per portfolio company\r\nSector concentration cap\r\n10% of AUM, at co"
+    },
+    {
+      "type": "delta",
+      "text": "ols.[[5]]\n\n**What drives the r"
+    },
+    {
+      "type": "delta",
+      "text": "eturn:** Gross margin on the payments business is structurally lower than pure software but is offset by high operating leverage once processing volume clears th"
+    },
+    {
+      "type": "delta",
+      "text": "e current infrastructure cost base, which is the driver behind the gap between the 15% Benchmark and the 18.5% implie"
+    },
+    {
+      "type": "delta",
+      "text": "d ent"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "thara-analysis",
+      "page": 3,
+      "quote": "Gross\r\nmargin on the payments business is structurally lower than pure software but is offset by high operating leverage once\r\nprocessing volume clears the current infrastructure cost base — the drive"
+    },
+    {
+      "type": "delta",
+      "text": "ry IRR.[[6]]\n\n---\n\n## Qua"
+    },
+    {
+      "type": "delta",
+      "text": "ntified Risk S"
+    },
+    {
+      "type": "delta",
+      "text": "co"
+    },
+    {
+      "type": "delta",
+      "text": "re: 5 / 10\n\nThe mid-range risk score of 5/10 reflects a business wi"
+    },
+    {
+      "type": "delta",
+      "text": "th a proven, non-speculative revenue model (transaction fees on real merchant GMV) offset by competitive intensity in Saudi payments infrastr"
+    },
+    {
+      "type": "delta",
+      "text": "ucture and dependency on continued e-commerce GMV growth in the me"
+    },
+    {
+      "type": "delta",
+      "text": "rchan"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "thara-analysis",
+      "page": 4,
+      "quote": "QUANTIFIED RISK ASSESSMENT & SHARIAH SCREEN\r\nRisk score: 5 of 10\r\nThe mid-range risk score of 5/10 reflects a business with a proven, non-speculative revenue model (transaction fees on real\r\nmerchant "
+    },
+    {
+      "type": "delta",
+      "text": "t base.[[7]]\n\nThree drivers weighted into"
+    },
+    {
+      "type": "delta",
+      "text": " th"
+    },
+    {
+      "type": "delta",
+      "text": "e score: (i) new-entrant competition compressing take rates, (ii) concentration among a relatively small number of larger merchants, and (iii) regulatory/licensing dependency typical of payments businesses operat"
+    },
+    {
+      "type": "delta",
+      "text": "ing under SAM"
+    },
+    {
+      "type": "delta",
+      "text": "A ove"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "thara-analysis",
+      "page": 4,
+      "quote": "Key risk drivers weighted into the score: (i) new-entrant competition compressing take\r\nrates, (ii) concentration among a relatively small number of larger merchants, and (iii) regulatory/licensing de"
+    },
+    {
+      "type": "delta",
+      "text": "rsight.[[8]]\n\n---\n\n## How Solid Are the Inputs?\n\n**Return inputs, po"
+    },
+    {
+      "type": "delta",
+      "text": "ints of confidence:**\n- The revenue base is contractual and volume-linked rather than s"
+    },
+    {
+      "type": "delta",
+      "text": "peculative. Revenue is t"
+    },
+    {
+      "type": "delta",
+      "text": "ransaction-fee based, with a smaller subscription component for reconciliation and payout tooling, giving the business a revenue base that scales with underlying "
+    },
+    {
+      "type": "delta",
+      "text": "merchant GMV rather than requiring continual new-logo g"
+    },
+    {
+      "type": "delta",
+      "text": "rowth"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "thara-analysis",
+      "page": 3,
+      "quote": "Revenue is transaction-fee based, with a smaller subscription component for reconciliation and\r\npayout tooling — giving the business a revenue base that scales with underlying merchant GMV rather than"
+    },
+    {
+      "type": "delta",
+      "text": " alone.[[9]]\n- Growth is coming from "
+    },
+    {
+      "type": "delta",
+      "text": "existing-merchant deepening, not just"
+    },
+    {
+      "type": "delta",
+      "text": " new logos. The analyst's model shows take-rate and processed-volume growth outpaci"
+    },
+    {
+      "type": "delta",
+      "text": "ng merchant-count growth, consistent with existing merchants processing a rising share of their GMV through the platform as trust and integration dep"
+    },
+    {
+      "type": "delta",
+      "text": "th inc"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "thara-analysis",
+      "page": 3,
+      "quote": "Financial analysis\r\nThe analyst's model shows take-rate and processed-volume growth outpacing merchant-count growth, consistent with\r\nexisting merchants processing a rising share of their GMV through "
+    },
+    {
+      "type": "delta",
+      "text": "rease.[[10]]\n- The downs"
+    },
+    {
+      "type": "delta",
+      "text": "ide case has been stress-tested against the"
+    },
+    {
+      "type": "delta",
+      "text": " benchmark. Free cash flow turns modestly pos"
+    },
+    {
+      "type": "delta",
+      "text": "itive within the model's explicit forecast window under the base case; the bear case pushes this out but does not turn the scenario-weighted return below"
+    },
+    {
+      "type": "delta",
+      "text": " the B"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "thara-analysis",
+      "page": 3,
+      "quote": "Free cash flow turns modestly positive within the model's explicit forecast window under the base case; the bear case pushes\r\nthis out but does not turn the scenario-weighted return below the hurdle, "
+    },
+    {
+      "type": "delta",
+      "text": "enchmark.[[11]]\n\n**Points to probe before the vote (judgment):**\n- The return depends on operating leverage materializ"
+    },
+    {
+      "type": "delta",
+      "text": "ing above a volume threshold; if processing volume does not clear the current infrastructure cost base as modeled,"
+    },
+    {
+      "type": "delta",
+      "text": " the 18.5% compresses toward the benchmark. This is the single most sensitive assumption and the natural focus for final d"
+    },
+    {
+      "type": "delta",
+      "text": "iligence.\n- The same risks flagged in the score (take-rate compression, merchant concentration) act directl"
+    },
+    {
+      "type": "delta",
+      "text": "y on the take rate and GMV that drive the return, so the risk score and the IRR are not indep"
+    },
+    {
+      "type": "delta",
+      "text": "endent readings.\n\n**Sou"
+    },
+    {
+      "type": "delta",
+      "text": "rce quality:** The summary consolidates the analyst's underlying financial model, management"
+    },
+    {
+      "type": "delta",
+      "text": "-provided data-room materials (financials, merchant cohort data, licensing status), and the Lunar IC Charter mandate criteria, with full workpapers available to the Commit"
+    },
+    {
+      "type": "delta",
+      "text": "tee on"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "thara-analysis",
+      "page": 4,
+      "quote": "Appendix: sources\r\nThis summary consolidates the analyst's underlying financial model, management-provided data-room materials (financials,\r\nmerchant cohort data, licensing status), and the Lunar IC C"
+    },
+    {
+      "type": "delta",
+      "text": " request.[[12]] Note that the financials and merchant cohort data are management-provided, so the merchant-concentration and licensing-status inputs would benefit from independent verification in final dili"
+    },
+    {
+      "type": "delta",
+      "text": "gence. The analyst's own note is that this remain"
+    },
+    {
+      "type": "delta",
+      "text": "s conditional: the recommendation is the str"
+    },
+    {
+      "type": "delta",
+      "text": "ongest risk-adjusted case pending final"
+    },
+    {
+      "type": "delta",
+      "text": " due d"
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "thara-analysis",
+      "page": 2,
+      "quote": "Recommendation: strongest risk-adjusted case pending final due diligence."
+    },
+    {
+      "type": "delta",
+      "text": "iligence.[[13]]\n\n---\n\n## Mandate and Compliance Check\n\n- **Mandat"
+    },
+    {
+      "type": "delta",
+      "text": "e fit: Pass.** Thara Pay is a technology/fintech business, within the Charter's sector mandate; the prop"
+    },
+    {
+      "type": "delta",
+      "text": "osed ticket falls within the SAR 20–60M band and the Series A–"
+    },
+    {
+      "type": "delta",
+      "text": "C stag"
+    },
+    {
+      "type": "citation",
+      "n": 14,
+      "docId": "thara-analysis",
+      "page": 3,
+      "quote": "Mandate fit\r\nThara Pay is a technology/fintech business, within the Charter's sector mandate; the proposed ticket falls within the SAR 20–\r\n60M band and the Series A–C stage window."
+    },
+    {
+      "type": "delta",
+      "text": "e window.[[14]]\n- **Compli"
+    },
+    {
+      "type": "delta",
+      "text": "ance screen:"
+    },
+    {
+      "type": "delta",
+      "text": " clean Pass.** Thara Pay's core activity (payments processing, checkout, and reconciliation infrastr"
+    },
+    {
+      "type": "delta",
+      "text": "ucture) is permissible under the Charter's business-activity test; the company carries no interest-bearing debt above the 33%-of-valuation threshold and reports no material non-perm"
+    },
+    {
+      "type": "delta",
+      "text": "issibl"
+    },
+    {
+      "type": "citation",
+      "n": 15,
+      "docId": "thara-analysis",
+      "page": 4,
+      "quote": "Shariah screen\r\nThara Pay's core activity — payments processing, checkout, and reconciliation infrastructure — is Shariah-permissible under\r\nthe Charter's business-activity test. The company carries n"
+    },
+    {
+      "type": "delta",
+      "text": "e income.[[15]]\n- **Co"
+    },
+    {
+      "type": "delta",
+      "text": "ncentration:** The sector-concentration impact of this deal was assessed separately at screening and does not breach the 10% "
+    },
+    {
+      "type": "delta",
+      "text": "cap on"
+    },
+    {
+      "type": "citation",
+      "n": 16,
+      "docId": "thara-analysis",
+      "page": 3,
+      "quote": "The sector-concentration impact of this deal was assessed separately at\r\nscreening and does not breach the 10% cap on its own."
+    },
+    {
+      "type": "delta",
+      "text": " its own.[[16]] Context for "
+    },
+    {
+      "type": "delta",
+      "text": "the Committee: the technology & consumer "
+    },
+    {
+      "type": "delta",
+      "text": "sector bucket sits at 8.5% of AUM, inside the 10% cap but with limited remaining headroom, so any new ticket in this sector is close enough to the cap that its concentrat"
+    },
+    {
+      "type": "delta",
+      "text": "ion impact must be checked explicitl"
+    },
+    {
+      "type": "delta",
+      "text": "y at s"
+    },
+    {
+      "type": "citation",
+      "n": 17,
+      "docId": "lunar-risk-appetite",
+      "page": 2,
+      "quote": "As of the most recent portfolio snapshot, the technology & consumer sector bucket sits at 8.5% of AUM — inside the 10%\r\ncap, but with limited remaining headroom. Any new private-market ticket in this "
+    },
+    {
+      "type": "delta",
+      "text": "creening.[[17]]\n\n---\n\n**Bottom line:** Both return measures clear the benchmark (18.5"
+    },
+    {
+      "type": "delta",
+      "text": "% entry IRR, 16.2% scenario-weighted), the risk score is mid-range at 5/10, and the case passes mandate and compliance screens cleanly. Th"
+    },
+    {
+      "type": "delta",
+      "text": "e inputs are grounded in a volume-linked revenue model and stress-tested downside case, but rest partly on management-provided data and on an operating-leverage assumpt"
+    },
+    {
+      "type": "delta",
+      "text": "ion that is the return's key sensitivity, which is why the analyst frames the recommendation as pending final due diligence. The investment decision"
+    },
+    {
+      "type": "delta",
+      "text": " rests with the Investment Committee."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-17T07:13:33.634Z"
+}

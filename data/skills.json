@@ -30,10 +30,7 @@
       }
     ],
     "run": {
-      "prefill": {
-        "en": "Build a DCF valuation for Jahez, FCFF projection off the revenue drivers, a WACC build from the Saudi 10-year sukuk plus a KSA beta and equity risk premium, and a Gordon terminal value cross-checked against long-run nominal GDP growth. Bridge EV to equity including the IFRS-16 lease adjustment and show the implied value per share.",
-        "ar": "ابنِ تقييم DCF لجاهز، توقّع التدفق النقدي الحر للمنشأة من محرّكات الإيرادات، مع اشتقاق تكلفة رأس المال المرجّحة من الصكوك السعودية لأجل 10 سنوات وبيتا سعودية وعلاوة مخاطر السوق، وقيمة نهائية بطريقة Gordon مطابقة لنمو الناتج المحلي الإجمالي الاسمي طويل الأجل. اربط قيمة المنشأة بقيمة حقوق الملكية متضمّناً تسوية عقود الإيجار وفق IFRS-16، وأظهر القيمة العادلة المضمّنة للسهم."
-      }
+      "goldenId": "dcf-scenarios"
     }
   },
   {
@@ -161,14 +158,14 @@
         "ar": "اصطلاح معدل العائد الداخلي لفترة الاحتفاظ، مضاعف خروج مركّب بتكلفة حقوق الملكية Ke"
       },
       {
-        "en": "Scenario-weighted expected return vs the fund's hurdle rate",
-        "ar": "العائد المتوقع المرجّح بالسيناريوهات مقابل عتبة العائد الخاصة بالصندوق"
+        "en": "Scenario-weighted expected return vs the fund's benchmark",
+        "ar": "العائد المتوقع المرجّح بالسيناريوهات مقابل العائد المرجعي الخاص بالصندوق"
       }
     ],
     "run": {
       "prefill": {
-        "en": "Build a scenario-weighted IRR for Jahez, bull, base, and bear cases with explicit probability weights, hold-period IRR on a Ke-compounded exit multiple, and the scenario-weighted expected return against our 15% hurdle.",
-        "ar": "ابنِ معدل عائد داخلي مرجّحاً بالسيناريوهات لجاهز، حالات متفائلة وأساسية ومتشائمة بأوزان احتمالية صريحة، ومعدل عائد داخلي لفترة الاحتفاظ على مضاعف خروج مركّب بتكلفة حقوق الملكية Ke، والعائد المتوقع المرجّح بالسيناريوهات مقابل عتبة العائد 15%."
+        "en": "Build a scenario-weighted IRR for Jahez, bull, base, and bear cases with explicit probability weights, hold-period IRR on a Ke-compounded exit multiple, and the scenario-weighted expected return against our 15% benchmark.",
+        "ar": "ابنِ معدل عائد داخلي مرجّحاً بالسيناريوهات لجاهز، حالات متفائلة وأساسية ومتشائمة بأوزان احتمالية صريحة، ومعدل عائد داخلي لفترة الاحتفاظ على مضاعف خروج مركّب بتكلفة حقوق الملكية Ke، والعائد المتوقع المرجّح بالسيناريوهات مقابل العائد المرجعي البالغ 15%."
       }
     }
   },
@@ -198,7 +195,9 @@
         "ar": "فحوصات تجاوز التفويض والتركّز مقابل ميثاق لجنة الاستثمار"
       }
     ],
-    "run": { "goldenId": "qa2" }
+    "run": {
+      "goldenId": "qa2"
+    }
   },
   {
     "id": "compliance-screen",
@@ -209,8 +208,8 @@
     "category": "risk-compliance",
     "icon": "moon-star",
     "oneLiner": {
-      "en": "AAOIFI ratio tests, run and cited, pass or fail, no judgment calls.",
-      "ar": "اختبارات نسب أيوفي (AAOIFI)، منفَّذة وموثّقة، اجتياز أو رسوب بلا اجتهاد شخصي."
+      "en": "IC Charter ratio tests, run and cited, pass or fail, no judgment calls.",
+      "ar": "اختبارات نسب ميثاق لجنة الاستثمار، منفَّذة وموثّقة، اجتياز أو رسوب بلا اجتهاد شخصي."
     },
     "methods": [
       {
@@ -230,7 +229,9 @@
         "ar": "مذكّرة معالجة لأي إيراد غير مؤهل متبقٍّ"
       }
     ],
-    "run": { "goldenId": "compliance-ar" }
+    "run": {
+      "goldenId": "compliance-ar"
+    }
   },
   {
     "id": "mandate-fit",
@@ -279,8 +280,8 @@
     },
     "methods": [
       {
-        "en": "Section architecture, exec summary → thesis → valuation → risk → Compliance → catalysts",
-        "ar": "بنية الأقسام، ملخص تنفيذي ← أطروحة استثمارية ← تقييم ← مخاطر ← فحص امتثال ← محفّزات"
+        "en": "Section architecture, exec summary → return analysis → strengths & concerns → risk → Compliance → catalysts",
+        "ar": "بنية الأقسام، ملخص تنفيذي ← تحليل العائد ← نقاط القوة والمخاوف ← مخاطر ← فحص امتثال ← محفّزات"
       },
       {
         "en": "Sources appendix discipline, every cited figure traces to doc + page",
@@ -295,7 +296,9 @@
         "ar": "صياغة استشارية بحتة طوال المذكرة، لا تُقال أبداً \"استثمر / لا تستثمر\""
       }
     ],
-    "run": { "goldenId": "deliverables" }
+    "run": {
+      "goldenId": "deliverables"
+    }
   },
   {
     "id": "covenant-sweep",

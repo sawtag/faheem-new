@@ -1,6 +1,6 @@
 import { serializeContext } from "@/lib/chats";
 import { goldenQuestionById } from "@/lib/demo/golden-questions";
-import type { Skill } from "@/lib/skills";
+import { SKILLS, type Skill } from "@/lib/skills";
 import type { AgentId, ChatContext, Lang } from "@/lib/types";
 
 /**
@@ -74,3 +74,15 @@ export function resolveSkillRun(
     fixedLang: false,
   };
 }
+
+/**
+ * Skills the composer's "/" invoker may offer (components/chat/composer.tsx).
+ * `goldenId` skills replay a recorded question byte-for-byte through the
+ * exact-key cache, cache-safe for the offline demo. `prefill` skills are ad
+ * hoc text with no cache guarantee, deliberately excluded from this
+ * cache-safe entry point.
+ */
+export const RUNNABLE_SKILLS: Skill[] = SKILLS.filter(
+  (s): s is Skill & { run: { goldenId: string } } =>
+    s.run !== null && "goldenId" in s.run,
+);

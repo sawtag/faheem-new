@@ -394,7 +394,7 @@ export function buildModel(a: Assumptions): ModelOutputs {
     max: Math.max(...allImplied),
   };
 
-  // ── Compliance screen (AAOIFI-style) ──
+  // ── Compliance screen (IC Charter) ──
   const mktCap = E;
   const debtRatio = debt / mktCap;
   const cashRatio = cash / mktCap;

@@ -345,62 +345,8 @@ export function resolveNarrativeTree<T>(value: T, facts: NarrativeFacts): T {
 }
 
 // ═══════════════════════════ quantified risk register ══════════════════════
-// MUST mirror xlsx.ts's buildScenarios() risk() rows (Scenarios & Risk tab) so
-// the workbook, memo and deck all show the identical six-item register.
-export interface RiskRegisterItem {
-  name: string;
-  probability: number; // 1-5
-  impact: number; // 1-5
-  mitigation: string;
-  cite: string;
-}
-
-export const riskRegister: RiskRegisterItem[] = [
-  {
-    name: "Price-war margin compression (Keeta/Meituan-funded discounting)",
-    probability: 4,
-    impact: 4,
-    mitigation:
-      "Shift to cost discipline & logistics mix; monitor take-rate and contribution margin per order",
-    cite: "industry-news-pack p.2, p.4",
-  },
-  {
-    name: "Well-capitalised new entrants (Rabbit, Ninja unicorn, Dingdong)",
-    probability: 4,
-    impact: 3,
-    mitigation: "Scale & fulfilment-density moat; Snoonu regional expansion",
-    cite: "industry-news-pack p.2",
-  },
-  {
-    name: "Earnings volatility / one-offs (SAR 55m Q4-25; Q1-26 net loss)",
-    probability: 3,
-    impact: 3,
-    mitigation:
-      "One-offs largely non-recurring; H2-2026 profitability guidance",
-    cite: "industry-news-pack p.4; fy25-earnings-call p.6",
-  },
-  {
-    name: "Snoonu integration / near-term margin dilution",
-    probability: 3,
-    impact: 3,
-    mitigation:
-      "Snoonu FY25 adj. EBITDA +53.7m (profitable), accretive at scale",
-    cite: "fy25-er p.6",
-  },
-  {
-    name: "Valuation-data ambiguity (203m vs 217m shares; 92.8x trailing P/E)",
-    probability: 2,
-    impact: 2,
-    mitigation:
-      "Reconcile Tadawul share register; use normalised/forward multiples",
-    cite: "market-data-comps p.2",
-  },
-  {
-    name: "WACC / terminal-value sensitivity (value ∝ WACC−g spread)",
-    probability: 3,
-    impact: 4,
-    mitigation:
-      "Sensitivity grid; conservative g=3.0%; bottom-up beta as next step",
-    cite: "Sensitivity tab; Assumptions",
-  },
-];
+// The register (six probability × impact rows mirroring xlsx.ts's
+// buildScenarios() risk() rows) now lives in the client-safe lib/model, so the
+// in-app risk-breakdown popover shares the exact same source of truth as these
+// Office builders. Re-exported here unchanged for docx.ts / pptx.ts.
+export { riskRegister, type RiskRegisterItem } from "@/lib/model/risk-register";

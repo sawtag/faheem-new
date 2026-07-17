@@ -38,7 +38,7 @@
       "ar": "فحص الامتثال لجاهز"
     },
     "request": {
-      "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
+      "question": "هل يجتاز جاهز فحص الامتثال وفق ميثاق لجنة الاستثمار؟",
       "lang": "ar",
       "context": {
         "kind": "workspace",
@@ -153,11 +153,11 @@
   {
     "id": "compliance-en",
     "label": {
-      "en": "Jahez, AAOIFI compliance screen (EN)",
+      "en": "Jahez, IC Charter compliance screen (EN)",
       "ar": "جاهز، فحص الامتثال (بالإنجليزية)"
     },
     "request": {
-      "question": "Does Jahez pass the AAOIFI compliance screen?",
+      "question": "Does Jahez pass the IC Charter compliance screen?",
       "lang": "en",
       "context": {
         "kind": "workspace",
@@ -187,7 +187,7 @@
       "ar": "مذكرة لجنة الاستثمار عن درب من غرفة البيانات"
     },
     "request": {
-      "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+      "question": "Create the IC memo on Darb using the data room and our internal template.",
       "lang": "en",
       "context": {
         "kind": "workspace",
@@ -236,6 +236,85 @@
     },
     "request": {
       "question": "Before we vote on Thara Pay: what does the latest macro data say about Saudi consumer spending and digital payments (GDP, inflation, household spending, the policy rate), and does anything in it challenge the growth assumptions in the analysis?",
+      "lang": "en",
+      "context": {
+        "kind": "ic"
+      }
+    }
+  },
+  {
+    "id": "jahez-memo",
+    "label": {
+      "en": "Jahez investment memo (market & competition)",
+      "ar": "مذكرة الاستثمار عن جاهز (السوق والمنافسة)"
+    },
+    "request": {
+      "question": "Generate the investment memo on Jahez, including market research and the competition landscape.",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      },
+      "docIds": [
+        "jahez-analysis-summary",
+        "industry-news-pack",
+        "market-data-comps"
+      ]
+    }
+  },
+  {
+    "id": "jahez-deck-convert",
+    "label": {
+      "en": "Convert the memo into a committee deck",
+      "ar": "تحويل المذكرة إلى عرض للجنة الاستثمار"
+    },
+    "request": {
+      "question": "Convert this memo into a slide deck for the investment committee.",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "jahez"
+      }
+    }
+  },
+  {
+    "id": "ic-challenge",
+    "label": {
+      "en": "IC: challenge the WACC beta",
+      "ar": "لجنة الاستثمار: مساءلة بيتا تكلفة رأس المال"
+    },
+    "request": {
+      "question": "The Jahez deck values the business at SAR 14.4 per share on a 13.31% WACC. How solid is the beta behind that WACC, and what breaks if it is wrong?",
+      "lang": "en",
+      "context": {
+        "kind": "ic"
+      }
+    }
+  },
+  {
+    "id": "thara-case",
+    "label": {
+      "en": "Thara Pay investment case",
+      "ar": "الأطروحة الاستثمارية لثارا باي"
+    },
+    "request": {
+      "question": "Give me the investment case on Thara Pay ahead of the vote: expected return against our Benchmark, the quantified risk score, and how solid are the inputs behind both?",
+      "lang": "en",
+      "context": {
+        "kind": "workspace",
+        "companyId": "thara-pay"
+      },
+      "docIds": ["thara-analysis", "lunar-ic-charter", "lunar-risk-appetite"]
+    }
+  },
+  {
+    "id": "aqar-decline",
+    "label": {
+      "en": "Aqar: why declined, and does new data change it?",
+      "ar": "عقار: لماذا اعتذرنا، وهل تغيّر البيانات الجديدة القرار؟"
+    },
+    "request": {
+      "question": "Aqar Development: why did we decline it last year, and does anything in the latest macro data change that call?",
       "lang": "en",
       "context": {
         "kind": "ic"

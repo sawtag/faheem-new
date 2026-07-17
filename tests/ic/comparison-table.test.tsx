@@ -53,7 +53,7 @@ describe("ComparisonTable", () => {
     expect(screen.getAllByRole("rowheader")).toHaveLength(6);
     expect(screen.getAllByRole("columnheader")).toHaveLength(3);
 
-    // Delta tone is data-driven: both clear the 15% hurdle.
+    // Delta tone is data-driven: both clear the 15% benchmark.
     expect(screen.getByTestId("ic-irr-delta-thara-pay")).toHaveAttribute(
       "data-tone",
       "above",

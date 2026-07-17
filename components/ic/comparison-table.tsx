@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { LogoTile } from "@/components/ui/logo-tile";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RiskBreakdown } from "@/components/deals/risk-breakdown";
 import manifest from "@/data/corpus/manifest.json";
 import type { CorpusDoc, Deal, IcMetrics, Lang } from "@/lib/types";
 import { formatPercent, westernNumber } from "@/lib/utils";
@@ -187,7 +188,7 @@ function MetricCell({
         />
       );
     case "riskScore":
-      return <RiskCell m={m} locale={locale} />;
+      return <RiskCell m={m} locale={locale} dealId={deal.id} />;
     case "mandateFit":
       return (
         <Badge variant={m.mandateFit === "pass" ? "mint" : "warning"}>
@@ -259,7 +260,15 @@ function IrrCell({
   );
 }
 
-function RiskCell({ m, locale }: { m: IcMetrics; locale: Lang }) {
+function RiskCell({
+  m,
+  locale,
+  dealId,
+}: {
+  m: IcMetrics;
+  locale: Lang;
+  dealId: string;
+}) {
   const t = useTranslations("ic.table");
   const filled = riskSegments(m.riskScore);
   const band = riskBand(m.riskScore);
@@ -271,14 +280,19 @@ function RiskCell({ m, locale }: { m: IcMetrics; locale: Lang }) {
         : "bg-navy-400";
   return (
     <div>
-      {/* dir=ltr so the "5 / 10" ratio never reorders to "10 / 5" in RTL. */}
-      <span dir="ltr" className="inline-block">
-        <StatNumber
-          value={m.riskScore}
-          format={(n) => t("riskOutOf", { score: westernNumber(n, locale, 1) })}
-          className="text-navy text-xl font-bold"
-        />
-      </span>
+      {/* click-to-explain: leads with Lunar's band, then the derivation */}
+      <RiskBreakdown score={m.riskScore} companyId={dealId} cite={m.cite}>
+        {/* dir=ltr so the "5 / 10" ratio never reorders to "10 / 5" in RTL. */}
+        <span dir="ltr" className="inline-block">
+          <StatNumber
+            value={m.riskScore}
+            format={(n) =>
+              t("riskOutOf", { score: westernNumber(n, locale, 1) })
+            }
+            className="text-navy text-xl font-bold"
+          />
+        </span>
+      </RiskBreakdown>
       <span
         className="mt-2 flex max-w-[8rem] gap-0.5"
         role="img"

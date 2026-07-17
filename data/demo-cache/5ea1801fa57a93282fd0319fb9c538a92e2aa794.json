@@ -262,23 +262,23 @@
     },
     {
       "type": "delta",
-      "text": " projection would ramp forward.\n\n## Scenario framework that already exists\n\nThe completed analysis does contain sc"
+      "text": " projection would ramp forward.\n\n## Scenario framework that already exists\n\nThe completed analysis does contain s"
     },
     {
       "type": "delta",
-      "text": "enario-weighted results, but only in blended, summarized form, not as separate bull/"
+      "text": "cenario-weighted results, but only in blended, summarized form, not as separate bull"
     },
     {
       "type": "delta",
-      "text": "bear paths:\n- "
+      "text": "/bear paths:\n-"
     },
     {
       "type": "delta",
-      "text": "Implied IRR at entry is 17.1% against a 15.0% mandate h"
+      "text": " Implied IRR at entry is 17.1% against a 15.0% benchmar"
     },
     {
       "type": "delta",
-      "text": "urdle; the scenario-weighted expected return of 16.8% blends bull, base, and bear cases and remains above the hurdle even after we"
+      "text": "k; the scenario-weighted expected return of 16.8% blends bull, base, and bear cases and remains above the benchmark even after we"
     },
     {
       "type": "delta",
@@ -301,55 +301,55 @@
     },
     {
       "type": "delta",
-      "text": " model clears the hurdle by roughly 210bps at entry, and"
+      "text": " model clears the benchmark by roughly 210bps at entry, "
     },
     {
       "type": "delta",
-      "text": " the probability-weighted return sits ~20bps below the entry IRR, implying the downside c"
+      "text": "and the probability-weighted return sits ~20bps below the entry IRR, implying the downsid"
     },
     {
       "type": "delta",
-      "text": "ases pull the blend down only modestly. But the individual bull and bear return figures, and their"
+      "text": "e cases pull the blend down only modestly. But the individual bull and bear return figures, and the"
     },
     {
       "type": "delta",
-      "text": " probability weights, are not disclosed in the summary.\n\n## What is missing to actually build the 2031 DCF\n\nTo"
+      "text": "ir probability weights, are not disclosed in the summary.\n\n## What is missing to actually build the 2031 DCF\n\n"
     },
     {
       "type": "delta",
-      "text": " produce a defensible five-year build and discrete scenarios, I would need:\n1. **Per-year GMV growth** "
+      "text": "To produce a defensible five-year build and discrete scenarios, I would need:\n1. **Per-year GMV growth*"
     },
     {
       "type": "delta",
-      "text": "2026-2031 (only the single FY2025 +10.8% print is sourced).\n2. **"
+      "text": "* 2026-2031 (only the single FY2025 +10.8% print is sourced).\n2. "
     },
     {
       "type": "delta",
-      "text": "Take-rate path** under Keeta price-war pressure (FY2025 is 15.4%; forward trajectory not s"
+      "text": "**Take-rate path** under Keeta price-war pressure (FY2025 is 15.4%; forward trajectory not"
     },
     {
       "type": "delta",
-      "text": "ourced).\n3. **EBITDA-to-FCFF walk**: capex, D&A, working capital, cash tax, and IFR"
+      "text": " sourced).\n3. **EBITDA-to-FCFF walk**: capex, D&A, working capital, cash tax, and IF"
     },
     {
       "type": "delta",
-      "text": "S-16 lease treatment (none projected in sources).\n4. **The discrete bull/base/bear assumption sets and their weights"
+      "text": "RS-16 lease treatment (none projected in sources).\n4. **The discrete bull/base/bear assumption sets and their weight"
     },
     {
       "type": "delta",
-      "text": "** (only the blended 16.8% is given).\n5. **A finalized WACC**,"
+      "text": "s** (only the blended 16.8% is given).\n5. **A finalized WACC**"
     },
     {
       "type": "delta",
-      "text": " which the comps pack itself flags as not yet closed: "
+      "text": ", which the comps pack itself flags as not yet closed:"
     },
     {
       "type": "delta",
-      "text": "Jahez's own"
+      "text": " Jahez's ow"
     },
     {
       "type": "delta",
-      "text": " reported 5Y beta of 0.02 is a data artifact of thin trading, not a real volatility read, and the standard bottom-up fix requires each comp's deb"
+      "text": "n reported 5Y beta of 0.02 is a data artifact of thin trading, not a real volatility read, and the standard bottom-up fix requires each comp's deb"
     },
     {
       "type": "delta",

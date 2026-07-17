@@ -22,6 +22,8 @@ const TRIGGERS: Record<string, GenerationTrigger> = {
   "darb-memo": { workspace: "darb", artifact: "docx" },
   "dcf-scenarios": { workspace: "jahez", artifact: "xlsx" },
   "committee-deck": { workspace: "jahez", artifact: "pptx" },
+  "jahez-memo": { workspace: "jahez", artifact: "docx" },
+  "jahez-deck-convert": { workspace: "jahez", artifact: "pptx" },
 };
 
 /** Exact-trimmed match against the registered golden entries' recorded text. */

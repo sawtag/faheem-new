@@ -33,7 +33,7 @@ export const FORMULAS: Record<string, FormulaDef> = Object.fromEntries(
     ),
     f(
       "beta-comp-set",
-      String.raw`\beta = \operatorname{median}(\beta_{\text{Peer 1}}, \beta_{\text{Peer 2}}) = \tfrac{\beta_{\text{Peer 1}} + \beta_{\text{Peer 2}}}{2}`,
+      String.raw`\beta = \operatorname{median}(\beta_{\text{DASH}}, \beta_{\text{DHER}}) = \tfrac{\beta_{\text{DASH}} + \beta_{\text{DHER}}}{2}`,
     ),
     f("market-cap", String.raw`E = \text{shares} \times P`),
     f("capital-total", String.raw`V = E + D`),
@@ -167,7 +167,7 @@ export const FORMULAS: Record<string, FormulaDef> = Object.fromEntries(
     f("comps-min", String.raw`\min(\text{implied values})`),
     f("comps-median", String.raw`\operatorname{median}(\text{implied values})`),
     f("comps-max", String.raw`\max(\text{implied values})`),
-    // ── Compliance screen (AAOIFI-style) ──
+    // ── Compliance screen (IC Charter) ──
     f(
       "compliance-debt-ratio",
       String.raw`\text{debt} / \text{market cap} < 33\%`,

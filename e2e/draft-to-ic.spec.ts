@@ -52,7 +52,7 @@ test.describe("Draft to IC", () => {
     );
 
     // body carries the REAL base-case DCF numbers (matches e2e/model.spec.ts's
-    // confirmed base.perShare = 14.36 / weighted IRR = 16.8% / hurdle = 15%)
+    // confirmed base.perShare = 14.36 / weighted IRR = 16.8% / benchmark = 15%)
     // and the three just-landed artifact names.
     const body = dialog.getByTestId("draft-to-ic-body");
     await expect(body).toHaveValue(/SAR 14\.36/);

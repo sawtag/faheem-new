@@ -1,0 +1,390 @@
+{
+  "key": "ec220d66c640813cc593e99d7f8b149edea8f6fd",
+  "request": {
+    "question": "Aqar Development: why did we decline it last year, and does anything in the latest macro data change that call?",
+    "lang": "en",
+    "context": {
+      "kind": "ic"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "comparables",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "comparables",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "ic",
+      "status": "start",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "ic",
+      "status": "done",
+      "docIds": [
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": []
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": []
+    },
+    {
+      "type": "delta",
+      "text": "## Recommendation\n\nThe decline should stand. Nothing in the latest macro data changes the call, because the dec"
+    },
+    {
+      "type": "delta",
+      "text": "line rested on a mandate test, not a market view, and macro developments do not override"
+    },
+    {
+      "type": "delta",
+      "text": " that test.\n\n## Rationale\n\n**Why Aqar was declined.** The opportunity was a"
+    },
+    {
+      "type": "delta",
+      "text": " Saudi real estate developer active in residential and mixed-use projects. "
+    },
+    {
+      "type": "delta",
+      "text": "Aqar Development is a privately held"
+    },
+    {
+      "type": "delta",
+      "text": " Saudi real estate developer active in residential and mixed-use projects in Riyadh and the Eastern Province, reaching Lunar as an in"
+    },
+    {
+      "type": "delta",
+      "text": "bound introduction in August 2025, seeking growth capital of SAR 38 million in a Series B round."
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "aqar-decline-memo",
+      "page": 1,
+      "quote": "Opportunity summary\r\nAqar Development is a privately held Saudi real estate developer active in residential and mixed-use projects\r\nin Riyadh and the Eastern Province. The opportunity reached Lunar as"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThe screen failed on sector alone. "
+    },
+    {
+      "type": "delta",
+      "text": "The sector test is"
+    },
+    {
+      "type": "delta",
+      "text": " dispositive: real estate development falls outside the Technology & Consumer sector mandate, and under the Charter a sector failure ends the screening process."
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "aqar-decline-memo",
+      "page": 1,
+      "quote": "Mandate test Charter requirement Aqar Development Result\r\nSector Technology & Consumer Real estate development Fail\r\nTicket size SAR 20-60M per deal SAR 38M sought Within band (moot)\r\nStage Series A t"
+    },
+    {
+      "type": "delta",
+      "text": " Notably, the other two tests would have passed: "
+    },
+    {
+      "type": "delta",
+      "text": "ticket size (SAR 38M sought) was within the SAR 20-60M band, and the Series B stage was within the Series A to"
+    },
+    {
+      "type": "delta",
+      "text": " Series C window, both moot given the sector fail."
+    },
+    {
+      "type": "delta",
+      "text": "[[3]]"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "aqar-decline-memo",
+      "page": 1,
+      "quote": "Mandate test Charter requirement Aqar Development Result\r\nSector Technology & Consumer Real estate development Fail\r\nTicket size SAR 20-60M per deal SAR 38M sought Within band (moot)\r\nStage Series A t"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nThis aligns with the Charter, which is explicit that sector is a hard g"
+    },
+    {
+      "type": "delta",
+      "text": "ate. "
+    },
+    {
+      "type": "delta",
+      "text": "Real estate, industrials, energy, and healthcare delivery are outside the mandate and are decl"
+    },
+    {
+      "type": "delta",
+      "text": "ined at screening regardless of financial merit."
+    },
+    {
+      "type": "delta",
+      "text": "[[4]]"
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "lunar-ic-charter",
+      "page": 3,
+      "quote": "Real estate, industrials, energy, and healthcare delivery are outside the mandate and are declined at screening regardless of\r\nfinancial merit."
+    },
+    {
+      "type": "delta",
+      "text": " Because the sector test failed, "
+    },
+    {
+      "type": "delta",
+      "text": "no valuation work, financial anal"
+    },
+    {
+      "type": "delta",
+      "text": "ysis, quantified risk assessment, or compliance screen was performed, and none should be inferred from the memorandum."
+    },
+    {
+      "type": "delta",
+      "text": "[[5]]"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "aqar-decline-memo",
+      "page": 1,
+      "quote": "Accordingly, no valuation work,\r\nfinancial analysis, quantified risk assessment, or compliance screen was performed, and none should be\r\ninferred from this memorandum."
+    },
+    {
+      "type": "delta",
+      "text": "\n\n**Why macro data does not change it"
+    },
+    {
+      "type": "delta",
+      "text": ".** The decline memo pre-empts exactly this question. "
+    },
+    {
+      "type": "delta",
+      "text": "This decline is a mandate determ"
+    },
+    {
+      "type": "delta",
+      "text": "ination. It is not a view on the quality of Aqar Development, its management, or the outlook for the Saudi real estate sector, and it does not carry a val"
+    },
+    {
+      "type": "delta",
+      "text": "uation opinion of any kind. The determination can change only if the Committee amends the sector mandate in the Charter by formal resolution. Market or macroeconomic developments, however favorable to the sector, do not"
+    },
+    {
+      "type": "delta",
+      "text": " override the sector test and are not grounds for re-screening while the current mandate stands."
+    },
+    {
+      "type": "delta",
+      "text": "[[6]]"
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "aqar-decline-memo",
+      "page": 2,
+      "quote": "Re-evaluation provision\r\nThis decline is a mandate determination. It is not a view on the quality of Aqar Development, its\r\nmanagement, or the outlook for the Saudi real estate sector, and it does not"
+    },
+    {
+      "type": "delta",
+      "text": "\n\nFor completeness, the recent macro backdrop is not even direct"
+    },
+    {
+      "type": "delta",
+      "text": "ional support for a reopening: "
+    },
+    {
+      "type": "delta",
+      "text": "real GDP grew 3"
+    },
+    {
+      "type": "delta",
+      "text": ".0% year-on-year in Q1 2026"
+    },
+    {
+      "type": "delta",
+      "text": "[[7]]"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "gastat-macro-pack",
+      "page": 2,
+      "quote": "Real GDP Growth\r\nGross Domestic Product (GDP) Publication for Q1 of 2026\r\nGASTAT · 9 June 2026 · stats.gov.sa/en/w/news/199\r\nReal GDP grew 3.0% year-on-year in Q1 2026, driven by broadly even growth a"
+    },
+    {
+      "type": "delta",
+      "text": ", and while construction-adjacent housing"
+    },
+    {
+      "type": "delta",
+      "text": " costs are rising, that shows in CPI as a cost line, not a mandate signal:"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "the CPI recorded an annual increase of 1.8% in May 2026, driven mainly by housing, water,"
+    },
+    {
+      "type": "delta",
+      "text": " electricity, gas & other fuels (+3.7%)."
+    },
+    {
+      "type": "delta",
+      "text": "[[8]]"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "gastat-macro-pack",
+      "page": 3,
+      "quote": "Inflation — Consumer & Wholesale Prices\r\nConsumer Price Index – May 2026\r\nGASTAT · 14 June 2026 · stats.gov.sa/documents/d/guest/cpi-may-2026-en-pdf\r\nThe CPI recorded an annual increase of 1.8% in May"
+    },
+    {
+      "type": "delta",
+      "text": " None of these figures spe"
+    },
+    {
+      "type": "delta",
+      "text": "ak to Technology & Consumer, which is where the mandate confines new comm"
+    },
+    {
+      "type": "delta",
+      "text": "itments.\n\n## What would change the conclusion\n\nThe single sensitivity is a Charter amendment, not a data point. "
+    },
+    {
+      "type": "delta",
+      "text": "The determination can change only if the Committee amends the sector mandate in the Charter by formal resolution; if the mandate is amended, any renewed interest in the company would enter the stand"
+    },
+    {
+      "type": "delta",
+      "text": "ard process from the beginning: screening, then analysis, then Committee review."
+    },
+    {
+      "type": "delta",
+      "text": "[[9]]"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "aqar-decline-memo",
+      "page": 2,
+      "quote": "The determination can change only if the Committee amends the sector mandate in the Charter by\r\nformal resolution."
+    },
+    {
+      "type": "delta",
+      "text": "[[10]]"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "aqar-decline-memo",
+      "page": 2,
+      "quote": "If the mandate is\r\namended, any renewed interest in the company would enter the standard process from the beginning:\r\nscreening, then analysis, then Committee review."
+    },
+    {
+      "type": "delta",
+      "text": "\n\nJudgment: the one scenario that could bring Aqar back inside the mandate without"
+    },
+    {
+      "type": "delta",
+      "text": " a Charter change is a factual reclassification, i.e. if the company were shown to have a material technology or"
+    },
+    {
+      "type": "delta",
+      "text": " consumer-platform component rather than pure property development. The screening desk explicitly checked this and found none. "
+    },
+    {
+      "type": "delta",
+      "text": "The scre"
+    },
+    {
+      "type": "delta",
+      "text": "ening desk verified with the introducer that the company's revenue derives from property development and sales, with no material technology or consumer-platform component that could bring the business within the mand"
+    },
+    {
+      "type": "delta",
+      "text": "ate definition."
+    },
+    {
+      "type": "delta",
+      "text": "[[11]]"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "aqar-decline-memo",
+      "page": 2,
+      "quote": "The screening desk verified with the introducer that the company's revenue derives from property\r\ndevelopment and sales, with no material technology or consumer-platform component that could bring the"
+    },
+    {
+      "type": "delta",
+      "text": " Evidence that would revisit that: a substantiated revenue breakdown showing a"
+    },
+    {
+      "type": "delta",
+      "text": " genuine retail-technology or consumer-platform business line. Absent that, the decline holds.\n\nAdvis"
+    },
+    {
+      "type": "delta",
+      "text": "ory only: the investment decision rests with the committee."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-17T07:34:03.214Z"
+}

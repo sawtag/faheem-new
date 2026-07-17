@@ -61,7 +61,7 @@ test("POST /api/generate/all lands all three artifacts, each servable and non-tr
   await expect(page.getByText("Verified · 5 sources")).toHaveCount(3);
 });
 
-test("deliverables chat: run completes → deck preview auto-opens with the 8-slide rail; click + arrows switch slides; download servable", async ({
+test("deliverables chat: run completes → deck preview auto-opens with the 10-slide rail; click + arrows switch slides; download servable", async ({
   page,
 }) => {
   test.setTimeout(120_000);
@@ -80,13 +80,13 @@ test("deliverables chat: run completes → deck preview auto-opens with the 8-sl
     preview.getByText(/Generated · .* · Lunar Investments/),
   ).toBeVisible();
 
-  // full thumbnail rail, all 8 slides, slide 1 active
-  const thumbs = preview.getByRole("button", { name: /^Slide \d$/ });
-  await expect(thumbs).toHaveCount(8);
-  await expect(preview.getByText("Slide 1 of 8")).toBeVisible();
+  // full thumbnail rail, all 10 slides, slide 1 active
+  const thumbs = preview.getByRole("button", { name: /^Slide \d+$/ });
+  await expect(thumbs).toHaveCount(10);
+  await expect(preview.getByText("Slide 1 of 10")).toBeVisible();
 
   // the canvas slide is a real, decoded image (no broken/404 preview)
-  const canvasImg = preview.getByRole("img", { name: "Slide 1 of 8" });
+  const canvasImg = preview.getByRole("img", { name: "Slide 1 of 10" });
   await expect
     .poll(() =>
       canvasImg.evaluate((el) => (el as HTMLImageElement).naturalWidth),
@@ -95,9 +95,9 @@ test("deliverables chat: run completes → deck preview auto-opens with the 8-sl
 
   // click a thumbnail → jumps; arrow key → advances
   await thumbs.nth(2).click();
-  await expect(preview.getByText("Slide 3 of 8")).toBeVisible();
+  await expect(preview.getByText("Slide 3 of 10")).toBeVisible();
   await page.keyboard.press("ArrowDown");
-  await expect(preview.getByText("Slide 4 of 8")).toBeVisible();
+  await expect(preview.getByText("Slide 4 of 10")).toBeVisible();
 
   // header download points at the generated deck and serves 200
   const download = preview.getByRole("link", { name: "Download file" });
@@ -119,15 +119,18 @@ test("deliverables chat: run completes → deck preview auto-opens with the 8-sl
     expect(res.status(), asset).toBe(200);
   }
 
-  // close, then re-open from a file card's primary Preview affordance,
-  // the model opens on its Cover sheet with the open-in-Excel CTA.
+  // close, then re-open from the model card's primary Preview affordance,
+  // the xlsx now opens the live workbook side panel (real tabs + cells)
+  // instead of the static PNG preview.
   await preview.getByRole("button", { name: "Close preview" }).click();
   await expect(preview).toBeHidden();
   await page.getByRole("button", { name: "Preview" }).first().click();
-  await expect(preview).toBeVisible();
-  await expect(preview.getByText("Jahez · Valuation Model")).toBeVisible();
+  const workbook = page.getByTestId("workbook-panel");
+  await expect(workbook).toBeVisible();
+  await expect(workbook.getByText("Jahez · Valuation Model")).toBeVisible();
+  await expect(workbook.getByRole("tab", { name: "Assumptions" })).toBeVisible();
   await expect(
-    preview.getByRole("link", { name: "Open in Excel" }),
+    workbook.getByRole("link", { name: "Download file" }),
   ).toBeVisible();
 });
 

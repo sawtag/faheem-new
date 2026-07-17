@@ -24,10 +24,10 @@ describe("FORMULAS registry", () => {
     }
   });
 
-  it("uses anonymized labels for the beta peers", () => {
+  it("names the beta comp-set peers by ticker, matching the xlsx and the UI", () => {
     const formula = FORMULAS["beta-comp-set"]!.katex;
-    expect(formula).toContain(String.raw`\text{Peer 1}`);
-    expect(formula).toContain(String.raw`\text{Peer 2}`);
+    expect(formula).toContain(String.raw`\text{DASH}`);
+    expect(formula).toContain(String.raw`\text{DHER}`);
   });
 
   it("every formulaId referenced in the base node graph exists", () => {

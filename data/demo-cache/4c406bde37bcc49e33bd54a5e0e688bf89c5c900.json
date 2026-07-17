@@ -1,7 +1,7 @@
 {
-  "key": "6c85df701e2ae512693b56080285ff501e651413",
+  "key": "4c406bde37bcc49e33bd54a5e0e688bf89c5c900",
   "request": {
-    "question": "Does Jahez pass the AAOIFI compliance screen?",
+    "question": "Does Jahez pass the IC Charter compliance screen?",
     "lang": "en",
     "context": {
       "kind": "workspace",
@@ -113,7 +113,7 @@
     },
     {
       "type": "delta",
-      "text": "\n\nYes, on the Lunar Charter's AAOIFI-style methodology, Jahez passes all three tests, and com"
+      "text": "\n\nYes, on the Lunar Charter's screening methodology, Jahez passes all three tests, and com"
     },
     {
       "type": "delta",

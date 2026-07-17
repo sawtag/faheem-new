@@ -12,8 +12,9 @@ import {
   useTransform,
 } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowLeft, RotateCcw, Sparkles, X } from "lucide-react";
+import { ArrowLeft, FileText, RotateCcw, Sparkles, X } from "lucide-react";
 import manifest from "@/data/corpus/manifest.json";
+import { stashCitationHighlight } from "@/components/chat/highlight-bus";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MethodologyPanel } from "@/components/model/methodology-panel";
@@ -36,6 +37,16 @@ const EASE = [0.4, 0, 0.2, 1] as const;
 const DOC_TITLES = new Map(
   (manifest as CorpusDoc[]).map((d) => [d.id, d.title]),
 );
+
+/** Statement-of-compliance citation for the hero's reporting-basis caption.
+ * The quote must stay verbatim to the PDF text layer or the highlight is
+ * silently dropped (lib/highlight.ts falls back to a page-level open). */
+const REPORTING_BASIS = {
+  docId: "q1-26-fs",
+  page: 13,
+  quote:
+    "prepared in accordance with requirements of IAS 34 “Interim Financial Reporting” that is endorsed in Kingdom of Saudi Arabia and other standards and pronouncements that are issued by Saudi Organization for Chartered and Professional Accountants (“SOCPA”)",
+} as const;
 
 /** Count-up from 0 on reveal, then animate value→value on recompute. */
 function HeroNumber({
@@ -228,6 +239,28 @@ export function LiveModel({
               <p className="text-text-secondary mt-1.5 text-[0.8125rem]">
                 {t("model.live.hero.recomputes")}
               </p>
+              <button
+                type="button"
+                aria-label={t("model.live.hero.basisLabel", {
+                  page: REPORTING_BASIS.page,
+                })}
+                onClick={() => {
+                  stashCitationHighlight(REPORTING_BASIS);
+                  setOpenDoc({
+                    docId: REPORTING_BASIS.docId,
+                    page: REPORTING_BASIS.page,
+                  });
+                }}
+                className="text-text-secondary hover:text-navy focus-visible:ring-accent focus-visible:ring-offset-bg rounded-btn mt-1 inline-flex cursor-pointer items-center gap-1.5 text-xs transition-colors duration-[var(--duration-fast)] ease-[var(--ease)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              >
+                <FileText className="size-3.5 shrink-0" aria-hidden="true" />
+                <span>
+                  {t("model.live.hero.basis")} ·{" "}
+                  <span className="financial">
+                    {t("model.panel.page", { page: REPORTING_BASIS.page })}
+                  </span>
+                </span>
+              </button>
             </div>
 
             <div className="flex items-end gap-8">

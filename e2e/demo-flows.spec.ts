@@ -26,9 +26,13 @@ async function openPaletteAndPick(
 ) {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await page.keyboard.press("Control+k");
+  // under full-suite load the Ctrl+K listener can mount a beat after the
+  // heading paints; re-press instead of failing on the first race
   const entry = page.getByTestId(`palette-item-${id}`);
-  await expect(entry).toBeVisible();
+  await expect(async () => {
+    if (!(await entry.isVisible())) await page.keyboard.press("Control+k");
+    await expect(entry).toBeVisible({ timeout: 2_000 });
+  }).toPass({ timeout: 20_000 });
   await entry.click();
   await expect(entry).not.toBeVisible();
 }
@@ -106,19 +110,28 @@ test("five demo flows: palette to money moment, fully cached", async ({
     await expect(box).toHaveValue(/Run the DCF on Jahez out to 2031/);
     await box.press("Enter");
 
-    // the workbook builds, the preview auto-opens on the named sheet rail
-    const preview = page.getByTestId("artifact-preview");
-    await expect(preview).toBeVisible({ timeout: 90_000 });
-    for (const sheet of ["Cover", "DCF", "Scenarios & Risk", "Sensitivity"]) {
-      await expect(preview.getByRole("button", { name: sheet })).toBeVisible();
+    // the workbook builds, the live workbook side panel auto-opens: real
+    // sheet tabs and cells from the client-safe engine, not a PNG rail
+    const workbook = page.getByTestId("workbook-panel");
+    await expect(workbook).toBeVisible({ timeout: 90_000 });
+    for (const sheet of [
+      "Assumptions",
+      "DCF",
+      "Scenarios & Risk",
+      "Sensitivity",
+      "Comps",
+    ]) {
+      await expect(workbook.getByRole("tab", { name: sheet })).toBeVisible();
     }
     await expect(
-      preview.getByRole("link", { name: /open in excel/i }),
+      workbook.getByRole("link", { name: "Download file" }),
     ).toBeVisible();
-    // step through the rail to the Scenarios sheet
-    await preview.getByRole("button", { name: "Scenarios & Risk" }).click();
+    // step through to the Scenarios sheet, cells render from buildModel
+    await workbook.getByRole("tab", { name: "Scenarios & Risk" }).click();
+    await expect(workbook.getByTestId("workbook-cell").first()).toBeVisible();
     await page.screenshot({ path: `${SHOT.dir}/3-dcf-preview.png` });
     await page.keyboard.press("Escape");
+    await expect(workbook).not.toBeVisible();
 
     // the ScenarioSummary strip: three tiles + weighted value, same engine
     await expect(

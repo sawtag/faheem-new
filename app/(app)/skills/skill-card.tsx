@@ -12,10 +12,10 @@ import { Toggle } from "@/components/ui/toggle";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/shell/lucide-icon";
 import { publishGoldenSelection } from "@/lib/demo/golden-bus";
+import { resolveSkillRun } from "@/lib/skills-run";
 import { cn } from "@/lib/utils";
 import type { Skill, SkillCategory } from "@/lib/skills";
 import type { Lang } from "@/lib/types";
-import { resolveSkillRun } from "./run-skill";
 
 const EASE = [0.4, 0, 0.2, 1] as const;
 const STAGGER_CAP = 8;
@@ -39,7 +39,7 @@ const CATEGORY_BADGE: Record<
  * duplicates it into an editable custom skill. Toggle is cosmetic
  * (agents-page pattern), it dims the card, it never gates the Run action. Run either fires the exact
  * golden-bus insert a goldenId-mapped skill was recorded with, or prefills a
- * fresh chat with ad hoc text (see run-skill.ts for why "home" means
+ * fresh chat with ad hoc text (see lib/skills-run.ts for why "home" means
  * `/chat/new` here, not the omnibox hero).
  */
 export function SkillCard({

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveSkillRun } from "@/app/(app)/skills/run-skill";
+import { RUNNABLE_SKILLS, resolveSkillRun } from "@/lib/skills-run";
 import { goldenQuestionById } from "@/lib/demo/golden-questions";
 import { SKILLS } from "@/lib/skills";
 
@@ -44,15 +44,26 @@ describe("resolveSkillRun", () => {
   });
 
   it("prefill skills carry the locale-matched text, firm context, and the /chat/new firm href", () => {
-    const en = resolveSkillRun(skill("dcf-fcff"), "en")!;
+    const en = resolveSkillRun(skill("trading-comps"), "en")!;
     expect(en.context).toEqual({ kind: "firm" });
     expect(en.href).toBe("/chat/new?context=firm");
     expect(en.lang).toBe("en");
     expect(en.text).toContain("Jahez");
 
-    const ar = resolveSkillRun(skill("dcf-fcff"), "ar")!;
+    const ar = resolveSkillRun(skill("trading-comps"), "ar")!;
     expect(ar.text).toContain("جاهز");
     expect(ar.lang).toBe("ar");
+  });
+
+  it("dcf-fcff now resolves to the dcf-scenarios golden request, not a prefill", () => {
+    const target = resolveSkillRun(skill("dcf-fcff"), "en");
+    const entry = goldenQuestionById("dcf-scenarios")!;
+    expect(target).not.toBeNull();
+    expect(target!.text).toBe(entry.request.question);
+    expect(target!.context).toEqual(entry.request.context);
+    expect(target!.href).toBe("/chat/new?context=workspace%3Ajahez");
+    expect(target!.lang).toBe("en");
+    expect(target!.fixedLang).toBe(true);
   });
 
   it("a prefill skill is never fixedLang, even when the active UI locale is ar, regression guard for the 'Runs in Arabic' hint, which must only ever appear for a goldenId skill with a truly fixed (locale-independent) language, never merely because the UI itself is in Arabic", () => {
@@ -69,5 +80,25 @@ describe("resolveSkillRun", () => {
       if (s.run === null) continue;
       expect(resolveSkillRun(s, "en"), s.id).not.toBeNull();
     }
+  });
+});
+
+describe("RUNNABLE_SKILLS (composer slash invoker)", () => {
+  it("returns only goldenId-run skills, never prefill or roadmap-only ones", () => {
+    expect(RUNNABLE_SKILLS.length).toBeGreaterThan(0);
+    for (const s of RUNNABLE_SKILLS) {
+      expect(s.run !== null && "goldenId" in s.run, s.id).toBe(true);
+    }
+    for (const s of SKILLS) {
+      const shouldInclude = s.run !== null && "goldenId" in s.run;
+      expect(
+        RUNNABLE_SKILLS.some((r) => r.id === s.id),
+        s.id,
+      ).toBe(shouldInclude);
+    }
+  });
+
+  it("includes dcf-fcff now that it runs off a golden recording", () => {
+    expect(RUNNABLE_SKILLS.map((s) => s.id)).toContain("dcf-fcff");
   });
 });

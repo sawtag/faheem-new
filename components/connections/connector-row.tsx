@@ -55,6 +55,9 @@ export function ConnectorRow({
             <bdi className="text-navy truncate text-[0.9375rem] font-semibold">
               {name}
             </bdi>
+            <span className="bg-navy-50 text-navy-600 rounded-pill shrink-0 px-1.5 py-0.5 text-[0.625rem] font-bold tracking-[0.04em] uppercase">
+              {t(`sourceType.${connector.sourceType}`)}
+            </span>
             {connector.badge && (
               <Badge variant={connector.badge} size="sm" className="uppercase">
                 {connector.badge}

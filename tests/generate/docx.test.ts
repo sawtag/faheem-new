@@ -3,7 +3,9 @@
  *
  * The memo is written to a Buffer and read back with JSZip against the real
  * .docx XML a judge would open. Key checks:
- *   - all 9 §11-spec section headings are present in document.xml;
+ *   - all 9 house-template section headings are present in document.xml;
+ *   - the register is neutral (no BUY/HOLD/REDUCE rating advocacy; the
+ *     decision is framed as the Investment Committee's);
  *   - the sources appendix lists >=6 distinct corpus documents;
  *   - no `{placeholder}` template brace survives narrative resolution;
  *   - LibreOffice opens the file (soffice --convert-to pdf exits 0).
@@ -39,14 +41,14 @@ function unescapeXml(s: string): string {
 }
 
 const SECTION_HEADINGS = [
-  "Executive Summary & Recommendation",
-  "Investment Thesis",
-  "Company & Industry",
-  "Financial Analysis",
-  "Valuation",
+  "Executive Summary",
+  "Return Analysis",
+  "Key Strengths and Concerns",
   "Quantified Risk Assessment",
+  "Company and Market Overview",
+  "Historical and Projected Financials",
   "Compliance Screen",
-  "Catalysts & Monitoring KPIs",
+  "Catalysts and Monitoring KPIs",
   "Appendix: Sources",
 ];
 
@@ -59,9 +61,17 @@ describe("IC memo structure", () => {
     expect(unescapeXml(documentXml)).toContain(heading);
   });
 
-  it("shows the cover-page recommendation (rating word appears)", () => {
+  it("keeps a neutral register: no analyst rating advocacy anywhere", () => {
     const text = unescapeXml(documentXml);
-    expect(/BUY|HOLD|REDUCE/.test(text)).toBe(true);
+    expect(/\b(BUY|HOLD|REDUCE)\b/.test(text)).toBe(false);
+  });
+
+  it("frames the decision as the Investment Committee's on the cover", () => {
+    const text = unescapeXml(documentXml);
+    expect(text).toContain("For Investment Committee Decision");
+    expect(text).toContain(
+      "the investment decision rests with the Investment Committee",
+    );
   });
 });
 

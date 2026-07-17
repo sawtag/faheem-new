@@ -219,5 +219,18 @@
     "workspace": "jahez",
     "sourceUrl": "https://jahezgroup.com/wp-content/uploads/2025/11/Q3-2025-Press-Release-JGroup-Arabic.pdf",
     "fileId": "file_011CcxvTXPB88QaEK5LEy8Zk"
+  },
+  {
+    "id": "aqar-decline-memo",
+    "title": {
+      "en": "Aqar Development · Screening Decline Memo (2025)",
+      "ar": "مذكرة الاعتذار عند الفرز - عقار للتطوير (2025)"
+    },
+    "path": "data/corpus/aqar-decline-memo.pdf",
+    "pages": 2,
+    "sizeMB": 0.006,
+    "type": "deal",
+    "workspace": "aqar",
+    "fileId": "file_011Cd7EMnjcLXQbhgQoPVht7"
   }
 ]

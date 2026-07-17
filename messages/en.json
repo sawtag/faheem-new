@@ -18,8 +18,7 @@
     "dayOneHint": "First day at Lunar Investments?",
     "dayOneCta": "Begin day-one setup",
     "dayOneLoading": "Preparing your workspace…",
-    "error": "Enter your username and password",
-    "footer": "SSO & enterprise controls on the MVP roadmap"
+    "error": "Enter your username and password"
   },
   "agents": {
     "title": "Agents",
@@ -50,9 +49,9 @@
       "risk": "Quantified risk scorecard (probability × impact) · Scenario-weighted return · Mandate-breach & concentration checks",
       "sentiment": "Social & forum theme tagging on the illustrative demo pack · Label + one-line rationale, signal only: never a sourced figure",
       "writing": "IC memos · Research notes · Pitch decks · Periodic reports",
-      "compliance": "Compliance screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
+      "compliance": "Compliance screening (SOCPA-endorsed IFRS) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
-      "ic": "Committee Q&A · Deal ranking vs the 15% hurdle · Scenario sensitivity"
+      "ic": "Committee Q&A · Deal ranking vs the 15% benchmark · Scenario sensitivity"
     }
   },
   "library": {
@@ -96,12 +95,78 @@
     "actionAgentToggled": "Agent toggled"
   },
   "connections": {
-    "title": "Connections",
+    "title": "Data Sources",
     "subtitle": "Faheem's data sources: market data, disclosures, and your internal systems.",
-    "addMcp": "Add custom MCP",
+    "addMcp": "Add source",
     "runSetup": "Run setup",
     "connected": "Connected",
     "available": "Available",
+    "activated": "Activated",
+    "availableToConnect": "Available to connect",
+    "sections": {
+      "internal": {
+        "title": "Internal",
+        "caption": "The firm's own systems, documents and workplace tools"
+      },
+      "external": {
+        "title": "External",
+        "caption": "Market data and public disclosures from the exchange and providers"
+      },
+      "research": {
+        "title": "Broker Research",
+        "caption": "Sell-side research ingested from your broker entitlements"
+      }
+    },
+    "sourceType": {
+      "mcp": "MCP",
+      "api": "API",
+      "files": "Files",
+      "app": "App",
+      "feed": "Feed"
+    },
+    "addSource": {
+      "type": "Source type",
+      "location": "Location",
+      "copy": "Copy",
+      "copied": "Copied",
+      "show": "Show",
+      "hide": "Hide",
+      "api": {
+        "namePlaceholder": "Lunar Prices API",
+        "base": "Base URL",
+        "basePlaceholder": "https://api.internal.lunar.sa",
+        "key": "API key",
+        "keyPlaceholder": "sk_lunar_demo_0000"
+      },
+      "files": {
+        "namePlaceholder": "Q3 Deal Files",
+        "upload": "Upload folder",
+        "path": "Network path",
+        "chooseFolder": "Choose folder…",
+        "picked": "{name} · {count, plural, one {# file} other {# files}}",
+        "pickError": "Choose a folder to upload",
+        "pathLabel": "Folder URL or network path",
+        "pathPlaceholder": "smb://fileserver.lunar.sa/deals",
+        "pathError": "Enter an HTTPS URL or an SMB path",
+        "smbNote": "This is an SMB network share. Faheem needs read-only credentials to index it.",
+        "username": "Username",
+        "usernamePlaceholder": "LUNAR\\ali",
+        "password": "Password"
+      },
+      "app": {
+        "namePlaceholder": "Lunar Slack",
+        "url": "Workspace URL",
+        "urlPlaceholder": "https://lunar-investments.slack.com",
+        "note": "Faheem will request read-only access when this app is connected, revocable anytime and logged in the audit trail."
+      },
+      "feed": {
+        "namePlaceholder": "Tadawul headlines",
+        "url": "Feed URL",
+        "urlPlaceholder": "https://feeds.argaam.com/markets.rss",
+        "refresh": "Refresh every (minutes)",
+        "refreshPlaceholder": "15"
+      }
+    },
     "configure": "Configure",
     "connect": "Connect",
     "disconnect": "Disconnect",
@@ -111,11 +176,11 @@
     "searchPlaceholder": "Search connectors…",
     "searchEmpty": {
       "title": "No connectors match ''{q}''",
-      "caption": "Try a different name, or add it as a custom MCP."
+      "caption": "Try a different name, or add it as a new source."
     },
     "mcp": {
-      "title": "Add custom MCP connector",
-      "caption": "Model Context Protocol: any internal system can speak to Faheem.",
+      "title": "Add a data source",
+      "caption": "Connect a data source to Faheem. Pick a type to begin.",
       "name": "Name",
       "namePlaceholder": "Lunar Portfolio DB",
       "url": "Remote server URL",
@@ -126,14 +191,14 @@
       "authHeaderPlaceholder": "Authorization: Bearer …",
       "timeout": "Timeout (seconds)",
       "timeoutPlaceholder": "30",
-      "submit": "Add connector",
-      "customDescription": "Custom MCP connector"
+      "submit": "Add connector"
     },
     "oauth": {
       "title": "Connect {name}",
       "scope": "Faheem will get read-only access to official disclosures and filings.",
       "note": "Read-only · revocable anytime · logged in the audit trail",
       "authorize": "Authorize",
+      "custom": "Custom",
       "connecting": "Establishing secure connection…",
       "success": "Connected"
     }
@@ -144,7 +209,7 @@
     "welcome": {
       "eyebrow": "Welcome to Faheem",
       "title": "Let's set up <name>Lunar Investments</name>",
-      "subtitle": "Three steps to a workspace that knows your firm: connect your systems, activate your specialist agents, and codify your investment mandate.",
+      "subtitle": "Three steps to a workspace that knows your firm: connect your systems, activate your specialist agents, and set the rules Faheem works to.",
       "begin": "Begin setup",
       "skip": "Skip for now",
       "cardConnect": "Connect",
@@ -152,7 +217,7 @@
       "cardAgents": "Agents",
       "cardAgentsDesc": "Specialist teams working your coverage",
       "cardMandate": "Mandate",
-      "cardMandateDesc": "Your risk framework becomes the IC Charter"
+      "cardMandateDesc": "Benchmarks, risk limits and sector appetite Faheem works to"
     },
     "step1": "Connect",
     "step2": "Agents & skills",
@@ -177,7 +242,7 @@
     "connectRecommended": "Connect recommended",
     "provisioned": "Provisioned",
     "mandate": {
-      "irr": "Target IRR hurdle",
+      "irr": "Target IRR benchmark",
       "concentration": "Max single-name concentration",
       "holding": "Holding period",
       "holdingShort": "1–3y",
@@ -188,7 +253,7 @@
       "liquiditySemiAnnual": "Semi-annual",
       "liquidityAnnual": "Annual",
       "compliance": "Compliance screen required",
-      "complianceNote": "Per AAOIFI methodology",
+      "complianceNote": "Per SOCPA-endorsed IFRS",
       "sectors": "Sector appetite",
       "sector": {
         "technology": "Technology",
@@ -239,7 +304,7 @@
       "library": "Library",
       "agents": "Agents",
       "scheduled": "Scheduled Tasks",
-      "connections": "Connections",
+      "connections": "Data Sources",
       "audit": "Audit Trail",
       "ic": "IC Room",
       "skills": "Skills",
@@ -265,6 +330,7 @@
       "removeChip": "Remove",
       "agentsHeader": "Agents",
       "docsHeader": "Documents",
+      "skillsHeader": "Skills",
       "noMatches": "No matches",
       "modelLabel": "Model"
     },
@@ -326,7 +392,7 @@
       "showChart": "Show as chart",
       "omitted": "Charting {shown} of {total} rows",
       "sourcesInTable": "Sources shown in table view",
-      "hurdle": "Hurdle {value}%",
+      "hurdle": "Benchmark {value}%",
       "chartAria": "Bar chart: {series} across {categories}",
       "axis": {
         "percent": "%",
@@ -339,7 +405,7 @@
     "placeholders": {
       "p1": "Break down Jahez's FY2025 unit economics: GMV, take rate and AOV…",
       "p2": "Compare Jahez to Talabat, Delivery Hero and DoorDash on EV/GMV…",
-      "p3": "Draft an IC memo for Jahez against our 15% IRR hurdle…",
+      "p3": "Draft an IC memo for Jahez against our 15% IRR benchmark…",
       "p4": "Stress-test Jahez's valuation: WACC against terminal growth…"
     },
     "pills": {
@@ -354,7 +420,7 @@
       },
       "icMemo": {
         "label": "IC Memo",
-        "prompt": "Draft an Investment Committee memo for Jahez: thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR hurdle."
+        "prompt": "Draft an Investment Committee memo for Jahez: thesis, valuation, unit economics, key risks and a clear recommendation against our 15% IRR benchmark."
       },
       "riskScorecard": {
         "label": "Risk Scorecard",
@@ -366,7 +432,7 @@
       },
       "compliance": {
         "label": "Compliance Screen",
-        "prompt": "Run an AAOIFI compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
+        "prompt": "Run the IC Charter compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
       }
     },
     "activity": {
@@ -393,11 +459,45 @@
       "emptyStage": "No deals at this stage.",
       "screenSource": "vs the IC Charter",
       "irrLabel": "Implied IRR",
-      "hurdleLabel": "Mandate hurdle",
+      "hurdleLabel": "Benchmark",
       "bps": "{bps} bps",
-      "atHurdle": "At hurdle",
+      "atHurdle": "At benchmark",
       "risk": "Risk {score} / 10",
       "metricsSource": "Analysis summary · p.{page}"
+    },
+    "riskBreakdown": {
+      "triggerAria": "Explain the risk score, {score} out of 10",
+      "computedTitle": "How this score is calculated",
+      "sourcedTitle": "Quantified risk score",
+      "outOf": "{score} / 10",
+      "scaleNote": "Lunar's 1 to 10 scale; a higher score means more risk.",
+      "bands": {
+        "low": "Low risk",
+        "moderate": "Moderate risk",
+        "high": "High risk"
+      },
+      "registerHeader": {
+        "risk": "Risk",
+        "p": "P",
+        "i": "I",
+        "weight": "P × I"
+      },
+      "worst": "Worst risk",
+      "average": "Average",
+      "formulaLabel": "Peak-weighted composite",
+      "result": "= {score} / 10",
+      "assumptionsNote": "The six weights are Lunar analyst judgments, editable in the Live Model.",
+      "firmSpecificNote": "Lunar's internal scale; risk scores are firm-specific, not comparable across firms.",
+      "framing": "Scored against Lunar's risk appetite (moderate, return-disciplined). {doc}, p.{page}.",
+      "numberSource": "Score stated in {doc} · p.{page}",
+      "rows": {
+        "priceWar": "Price-war margin compression",
+        "newEntrants": "Well-capitalised new entrants",
+        "earningsVolatility": "Earnings volatility and one-offs",
+        "snoonuIntegration": "Snoonu integration and margin dilution",
+        "valuationData": "Valuation-data ambiguity",
+        "waccSensitivity": "WACC and terminal-value sensitivity"
+      }
     },
     "stage": {
       "screening": "Screening",
@@ -413,7 +513,7 @@
         "declined": "Declined at screening."
       },
       "humanGate": "Human decision gate",
-      "advance": "Advance to pitch meeting",
+      "advance": "Advance to Analyst Stage",
       "sendToIc": "Send to IC",
       "queued": "Queued for IC review"
     },
@@ -510,21 +610,21 @@
   },
   "ic": {
     "title": "Investment Committee",
-    "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR hurdle",
+    "subtitle": "{date} · Comparing {count} deals against the {hurdle} IRR benchmark",
     "disclaimer": "Advisory only: the investment decision rests with the committee.",
     "tableNote": "Every figure is drawn from each deal's completed analysis and cites its source page. Open any citation to verify.",
     "table": {
       "caption": "Deal comparison: analysis-complete pipeline",
       "metric": "Metric",
       "irr": "Implied IRR at entry",
-      "irrVsHurdle": "vs {hurdle} hurdle",
+      "irrVsHurdle": "vs {hurdle} benchmark",
       "expectedReturn": "Scenario-weighted expected return",
       "riskScore": "Risk score",
       "riskOutOf": "{score} / 10",
       "mandateFit": "Mandate fit",
       "compliance": "Compliance screen",
       "recommendation": "Analyst recommendation",
-      "deltaEqual": "At hurdle",
+      "deltaEqual": "At benchmark",
       "bps": "{bps} bps",
       "pass": "Pass",
       "warn": "Review",
@@ -538,14 +638,14 @@
     "chat": {
       "title": "Ask Faheem IC",
       "scope": "Advisor to the committee",
-      "intro": "Ask for a ranking, a hurdle check, or what would change the call, every answer cites the underlying analysis and the mandate.",
+      "intro": "Ask for a ranking, a benchmark check, or what would change the call, every answer cites the underlying analysis and the mandate.",
       "thinking": "Faheem IC is weighing the cases…",
       "placeholder": "Ask Faheem IC…",
       "send": "Send",
       "stop": "Stop",
       "suggestLabel": "Suggested questions",
       "suggest1": "Rank these deals: strongest risk-adjusted case?",
-      "suggest2": "Does each deal clear our IRR hurdle?",
+      "suggest2": "Does each deal clear our IRR benchmark?",
       "suggest3": "What would change the ranking?"
     }
   },
@@ -588,6 +688,41 @@
       },
       "sheetOf": "Sheet {n} of {total}"
     },
+    "workbook": {
+      "subtitle": "Every cell is sourced or computed. Select any cell for its formula and source.",
+      "selectHint": "Select a cell to see how it is built.",
+      "builtFrom": "Built from",
+      "sourceComment": "Source: {doc}, p.{page}",
+      "tabs": {
+        "assumptions": "Assumptions",
+        "dcf": "DCF",
+        "scenarios": "Scenarios & Risk",
+        "sensitivity": "Sensitivity",
+        "comps": "Comps"
+      },
+      "sections": {
+        "waccBuild": "1 · WACC build (discount rate)",
+        "capitalStructure": "2 · Capital structure & market data",
+        "terminal": "3 · Terminal & horizon",
+        "dcfForecast": "Explicit forecast FCFF (FY26E to FY30E)",
+        "dcfBridge": "Enterprise value to value per share",
+        "scenarioTable": "Scenario cases",
+        "scenarioSummary": "Probability-weighted",
+        "sensitivityGrid": "Value per share: WACC x terminal growth",
+        "compsTable": "Implied value per share by multiple",
+        "compsRange": "Comparable range"
+      },
+      "rows": {
+        "betaPeer1": "Levered beta, DoorDash (5Y)",
+        "betaPeer2": "Levered beta, Delivery Hero (5Y)",
+        "holdPeriod": "Hold period (IRR)",
+        "probability": "Probability weight",
+        "gWacc": "g \\ WACC",
+        "compsMin": "Low",
+        "compsMedian": "Median",
+        "compsMax": "High"
+      }
+    },
     "draft": {
       "trigger": "Draft email to IC",
       "title": "Draft email to IC",
@@ -603,7 +738,7 @@
       "subject": "{company}: IC materials & recommendation",
       "body": {
         "greeting": "Dear Investment Committee,",
-        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} mandate hurdle. {compliance}",
+        "summary": "Attached is the IC package for {company}. Faheem's base-case DCF values the position at {perShare} per share, with a scenario-weighted expected IRR of {irr} against the {hurdle} benchmark. {compliance}",
         "compliancePass": "The compliance screen passes.",
         "complianceFail": "The compliance screen does not pass.",
         "materialsLabel": "Materials:",
@@ -702,7 +837,7 @@
       "label": "Governance",
       "copy": "Client data is never used for model training. Every workspace is isolated, and every answer, model edit, and generated artifact lands in the audit trail. Enterprise controls are on the MVP roadmap.",
       "auditLink": "View audit trail",
-      "connectionsLink": "Manage connections"
+      "connectionsLink": "Manage data sources"
     }
   },
   "scheduled": {
@@ -905,7 +1040,7 @@
       "riskScore": "Risk composite score",
       "ic": {
         "irr": "IC · implied IRR at entry",
-        "hurdle": "IC · hurdle rate",
+        "hurdle": "IC · benchmark",
         "expectedReturn": "IC · scenario-weighted expected return",
         "riskScore": "IC · risk score"
       },
@@ -948,9 +1083,9 @@
         "bear": "Bear case"
       },
       "comp": {
-        "talabat": "Regional peer",
-        "doordash": "Peer 1",
-        "dhero": "Peer 2"
+        "talabat": "Talabat",
+        "doordash": "DoorDash (DASH)",
+        "dhero": "Delivery Hero (DHER)"
       },
       "compMetric": {
         "evRev": "EV/Revenue",
@@ -1030,8 +1165,8 @@
       "comps-min": "The lowest implied value per share across all eight comps triangulations, the bottom of the comps-implied valuation range.",
       "comps-median": "The median implied value per share across all eight comps triangulations, the comps' central estimate, set beside the DCF value as a sanity check.",
       "comps-max": "The highest implied value per share across all eight comps triangulations, the top of the comps-implied valuation range.",
-      "compliance-debt-ratio": "AAOIFI-style compliance screen: interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based eligibility test, not a valuation input.",
-      "compliance-cash-ratio": "AAOIFI-style compliance screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based eligibility test.",
+      "compliance-debt-ratio": "IC Charter compliance screen (on IFRS figures as endorsed by SOCPA): interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based eligibility test, not a valuation input.",
+      "compliance-cash-ratio": "IC Charter compliance screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based eligibility test.",
       "compliance-lease-ratio": "A memo ratio including lease liabilities alongside interest-bearing debt against market capitalization. IFRS-16 leases aren't classic interest-bearing debt, so this is shown for reference, not as the pass/fail line.",
       "risk-composite": "Quantified risk composite: a peak-weighted blend of the register's probability-times-impact scores (60% the single worst risk, 40% the average across all risks), rescaled to a 0–10 score, so one severe risk can't hide inside a good average."
     },
@@ -1055,7 +1190,7 @@
       "cashRoll": "Forecast cash rolled forward as prior-year cash plus FCFF (no dividends/financing modeled, Jahez pays negligible dividends and is net-cash).",
       "netIncome": "Forecast net income simplified to EBIT × (1 − zakat); net finance cost is ~nil given the net-cash balance sheet.",
       "actualFcff": "Actual-year FCFF applies the same capex (2.5%) and ΔNWC (2.0%) assumptions to reported EBIT, capex is not separately disclosed, so this is an estimate, shown for continuity only (it does not feed the DCF).",
-      "hurdle": "IC hurdle rate of 15% gross IRR per the Lunar IC Charter & Investment Mandate, the committee's minimum acceptable return for new positions.",
+      "hurdle": "IC benchmark of 15% gross IRR per the Lunar IC Charter & Investment Mandate (the charter's 'hurdle rate'), the committee's minimum acceptable return for new positions.",
       "riskWeights": "Quantified risk-register weights: probability × impact (1–5 each) per register row, mirroring the Scenarios & Risk tab. Composite = 10 × (0.6·max + 0.4·mean) / 25, peak-weighted so one severe risk dominates."
     },
     "live": {
@@ -1074,7 +1209,9 @@
         "perShare": "DCF value / share",
         "weightedIrr": "Weighted IRR",
         "vsPrice": "vs SAR {price} share price · {upside} upside",
-        "recomputes": "Recomputes in-browser: the same engine that builds the Excel."
+        "recomputes": "Recomputes in-browser: the same engine that builds the Excel.",
+        "basis": "Reporting basis: IFRS as endorsed in Saudi Arabia (SOCPA)",
+        "basisLabel": "Open the statement of compliance in the Q1 2026 Financial Statements at page {page}"
       },
       "strip": {
         "title": "Scenario summary",
@@ -1200,8 +1337,8 @@
         "compliance-skip": "No leverage change, no re-check needed",
         "writing": "Updating the recommendation line"
       },
-      "recommendationAbove": "Updated view: {perShare} fair value / share. Weighted IRR {irr} clears the {hurdle} hurdle.",
-      "recommendationBelow": "Updated view: {perShare} fair value / share. Weighted IRR {irr} is below the {hurdle} hurdle.",
+      "recommendationAbove": "Updated view: {perShare} fair value / share. Weighted IRR {irr} clears the {hurdle} benchmark.",
+      "recommendationBelow": "Updated view: {perShare} fair value / share. Weighted IRR {irr} is below the {hurdle} benchmark.",
       "sourceLocked": "That figure is a sourced actual (source-locked). Actuals come from the source documents; edit an assumption instead.",
       "unparsed": "Couldn’t map that to an editable assumption. Try “raise FY26 order growth to 20%” or “what if terminal growth is 3.5%?”."
     }

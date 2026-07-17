@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import {
   AlertCircle,
@@ -26,9 +27,12 @@ import { LucideIcon } from "@/components/shell/lucide-icon";
 import { SourcePicker } from "@/components/chat/source-picker";
 import { AGENTS, getAgent } from "@/lib/ai/agents";
 import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
+import { publishGoldenSelection } from "@/lib/demo/golden-bus";
+import { RUNNABLE_SKILLS, resolveSkillRun } from "@/lib/skills-run";
 import { postUpload, precheckPdf } from "@/lib/upload-client";
 import manifest from "@/data/corpus/manifest.json";
 import type { AgentId, ChatContext, CorpusDoc, Lang } from "@/lib/types";
+import type { Skill } from "@/lib/skills";
 import { cn } from "@/lib/utils";
 
 const DOCS = manifest as CorpusDoc[];
@@ -56,6 +60,13 @@ interface TriggerState {
   query: string;
   start: number;
   caret: number;
+  index: number;
+}
+
+/** "/" skill invoker: only opens when "/" is typed into an empty composer,
+ *  `query` is everything typed after the slash (continue typing to filter). */
+interface SkillTriggerState {
+  query: string;
   index: number;
 }
 
@@ -118,12 +129,15 @@ export function Composer({
   const t = useTranslations("chat.composer");
   const tu = useTranslations("upload");
   const locale = useLocale() as Lang;
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
   const [agentChip, setAgentChip] = React.useState<AgentId | null>(null);
   const [docChips, setDocChips] = React.useState<string[]>([]);
   const [model, setModel] = React.useState<ModelTier>("auto");
   const [trigger, setTrigger] = React.useState<TriggerState | null>(null);
+  const [skillTrigger, setSkillTrigger] =
+    React.useState<SkillTriggerState | null>(null);
 
   // Paperclip attach: uploaded docs become # chips + join the # typeahead for
   // this session; in-flight / failed uploads render as transient chips.
@@ -199,6 +213,23 @@ export function Composer({
       .slice(0, 6);
   }, [trigger, uploadedDocs]);
 
+  // "/" skill invoker matches, filtered by localized name as the user keeps
+  // typing after the slash. RUNNABLE_SKILLS is pre-filtered to goldenId-run
+  // skills only (lib/skills-run.ts): they replay a recorded golden question
+  // byte-for-byte through the exact-key cache, cache-safe for the offline
+  // demo. Prefill-run skills have no cache guarantee and are deliberately
+  // excluded from this entry point.
+  const skillItems = React.useMemo(() => {
+    if (!skillTrigger) return [];
+    const q = skillTrigger.query.toLowerCase();
+    if (!q) return RUNNABLE_SKILLS;
+    return RUNNABLE_SKILLS.filter(
+      (s) =>
+        s.name.en.toLowerCase().includes(q) ||
+        s.name.ar.includes(skillTrigger.query),
+    );
+  }, [skillTrigger]);
+
   // Never offer Improve on a recorded golden question (⌘K/skills prefill),
   // a rewrite desyncs the cache key and kills the beat on stage.
   const isGoldenText = GOLDEN_QUESTIONS.some(
@@ -210,11 +241,23 @@ export function Composer({
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
+    const wasEmpty = text.length === 0;
     setText(value);
     if (improved) setImproved(false);
     const caret = e.target.selectionStart ?? value.length;
     const t = detectTrigger(value, caret);
     setTrigger(t ? { ...t, index: 0 } : null);
+
+    // "/" only opens the skill invoker when typed into an empty composer;
+    // once open it stays open (filtering) as long as the text still starts
+    // with "/", and closes the moment that leading slash is edited away.
+    if (wasEmpty && value === "/") {
+      setSkillTrigger({ query: "", index: 0 });
+    } else if (skillTrigger && value.startsWith("/")) {
+      setSkillTrigger({ query: value.slice(1), index: 0 });
+    } else if (skillTrigger) {
+      setSkillTrigger(null);
+    }
   }
 
   function removeTriggerToken(start: number, caret: number) {
@@ -230,6 +273,25 @@ export function Composer({
   function pickDoc(id: string) {
     if (trigger) removeTriggerToken(trigger.start, trigger.caret);
     setDocChips((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  }
+
+  // Fires the exact same code path the Skills page Run button uses
+  // (app/(app)/skills/skill-card.tsx): publish the recorded golden selection
+  // onto the cross-page bus, then navigate. The composer never sends this
+  // question itself, the target chat surface picks it up via
+  // subscribeGoldenSelection/takeGoldenSelection and pre-fills, unsent.
+  function runSkill(skill: Skill) {
+    const target = resolveSkillRun(skill, locale);
+    if (!target) return;
+    publishGoldenSelection({
+      context: target.context,
+      text: target.text,
+      agent: target.agent,
+      docIds: target.docIds,
+    });
+    router.push(target.href);
+    setText("");
+    setSkillTrigger(null);
   }
 
   // ─── paperclip upload ───
@@ -319,6 +381,40 @@ export function Composer({
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (skillTrigger) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setSkillTrigger(null);
+        return;
+      }
+      if (skillItems.length > 0) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setSkillTrigger((s) =>
+            s ? { ...s, index: (s.index + 1) % skillItems.length } : s,
+          );
+          return;
+        }
+        if (e.key === "ArrowUp") {
+          e.preventDefault();
+          setSkillTrigger((s) =>
+            s
+              ? {
+                  ...s,
+                  index: (s.index - 1 + skillItems.length) % skillItems.length,
+                }
+              : s,
+          );
+          return;
+        }
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const s = skillItems[skillTrigger.index];
+          if (s) runSkill(s);
+          return;
+        }
+      }
+    }
     if (trigger && items.length > 0) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -410,6 +506,20 @@ export function Composer({
             headerDocs={t("docsHeader")}
             onPickAgent={pickAgent}
             onPickDoc={pickDoc}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* "/" skill invoker (floats above the input, same slot as the typeahead) */}
+      <AnimatePresence>
+        {skillTrigger && (
+          <SkillInvokerMenu
+            skills={skillItems}
+            index={skillTrigger.index}
+            lang={locale}
+            header={t("skillsHeader")}
+            emptyLabel={t("noMatches")}
+            onPick={runSkill}
           />
         )}
       </AnimatePresence>
@@ -888,6 +998,71 @@ function TypeaheadMenu({
           </button>
         );
       })}
+    </motion.div>
+  );
+}
+
+/** "/" skill invoker popover, same slot/positioning as TypeaheadMenu, dialog
+ *  motion tokens (scale 0.98 → 1 + fade, 150ms). Lists name + oneLiner for
+ *  every RUNNABLE_SKILLS entry, filtered as the user types. */
+function SkillInvokerMenu({
+  skills,
+  index,
+  lang,
+  header,
+  emptyLabel,
+  onPick,
+}: {
+  skills: readonly Skill[];
+  index: number;
+  lang: Lang;
+  header: string;
+  emptyLabel: string;
+  onPick: (skill: Skill) => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98, y: 4 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98, y: 4 }}
+      transition={{ duration: 0.15, ease: EASE }}
+      className="border-border bg-card shadow-hover rounded-card faheem-scrollbar absolute inset-x-0 bottom-full z-20 mb-2 max-h-64 overflow-y-auto border p-1.5"
+    >
+      <p className="text-text-secondary px-2.5 py-1 text-[0.6875rem] font-bold tracking-[0.04em] uppercase">
+        {header}
+      </p>
+      {skills.length === 0 ? (
+        <p className="text-text-secondary px-2.5 py-4 text-center text-sm">
+          {emptyLabel}
+        </p>
+      ) : (
+        skills.map((s, i) => (
+          <button
+            key={s.id}
+            type="button"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              onPick(s);
+            }}
+            className={cn(
+              "rounded-btn flex w-full items-start gap-2.5 px-2.5 py-1.5 text-start transition-colors",
+              i === index ? "bg-navy-50" : "hover:bg-navy-50",
+            )}
+          >
+            <span className="bg-accent-50 text-accent-700 rounded-btn mt-0.5 grid size-6 shrink-0 place-items-center">
+              <LucideIcon name={s.icon} className="size-3.5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="text-navy block truncate text-sm font-semibold">
+                {s.name[lang]}
+              </span>
+              <span className="text-text-secondary block truncate text-xs">
+                {s.oneLiner[lang]}
+              </span>
+            </span>
+          </button>
+        ))
+      )}
     </motion.div>
   );
 }

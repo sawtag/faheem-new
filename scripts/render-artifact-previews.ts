@@ -4,7 +4,7 @@
  * converts each to PDF with LibreOffice (soffice), rasterizes pages with
  * pdftoppm, and lands PNGs in public/artifacts/previews/:
  *
- *   deck-01.png … deck-08.png   board deck, all 8 slides (1280px wide, 16:9)
+ *   deck-01.png … deck-10.png   board deck, all 10 slides (1280px wide, 16:9)
  *   memo-01.png … memo-03.png   IC memo, first 3 pages   (1280px wide)
  *   darb-memo-01.png … -0N.png  Darb screening memo, every page (1280px wide)
  *   model-cover.png             workbook Cover sheet      (page 1 of the PDF)
@@ -155,7 +155,7 @@ async function main(): Promise<void> {
     {
       file: "jahez-board-deck.pptx",
       build: buildBoardDeck,
-      pages: 8,
+      pages: 10,
       target: (i) => `deck-${pad(i + 1)}.png`,
     },
     {

@@ -129,17 +129,33 @@ export function AssumptionsTab() {
           titleKey="model.live.assumptions.groups.risk.title"
           captionKey="model.live.assumptions.groups.risk.caption"
         >
-          <ScalarGroup
-            keys={[
-              "holdYears",
-              "riskWeights.0",
-              "riskWeights.1",
-              "riskWeights.2",
-              "riskWeights.3",
-              "riskWeights.4",
-              "riskWeights.5",
-            ]}
-          />
+          <div className="flex flex-col gap-3">
+            {/* read-only composite: click to drill the peak-weighted formula
+                and the six P×I weights below it */}
+            <GridTable>
+              <tbody>
+                <tr className="border-border border-b">
+                  <RowLabel nodeKey="riskScore" strong />
+                  <ModelCell
+                    nodeKey="riskScore"
+                    editable={false}
+                    className="w-32"
+                  />
+                </tr>
+              </tbody>
+            </GridTable>
+            <ScalarGroup
+              keys={[
+                "holdYears",
+                "riskWeights.0",
+                "riskWeights.1",
+                "riskWeights.2",
+                "riskWeights.3",
+                "riskWeights.4",
+                "riskWeights.5",
+              ]}
+            />
+          </div>
         </ModelSectionCard>
       </div>
     </div>

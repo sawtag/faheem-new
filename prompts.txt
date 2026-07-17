@@ -1,0 +1,48 @@
+SCENE 1 (Jahez workspace)
+
+Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?
+
+How exposed is Jahez to Keeta's expansion through 2026?
+
+Generate the investment memo on Jahez, including market research and the competition landscape.
+
+Convert this memo into a slide deck for the investment committee.
+
+
+SCENE 2 (same thread, type "/" and pick DCF, FCFF Build)
+
+Run the DCF on Jahez out to 2031 and build the bull and bear cases against base.
+
+(Live Model trap, typed by hand:)
+Change FY25 revenue to SAR 2 billion
+
+(spare follow-ups:)
+Walk me through the WACC build for the Jahez valuation: where does every input come from?
+
+The trading comps imply a much higher value than your DCF. Why the gap, and which should the committee trust?
+
+What would have to be true for Jahez to re-rate to your bull case?
+
+
+SCENE 3 (Darb workspace)
+
+Create the IC memo on Darb using the data room and our internal template.
+
+Prepare the IC memo, DCF model, and committee deck.
+
+
+SCENE 4 (IC room)
+
+Before we vote on Thara Pay: what does the latest macro data say about Saudi consumer spending and digital payments (GDP, inflation, household spending, the policy rate), and does anything in it challenge the growth assumptions in the analysis?
+
+The Jahez deck values the business at SAR 14.4 per share on a 13.31% WACC. How solid is the beta behind that WACC, and what breaks if it is wrong?
+
+
+BACKUP CARDS
+
+Give me the investment case on Thara Pay ahead of the vote: expected return against our Benchmark, the quantified risk score, and how solid are the inputs behind both?
+
+Aqar Development: why did we decline it last year, and does anything in the latest macro data change that call?
+
+(Arabic flourish, after flipping the locale:)
+هل يجتاز جاهز فحص الامتثال وفق ميثاق لجنة الاستثمار؟

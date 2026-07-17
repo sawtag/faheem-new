@@ -1,20 +1,23 @@
 /**
- * Jahez board deck, the Lunar-branded PowerPoint deliverable (§11 "Board deck
- * (PPTX) ~8 slides").
+ * Jahez committee deck, the Lunar-branded PowerPoint deliverable.
  *
- * ① thesis-on-a-page ② market map ③ unit-economics bridge ④ valuation football
- * field ⑤ scenario IRRs vs the 15% hurdle ⑥ risk matrix ⑦ mandate fit
- * ⑧ recommendation. 16:9, one Lunar-branded slide master (charcoal band, gold
- * rule, serif titles, "Prepared by Faheem for Lunar Investments" footer +
- * page number on every slide).
+ * Ten slides following the house template (same order as the IC memo,
+ * enterprise-finance register, neutral throughout, no rating words):
+ * ① charcoal cover ② executive summary (at-a-glance grid + observations)
+ * ③ company & market map ④ FY2025A unit-economics bridge ⑤ historical &
+ * projected financials table ⑥ valuation football field ⑦ scenario IRRs vs
+ * the Benchmark ⑧ quantified risk matrix ⑨ Benchmark & mandate check
+ * ⑩ "For Investment Committee Decision" close with monitoring triggers.
+ * 16:9, one Lunar-branded slide master (charcoal band, gold rule, serif
+ * titles, "Prepared by Faheem for Lunar Investments" footer + page number).
  *
  * Titles/subtitles/commentary come from `data/narratives.json`, resolved via
  * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())`, the
  * same fact bag the IC memo uses, so the deck can never disagree with the memo
- * or the workbook (AGENTS.md rule 5). Every chart on the data slides (unit-
- * economics bridge, football field, scenario bars, risk grid) is drawn with
- * native pptxgenjs shapes from `ModelResult` directly, no invented figures,
- * no chart-library guesswork.
+ * or the workbook (AGENTS.md rule 5). Every chart and table on the data slides
+ * (unit-economics bridge, financials table, football field, scenario bars,
+ * risk grid) is drawn with native pptxgenjs shapes from `ModelResult`
+ * directly, no invented figures, no chart-library guesswork.
  */
 import PptxGenJS from "pptxgenjs";
 import {
@@ -28,51 +31,50 @@ import {
   riskRegister,
   type NarrativeFacts,
 } from "@/lib/generate/shared";
-import { computeModel } from "@/lib/model/compute";
+import { computeModel, YEARS } from "@/lib/model/compute";
 import type { ModelResult } from "@/lib/model/types";
 
 // ════════════════════════════ narrative shapes ══════════════════════════════
-interface DeckPillar {
-  title: string;
-  body: string;
-}
-interface Slide1N {
+interface TitledSlideN {
   title: string;
   subtitle: string;
-  recommendationLine: string;
-  pillars: DeckPillar[];
   footnote: string;
+}
+interface CoverN {
+  series: string;
+  company: string;
+  confidential: string;
+  date: string;
+}
+interface ExecSummaryN extends TitledSlideN {
+  bullets: string[];
 }
 interface Player {
   name: string;
   note: string;
 }
-interface Slide2N {
-  title: string;
-  subtitle: string;
+interface MarketN extends TitledSlideN {
   players: Player[];
-  footnote: string;
 }
-interface SlidePlainN {
+interface DecisionN {
   title: string;
-  subtitle: string;
-  footnote: string;
-}
-interface Slide8N {
-  title: string;
-  recommendationLine: string;
-  adviceLine: string;
+  banner: string;
+  monitoringTitle: string;
+  monitoring: string[];
+  advisoryLine: string;
   footnote: string;
 }
 interface DeckNarratives {
-  slide1: Slide1N;
-  slide2: Slide2N;
-  slide3: SlidePlainN;
-  slide4: SlidePlainN;
-  slide5: SlidePlainN;
-  slide6: SlidePlainN;
-  slide7: SlidePlainN;
-  slide8: Slide8N;
+  cover: CoverN;
+  execSummary: ExecSummaryN;
+  market: MarketN;
+  unitEconomics: TitledSlideN;
+  financials: TitledSlideN;
+  valuation: TitledSlideN;
+  scenarios: TitledSlideN;
+  risk: TitledSlideN;
+  mandate: TitledSlideN;
+  decision: DecisionN;
 }
 
 // ═══════════════════════════════ layout constants ═══════════════════════════
@@ -188,82 +190,191 @@ function addFootnote(slide: PptxGenJS.Slide, text: string): void {
   });
 }
 
-// ═════════════════════════════════ slide 1 ══════════════════════════════════
-function buildSlide1(pptx: PptxGenJS, n: Slide1N): void {
+// table cell helpers shared by the financials / mandate / decision tables
+const headerCell = (
+  text: string,
+  opts: { align?: PptxGenJS.HAlign; fontSize?: number } = {},
+): PptxGenJS.TableCell => ({
+  text,
+  options: {
+    fontFace: B.sans,
+    fontSize: opts.fontSize ?? 10,
+    bold: true,
+    color: B.cream,
+    fill: { color: B.charcoal },
+    align: opts.align,
+  },
+});
+const bodyCell = (
+  text: string,
+  opts: {
+    bold?: boolean;
+    color?: string;
+    align?: PptxGenJS.HAlign;
+    fill?: string;
+    fontSize?: number;
+  } = {},
+): PptxGenJS.TableCell => ({
+  text,
+  options: {
+    fontFace: B.sans,
+    fontSize: opts.fontSize ?? 10,
+    bold: opts.bold ?? false,
+    color: opts.color ?? B.ink,
+    align: opts.align,
+    fill: opts.fill ? { color: opts.fill } : undefined,
+  },
+});
+
+// number formatting for the financials table (mirrors the memo's conventions)
+const m0 = (v: number): string =>
+  v < 0
+    ? `(${Math.abs(v).toLocaleString("en-US", { maximumFractionDigits: 0 })})`
+    : v.toLocaleString("en-US", { maximumFractionDigits: 0 });
+const pc1 = (v: number): string => `${(v * 100).toFixed(1)}%`;
+
+// ═════════════════════════ slide 1: cover (no master) ═══════════════════════
+function buildCover(pptx: PptxGenJS, n: CoverN): void {
+  const slide = pptx.addSlide();
+  slide.background = { color: B.charcoal };
+
+  slide.addText("LUNAR INVESTMENTS", {
+    x: 0,
+    y: 2.05,
+    w: SLIDE_W,
+    h: 0.85,
+    align: "center",
+    fontFace: B.serif,
+    fontSize: 36,
+    bold: true,
+    color: B.cream,
+    charSpacing: 2,
+  });
+  slide.addShape(pptx.ShapeType.rect, {
+    x: SLIDE_W / 2 - 1.6,
+    y: 3.02,
+    w: 3.2,
+    h: 0.03,
+    fill: { color: B.gold },
+  });
+  slide.addText(n.series, {
+    x: 0,
+    y: 3.2,
+    w: SLIDE_W,
+    h: 0.45,
+    align: "center",
+    fontFace: B.serif,
+    fontSize: 15,
+    italic: true,
+    color: B.goldLight,
+  });
+  slide.addText(n.company, {
+    x: 0,
+    y: 3.75,
+    w: SLIDE_W,
+    h: 0.5,
+    align: "center",
+    fontFace: B.serif,
+    fontSize: 19,
+    color: B.cream,
+  });
+  slide.addText(n.confidential, {
+    x: 0,
+    y: 5.55,
+    w: SLIDE_W,
+    h: 0.32,
+    align: "center",
+    fontFace: B.sans,
+    fontSize: 9.5,
+    bold: true,
+    color: B.goldLight,
+    charSpacing: 1.5,
+  });
+  slide.addText(n.date, {
+    x: 0,
+    y: 5.95,
+    w: SLIDE_W,
+    h: 0.32,
+    align: "center",
+    fontFace: B.sans,
+    fontSize: 9.5,
+    color: B.band,
+  });
+}
+
+// ═════════════════════════ slide 2: executive summary ═══════════════════════
+function buildExecSummary(
+  pptx: PptxGenJS,
+  n: ExecSummaryN,
+  facts: NarrativeFacts,
+): void {
   const slide = pptx.addSlide({ masterName: MASTER });
   addTitle(slide, n.title, n.subtitle);
 
-  slide.addShape(pptx.ShapeType.rect, {
-    x: CONTENT_X,
-    y: 1.3,
-    w: CONTENT_W,
-    h: 0.58,
-    fill: { color: B.goldPale },
-    line: { color: B.gold, width: 1 },
-  });
-  slide.addText(n.recommendationLine, {
-    x: CONTENT_X + 0.15,
-    y: 1.3,
-    w: CONTENT_W - 0.3,
-    h: 0.58,
-    fontFace: B.sans,
-    fontSize: 12.5,
-    bold: true,
-    color: B.charcoal,
-    valign: "middle",
-    align: "center",
-  });
+  const kv: [string, string][] = [
+    ["Company", "Jahez International · Tadawul 6017"],
+    ["Sector", "Quick-commerce & food delivery"],
+    ["Current price (close)", fact(facts, "calc.currentPrice")],
+    ["DCF base-case value", fact(facts, "calc.targetPrice")],
+    ["Implied upside", fact(facts, "calc.upside")],
+    ["Weighted return (4y)", fact(facts, "calc.weightedReturn")],
+    ["Benchmark (gross IRR)", fact(facts, "calc.hurdle")],
+    ["Quantified risk score", `${fact(facts, "calc.riskScore")} / 10`],
+    ["Compliance screen", fact(facts, "calc.complianceStatus")],
+  ];
+  slide.addTable(
+    kv.map(([label, value]): PptxGenJS.TableRow => [
+      headerCell(label, { fontSize: 9.5 }),
+      bodyCell(value, { fontSize: 9.5, fill: B.white }),
+    ]),
+    {
+      x: CONTENT_X,
+      y: 1.55,
+      w: 5.3,
+      colW: [2.5, 2.8],
+      rowH: 0.42,
+      border: { type: "solid", color: B.borderStrong, pt: 0.5 },
+      autoPage: false,
+      valign: "middle",
+    },
+  );
 
-  const gap = 0.32;
-  const cardW = (CONTENT_W - gap * 2) / 3;
-  const y = 2.2;
-  const h = 4.0;
-  n.pillars.forEach((p, i) => {
-    const x = CONTENT_X + i * (cardW + gap);
-    slide.addShape(pptx.ShapeType.rect, {
-      x,
-      y,
-      w: 0.06,
-      h,
-      fill: { color: B.gold },
-    });
-    slide.addShape(pptx.ShapeType.rect, {
-      x: x + 0.06,
-      y,
-      w: cardW - 0.06,
-      h,
-      fill: { color: B.white },
-      line: { color: B.border, width: 0.75 },
-    });
-    slide.addText(p.title, {
-      x: x + 0.28,
-      y: y + 0.22,
-      w: cardW - 0.56,
-      h: 0.95,
-      fontFace: B.serif,
-      fontSize: 14,
-      bold: true,
-      color: B.charcoal,
-      valign: "top",
-    });
-    slide.addText(p.body, {
-      x: x + 0.28,
-      y: y + 1.2,
-      w: cardW - 0.56,
-      h: h - 1.45,
+  slide.addText("Summary observations", {
+    x: 6.35,
+    y: 1.5,
+    w: CONTENT_W - 5.85,
+    h: 0.35,
+    fontFace: B.sans,
+    fontSize: 12,
+    bold: true,
+    color: B.charcoalMid,
+  });
+  slide.addText(
+    n.bullets.map((b) => ({
+      text: b,
+      options: {
+        bullet: { indent: 12 },
+        paraSpaceAfter: 10,
+      },
+    })),
+    {
+      x: 6.35,
+      y: 1.95,
+      w: CONTENT_W - 5.85,
+      h: 4.4,
       fontFace: B.sans,
       fontSize: 10.5,
       color: B.ink,
       valign: "top",
-      lineSpacingMultiple: 1.18,
-    });
-  });
+      lineSpacingMultiple: 1.12,
+    },
+  );
 
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 2 ══════════════════════════════════
-function buildSlide2(pptx: PptxGenJS, n: Slide2N): void {
+// ═════════════════════ slide 3: company & market overview ═══════════════════
+function buildMarket(pptx: PptxGenJS, n: MarketN): void {
   const slide = pptx.addSlide({ masterName: MASTER });
   addTitle(slide, n.title, n.subtitle);
 
@@ -311,8 +422,8 @@ function buildSlide2(pptx: PptxGenJS, n: Slide2N): void {
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 3 ══════════════════════════════════
-function buildSlide3(pptx: PptxGenJS, n: SlidePlainN): void {
+// ═══════════════════════ slide 4: unit-economics bridge ═════════════════════
+function buildUnitEconomics(pptx: PptxGenJS, n: TitledSlideN): void {
   const slide = pptx.addSlide({ masterName: MASTER });
   addTitle(slide, n.title, n.subtitle);
 
@@ -406,10 +517,63 @@ function buildSlide3(pptx: PptxGenJS, n: SlidePlainN): void {
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 4 ══════════════════════════════════
-function buildSlide4(
+// ═══════════════ slide 5: historical & projected financials ═════════════════
+function buildFinancials(
   pptx: PptxGenJS,
-  n: SlidePlainN,
+  n: TitledSlideN,
+  model: ModelResult,
+): void {
+  const slide = pptx.addSlide({ masterName: MASTER });
+  addTitle(slide, n.title, n.subtitle);
+
+  const F0 = 3; // first forecast index (FY26E), forecast body cells get a tint
+  const margin = (i: number): number =>
+    (model.ebitda[i] ?? 0) / (model.netRev[i] ?? 1);
+  const row = (
+    label: string,
+    format: (v: number, i: number) => string,
+    series: number[],
+  ): PptxGenJS.TableRow => [
+    bodyCell(label, { bold: true, fontSize: 9.5 }),
+    ...series.map((v, i) =>
+      bodyCell(format(v, i), {
+        align: "center",
+        fontSize: 9.5,
+        fill: i >= F0 ? B.paper : B.white,
+      }),
+    ),
+  ];
+  const rows: PptxGenJS.TableRow[] = [
+    [
+      headerCell("SAR m unless noted", { fontSize: 9.5 }),
+      ...YEARS.map((y) => headerCell(y, { align: "center", fontSize: 9.5 })),
+    ],
+    row("Orders (m)", (v) => v.toFixed(1), model.orders),
+    row("GMV", (v) => m0(v), model.gmv),
+    row("Net revenue", (v) => m0(v), model.netRev),
+    row("Take rate", (v) => pc1(v), model.takeRate),
+    row("Adj. EBITDA", (v) => m0(v), model.ebitda),
+    row("Adj. EBITDA margin", (_v, i) => pc1(margin(i)), model.ebitda),
+    row("FCFF", (v, i) => (i === 0 ? "–" : m0(v)), model.fcff),
+  ];
+  slide.addTable(rows, {
+    x: CONTENT_X,
+    y: 1.75,
+    w: CONTENT_W,
+    colW: [2.65, ...YEARS.map(() => (CONTENT_W - 2.65) / YEARS.length)],
+    rowH: 0.44,
+    border: { type: "solid", color: B.border, pt: 0.5 },
+    autoPage: false,
+    valign: "middle",
+  });
+
+  addFootnote(slide, n.footnote);
+}
+
+// ══════════════════════ slide 6: valuation football field ═══════════════════
+function buildValuation(
+  pptx: PptxGenJS,
+  n: TitledSlideN,
   model: ModelResult,
 ): void {
   const slide = pptx.addSlide({ masterName: MASTER });
@@ -503,7 +667,7 @@ function buildSlide4(
     fill: { color: B.positive },
     line: { color: B.charcoal, width: 0.75 },
   });
-  slide.addText(`DCF target, SAR ${model.base.perShare.toFixed(2)}`, {
+  slide.addText(`DCF base case, SAR ${model.base.perShare.toFixed(2)}`, {
     x: xDcf - 1.1,
     y: barY - 1.0,
     w: 2.2,
@@ -537,10 +701,10 @@ function buildSlide4(
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 5 ══════════════════════════════════
-function buildSlide5(
+// ═══════════════════ slide 7: scenario IRRs vs the Benchmark ════════════════
+function buildScenarios(
   pptx: PptxGenJS,
-  n: SlidePlainN,
+  n: TitledSlideN,
   model: ModelResult,
 ): void {
   const slide = pptx.addSlide({ masterName: MASTER });
@@ -603,6 +767,7 @@ function buildSlide5(
     });
   });
 
+  // reference lines, labelled in the side margins so nothing overlaps the bars
   const hurdleY = scaleY(model.ic.hurdle / 100);
   slide.addShape(pptx.ShapeType.line, {
     x: chartX,
@@ -611,27 +776,48 @@ function buildSlide5(
     h: 0,
     line: { color: B.gold, width: 1.75, dashType: "dash" },
   });
-  slide.addText(`Lunar hurdle, ${model.ic.hurdle.toFixed(1)}%`, {
-    x: chartX + chartW - 2.7,
-    y: hurdleY - 0.34,
-    w: 2.7,
-    h: 0.28,
-    align: "right",
+  slide.addText(`Lunar Benchmark\n${model.ic.hurdle.toFixed(1)}%`, {
+    x: chartX + chartW + 0.1,
+    y: hurdleY - 0.3,
+    w: 1.5,
+    h: 0.6,
+    align: "left",
+    valign: "middle",
     fontFace: B.sans,
-    fontSize: 10,
+    fontSize: 9.5,
     bold: true,
     color: B.warn,
   });
 
+  const weightedY = scaleY(model.weightedReturn);
+  slide.addShape(pptx.ShapeType.line, {
+    x: chartX,
+    y: weightedY,
+    w: chartW,
+    h: 0,
+    line: { color: B.charcoalMid, width: 1.25, dashType: "sysDot" },
+  });
+  slide.addText(
+    `Probability-weighted\n${(model.weightedReturn * 100).toFixed(1)}%`,
+    {
+      x: 0.3,
+      y: weightedY - 0.3,
+      w: 1.8,
+      h: 0.6,
+      align: "right",
+      valign: "middle",
+      fontFace: B.sans,
+      fontSize: 9.5,
+      bold: true,
+      color: B.charcoalMid,
+    },
+  );
+
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 6 ══════════════════════════════════
-function buildSlide6(
-  pptx: PptxGenJS,
-  n: SlidePlainN,
-  model: ModelResult,
-): void {
+// ═════════════════════ slide 8: quantified risk assessment ══════════════════
+function buildRisk(pptx: PptxGenJS, n: TitledSlideN, model: ModelResult): void {
   const slide = pptx.addSlide({ masterName: MASTER });
   addTitle(slide, n.title, n.subtitle);
 
@@ -729,67 +915,20 @@ function buildSlide6(
     });
   });
 
-  const headerFill = { color: B.charcoal };
   const rows: PptxGenJS.TableRow[] = [
     [
-      {
-        text: "#",
-        options: {
-          fontFace: B.sans,
-          fontSize: 9,
-          bold: true,
-          color: B.cream,
-          fill: headerFill,
-          align: "center",
-        },
-      },
-      {
-        text: "Risk",
-        options: {
-          fontFace: B.sans,
-          fontSize: 9,
-          bold: true,
-          color: B.cream,
-          fill: headerFill,
-        },
-      },
-      {
-        text: "Score",
-        options: {
-          fontFace: B.sans,
-          fontSize: 9,
-          bold: true,
-          color: B.cream,
-          fill: headerFill,
-          align: "center",
-        },
-      },
+      headerCell("#", { align: "center", fontSize: 9 }),
+      headerCell("Risk", { fontSize: 9 }),
+      headerCell("Score", { align: "center", fontSize: 9 }),
     ],
     ...riskRegister.map((r, i): PptxGenJS.TableRow => [
-      {
-        text: String(i + 1),
-        options: {
-          fontFace: B.sans,
-          fontSize: 9,
-          bold: true,
-          color: B.charcoal,
-          align: "center",
-        },
-      },
-      {
-        text: r.name,
-        options: { fontFace: B.sans, fontSize: 9, color: B.ink },
-      },
-      {
-        text: String(r.probability * r.impact),
-        options: {
-          fontFace: B.sans,
-          fontSize: 9,
-          bold: true,
-          color: B.charcoal,
-          align: "center",
-        },
-      },
+      bodyCell(String(i + 1), { bold: true, align: "center", fontSize: 9 }),
+      bodyCell(r.name, { fontSize: 9 }),
+      bodyCell(String(r.probability * r.impact), {
+        bold: true,
+        align: "center",
+        fontSize: 9,
+      }),
     ]),
   ];
   slide.addTable(rows, {
@@ -817,40 +956,15 @@ function buildSlide6(
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 7 ══════════════════════════════════
-function buildSlide7(
+// ═════════════════════ slide 9: Benchmark & mandate check ═══════════════════
+function buildMandate(
   pptx: PptxGenJS,
-  n: SlidePlainN,
+  n: TitledSlideN,
   model: ModelResult,
   facts: NarrativeFacts,
 ): void {
   const slide = pptx.addSlide({ masterName: MASTER });
   addTitle(slide, n.title, n.subtitle);
-
-  const headerFill = { color: B.charcoal };
-  const headerCell = (text: string): PptxGenJS.TableCell => ({
-    text,
-    options: {
-      fontFace: B.sans,
-      fontSize: 10,
-      bold: true,
-      color: B.cream,
-      fill: headerFill,
-    },
-  });
-  const bodyCell = (
-    text: string,
-    opts: { bold?: boolean; color?: string; align?: PptxGenJS.HAlign } = {},
-  ): PptxGenJS.TableCell => ({
-    text,
-    options: {
-      fontFace: B.sans,
-      fontSize: 10,
-      bold: opts.bold ?? false,
-      color: opts.color ?? B.ink,
-      align: opts.align,
-    },
-  });
 
   const irrPass = model.weightedReturn >= 0.15;
   const rows: PptxGenJS.TableRow[] = [
@@ -869,13 +983,13 @@ function buildSlide7(
       bodyCell("p.3"),
     ],
     [
-      bodyCell("IRR hurdle (15%)"),
+      bodyCell("IRR Benchmark (15%)"),
       bodyCell(irrPass ? "PASS" : "REVIEW", {
         bold: true,
         color: irrPass ? B.positive : B.warn,
       }),
       bodyCell(
-        `Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} hurdle`,
+        `Weighted return ${fact(facts, "calc.weightedReturn")} vs the ${fact(facts, "calc.hurdle")} Benchmark; bear case ${fact(facts, "calc.irrBear")} in isolation`,
       ),
       bodyCell("p.3"),
     ],
@@ -928,50 +1042,79 @@ function buildSlide7(
   addFootnote(slide, n.footnote);
 }
 
-// ═════════════════════════════════ slide 8 ══════════════════════════════════
-function buildSlide8(pptx: PptxGenJS, n: Slide8N, facts: NarrativeFacts): void {
+// ═══════════════ slide 10: for Investment Committee decision ════════════════
+function buildDecision(pptx: PptxGenJS, n: DecisionN): void {
   const slide = pptx.addSlide({ masterName: MASTER });
   addTitle(slide, n.title);
 
   slide.addShape(pptx.ShapeType.rect, {
     x: 1.7,
-    y: 2.1,
+    y: 1.75,
     w: SLIDE_W - 3.4,
-    h: 1.15,
+    h: 1.05,
     fill: { color: B.charcoal },
     line: { color: B.gold, width: 1.5 },
   });
-  slide.addText(fact(facts, "calc.rating"), {
+  slide.addText("The analysis is presented; the decision is the Committee's.", {
     x: 1.7,
-    y: 2.15,
+    y: 1.85,
     w: SLIDE_W - 3.4,
-    h: 0.68,
+    h: 0.5,
     align: "center",
     valign: "middle",
     fontFace: B.serif,
-    fontSize: 32,
+    fontSize: 17,
     bold: true,
     color: B.cream,
   });
-  slide.addText(n.recommendationLine, {
+  slide.addText(n.banner, {
     x: 1.7,
-    y: 2.82,
+    y: 2.35,
     w: SLIDE_W - 3.4,
-    h: 0.4,
+    h: 0.38,
     align: "center",
     valign: "middle",
     fontFace: B.sans,
     fontSize: 11,
     color: B.goldLight,
   });
-  slide.addText(n.adviceLine, {
+
+  slide.addText(n.monitoringTitle, {
     x: 1.7,
-    y: 3.85,
+    y: 3.25,
     w: SLIDE_W - 3.4,
-    h: 0.6,
+    h: 0.35,
+    fontFace: B.sans,
+    fontSize: 12,
+    bold: true,
+    color: B.charcoalMid,
+  });
+  slide.addText(
+    n.monitoring.map((m) => ({
+      text: m,
+      options: { bullet: { indent: 12 }, paraSpaceAfter: 8 },
+    })),
+    {
+      x: 1.7,
+      y: 3.62,
+      w: SLIDE_W - 3.4,
+      h: 2.1,
+      fontFace: B.sans,
+      fontSize: 10.5,
+      color: B.ink,
+      valign: "top",
+      lineSpacingMultiple: 1.12,
+    },
+  );
+
+  slide.addText(n.advisoryLine, {
+    x: 1.7,
+    y: 5.9,
+    w: SLIDE_W - 3.4,
+    h: 0.45,
     align: "center",
     fontFace: B.sans,
-    fontSize: 15,
+    fontSize: 13,
     italic: true,
     bold: true,
     color: B.charcoal,
@@ -993,17 +1136,19 @@ export async function buildBoardDeck(): Promise<Buffer> {
   pptx.layout = "LAYOUT_WIDE";
   pptx.author = "Faheem";
   pptx.company = "Lunar Investments";
-  pptx.title = "Jahez International, Board Deck";
+  pptx.title = "Jahez International, Investment Committee Briefing";
   defineMaster(pptx);
 
-  buildSlide1(pptx, deck.slide1);
-  buildSlide2(pptx, deck.slide2);
-  buildSlide3(pptx, deck.slide3);
-  buildSlide4(pptx, deck.slide4, model);
-  buildSlide5(pptx, deck.slide5, model);
-  buildSlide6(pptx, deck.slide6, model);
-  buildSlide7(pptx, deck.slide7, model, facts);
-  buildSlide8(pptx, deck.slide8, facts);
+  buildCover(pptx, deck.cover);
+  buildExecSummary(pptx, deck.execSummary, facts);
+  buildMarket(pptx, deck.market);
+  buildUnitEconomics(pptx, deck.unitEconomics);
+  buildFinancials(pptx, deck.financials, model);
+  buildValuation(pptx, deck.valuation, model);
+  buildScenarios(pptx, deck.scenarios, model);
+  buildRisk(pptx, deck.risk, model);
+  buildMandate(pptx, deck.mandate, model, facts);
+  buildDecision(pptx, deck.decision);
 
   const out = await pptx.write({ outputType: "nodebuffer" });
   return out as unknown as Buffer;

@@ -31,6 +31,11 @@ import type { Localized } from "@/lib/types";
 export type ConnectorGroup = "external" | "research" | "internal";
 export type ConnectorStatus = "connected" | "available";
 export type ConnectorBadge = "beta" | "mvp";
+/** Honest transport taxonomy (display metadata): MCP is one type, not the page
+ *  framing. `mcp` = a custom Model Context Protocol server, `api` = a data API,
+ *  `files` = a document/file store, `app` = a workplace app, `feed` = a
+ *  news/disclosures/market data feed. */
+export type ConnectorSourceType = "mcp" | "api" | "files" | "app" | "feed";
 
 export type ConnectorTile =
   | { kind: "monogram"; initial: string; tint?: "navy" | "accent" }
@@ -46,6 +51,8 @@ export interface Connector {
   tooltip: Localized;
   group: ConnectorGroup;
   status: ConnectorStatus;
+  /** rendered as a small type chip on each row (Data Sources page) */
+  sourceType: ConnectorSourceType;
   badge?: ConnectorBadge;
   tile: ConnectorTile;
 }
@@ -54,6 +61,7 @@ export const CONNECTORS: Connector[] = [
   // ── Connected ──────────────────────────────────────────────────────────
   {
     id: "saudi-exchange",
+    sourceType: "feed",
     name: { en: "Saudi Exchange Disclosures", ar: "إفصاحات تداول" },
     description: {
       en: "Official Tadawul filings & announcements",
@@ -69,6 +77,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "argaam",
+    sourceType: "feed",
     name: { en: "Argaam", ar: "أرقام" },
     description: {
       en: "Saudi financial news & market data",
@@ -84,6 +93,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "sahmk",
+    sourceType: "api",
     name: { en: "SAHMK API", ar: "سهمك" },
     description: {
       en: "350+ Tadawul companies, fundamentals & prices",
@@ -99,6 +109,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "gastat",
+    sourceType: "feed",
     name: { en: "GASTAT", ar: "الهيئة العامة للإحصاء" },
     description: {
       en: "Official statistics publications, synced to the data room",
@@ -116,6 +127,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "lunar-data-room",
+    sourceType: "files",
     name: { en: "Lunar Data Room", ar: "غرفة بيانات لونار" },
     description: {
       en: "Deal documents & internal files",
@@ -131,6 +143,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "templates",
+    sourceType: "files",
     name: { en: "Templates", ar: "القوالب" },
     description: {
       en: "Lunar-branded memo, model & deck templates",
@@ -146,6 +159,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "shared-folder",
+    sourceType: "files",
     name: { en: "Windows Shared Folder", ar: "مجلد Windows المشترك" },
     description: {
       en: "Deal files on the firm's network shares",
@@ -163,6 +177,7 @@ export const CONNECTORS: Connector[] = [
   // the composer's Internal Sources picker group).
   {
     id: "sharepoint",
+    sourceType: "files",
     name: { en: "SharePoint", ar: "SharePoint" },
     description: {
       en: "Team sites, memos, and document libraries",
@@ -178,6 +193,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "onedrive",
+    sourceType: "files",
     name: { en: "OneDrive", ar: "OneDrive" },
     description: {
       en: "Analysts' synced working files",
@@ -193,6 +209,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "outlook",
+    sourceType: "app",
     name: { en: "Outlook", ar: "Outlook" },
     description: {
       en: "Deal-team email threads and attachments",
@@ -208,6 +225,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "teams",
+    sourceType: "app",
     name: { en: "Microsoft Teams", ar: "Microsoft Teams" },
     description: {
       en: "Deal-channel messages and shared files",
@@ -223,6 +241,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "gmail",
+    sourceType: "app",
     name: { en: "Gmail", ar: "Gmail" },
     description: {
       en: "Deal-related mail and attachments",
@@ -238,6 +257,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "google-calendar",
+    sourceType: "app",
     name: { en: "Google Calendar", ar: "تقويم Google" },
     description: {
       en: "Meetings, IC dates, and roadshow schedules",
@@ -253,6 +273,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "gdrive",
+    sourceType: "files",
     name: { en: "Google Drive", ar: "Google Drive" },
     description: {
       en: "Shared drives and working documents",
@@ -268,6 +289,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "slack",
+    sourceType: "app",
     name: { en: "Slack", ar: "Slack" },
     description: {
       en: "Deal-desk channels and pinned decisions",
@@ -283,6 +305,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "salesforce",
+    sourceType: "app",
     name: { en: "Salesforce", ar: "Salesforce" },
     description: {
       en: "Relationship and pipeline records",
@@ -298,6 +321,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "granola",
+    sourceType: "app",
     name: { en: "Granola", ar: "Granola" },
     description: {
       en: "AI meeting notes and call transcripts",
@@ -315,6 +339,7 @@ export const CONNECTORS: Connector[] = [
   // ── Available (Saudi/local first) ──────────────────────────────────────
   {
     id: "od-data-gov-sa",
+    sourceType: "feed",
     name: { en: "od.data.gov.sa", ar: "od.data.gov.sa" },
     description: {
       en: "Saudi open government data",
@@ -330,6 +355,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "rega",
+    sourceType: "feed",
     name: { en: "REGA", ar: "الهيئة العامة للعقار" },
     description: {
       en: "Real-estate market indicators",
@@ -345,6 +371,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "alinma-open-banking",
+    sourceType: "api",
     name: {
       en: "Alinma Open Banking",
       ar: "الإنماء، الخدمات المصرفية المفتوحة",
@@ -366,6 +393,7 @@ export const CONNECTORS: Connector[] = [
   // the top of this file) places it after the Saudi/local external connectors.
   {
     id: "marketaux",
+    sourceType: "feed",
     name: { en: "marketaux", ar: "marketaux" },
     description: {
       en: "Global market news API",
@@ -382,6 +410,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "bloomberg",
+    sourceType: "api",
     name: { en: "Bloomberg", ar: "Bloomberg" },
     description: {
       en: "Terminal data & analytics",
@@ -397,6 +426,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "pitchbook",
+    sourceType: "api",
     name: { en: "PitchBook", ar: "PitchBook" },
     description: { en: "Private-market data", ar: "بيانات الأسواق الخاصة" },
     tooltip: {
@@ -409,6 +439,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "intralinks",
+    sourceType: "files",
     name: { en: "Intralinks", ar: "Intralinks" },
     description: { en: "Virtual data rooms", ar: "غرف بيانات افتراضية" },
     tooltip: {
@@ -422,6 +453,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "datasite",
+    sourceType: "files",
     name: { en: "Datasite", ar: "Datasite" },
     description: { en: "Virtual data rooms", ar: "غرف بيانات افتراضية" },
     tooltip: {
@@ -435,6 +467,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "capital-iq",
+    sourceType: "api",
     name: { en: "Capital IQ", ar: "Capital IQ" },
     description: {
       en: "Company financials & screening",
@@ -450,6 +483,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "social-alt-data",
+    sourceType: "feed",
     name: {
       en: "Social & Alt-Data",
       ar: "المحتوى الاجتماعي والبيانات البديلة",
@@ -472,6 +506,7 @@ export const CONNECTORS: Connector[] = [
   // Connect step, never "API"/"feed" for these twelve) ────────────────────
   {
     id: "snb-capital",
+    sourceType: "files",
     name: { en: "SNB Capital", ar: "الأهلي المالية" },
     description: {
       en: "Equity research ingested from your SNB Capital entitlement",
@@ -487,6 +522,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "alrajhi-capital",
+    sourceType: "files",
     name: { en: "Al Rajhi Capital", ar: "الراجحي المالية" },
     description: {
       en: "Research ingested from your Al Rajhi Capital entitlement",
@@ -502,6 +538,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "jadwa",
+    sourceType: "files",
     name: { en: "Jadwa Investment", ar: "جدوى للاستثمار" },
     description: {
       en: "Research ingested from your Jadwa Investment entitlement",
@@ -517,6 +554,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "riyad-capital",
+    sourceType: "files",
     name: { en: "Riyad Capital", ar: "الرياض المالية" },
     description: {
       en: "Research ingested from your Riyad Capital entitlement",
@@ -532,6 +570,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "alinma-capital",
+    sourceType: "files",
     name: { en: "Alinma Capital", ar: "الإنماء المالية" },
     description: {
       en: "Equity research ingested from your Alinma Capital entitlement",
@@ -542,11 +581,12 @@ export const CONNECTORS: Connector[] = [
       ar: "أبحاث أسهم وتقارير قطاعات وتعليق اقتصادي منشورة، مستوردة من اشتراككم لدى الإنماء المالية.",
     },
     group: "research",
-    status: "available",
+    status: "connected",
     tile: { kind: "image", src: "/logos/connectors/alinma-invest.png" },
   },
   {
     id: "aljazira-capital",
+    sourceType: "files",
     name: { en: "Aljazira Capital", ar: "الجزيرة كابيتال" },
     description: {
       en: "Research ingested from your Aljazira Capital entitlement",
@@ -562,6 +602,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "gib-capital",
+    sourceType: "files",
     name: { en: "GIB Capital", ar: "جي آي بي كابيتال" },
     description: {
       en: "Research ingested from your GIB Capital entitlement",
@@ -577,6 +618,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "efg-hermes",
+    sourceType: "files",
     name: { en: "EFG Hermes", ar: "إي إف جي هيرميس" },
     description: {
       en: "Research ingested from your EFG Hermes entitlement",
@@ -592,6 +634,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "arqaam-capital",
+    sourceType: "files",
     name: { en: "Arqaam Capital", ar: "Arqaam Capital" },
     description: {
       en: "Research ingested from your Arqaam Capital entitlement",
@@ -607,6 +650,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "sico",
+    sourceType: "files",
     name: { en: "SICO", ar: "سيكو" },
     description: {
       en: "Research ingested from your SICO entitlement",
@@ -622,6 +666,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "kamco-invest",
+    sourceType: "files",
     name: { en: "Kamco Invest", ar: "كامكو للاستثمار" },
     description: {
       en: "Research ingested from your Kamco Invest entitlement",
@@ -637,6 +682,7 @@ export const CONNECTORS: Connector[] = [
   },
   {
     id: "markaz",
+    sourceType: "files",
     name: { en: "Markaz", ar: "المركز" },
     description: {
       en: "Research ingested from your Markaz entitlement",

@@ -3,7 +3,8 @@
  *
  * The deck is written to a Buffer and read back with JSZip against the real
  * .pptx package a judge would open. Key checks:
- *   - slide count is 8 (±1 of the §11 8-slide spec);
+ *   - slide count is 10 (the house committee-deck template);
+ *   - the register is neutral (no BUY/HOLD/REDUCE rating words anywhere);
  *   - every slide's relationship file resolves to a part that actually exists
  *     in the package (no broken rels);
  *   - the Lunar footer text is present in the package;
@@ -46,10 +47,18 @@ function unescapeXml(s: string): string {
 }
 
 describe("board deck structure", () => {
-  it("has 8 slides (§11 spec: ~8 slides)", () => {
-    expect(slideFiles.length).toBeGreaterThanOrEqual(7);
-    expect(slideFiles.length).toBeLessThanOrEqual(9);
-    expect(slideFiles.length).toBe(8);
+  it("has 10 slides (house committee-deck template)", () => {
+    expect(slideFiles.length).toBe(10);
+  });
+
+  it("opens on the cover and closes on the IC-decision slide", () => {
+    const text = unescapeXml(allXmlText);
+    expect(text).toContain("Investment Committee Briefing");
+    expect(text).toContain("For Investment Committee Decision");
+  });
+
+  it("keeps a neutral register: no analyst rating advocacy anywhere", () => {
+    expect(/\b(BUY|HOLD|REDUCE)\b/.test(unescapeXml(allXmlText))).toBe(false);
   });
 
   it("every slide relationship resolves to a part that exists in the package", async () => {

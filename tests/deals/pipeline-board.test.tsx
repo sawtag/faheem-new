@@ -67,13 +67,13 @@ describe("PipelineBoard", () => {
     expect(within(darb).getByText("vs the IC Charter")).toBeInTheDocument();
   });
 
-  it("shows IRR vs hurdle with a sourced caption on metric-bearing cards", () => {
+  it("shows IRR vs benchmark with a sourced caption on metric-bearing cards", () => {
     renderBoard();
     const jahez = screen
       .getAllByTestId("deal-card")
       .find((c) => c.getAttribute("data-deal") === "jahez")!;
 
-    // Jahez: IRR 17.1% vs 15% hurdle → +210 bps, above tone
+    // Jahez: IRR 17.1% vs 15% benchmark → +210 bps, above tone
     expect(within(jahez).getByText("17.1%")).toBeInTheDocument();
     expect(within(jahez).getByText("15%")).toBeInTheDocument();
     expect(within(jahez).getByTestId("card-irr-delta")).toHaveAttribute(

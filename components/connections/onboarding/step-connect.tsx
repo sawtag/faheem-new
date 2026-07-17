@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { ConnectorWizardCard } from "@/components/connections/connector-wizard-card";
-import { McpModal } from "@/components/connections/mcp-modal";
+import { AddSourceModal } from "@/components/connections/add-source-modal";
 import { OAuthModal } from "@/components/connections/oauth-modal";
 import { reveal } from "@/components/connections/reveal";
 import {
@@ -158,7 +158,11 @@ export function StepConnect({
         );
       })}
 
-      <McpModal open={mcpOpen} onOpenChange={setMcpOpen} onAdd={addCustom} />
+      <AddSourceModal
+        open={mcpOpen}
+        onOpenChange={setMcpOpen}
+        onAdd={addCustom}
+      />
       <OAuthModal
         connector={oauthTarget}
         open={oauthTarget !== null}
@@ -166,6 +170,7 @@ export function StepConnect({
           if (!open) setOauthTarget(null);
         }}
         onConnected={connect}
+        onCustom={() => setMcpOpen(true)}
       />
     </div>
   );
