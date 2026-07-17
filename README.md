@@ -99,6 +99,41 @@ Where the product stands: everything shipped at `demo-rc2` versus the next wave 
 | Analyst guardrails: finance-only scope; no decisions or recommendations, ever                                                | stage      | ✅ Implemented |
 | Memo-to-deck conversion + declined-deal re-evaluation (Aqar decline pack)                                                    | stage      | ✅ Implemented |
 
+## 🚀 Running the project
+
+Works on Linux, macOS, and Windows. **Prerequisites:** [Node.js 26+](https://nodejs.org) (ships with npm) and git.
+
+```bash
+git clone https://github.com/sawtag/faheem-new.git
+cd faheem-new
+npm ci
+cp .env.example .env        # Windows cmd: copy .env.example .env   |   PowerShell: Copy-Item .env.example .env
+npm run dev
+```
+
+Open `http://localhost:3000` and sign in with **any username and password** (auth is intentionally mocked for the demo).
+
+`ANTHROPIC_API_KEY` in `.env` is **optional**. Without a key the app runs fully offline in cached mode, streaming its verified, pre-reviewed answers; with a key it defaults to auto mode: verified answers replay instantly, and any new question streams live from the Claude API with enforced citations.
+
+**Pinning a mode explicitly:**
+
+| Command             | Mode                                           |
+| ------------------- | ---------------------------------------------- |
+| `npm run dev:cache` | Fully offline, verified answers only           |
+| `npm run dev:auto`  | Verified answers first, live for new questions |
+| `npm run dev:live`  | Every answer live from the API                 |
+
+The `dev:*` and `start:*` scripts set an environment variable POSIX-style, so on Windows run them from **Git Bash or WSL**, or set the variable yourself in PowerShell: `$env:FAHEEM_MODE="cached"; npm run dev`. Plain `npm run dev`, `npm run build`, and `npm start` work in any shell on any OS.
+
+**Production build** (what a stage machine runs):
+
+```bash
+npm run build
+npm run start:auto
+```
+
+**Checks and tests:** `npm run verify` (typecheck + lint + 590 unit tests + data validation) and `npm run test:e2e` (Playwright; run `npx playwright install chromium` once first).
+
 ## 🏗️ Architecture
 
 ```mermaid
