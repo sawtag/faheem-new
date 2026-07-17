@@ -119,15 +119,18 @@ test("deliverables chat: run completes → deck preview auto-opens with the 10-s
     expect(res.status(), asset).toBe(200);
   }
 
-  // close, then re-open from a file card's primary Preview affordance,
-  // the model opens on its Cover sheet with the open-in-Excel CTA.
+  // close, then re-open from the model card's primary Preview affordance,
+  // the xlsx now opens the live workbook side panel (real tabs + cells)
+  // instead of the static PNG preview.
   await preview.getByRole("button", { name: "Close preview" }).click();
   await expect(preview).toBeHidden();
   await page.getByRole("button", { name: "Preview" }).first().click();
-  await expect(preview).toBeVisible();
-  await expect(preview.getByText("Jahez · Valuation Model")).toBeVisible();
+  const workbook = page.getByTestId("workbook-panel");
+  await expect(workbook).toBeVisible();
+  await expect(workbook.getByText("Jahez · Valuation Model")).toBeVisible();
+  await expect(workbook.getByRole("tab", { name: "Assumptions" })).toBeVisible();
   await expect(
-    preview.getByRole("link", { name: "Open in Excel" }),
+    workbook.getByRole("link", { name: "Download file" }),
   ).toBeVisible();
 });
 

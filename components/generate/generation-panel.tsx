@@ -19,6 +19,7 @@ import {
 } from "@/components/generate/reduce";
 import { FileCard, KIND_TILE } from "@/components/generate/file-card";
 import { ArtifactPreview } from "@/components/generate/artifact-preview";
+import { WorkbookPanel } from "@/components/generate/workbook-panel";
 import { ScenarioSummary } from "@/components/generate/scenario-summary";
 import { DraftToIc } from "@/components/ic/draft-to-ic";
 import type { ArtifactMeta } from "@/lib/types";
@@ -78,6 +79,11 @@ export function GenerationPanel({
     .map((row) => row.meta)
     .filter((meta): meta is ArtifactMeta => meta !== null);
 
+  // The valuation workbook (Jahez xlsx) previews as a live cell-addressable
+  // grid; every other artifact uses the pre-rendered slide/page ArtifactPreview.
+  const isWorkbook = preview?.kind === "xlsx" && preview.workspace === "jahez";
+  const closePreview = React.useCallback(() => setPreview(null), []);
+
   // The money moment: the run completes → progress ticks settle → an artifact
   // slides open on its own, one beat after the last card's morph. "all" opens
   // the board deck; a single-kind run opens that kind.
@@ -130,7 +136,17 @@ export function GenerationPanel({
             <DraftToIc workspace={workspace} artifacts={landedArtifacts} />
           </motion.div>
         )}
-      <ArtifactPreview meta={preview} onClose={() => setPreview(null)} />
+      {/* The Jahez valuation workbook opens as a live, cell-addressable side
+          panel (its content derived from the same lib/model engine the .xlsx is
+          built from); decks and memos keep the pre-rendered ArtifactPreview. */}
+      <WorkbookPanel
+        meta={isWorkbook ? preview : null}
+        onClose={closePreview}
+      />
+      <ArtifactPreview
+        meta={isWorkbook ? null : preview}
+        onClose={closePreview}
+      />
     </>
   );
 }

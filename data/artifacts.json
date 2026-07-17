@@ -1,17 +1,5 @@
 [
   {
-    "id": "jahez-docx",
-    "kind": "docx",
-    "name": {
-      "en": "Jahez · IC Memo",
-      "ar": "جاهز · مذكرة لجنة الاستثمار"
-    },
-    "workspace": "jahez",
-    "file": "/artifacts/jahez-ic-memo.docx",
-    "createdAt": "2026-07-17T06:59:16.389Z",
-    "sources": 5
-  },
-  {
     "id": "darb-docx",
     "kind": "docx",
     "name": {
@@ -20,8 +8,20 @@
     },
     "workspace": "darb",
     "file": "/artifacts/darb-screening-memo.docx",
-    "createdAt": "2026-07-17T06:59:19.985Z",
+    "createdAt": "2026-07-17T08:11:03.644Z",
     "sources": 3
+  },
+  {
+    "id": "jahez-docx",
+    "kind": "docx",
+    "name": {
+      "en": "Jahez · IC Memo",
+      "ar": "جاهز · مذكرة لجنة الاستثمار"
+    },
+    "workspace": "jahez",
+    "file": "/artifacts/jahez-ic-memo.docx",
+    "createdAt": "2026-07-17T08:11:17.442Z",
+    "sources": 5
   },
   {
     "id": "jahez-xlsx",
@@ -32,7 +32,7 @@
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-valuation-model.xlsx",
-    "createdAt": "2026-07-17T06:59:23.383Z",
+    "createdAt": "2026-07-17T08:11:18.589Z",
     "sources": 5
   },
   {
@@ -44,7 +44,7 @@
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-board-deck.pptx",
-    "createdAt": "2026-07-17T06:59:26.842Z",
+    "createdAt": "2026-07-17T08:11:19.252Z",
     "sources": 5
   }
 ]

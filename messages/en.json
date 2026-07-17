@@ -325,6 +325,7 @@
       "removeChip": "Remove",
       "agentsHeader": "Agents",
       "docsHeader": "Documents",
+      "skillsHeader": "Skills",
       "noMatches": "No matches",
       "modelLabel": "Model"
     },
@@ -682,6 +683,41 @@
       },
       "sheetOf": "Sheet {n} of {total}"
     },
+    "workbook": {
+      "subtitle": "Every cell is sourced or computed. Select any cell for its formula and source.",
+      "selectHint": "Select a cell to see how it is built.",
+      "builtFrom": "Built from",
+      "sourceComment": "Source: {doc}, p.{page}",
+      "tabs": {
+        "assumptions": "Assumptions",
+        "dcf": "DCF",
+        "scenarios": "Scenarios & Risk",
+        "sensitivity": "Sensitivity",
+        "comps": "Comps"
+      },
+      "sections": {
+        "waccBuild": "1 · WACC build (discount rate)",
+        "capitalStructure": "2 · Capital structure & market data",
+        "terminal": "3 · Terminal & horizon",
+        "dcfForecast": "Explicit forecast FCFF (FY26E to FY30E)",
+        "dcfBridge": "Enterprise value to value per share",
+        "scenarioTable": "Scenario cases",
+        "scenarioSummary": "Probability-weighted",
+        "sensitivityGrid": "Value per share: WACC x terminal growth",
+        "compsTable": "Implied value per share by multiple",
+        "compsRange": "Comparable range"
+      },
+      "rows": {
+        "betaPeer1": "Levered beta, DoorDash (5Y)",
+        "betaPeer2": "Levered beta, Delivery Hero (5Y)",
+        "holdPeriod": "Hold period (IRR)",
+        "probability": "Probability weight",
+        "gWacc": "g \\ WACC",
+        "compsMin": "Low",
+        "compsMedian": "Median",
+        "compsMax": "High"
+      }
+    },
     "draft": {
       "trigger": "Draft email to IC",
       "title": "Draft email to IC",
@@ -1014,9 +1050,9 @@
         "bear": "Bear case"
       },
       "comp": {
-        "talabat": "Regional peer",
-        "doordash": "Peer 1",
-        "dhero": "Peer 2"
+        "talabat": "Talabat",
+        "doordash": "DoorDash (DASH)",
+        "dhero": "Delivery Hero (DHER)"
       },
       "compMetric": {
         "evRev": "EV/Revenue",
