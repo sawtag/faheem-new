@@ -1,0 +1,205 @@
+================================================================
+FAHEEM - STAGE SCRIPT (Amad 2026 finals)
+================================================================
+Print this. Keep it on the podium.
+Prompts are printed so you can follow along, NEVER to retype:
+everything fires from the Cmd+K palette or the "/" skill invoker.
+The only thing you type by hand is the Live Model trap in Scene 2
+(local calculation, not a chat request).
+
+THE STORY: Ask -> Verify -> Produce -> Decide.
+Companies: Jahez (public, real) | Darb (private data room)
+           Thara Pay (backup)   | Aqar Development (backup)
+
+Legend: [CACHED] replays offline today. [GENERATED] is a
+deterministic local build (offline-safe, no recording needed).
+[RECORD] must be recorded before show day; wording is locked.
+
+----------------------------------------------------------------
+BEFORE YOU WALK ON (60 seconds)
+----------------------------------------------------------------
+1. App in cached mode. Press Cmd+. and confirm CACHED.
+2. Logged in as Ali, locale English.
+3. Open Cmd+K once, see the golden list, close it.
+4. Break-glass lines are at the bottom of this page.
+
+----------------------------------------------------------------
+SCENE 1 - JAHEZ: SOURCE, CHALLENGE, THEN PRODUCE (~3 min)
+----------------------------------------------------------------
+SAY: "This is Faheem. Four deals in our pipeline. Let's start
+with the public one, Jahez. One rule governs everything here:
+every number is one click from its source."
+
+DO: Jahez workspace -> Cmd+K -> fire:  [CACHED]
+
+  Break down Jahez's FY2025 unit economics from
+  #FY2025-Earnings-Release: GMV growth vs take rate, AOV,
+  contribution margin, EBITDA margin, and why did net income
+  compress ~61% despite double-digit GMV growth?
+
+WATCH: answer streams, citation chips on every figure.
+CLICK: any citation chip -> PDF opens at the page, passage
+highlighted.
+SAY: "The quoted text has to physically exist on that page or it
+can't be cited. A fake reference is structurally impossible."
+
+FOLLOW-UP:  [CACHED]
+
+  How exposed is Jahez to Keeta's expansion through 2026?
+
+SAY: "Forward-looking, still grounded. Now watch it produce."
+
+DO: same thread, fire:  [GENERATED]
+
+  Generate the investment memo on Jahez, including market
+  research and the competition landscape.
+
+WATCH: the Word memo lands. Open it, scroll the sources appendix.
+SAY: "The firm's own template. Market, competitors, returns,
+risks, and an appendix where every figure traces to a page."
+
+DO: same thread, fire the conversion:  [GENERATED]
+
+  Convert this memo into a slide deck for the investment
+  committee.
+
+WATCH: the Lunar-branded PPTX lands. Flip two slides.
+SAY: "Memo becomes deck in one line. One engine produced both,
+so they can never disagree with each other."
+
+----------------------------------------------------------------
+SCENE 2 - /DCF: THE MODEL IS A SKILL, THE SPREADSHEET IS REAL
+(~2 min)
+----------------------------------------------------------------
+SAY: "Analysts don't want a chat window, they want their
+playbooks. Ours are installed as skills."
+
+DO: in the composer type "/" -> pick DCF, FCFF Build. Fires:
+[CACHED]
+
+  Run the DCF on Jahez out to 2031 and build the bull and bear
+  cases against base.
+
+WATCH: specialist teams choreograph -> bull/base/bear vs the 15%
+Benchmark -> THE WORKBOOK OPENS IN THE SIDE PANEL next to chat.
+DO: click through sheet tabs, select a WACC cell.
+SAY: "A real formula, not a pasted number. And the source comment:
+document, page. This is a working model, not an export of a chat."
+
+DO: Live Model -> tap a suggested assumption chip -> WACC, DCF,
+IRR, sensitivity grid recompute live.
+TRAP (type by hand, for a skeptical face):
+  Change FY25 revenue to SAR 2 billion
+-> Critical Review refuses.
+SAY: "Sourced actuals are locked. Only analyst assumptions move."
+
+FOLLOW-UPS (pick one by judge mood):  [CACHED]
+  - Walk me through the WACC build for the Jahez valuation:
+    where does every input come from?
+  - The trading comps imply a much higher value than your DCF.
+    Why the gap, and which should the committee trust?
+  - What would have to be true for Jahez to re-rate to your
+    bull case?
+
+----------------------------------------------------------------
+SCENE 3 - DARB: PRIVATE DATA ROOM, THEN THE FULL PACKAGE (~90s)
+----------------------------------------------------------------
+SAY: "Jahez is public filings. Darb is a private data room nobody
+outside this firm has seen. Same engine, same rule."
+
+DO: Darb workspace -> Cmd+K -> fire:  [CACHED, re-keyed]
+
+  Create the IC memo on Darb using the data room and our
+  internal template.
+
+WATCH: the memo lands. Open it, show the sources appendix briefly
+(judges saw the full memo walk in Scene 1, keep this quick).
+
+SAY: "And when the committee says: give us the full package?"
+
+DO: Cmd+K -> fire (lands in the Jahez workspace):  [GENERATED]
+
+  Prepare the IC memo, DCF model, and committee deck.
+
+WATCH: three artifact cards land in one turn: memo, Excel model,
+deck.
+DO: open the LIBRARY page.
+SAY: "Everything Faheem produced in these minutes: memos, models,
+decks, each with its source count, and the audit trail behind it.
+That used to be the week."
+
+----------------------------------------------------------------
+SCENE 4 - IC ROOM: FACTS AND CHALLENGES, NOT VERDICTS (~90s)
+----------------------------------------------------------------
+SAY: "The room where it lands. The committee doesn't ask Faheem
+what to do. It asks for facts, and it challenges the numbers."
+
+DO: IC room -> fire:  [CACHED]
+
+  Before we vote on Thara Pay: what does the latest macro data
+  say about Saudi consumer spending and digital payments (GDP,
+  inflation, household spending, the policy rate), and does
+  anything in it challenge the growth assumptions in the
+  analysis?
+
+SAY: "GASTAT data, stress-testing the analysis before the vote,
+not after."
+
+DO: then challenge the values, referencing the deck:  [CACHED]
+
+  The Jahez deck values the business at SAR 14.4 per share on a
+  13.31% WACC. How solid is the beta behind that WACC, and what
+  breaks if it is wrong?
+
+WATCH: Faheem defends what is sourced and openly flags the peer
+beta as an unfinished step, with the sensitivity edges.
+POINT AT: "Advisory only, the investment decision rests with the
+committee."
+SAY: "It defends its numbers, it admits its shortcuts, and the
+decision stays human. That's the design. Thank you."
+
+----------------------------------------------------------------
+BACKUP CARD A - THARA PAY (fire if asked about other deals /
+explainable scoring)
+----------------------------------------------------------------
+DO: Thara Pay workspace -> Cmd+K -> fire:  [CACHED]
+
+  Give me the investment case on Thara Pay ahead of the vote:
+  expected return against our Benchmark, the quantified risk
+  score, and how solid are the inputs behind both?
+
+THEN: open the DEALS page -> on the Thara Pay card, click the
+risk score -> the full derivation opens: formula, weighted
+inputs, each one sourced or a labeled assumption.
+(The score inside the chat answer is text; the CLICKABLE score
+lives on the deal card. Do not hunt for it in the chat.)
+SAY: "Every number here is sourced or explainable on click.
+There is no third kind of number."
+
+----------------------------------------------------------------
+BACKUP CARD B - AQAR, THE DEAL WE SAID NO TO (fire if asked
+"what about deals you reject?")
+----------------------------------------------------------------
+DO: IC room -> Cmd+K -> fire:  [CACHED]
+
+  Aqar Development: why did we decline it last year, and does
+  anything in the latest macro data change that call?
+
+SAY: "Faheem remembers why the firm said no, and re-argues it
+against new data instead of nostalgia. Re-opening is the
+committee's call, not the model's."
+
+----------------------------------------------------------------
+IF SOMETHING BREAKS (three graceful lines)
+----------------------------------------------------------------
+1. Network dies / API hangs: "Let me switch us to our verified
+   layer" (tap Cmd+.) "...this is exactly why regulated
+   institutions need a deterministic, audited path. The entire
+   demo runs air-gapped."
+2. A figure gets challenged: "Good catch, and notice our own
+   fact-checker already flags that. Every figure here is one
+   click from its source." Then click the citation.
+3. Freeze or crash: "One second, everything here runs locally
+   and deterministically, so nothing is lost." Reload calmly.
+   Cmd+K reopens the exact question. NEVER retype.
+================================================================

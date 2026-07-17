@@ -1,0 +1,498 @@
+{
+  "key": "c15029006117a344e29356ae99c502678d4ffb47",
+  "request": {
+    "question": "The Jahez deck values the business at SAR 14.4 per share on a 13.31% WACC. How solid is the beta behind that WACC, and what breaks if it is wrong?",
+    "lang": "en",
+    "context": {
+      "kind": "ic"
+    }
+  },
+  "events": [
+    {
+      "type": "stage",
+      "agent": "comparables",
+      "status": "start",
+      "docIds": [
+        "market-data-comps",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "comparables",
+      "status": "done",
+      "docIds": [
+        "market-data-comps",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "start",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "risk",
+      "status": "done",
+      "docIds": [
+        "industry-news-pack",
+        "market-data-comps",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "ic",
+      "status": "start",
+      "docIds": [
+        "thara-analysis",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "ic",
+      "status": "done",
+      "docIds": [
+        "thara-analysis",
+        "lunar-ic-charter"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "start",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "stage",
+      "agent": "compliance",
+      "status": "done",
+      "docIds": [
+        "q1-26-fs",
+        "fy25-er"
+      ]
+    },
+    {
+      "type": "delta",
+      "text": "## 1. Assessment\n\nThe beta is the single"
+    },
+    {
+      "type": "delta",
+      "text": " weakest input in that WACC, and I would flag the 13.31% discount rate (and any value der"
+    },
+    {
+      "type": "delta",
+      "text": "ived from it) to the Committee as provisional, not decision-grade. The thesis direction survives a beta error;"
+    },
+    {
+      "type": "delta",
+      "text": " what does not survive is the margin over the benchmark.\n\nOne correction on the premise first: I c"
+    },
+    {
+      "type": "delta",
+      "text": "annot find a SAR 14.4 per-share output in the connected materials. The completed Jahez analysis reports"
+    },
+    {
+      "type": "delta",
+      "text": " "
+    },
+    {
+      "type": "delta",
+      "text": "a DCF discounted at a CAPM-derived WACC of 13.31% (4.6%"
+    },
+    {
+      "type": "delta",
+      "text": " risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost of equity) with a 3.0% Gordon terminal growth"
+    },
+    {
+      "type": "delta",
+      "text": " rate, an implied IRR at entry of 17.1%, and a scenario-weighted expected return of 16.8%"
+    },
+    {
+      "type": "delta",
+      "text": "[[1]]"
+    },
+    {
+      "type": "citation",
+      "n": 1,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "Methodology: a discounted cash flow (FCFF) model, discounted at a CAPM-derived\r\nWACC of 13.31% (4.6% risk-free + 1.82x comp-set beta at a 5.0% equity risk premium, for a 13.7% cost\r\nof equity) with a "
+    },
+    {
+      "type": "delta",
+      "text": "[[2]]"
+    },
+    {
+      "type": "citation",
+      "n": 2,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": ", but no per-share fair value. That isn't in my connected sources. In the MVP this routes to web, Bloomberg, or PitchBook connectors.\n\n## 2. "
+    },
+    {
+      "type": "delta",
+      "text": "Rationale: how the 1.82x beta was built\n\nThe 1.82x is a shortcut, not a bottom-u"
+    },
+    {
+      "type": "delta",
+      "text": "p beta:\n\n- It is effectively the simple average of the only two usable comparable betas in the pack: Do"
+    },
+    {
+      "type": "delta",
+      "text": "orDash levered beta 1.78 (5Y)[["
+    },
+    {
+      "type": "delta",
+      "text": "3]] a"
+    },
+    {
+      "type": "citation",
+      "n": 3,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "(component\r\nof the above)\r\nComparable\u0002company\r\nlevered beta\r\n— DoorDash\r\n(DASH)\r\n1.78 (5Y) stockanalysis.com/stocks/dash/statistics 12 Jul\r\n2026\r\nComparable\u0002company\r\nlevered beta\r\n— Delivery\r\nHero (DH"
+    },
+    {
+      "type": "delta",
+      "text": "nd De"
+    },
+    {
+      "type": "delta",
+      "text": "livery Hero levered beta 1."
+    },
+    {
+      "type": "delta",
+      "text": "86 (5Y)[["
+    },
+    {
+      "type": "delta",
+      "text": "4]]. "
+    },
+    {
+      "type": "citation",
+      "n": 4,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "(component\r\nof the above)\r\nComparable\u0002company\r\nlevered beta\r\n— DoorDash\r\n(DASH)\r\n1.78 (5Y) stockanalysis.com/stocks/dash/statistics 12 Jul\r\n2026\r\nComparable\u0002company\r\nlevered beta\r\n— Delivery\r\nHero (DH"
+    },
+    {
+      "type": "delta",
+      "text": "These are raw *levered* betas.\n- The comps pack itself says t"
+    },
+    {
+      "type": "delta",
+      "text": "his is the wrong method to stop at: th"
+    },
+    {
+      "type": "delta",
+      "text": "e standard fix is a bottom-up beta built from unle"
+    },
+    {
+      "type": "delta",
+      "text": "vered comparable-company betas re-levered to Jahez's capital structure; that requires each comp's debt/equity and marginal tax rate, which were not cleanly available from free sources in t"
+    },
+    {
+      "type": "delta",
+      "text": "his pass, flagged as a modeling next step rather than estimated here.[["
+    },
+    {
+      "type": "delta",
+      "text": "5]]\n-"
+    },
+    {
+      "type": "citation",
+      "n": 5,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "The standard fix is a bottom-up beta built\r\nfrom unlevered comparable-company betas re-levered to Jahez's capital structure; that requires each comp's debt/equity\r\nand marginal tax rate, which were no"
+    },
+    {
+      "type": "delta",
+      "text": " The closest structural comparable is missing. Ta"
+    },
+    {
+      "type": "delta",
+      "text": "labat's beta is n/a due to insufficient trading history (IPO'd Dec 2024)[["
+    },
+    {
+      "type": "delta",
+      "text": "6]], "
+    },
+    {
+      "type": "citation",
+      "n": 6,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "(component\r\nof the above)\r\nComparable\u0002company\r\nlevered beta\r\n— DoorDash\r\n(DASH)\r\n1.78 (5Y) stockanalysis.com/stocks/dash/statistics 12 Jul\r\n2026\r\nComparable\u0002company\r\nlevered beta\r\n— Delivery\r\nHero (DH"
+    },
+    {
+      "type": "delta",
+      "text": "and Ta"
+    },
+    {
+      "type": "delta",
+      "text": "labat is the closest single-market GCC delivery comp but lacks enough trading history for a reliable beta.[["
+    },
+    {
+      "type": "delta",
+      "text": "7]] S"
+    },
+    {
+      "type": "citation",
+      "n": 7,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "Talabat is the closest single-market GCC delivery comp but lacks enough trading history for a\r\nreliable beta."
+    },
+    {
+      "type": "delta",
+      "text": "o the 1.82"
+    },
+    {
+      "type": "delta",
+      "text": "x rests entirely on two names of which Do"
+    },
+    {
+      "type": "delta",
+      "text": "orDash and Delivery Hero are useful range markers but trade on different growth"
+    },
+    {
+      "type": "delta",
+      "text": " and scale assumptions than a KSA-only platform.[["
+    },
+    {
+      "type": "delta",
+      "text": "8]]\n-"
+    },
+    {
+      "type": "citation",
+      "n": 8,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "Talabat is the most\r\nstructurally comparable name (single-region GCC food-delivery platform, DFM-listed, broadly comparable margin\r\nprofile) and should carry the most weight of the four in any comps-b"
+    },
+    {
+      "type": "delta",
+      "text": " Jahez's own market beta is unusable: th"
+    },
+    {
+      "type": "delta",
+      "text": "e reported 5Y"
+    },
+    {
+      "type": "delta",
+      "text": " beta of 0.02 is a data artifact of thin trading, not a real volatility read, on a stock that fell 53"
+    },
+    {
+      "type": "delta",
+      "text": "% in a year.[["
+    },
+    {
+      "type": "delta",
+      "text": "9]]\n-"
+    },
+    {
+      "type": "citation",
+      "n": 9,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "attempted\r\n12 Jul\r\n2026\r\nSaudi\r\nsovereign\r\nUSD bond\r\nspread over\r\nUST (context\r\nonly, not a\r\nWACC input)\r\n~50–100 bps S&P Global Ratings commentary, via WebSearch\r\nsynthesis — verify against a primary"
+    },
+    {
+      "type": "delta",
+      "text": " The debt leg is also incomplete: Ja"
+    },
+    {
+      "type": "delta",
+      "text": "hez-specific cost of debt is n/a, a"
+    },
+    {
+      "type": "delta",
+      "text": "s no rated Jahez public debt was identified and the corporate IG spread sat behind a paid feed.[["
+    },
+    {
+      "type": "delta",
+      "text": "10]]\n\n"
+    },
+    {
+      "type": "citation",
+      "n": 10,
+      "docId": "market-data-comps",
+      "page": 3,
+      "quote": "(component\r\nof the above)\r\nComparable\u0002company\r\nlevered beta\r\n— DoorDash\r\n(DASH)\r\n1.78 (5Y) stockanalysis.com/stocks/dash/statistics 12 Jul\r\n2026\r\nComparable\u0002company\r\nlevered beta\r\n— Delivery\r\nHero (DH"
+    },
+    {
+      "type": "delta",
+      "text": "The analys"
+    },
+    {
+      "type": "delta",
+      "text": "t's own comps pack therefore does not treat 13.31% as final: th"
+    },
+    {
+      "type": "delta",
+      "text": "is comps table should be treated as a sense-ch"
+    },
+    {
+      "type": "delta",
+      "text": "eck on a primary DCF, not a standalone valuation, and the WACC build needs the outstanding items closed out before the DCF is final.[["
+    },
+    {
+      "type": "delta",
+      "text": "11]]\n\n"
+    },
+    {
+      "type": "citation",
+      "n": 11,
+      "docId": "market-data-comps",
+      "page": 4,
+      "quote": "Given the incomplete beta/cost-of-debt\r\ninputs in §B, this comps table should be treated as a sense-check on a primary DCF, not a standalone valuation —\r\nflag to IC that neither approach alone resolve"
+    },
+    {
+      "type": "delta",
+      "text": "## 3. What breaks if the beta is w"
+    },
+    {
+      "type": "delta",
+      "text": "rong: sensitivity\n\nMechanically, under CAPM at a 5.0% equity risk premium, each 0.10 of beta moves the co"
+    },
+    {
+      "type": "delta",
+      "text": "st of equity by 0.5%. Because the"
+    },
+    {
+      "type": "delta",
+      "text": " balance sheet carries only SAR 16.6m of net cash (SAR"
+    },
+    {
+      "type": "delta",
+      "text": " 510.7m cash less SAR 161.2m debt and SAR 332.9m of IFRS-16 lease liabilities)[["
+    },
+    {
+      "type": "delta",
+      "text": "1"
+    },
+    {
+      "type": "delta",
+      "text": "2]], t"
+    },
+    {
+      "type": "citation",
+      "n": 12,
+      "docId": "jahez-analysis-summary",
+      "page": 1,
+      "quote": "The balance sheet carries\r\nSAR 16.6m of net cash — SAR 510.7m of cash and equivalents, less SAR 161.2m of debt and SAR\r\n332.9m of IFRS-16 lease liabilities."
+    },
+    {
+      "type": "delta",
+      "text": "he structure is effectively all-equity, so WACC moves almost one-for-one with cost of equity; there is no debt weight"
+    },
+    {
+      "type": "delta",
+      "text": "ing to dampen a beta error.\n\nDirection (judgment): a proper bottom-up beta is more likely to come in *below* 1.82 than"
+    },
+    {
+      "type": "delta",
+      "text": " above it, because unlevering Delivery Hero's leverage and re-levering to Jahez's net-cash structure would strip o"
+    },
+    {
+      "type": "delta",
+      "text": "ut comp gearing that the raw 1.82x still carries. That would lower the WACC, widen the WACC-minu"
+    },
+    {
+      "type": "delta",
+      "text": "s-terminal-growth spread (currently 13.31% − 3.0% = 10.31%), and push both the DCF value and the implied IRR higher."
+    },
+    {
+      "type": "delta",
+      "text": " The opposite case (a thin-liquidity or GCC/frontier risk premium argues for a beta ab"
+    },
+    {
+      "type": "delta",
+      "text": "ove 2.0) raises the WACC and cuts the value.\n\nThe specific thing that breaks is the cushion"
+    },
+    {
+      "type": "delta",
+      "text": " over the benchmark, not the thesis:\n- The im"
+    },
+    {
+      "type": "delta",
+      "text": "plied IRR of 17.1% clears the 15.0% ben"
+    },
+    {
+      "type": "delta",
+      "text": "chmark by 210 basis points at entry[[13]]"
+    },
+    {
+      "type": "delta",
+      "text": ", and "
+    },
+    {
+      "type": "citation",
+      "n": 13,
+      "docId": "jahez-analysis-summary",
+      "page": 2,
+      "quote": "METRIC VALUE\r\nImplied IRR at entry 17.1%\r\nMandate hurdle rate 15.0%\r\nScenario-weighted expected return 16.8%\r\nQuantified risk score (1 = lowest, 10 = highest) 5.5 / 10\r\nMandate fit Pass\r\nShariah scree"
+    },
+    {
+      "type": "delta",
+      "text": "the scenario-weighted return clears it by ~180bps.\n- A beta swing of roughly ±0.3 (we"
+    },
+    {
+      "type": "delta",
+      "text": "ll inside the 1.78–1.86 comp dispersion and the uncertainty from the missing Talabat anchor) moves the WACC on"
+    },
+    {
+      "type": "delta",
+      "text": " the order of ±1.4%. In a DCF with a ~10% WACC-to-terminal-growth spread, that is enough to "
+    },
+    {
+      "type": "delta",
+      "text": "swing terminal value materially and to push the implied return through the 15% benchmark in the adverse"
+    },
+    {
+      "type": "delta",
+      "text": " case.\n\nExplicit flip condition: if the bottom-up beta closes out materially above ~2.0, the resulting WACC is high enough tha"
+    },
+    {
+      "type": "delta",
+      "text": "t the DCF value and implied IRR likely fall below the benchmark, at which point Jahez no longer clears on a base-case ba"
+    },
+    {
+      "type": "delta",
+      "text": "sis. Conversely, a bottom-up beta in the ~1.3–1.6 region would widen the cushion and make the case mo"
+    },
+    {
+      "type": "delta",
+      "text": "re robust. Either way, the honest position for the Committee is that the 210bps of headroom is inside the error bar of an"
+    },
+    {
+      "type": "delta",
+      "text": " unfinished WACC: the beta and cost-of-debt items in the c"
+    },
+    {
+      "type": "delta",
+      "text": "omps pack should be closed before the DCF is treated as final.\n\nAdvisory only: the investment decision rests with the committee."
+    },
+    {
+      "type": "done",
+      "cached": false
+    }
+  ],
+  "recordedAt": "2026-07-17T07:12:59.841Z"
+}
