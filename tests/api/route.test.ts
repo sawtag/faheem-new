@@ -30,7 +30,7 @@ let auditFile: string;
 afterEach(() => {
   delete process.env.FAHEEM_CACHE_DIR;
   delete process.env.FAHEEM_AUDIT_PATH;
-  delete process.env.FAHEEM_REPLAY_DELAY_MS;
+  delete process.env.FAHEEM_REPLAY_PACE;
   if (cacheDir) fs.rmSync(cacheDir, { recursive: true, force: true });
   if (auditFile && fs.existsSync(auditFile)) fs.rmSync(auditFile);
 });
@@ -41,7 +41,7 @@ describe("POST /api/chat (cached mode)", () => {
     auditFile = path.join(cacheDir, "audit.json");
     process.env.FAHEEM_CACHE_DIR = cacheDir;
     process.env.FAHEEM_AUDIT_PATH = auditFile;
-    process.env.FAHEEM_REPLAY_DELAY_MS = "0";
+    process.env.FAHEEM_REPLAY_PACE = "0";
 
     const req: ChatRequest = {
       question: "cached q",

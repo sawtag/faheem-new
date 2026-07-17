@@ -30,10 +30,7 @@
       }
     ],
     "run": {
-      "prefill": {
-        "en": "Build a DCF valuation for Jahez, FCFF projection off the revenue drivers, a WACC build from the Saudi 10-year sukuk plus a KSA beta and equity risk premium, and a Gordon terminal value cross-checked against long-run nominal GDP growth. Bridge EV to equity including the IFRS-16 lease adjustment and show the implied value per share.",
-        "ar": "ابنِ تقييم DCF لجاهز، توقّع التدفق النقدي الحر للمنشأة من محرّكات الإيرادات، مع اشتقاق تكلفة رأس المال المرجّحة من الصكوك السعودية لأجل 10 سنوات وبيتا سعودية وعلاوة مخاطر السوق، وقيمة نهائية بطريقة Gordon مطابقة لنمو الناتج المحلي الإجمالي الاسمي طويل الأجل. اربط قيمة المنشأة بقيمة حقوق الملكية متضمّناً تسوية عقود الإيجار وفق IFRS-16، وأظهر القيمة العادلة المضمّنة للسهم."
-      }
+      "goldenId": "dcf-scenarios"
     }
   },
   {

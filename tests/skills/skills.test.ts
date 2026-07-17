@@ -43,7 +43,7 @@ describe("SKILLS, data/skills.json", () => {
         !!s.run && "goldenId" in s.run,
     );
     expect(mapped.map((s) => s.id).sort()).toEqual(
-      ["risk-scorecard", "compliance-screen", "ic-memo"].sort(),
+      ["risk-scorecard", "compliance-screen", "ic-memo", "dcf-fcff"].sort(),
     );
     for (const skill of mapped) {
       expect(
@@ -58,8 +58,8 @@ describe("SKILLS, data/skills.json", () => {
       (s): s is typeof s & { run: { prefill: { en: string; ar: string } } } =>
         !!s.run && "prefill" in s.run,
     );
-    // dcf-fcff, trading-comps, football-field, sensitivity, scenario-irr, mandate-fit
-    expect(prefilled.length).toBe(6);
+    // trading-comps, football-field, sensitivity, scenario-irr, mandate-fit
+    expect(prefilled.length).toBe(5);
     for (const skill of prefilled) {
       expect(skill.run.prefill.en.length).toBeGreaterThan(0);
       expect(skill.run.prefill.ar.length).toBeGreaterThan(0);

@@ -64,7 +64,7 @@ describe("cached replay", () => {
       ],
       recordedAt: new Date().toISOString(),
     };
-    const out = await collect(replay(entry, 0));
+    const out = await collect(replay(entry, false));
     // every event but the last passes through byte-for-byte, in order
     expect(out.slice(0, -1)).toEqual(entry.events.slice(0, -1));
     expect(out.at(-1)).toEqual({ type: "done", cached: true });
@@ -114,7 +114,7 @@ describe("auto mode (cache-first)", () => {
           configOverride: {
             mode: "auto",
             timeoutMs: 20,
-            replayDelayMs: 0,
+            pace: false,
             stageStepMs: 0,
           },
           readFileBytes: () => Buffer.from("x"),
@@ -161,7 +161,7 @@ describe("auto mode (cache-first)", () => {
           configOverride: {
             mode: "auto",
             timeoutMs: 20,
-            replayDelayMs: 0,
+            pace: false,
             stageStepMs: 0,
           },
           readFileBytes: () => Buffer.from("x"),
@@ -208,7 +208,7 @@ describe("auto mode (cache-first)", () => {
           configOverride: {
             mode: "auto",
             timeoutMs: 20,
-            replayDelayMs: 0,
+            pace: false,
             stageStepMs: 0,
           },
           readFileBytes: () => Buffer.from("x"),

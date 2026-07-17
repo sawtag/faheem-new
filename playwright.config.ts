@@ -58,6 +58,10 @@ export default defineConfig({
     timeout: process.env.FAHEEM_E2E_PROD ? 300_000 : 120_000,
     env: {
       FAHEEM_MODE: "cached",
+      // Bypass cached-replay pacing so the suite streams instantly and stays
+      // fast; pacing (lib/ai/replay-pacing.ts) is a stage-only feel, its delays
+      // would only slow the run without testing anything.
+      FAHEEM_REPLAY_PACE: "0",
       PORT: String(PORT),
       FAHEEM_AUDIT_PATH: AUDIT_PATH,
     },

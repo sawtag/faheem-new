@@ -10,7 +10,7 @@ import skillsData from "../data/skills.json" with { type: "json" };
  * land on a fresh firm-context chat with ad hoc text pre-filled, unsent.
  */
 const qa2 = goldenQuestions.find((q) => q.id === "qa2")!;
-const dcf = skillsData.find((s) => s.id === "dcf-fcff")! as {
+const tradingComps = skillsData.find((s) => s.id === "trading-comps")! as {
   run: { prefill: { en: string; ar: string } };
 };
 
@@ -85,11 +85,11 @@ test.describe("Skills page", () => {
     // return;` before calling takeGoldenSelection(), so the pending value
     // isn't consumed until `chat` is actually resolved.
     await page.goto("/skills");
-    await page.getByTestId("skill-run-dcf-fcff").click();
+    await page.getByTestId("skill-run-trading-comps").click();
     await page.waitForURL(/\/chat\/new\?context=firm/);
 
     const box = page.getByRole("textbox");
-    await expect(box).toHaveValue(dcf.run.prefill.en);
+    await expect(box).toHaveValue(tradingComps.run.prefill.en);
   });
 
   test("Run on risk-scorecard fires the exact recorded qa2 request into the Jahez workspace chat", async ({

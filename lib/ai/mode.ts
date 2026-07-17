@@ -6,16 +6,19 @@
  * absent (a keyless fresh clone / backup laptop still runs fully offline, no
  * live-call error). Auto is cache-first: a recorded question replays
  * instantly and deterministically; only unrecorded questions stream live.
- * The cookie is the on-stage panic switch and always wins. Replay pacing
- * spreads text deltas by FAHEEM_REPLAY_DELAY_MS (tests set 0); the full
- * orchestration (live / auto / fallback) lives in sse.ts.
+ * The cookie is the on-stage panic switch and always wins. Cached replays are
+ * paced (see replay-pacing.ts) so an offline golden feels like a live run; the
+ * pacing is on by default and bypassed by FAHEEM_REPLAY_PACE=0 (the e2e path).
+ * The full orchestration (live / auto / fallback) lives in sse.ts.
  */
+import { paceReplay } from "@/lib/ai/replay-pacing";
 import type { CacheEntry, FaheemMode, SSEEvent } from "@/lib/types";
 
 export interface ModeConfig {
   mode: FaheemMode;
   timeoutMs: number;
-  replayDelayMs: number;
+  /** Cached-replay pacing on (default) vs. bypassed for a fast e2e suite. */
+  pace: boolean;
   stageStepMs: number;
   record: boolean;
 }
@@ -52,25 +55,29 @@ export function readModeConfig(cookieMode?: string): ModeConfig {
   return {
     mode: resolveMode(cookieMode),
     timeoutMs: intEnv("FAHEEM_TIMEOUT_MS", 10000),
-    replayDelayMs: intEnv("FAHEEM_REPLAY_DELAY_MS", 30),
+    pace: process.env.FAHEEM_REPLAY_PACE !== "0",
     stageStepMs: intEnv("FAHEEM_STAGE_STEP_MS", 500),
     record: process.env.FAHEEM_RECORD === "1",
   };
 }
 
 /**
- * Replays a recorded entry in-order, pacing text deltas by delayMs. Recordings
- * capture `done.cached:false` from the live run that produced them; a replay
- * IS served from cache (cached mode or an auto/live fallback), so the terminal
- * `done` is rewritten to `cached:true`, that flag drives the ⌘. mode overlay
- * ("served from cache") and must be truthful.
+ * Replays a recorded entry in-order under the pacing schedule (paceReplay):
+ * when `paced`, each event waits its computed beat so the choreography and
+ * streamed answer feel live; when not (the e2e bypass), all delays are zero.
+ * Recordings capture `done.cached:false` from the live run that produced them;
+ * a replay IS served from cache (cached mode or an auto/live fallback), so the
+ * terminal `done` is rewritten to `cached:true`, that flag drives the ⌘. mode
+ * overlay ("served from cache") and must be truthful.
  */
 export async function* replay(
   entry: CacheEntry,
-  delayMs: number,
+  paced: boolean,
 ): AsyncGenerator<SSEEvent> {
-  for (const event of entry.events) {
-    if (event.type === "delta" && delayMs > 0) await sleep(delayMs);
+  const delays = paceReplay(entry.events, paced);
+  for (let i = 0; i < entry.events.length; i += 1) {
+    if (delays[i]! > 0) await sleep(delays[i]!);
+    const event = entry.events[i]!;
     yield event.type === "done" ? { ...event, cached: true } : event;
   }
 }

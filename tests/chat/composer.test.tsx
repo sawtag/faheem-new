@@ -7,6 +7,12 @@ import en from "@/messages/en.json";
 import { Composer } from "@/components/chat/composer";
 import type { ChatContext } from "@/lib/types";
 
+// the slash skill invoker navigates via next/navigation, which needs an app
+// router mounted; jsdom has none, so stub the one hook the composer uses
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
+}));
+
 function renderComposer(props: {
   context: ChatContext;
   onSubmit: (p: unknown) => void;
