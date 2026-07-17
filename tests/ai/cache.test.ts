@@ -36,13 +36,13 @@ describe("cacheKey", () => {
 
   it("places the agent + empty docIds correctly (arabic vector)", () => {
     const arReq: ChatRequest = {
-      question: "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
+      question: "هل يجتاز جاهز فحص الامتثال وفق ميثاق لجنة الاستثمار؟",
       lang: "ar",
       context: { kind: "workspace", companyId: "jahez" },
       agent: "risk",
       docIds: [],
     };
-    expect(cacheKey(arReq)).toBe("b8ecb886a10784d6615ccaabb9e9cbdb6d631e2b");
+    expect(cacheKey(arReq)).toBe("40257c1a7891b01b9c3783283fa0432f22933011");
   });
 
   it("is deterministic and order-sensitive on docIds", () => {

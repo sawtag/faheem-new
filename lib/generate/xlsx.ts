@@ -2608,7 +2608,7 @@ function buildCompliance(
   let r = headerBand(
     ws,
     6,
-    "Jahez Group, Compliance Screen (AAOIFI-style)",
+    "Jahez Group, Compliance Screen (Lunar IC Charter, SOCPA-endorsed IFRS figures)",
     "Financial-ratio screens by formula from the balance sheet · pass/fail flags",
   );
   ws.views = [{ state: "frozen", ySplit: 3 }];
@@ -2680,7 +2680,7 @@ function buildCompliance(
     model.compliance.debtRatio,
     0.33,
     model.compliance.debtPass,
-    "Islamic facilities & loans over market value of equity (AAOIFI leverage screen, <33%)",
+    "Islamic facilities & loans over market value of equity (IC Charter leverage screen, <33%)",
   );
   screen(
     "Cash & interest-bearing securities / market cap",
@@ -2789,7 +2789,7 @@ function buildCompliance(
     2,
     6,
     r + 1,
-    "* Non-eligible income is not separately disclosed in the filings; per AAOIFI practice the position is screened via the business-activity test rather than a fabricated percentage. Leverage and liquidity screens both pass with wide headroom; the business is eligible and financed through Islamic facilities.",
+    "* Non-eligible income is not separately disclosed in the filings; per the IC Charter's methodology the position is screened via the business-activity test rather than a fabricated percentage. Leverage and liquidity screens both pass with wide headroom; the business is eligible and financed through Islamic facilities. Reporting basis: IAS 34 / IFRS as endorsed in the Kingdom of Saudi Arabia and SOCPA pronouncements (Q1 2026 FS, p.13, Statement of compliance).",
   );
 }
 

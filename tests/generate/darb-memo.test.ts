@@ -2,7 +2,7 @@
  * Acceptance tests for the Darb screening memo (Word deliverable).
  *
  * Mirrors tests/generate/docx.test.ts: read the real .docx XML back with
- * JSZip, check the nine section headings, the sources appendix, no
+ * JSZip, check the template section headings, the sources appendix, no
  * unresolved template artifacts, and that LibreOffice can open the file.
  */
 import { execFileSync } from "node:child_process";
@@ -35,14 +35,11 @@ function unescapeXml(s: string): string {
 }
 
 const SECTION_HEADINGS = [
-  "Purpose and Recommendation",
-  "Company at a Glance",
-  "Product and Market",
-  "Financial Summary",
-  "Use of Proceeds",
-  "Founding Team",
-  "Mandate Screening vs the IC Charter",
-  "Risks and Open Diligence Items",
+  "Executive Summary",
+  "Screening Outcome vs the IC Charter",
+  "Key Strengths and Concerns",
+  "Company and Market Overview",
+  "Financial Summary and Use of Proceeds",
   "Appendix: Sources",
 ];
 
@@ -55,8 +52,16 @@ describe("Darb screening memo structure", () => {
     expect(unescapeXml(documentXml)).toContain(heading);
   });
 
-  it("shows the screening recommendation to advance to a pitch meeting", () => {
-    expect(unescapeXml(documentXml)).toContain("ADVANCE TO PITCH MEETING");
+  it("shows the screening outcome to advance to a pitch meeting", () => {
+    expect(unescapeXml(documentXml)).toContain(
+      "Screening Outcome: Advance to Pitch Meeting",
+    );
+  });
+
+  it("states that the decision rests with the Investment Committee", () => {
+    expect(unescapeXml(documentXml)).toContain(
+      "the investment decision rests with the Investment Committee",
+    );
   });
 
   it("flags the concentration warning requiring explicit IC acknowledgement", () => {

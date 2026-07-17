@@ -49,6 +49,27 @@ describe("useConnectorsState", () => {
     expect(added.status).toBe("connected");
     expect(added.name.en).toBe("Lunar Portfolio DB");
     expect(added.name.ar).toBe("Lunar Portfolio DB");
+    // MCP is the default type; custom internal systems land in `internal`.
+    expect(added.sourceType).toBe("mcp");
+    expect(added.group).toBe("internal");
+  });
+
+  it("addCustom() carries the given source type; a custom feed is external", () => {
+    const { result } = renderHook(() => useConnectorsState());
+
+    act(() => {
+      result.current.addCustom("Tadawul headlines", "feed");
+    });
+    const feed = result.current.connectors.at(-1)!;
+    expect(feed.sourceType).toBe("feed");
+    expect(feed.group).toBe("external");
+
+    act(() => {
+      result.current.addCustom("Q3 Deal Files", "files");
+    });
+    const files = result.current.connectors.at(-1)!;
+    expect(files.sourceType).toBe("files");
+    expect(files.group).toBe("internal");
   });
 
   describe("fresh mode", () => {

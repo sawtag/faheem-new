@@ -38,7 +38,7 @@
       "ar": "فحص الامتثال لجاهز"
     },
     "request": {
-      "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
+      "question": "هل يجتاز جاهز فحص الامتثال وفق ميثاق لجنة الاستثمار؟",
       "lang": "ar",
       "context": {
         "kind": "workspace",
@@ -153,11 +153,11 @@
   {
     "id": "compliance-en",
     "label": {
-      "en": "Jahez, AAOIFI compliance screen (EN)",
+      "en": "Jahez, IC Charter compliance screen (EN)",
       "ar": "جاهز، فحص الامتثال (بالإنجليزية)"
     },
     "request": {
-      "question": "Does Jahez pass the AAOIFI compliance screen?",
+      "question": "Does Jahez pass the IC Charter compliance screen?",
       "lang": "en",
       "context": {
         "kind": "workspace",

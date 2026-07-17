@@ -18,8 +18,7 @@
     "dayOneHint": "First day at Lunar Investments?",
     "dayOneCta": "Begin day-one setup",
     "dayOneLoading": "Preparing your workspace…",
-    "error": "Enter your username and password",
-    "footer": "SSO & enterprise controls on the MVP roadmap"
+    "error": "Enter your username and password"
   },
   "agents": {
     "title": "Agents",
@@ -50,7 +49,7 @@
       "risk": "Quantified risk scorecard (probability × impact) · Scenario-weighted return · Mandate-breach & concentration checks",
       "sentiment": "Social & forum theme tagging on the illustrative demo pack · Label + one-line rationale, signal only: never a sourced figure",
       "writing": "IC memos · Research notes · Pitch decks · Periodic reports",
-      "compliance": "Compliance screening (AAOIFI) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
+      "compliance": "Compliance screening (SOCPA-endorsed IFRS) · Fact-check vs source · Sanctions & conflicts · Confidence flags",
       "critical-review": "Independent provenance-chain re-verification · Assumption stress-testing · Adversarial challenge to every claim before it reaches the committee",
       "ic": "Committee Q&A · Deal ranking vs the 15% benchmark · Scenario sensitivity"
     }
@@ -122,7 +121,46 @@
     },
     "addSource": {
       "type": "Source type",
-      "roadmap": "This source type is on the MVP roadmap. For now, connect any internal system through MCP."
+      "location": "Location",
+      "copy": "Copy",
+      "copied": "Copied",
+      "show": "Show",
+      "hide": "Hide",
+      "api": {
+        "namePlaceholder": "Lunar Prices API",
+        "base": "Base URL",
+        "basePlaceholder": "https://api.internal.lunar.sa",
+        "key": "API key",
+        "keyPlaceholder": "sk_lunar_demo_0000"
+      },
+      "files": {
+        "namePlaceholder": "Q3 Deal Files",
+        "upload": "Upload folder",
+        "path": "Network path",
+        "chooseFolder": "Choose folder…",
+        "picked": "{name} · {count, plural, one {# file} other {# files}}",
+        "pickError": "Choose a folder to upload",
+        "pathLabel": "Folder URL or network path",
+        "pathPlaceholder": "smb://fileserver.lunar.sa/deals",
+        "pathError": "Enter an HTTPS URL or an SMB path",
+        "smbNote": "This is an SMB network share. Faheem needs read-only credentials to index it.",
+        "username": "Username",
+        "usernamePlaceholder": "LUNAR\\ali",
+        "password": "Password"
+      },
+      "app": {
+        "namePlaceholder": "Lunar Slack",
+        "url": "Workspace URL",
+        "urlPlaceholder": "https://lunar-investments.slack.com",
+        "note": "Faheem will request read-only access when this app is connected, revocable anytime and logged in the audit trail."
+      },
+      "feed": {
+        "namePlaceholder": "Tadawul headlines",
+        "url": "Feed URL",
+        "urlPlaceholder": "https://feeds.argaam.com/markets.rss",
+        "refresh": "Refresh every (minutes)",
+        "refreshPlaceholder": "15"
+      }
     },
     "configure": "Configure",
     "connect": "Connect",
@@ -148,14 +186,14 @@
       "authHeaderPlaceholder": "Authorization: Bearer …",
       "timeout": "Timeout (seconds)",
       "timeoutPlaceholder": "30",
-      "submit": "Add connector",
-      "customDescription": "Custom MCP connector"
+      "submit": "Add connector"
     },
     "oauth": {
       "title": "Connect {name}",
       "scope": "Faheem will get read-only access to official disclosures and filings.",
       "note": "Read-only · revocable anytime · logged in the audit trail",
       "authorize": "Authorize",
+      "custom": "Custom",
       "connecting": "Establishing secure connection…",
       "success": "Connected"
     }
@@ -166,7 +204,7 @@
     "welcome": {
       "eyebrow": "Welcome to Faheem",
       "title": "Let's set up <name>Lunar Investments</name>",
-      "subtitle": "Three steps to a workspace that knows your firm: connect your systems, activate your specialist agents, and codify your investment mandate.",
+      "subtitle": "Three steps to a workspace that knows your firm: connect your systems, activate your specialist agents, and set the rules Faheem works to.",
       "begin": "Begin setup",
       "skip": "Skip for now",
       "cardConnect": "Connect",
@@ -174,7 +212,7 @@
       "cardAgents": "Agents",
       "cardAgentsDesc": "Specialist teams working your coverage",
       "cardMandate": "Mandate",
-      "cardMandateDesc": "Your risk framework becomes the IC Charter"
+      "cardMandateDesc": "Benchmarks, risk limits and sector appetite Faheem works to"
     },
     "step1": "Connect",
     "step2": "Agents & skills",
@@ -210,7 +248,7 @@
       "liquiditySemiAnnual": "Semi-annual",
       "liquidityAnnual": "Annual",
       "compliance": "Compliance screen required",
-      "complianceNote": "Per AAOIFI methodology",
+      "complianceNote": "Per SOCPA-endorsed IFRS",
       "sectors": "Sector appetite",
       "sector": {
         "technology": "Technology",
@@ -280,7 +318,6 @@
       "send": "Send",
       "stop": "Stop",
       "attach": "Attach",
-      "mic": "Voice input",
       "improve": "Improve",
       "improving": "Improving…",
       "improved": "Improved by Faheem",
@@ -389,7 +426,7 @@
       },
       "compliance": {
         "label": "Compliance Screen",
-        "prompt": "Run an AAOIFI compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
+        "prompt": "Run the IC Charter compliance screen on Jahez: debt-to-market-cap, non-eligible income and liquidity ratios, with a clear pass or fail on each threshold."
       }
     },
     "activity": {
@@ -1059,8 +1096,8 @@
       "comps-min": "The lowest implied value per share across all eight comps triangulations, the bottom of the comps-implied valuation range.",
       "comps-median": "The median implied value per share across all eight comps triangulations, the comps' central estimate, set beside the DCF value as a sanity check.",
       "comps-max": "The highest implied value per share across all eight comps triangulations, the top of the comps-implied valuation range.",
-      "compliance-debt-ratio": "AAOIFI-style compliance screen: interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based eligibility test, not a valuation input.",
-      "compliance-cash-ratio": "AAOIFI-style compliance screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based eligibility test.",
+      "compliance-debt-ratio": "IC Charter compliance screen (on IFRS figures as endorsed by SOCPA): interest-bearing debt as a percentage of market capitalization must stay under 33%, a leverage-based eligibility test, not a valuation input.",
+      "compliance-cash-ratio": "IC Charter compliance screen: cash (and interest-bearing securities) as a percentage of market capitalization must stay under 33%, the second leg of the ratio-based eligibility test.",
       "compliance-lease-ratio": "A memo ratio including lease liabilities alongside interest-bearing debt against market capitalization. IFRS-16 leases aren't classic interest-bearing debt, so this is shown for reference, not as the pass/fail line.",
       "risk-composite": "Quantified risk composite: a peak-weighted blend of the register's probability-times-impact scores (60% the single worst risk, 40% the average across all risks), rescaled to a 0–10 score, so one severe risk can't hide inside a good average."
     },
@@ -1103,7 +1140,9 @@
         "perShare": "DCF value / share",
         "weightedIrr": "Weighted IRR",
         "vsPrice": "vs SAR {price} share price · {upside} upside",
-        "recomputes": "Recomputes in-browser: the same engine that builds the Excel."
+        "recomputes": "Recomputes in-browser: the same engine that builds the Excel.",
+        "basis": "Reporting basis: IFRS as endorsed in Saudi Arabia (SOCPA)",
+        "basisLabel": "Open the statement of compliance in the Q1 2026 Financial Statements at page {page}"
       },
       "strip": {
         "title": "Scenario summary",

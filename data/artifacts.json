@@ -1,17 +1,5 @@
 [
   {
-    "id": "darb-docx",
-    "kind": "docx",
-    "name": {
-      "en": "Darb Screening Memo",
-      "ar": "مذكرة فرز درب للجنة الاستثمار"
-    },
-    "workspace": "darb",
-    "file": "/artifacts/darb-screening-memo.docx",
-    "createdAt": "2026-07-16T14:47:15.370Z",
-    "sources": 3
-  },
-  {
     "id": "jahez-docx",
     "kind": "docx",
     "name": {
@@ -20,7 +8,31 @@
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-ic-memo.docx",
-    "createdAt": "2026-07-16T14:48:05.587Z",
+    "createdAt": "2026-07-17T06:59:16.389Z",
+    "sources": 5
+  },
+  {
+    "id": "darb-docx",
+    "kind": "docx",
+    "name": {
+      "en": "Darb Screening Memo",
+      "ar": "مذكرة فرز درب للجنة الاستثمار"
+    },
+    "workspace": "darb",
+    "file": "/artifacts/darb-screening-memo.docx",
+    "createdAt": "2026-07-17T06:59:19.985Z",
+    "sources": 3
+  },
+  {
+    "id": "jahez-xlsx",
+    "kind": "xlsx",
+    "name": {
+      "en": "Jahez · Valuation Model",
+      "ar": "جاهز · نموذج التقييم"
+    },
+    "workspace": "jahez",
+    "file": "/artifacts/jahez-valuation-model.xlsx",
+    "createdAt": "2026-07-17T06:59:23.383Z",
     "sources": 5
   },
   {
@@ -32,19 +44,7 @@
     },
     "workspace": "jahez",
     "file": "/artifacts/jahez-board-deck.pptx",
-    "createdAt": "2026-07-16T14:48:07.498Z",
-    "sources": 5
-  },
-  {
-    "id": "jahez-xlsx",
-    "kind": "xlsx",
-    "name": {
-      "en": "Jahez · Valuation Model",
-      "ar": "جاهز · نموذج التقييم"
-    },
-    "workspace": "jahez",
-    "file": "/artifacts/jahez-valuation-model.xlsx",
-    "createdAt": "2026-07-16T14:48:07.811Z",
+    "createdAt": "2026-07-17T06:59:26.842Z",
     "sources": 5
   }
 ]

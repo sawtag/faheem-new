@@ -1,0 +1,1 @@
+Illustrative fixture file for the e2e folder-upload test.

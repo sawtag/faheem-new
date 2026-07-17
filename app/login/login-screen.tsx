@@ -266,28 +266,22 @@ export function LoginScreen() {
 
           <Button
             variant="outline"
-            className="group mt-4 w-full"
+            className="group mt-4 h-14 w-full px-6 text-lg"
             loading={dayOne}
             disabled={loading || dayOne}
             onClick={startDayOne}
             startIcon={
-              <Sparkles className="text-accent size-4" aria-hidden="true" />
+              <Sparkles className="text-accent size-5" aria-hidden="true" />
             }
             endIcon={
               <ArrowRight
-                className="size-4 transition-transform duration-[var(--duration-fast)] ease-[var(--ease)] group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
+                className="size-5 transition-transform duration-[var(--duration-fast)] ease-[var(--ease)] group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
                 aria-hidden="true"
               />
             }
           >
             {dayOne ? t("dayOneLoading") : t("dayOneCta")}
           </Button>
-
-          <div className="border-border mt-5 border-t pt-3">
-            <p className="text-text-secondary text-center text-xs font-medium">
-              {t("footer")}
-            </p>
-          </div>
         </motion.div>
       </div>
 

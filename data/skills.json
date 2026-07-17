@@ -198,7 +198,9 @@
         "ar": "فحوصات تجاوز التفويض والتركّز مقابل ميثاق لجنة الاستثمار"
       }
     ],
-    "run": { "goldenId": "qa2" }
+    "run": {
+      "goldenId": "qa2"
+    }
   },
   {
     "id": "compliance-screen",
@@ -209,8 +211,8 @@
     "category": "risk-compliance",
     "icon": "moon-star",
     "oneLiner": {
-      "en": "AAOIFI ratio tests, run and cited, pass or fail, no judgment calls.",
-      "ar": "اختبارات نسب أيوفي (AAOIFI)، منفَّذة وموثّقة، اجتياز أو رسوب بلا اجتهاد شخصي."
+      "en": "IC Charter ratio tests, run and cited, pass or fail, no judgment calls.",
+      "ar": "اختبارات نسب ميثاق لجنة الاستثمار، منفَّذة وموثّقة، اجتياز أو رسوب بلا اجتهاد شخصي."
     },
     "methods": [
       {
@@ -230,7 +232,9 @@
         "ar": "مذكّرة معالجة لأي إيراد غير مؤهل متبقٍّ"
       }
     ],
-    "run": { "goldenId": "compliance-ar" }
+    "run": {
+      "goldenId": "compliance-ar"
+    }
   },
   {
     "id": "mandate-fit",
@@ -279,8 +283,8 @@
     },
     "methods": [
       {
-        "en": "Section architecture, exec summary → thesis → valuation → risk → Compliance → catalysts",
-        "ar": "بنية الأقسام، ملخص تنفيذي ← أطروحة استثمارية ← تقييم ← مخاطر ← فحص امتثال ← محفّزات"
+        "en": "Section architecture, exec summary → return analysis → strengths & concerns → risk → Compliance → catalysts",
+        "ar": "بنية الأقسام، ملخص تنفيذي ← تحليل العائد ← نقاط القوة والمخاوف ← مخاطر ← فحص امتثال ← محفّزات"
       },
       {
         "en": "Sources appendix discipline, every cited figure traces to doc + page",
@@ -295,7 +299,9 @@
         "ar": "صياغة استشارية بحتة طوال المذكرة، لا تُقال أبداً \"استثمر / لا تستثمر\""
       }
     ],
-    "run": { "goldenId": "deliverables" }
+    "run": {
+      "goldenId": "deliverables"
+    }
   },
   {
     "id": "covenant-sweep",

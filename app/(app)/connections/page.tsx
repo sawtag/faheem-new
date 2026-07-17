@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ConnectorRow } from "@/components/connections/connector-row";
-import { McpModal } from "@/components/connections/mcp-modal";
+import { AddSourceModal } from "@/components/connections/add-source-modal";
 import { OAuthModal } from "@/components/connections/oauth-modal";
 import { reveal } from "@/components/connections/reveal";
 import { useConnectorsState } from "@/components/connections/use-connector-state";
@@ -170,7 +170,11 @@ export default function ConnectionsPage() {
         </div>
       )}
 
-      <McpModal open={mcpOpen} onOpenChange={setMcpOpen} onAdd={addCustom} />
+      <AddSourceModal
+        open={mcpOpen}
+        onOpenChange={setMcpOpen}
+        onAdd={addCustom}
+      />
       <OAuthModal
         connector={oauthTarget}
         open={oauthTarget !== null}
@@ -178,6 +182,7 @@ export default function ConnectionsPage() {
           if (!open) setOauthTarget(null);
         }}
         onConnected={connect}
+        onCustom={() => setMcpOpen(true)}
       />
     </motion.div>
   );

@@ -177,14 +177,14 @@ describe("GenerationPanel", () => {
     expect(screen.getAllByRole("button", { name: "Preview" })).toHaveLength(3);
 
     // the money moment: the completed "all" run AUTO-OPENS the deck preview
-    // (400ms beat after the last card lands) with the full 8-thumbnail rail.
+    // (400ms beat after the last card lands) with the full 10-thumbnail rail.
     const preview = await screen.findByTestId("artifact-preview", undefined, {
       timeout: 2500,
     });
     expect(
-      within(preview).getAllByRole("button", { name: /^Slide \d$/ }),
-    ).toHaveLength(8);
-    expect(within(preview).getByText("Slide 1 of 8")).toBeInTheDocument();
+      within(preview).getAllByRole("button", { name: /^Slide \d+$/ }),
+    ).toHaveLength(10);
+    expect(within(preview).getByText("Slide 1 of 10")).toBeInTheDocument();
   });
 
   it("shows an inline error on a row without blocking the others", async () => {

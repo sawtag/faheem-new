@@ -25,18 +25,22 @@ const SUCCESS_MS = 900;
  * Fake OAuth modal (design-briefs §2.3), three internal states: authorize →
  * connecting (~900ms) → success (auto-dismiss ~900ms). `onConnected` fires
  * the moment the success state is entered, so the caller can migrate the row
- * and start the "mint wash" while the modal is still closing.
+ * and start the "mint wash" while the modal is still closing. `onCustom`
+ * closes this dialog and hands off to the existing Add-source (MCP) flow when
+ * the one-click authorize path is not enough.
  */
 export function OAuthModal({
   connector,
   open,
   onOpenChange,
   onConnected,
+  onCustom,
 }: {
   connector: Connector | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onConnected: (id: string) => void;
+  onCustom?: () => void;
 }) {
   const t = useTranslations("connections");
   const locale = useLocale() as Lang;
@@ -119,17 +123,31 @@ export function OAuthModal({
                 />
                 {t("oauth.note")}
               </p>
-              <div className="mt-6 flex w-full justify-end gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => onOpenChange(false)}
-                >
-                  {t("cancel")}
-                </Button>
-                <Button size="sm" onClick={() => setStage("connecting")}>
-                  {t("oauth.authorize")}
-                </Button>
+              <div className="mt-6 flex w-full items-center gap-2">
+                {onCustom && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      onOpenChange(false);
+                      onCustom();
+                    }}
+                  >
+                    {t("oauth.custom")}
+                  </Button>
+                )}
+                <div className="ms-auto flex gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onOpenChange(false)}
+                  >
+                    {t("cancel")}
+                  </Button>
+                  <Button size="sm" onClick={() => setStage("connecting")}>
+                    {t("oauth.authorize")}
+                  </Button>
+                </div>
               </div>
             </motion.div>
           )}

@@ -9,7 +9,6 @@ import {
   ChevronDown,
   FileText,
   Loader2,
-  Mic,
   Paperclip,
   RotateCw,
   Sparkles,
@@ -582,10 +581,6 @@ export function Composer({
               onChange={setModel}
               label={t("modelLabel")}
             />
-
-            <ToolbarButton label={t("mic")}>
-              <Mic className="size-[18px]" />
-            </ToolbarButton>
 
             <SendButton
               streaming={streaming}

@@ -1,19 +1,25 @@
 /**
- * Jahez IC memo, the Lunar-branded Word deliverable (§11 "IC memo (Word) sections").
+ * Jahez IC memo, the Lunar-branded Word deliverable.
  *
- * Nine sections exactly per spec: Executive summary & recommendation ·
- * Investment thesis (3 pillars) · Company & industry · Financial analysis ·
- * Valuation · Quantified risk assessment · Compliance screen ·
- * Catalysts & monitoring KPIs · Appendix: sources.
+ * Structure follows the house investment-memorandum template (modeled on the
+ * reference IC memos Lunar's committee reads): an at-a-glance deal grid on the
+ * cover, a bulleted Executive Summary, Return Analysis (valuation approaches,
+ * scenarios, Benchmark check), Key Strengths and Concerns, Quantified Risk
+ * Assessment, Company and Market Overview, Historical and Projected
+ * Financials, Compliance Screen, Catalysts and Monitoring KPIs, and a sources
+ * appendix. The register is deliberately neutral: modeled outputs are stated,
+ * never advocated, and the investment decision rests with the Investment
+ * Committee.
  *
  * All prose comes from `data/narratives.json` template strings, resolved via
  * `resolveNarrativeTree()` against `buildNarrativeFacts(computeModel())`, every
- * quantitative claim traces to a `ModelInput` or a `computeModel()` output, never
- * a hand-typed number (AGENTS.md rule 5). Tables (actuals, scenarios, risk
- * register, Compliance ratios, mandate-fit, sources appendix) are built directly
- * from the same data, so the numbers in prose and in tables can never drift
- * apart. Lunar brand (charcoal + gold, serif headings) comes from
- * `lib/generate/shared.ts`'s `lunarBrand`, the one legal home for Office hexes.
+ * quantitative claim traces to a `ModelInput`, an `MKT` market datum, or a
+ * `computeModel()` output, never a hand-typed number (AGENTS.md rule 5).
+ * Tables (financials, comps, scenarios, risk register, Compliance ratios,
+ * mandate check, sources appendix) are built directly from the same data, so
+ * the numbers in prose and in tables can never drift apart. Lunar brand
+ * (charcoal + gold, serif headings) comes from `lib/generate/shared.ts`'s
+ * `lunarBrand`, the one legal home for Office hexes.
  */
 import {
   AlignmentType,
@@ -47,25 +53,28 @@ import {
   riskRegister,
   type NarrativeFacts,
 } from "@/lib/generate/shared";
-import { computeModel } from "@/lib/model/compute";
+import { computeModel, YEARS } from "@/lib/model/compute";
+import { MKT } from "@/lib/model/inputs";
 
 // ════════════════════════════ narrative shapes ══════════════════════════════
-interface Pillar {
+interface TitledItem {
   title: string;
   body: string;
 }
 interface MemoNarratives {
-  execSummary: string;
-  thesisPillars: Pillar[];
-  companyIndustry: string;
-  financialAnalysis: {
-    unitEconomics: string;
-    operatingLeverage: string;
-    fcfProfile: string;
+  execSummary: string[];
+  returnAnalysis: {
+    approach: string;
+    compsNote: string;
+    scenarios: string;
+    benchmarkCheck: string;
   };
-  valuation: string;
+  strengths: TitledItem[];
+  concerns: TitledItem[];
   riskIntro: string;
-  mandateFit: string;
+  companyOverview: string;
+  marketOverview: string;
+  financials: { historical: string; forecast: string };
   compliance: string;
   catalysts: string;
   monitoringKpis: string[];
@@ -119,26 +128,36 @@ function coverBand(
   });
 }
 
-function h1(text: string): Paragraph {
-  return new Paragraph({
-    heading: HeadingLevel.HEADING_1,
-    spacing: { before: 420, after: 140 },
-    border: { bottom: goldRule(10) },
-    children: [
-      new TextRun({
-        text,
-        font: B.serif,
-        size: half(16),
-        bold: true,
-        color: B.charcoal,
-      }),
-    ],
-  });
+/** Section heading: a full-width charcoal band with cream serif text and a
+ * gold base rule (the reference-memo section-band pattern in Lunar colors).
+ * Paragraph shading fills the paragraph's own spacing, so the air above the
+ * band comes from a separate unshaded spacer paragraph. */
+function h1(text: string): Paragraph[] {
+  return [
+    new Paragraph({ spacing: { before: 220, after: 0 }, children: [] }),
+    new Paragraph({
+      heading: HeadingLevel.HEADING_1,
+      shading: { fill: B.charcoal, type: ShadingType.CLEAR, color: "auto" },
+      border: { bottom: goldRule(12) },
+      spacing: { before: 90, after: 240 },
+      indent: { left: convertInchesToTwip(0.12) },
+      children: [
+        new TextRun({
+          text,
+          font: B.serif,
+          size: half(14),
+          bold: true,
+          color: B.cream,
+        }),
+      ],
+    }),
+  ];
 }
 
 function h2(text: string): Paragraph {
   return new Paragraph({
     spacing: { before: 220, after: 90 },
+    border: { bottom: thin(B.border) },
     children: [
       new TextRun({
         text,
@@ -164,9 +183,34 @@ function body(text: string): Paragraph {
 function bullet(text: string): Paragraph {
   return new Paragraph({
     bullet: { level: 0 },
-    spacing: { after: 80, line: 250 },
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 100, line: 256 },
     children: [
       new TextRun({ text, font: B.sans, size: half(10.5), color: B.ink }),
+    ],
+  });
+}
+
+/** Reference-memo strengths/concerns bullet: bold lead-in phrase, plain body. */
+function bulletLead(title: string, bodyText: string): Paragraph {
+  return new Paragraph({
+    bullet: { level: 0 },
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 110, line: 256 },
+    children: [
+      new TextRun({
+        text: `${title}: `,
+        font: B.sans,
+        size: half(10.5),
+        bold: true,
+        color: B.charcoal,
+      }),
+      new TextRun({
+        text: bodyText,
+        font: B.sans,
+        size: half(10.5),
+        color: B.ink,
+      }),
     ],
   });
 }
@@ -195,6 +239,7 @@ function cell(
     color?: string;
     align?: (typeof AlignmentType)[keyof typeof AlignmentType];
     width?: number;
+    size?: number;
   } = {},
 ): TableCell {
   return new TableCell({
@@ -213,7 +258,7 @@ function cell(
           new TextRun({
             text,
             font: B.sans,
-            size: half(9.5),
+            size: half(opts.size ?? 9.5),
             bold: opts.bold ?? opts.header ?? false,
             color: opts.color ?? (opts.header ? B.cream : B.ink),
           }),
@@ -223,11 +268,13 @@ function cell(
   });
 }
 
-/** A Lunar-styled data table: charcoal header row, alternating body-row tint. */
+/** A Lunar-styled data table: charcoal header row, alternating body-row tint.
+ * `fontSize` drops to 8pt for the wide financials table. */
 function dataTable(
   headers: string[],
   rows: string[][],
   widths?: number[],
+  fontSize?: number,
 ): Table {
   const w = widths ?? headers.map(() => Math.floor(100 / headers.length));
   const headerRow = new TableRow({
@@ -237,6 +284,7 @@ function dataTable(
         header: true,
         fill: B.charcoal,
         width: w[i],
+        size: fontSize,
         align: i === 0 ? AlignmentType.LEFT : AlignmentType.CENTER,
       }),
     ),
@@ -248,6 +296,7 @@ function dataTable(
           cell(v, {
             width: w[i],
             fill: ri % 2 === 1 ? B.paper : undefined,
+            size: fontSize,
             align: i === 0 ? AlignmentType.LEFT : AlignmentType.CENTER,
           }),
         ),
@@ -267,8 +316,19 @@ function dataTable(
   });
 }
 
-/** Cover at-a-glance: label/value rows, no header band (IC-memo house style). */
-function kvTable(rows: [string, string][]): Table {
+/** Reference-memo at-a-glance grid: paired label/value columns, charcoal label
+ * bands with cream text (the cover deal-summary pattern in Lunar colors). */
+function pairGrid(rows: [string, string, string, string][]): Table {
+  const label = (t: string, w: number): TableCell =>
+    cell(t, {
+      fill: B.charcoal,
+      color: B.cream,
+      bold: true,
+      width: w,
+      align: AlignmentType.LEFT,
+    });
+  const value = (t: string, w: number): TableCell =>
+    cell(t, { width: w, align: AlignmentType.LEFT });
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: {
@@ -280,27 +340,44 @@ function kvTable(rows: [string, string][]): Table {
       insideVertical: thin(),
     },
     rows: rows.map(
-      ([label, value]) =>
+      ([l1, v1, l2, v2]) =>
         new TableRow({
           children: [
-            cell(label, { width: 42, fill: B.paper, bold: true }),
-            cell(value, { width: 58 }),
+            label(l1, 18),
+            value(v1, 32),
+            label(l2, 18),
+            value(v2, 32),
           ],
         }),
     ),
   });
 }
 
+// ══════════════════════════ number formatting (tables) ══════════════════════
+const m0 = (v: number): string =>
+  v < 0
+    ? `(${Math.abs(v).toLocaleString("en-US", { maximumFractionDigits: 0 })})`
+    : v.toLocaleString("en-US", { maximumFractionDigits: 0 });
+const m1 = (v: number): string =>
+  v.toLocaleString("en-US", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+const pc1 = (v: number): string => `${(v * 100).toFixed(1)}%`;
+const mult = (v: number): string => `${v.toFixed(2)}x`;
+
 // ═════════════════════════════ appendix (sources) ═══════════════════════════
-// Every ModelInput key actually cited (by placeholder) anywhere in the memo
-// prose, plus the handful of policy/industry-pack pages cited inline as plain
-// text (not ModelInput-backed figures), grouped by doc for the sources table.
+// Every ModelInput key actually cited (by placeholder in the memo prose or as
+// a cell in the financials table), plus the handful of policy/industry-pack
+// pages cited inline as plain text (not ModelInput-backed figures), grouped by
+// doc for the sources table.
 const CITED_MODEL_INPUT_KEYS = [
   "fy23.gmv",
   "fy23.orders",
   "fy23.aov",
   "fy23.net_revenue",
   "fy23.take_rate",
+  "fy23.adj_ebitda",
   "fy24.gmv",
   "fy24.orders",
   "fy24.aov",
@@ -467,7 +544,7 @@ export async function buildIcMemo(): Promise<Buffer> {
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { before: 160, after: 260 },
+      spacing: { before: 160, after: 200 },
       children: [
         new TextRun({
           text: "PRIVILEGED & CONFIDENTIAL · PREPARED FOR THE INVESTMENT COMMITTEE",
@@ -480,14 +557,14 @@ export async function buildIcMemo(): Promise<Buffer> {
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { after: 80 },
+      spacing: { after: 60 },
       children: [
         new TextRun({
-          text: fact(facts, "calc.rating"),
+          text: "For Investment Committee Decision",
           font: B.serif,
-          size: half(40),
+          size: half(20),
           bold: true,
-          color: B.positive,
+          color: B.charcoal,
         }),
       ],
     }),
@@ -496,33 +573,52 @@ export async function buildIcMemo(): Promise<Buffer> {
       spacing: { after: 240 },
       children: [
         new TextRun({
-          text: `Target price ${fact(facts, "calc.targetPrice")}  ·  ${fact(facts, "calc.upside")} vs ${fact(facts, "calc.currentPrice")} close`,
+          text: `Scenario-weighted expected return ${fact(facts, "calc.weightedReturn")} vs the ${fact(facts, "calc.hurdle")} Benchmark · 4-year hold`,
           font: B.sans,
           size: half(11.5),
           color: B.charcoalMid,
         }),
       ],
     }),
-    kvTable([
+    pairGrid([
       [
-        "Target price (12m, DCF-anchored)",
-        `${fact(facts, "calc.targetPrice")} (${fact(facts, "calc.upside")} vs ${fact(facts, "calc.currentPrice")} close)`,
+        "Company",
+        "Jahez International Company",
+        "Listing",
+        "Tadawul Main Market · 6017",
       ],
-      ["Base-case IRR (4-year hold)", fact(facts, "calc.irrBase")],
+      ["Sector", "Quick-commerce & food delivery", "Geography", "Saudi Arabia"],
       [
-        "Scenario-weighted return",
-        `${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} benchmark`,
+        "Instrument",
+        "Public equity",
+        "Hold period",
+        "4 years (mandate window 3-5)",
       ],
-      ["Quantified risk score", `${fact(facts, "calc.riskScore")} / 10`],
-      ["Compliance screen", fact(facts, "calc.complianceStatus")],
-      ["Valuation basis", "FCFF DCF, cross-checked against trading comps"],
+      [
+        "Current price",
+        fact(facts, "calc.currentPrice"),
+        "Base-case value (DCF)",
+        fact(facts, "calc.targetPrice"),
+      ],
+      [
+        "Weighted return",
+        fact(facts, "calc.weightedReturn"),
+        "Benchmark",
+        `${fact(facts, "calc.hurdle")} gross IRR`,
+      ],
+      [
+        "Risk score",
+        `${fact(facts, "calc.riskScore")} / 10`,
+        "Compliance screen",
+        fact(facts, "calc.complianceStatus"),
+      ],
     ]),
     new Paragraph({
       alignment: AlignmentType.CENTER,
       spacing: { before: 260, after: 200 },
       children: [
         new TextRun({
-          text: "Contents: Executive Summary & Recommendation · Investment Thesis · Company & Industry · Financial Analysis · Valuation · Quantified Risk Assessment · Compliance Screen · Catalysts & Monitoring KPIs · Sources",
+          text: "Contents: Executive Summary · Return Analysis · Key Strengths and Concerns · Quantified Risk Assessment · Company and Market Overview · Historical and Projected Financials · Compliance Screen · Catalysts and Monitoring KPIs · Sources",
           font: B.sans,
           size: half(8.5),
           color: B.inkMuted,
@@ -558,101 +654,16 @@ export async function buildIcMemo(): Promise<Buffer> {
     }),
   ];
 
-  // ── Section 1: Executive summary & recommendation ──
+  // ── Section 1: Executive summary (bulleted, reference-memo style) ──
   const section1 = [
-    h1("Executive Summary & Recommendation"),
-    dataTable(
-      [
-        "Rating",
-        "Target price",
-        "Current price",
-        "Upside",
-        "Base IRR (4y)",
-        "Wtd. return",
-        "Benchmark",
-        "Risk score",
-        "Compliance",
-      ],
-      [
-        [
-          fact(facts, "calc.rating"),
-          fact(facts, "calc.targetPrice"),
-          fact(facts, "calc.currentPrice"),
-          fact(facts, "calc.upside"),
-          fact(facts, "calc.irrBase"),
-          fact(facts, "calc.weightedReturn"),
-          fact(facts, "calc.hurdle"),
-          `${fact(facts, "calc.riskScore")} / 10`,
-          fact(facts, "calc.complianceStatus"),
-        ],
-      ],
-      [9, 12, 12, 8, 12, 11, 9, 11, 16],
-    ),
+    ...h1("Executive Summary"),
+    ...memo.execSummary.map((b) => bullet(b)),
     caption(
-      "Source: Faheem Valuation Model (DCF, Scenarios & Risk, Compliance Screen tabs), see the workbook for the full formula chain.",
+      "Figures: FY2025 Earnings Results, Q1 2026 Financial Statements, and the Faheem Valuation Model; every figure traces to the sources appendix.",
     ),
-    body(memo.execSummary),
   ];
 
-  // ── Section 2: Investment thesis ──
-  const section2 = [h1("Investment Thesis")];
-  memo.thesisPillars.forEach((p: Pillar, i: number) => {
-    section2.push(h2(`${i + 1}. ${p.title}`));
-    section2.push(body(p.body));
-  });
-
-  // ── Section 3: Company & industry ──
-  const section3 = [h1("Company & Industry"), body(memo.companyIndustry)];
-
-  // ── Section 4: Financial analysis ──
-  const inputs = loadModelInputs();
-  const actualsRow = (label: string, k23: string, k24: string, k25: string) => [
-    label,
-    inputs.get(k23) ? formatValueOnly(inputs.get(k23)!) : "n/a",
-    inputs.get(k24) ? formatValueOnly(inputs.get(k24)!) : "n/a",
-    inputs.get(k25) ? formatValueOnly(inputs.get(k25)!) : "n/a",
-  ];
-  const section4 = [
-    h1("Financial Analysis"),
-    h2("Unit economics"),
-    body(memo.financialAnalysis.unitEconomics),
-    dataTable(
-      ["Metric", "FY23A", "FY24A", "FY25A"],
-      [
-        actualsRow("Orders (m)", "fy23.orders", "fy24.orders", "fy25.orders"),
-        actualsRow("AOV (SAR)", "fy23.aov", "fy24.aov", "fy25.aov"),
-        actualsRow("GMV (SAR m)", "fy23.gmv", "fy24.gmv", "fy25.gmv"),
-        actualsRow(
-          "Take rate",
-          "fy23.take_rate",
-          "fy24.take_rate",
-          "fy25.take_rate",
-        ),
-        actualsRow(
-          "Net revenue (SAR m)",
-          "fy23.net_revenue",
-          "fy24.net_revenue",
-          "fy25.net_revenue",
-        ),
-        actualsRow(
-          "Adj. EBITDA (SAR m)",
-          "fy23.adj_ebitda",
-          "fy24.adj_ebitda",
-          "fy25.adj_ebitda",
-        ),
-      ],
-      [30, 23, 23, 24],
-    ),
-    caption(
-      "Source: Annual Report 2024, p.5, p.24; Q4 2025 Earnings Results, p.4.",
-    ),
-    h2("Operating leverage"),
-    body(memo.financialAnalysis.operatingLeverage),
-    h2("Free cash flow profile"),
-    body(memo.financialAnalysis.fcfProfile),
-  ];
-
-  // ── Section 5: Valuation ──
+  // ── Section 2: Return analysis ──
   const scenarioRow = (
     name: string,
     s: { g: number; perShare: number; upside: number; irr: number },
@@ -663,9 +674,41 @@ export async function buildIcMemo(): Promise<Buffer> {
     `${s.upside >= 0 ? "+" : ""}${(s.upside * 100).toFixed(1)}%`,
     `${(s.irr * 100).toFixed(1)}%`,
   ];
-  const section5 = [
-    h1("Valuation"),
-    body(memo.valuation),
+  const section2 = [
+    ...h1("Return Analysis"),
+    h2("Valuation approach"),
+    body(memo.returnAnalysis.approach),
+    h2("Trading comparables cross-check"),
+    body(memo.returnAnalysis.compsNote),
+    dataTable(
+      ["Comparable", "EV/Revenue", "EV/EBITDA", "P/E (TTM)"],
+      [
+        [
+          "Talabat",
+          mult(MKT.talabatEvRev.value),
+          mult(MKT.talabatEvEbitda.value),
+          mult(MKT.talabatPe.value),
+        ],
+        [
+          "DoorDash",
+          mult(MKT.doordashEvRev.value),
+          mult(MKT.doordashEvEbitda.value),
+          mult(MKT.doordashPe.value),
+        ],
+        [
+          "Delivery Hero",
+          mult(MKT.dheroEvRev.value),
+          mult(MKT.dheroEvEbitda.value),
+          "n/a",
+        ],
+      ],
+      [34, 22, 22, 22],
+    ),
+    caption(
+      `Source: Market Data & Comparables Snapshot, p.4. Implied value per share across all methods: ${fact(facts, "calc.compsMin")} min · ${fact(facts, "calc.compsMedian")} median · ${fact(facts, "calc.compsMax")} max.`,
+    ),
+    h2("Scenario analysis"),
+    body(memo.returnAnalysis.scenarios),
     dataTable(
       [
         "Scenario",
@@ -689,38 +732,40 @@ export async function buildIcMemo(): Promise<Buffer> {
       [30, 18, 18, 18, 16],
     ),
     caption(
-      `Source: Faheem Valuation Model, DCF tab (WACC ${fact(facts, "calc.wacc")}, cost of equity ${fact(facts, "calc.costOfEquity")}); Market Data & Comparables Snapshot, p.2-4.`,
+      `Source: Faheem Valuation Model, DCF and Scenarios & Risk tabs (WACC ${fact(facts, "calc.wacc")}, cost of equity ${fact(facts, "calc.costOfEquity")}).`,
     ),
-  ];
-
-  // ── Section 6: Quantified risk assessment ──
-  const section6 = [
-    h1("Quantified Risk Assessment"),
-    body(memo.riskIntro),
+    h2("Return summary"),
     dataTable(
-      ["Risk", "P", "I", "Score", "Mitigation", "Cite"],
-      riskRegister.map((r) => [
-        r.name,
-        String(r.probability),
-        String(r.impact),
-        String(r.probability * r.impact),
-        r.mitigation,
-        r.cite,
-      ]),
-      [26, 6, 6, 8, 34, 20],
+      ["Metric", "Value"],
+      [
+        ["Current price (close)", fact(facts, "calc.currentPrice")],
+        ["Base-case value per share (DCF)", fact(facts, "calc.targetPrice")],
+        ["Implied upside vs close", fact(facts, "calc.upside")],
+        ["Base-case IRR (4-year hold)", fact(facts, "calc.irrBase")],
+        [
+          "Scenario-weighted value per share",
+          fact(facts, "calc.weightedPerShare"),
+        ],
+        [
+          "Scenario-weighted expected return",
+          fact(facts, "calc.weightedReturn"),
+        ],
+        ["Benchmark (Lunar mandate, gross IRR)", fact(facts, "calc.hurdle")],
+      ],
+      [55, 45],
     ),
     caption(
-      `Composite risk score (peak-weighted, 0-10): ${fact(facts, "calc.riskScore")}.`,
+      "Source: Faheem Valuation Model; Lunar IC Charter & Investment Mandate, p.3.",
     ),
-    h2("Mandate-fit check"),
-    body(memo.mandateFit),
+    h2("Benchmark and mandate check"),
+    body(memo.returnAnalysis.benchmarkCheck),
     dataTable(
       ["Criterion", "Status", "Detail"],
       [
         [
-          "IRR benchmark (15%)",
+          "IRR Benchmark (15%)",
           model.weightedReturn >= 0.15 ? "PASS" : "REVIEW",
-          `Weighted return ${fact(facts, "calc.weightedReturn")} vs ${fact(facts, "calc.hurdle")} benchmark`,
+          `Weighted return ${fact(facts, "calc.weightedReturn")} vs the ${fact(facts, "calc.hurdle")} Benchmark`,
         ],
         [
           "Single-name concentration (10% cap)",
@@ -738,9 +783,81 @@ export async function buildIcMemo(): Promise<Buffer> {
     caption("Source: Lunar IC Charter & Investment Mandate, p.3-4."),
   ];
 
+  // ── Section 3: Key strengths and concerns ──
+  const section3 = [
+    ...h1("Key Strengths and Concerns"),
+    h2("Key strengths"),
+    ...memo.strengths.map((s) => bulletLead(s.title, s.body)),
+    h2("Key concerns"),
+    ...memo.concerns.map((c) => bulletLead(c.title, c.body)),
+  ];
+
+  // ── Section 4: Quantified risk assessment ──
+  const section4 = [
+    ...h1("Quantified Risk Assessment"),
+    body(memo.riskIntro),
+    dataTable(
+      ["Risk", "P", "I", "Score", "Mitigation", "Cite"],
+      riskRegister.map((r) => [
+        r.name,
+        String(r.probability),
+        String(r.impact),
+        String(r.probability * r.impact),
+        r.mitigation,
+        r.cite,
+      ]),
+      [26, 6, 6, 8, 34, 20],
+    ),
+    caption(
+      `Composite risk score (peak-weighted, 0-10): ${fact(facts, "calc.riskScore")}.`,
+    ),
+  ];
+
+  // ── Section 5: Company and market overview ──
+  const section5 = [
+    ...h1("Company and Market Overview"),
+    h2("Company overview"),
+    body(memo.companyOverview),
+    h2("Market and competitive landscape"),
+    body(memo.marketOverview),
+  ];
+
+  // ── Section 6: Historical and projected financials ──
+  const margin = (i: number): number =>
+    (model.ebitda[i] ?? 0) / (model.netRev[i] ?? 1);
+  const years8 = [...YEARS];
+  const finRow = (
+    label: string,
+    format: (v: number, i: number) => string,
+    series: number[],
+  ): string[] => [label, ...series.map((v, i) => format(v, i))];
+  const section6 = [
+    ...h1("Historical and Projected Financials"),
+    body(memo.financials.historical),
+    dataTable(
+      ["SAR m unless noted", ...years8],
+      [
+        finRow("Orders (m)", (v) => m1(v), model.orders),
+        finRow("Avg. order value (SAR)", (v) => v.toFixed(2), model.aov),
+        finRow("GMV", (v) => m0(v), model.gmv),
+        finRow("Net revenue", (v) => m0(v), model.netRev),
+        finRow("Take rate", (v) => pc1(v), model.takeRate),
+        finRow("Adj. EBITDA", (v) => m0(v), model.ebitda),
+        finRow("Adj. EBITDA margin", (_v, i) => pc1(margin(i)), model.ebitda),
+        finRow("FCFF", (v, i) => (i === 0 ? "–" : m0(v)), model.fcff),
+      ],
+      [16.8, 10.4, 10.4, 10.4, 10.4, 10.4, 10.4, 10.4, 10.4],
+      8,
+    ),
+    caption(
+      "FY23A-FY25A actuals: Annual Report 2024, p.5, p.24; Q4 2025 Earnings Results, p.4. FY26E-FY30E and actual-year FCFF: Faheem Valuation Model on documented assumptions (workbook Assumptions tab). E = estimate.",
+    ),
+    body(memo.financials.forecast),
+  ];
+
   // ── Section 7: Compliance screen ──
   const section7 = [
-    h1("Compliance Screen"),
+    ...h1("Compliance Screen"),
     body(memo.compliance),
     dataTable(
       ["Screen", "Value", "Threshold", "Flag"],
@@ -771,7 +888,7 @@ export async function buildIcMemo(): Promise<Buffer> {
 
   // ── Section 8: Catalysts & monitoring KPIs ──
   const section8 = [
-    h1("Catalysts & Monitoring KPIs"),
+    ...h1("Catalysts and Monitoring KPIs"),
     body(memo.catalysts),
     h2("Monitoring KPIs"),
     ...memo.monitoringKpis.map((k: string) => bullet(k)),
@@ -779,7 +896,7 @@ export async function buildIcMemo(): Promise<Buffer> {
 
   // ── Section 9: Appendix, sources ──
   const section9 = [
-    h1("Appendix: Sources"),
+    ...h1("Appendix: Sources"),
     body(
       "Every source document actually cited in this memo, with the pages the cited figures came from. Full cell-level source trails are in the accompanying Excel valuation workbook.",
     ),
@@ -829,24 +946,4 @@ export async function buildIcMemo(): Promise<Buffer> {
   });
 
   return Packer.toBuffer(doc);
-}
-
-/** Bare value (no unit suffix) for a compact FY23A-FY25A actuals table cell. */
-function formatValueOnly(input: { value: number; unit: string }): string {
-  const v = input.value;
-  switch (input.unit) {
-    case "SAR m":
-      return v.toLocaleString("en-US", {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1,
-      });
-    case "%":
-      return `${v.toFixed(1)}%`;
-    case "SAR":
-      return v.toFixed(2);
-    case "m":
-      return v.toFixed(1);
-    default:
-      return String(v);
-  }
 }

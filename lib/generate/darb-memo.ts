@@ -5,9 +5,13 @@
  * not an IC recommendation, so the register stays deliberately more cautious
  * than the Jahez IC memo, figures are flagged company-reported/unaudited.
  *
- * Nine sections: Purpose & recommendation, Company at a glance, Product &
- * market, Financial summary, Use of proceeds, Founding team, Mandate
- * screening vs the IC Charter, Risks & open diligence, Appendix: sources.
+ * Structure follows the house investment-memorandum template (same shape as
+ * the Jahez IC memo, adapted for a private screening-stage deal): at-a-glance
+ * grid on the cover, bulleted Executive Summary, Screening Outcome vs the IC
+ * Charter, Key Strengths and Concerns, Company and Market Overview, Financial
+ * Summary and Use of Proceeds, and a sources appendix. The screening outcome
+ * is reported, never advocated: advancing past screening and any investment
+ * decision rest with the Investment Committee.
  *
  * Layout helpers mirror lib/generate/docx.ts (same Lunar brand, same table
  * chrome) but are re-implemented locally, docx.ts is owned by another
@@ -92,26 +96,34 @@ function coverBand(
   });
 }
 
-function h1(text: string): Paragraph {
-  return new Paragraph({
-    heading: HeadingLevel.HEADING_1,
-    spacing: { before: 420, after: 140 },
-    border: { bottom: goldRule(10) },
-    children: [
-      new TextRun({
-        text,
-        font: B.serif,
-        size: half(16),
-        bold: true,
-        color: B.charcoal,
-      }),
-    ],
-  });
+/** Section heading: a full-width charcoal band with cream serif text and a
+ * gold base rule. The air above comes from a separate unshaded spacer. */
+function h1(text: string): Paragraph[] {
+  return [
+    new Paragraph({ spacing: { before: 220, after: 0 }, children: [] }),
+    new Paragraph({
+      heading: HeadingLevel.HEADING_1,
+      shading: { fill: B.charcoal, type: ShadingType.CLEAR, color: "auto" },
+      border: { bottom: goldRule(12) },
+      spacing: { before: 90, after: 240 },
+      indent: { left: convertInchesToTwip(0.12) },
+      children: [
+        new TextRun({
+          text,
+          font: B.serif,
+          size: half(14),
+          bold: true,
+          color: B.cream,
+        }),
+      ],
+    }),
+  ];
 }
 
 function h2(text: string): Paragraph {
   return new Paragraph({
     spacing: { before: 220, after: 90 },
+    border: { bottom: thin(B.border) },
     children: [
       new TextRun({
         text,
@@ -137,9 +149,34 @@ function body(text: string): Paragraph {
 function bullet(text: string): Paragraph {
   return new Paragraph({
     bullet: { level: 0 },
-    spacing: { after: 80, line: 250 },
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 100, line: 256 },
     children: [
       new TextRun({ text, font: B.sans, size: half(10.5), color: B.ink }),
+    ],
+  });
+}
+
+/** Strengths/concerns bullet: bold lead-in phrase, plain body. */
+function bulletLead(title: string, bodyText: string): Paragraph {
+  return new Paragraph({
+    bullet: { level: 0 },
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 110, line: 256 },
+    children: [
+      new TextRun({
+        text: `${title}: `,
+        font: B.sans,
+        size: half(10.5),
+        bold: true,
+        color: B.charcoal,
+      }),
+      new TextRun({
+        text: bodyText,
+        font: B.sans,
+        size: half(10.5),
+        color: B.ink,
+      }),
     ],
   });
 }
@@ -239,9 +276,18 @@ function dataTable(
   });
 }
 
-// ═══════════════════════════ darb.* input helpers ═══════════════════════════
-/** Cover at-a-glance: label/value rows, no header band (IC-memo house style). */
-function kvTable(rows: [string, string][]): Table {
+/** At-a-glance grid: paired label/value columns, charcoal label bands. */
+function pairGrid(rows: [string, string, string, string][]): Table {
+  const label = (t: string, w: number): TableCell =>
+    cell(t, {
+      fill: B.charcoal,
+      color: B.cream,
+      bold: true,
+      width: w,
+      align: AlignmentType.LEFT,
+    });
+  const value = (t: string, w: number): TableCell =>
+    cell(t, { width: w, align: AlignmentType.LEFT });
   return new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: {
@@ -253,17 +299,20 @@ function kvTable(rows: [string, string][]): Table {
       insideVertical: thin(),
     },
     rows: rows.map(
-      ([label, value]) =>
+      ([l1, v1, l2, v2]) =>
         new TableRow({
           children: [
-            cell(label, { width: 42, fill: B.paper, bold: true }),
-            cell(value, { width: 58 }),
+            label(l1, 18),
+            value(v1, 32),
+            label(l2, 18),
+            value(v2, 32),
           ],
         }),
     ),
   });
 }
 
+// ═══════════════════════════ darb.* input helpers ═══════════════════════════
 function darbInput(suffix: string): ModelInput {
   const input = loadModelInputs().get(`darb.${suffix}`);
   if (!input) throw new Error(`Missing model input: darb.${suffix}`);
@@ -418,7 +467,7 @@ export async function buildDarbMemo(): Promise<Buffer> {
     ),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { before: 160, after: 260 },
+      spacing: { before: 160, after: 200 },
       children: [
         new TextRun({
           text: "PRIVILEGED & CONFIDENTIAL · PREPARED FOR THE INVESTMENT COMMITTEE",
@@ -431,14 +480,14 @@ export async function buildDarbMemo(): Promise<Buffer> {
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { after: 80 },
+      spacing: { after: 60 },
       children: [
         new TextRun({
-          text: "ADVANCE TO PITCH MEETING",
+          text: "Screening Outcome: Advance to Pitch Meeting",
           font: B.serif,
-          size: half(28),
+          size: half(20),
           bold: true,
-          color: B.positive,
+          color: B.charcoal,
         }),
       ],
     }),
@@ -447,33 +496,42 @@ export async function buildDarbMemo(): Promise<Buffer> {
       spacing: { after: 240 },
       children: [
         new TextRun({
-          text: `Series B · ${fmt("ask")} ask · Logistics SaaS · Riyadh`,
+          text: "5 of 6 Charter criteria pass · 1 concentration flag requiring IC acknowledgement",
           font: B.sans,
           size: half(11.5),
           color: B.charcoalMid,
         }),
       ],
     }),
-    kvTable([
-      ["Round / ask", `Series B · ${fmt("ask")}`],
-      ["Sector / headquarters", "Logistics SaaS · Riyadh, Saudi Arabia"],
+    pairGrid([
+      ["Company", "Darb Logistics Technology", "Sector", "Logistics SaaS"],
+      ["Transaction", "Series B · primary", "Ask", fmt("ask")],
+      ["Geography", "Riyadh, Saudi Arabia", "Founded", "2022"],
       [
-        "ARR (company-reported, unaudited)",
-        `${fmt("arr_fy25")} FY2025A · ${fmt("arr_fy26e")} FY2026E guided`,
+        "ARR (FY2025A)",
+        `${fmt("arr_fy25")} (company-reported)`,
+        "ARR (FY2026E)",
+        `${fmt("arr_fy26e")} guided`,
       ],
-      ["Net revenue retention (FY2025A)", fmt("nrr_fy25")],
+      [
+        "NRR (FY2025A)",
+        fmt("nrr_fy25"),
+        "Runway at close",
+        fmt("runway_months"),
+      ],
       [
         "Screening result",
-        "5 criteria pass · 1 concentration warning (IC acknowledgement required)",
+        "5 of 6 pass · 1 flag",
+        "Compliance pre-screen",
+        "Pass",
       ],
-      ["Compliance pre-screen", "Pass"],
     ]),
     new Paragraph({
       alignment: AlignmentType.CENTER,
       spacing: { before: 260, after: 200 },
       children: [
         new TextRun({
-          text: "Contents: Purpose and Recommendation · Company at a Glance · Product and Market · Financial Summary · Use of Proceeds · Founding Team · Mandate Screening vs the IC Charter · Risks and Open Diligence Items · Sources",
+          text: "Contents: Executive Summary · Screening Outcome vs the IC Charter · Key Strengths and Concerns · Company and Market Overview · Financial Summary and Use of Proceeds · Sources",
           font: B.sans,
           size: half(8.5),
           color: B.inkMuted,
@@ -486,7 +544,7 @@ export async function buildDarbMemo(): Promise<Buffer> {
       spacing: { before: 200, after: 200 },
       children: [
         new TextRun({
-          text: "A screening recommendation only, the investment decision rests with the Investment Committee.",
+          text: "A screening outcome only, the investment decision rests with the Investment Committee.",
           font: B.sans,
           size: half(10),
           italics: true,
@@ -508,40 +566,119 @@ export async function buildDarbMemo(): Promise<Buffer> {
     }),
   ];
 
-  // ── Section 1: Purpose and recommendation ──
+  // ── Section 1: Executive summary ──
   const section1 = [
-    h1("Purpose and Recommendation"),
-    body(
-      "This memorandum summarizes the initial mandate screening of Darb Logistics Technology, an inbound Series B opportunity, against the Lunar Investments IC Charter. It is a screening-stage document: it establishes whether the opportunity clears the firm's baseline mandate criteria, not a full investment recommendation.",
+    ...h1("Executive Summary"),
+    bullet(
+      "Darb Logistics Technology is a Riyadh-based logistics SaaS company, founded in 2022, providing route optimization, live fleet operations, a carrier API layer and delivery analytics to last-mile and middle-mile operators; the product is subscription software deployed on the customer's existing fleet.",
     ),
-    body(
-      "Screening recommendation: advance Darb to a pitch meeting. Five of six criteria pass outright; the sixth, sector concentration, is flagged rather than failed. The Charter treats a post-deal concentration breach as requiring explicit Investment Committee acknowledgement before the deal may advance further, not as an automatic decline, this acknowledgement is a required step, not a formality to be assumed.",
+    bullet(
+      `The inbound opportunity is a ${fmt("ask")} Series B, sourced via founder outreach to Lunar's private growth-equity desk.`,
+    ),
+    bullet(
+      `Company-reported, unaudited figures show ARR of ${fmt("arr_fy25")} in FY2025A and ${fmt("arr_fy26e")} guided for FY2026E (+${fmt("arr_growth")} YoY), gross margin of ${fmt("gross_margin_fy25")}, and net revenue retention of ${fmt("nrr_fy25")}.`,
+    ),
+    bullet(
+      `Management indicates proceeds are earmarked roughly ${fmt("proceeds_gtm")} for go-to-market expansion, ${fmt("proceeds_product")} for product and engineering headcount, and ${fmt("proceeds_working_capital")} for working capital; post-round cash runway is guided at ${fmt("runway_months")}.`,
+    ),
+    bullet(
+      "Mandate screening against the Lunar IC Charter: five of six criteria pass outright; sector concentration is flagged, post-deal Technology & Consumer exposure of 10.5% of firm AUM would exceed the Charter's 10% cap and requires explicit Investment Committee acknowledgement before the deal advances.",
+    ),
+    bullet(
+      "No sanctions, conflicts-of-interest, or related-party issues were identified at the pre-screen stage; the compliance pre-screen passes.",
+    ),
+    bullet(
+      "All figures in this memorandum are screening-stage and unaudited: audited FY2023-FY2025 statements, customer contracts, and cohort-level retention data are required diligence items under NDA.",
+    ),
+    bullet(
+      "This memorandum reports a screening outcome, not an investment recommendation; advancing past screening and any subsequent investment decision rest with the Investment Committee.",
+    ),
+    caption(
+      `${sourceLabel(dataroomCite(1))}; ${sourceLabel(dataroomCite(3))}; ${sourceLabel(charterCite(3))}.`,
     ),
   ];
 
-  // ── Section 2: Company at a glance ──
+  // ── Section 2: Screening outcome vs the IC Charter ──
+  const screeningRows = deal.screening.rows.map((row) => [
+    row.criterion.en,
+    row.verdict.toUpperCase(),
+    row.note.en,
+  ]);
   const section2 = [
-    h1("Company at a Glance"),
-    dataTable(
-      ["Attribute", "Detail"],
-      [
-        ["Round", `${fmt("ask")} Series B`],
-        ["Sector", "Logistics SaaS"],
-        ["Headquarters", "Riyadh, Kingdom of Saudi Arabia"],
-        ["Founded", "2022"],
-        [
-          "Source of introduction",
-          "Inbound, founder outreach via Lunar's private growth-equity desk",
-        ],
-      ],
-      [30, 70],
+    ...h1("Screening Outcome vs the IC Charter"),
+    body(
+      "This memorandum summarizes the initial mandate screening of Darb Logistics Technology, an inbound Series B opportunity, against the Lunar Investments IC Charter. It is a screening-stage document: it establishes whether the opportunity clears the firm's baseline mandate criteria, not a full investment analysis.",
     ),
-    caption(sourceLabel(dataroomCite(1))),
+    body(
+      "The Screening Agent checked Darb against every Charter criterion that applies to a private growth-equity opportunity. Five of six criteria pass outright; the sixth, sector concentration, is flagged rather than failed. The Charter treats a post-deal concentration breach as requiring explicit Investment Committee acknowledgement before the deal may advance further, not as an automatic decline; this acknowledgement is a required step, not a formality to be assumed.",
+    ),
+    dataTable(["Criterion", "Verdict", "Detail"], screeningRows, [22, 12, 66]),
+    caption(
+      `${sourceLabel(charterCite(3))}; ${sourceLabel(charterCite(4))}; ${sourceLabel(charterCite(5))}.`,
+    ),
+    h2("Concentration detail"),
+    body(
+      "The Technology & Consumer sector bucket currently sits at 8.5% of firm AUM. A SAR 40M ticket represents a further 2.0% of AUM, bringing post-deal sector exposure to 10.5%, above the Charter's 10% sector concentration cap. Per the Charter, this does not automatically fail the screen, but it requires explicit IC acknowledgement of the mandate breach before the deal may advance.",
+    ),
+    caption(
+      `${sourceLabel({ sourceDoc: "lunar-portfolio", page: 1 })}; ${sourceLabel(charterCite(4))}.`,
+    ),
+    h2("Red flags"),
+    body(
+      "No sanctions, conflicts-of-interest, or related-party issues were identified at the pre-screen stage.",
+    ),
   ];
 
-  // ── Section 3: Product and market ──
+  // ── Section 3: Key strengths and concerns ──
   const section3 = [
-    h1("Product and Market"),
+    ...h1("Key Strengths and Concerns"),
+    h2("Key strengths"),
+    bulletLead(
+      "Subscription SaaS on an asset-light model",
+      "The platform is deployed as subscription software layered on the customer's existing fleet, avoiding the asset-heavy economics of an owned-fleet delivery business; route optimization, fleet operations, carrier integrations and analytics sit in one dashboard and API layer.",
+    ),
+    bulletLead(
+      "Reported net revenue retention above 100%",
+      `Company-reported NRR of ${fmt("nrr_fy25")} in FY2025A and ${fmt("nrr_fy26e")} guided for FY2026E indicates expansion within the existing customer base; durability has not been independently tested and is an open diligence item.`,
+    ),
+    bulletLead(
+      "Reported growth with logo expansion",
+      `ARR is reported at ${fmt("arr_fy25")} for FY2025A with ${fmt("arr_fy26e")} guided for FY2026E (+${fmt("arr_growth")} YoY), on logo growth from ${fmt("logos_fy25")} to ${fmt("logos_fy26e")} active customers, at a ${fmt("gross_margin_fy25")} reported gross margin.`,
+    ),
+    bulletLead(
+      "Policy-aligned market backdrop, as framed by management",
+      "Management frames the opportunity against growth in Saudi e-commerce and quick-commerce delivery volumes and the logistics-digitization push under Vision 2030's transport and logistics pillar; this is management's framing, presented as a judgment to be tested in diligence, not an independently verified market estimate.",
+    ),
+    h2("Key concerns"),
+    bulletLead(
+      "Unaudited, company-reported figures",
+      "All financial figures in this memorandum are company-reported and unaudited; full audited or reviewed statements for FY2023-FY2025 are pending under NDA and are a required diligence item before any ticket is issued.",
+    ),
+    bulletLead(
+      "Customer concentration unknown",
+      "Concentration cannot be assessed until the full data room (customer contracts and cohort-level retention) is reviewed; the segment split shared at screening is anonymized.",
+    ),
+    bulletLead(
+      "Retention durability untested",
+      "Net revenue retention at 118-124% has not been independently tested against cohort-level churn data.",
+    ),
+    bulletLead(
+      "Competitive response from in-house tooling",
+      "In-house dispatch tooling built by large logistics operators and quick-commerce platforms is management's stated primary competitive risk, not yet independently assessed.",
+    ),
+    bulletLead(
+      "Sector concentration flag",
+      "Post-deal Technology & Consumer exposure of 10.5% of AUM would sit above the Charter's 10% cap; the Charter requires explicit IC acknowledgement of the breach before the deal advances.",
+    ),
+    caption(
+      `${sourceLabel(dataroomCite(3))}; ${sourceLabel(dataroomCite(6))}; ${sourceLabel(charterCite(4))}. Company-reported figures are unaudited at screening stage.`,
+    ),
+  ];
+
+  // ── Section 4: Company and market overview ──
+  const section4 = [
+    ...h1("Company and Market Overview"),
+    h2("Company overview"),
     body(
       "Darb builds fleet- and route-optimization software for last-mile and middle-mile logistics operators in the Kingdom. The platform sits between shippers and carrier fleets, providing route planning, real-time tracking, proof-of-delivery, and carrier-performance analytics through a single dashboard and API layer. The product is deployed as subscription SaaS layered on the customer's existing fleet, avoiding the asset-heavy economics of an owned-fleet delivery business.",
     ),
@@ -561,11 +698,25 @@ export async function buildDarbMemo(): Promise<Buffer> {
       "Management frames the opportunity against rapid growth in Saudi e-commerce and quick-commerce delivery volumes, and the broader push toward logistics-sector digitization under Vision 2030's transport and logistics pillar. This is management's framing of the opportunity, presented here as a judgment to be tested in diligence, not an independently verified market estimate.",
     ),
     caption(sourceLabel(dataroomCite(2))),
+    h2("Founding team"),
+    bulletLead(
+      "Faisal Al-Otaibi, Co-founder & CEO",
+      "Former operations lead at a Riyadh-based quick-commerce platform, where he built the last-mile dispatch system that Darb's routing engine is descended from. Industrial engineering background, King Saud University.",
+    ),
+    bulletLead(
+      "Nourah Al-Harbi, Co-founder & CTO",
+      "Previously a senior backend engineer on a regional ride-hailing platform's logistics team. Led Darb's API and carrier-integration architecture from day one. Computer science background, KFUPM.",
+    ),
+    bulletLead(
+      "Khalid Al-Dossari, Co-founder & Head of Revenue",
+      "Ten years in enterprise SaaS sales across the GCC prior to Darb, most recently running mid-market sales for a regional fleet-management vendor. Owns Darb's enterprise and quick-commerce partnership pipeline.",
+    ),
+    caption(sourceLabel(dataroomCite(4))),
   ];
 
-  // ── Section 4: Financial summary ──
-  const section4 = [
-    h1("Financial Summary"),
+  // ── Section 5: Financial summary and use of proceeds ──
+  const section5 = [
+    ...h1("Financial Summary and Use of Proceeds"),
     body(
       "The figures below are Darb's own reporting, unaudited, as shared at the screening stage. Full audited or reviewed financial statements for FY2023-FY2025 sit in the data room under NDA and are a required diligence item before any ticket is issued.",
     ),
@@ -589,84 +740,16 @@ export async function buildDarbMemo(): Promise<Buffer> {
     caption(
       `${sourceLabel(dataroomCite(3))}. Company-reported and unaudited at screening stage.`,
     ),
-  ];
-
-  // ── Section 5: Use of proceeds ──
-  const section5 = [
-    h1("Use of Proceeds"),
+    h2("Use of proceeds"),
     body(
       `Management indicates the ${fmt("ask")} Series B is earmarked roughly ${fmt("proceeds_gtm")} for go-to-market expansion (enterprise sales, quick-commerce partnerships), ${fmt("proceeds_product")} for product and engineering headcount, and ${fmt("proceeds_working_capital")} for working capital and runway extension.`,
     ),
     caption(sourceLabel(dataroomCite(3))),
   ];
 
-  // ── Section 6: Founding team ──
+  // ── Section 6: Appendix, sources ──
   const section6 = [
-    h1("Founding Team"),
-    h2("Faisal Al-Otaibi, Co-founder & CEO"),
-    body(
-      "Former operations lead at a Riyadh-based quick-commerce platform, where he built the last-mile dispatch system that Darb's routing engine is descended from. Industrial engineering background, King Saud University.",
-    ),
-    h2("Nourah Al-Harbi, Co-founder & CTO"),
-    body(
-      "Previously a senior backend engineer on a regional ride-hailing platform's logistics team. Led Darb's API and carrier-integration architecture from day one. Computer science background, KFUPM.",
-    ),
-    h2("Khalid Al-Dossari, Co-founder & Head of Revenue"),
-    body(
-      "Ten years in enterprise SaaS sales across the GCC prior to Darb, most recently running mid-market sales for a regional fleet-management vendor. Owns Darb's enterprise and quick-commerce partnership pipeline.",
-    ),
-    caption(sourceLabel(dataroomCite(4))),
-  ];
-
-  // ── Section 7: Mandate screening vs the IC Charter ──
-  const screeningRows = deal.screening.rows.map((row) => [
-    row.criterion.en,
-    row.verdict.toUpperCase(),
-    row.note.en,
-  ]);
-  const section7 = [
-    h1("Mandate Screening vs the IC Charter"),
-    body(
-      "The Screening Agent checked Darb against every Charter criterion that applies to a private growth-equity opportunity. Five criteria pass outright; sector concentration is flagged, not failed, per the Charter's own escalation rule.",
-    ),
-    dataTable(["Criterion", "Verdict", "Detail"], screeningRows, [22, 12, 66]),
-    caption(
-      `${sourceLabel(charterCite(3))}; ${sourceLabel(charterCite(4))}; ${sourceLabel(charterCite(5))}.`,
-    ),
-    h2("Concentration detail"),
-    body(
-      "The Technology & Consumer sector bucket currently sits at 8.5% of firm AUM. A SAR 40M ticket represents a further 2.0% of AUM, bringing post-deal sector exposure to 10.5%, above the Charter's 10% sector concentration cap. Per the Charter, this does not automatically fail the screen, but it requires explicit IC acknowledgement of the mandate breach before the deal may advance.",
-    ),
-    caption(
-      `${sourceLabel({ sourceDoc: "lunar-portfolio", page: 1 })}; ${sourceLabel(charterCite(4))}.`,
-    ),
-    h2("Red flags"),
-    body(
-      "No sanctions, conflicts-of-interest, or related-party issues were identified at the pre-screen stage.",
-    ),
-  ];
-
-  // ── Section 8: Risks and open diligence items ──
-  const section8 = [
-    h1("Risks and Open Diligence Items"),
-    bullet(
-      "All financial figures in this memo are company-reported and unaudited, full audited/reviewed statements for FY2023-FY2025 are pending under NDA.",
-    ),
-    bullet(
-      "Customer concentration is unknown until the full data room (customer contracts and cohort-level retention) is reviewed, the segment split shared at screening is anonymized.",
-    ),
-    bullet(
-      "Net revenue retention durability at 118-124% has not been independently tested against cohort-level churn data.",
-    ),
-    bullet(
-      "Competitive response from in-house dispatch tooling built by large logistics operators and quick-commerce platforms is management's stated primary competitive risk, not yet independently assessed.",
-    ),
-    caption(sourceLabel(dataroomCite(6))),
-  ];
-
-  // ── Section 9: Appendix, sources ──
-  const section9 = [
-    h1("Appendix: Sources"),
+    ...h1("Appendix: Sources"),
     body(
       "Every source document actually cited in this memo, with the pages the cited figures or facts came from.",
     ),
@@ -707,9 +790,6 @@ export async function buildDarbMemo(): Promise<Buffer> {
           ...section4,
           ...section5,
           ...section6,
-          ...section7,
-          ...section8,
-          ...section9,
         ],
       },
     ],

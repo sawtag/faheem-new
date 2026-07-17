@@ -28,7 +28,7 @@
     "user": "Ali",
     "context": "firm",
     "action": "question",
-    "question": "Explain the AAOIFI methodology Faheem uses for Compliance pre-screening.",
+    "question": "Explain the IC Charter methodology Faheem uses for Compliance pre-screening.",
     "citationCount": 5
   },
   {
@@ -218,7 +218,7 @@
     "user": "Ali",
     "context": "workspace:jahez",
     "action": "question",
-    "question": "هل يجتاز جاهز فحص الامتثال وفق منهجية AAOIFI؟",
+    "question": "هل يجتاز جاهز فحص الامتثال وفق ميثاق لجنة الاستثمار؟",
     "citationCount": 0
   },
   {
@@ -283,5 +283,45 @@
     "action": "question",
     "question": "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?",
     "citationCount": 23
+  },
+  {
+    "ts": "2026-07-17T06:28:23.030Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+    "citationCount": 58
+  },
+  {
+    "ts": "2026-07-17T06:32:25.598Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-17T06:32:40.594Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+    "citationCount": 0
+  },
+  {
+    "ts": "2026-07-17T06:33:19.146Z",
+    "user": "Ali",
+    "context": "workspace:darb",
+    "action": "question",
+    "question": "Create the IC memo on Darb using the data room and our internal template. Keep the tone neutral and analytical.",
+    "citationCount": 58
+  },
+  {
+    "ts": "2026-07-17T06:57:31.501Z",
+    "user": "Ali",
+    "context": "workspace:jahez",
+    "action": "question",
+    "question": "Build the committee deck for Monday's IC on Jahez.",
+    "citationCount": 40
   }
 ]

@@ -46,7 +46,7 @@ describe("ArtifactPreview", () => {
     expect(screen.queryByTestId("artifact-preview")).not.toBeInTheDocument();
   });
 
-  it("pptx: header, 8-thumbnail rail, click + arrow keys switch the active slide", () => {
+  it("pptx: header, 10-thumbnail rail, click + arrow keys switch the active slide", () => {
     renderPreview(meta("pptx"));
 
     const panel = screen.getByTestId("artifact-preview");
@@ -60,26 +60,26 @@ describe("ArtifactPreview", () => {
       "/artifacts/jahez-board-deck.pptx",
     );
 
-    // all 8 slide thumbnails, slide 1 active
-    const thumbs = screen.getAllByRole("button", { name: /^Slide \d$/ });
-    expect(thumbs).toHaveLength(8);
+    // all 10 slide thumbnails, slide 1 active
+    const thumbs = screen.getAllByRole("button", { name: /^Slide \d+$/ });
+    expect(thumbs).toHaveLength(10);
     expect(thumbs[0]).toHaveAttribute("aria-current", "true");
-    expect(screen.getByText("Slide 1 of 8")).toBeInTheDocument();
+    expect(screen.getByText("Slide 1 of 10")).toBeInTheDocument();
 
     // click a thumbnail → jumps
     fireEvent.click(thumbs[2]!);
-    expect(screen.getByText("Slide 3 of 8")).toBeInTheDocument();
+    expect(screen.getByText("Slide 3 of 10")).toBeInTheDocument();
     expect(thumbs[2]).toHaveAttribute("aria-current", "true");
 
     // arrow keys → next / prev, clamped at the ends
     fireEvent.keyDown(panel, { key: "ArrowDown" });
-    expect(screen.getByText("Slide 4 of 8")).toBeInTheDocument();
+    expect(screen.getByText("Slide 4 of 10")).toBeInTheDocument();
     fireEvent.keyDown(panel, { key: "ArrowUp" });
     fireEvent.keyDown(panel, { key: "ArrowLeft" });
-    expect(screen.getByText("Slide 2 of 8")).toBeInTheDocument();
+    expect(screen.getByText("Slide 2 of 10")).toBeInTheDocument();
     fireEvent.keyDown(panel, { key: "ArrowUp" });
     fireEvent.keyDown(panel, { key: "ArrowUp" });
-    expect(screen.getByText("Slide 1 of 8")).toBeInTheDocument();
+    expect(screen.getByText("Slide 1 of 10")).toBeInTheDocument();
   });
 
   it("escape and the close button both close the panel", () => {

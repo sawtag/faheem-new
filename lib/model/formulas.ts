@@ -167,7 +167,7 @@ export const FORMULAS: Record<string, FormulaDef> = Object.fromEntries(
     f("comps-min", String.raw`\min(\text{implied values})`),
     f("comps-median", String.raw`\operatorname{median}(\text{implied values})`),
     f("comps-max", String.raw`\max(\text{implied values})`),
-    // ── Compliance screen (AAOIFI-style) ──
+    // ── Compliance screen (IC Charter) ──
     f(
       "compliance-debt-ratio",
       String.raw`\text{debt} / \text{market cap} < 33\%`,
