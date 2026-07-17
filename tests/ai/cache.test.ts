@@ -1,6 +1,11 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
-import { cacheKey, contextKey } from "@/lib/ai/cache";
+import {
+  cacheKey,
+  contextKey,
+  readCacheEntry,
+  readCacheEntryForRequest,
+} from "@/lib/ai/cache";
 import type { ChatRequest } from "@/lib/types";
 
 describe("contextKey", () => {
@@ -60,5 +65,32 @@ describe("cacheKey", () => {
     };
     const expected = createHash("sha1").update("q|en|firm||").digest("hex");
     expect(cacheKey(withUndef)).toBe(expected);
+  });
+});
+
+describe("readCacheEntryForRequest, golden-text fallback", () => {
+  const goldenQa1 =
+    "Break down Jahez's FY2025 unit economics from #FY2025-Earnings-Release: GMV growth vs take rate, AOV, contribution margin, EBITDA margin, and why did net income compress ~61% despite double-digit GMV growth?";
+
+  it("a pasted golden question (no docIds) still replays the recording", () => {
+    const pasted: ChatRequest = {
+      question: goldenQa1,
+      lang: "en",
+      context: { kind: "workspace", companyId: "jahez" },
+      // pasted text carries no palette docIds, so the exact key misses
+    };
+    expect(readCacheEntry(cacheKey(pasted))).toBeNull();
+    const entry = readCacheEntryForRequest(pasted);
+    expect(entry).not.toBeNull();
+    expect(entry!.request.docIds).toEqual(["fy25-er"]);
+  });
+
+  it("a non-golden question falls through to null (goes live in auto)", () => {
+    const novel: ChatRequest = {
+      question: "What is Jahez's Q3 2024 marketing spend?",
+      lang: "en",
+      context: { kind: "workspace", companyId: "jahez" },
+    };
+    expect(readCacheEntryForRequest(novel)).toBeNull();
   });
 });

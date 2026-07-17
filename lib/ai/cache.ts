@@ -15,6 +15,7 @@ import {
   type ChatContext,
   type ChatRequest,
 } from "@/lib/types";
+import { GOLDEN_QUESTIONS } from "@/lib/demo/golden-questions";
 
 const repoRoot = process.cwd();
 
@@ -61,6 +62,25 @@ export function readCacheEntry(key: string): CacheEntry | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * Cache lookup with a presenter-safe fallback: the exact request key first;
+ * on a miss, if the trimmed question text matches a golden entry in that
+ * language, replay the golden's recording. This makes every submission path
+ * equivalent on stage: a prompt pasted from prompts.txt lands without the
+ * palette-carried docIds/agent (so its exact key misses), but it is the same
+ * reviewed question and must replay the same verified answer.
+ */
+export function readCacheEntryForRequest(req: ChatRequest): CacheEntry | null {
+  const exact = readCacheEntry(cacheKey(req));
+  if (exact) return exact;
+  const question = req.question.trim();
+  const golden = GOLDEN_QUESTIONS.find(
+    (g) =>
+      g.request.lang === req.lang && g.request.question.trim() === question,
+  );
+  return golden ? readCacheEntry(cacheKey(golden.request)) : null;
 }
 
 /** Atomically persists a recorded entry (FAHEEM_RECORD=1). */

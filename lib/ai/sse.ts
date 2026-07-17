@@ -23,7 +23,11 @@ import {
   type CorpusContext,
   type FileReader,
 } from "@/lib/ai/corpus";
-import { cacheKey, readCacheEntry, writeCacheEntry } from "@/lib/ai/cache";
+import {
+  cacheKey,
+  readCacheEntryForRequest,
+  writeCacheEntry,
+} from "@/lib/ai/cache";
 import { readModeConfig, replay, sleep, type ModeConfig } from "@/lib/ai/mode";
 import { buildSystemPrompt, choreographyPlan } from "@/lib/ai/prompts";
 import type {
@@ -278,7 +282,7 @@ export async function* chatEventStream(
     ...readModeConfig(opts.cookieMode),
     ...opts.configOverride,
   };
-  const cached = readCacheEntry(cacheKey(req));
+  const cached = readCacheEntryForRequest(req);
 
   if (config.mode === "cached") {
     if (cached) {
